@@ -4,7 +4,7 @@
             <div class="o-hero-big__outer">
                 <div class="o-hero-big__inner">
                     <h1 class="o-hero-big__headline">
-                        API
+                        ADMIN
                     </h1>
                     <p class="o-hero-big__perex">Frytol na cestách</p>
                 </div>
