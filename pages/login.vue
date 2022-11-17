@@ -23,6 +23,10 @@ export default {
     async login(){
         let result = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/login/${this.email}/${this.password}`)
 
+        if(result.status==200 && result.data.length>0) {
+            localStorage.setItem("user-info",JSON.stringify(result.data[0]))
+            $this.$router.push({name:'Home'})
+        }
         console.warn(result)
     }
   }
