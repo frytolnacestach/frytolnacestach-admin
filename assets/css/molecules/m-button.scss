@@ -1,0 +1,15 @@
+.m-button {
+    &__input {
+        background-color: $brand1;
+        color: $white;
+        height: 40px;
+        line-height: 30px;
+        padding: 5px 10px;
+        border: 0;
+        min-width: 160px;
+
+        &:hover {
+            background-color: $brand2;
+        }
+    }
+}
