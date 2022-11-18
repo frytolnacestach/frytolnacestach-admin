@@ -29,8 +29,6 @@
                                     <div class="m-button">
                                         <button class="m-button__input" type="submit">Login</button>
                                     </div>
-
-                                    test: {{ post }}
                                 </div>
                             </div>
                         </form>
@@ -42,8 +40,6 @@
 </template>
 
 <script>
-    //import LoginForm from '../components/LoginForm.vue'
-
     export default {
         name: 'LoginPage',
 
@@ -58,23 +54,32 @@
         },
         methods: {
             async loginForm(){
+                console.log("test btn")
                 try {
+                    console.log("test btn try")
                     let result = {"status":200,"message":[{"id":1,"email":"michal.fryc@seznam.cz","password":"Testheslo"}]}
                     //let result = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/login/${this.login.email}/${this.login.password}`)
-                    
-                    var now = new Date();
-                    now.setMonth( now.getMonth() + 1 );
-                    let expires = "expires="+ now;
-                    
-                    document.cookie = "FFFtestResult=1;" + expires;
 
-                    if(result.status==200 && result.data.length>0) {
-                        localStorage.setItem("user-info",JSON.stringify(result.data[0]))
+                    if(result.status==200) {
+                        console.log("test btn 200")
+                        
+                        //set storage
+                        localStorage.setItem("user-info",JSON.stringify(result.message[0]))
                         $this.$router.push({name:'Home'})
+                        
+                        //set expires
+                        var now = new Date();
+                        now.setMonth( now.getMonth() + 1 );
+                        let expires = "expires="+ now;
+                        
+                        //set cookies
+                        document.cookie = "FNCADMINemail=TEST" + result.message[0].email + ";" + expires;
+                        document.cookie = "FNCADMINpass=TEST" + result.message[0].password + ";" + expires;
                     }
                     console.warn(result)
                     
                 } catch (err) {
+                    console.log("test btn err")
                     console.log(err)
                 }
             }
@@ -85,14 +90,6 @@
             if (user) {
                 $this.router.push({name: 'Home'})
             }
-        },
-        /*async asyncData({ $axios }) {
-            const post = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/login/michal.fryc@seznam.cz/Tohleneniheslo`)
-            return { post: post }
-        },*/
-        async asyncData() {
-            const post = {"id":2,"email":"michal.fryc@seznam.cz","password":"Tohleneniheslo"}
-            return { post: post }
         }
     }
 </script>
