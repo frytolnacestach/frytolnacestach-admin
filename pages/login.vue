@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-        
+
         <section class="t-section">
             <div class="o-form-login">
                 <div class="o-form-login__outer">
@@ -30,10 +30,10 @@
                         <form class="o-form-login__form" @submit.prevent="loginForm">
                             <div class="o-form-login__items">
                                 <div class="o-form-login__item">
-                                    <input class="a-input" type="text" name="email" v-model="login.email" placeholder="E-mail"/>
+                                    <input class="a-input a-input--big" type="text" name="email" v-model="login.email" placeholder="E-mail"/>
                                 </div>
                                 <div class="o-form-login__item">
-                                    <input class="a-input" type="password" name="password" v-model="login.password" placeholder="Heslo"/>
+                                    <input class="a-input a-input--big" type="password" name="password" v-model="login.password" placeholder="Heslo"/>
                                 </div>
                             </div>
                             <div class="o-form-login__buttons mt-1">

@@ -1,0 +1,11 @@
+.m-label {
+    width: 100%;
+    display: inline-block;
+
+    &__name {
+        width: 100%;
+        margin-bottom: 5px;
+        font-size: $fs-normal-s;
+        display: block;
+    }
+}

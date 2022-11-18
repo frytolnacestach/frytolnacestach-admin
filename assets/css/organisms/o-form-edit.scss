@@ -1,0 +1,40 @@
+.o-form-edit {
+    width: 100%;
+    max-width: 640px;
+    margin: 80px auto;
+
+    &__outer {
+        width: 100%;
+        padding: 20px 30px;
+        background-color: $gray2;
+    }
+
+    &__inner {
+        width: 100%;
+    }
+
+    &__form {
+        width: 100%;
+    }
+
+    &__items {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    &__item {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    &__buttons {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__button {
+        width: auto;
+    }
+}
