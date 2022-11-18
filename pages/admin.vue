@@ -1,15 +1,34 @@
 <template>
     <main class="t-main">
+        <div class="o-hero">
+            <div class="o-hero__outer">
+                <div class="o-hero__inner">
+                    <h1 class="o-hero__headline">
+                        Administrace
+                    </h1>
+                </div>
+            </div>
+        </div>
+
         <section class="t-section">
         
         </section>
     </main>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script>
 
-export default Vue.extend({
-  name: 'AdminPage'
-})
+export default {
+    name: 'AdminPage',
+
+    mounted() {
+        let user = localStorage.getItem('user-info')
+
+        if ( user && user != "undefined" ) {
+
+        } else {
+            this.$router.push('login')
+        }
+    }
+}
 </script>

@@ -11,6 +11,9 @@
                                         <li class="m-nav-main__item">
                                             <NuxtLink class="m-nav-main__link" to="/admin">Administrace</NuxtLink>
                                         </li>
+                                        <li class="m-nav-main__item" v-if="loginStatus">
+                                            <NuxtLink class="m-nav-main__link" to="/logout">Odhlásit se</NuxtLink>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -24,6 +27,23 @@
 
 <script>
     export default {
-        name: 'MenuMain'
+        name: 'MenuMain',
+        data(){
+            return {
+                loginStatus: ''
+            }
+        },
+        mounted() {
+
+            let user = localStorage.getItem('user-info')
+
+            if (user && user != "undefined") {
+                this.loginStatus = "true"
+            } else {
+
+            }
+        }
     }
+
+    
 </script>
