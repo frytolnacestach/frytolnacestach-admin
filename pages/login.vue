@@ -30,7 +30,7 @@
                                         <button class="m-button__input" type="submit">Login</button>
                                     </div>
 
-                                    test: {{ post[0] }}
+                                    test: {{ post }}
                                 </div>
                             </div>
                         </form>
@@ -59,7 +59,8 @@
         methods: {
             async loginForm(){
                 try {
-                    let result = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/login/${this.login.email}/${this.login.password}`)
+                    let result = {"status":200,"message":[{"id":1,"email":"michal.fryc@seznam.cz","password":"Testheslo"}]}
+                    //let result = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/login/${this.login.email}/${this.login.password}`)
                     
                     var now = new Date();
                     now.setMonth( now.getMonth() + 1 );
@@ -85,8 +86,11 @@
                 $this.router.push({name: 'Home'})
             }
         },
+        /*async asyncData({ $axios }) {
+            const post = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/login/michal.fryc@seznam.cz/Tohleneniheslo`)
+            return { post: post }
+        },*/
         async asyncData() {
-            //const post = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/login/michal.fryc@seznam.cz/Tohleneniheslo`)
             const post = {"id":2,"email":"michal.fryc@seznam.cz","password":"Tohleneniheslo"}
             return { post: post }
         }
