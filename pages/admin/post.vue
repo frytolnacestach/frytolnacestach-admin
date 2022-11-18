@@ -4,7 +4,7 @@
             <div class="o-hero__outer">
                 <div class="o-hero__inner">
                     <h1 class="o-hero__headline">
-                        Administrace
+                        Administrace - Články
                     </h1>
                 </div>
             </div>
@@ -19,7 +19,7 @@
 <script>
 
 export default {
-    name: 'AdminPage',
+    name: 'AdminPostPage',
 
     mounted() {
         let user = localStorage.getItem('user-info')
