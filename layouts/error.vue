@@ -1,20 +1,32 @@
 <template>
-  <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
-  </v-app>
+  <main class="t-main">
+      <section class="t-section">
+          <SectionHero 
+              :headline="headline"
+              :perex="perex"
+          />
+      </section>
+
+      <section class="t-section">
+          <div class="o-build">
+              <div class="o-build__outer">
+                  <div class="o-build__inner">
+                      <div class="o-build__text">
+                          SEKCE SE PŘIPRAVUJE
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+  </main>
 </template>
 
 <script>
+import SectionHero from '../components/SectionHero.vue'
+
 export default {
-  name: 'EmptyLayout',
+
+  name: 'PageNotfound',
   layout: 'empty',
   props: {
     error: {
@@ -22,11 +34,14 @@ export default {
       default: null
     }
   },
-  data () {
-    return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
-    }
+  components: {
+      SectionHero
+  },
+  data() {
+      return {
+          headline: "Error 404",
+          perex: "Je mi to líto ale tato stránka neexistuje"
+      }
   },
   head () {
     const title =
@@ -39,7 +54,4 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  font-size: 20px;
-}
 </style>
