@@ -190,42 +190,42 @@
                                         <label class="m-label">
                                             <span class="m-label__name">Tags:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="tags" v-model="edit.tags" />
+                                        <textarea class="a-textarea" type="text" name="tags" v-model="edit.tags"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Locations:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="locations" v-model="edit.locations" />
+                                        <textarea class="a-textarea" type="text" name="locations" v-model="edit.locations"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Travels:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="travels" v-model="edit.travels" />
+                                        <textarea class="a-textarea" type="text" name="travels" v-model="edit.travels"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Prices:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="prices" v-model="edit.prices" />
+                                        <textarea class="a-textarea" type="text" name="prices" v-model="edit.prices"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Triplengths:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="triplengths" v-model="edit.triplengths" />
+                                        <textarea class="a-textarea" type="text" name="triplengths" v-model="edit.triplengths"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Times:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="times" v-model="edit.times" />
+                                        <textarea class="a-textarea" type="text" name="times" v-model="edit.times"></textarea>
                                     </div>
 
 
@@ -318,12 +318,12 @@
             this.edit.perexPrice = this.post[0].perexPrice
             this.edit.perexTriplength = this.post[0].perexTriplength
             this.edit.perexTime = this.post[0].perexTime
-            this.edit.tags = this.post[0].tags
-            this.edit.locations = this.post[0].locations
-            this.edit.travels = this.post[0].travels
-            this.edit.prices = this.post[0].prices
-            this.edit.triplengths = this.post[0].triplengths
-            this.edit.times = this.post[0].times
+            this.edit.tags = JSON.stringify(this.post[0].tags)
+            this.edit.locations = JSON.stringify(this.post[0].locations)
+            this.edit.travels = JSON.stringify(this.post[0].travels)
+            this.edit.prices = JSON.stringify(this.post[0].prices)
+            this.edit.triplengths = JSON.stringify(this.post[0].triplengths)
+            this.edit.times = JSON.stringify(this.post[0].times)
         },  
 
         async asyncData({ $axios, params }) {
