@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/login", {data:[{post:[{id:1,email:"michal.fryc@seznam.cz",password:"Testheslo"}]}],fetch:{},mutations:void 0});
