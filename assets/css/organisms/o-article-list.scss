@@ -1,0 +1,47 @@
+.o-article-list {
+    width: 100%;
+
+    &__outer {
+        width: 100%;
+    }
+
+    &__inner {
+        width: 100%;
+    }
+
+    &__items {
+        width: 100%;
+    }
+
+    &__item {
+        width: 100%;
+        display: grid;
+        grid-template-columns: [first] 33% [second] 67%;
+        border-right: 1px solid $gray1;
+        border-bottom: 1px solid $gray1;
+        border-left: 1px solid $gray1;
+
+        &:first-of-type {
+            border-top: 1px solid $gray1;
+        }
+    }
+
+    &__title {
+        padding: 5px 12px;
+        margin: 0;
+        border-right: 1px solid $gray1;
+    }
+
+    &__title-link {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__perex {
+        padding: 5px 12px;
+        margin: 0;
+    }
+}
