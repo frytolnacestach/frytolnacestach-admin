@@ -134,28 +134,28 @@
                                         <label class="m-label">
                                             <span class="m-label__name">Text Opener:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="textOpener" v-model="edit.textOpener" />
+                                        <textarea class="a-textarea" type="text" name="textOpener" v-model="edit.textOpener"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Text Author:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="textAuthor" v-model="edit.textAuthor" />
+                                        <textarea class="a-textarea" type="text" name="textAuthor" v-model="edit.textAuthor"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Text Wiki:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="textWiki" v-model="edit.textWiki" />
+                                        <textarea class="a-textarea" type="text" name="textWiki" v-model="edit.textWiki"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Review Text:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="reviewText" v-model="edit.reviewText" />
+                                        <textarea class="a-textarea" type="text" name="reviewText" v-model="edit.reviewText"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
@@ -188,42 +188,42 @@
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Tags:</span>
+                                            <span class="m-label__name">Tags(json):</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="tags" v-model="edit.tags"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Locations:</span>
+                                            <span class="m-label__name">Locations(json):</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="locations" v-model="edit.locations"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Travels:</span>
+                                            <span class="m-label__name">Travels(json):</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="travels" v-model="edit.travels"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Prices:</span>
+                                            <span class="m-label__name">Prices(json):</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="prices" v-model="edit.prices"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Triplengths:</span>
+                                            <span class="m-label__name">Triplengths(json):</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="triplengths" v-model="edit.triplengths"></textarea>
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Times:</span>
+                                            <span class="m-label__name">Times(json):</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="times" v-model="edit.times"></textarea>
                                     </div>
