@@ -289,7 +289,6 @@
         },
         methods: {
             async editForm(){
-                console.log("kliknutí na tlačítko")
                 try {
                     let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/edit-post`, {
                         headers: {

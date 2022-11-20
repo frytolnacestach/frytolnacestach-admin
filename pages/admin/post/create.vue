@@ -288,7 +288,6 @@
         },
         methods: {
             async createForm(){
-                console.log("kliknutí na tlačítko")
                 try {
                     let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/create-post`, {
                         headers: {
