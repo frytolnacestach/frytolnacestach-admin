@@ -333,12 +333,6 @@
                     .catch(function (error) {
                         console.log(error);
                     });
-
-                    if(result.data.status == 201) {
-                        alert("Článek byl editován")
-                    } else {
-                        alert("Článek nebyl editován")
-                    }
                 } catch (err) {
                     console.log(err)
                 }

@@ -326,20 +326,13 @@
                             'times': this.create.times
                         }
                     })
-                    .then(function (response) {
+                    .then((response) => {
                         console.log(response);
+                        this.$router.push(`/admin/post/${this.create.slug}`)
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
-
-                    if(result.data.status == 201) {
-                        alert("Článek byl vytvořen")
-
-                        this.$router.push(`/admin/post/${this.create.slug}`)
-                    } else {
-                        alert("Článek nebyl vytvořen")
-                    }
                 } catch (err) {
                     console.log(err)
                 }
