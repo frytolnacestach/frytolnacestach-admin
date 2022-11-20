@@ -247,6 +247,7 @@
 </template>
 
 <script>
+    import axios from "axios";
 
     export default {
         name: 'AdminPostSlugPage',
@@ -285,6 +286,52 @@
                 },
                 errorForm: '',
                 post: ''
+            }
+        },
+        methods: {
+            async editForm(){
+                console.log("kliknutí na tlačítko")
+                try {
+                    let result = await axios.post("https://frytolnacestach-api.vercel.app/api/edit-post", {
+                        dir: this.edit.dir,
+                        slug: this.edit.slug,
+                        path: this.edit.path,
+                        date: this.edit.date,
+                        dataUpdate: this.edit.dateUpdate,
+                        dataInformation: this.edit.dateInformation,
+                        imageList: this.edit.imageList,
+                        imageHero: this.edit.imageHero,
+                        imageMap: this.edit.imageMap,
+                        urlYoutube: this.edit.urlYoutube,
+                        urlWiki: this.edit.urlWiki,
+                        urlMap: this.edit.urlMap,
+                        title: this.edit.title,
+                        perex: this.edit.perex,
+                        textOpener: this.edit.textOpener,
+                        textAuthor: this.edit.textAuthor,
+                        textWiki: this.edit.textWiki,
+                        reviewText: this.edit.reviewText,
+                        reviewValue: this.edit.reviewValue,
+                        perexPrice: this.edit.perexPrice,
+                        perexTriplength: this.edit.perexTriplength,
+                        perexTime: this.edit.perexTime,
+                        tags: this.edit.tags,
+                        locations: this.edit.locations,
+                        travels: this.edit.travels,
+                        prices: this.edit.prices,
+                        triplengths: this.edit.triplengths,
+                        times: this.edit.times
+                    })
+
+                    console.warm(result)
+                    if(result.status == 201) {
+                        alert("Článek byl editován")
+                    } else {
+                        alert("Článek nebyl editován")
+                    }
+                } catch (err) {
+                    console.log(err)
+                }
             }
         },
         mounted() {
