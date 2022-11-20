@@ -333,7 +333,7 @@
                         console.log(error);
                     });
 
-                    if(result.status == 201) {
+                    if(result.data.status == 201) {
                         alert("Článek byl vytvořen")
 
                         this.$router.push(`/admin/post/${this.create.slug}`)
@@ -376,12 +376,12 @@
             this.create.perexPrice = ''
             this.create.perexTriplength = ''
             this.create.perexTime = ''
-            this.create.tags = ''
-            this.create.locations = ''
-            this.create.travels = ''
-            this.create.prices = ''
-            this.create.triplengths = ''
-            this.create.times = ''
+            this.create.tags = null
+            this.create.locations = null
+            this.create.travels = null
+            this.create.prices = null
+            this.create.triplengths = null
+            this.create.times = null
         }
     }
 </script>

@@ -334,7 +334,7 @@
                         console.log(error);
                     });
 
-                    if(result.status == 201) {
+                    if(result.data.status == 201) {
                         alert("Článek byl editován")
                     } else {
                         alert("Článek nebyl editován")
