@@ -291,10 +291,10 @@
             async editForm(){
                 console.log("kliknutí na tlačítko")
                 try {
-                    //let result = await axios.get(`https://frytolnacestach-api.vercel.app/api/login/michal.fryc@seznam.cz/Testheslo`)
-                    let result = await axios.post("https://frytolnacestach-api.vercel.app/api/edit-post", {
+                    let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/edit-post`, {
                         headers: {
-                            "Content-Type": "multipart/form-data",
+                            "Content-Type": "application/json",
+                            "Access-Control-Allow-Headers": "x-access-token, Origin, Content-Type, Accept",
                         },
                         method: 'POST',
                         body: {
@@ -328,9 +328,13 @@
                             'times': this.edit.times
                         }
                     })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
 
-                    console.warm(result)
-                    
                     if(result.status == 201) {
                         alert("Článek byl editován")
                     } else {
