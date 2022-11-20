@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/admin/post/null", {data:[{post:[]}],fetch:{},mutations:void 0});
