@@ -228,7 +228,6 @@
                                         <textarea class="a-textarea" type="text" name="times" v-model="edit.times"></textarea>
                                     </div>
 
-
                                 </div>
                                 <div class="o-form-edit__buttons mt-1">
                                     <div class="o-form-edit__button">
@@ -292,38 +291,46 @@
             async editForm(){
                 console.log("kliknutí na tlačítko")
                 try {
+                    //let result = await axios.get(`https://frytolnacestach-api.vercel.app/api/login/michal.fryc@seznam.cz/Testheslo`)
                     let result = await axios.post("https://frytolnacestach-api.vercel.app/api/edit-post", {
-                        dir: this.edit.dir,
-                        slug: this.edit.slug,
-                        path: this.edit.path,
-                        date: this.edit.date,
-                        dataUpdate: this.edit.dateUpdate,
-                        dataInformation: this.edit.dateInformation,
-                        imageList: this.edit.imageList,
-                        imageHero: this.edit.imageHero,
-                        imageMap: this.edit.imageMap,
-                        urlYoutube: this.edit.urlYoutube,
-                        urlWiki: this.edit.urlWiki,
-                        urlMap: this.edit.urlMap,
-                        title: this.edit.title,
-                        perex: this.edit.perex,
-                        textOpener: this.edit.textOpener,
-                        textAuthor: this.edit.textAuthor,
-                        textWiki: this.edit.textWiki,
-                        reviewText: this.edit.reviewText,
-                        reviewValue: this.edit.reviewValue,
-                        perexPrice: this.edit.perexPrice,
-                        perexTriplength: this.edit.perexTriplength,
-                        perexTime: this.edit.perexTime,
-                        tags: this.edit.tags,
-                        locations: this.edit.locations,
-                        travels: this.edit.travels,
-                        prices: this.edit.prices,
-                        triplengths: this.edit.triplengths,
-                        times: this.edit.times
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                        method: 'POST',
+                        body: {
+                            'dir': this.edit.dir,
+                            'slug': this.edit.slug,
+                            'path': this.edit.path,
+                            'date': this.edit.date,
+                            'dataUpdate': this.edit.dateUpdate,
+                            'dataInformation': this.edit.dateInformation,
+                            'imageList': this.edit.imageList,
+                            'imageHero': this.edit.imageHero,
+                            'imageMap': this.edit.imageMap,
+                            'urlYoutube': this.edit.urlYoutube,
+                            'urlWiki': this.edit.urlWiki,
+                            'urlMap': this.edit.urlMap,
+                            'title': this.edit.title,
+                            'perex': this.edit.perex,
+                            'textOpener': this.edit.textOpener,
+                            'textAuthor': this.edit.textAuthor,
+                            'textWiki': this.edit.textWiki,
+                            'reviewText': this.edit.reviewText,
+                            'reviewValue': this.edit.reviewValue,
+                            'perexPrice': this.edit.perexPrice,
+                            'perexTriplength': this.edit.perexTriplength,
+                            'perexTime': this.edit.perexTime,
+                            'tags': this.edit.tags,
+                            'locations': this.edit.locations,
+                            'travels': this.edit.travels,
+                            'prices': this.edit.prices,
+                            'triplengths': this.edit.triplengths,
+                            'times': this.edit.times
+                        }
                     })
 
                     console.warm(result)
+                    
                     if(result.status == 201) {
                         alert("Článek byl editován")
                     } else {
