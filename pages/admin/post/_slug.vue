@@ -4,11 +4,27 @@
             <div class="o-hero__outer">
                 <div class="o-hero__inner">
                     <h1 class="o-hero__headline">
-                        Článek
+                        Článek {{ this.edit.title }}
                     </h1>
                 </div>
             </div>
         </div>
+
+        <section class="t-section my-4">
+            <div class="t-section__inner">
+                <nav class="o-nav-operation">
+                    <div class="o-nav-operation__outer">
+                        <div class="o-nav-operation__inner">
+                            <ul class="o-nav-operation__items">
+                                <li class="o-nav-operation__item">
+                                    <NuxtLink class="o-nav-operation__title" to="/admin/post">Všechny příspěvky</NuxtLink>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </section>
 
         <section class="t-section my-4">
             <div class="t-section__inner">
