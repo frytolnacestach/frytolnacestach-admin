@@ -10,10 +10,6 @@
                 </div>
             </div>
         </div>
-        
-        <section class="t-section">
-        
-        </section>
     </main>
 </template>
 
