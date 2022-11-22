@@ -305,7 +305,7 @@
         methods: {
             async createForm(){
                 try {
-                    let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/create-post`, {
+                    let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/post-create`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Headers": "x-access-token, Origin, Content-Type, Accept",
