@@ -20,7 +20,7 @@
                     </li>
                     <li class="o-nav-admin__item">
                         <div class="o-nav-admin__item-container">
-                            <NuxtLink class="o-nav-admin__title" to="/admin/post">Články</NuxtLink>
+                            <NuxtLink class="o-nav-admin__title" to="/admin/posts">Články</NuxtLink>
                         </div>
                     </li>
                 </ul>

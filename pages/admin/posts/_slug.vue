@@ -10,6 +10,24 @@
             </div>
         </div>
 
+        <nav class="m-nav-breadcrumbs">
+            <div class="m-nav-breadcrumbs__outer">
+                <div class="m-nav-breadcrumbs__inner">
+                    <ul class="m-nav-breadcrumbs__items">
+                        <li class="m-nav-breadcrumbs__item">
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
+                        </li>
+                        <li class="m-nav-breadcrumbs__item">
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/posts">Články</NuxtLink>
+                        </li>
+                        <li class="m-nav-breadcrumbs__item">
+                            <span class="m-nav-breadcrumbs__span">Editace článku - {{ this.edit.title }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <section class="t-section my-4">
             <div class="t-section__inner">
                 <nav class="o-nav-operation">
@@ -17,7 +35,7 @@
                         <div class="o-nav-operation__inner">
                             <ul class="o-nav-operation__items">
                                 <li class="o-nav-operation__item">
-                                    <NuxtLink class="o-nav-operation__title" to="/admin/post">Všechny příspěvky</NuxtLink>
+                                    <NuxtLink class="o-nav-operation__title" to="/admin/posts">Všechny příspěvky</NuxtLink>
                                 </li>
                             </ul>
                         </div>

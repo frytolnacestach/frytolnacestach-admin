@@ -10,6 +10,21 @@
             </div>
         </div>
 
+        <nav class="m-nav-breadcrumbs">
+            <div class="m-nav-breadcrumbs__outer">
+                <div class="m-nav-breadcrumbs__inner">
+                    <ul class="m-nav-breadcrumbs__items">
+                        <li class="m-nav-breadcrumbs__item">
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
+                        </li>
+                        <li class="m-nav-breadcrumbs__item">
+                            <span class="m-nav-breadcrumbs__span">Články</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <section class="t-section my-4">
             <div class="t-section__inner">
                 <nav class="o-nav-operation">
@@ -17,7 +32,9 @@
                         <div class="o-nav-operation__inner">
                             <ul class="o-nav-operation__items">
                                 <li class="o-nav-operation__item">
-                                    <NuxtLink class="o-nav-operation__title" to="/admin/post/create">Vytvoření příspěvku</NuxtLink>
+                                    <div class="o-nav-admin__item-container">
+                                        <NuxtLink class="o-nav-operation__title" to="/admin/posts/create">Přidat článek</NuxtLink>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -26,7 +43,7 @@
             </div>
         </section>
 
-        <section class="t-section my-4">
+        <section class="t-section mb-8">
             <div class="t-section__inner">
                 <div class="o-article-list">
                     <div class="o-article-list__outer">
@@ -34,7 +51,7 @@
                             <div class="o-article-list__items">
                                 <div v-for="post in posts" :key="post.id" class="o-article-list__item">
                                     <h3 class="o-article-list__title">
-                                        <NuxtLink class="o-article-list__title-link" :to="`/admin/post/${post.slug}`">{{ post.title }}</NuxtLink>
+                                        <NuxtLink class="o-article-list__title-link" :to="`/admin/posts/${post.slug}`">{{ post.title }}</NuxtLink>
                                     </h3>
                                     <p class="o-article-list__perex">{{ post.perex }}</p>
                                 </div>

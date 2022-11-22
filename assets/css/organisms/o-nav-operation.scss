@@ -19,11 +19,25 @@
 
     &__item {
         width: 33.333%;
+    }
+
+    &__item-container {
         padding: 15px 20px;
-        border: 1px solid $gray1;
+        border: 1px solid $gray5;
+        margin: 15px;
+        background-color: $gray2;
+        border-radius: 3px;
+        text-align: center;
     }
 
     &__title {
+        color: $gray7;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: $fs-normal;
 
+        &:hover {
+            color: $brand1;
+        }
     }
 }

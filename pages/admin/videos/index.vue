@@ -9,6 +9,21 @@
                 </div>
             </div>
         </div>
+
+        <nav class="m-nav-breadcrumbs">
+            <div class="m-nav-breadcrumbs__outer">
+                <div class="m-nav-breadcrumbs__inner">
+                    <ul class="m-nav-breadcrumbs__items">
+                        <li class="m-nav-breadcrumbs__item">
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
+                        </li>
+                        <li class="m-nav-breadcrumbs__item">
+                            <span class="m-nav-breadcrumbs__span">Videa</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </main>
 </template>
 
