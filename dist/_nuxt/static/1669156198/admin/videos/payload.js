@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/admin/videos", {data:[{}],fetch:{},mutations:void 0});

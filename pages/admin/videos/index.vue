@@ -26,9 +26,9 @@ export default {
             this.$router.push('login')
         }
     },
-    /*async asyncData({ $axios }) {
+    async asyncData({ $axios }) {
         const videos = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/videos`)
         return { videos }
-    }*/
+    }
 }
 </script>

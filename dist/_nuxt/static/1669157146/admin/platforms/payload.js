@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/admin/platforms", {data:[{platforms:[]}],fetch:{},mutations:void 0});
