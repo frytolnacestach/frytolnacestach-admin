@@ -24,6 +24,43 @@
                 </div>
             </div>
         </nav>
+
+        <section class="t-section my-4">
+            <div class="t-section__inner">
+                <nav class="o-nav-operation">
+                    <div class="o-nav-operation__outer">
+                        <div class="o-nav-operation__inner">
+                            <ul class="o-nav-operation__items">
+                                <li class="o-nav-operation__item">
+                                    <div class="o-nav-admin__item-container">
+                                        <NuxtLink class="o-nav-operation__title" to="/admin/platforms/create">Přidat platformu</NuxtLink>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </section>
+
+        <section class="t-section mb-8">
+            <div class="t-section__inner">
+                <div class="o-admin-list">
+                    <div class="o-admin-list__outer">
+                        <div class="o-admin-list__inner">
+                            <div class="o-admin-list__items">
+                                <div v-for="platform in platforms" :key="platform.id" class="o-admin-list__item">
+                                    <h3 class="o-admin-list__title">
+                                        <NuxtLink class="o-admin-list__title-link" :to="`/admin/platforms/${platform.slug}`">{{ platform.name}}</NuxtLink>
+                                    </h3>
+                                    <p class="o-admin-list__perex">{{ platform.perex }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 </template>
 

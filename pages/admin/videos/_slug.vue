@@ -4,7 +4,7 @@
             <div class="o-hero__outer">
                 <div class="o-hero__inner">
                     <h1 class="o-hero__headline">
-                        Administrace - základní údaje
+                        video {{ this.edit.title }}
                     </h1>
                 </div>
             </div>
@@ -18,7 +18,10 @@
                             <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Základní údaje</span>
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/posts">Videa</NuxtLink>
+                        </li>
+                        <li class="m-nav-breadcrumbs__item">
+                            <span class="m-nav-breadcrumbs__span">Editace videa - {{ this.edit.title }}</span>
                         </li>
                     </ul>
                 </div>
@@ -49,18 +52,32 @@
                                     
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Kdo jsem:</span>
+                                            <span class="m-label__name">Slug:</span>
                                         </label>
-                                        <textarea class="a-textarea" name="iam" v-model="edit.iam"></textarea>
+                                        <input class="a-input" type="text" name="slug" v-model="edit.slug" />
                                     </div>
-
+                                                                        
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">JAK MĚ PODPOŘIT:</span>
+                                            <span class="m-label__name">Platform:</span>
                                         </label>
-                                        <textarea class="a-textarea" name="donate" v-model="edit.donate"></textarea>
+                                        <input class="a-input" type="text" name="platform" v-model="edit.platform" />
                                     </div>
-
+                             
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Title:</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="title" v-model="edit.title" />
+                                    </div>
+  
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">URL:</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="url" v-model="edit.url" />
+                                    </div>
+                                                                    
                                 </div>
                                 <div class="o-form-edit__buttons mt-1">
                                     <div class="o-form-edit__button">
@@ -79,33 +96,37 @@
 </template>
 
 <script>
-import axios from "axios";
+    import axios from "axios";
 
-export default {
-    name: 'AdminBasePage',
+    export default {
+        name: 'AdminPlatformsSlugPage',
 
-    data() {
-        return {
-            edit: {
-                iam: '',
-                donate: '',
-            },
-            errorForm: '',
-            base: ''
-        }
-    },
-    methods: {
+        data() {
+            return {
+                edit: {
+                    slug: '',
+                    platform: '',
+                    title: '',
+                    url: ''
+                },
+                errorForm: '',
+                post: ''
+            }
+        },
+        methods: {
             async editForm(){
                 try {
-                    let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/base-edit`, {
+                    let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/video-edit`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Headers": "x-access-token, Origin, Content-Type, Accept",
                         },
                         method: 'POST',
                         body: {
-                            'iam': this.edit.iam,
-                            'donate': this.edit.donate,
+                            'slug': this.edit.slug,
+                            'name': this.edit.platform,
+                            'perex': this.edit.title,
+                            'url': this.edit.url
                         }
                     })
                     .then(function (response) {
@@ -119,21 +140,23 @@ export default {
                 }
             }
         },
-    mounted() {
-        let user = localStorage.getItem('user-info')
+        mounted() {
+            let user = localStorage.getItem('user-info')
 
-        if ( user && user != "undefined" ) {
+            if ( user && user != "undefined" ) {
 
-        } else {
-            this.$router.push('login')
+            } else {
+                this.$router.push('login')
+            }
+
+            this.edit.slug = this.platforms[0].slug
+            this.edit.platform = this.platforms[0].platform
+            this.edit.title = this.platforms[0].title
+            this.edit.url = this.platforms[0].url
+        },  
+        async asyncData({ $axios }) {
+            const platforms = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/video/${params.slug}`)
+            return { platforms }
         }
-
-        this.edit.iam = this.base[0].iam
-        this.edit.donate = this.base[0].donate
-    },
-    async asyncData({ $axios }) {
-        const base = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/base`)
-        return { base }
     }
-}
 </script>
