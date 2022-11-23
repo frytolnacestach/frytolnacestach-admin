@@ -110,7 +110,7 @@
                     url: ''
                 },
                 errorForm: '',
-                post: ''
+                video: ''
             }
         },
         methods: {

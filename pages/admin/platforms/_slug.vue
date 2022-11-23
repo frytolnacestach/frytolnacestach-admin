@@ -125,7 +125,7 @@
                     date: ''
                 },
                 errorForm: '',
-                post: ''
+                platform: ''
             }
         },
         methods: {
@@ -170,7 +170,7 @@
             this.edit.name = this.platform[0].name
             this.edit.perex = this.platform[0].perex
             this.edit.url = this.platform[0].url
-            this.edit.facts = this.platform[0].facts
+            this.edit.facts = JSON.stringify(this.platform[0].facts)
             this.edit.date = this.platform[0].date
         },  
         async asyncData({ $axios }) {
