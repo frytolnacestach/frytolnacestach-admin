@@ -130,7 +130,7 @@
                     })
                     .then((response) => {
                         console.log(response);
-                        this.$router.push(`/admin/platforms/${this.create.slug}`)
+                        this.$router.push(`/admin/videos/${this.create.slug}`)
                     })
                     .catch(function (error) {
                         console.log(error);
