@@ -84,6 +84,12 @@
                                         </label>
                                         <textarea class="a-textarea" type="text" name="facts" v-model="edit.facts"></textarea>
                                     </div>
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Date:</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="date" v-model="edit.date" />
+                                    </div>
                                                                     
                                 </div>
                                 <div class="o-form-edit__buttons mt-1">
@@ -115,7 +121,8 @@
                     name: '',
                     perex: '',
                     url: '',
-                    facts: ''
+                    facts: '',
+                    date: ''
                 },
                 errorForm: '',
                 post: ''
@@ -135,7 +142,8 @@
                             'name': this.edit.name,
                             'perex': this.edit.perex,
                             'url': this.edit.url,
-                            'facts': this.edit.facts
+                            'facts': this.edit.facts,
+                            'date': this.edit.date
                         }
                     })
                     .then(function (response) {
@@ -163,6 +171,7 @@
             this.edit.perex = this.platforms[0].perex
             this.edit.url = this.platforms[0].url
             this.edit.facts = this.platforms[0].facts
+            this.edit.date = this.platforms[0].date
         },  
         async asyncData({ $axios }) {
             const platforms = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/platform/${params.slug}`)

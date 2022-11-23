@@ -18,10 +18,10 @@
                             <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/platforms">Platformy</NuxtLink>
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/videos">Videa</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Přidání nové platforma</span>
+                            <span class="m-nav-breadcrumbs__span">Přidání nového videa</span>
                         </li>
                     </ul>
                 </div>

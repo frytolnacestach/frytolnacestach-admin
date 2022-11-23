@@ -85,6 +85,13 @@
                                         <textarea class="a-textarea" type="text" name="facts" v-model="create.facts"></textarea>
                                     </div>
 
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Date:</span>
+                                        </label>
+                                        <textarea class="a-textarea" type="text" name="date" v-model="create.date"></textarea>
+                                    </div>
+
                                 </div>
                                 <div class="o-form-create__buttons mt-1">
                                     <div class="o-form-create__button">
@@ -115,7 +122,8 @@
                     name: '',
                     perex: '',
                     url: '',
-                    facts: ''
+                    facts: '',
+                    date: ''
                 },
                 errorForm: ''
             }
@@ -134,7 +142,8 @@
                             'name': this.create.name,
                             'perex': this.create.perex,
                             'url': this.create.url,
-                            'facts': this.create.facts
+                            'facts': this.create.facts,
+                            'date': this.create.date
                         }
                     })
                     .then((response) => {
@@ -162,7 +171,8 @@
             this.create.name = ''
             this.create.perex = ''
             this.create.url = ''
-            this.create.facts = ''
+            this.create.facts = '',
+            this.create.date = ''
         }
     }
 </script>
