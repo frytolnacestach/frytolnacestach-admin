@@ -18,7 +18,7 @@
                             <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/posts">Videa</NuxtLink>
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/videos">Videa</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
                             <span class="m-nav-breadcrumbs__span">Editace videa - {{ this.edit.title }}</span>
@@ -124,8 +124,8 @@
                         method: 'POST',
                         body: {
                             'slug': this.edit.slug,
-                            'name': this.edit.platform,
-                            'perex': this.edit.title,
+                            'platform': this.edit.platform,
+                            'title': this.edit.title,
                             'url': this.edit.url
                         }
                     })

@@ -123,8 +123,8 @@
                         method: 'POST',
                         body: {
                             'slug': this.create.slug,
-                            'name': this.create.platform,
-                            'perex': this.create.title,
+                            'platform': this.create.platform,
+                            'title': this.create.title,
                             'url': this.create.url
                         }
                     })
