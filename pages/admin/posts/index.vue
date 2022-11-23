@@ -45,15 +45,15 @@
 
         <section class="t-section mb-8">
             <div class="t-section__inner">
-                <div class="o-article-list">
-                    <div class="o-article-list__outer">
-                        <div class="o-article-list__inner">
-                            <div class="o-article-list__items">
-                                <div v-for="post in posts" :key="post.id" class="o-article-list__item">
-                                    <h3 class="o-article-list__title">
-                                        <NuxtLink class="o-article-list__title-link" :to="`/admin/posts/${post.slug}`">{{ post.title }}</NuxtLink>
+                <div class="o-admin-list">
+                    <div class="o-admin-list__outer">
+                        <div class="o-admin-list__inner">
+                            <div class="o-admin-list__items">
+                                <div v-for="post in posts" :key="post.id" class="o-admin-list__item">
+                                    <h3 class="o-admin-list__title">
+                                        <NuxtLink class="o-admin-list__title-link" :to="`/admin/posts/${post.slug}`">{{ post.title }}</NuxtLink>
                                     </h3>
-                                    <p class="o-article-list__perex">{{ post.perex }}</p>
+                                    <p class="o-admin-list__perex">{{ post.perex }}</p>
                                 </div>
                             </div>
                         </div>

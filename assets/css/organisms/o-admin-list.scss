@@ -1,5 +1,5 @@
-.o-article-list {
-    width: 100%;
+.o-admin-list {
+    margin: 0 15px;
 
     &__outer {
         width: 100%;
@@ -17,19 +17,25 @@
         width: 100%;
         display: grid;
         grid-template-columns: [first] 33% [second] 67%;
-        border-right: 1px solid $gray1;
-        border-bottom: 1px solid $gray1;
-        border-left: 1px solid $gray1;
+        border-right: 1px solid $gray5;
+        border-bottom: 1px solid $gray5;
+        border-left: 1px solid $gray5;
+        background-color: $gray2;
 
         &:first-of-type {
-            border-top: 1px solid $gray1;
+            border-top: 1px solid $gray5;
+            border-radius: 3px 3px 0 0;
+        }
+
+        &:last-of-type {
+            border-radius: 0 0 3px 3px;
         }
     }
 
     &__title {
         padding: 5px 12px;
         margin: 0;
-        border-right: 1px solid $gray1;
+        border-right: 1px solid $gray5;
     }
 
     &__title-link {
