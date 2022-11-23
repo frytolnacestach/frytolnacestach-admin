@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/admin/videos", {data:[{videos:[{id:1,title:"Výšlap na hrad Hazmburk | Cestovatelský VLOG",url:"https:\u002F\u002Fyoutu.be\u002FIKG61E0EqN8",platform:"Youtube",slug:"vyslap-na-hrad-hazmburk-cestovatelsky-vlog"}]}],fetch:{},mutations:void 0});
