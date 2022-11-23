@@ -154,9 +154,9 @@
             this.edit.title = this.video[0].title
             this.edit.url = this.video[0].url
         },  
-        async asyncData({ $axios }) {
+        async asyncData({ $axios, params }) {
             const video = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/video/${params.slug}`)
-            return { video }
+            return { video: video }
         }
     }
 </script>

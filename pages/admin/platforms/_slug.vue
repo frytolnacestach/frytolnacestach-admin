@@ -173,9 +173,9 @@
             this.edit.facts = JSON.stringify(this.platform[0].facts)
             this.edit.date = this.platform[0].date
         },  
-        async asyncData({ $axios }) {
+        async asyncData({ $axios, params }) {
             const platform = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/platform/${params.slug}`)
-            return { platform }
+            return { platform: platform }
         }
     }
 </script>

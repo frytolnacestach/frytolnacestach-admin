@@ -50,42 +50,42 @@
                             <form class="o-form-create__form" @submit.prevent="createForm">
                                 <div class="o-form-create__items">
                                     
-                                    <div class="o-form-edit__item">
+                                    <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Slug:</span>
                                         </label>
                                         <input class="a-input" type="text" name="slug" v-model="create.slug" />
                                     </div>
                                                                         
-                                    <div class="o-form-edit__item">
+                                    <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Name:</span>
                                         </label>
                                         <input class="a-input" type="text" name="name" v-model="create.name" />
                                     </div>
                              
-                                    <div class="o-form-edit__item">
+                                    <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Perex:</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="perex" v-model="create.perex"></textarea>
                                     </div>
   
-                                    <div class="o-form-edit__item">
+                                    <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">URL:</span>
                                         </label>
                                         <input class="a-input" type="text" name="url" v-model="create.url" />
                                     </div>
 
-                                    <div class="o-form-edit__item">
+                                    <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Facts(json):</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="facts" v-model="create.facts"></textarea>
                                     </div>
 
-                                    <div class="o-form-edit__item">
+                                    <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Date:</span>
                                         </label>

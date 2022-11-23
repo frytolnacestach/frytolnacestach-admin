@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/admin/base", {data:[{base:[]}],fetch:{},mutations:void 0});

@@ -50,28 +50,28 @@
                             <form class="o-form-create__form" @submit.prevent="createForm">
                                 <div class="o-form-create__items">
                                     
-                                    <div class="o-form-edit__item">
+                                    <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Slug:</span>
                                         </label>
                                         <input class="a-input" type="text" name="slug" v-model="create.slug" />
                                     </div>
                                                                         
-                                    <div class="o-form-edit__item">
+                                    <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Platform:</span>
                                         </label>
                                         <input class="a-input" type="text" name="platform" v-model="create.platform" />
                                     </div>
                              
-                                    <div class="o-form-edit__item">
+                                    <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Title:</span>
                                         </label>
                                         <input class="a-input" type="text" name="title" v-model="create.title" />
                                     </div>
   
-                                    <div class="o-form-edit__item">
+                                    <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">URL:</span>
                                         </label>

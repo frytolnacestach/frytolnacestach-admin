@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/admin/platforms/tiktok", {data:[{platform:null}],fetch:{},mutations:void 0});
