@@ -149,14 +149,14 @@
                 this.$router.push('login')
             }
 
-            this.edit.slug = this.platforms[0].slug
-            this.edit.platform = this.platforms[0].platform
-            this.edit.title = this.platforms[0].title
-            this.edit.url = this.platforms[0].url
+            this.edit.slug = this.video[0].slug
+            this.edit.platform = this.video[0].platform
+            this.edit.title = this.video[0].title
+            this.edit.url = this.video[0].url
         },  
         async asyncData({ $axios }) {
-            const platforms = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/video/${params.slug}`)
-            return { platforms }
+            const video = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/video/${params.slug}`)
+            return { video }
         }
     }
 </script>

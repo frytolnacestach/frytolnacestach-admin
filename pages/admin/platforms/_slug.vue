@@ -166,16 +166,16 @@
                 this.$router.push('login')
             }
 
-            this.edit.slug = this.platforms[0].slug
-            this.edit.name = this.platforms[0].name
-            this.edit.perex = this.platforms[0].perex
-            this.edit.url = this.platforms[0].url
-            this.edit.facts = this.platforms[0].facts
-            this.edit.date = this.platforms[0].date
+            this.edit.slug = this.platform[0].slug
+            this.edit.name = this.platform[0].name
+            this.edit.perex = this.platform[0].perex
+            this.edit.url = this.platform[0].url
+            this.edit.facts = this.platform[0].facts
+            this.edit.date = this.platform[0].date
         },  
         async asyncData({ $axios }) {
-            const platforms = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/platform/${params.slug}`)
-            return { platforms }
+            const platform = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/platform/${params.slug}`)
+            return { platform }
         }
     }
 </script>
