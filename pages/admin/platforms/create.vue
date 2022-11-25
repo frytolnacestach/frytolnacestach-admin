@@ -89,7 +89,7 @@
                                         <label class="m-label">
                                             <span class="m-label__name">Date:</span>
                                         </label>
-                                        <textarea class="a-textarea" type="text" name="date" v-model="create.date"></textarea>
+                                        <input class="a-input" type="text" name="date" v-model="create.date" />
                                     </div>
 
                                 </div>
