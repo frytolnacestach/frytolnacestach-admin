@@ -171,7 +171,7 @@
             this.create.name = ''
             this.create.perex = ''
             this.create.url = ''
-            this.create.facts = '',
+            this.create.facts = '[{"name":"","value":""}]',
             this.create.date = ''
         }
     }

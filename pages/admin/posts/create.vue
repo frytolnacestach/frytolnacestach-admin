@@ -387,12 +387,12 @@
             this.create.perexPrice = ''
             this.create.perexTriplength = ''
             this.create.perexTime = ''
-            this.create.tags = null
-            this.create.locations = null
-            this.create.travels = null
-            this.create.prices = null
-            this.create.triplengths = null
-            this.create.times = null
+            this.create.tags = '[{"name":""}]'
+            this.create.locations = '[{"name":"","type":""}]'
+            this.create.travels = '[{"name":"","value":"","subname":""}]'
+            this.create.prices = '[{"name":"","value":"","subname":""}]'
+            this.create.triplengths = '[{"name":"","value":"","subname":""}]'
+            this.create.times = '[{"name":"","value":"","subname":""}]'
         }
     }
 </script>
