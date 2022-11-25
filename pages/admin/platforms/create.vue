@@ -142,7 +142,7 @@
                             'name': this.create.name,
                             'perex': this.create.perex,
                             'url': this.create.url,
-                            'facts': this.create.facts,
+                            'facts': JSON.stringify(this.create.facts),
                             'date': this.create.date
                         }
                     })
