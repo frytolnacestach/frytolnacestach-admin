@@ -18,7 +18,7 @@
                             <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/posts">Platformy</NuxtLink>
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/platforms">Platformy</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
                             <span class="m-nav-breadcrumbs__span">Editace platformy - {{ this.edit.name }}</span>
