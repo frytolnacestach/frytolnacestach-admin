@@ -142,7 +142,7 @@
                             'name': this.edit.name,
                             'perex': this.edit.perex,
                             'url': this.edit.url,
-                            'facts': JSON.stringify(this.edit.facts),
+                            'facts': this.edit.facts,
                             'date': this.edit.date
                         }
                     })
