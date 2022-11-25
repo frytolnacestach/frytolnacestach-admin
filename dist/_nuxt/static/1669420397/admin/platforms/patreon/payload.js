@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/admin/platforms/patreon", {data:[{platform:[{id:10,slug:"patreon",name:"Patreon",perex:"Na téhle platformě budu v budoucnu žebrat peníze. Sranda! Ale kdyby jste se chtěli stát mím Patronem, tak hůrá do tohe a díky!",url:"https:\u002F\u002Fwww.patreon.com\u002Ffrytolnacestach",facts:[{name:"Založeno",value:"Duben 2019"}],date:""}]}],fetch:{},mutations:void 0});

@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/admin/platforms/twitter", {data:[{platform:[{id:5,slug:"twitter",name:"Twitter",perex:"Síť, na které se většinou vyjadřuji k věcem co mě štvou, trápí nebo mě potěší.",url:"https:\u002F\u002Ftwitter.com\u002Ffrytolnacestach",facts:[{name:"Založeno",value:"Duben 2019"},{name:"Sledující",value:"9"}],date:"k 13. Říjnu 2022"}]}],fetch:{},mutations:void 0});
