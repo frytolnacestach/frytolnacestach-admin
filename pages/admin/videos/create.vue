@@ -61,7 +61,10 @@
                                         <label class="m-label">
                                             <span class="m-label__name">Platform:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="platform" v-model="create.platform" />
+                                        <select class="m-select" name="platform" v-model="create.platform">
+                                            <option value="">- Vyber platformu -</option>
+                                            <option v-for="platform in platforms" :key="platform.id" :value="platform.id">{{platform.name}}</option>
+                                        </select>
                                     </div>
                              
                                     <div class="o-form-create__item">
@@ -153,6 +156,10 @@
             this.create.platform = ''
             this.create.title = ''
             this.create.url = ''
+        },
+        async asyncData({ $axios }) {
+            const platforms = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/platforms`)
+            return { platforms }
         }
     }
 </script>

@@ -56,12 +56,15 @@
                                         </label>
                                         <input class="a-input" type="text" name="slug" v-model="edit.slug" />
                                     </div>
-                                                                        
-                                    <div class="o-form-edit__item">
+                                                
+                                    <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Platform:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="platform" v-model="edit.platform" />
+                                        <select class="m-select" name="platform" v-model="edit.platform">
+                                            <option value="">- Vyber platformu -</option>
+                                            <option v-for="platform in platforms" :key="platform.id" :value="platform.id">{{platform.name}}</option>
+                                        </select>
                                     </div>
                              
                                     <div class="o-form-edit__item">
@@ -110,7 +113,8 @@
                     url: ''
                 },
                 errorForm: '',
-                video: ''
+                video: '',
+                platforms: ''
             }
         },
         methods: {
@@ -156,7 +160,8 @@
         },  
         async asyncData({ $axios, params }) {
             const video = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/video/${params.slug}`)
-            return { video: video }
+            const platforms = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/platforms`)
+            return { video, platforms }
         }
     }
 </script>
