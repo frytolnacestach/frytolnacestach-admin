@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/admin/videos/create", {data:[{}],fetch:{},mutations:void 0});
