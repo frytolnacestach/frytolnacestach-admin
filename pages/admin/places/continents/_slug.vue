@@ -179,7 +179,7 @@
             this.edit.states = this.placesContinents[0].states
         },  
         async asyncData({ $axios, params }) {
-            const placesContinents = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/places-1-continents/${params.slug}`)
+            const placesContinents = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/places-1-continent/${params.slug}`)
             return { placesContinents: placesContinents }
         }
     }

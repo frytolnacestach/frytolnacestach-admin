@@ -1,6 +1,8 @@
 <template>
     <main>
-        <nav class="o-nav-admin">
+
+        {{showNav = 1}}
+        <nav class="o-nav-admin" v-if="showNav == 1">
             <div class="o-nav-admin__outer">
                 <div class="o-nav-admin__inner">
                     <ul class="o-nav-admin__items">
@@ -29,8 +31,8 @@
             </div>
         </nav>
 
-        <h1>MÍSTA</h1>
-        <nav class="o-nav-admin">
+        {{showNav = 2}}
+        <nav class="o-nav-admin" v-if="showNav == 2">
             <div class="o-nav-admin__outer">
                 <div class="o-nav-admin__inner">
                     <ul class="o-nav-admin__items">
@@ -65,3 +67,14 @@
         </nav>
     </main>
 </template>
+
+<script>
+    export default {
+        name: 'NavAdmin',
+        data() {
+            return {
+                showNav: this.showNav
+            }
+        },
+    }
+</script>

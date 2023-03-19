@@ -15,7 +15,10 @@
                 <div class="m-nav-breadcrumbs__inner">
                     <ul class="m-nav-breadcrumbs__items">
                         <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Administrace</span>
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
+                        </li>
+                        <li class="m-nav-breadcrumbs__item">
+                            <span class="m-nav-breadcrumbs__span">Místa</span>
                         </li>
                     </ul>
                 </div>
@@ -24,8 +27,6 @@
 
         <section class="t-section py-4">
             <div class="t-section__inner">
-                <NavAdmin :showNav="1" />
-                <Headline :headline="'Místa'" />
                 <NavAdmin :showNav="2" />
             </div>
         </section>
@@ -34,18 +35,12 @@
 
 <script>
 
-import NavAdmin from '../../components/NavAdmin.vue'
-import Headline from '../../components/Headline.vue'
+import NavAdmin from '../../../components/NavAdmin.vue'
 
 export default {
-    name: 'AdminPage',
+    name: 'AdminPlacesPage',
     components: {
-        NavAdmin,
-        Headline
-    },
-    
-    data() {
-
+        NavAdmin
     },
 
     mounted() {
