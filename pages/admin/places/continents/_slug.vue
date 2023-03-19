@@ -66,13 +66,6 @@
                                         </label>
                                         <input class="a-input" type="text" name="name" v-model="edit.name" />
                                     </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Name CZ:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="name" v-model="edit.name_cz" />
-                                    </div>
                              
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
@@ -131,7 +124,6 @@
                 edit: {
                     slug: '',
                     name: '',
-                    name_cz: '',
                     area: '',
                     population: '',
                     populationDensity: '',
@@ -153,7 +145,6 @@
                         body: {
                             'slug': this.edit.slug,
                             'name': this.edit.name,
-                            'name_cz': this.edit.name_cz,
                             'area': this.edit.area,
                             'population': this.edit.population,
                             'populationDensity': this.edit.populationDensity,
@@ -182,7 +173,6 @@
 
             this.edit.slug = this.placesContinents[0].slug
             this.edit.name = this.placesContinents[0].name
-            this.edit.name_cz = this.placesContinents[0].name_cz
             this.edit.area = this.placesContinents[0].area
             this.edit.population = this.placesContinents[0].population
             this.edit.populationDensity = this.placesContinents[0].populationDensity

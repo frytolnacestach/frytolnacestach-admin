@@ -66,13 +66,6 @@
                                         </label>
                                         <input class="a-input" type="text" name="name" v-model="create.name" />
                                     </div>
-
-                                    <div class="o-form-create__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Name CZ:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="name_cz" v-model="create.name_cz" />
-                                    </div>
                              
                                     <div class="o-form-create__item">
                                         <label class="m-label">
@@ -130,7 +123,6 @@
                 create: {
                     slug: '',
                     name: '',
-                    name_cz: '',
                     area: '',
                     population: '',
                     populationDensity: '',
@@ -151,7 +143,6 @@
                         body: {
                             'slug': this.create.slug,
                             'name': this.create.name,
-                            'name_cz': this.create.name_cz,
                             'area': this.create.area,
                             'population': this.create.population,
                             'populationDensity': this.create.populationDensity,
@@ -181,7 +172,6 @@
 
             this.create.slug = ''
             this.create.name = ''
-            this.create.name_cz = ''
             this.create.area = ''
             this.create.population = ''
             this.create.populationDensity = '',
