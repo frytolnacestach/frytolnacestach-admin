@@ -24,9 +24,9 @@
 
         <section class="t-section py-4">
             <div class="t-section__inner">
-                <NavAdmin :showNav="1" />
+                <NavAdmin :showNav="'main'" />
                 <Headline :headline="'Místa'" />
-                <NavAdmin :showNav="2" />
+                <NavAdmin :showNav="'places'" />
             </div>
         </section>
     </main>

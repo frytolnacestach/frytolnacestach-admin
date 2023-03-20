@@ -27,7 +27,7 @@
 
         <section class="t-section py-4">
             <div class="t-section__inner">
-                <NavAdmin :showNav="2" />
+                <NavAdmin :showNav="'places'" />
             </div>
         </section>
     </main>
