@@ -58,7 +58,7 @@
                                         <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/continents/${placesContinent.slug}`">{{ placesContinent.name}}</NuxtLink>
                                     </h3>
                                     <p class="o-admin-list__perex">
-                                        Rozloha: {{ placesContinent.area }} m2<br>
+                                        Rozloha: {{ placesContinent.area }} km2<br>
                                         Populace: {{ placesContinent.population }}<br>
                                     </p>
                                 </div>

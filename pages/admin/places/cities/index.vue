@@ -58,8 +58,10 @@
                                         <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/cities/${placesCity.slug}`">{{ placesCity.name}}</NuxtLink>
                                     </h3>
                                     <p class="o-admin-list__perex">
-                                        Kontinent: {{ placesCity.id_continent }}<br>
-                                        Stát: {{ placesCity.id_state }}<br>
+                                        <strong>
+                                            Kontinent: {{ placesCity.id_continent }}<br>
+                                            Stát: {{ placesCity.id_state }}<br>
+                                        </strong>
                                         ____<br>
                                         Rozloha: {{ placesCity.area }} km2<br>
                                         Populace: {{ placesCity.population }}<br>
