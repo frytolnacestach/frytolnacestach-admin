@@ -4,7 +4,7 @@
             <div class="o-hero__outer">
                 <div class="o-hero__inner">
                     <h1 class="o-hero__headline">
-                        kontinent {{ this.edit.name }}
+                        Kontinent {{ this.edit.name }}
                     </h1>
                 </div>
             </div>
@@ -85,14 +85,14 @@
                                         <label class="m-label">
                                             <span class="m-label__name">Hustota populace:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="populationDensity" v-model="edit.populationDensity" />
+                                        <input class="a-input" type="text" name="population_density" v-model="edit.population_density" />
                                     </div>
 
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Počet států:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="states" v-model="edit.states" />
+                                        <input class="a-input" type="text" name="number_states" v-model="edit.number_states" />
                                     </div>
 
                                                                     
@@ -126,8 +126,8 @@
                     name: '',
                     area: '',
                     population: '',
-                    populationDensity: '',
-                    states: ''
+                    population_density: '',
+                    number_states: ''
                 },
                 errorForm: '',
                 platform: ''
@@ -147,8 +147,8 @@
                             'name': this.edit.name,
                             'area': this.edit.area,
                             'population': this.edit.population,
-                            'populationDensity': this.edit.populationDensity,
-                            'states': this.edit.states
+                            'population_density': this.edit.population_density,
+                            'number_states': this.edit.number_states
                         }
                     })
                     .then(function (response) {
@@ -175,8 +175,8 @@
             this.edit.name = this.placesContinents[0].name
             this.edit.area = this.placesContinents[0].area
             this.edit.population = this.placesContinents[0].population
-            this.edit.populationDensity = this.placesContinents[0].populationDensity
-            this.edit.states = this.placesContinents[0].states
+            this.edit.population_density = this.placesContinents[0].population_density
+            this.edit.number_states = this.placesContinents[0].number_states
         },  
         async asyncData({ $axios, params }) {
             const placesContinents = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/places-continent/${params.slug}`)

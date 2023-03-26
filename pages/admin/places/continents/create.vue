@@ -92,7 +92,7 @@
                                         <label class="m-label">
                                             <span class="m-label__name">States</span>
                                         </label>
-                                        <input class="a-input" type="text" name="states" v-model="create.states" />
+                                        <input class="a-input" type="text" name="number_states" v-model="create.number_states" />
                                     </div>
 
                                 </div>
@@ -126,7 +126,7 @@
                     area: '',
                     population: '',
                     populationDensity: '',
-                    states: ''
+                    number_states: ''
                 },
                 errorForm: ''
             }
@@ -146,7 +146,7 @@
                             'area': this.create.area,
                             'population': this.create.population,
                             'populationDensity': this.create.populationDensity,
-                            'states': this.create.states
+                            'number_states': this.create.number_states
                         }
                     })
                     .then((response) => {
@@ -175,7 +175,7 @@
             this.create.area = ''
             this.create.population = ''
             this.create.populationDensity = '',
-            this.create.states = ''
+            this.create.number_states = ''
         }
     }
 </script>
