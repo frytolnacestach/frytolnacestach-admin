@@ -58,14 +58,17 @@
                                         <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/cities/${placesCity.slug}`">{{ placesCity.name}}</NuxtLink>
                                     </h3>
                                     <p class="o-admin-list__perex">
-                                        Rozloha: {{ placesCity.area }} m2<br>
+                                        Kontinent: {{ placesCity.id_continent }}<br>
+                                        Stát: {{ placesCity.id_state }}<br>
+                                        ____<br>
+                                        Rozloha: {{ placesCity.area }} km2<br>
                                         Populace: {{ placesCity.population }}<br>
                                         Nadmořká výška: {{ placesCity.altitude }}<br>
                                     </p>
                                 </div>
                             </div>
 
-                            <div class="o-admin-list__no-items" v-if="!placesCity.length">Není tu žádná položka</div>
+                            <div class="o-admin-list__no-items" v-if="!placesCities.length">Není tu žádná položka</div>
                         </div>
                     </div>
                 </div>
