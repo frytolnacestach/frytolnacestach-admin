@@ -61,6 +61,8 @@
                                         <strong>
                                             Kontinent: {{ placesCity.id_continent }}<br>
                                             Stát: {{ placesCity.id_state }}<br>
+                                            Administrativní celek: {{ placesCity.id_administrative_unit }}<br>
+                                            Kraj: {{ placesCity.id_districts }}<br>
                                         </strong>
                                         ____<br>
                                         Rozloha: {{ placesCity.area }} km2<br>
