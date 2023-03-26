@@ -59,7 +59,7 @@
                                     </h3>
                                     <p class="o-admin-list__perex">
                                         <strong>
-                                            Kontinent: {{ placesCity.id_continent }}<br>
+                                            Kontinent: {{ placesState.id_continent }}<br>
                                         </strong>
                                         ____<br>
                                         MPZ: {{ placesState.mpz }}<br>
