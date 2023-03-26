@@ -4,7 +4,7 @@
             <div class="o-hero__outer">
                 <div class="o-hero__inner">
                     <h1 class="o-hero__headline">
-                        Přidání nového kontinentu
+                        Přidání nového státu
                     </h1>
                 </div>
             </div>
@@ -21,10 +21,10 @@
                             <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places">Místa</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places/continents">Kontinenty</NuxtLink>
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places/states">Státy</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Přidání nového kontinentu</span>
+                            <span class="m-nav-breadcrumbs__span">Přidání nového státu</span>
                         </li>
                     </ul>
                 </div>
@@ -59,6 +59,20 @@
                                         </label>
                                         <input class="a-input" type="text" name="slug" v-model="create.slug" />
                                     </div>
+
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">MPZ:</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="mpz" v-model="create.mpz" />
+                                    </div>
+                                                                        
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">TLD:</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="tld" v-model="create.tld" />
+                                    </div>
                                                                         
                                     <div class="o-form-create__item">
                                         <label class="m-label">
@@ -66,7 +80,7 @@
                                         </label>
                                         <input class="a-input" type="text" name="name" v-model="create.name" />
                                     </div>
-                             
+
                                     <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Area:</span>
@@ -81,25 +95,11 @@
                                         <input class="a-input" type="text" name="population" v-model="create.population" />
                                     </div>
 
-                                    <div class="o-form-create__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Population density:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="populationDensity" v-model="create.populationDensity" />
-                                    </div>
-
-                                    <div class="o-form-create__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">States</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="states" v-model="create.states" />
-                                    </div>
-
                                 </div>
                                 <div class="o-form-create__buttons mt-1">
                                     <div class="o-form-create__button">
                                         <div class="m-button">
-                                            <button class="m-button__input" type="submit">Vytvořit kontinent</button>
+                                            <button class="m-button__input" type="submit">Vytvořit stát</button>
                                         </div>
                                     </div>
                                 </div>
@@ -116,17 +116,17 @@
     import axios from "axios";
 
     export default {
-        name: 'AdminPlacesContinentsCreatePage',
+        name: 'AdminPlacesStatesCreatePage',
 
         data() {
             return {
                 create: {
                     slug: '',
+                    mpz: '',
+                    tld: '',
                     name: '',
                     area: '',
-                    population: '',
-                    populationDensity: '',
-                    states: ''
+                    population: ''
                 },
                 errorForm: ''
             }
@@ -134,7 +134,7 @@
         methods: {
             async createForm(){
                 try {
-                    let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/places-continent-create`, {
+                    let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/places-state-create`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Headers": "x-access-token, Origin, Content-Type, Accept",
@@ -142,16 +142,16 @@
                         method: 'POST',
                         body: {
                             'slug': this.create.slug,
+                            'mpz': this.create.mpz,
+                            'tld': this.create.tld,
                             'name': this.create.name,
                             'area': this.create.area,
-                            'population': this.create.population,
-                            'populationDensity': this.create.populationDensity,
-                            'states': this.create.states
+                            'population': this.create.population
                         }
                     })
                     .then((response) => {
                         console.log(response);
-                        this.$router.push(`/admin/places/continents/${this.create.slug}`)
+                        this.$router.push(`/admin/places/states/${this.create.slug}`)
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -171,11 +171,11 @@
             }
 
             this.create.slug = ''
+            this.create.mpz = ''
+            this.create.tld = ''
             this.create.name = ''
             this.create.area = ''
             this.create.population = ''
-            this.create.populationDensity = '',
-            this.create.states = ''
         }
     }
 </script>

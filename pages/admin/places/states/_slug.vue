@@ -4,7 +4,7 @@
             <div class="o-hero__outer">
                 <div class="o-hero__inner">
                     <h1 class="o-hero__headline">
-                        Přidání nového kontinentu
+                        stát {{ this.edit.name }}
                     </h1>
                 </div>
             </div>
@@ -21,22 +21,22 @@
                             <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places">Místa</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places/continents">Kontinenty</NuxtLink>
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places/stats">Státy</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Přidání nového kontinentu</span>
+                            <span class="m-nav-breadcrumbs__span">Editace státu - {{ this.edit.name }}</span>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <section class="t-section mt-4 mb-8">
+        <section class="t-section my-4">
             <div class="t-section__inner">
 
-                <div class="o-form-create">
-                    <div class="o-form-create__outer">
-                        <div class="o-form-create__inner">
+                <div class="o-form-edit">
+                    <div class="o-form-edit__outer">
+                        <div class="o-form-edit__inner">
                             
                             <div class="o-flash-messages" v-if="errorForm">
                                 <div class="o-flash-messages__items">
@@ -50,56 +50,50 @@
                                 </div>
                             </div>
 
-                            <form class="o-form-create__form" @submit.prevent="createForm">
-                                <div class="o-form-create__items">
+                            <form class="o-form-edit__form" @submit.prevent="editForm">
+                                <div class="o-form-edit__items">
                                     
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Slug:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="slug" v-model="create.slug" />
+                                        <input class="a-input" type="text" name="slug" v-model="edit.slug" />
+                                    </div>
+
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">MPZ:</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="mpz" v-model="edit.mpz" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Name:</span>
+                                            <span class="m-label__name">TLD:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="name" v-model="create.name" />
+                                        <input class="a-input" type="text" name="tld" v-model="edit.tld" />
                                     </div>
                              
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Area:</span>
+                                            <span class="m-label__name">Rozloha:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="area" v-model="create.area" />
-                                    </div>
-  
-                                    <div class="o-form-create__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Population:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="population" v-model="create.population" />
+                                        <input class="a-input" type="text" name="area" v-model="edit.area" />
                                     </div>
 
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Population density:</span>
+                                            <span class="m-label__name">Populace:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="populationDensity" v-model="create.populationDensity" />
+                                        <input class="a-input" type="text" name="population" v-model="edit.population" />
                                     </div>
 
-                                    <div class="o-form-create__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">States</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="states" v-model="create.states" />
-                                    </div>
-
+                                                                    
                                 </div>
-                                <div class="o-form-create__buttons mt-1">
-                                    <div class="o-form-create__button">
+                                <div class="o-form-edit__buttons mt-1">
+                                    <div class="o-form-edit__button">
                                         <div class="m-button">
-                                            <button class="m-button__input" type="submit">Vytvořit kontinent</button>
+                                            <button class="m-button__input" type="submit">Uložit úpravy</button>
                                         </div>
                                     </div>
                                 </div>
@@ -116,42 +110,42 @@
     import axios from "axios";
 
     export default {
-        name: 'AdminPlacesContinentsCreatePage',
+        name: 'AdminPlacesStatesSlugPage',
 
         data() {
             return {
-                create: {
+                edit: {
                     slug: '',
+                    mpz: '',
+                    tld: '',
                     name: '',
                     area: '',
-                    population: '',
-                    populationDensity: '',
-                    states: ''
+                    population: ''
                 },
-                errorForm: ''
+                errorForm: '',
+                platform: ''
             }
         },
         methods: {
-            async createForm(){
+            async editForm(){
                 try {
-                    let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/places-continent-create`, {
+                    let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/places-state-edit`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Headers": "x-access-token, Origin, Content-Type, Accept",
                         },
                         method: 'POST',
                         body: {
-                            'slug': this.create.slug,
-                            'name': this.create.name,
-                            'area': this.create.area,
-                            'population': this.create.population,
-                            'populationDensity': this.create.populationDensity,
-                            'states': this.create.states
+                            'slug': this.edit.slug,
+                            'mpz': this.edit.mpz,
+                            'tld': this.edit.tld,
+                            'name': this.edit.name,
+                            'area': this.edit.area,
+                            'population': this.edit.population
                         }
                     })
-                    .then((response) => {
+                    .then(function (response) {
                         console.log(response);
-                        this.$router.push(`/admin/places/continents/${this.create.slug}`)
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -170,12 +164,16 @@
                 this.$router.push('login')
             }
 
-            this.create.slug = ''
-            this.create.name = ''
-            this.create.area = ''
-            this.create.population = ''
-            this.create.populationDensity = '',
-            this.create.states = ''
+            this.edit.slug = this.placesStates[0].slug
+            this.edit.mpz = this.placesStates[0].mpz
+            this.edit.tld = this.placesStates[0].tld
+            this.edit.name = this.placesStates[0].name
+            this.edit.area = this.placesStates[0].area
+            this.edit.population = this.placesStates[0].population
+        },  
+        async asyncData({ $axios, params }) {
+            const placesStates = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/places-state/${params.slug}`)
+            return { placesStates: placesStates }
         }
     }
 </script>

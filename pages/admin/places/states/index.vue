@@ -4,7 +4,7 @@
             <div class="o-hero__outer">
                 <div class="o-hero__inner">
                     <h1 class="o-hero__headline">
-                        Administrace - Kontinenty
+                        Administrace - Státy
                     </h1>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                             <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places">Místa</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Kontinenty</span>
+                            <span class="m-nav-breadcrumbs__span">Státy</span>
                         </li>
                     </ul>
                 </div>
@@ -36,7 +36,7 @@
                             <ul class="o-nav-operation__items">
                                 <li class="o-nav-operation__item">
                                     <div class="o-nav-admin__item-container">
-                                        <NuxtLink class="o-nav-operation__title" to="/admin/places/continents/create">Přidaní kontinentu</NuxtLink>
+                                        <NuxtLink class="o-nav-operation__title" to="/admin/places/states/create">Přidaní státu</NuxtLink>
                                     </div>
                                 </li>
                             </ul>
@@ -52,19 +52,20 @@
                     <div class="o-admin-list__outer">
                         <div class="o-admin-list__inner">
                            
-                            <div class="o-admin-list__items" v-if="placesContinents.length">
-                                <div v-for="placesContinent in placesContinents" :key="placesContinent.id" class="o-admin-list__item">
+                            <div class="o-admin-list__items" v-if="placesStates.length">
+                                <div v-for="placesState in placesStates" :key="placesState.id" class="o-admin-list__item">
                                     <h3 class="o-admin-list__title">
-                                        <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/continents/${placesContinent.slug}`">{{ placesContinent.name}}</NuxtLink>
+                                        <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/states/${placesState.slug}`">{{ placesState.name}}</NuxtLink>
                                     </h3>
                                     <p class="o-admin-list__perex">
-                                        Rozloha: {{ placesContinent.area }} m2<br>
-                                        Populace: {{ placesContinent.population }}<br>
+                                        MPZ: {{ placesState.mpz }}<br>
+                                        Rozloha: {{ placesState.area }} m2<br>
+                                        Populace: {{ placesState.population }}<br>
                                     </p>
                                 </div>
                             </div>
 
-                            <div class="o-admin-list__no-items" v-if="!placesContinents.length">Není tu žádná položka</div>
+                            <div class="o-admin-list__no-items" v-if="!placesStates.length">Není tu žádná položka</div>
                         </div>
                     </div>
                 </div>
@@ -76,7 +77,7 @@
 <script>
 
 export default {
-    name: 'AdminPlacesContinentsPage',
+    name: 'AdminPlacesStatesPage',
 
     mounted() {
         let user = localStorage.getItem('user-info')
@@ -88,8 +89,8 @@ export default {
         }
     },
     async asyncData({ $axios }) {
-        const placesContinents = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/places-continents`)
-        return { placesContinents }
+        const placesStates = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/places-states`)
+        return { placesStates }
     }
 }
 </script>

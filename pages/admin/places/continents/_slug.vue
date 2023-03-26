@@ -136,7 +136,7 @@
         methods: {
             async editForm(){
                 try {
-                    let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/places-1-continent-edit`, {
+                    let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/places-continent-edit`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Headers": "x-access-token, Origin, Content-Type, Accept",
@@ -179,7 +179,7 @@
             this.edit.states = this.placesContinents[0].states
         },  
         async asyncData({ $axios, params }) {
-            const placesContinents = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/places-1-continent/${params.slug}`)
+            const placesContinents = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/places-continent/${params.slug}`)
             return { placesContinents: placesContinents }
         }
     }
