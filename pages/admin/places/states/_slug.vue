@@ -21,7 +21,7 @@
                             <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places">Místa</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places/stats">Státy</NuxtLink>
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places/states">Státy</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
                             <span class="m-nav-breadcrumbs__span">Editace státu - {{ this.edit.name }}</span>
