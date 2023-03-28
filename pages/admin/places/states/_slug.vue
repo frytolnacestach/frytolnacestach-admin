@@ -62,6 +62,13 @@
 
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
+                                            <span class="m-label__name">Jméno:</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="mpz" v-model="edit.name" />
+                                    </div>
+
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
                                             <span class="m-label__name">MPZ:</span>
                                         </label>
                                         <input class="a-input" type="text" name="mpz" v-model="edit.mpz" />
@@ -88,6 +95,26 @@
                                         <input class="a-input" type="text" name="population" v-model="edit.population" />
                                     </div>
 
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Informace (Chat GPT):</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="information_chatgpt" v-model="edit.information_chatgpt" />
+                                    </div>
+
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Image (Cover):</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="image_cover" v-model="edit.image_cover" />
+                                    </div>
+
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Image (Hero):</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="image_hero" v-model="edit.image_hero" />
+                                    </div>
                                                                     
                                 </div>
                                 <div class="o-form-edit__buttons mt-1">
@@ -120,7 +147,10 @@
                     tld: '',
                     name: '',
                     area: '',
-                    population: ''
+                    population: '',
+                    information_chatgpt: '',
+                    image_cover: '',
+                    image_hero: ''
                 },
                 errorForm: '',
                 platform: ''
@@ -141,7 +171,10 @@
                             'tld': this.edit.tld,
                             'name': this.edit.name,
                             'area': this.edit.area,
-                            'population': this.edit.population
+                            'population': this.edit.population,
+                            'information_chatgpt': this.edit.information_chatgpt,
+                            'image_cover': this.edit.image_cover,
+                            'image_hero': this.edit.image_hero
                         }
                     })
                     .then(function (response) {
@@ -170,6 +203,9 @@
             this.edit.name = this.placesStates[0].name
             this.edit.area = this.placesStates[0].area
             this.edit.population = this.placesStates[0].population
+            this.edit.information_chatgpt = this.placesStates[0].information_chatgpt
+            this.edit.image_cover = this.placesStates[0].image_cover
+            this.edit.image_hero = this.placesStates[0].image_hero
         },  
         async asyncData({ $axios, params }) {
             const placesStates = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/places-state/${params.slug}`)

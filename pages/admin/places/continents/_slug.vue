@@ -62,7 +62,7 @@
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Name:</span>
+                                            <span class="m-label__name">Jméno:</span>
                                         </label>
                                         <input class="a-input" type="text" name="name" v-model="edit.name" />
                                     </div>
@@ -95,6 +95,26 @@
                                         <input class="a-input" type="text" name="number_states" v-model="edit.number_states" />
                                     </div>
 
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Informace (Chat GPT):</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="information_chatgpt" v-model="edit.information_chatgpt" />
+                                    </div>
+
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Image (Cover):</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="image_cover" v-model="edit.image_cover" />
+                                    </div>
+
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Image (Hero):</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="image_hero" v-model="edit.image_hero" />
+                                    </div>
                                                                     
                                 </div>
                                 <div class="o-form-edit__buttons mt-1">
@@ -127,7 +147,10 @@
                     area: '',
                     population: '',
                     population_density: '',
-                    number_states: ''
+                    number_states: '',
+                    information_chatgpt: '',
+                    image_cover: '',
+                    image_hero: ''
                 },
                 errorForm: '',
                 platform: ''
@@ -148,7 +171,10 @@
                             'area': this.edit.area,
                             'population': this.edit.population,
                             'population_density': this.edit.population_density,
-                            'number_states': this.edit.number_states
+                            'number_states': this.edit.number_states,
+                            'information_chatgpt': this.edit.information_chatgpt,
+                            'image_cover': this.edit.image_cover,
+                            'image_hero': this.edit.image_hero
                         }
                     })
                     .then(function (response) {
@@ -177,6 +203,9 @@
             this.edit.population = this.placesContinents[0].population
             this.edit.population_density = this.placesContinents[0].population_density
             this.edit.number_states = this.placesContinents[0].number_states
+            this.edit.information_chatgpt = this.placesContinents[0].information_chatgpt
+            this.edit.image_cover = this.placesContinents[0].image_cover
+            this.edit.image_hero = this.placesContinents[0].image_hero
         },  
         async asyncData({ $axios, params }) {
             const placesContinents = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/places-continent/${params.slug}`)

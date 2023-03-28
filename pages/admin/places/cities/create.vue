@@ -88,6 +88,27 @@
                                         <input class="a-input" type="text" name="altitude" v-model="create.altitude" />
                                     </div>
 
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Informace (Chat GPT):</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="information_chatgpt" v-model="create.information_chatgpt" />
+                                    </div>
+
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Image (Cover):</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="image_cover" v-model="create.image_cover" />
+                                    </div>
+
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Image (Hero):</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="image_hero" v-model="create.image_hero" />
+                                    </div>
+
                                 </div>
                                 <div class="o-form-create__buttons mt-1">
                                     <div class="o-form-create__button">
@@ -118,7 +139,10 @@
                     name: '',
                     area: '',
                     population: '',
-                    altitude: ''
+                    altitude: '',
+                    information_chatgpt: '',
+                    image_cover: '',
+                    image_hero: ''
                 },
                 errorForm: ''
             }
@@ -137,7 +161,10 @@
                             'name': this.create.name,
                             'area': this.create.area,
                             'population': this.create.population,
-                            'altitude': this.create.altitude
+                            'altitude': this.create.altitude,
+                            'information_chatgpt': this.create.information_chatgpt,
+                            'image_cover': this.create.image_cover,
+                            'image_hero': this.create.image_hero
                         }
                     })
                     .then((response) => {
@@ -166,6 +193,9 @@
             this.create.area = ''
             this.create.population = ''
             this.create.altitude = ''
+            this.create.information_chatgpt = ''
+            this.create.image_cover = ''
+            this.create.image_hero = ''
         }
     }
 </script>
