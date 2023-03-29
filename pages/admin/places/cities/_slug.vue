@@ -92,7 +92,7 @@
                                         <label class="m-label">
                                             <span class="m-label__name">Informace (Chat GPT):</span>
                                         </label>
-                                        <input class="a-input" type="text" name="information_chatgpt" v-model="edit.information_chatgpt" />
+                                        <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="edit.information_chatgpt"></textarea>
                                     </div>
 
                                     <div class="o-form-edit__item">
