@@ -1,7 +1,8 @@
 <template>
     <main>
+        <!-- NAVADMIN - Main -->
         <slot name="main">
-            <nav class="o-nav-admin" v-if="showNav === 'main'">
+            <nav class="o-nav-admin" v-if="showNav === 'main' || showNav === 'full'">
                 <div class="o-nav-admin__outer">
                     <div class="o-nav-admin__inner">
                         <ul class="o-nav-admin__items">
@@ -30,9 +31,13 @@
                 </div>
             </nav>
         </slot>
+        <!-- NAVADMIN - Main END -->
+
+        <!-- NAVADMIN - Places -->
+        <Headline :headline="'Místa'" v-if="showNav === 'places' || showNav === 'full'" />
 
         <slot name="places">
-            <nav class="o-nav-admin" v-if="showNav === 'places'">
+            <nav class="o-nav-admin" v-if="showNav === 'places' || showNav === 'full'">
                 <div class="o-nav-admin__outer">
                     <div class="o-nav-admin__inner">
                         <ul class="o-nav-admin__items">
@@ -68,12 +73,19 @@
                 </div>
             </nav>
         </slot>
+         <!-- NAVADMIN - Places END -->
     </main>
 </template>
 
 <script>
+    import Headline from '../components/Headline.vue'
+
     export default {
         name: 'NavAdmin',
+        components: {
+            Headline
+        },
+    
         props: {
             showNav: {
                 type: String,

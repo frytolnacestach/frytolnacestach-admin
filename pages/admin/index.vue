@@ -24,9 +24,7 @@
 
         <section class="t-section py-4">
             <div class="t-section__inner">
-                <NavAdmin :showNav="'main'" />
-                <Headline :headline="'Místa'" />
-                <NavAdmin :showNav="'places'" />
+                <NavAdmin :showNav="'full'" />
             </div>
         </section>
     </main>
@@ -35,13 +33,11 @@
 <script>
 
 import NavAdmin from '../../components/NavAdmin.vue'
-import Headline from '../../components/Headline.vue'
 
 export default {
     name: 'AdminPage',
     components: {
-        NavAdmin,
-        Headline
+        NavAdmin
     },
     
     data() {
