@@ -1,25 +1,27 @@
 <template>
-    <main class="t-main">
-        <oHero headline="Administrace" />
+    <NuxtLayout name="admin">
+        <main class="t-main">
+            <oHero headline="Administrace" />
 
-        <nav class="m-nav-breadcrumbs">
-            <div class="m-nav-breadcrumbs__outer">
-                <div class="m-nav-breadcrumbs__inner">
-                    <ul class="m-nav-breadcrumbs__items">
-                        <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Administrace</span>
-                        </li>
-                    </ul>
+            <nav class="m-nav-breadcrumbs">
+                <div class="m-nav-breadcrumbs__outer">
+                    <div class="m-nav-breadcrumbs__inner">
+                        <ul class="m-nav-breadcrumbs__items">
+                            <li class="m-nav-breadcrumbs__item">
+                                <span class="m-nav-breadcrumbs__span">Administrace</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
-        <section class="t-section py-4">
-            <div class="t-section__inner">
-                <mNavAdmin :showNav="'full'" />
-            </div>
-        </section>
-    </main>
+            <section class="t-section py-4">
+                <div class="t-section__inner">
+                    <mNavAdmin :showNav="'full'" />
+                </div>
+            </section>
+        </main>
+    </NuxtLayout>
 </template>
 
 <script lang="ts">

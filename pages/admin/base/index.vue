@@ -1,66 +1,68 @@
 <template>
-    <main class="t-main">
-        <oHero headline="Administrace - základní údaje" />
+    <NuxtLayout name="admin">
+        <main class="t-main">
+            <oHero headline="Administrace - základní údaje" />
 
-        <nav class="m-nav-breadcrumbs">
-            <div class="m-nav-breadcrumbs__outer">
-                <div class="m-nav-breadcrumbs__inner">
-                    <ul class="m-nav-breadcrumbs__items">
-                        <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
-                        </li>
-                        <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Základní údaje</span>
-                        </li>
-                    </ul>
+            <nav class="m-nav-breadcrumbs">
+                <div class="m-nav-breadcrumbs__outer">
+                    <div class="m-nav-breadcrumbs__inner">
+                        <ul class="m-nav-breadcrumbs__items">
+                            <li class="m-nav-breadcrumbs__item">
+                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
+                            </li>
+                            <li class="m-nav-breadcrumbs__item">
+                                <span class="m-nav-breadcrumbs__span">Základní údaje</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
-        <section class="t-section my-4">
-            <div class="t-section__inner">
+            <section class="t-section my-4">
+                <div class="t-section__inner">
 
-                <div class="o-form-edit">
-                    <div class="o-form-edit__outer">
-                        <div class="o-form-edit__inner">
-                            
-                            <!-- SECTION - FlashMassages -->
-                            <oFlashMessages :text="errorForm" styleThema=" -error" />
-                            <oFlashMessages :text="successForm" styleThema=" -success" />
-                            <!-- SECTION - FlashMassages END -->
+                    <div class="o-form-edit">
+                        <div class="o-form-edit__outer">
+                            <div class="o-form-edit__inner">
+                                
+                                <!-- SECTION - FlashMassages -->
+                                <oFlashMessages :text="errorForm" styleThema=" -error" />
+                                <oFlashMessages :text="successForm" styleThema=" -success" />
+                                <!-- SECTION - FlashMassages END -->
 
-                            <form class="o-form-edit__form" @submit.prevent="editForm">
-                                <div class="o-form-edit__items">
-                                    
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Kdo jsem:</span>
-                                        </label>
-                                        <textarea class="a-textarea" name="iam" v-model="iam"></textarea>
+                                <form class="o-form-edit__form" @submit.prevent="editForm">
+                                    <div class="o-form-edit__items">
+                                        
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Kdo jsem:</span>
+                                            </label>
+                                            <textarea class="a-textarea" name="iam" v-model="iam"></textarea>
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Jak mě podpořit:</span>
+                                            </label>
+                                            <textarea class="a-textarea" name="donate" v-model="donate"></textarea>
+                                        </div>
+
                                     </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Jak mě podpořit:</span>
-                                        </label>
-                                        <textarea class="a-textarea" name="donate" v-model="donate"></textarea>
-                                    </div>
-
-                                </div>
-                                <div class="o-form-edit__buttons mt-1">
-                                    <div class="o-form-edit__button">
-                                        <div class="m-button">
-                                            <button class="m-button__input" type="submit">Uložit úpravy</button>
+                                    <div class="o-form-edit__buttons mt-1">
+                                        <div class="o-form-edit__button">
+                                            <div class="m-button">
+                                                <button class="m-button__input" type="submit">Uložit úpravy</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+    </NuxtLayout>
 </template>
 
 <script lang="ts">

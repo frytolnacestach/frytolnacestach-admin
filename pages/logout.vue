@@ -1,7 +1,9 @@
 <template>
-    <main class="t-main">
-        <oHero headline="Odhlášení" />
-    </main>
+    <NuxtLayout name="default">
+        <main class="t-main">
+            <oHero headline="Odhlášení" />
+        </main>
+    </NuxtLayout>
 </template>
 
 <script lang="ts">

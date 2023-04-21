@@ -1,121 +1,123 @@
 <template>
-    <main class="t-main">
-        <oHero :headline="'Kontinent ' + placesContinentName" />
+    <NuxtLayout name="admin">
+        <main class="t-main">
+            <oHero :headline="'Kontinent ' + placesContinentName" />
 
-        <nav class="m-nav-breadcrumbs">
-            <div class="m-nav-breadcrumbs__outer">
-                <div class="m-nav-breadcrumbs__inner">
-                    <ul class="m-nav-breadcrumbs__items">
-                        <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
-                        </li>
-                        <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places">Místa</NuxtLink>
-                        </li>
-                        <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places/continents">Kontinenty</NuxtLink>
-                        </li>
-                        <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Editace kontinentu - {{ placesContinentName }}</span>
-                        </li>
-                    </ul>
+            <nav class="m-nav-breadcrumbs">
+                <div class="m-nav-breadcrumbs__outer">
+                    <div class="m-nav-breadcrumbs__inner">
+                        <ul class="m-nav-breadcrumbs__items">
+                            <li class="m-nav-breadcrumbs__item">
+                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
+                            </li>
+                            <li class="m-nav-breadcrumbs__item">
+                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places">Místa</NuxtLink>
+                            </li>
+                            <li class="m-nav-breadcrumbs__item">
+                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places/continents">Kontinenty</NuxtLink>
+                            </li>
+                            <li class="m-nav-breadcrumbs__item">
+                                <span class="m-nav-breadcrumbs__span">Editace kontinentu - {{ placesContinentName }}</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
-        <section class="t-section my-4">
-            <div class="t-section__inner">
+            <section class="t-section my-4">
+                <div class="t-section__inner">
 
-                <div class="o-form-edit">
-                    <div class="o-form-edit__outer">
-                        <div class="o-form-edit__inner">
-                            
-                            <!-- SECTION - FlashMassages -->
-                            <oFlashMessages :text="errorForm" styleThema=" -error" />
-                            <oFlashMessages :text="successForm" styleThema=" -success" />
-                            <!-- SECTION - FlashMassages END -->
+                    <div class="o-form-edit">
+                        <div class="o-form-edit__outer">
+                            <div class="o-form-edit__inner">
+                                
+                                <!-- SECTION - FlashMassages -->
+                                <oFlashMessages :text="errorForm" styleThema=" -error" />
+                                <oFlashMessages :text="successForm" styleThema=" -success" />
+                                <!-- SECTION - FlashMassages END -->
 
-                            <form class="o-form-edit__form" @submit.prevent="editForm">
-                                <div class="o-form-edit__items">
-                                    
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Slug:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="slug" v-model="placesContinentSlug" />
-                                    </div>
+                                <form class="o-form-edit__form" @submit.prevent="editForm">
+                                    <div class="o-form-edit__items">
+                                        
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Slug:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="slug" v-model="placesContinentSlug" />
+                                        </div>
+                                                                            
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Jméno:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="name" v-model="placesContinentName" />
+                                        </div>
+                                
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Rozloha:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="area" v-model="placesContinentArea" />
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Populace:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="population" v-model="placesContinentPopulation" />
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Hustota populace:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="population_density" v-model="placesContinentPopulationDensity" />
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Počet států:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="number_states" v-model="placesContinentNumberStates" />
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Informace (Chat GPT):</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesContinentInformationChatgpt"></textarea>
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image (Cover):</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="image_cover" v-model="placesContinentImageCover" />
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image (Hero):</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="image_hero" v-model="placesContinentImageHero" />
+                                        </div>
                                                                         
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Jméno:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="name" v-model="placesContinentName" />
                                     </div>
-                             
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Rozloha:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="area" v-model="placesContinentArea" />
-                                    </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Populace:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="population" v-model="placesContinentPopulation" />
-                                    </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Hustota populace:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="population_density" v-model="placesContinentPopulationDensity" />
-                                    </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Počet států:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="number_states" v-model="placesContinentNumberStates" />
-                                    </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Informace (Chat GPT):</span>
-                                        </label>
-                                        <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesContinentInformationChatgpt"></textarea>
-                                    </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Image (Cover):</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="image_cover" v-model="placesContinentImageCover" />
-                                    </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Image (Hero):</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="image_hero" v-model="placesContinentImageHero" />
-                                    </div>
-                                                                    
-                                </div>
-                                <div class="o-form-edit__buttons mt-1">
-                                    <div class="o-form-edit__button">
-                                        <div class="m-button">
-                                            <button class="m-button__input" type="submit">Uložit úpravy</button>
+                                    <div class="o-form-edit__buttons mt-1">
+                                        <div class="o-form-edit__button">
+                                            <div class="m-button">
+                                                <button class="m-button__input" type="submit">Uložit úpravy</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+    </NuxtLayout>
 </template>
 
 <script lang="ts">

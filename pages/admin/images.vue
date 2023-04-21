@@ -1,31 +1,32 @@
 <template>
-    <main class="t-main">
-        <oHero headline="Generování obrázku" />
+    <NuxtLayout name="admin">
+        <main class="t-main">
+            <oHero headline="Generování obrázku" />
 
-        <nav class="m-nav-breadcrumbs">
-            <div class="m-nav-breadcrumbs__outer">
-                <div class="m-nav-breadcrumbs__inner">
-                    <ul class="m-nav-breadcrumbs__items">
-                        <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
-                        </li>
-                        <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Generování obrázků</span>
-                        </li>
-                    </ul>
+            <nav class="m-nav-breadcrumbs">
+                <div class="m-nav-breadcrumbs__outer">
+                    <div class="m-nav-breadcrumbs__inner">
+                        <ul class="m-nav-breadcrumbs__items">
+                            <li class="m-nav-breadcrumbs__item">
+                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
+                            </li>
+                            <li class="m-nav-breadcrumbs__item">
+                                <span class="m-nav-breadcrumbs__span">Generování obrázků</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
-        <section class="t-section mt-4 mb-8">
-            <div class="t-section__inner">
+            <section class="t-section mt-4 mb-8">
+                <div class="t-section__inner">
 
-            
+                    Tady budou generátor
 
-
-            </div>
-        </section>
-    </main>
+                </div>
+            </section>
+        </main>
+    </NuxtLayout>
 </template>
 
 <script lang="ts">

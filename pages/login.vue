@@ -1,40 +1,42 @@
 <template>
-    <main class="t-main">
-        <oHero headline="Odhlášení" />
+    <NuxtLayout name="default">
+        <main class="t-main">
+            <oHero headline="Odhlášení" />
 
-        <section class="t-section">
-            <div class="o-form-login">
-                <div class="o-form-login__outer">
-                    <div class="o-form-login__inner">
-                        
-                        <!-- SECTION - FlashMassages -->
-                        <oFlashMessages :text="errorForm" styleThema=" -error" />
-                        <oFlashMessages :text="successForm" styleThema=" -success" />
-                        <!-- SECTION - FlashMassages END -->
+            <section class="t-section">
+                <div class="o-form-login">
+                    <div class="o-form-login__outer">
+                        <div class="o-form-login__inner">
+                            
+                            <!-- SECTION - FlashMassages -->
+                            <oFlashMessages :text="errorForm" styleThema=" -error" />
+                            <oFlashMessages :text="successForm" styleThema=" -success" />
+                            <!-- SECTION - FlashMassages END -->
 
-                        <form class="o-form-login__form" @submit.prevent="loginForm">
-                            <div class="o-form-login__items">
-                                <div class="o-form-login__item">
-                                    <input class="a-input a-input--big" type="text" name="email" v-model="email" placeholder="E-mail"/>
-                                </div>
-                                <div class="o-form-login__item">
-                                    <input class="a-input a-input--big" type="password" name="password" v-model="password" placeholder="Heslo"/>
-                                </div>
-                            </div>
-                            <div class="o-form-login__buttons mt-1">
-                                <div class="o-form-login__button">
-                                    <div class="m-button">
-                                        <button class="m-button__input" type="submit">Přihlásit se</button>
+                            <form class="o-form-login__form" @submit.prevent="loginForm">
+                                <div class="o-form-login__items">
+                                    <div class="o-form-login__item">
+                                        <input class="a-input a-input--big" type="text" name="email" v-model="email" placeholder="E-mail"/>
+                                    </div>
+                                    <div class="o-form-login__item">
+                                        <input class="a-input a-input--big" type="password" name="password" v-model="password" placeholder="Heslo"/>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                                <div class="o-form-login__buttons mt-1">
+                                    <div class="o-form-login__button">
+                                        <div class="m-button">
+                                            <button class="m-button__input" type="submit">Přihlásit se</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+    </NuxtLayout>
 </template>
 
 <script lang="ts">

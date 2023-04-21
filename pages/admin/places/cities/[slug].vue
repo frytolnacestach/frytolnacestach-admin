@@ -1,114 +1,116 @@
 <template>
-    <main class="t-main">
-        <oHero :headline="'Město ' + placesCityName" />
+    <NuxtLayout name="admin">
+        <main class="t-main">
+            <oHero :headline="'Město ' + placesCityName" />
 
-        <nav class="m-nav-breadcrumbs">
-            <div class="m-nav-breadcrumbs__outer">
-                <div class="m-nav-breadcrumbs__inner">
-                    <ul class="m-nav-breadcrumbs__items">
-                        <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
-                        </li>
-                        <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places">Místa</NuxtLink>
-                        </li>
-                        <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places/cities">Města</NuxtLink>
-                        </li>
-                        <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Editace města - {{ placesCityName }}</span>
-                        </li>
-                    </ul>
+            <nav class="m-nav-breadcrumbs">
+                <div class="m-nav-breadcrumbs__outer">
+                    <div class="m-nav-breadcrumbs__inner">
+                        <ul class="m-nav-breadcrumbs__items">
+                            <li class="m-nav-breadcrumbs__item">
+                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
+                            </li>
+                            <li class="m-nav-breadcrumbs__item">
+                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places">Místa</NuxtLink>
+                            </li>
+                            <li class="m-nav-breadcrumbs__item">
+                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places/cities">Města</NuxtLink>
+                            </li>
+                            <li class="m-nav-breadcrumbs__item">
+                                <span class="m-nav-breadcrumbs__span">Editace města - {{ placesCityName }}</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
-        <section class="t-section my-4">
-            <div class="t-section__inner">
+            <section class="t-section my-4">
+                <div class="t-section__inner">
 
-                <div class="o-form-edit">
-                    <div class="o-form-edit__outer">
-                        <div class="o-form-edit__inner">
-                            
-                            <!-- SECTION - FlashMassages -->
-                            <oFlashMessages :text="errorForm" styleThema=" -error" />
-                            <oFlashMessages :text="successForm" styleThema=" -success" />
-                            <!-- SECTION - FlashMassages END -->
+                    <div class="o-form-edit">
+                        <div class="o-form-edit__outer">
+                            <div class="o-form-edit__inner">
+                                
+                                <!-- SECTION - FlashMassages -->
+                                <oFlashMessages :text="errorForm" styleThema=" -error" />
+                                <oFlashMessages :text="successForm" styleThema=" -success" />
+                                <!-- SECTION - FlashMassages END -->
 
-                            <form class="o-form-edit__form" @submit.prevent="editForm">
-                                <div class="o-form-edit__items">
-                                    
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Slug:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="slug" v-model="placesCitySlug" />
+                                <form class="o-form-edit__form" @submit.prevent="editForm">
+                                    <div class="o-form-edit__items">
+                                        
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Slug:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="slug" v-model="placesCitySlug" />
+                                        </div>
+                                
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Jméno:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="name" v-model="placesCityName" />
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Rozloha:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="area" v-model="placesCityArea" />
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Populace:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="population" v-model="placesCityPopulation" />
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Nadmořká výška:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="altitude" v-model="placesCityAltitude" />
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Informace (Chat GPT):</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesCityInformationChatgpt"></textarea>
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image (Cover):</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="image_cover" v-model="placesCityImageCover" />
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image (Hero):</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="image_hero" v-model="placesCityImageHero" />
+                                        </div>
+                                                                        
                                     </div>
-                             
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Jméno:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="name" v-model="placesCityName" />
-                                    </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Rozloha:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="area" v-model="placesCityArea" />
-                                    </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Populace:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="population" v-model="placesCityPopulation" />
-                                    </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Nadmořká výška:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="altitude" v-model="placesCityAltitude" />
-                                    </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Informace (Chat GPT):</span>
-                                        </label>
-                                        <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesCityInformationChatgpt"></textarea>
-                                    </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Image (Cover):</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="image_cover" v-model="placesCityImageCover" />
-                                    </div>
-
-                                    <div class="o-form-edit__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Image (Hero):</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="image_hero" v-model="placesCityImageHero" />
-                                    </div>
-                                                                    
-                                </div>
-                                <div class="o-form-edit__buttons mt-1">
-                                    <div class="o-form-edit__button">
-                                        <div class="m-button">
-                                            <button class="m-button__input" type="submit">Uložit úpravy</button>
+                                    <div class="o-form-edit__buttons mt-1">
+                                        <div class="o-form-edit__button">
+                                            <div class="m-button">
+                                                <button class="m-button__input" type="submit">Uložit úpravy</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+    </NuxtLayout>
 </template>
 
 <script lang="ts">

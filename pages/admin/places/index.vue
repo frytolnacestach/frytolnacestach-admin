@@ -1,28 +1,30 @@
 <template>
-    <main class="t-main">
-        <oHero headline="Administrace - místa" />
+    <NuxtLayout name="admin">
+        <main class="t-main">
+            <oHero headline="Administrace - místa" />
 
-        <nav class="m-nav-breadcrumbs">
-            <div class="m-nav-breadcrumbs__outer">
-                <div class="m-nav-breadcrumbs__inner">
-                    <ul class="m-nav-breadcrumbs__items">
-                        <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
-                        </li>
-                        <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Místa</span>
-                        </li>
-                    </ul>
+            <nav class="m-nav-breadcrumbs">
+                <div class="m-nav-breadcrumbs__outer">
+                    <div class="m-nav-breadcrumbs__inner">
+                        <ul class="m-nav-breadcrumbs__items">
+                            <li class="m-nav-breadcrumbs__item">
+                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
+                            </li>
+                            <li class="m-nav-breadcrumbs__item">
+                                <span class="m-nav-breadcrumbs__span">Místa</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
-        <section class="t-section py-4">
-            <div class="t-section__inner">
-                <mNavAdmin :showNav="'places'" />
-            </div>
-        </section>
-    </main>
+            <section class="t-section py-4">
+                <div class="t-section__inner">
+                    <mNavAdmin :showNav="'places'" />
+                </div>
+            </section>
+        </main>
+    </NuxtLayout>
 </template>
 
 <script lang="ts">
