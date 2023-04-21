@@ -27,7 +27,7 @@
 
 <script>
     export default defineComponent({
-        name: 'MenuMainComponent',
+        name: 'MoleculesmNevMainComponent',
 
         data(){
             return {

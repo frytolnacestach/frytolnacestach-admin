@@ -5,6 +5,7 @@
                 <h1 class="o-hero__headline">
                     {{ headline }}
                 </h1>
+                <p class="o-hero__perex" v-if="perex">{{ perex }}</p>
             </div>
         </div>
     </div>
@@ -17,6 +18,10 @@
             headline: {
                 type: String,
                 required: true
+            },
+            perex: {
+                type: String,
+                required: false
             }
         },
     })

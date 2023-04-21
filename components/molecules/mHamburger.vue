@@ -14,6 +14,6 @@
 
 <script>
     export default defineComponent({
-        name: 'ControlHamburgerComponent'
+        name: 'MoleculesmHamburgerComponent'
     })
 </script>

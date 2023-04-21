@@ -24,29 +24,10 @@
                     <div class="o-form-edit__outer">
                         <div class="o-form-edit__inner">
                             
-                            <div class="o-flash-messages" v-if="errorForm" >
-                                <div class="o-flash-messages__items">
-                                    <div class="o-flash-messages__item -error">
-                                        <div class="o-flash-messages__outer">
-                                            <div class="o-flash-messages__inner">
-                                                <span class="o-flash-messages__text">{{ errorForm }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="o-flash-messages" v-if="successForm" >
-                                <div class="o-flash-messages__items">
-                                    <div class="o-flash-messages__item -success">
-                                        <div class="o-flash-messages__outer">
-                                            <div class="o-flash-messages__inner">
-                                                <span class="o-flash-messages__text">{{ successForm }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- SECTION - FlashMassages -->
+                            <oFlashMessages :text="errorForm" styleThema=" -error" />
+                            <oFlashMessages :text="successForm" styleThema=" -success" />
+                            <!-- SECTION - FlashMassages END -->
 
                             <form class="o-form-edit__form" @submit.prevent="editForm">
                                 <div class="o-form-edit__items">
@@ -85,6 +66,7 @@
 <script lang="ts">
     import { defineComponent } from 'vue'
     import { useRouter } from 'vue-router'
+    import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
     export default defineComponent({
@@ -92,6 +74,7 @@
 
         //COMPONENTS
         components: {
+            oFlashMessages,
             oHero
         },
 

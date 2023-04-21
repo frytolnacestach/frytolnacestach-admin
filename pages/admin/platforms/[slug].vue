@@ -27,17 +27,10 @@
                     <div class="o-form-edit__outer">
                         <div class="o-form-edit__inner">
                             
-                            <div class="o-flash-messages" v-if="errorForm">
-                                <div class="o-flash-messages__items">
-                                    <div class="o-flash-messages__item">
-                                        <div class="o-flash-messages__outer">
-                                            <div class="o-flash-messages__inner">
-                                                <span class="o-flash-messages__text">{{ errorForm }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- SECTION - FlashMassages -->
+                            <oFlashMessages :text="errorForm" styleThema=" -error" />
+                            <oFlashMessages :text="successForm" styleThema=" -success" />
+                            <!-- SECTION - FlashMassages END -->
 
                             <form class="o-form-edit__form" @submit.prevent="editForm">
                                 <div class="o-form-edit__items">
@@ -101,6 +94,7 @@
 </template>
 
 <script lang="ts">
+    import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
     interface Platform {
@@ -117,6 +111,7 @@
 
         //COMPONENTS
         components: {
+            oFlashMessages,
             oHero
         },
 
@@ -168,7 +163,7 @@
                     platformName.value = Platform[0].name;
                     platformPerex.value = Platform[0].perex;
                     platformUrl.value = Platform[0].url;
-                    platformFacts.value = Platform[0].facts;
+                    platformFacts.value = JSON.stringify(Platform[0].facts);
                     platformDate.value = Platform[0].date;
                 } else {
 

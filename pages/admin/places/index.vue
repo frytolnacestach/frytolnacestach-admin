@@ -19,7 +19,7 @@
 
         <section class="t-section py-4">
             <div class="t-section__inner">
-                <NavAdmin :showNav="'places'" />
+                <mNavAdmin :showNav="'places'" />
             </div>
         </section>
     </main>
@@ -27,7 +27,7 @@
 
 <script lang="ts">
     import oHero from '@/components/organisms/oHero.vue'
-    import NavAdmin from '../../../components/NavAdmin.vue'
+    import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
 
     export default defineComponent({
         name: 'AdminPlacesIndexPage',
@@ -35,7 +35,7 @@
         //COMPONENTS
         components: {
             oHero,
-            NavAdmin
+            mNavAdmin
         },
 
         setup() {

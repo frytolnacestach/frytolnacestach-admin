@@ -27,17 +27,10 @@
                     <div class="o-form-edit__outer">
                         <div class="o-form-edit__inner">
                             
-                            <div class="o-flash-messages" v-if="errorForm">
-                                <div class="o-flash-messages__items">
-                                    <div class="o-flash-messages__item">
-                                        <div class="o-flash-messages__outer">
-                                            <div class="o-flash-messages__inner">
-                                                <span class="o-flash-messages__text">{{ errorForm }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- SECTION - FlashMassages -->
+                            <oFlashMessages :text="errorForm" styleThema=" -error" />
+                            <oFlashMessages :text="successForm" styleThema=" -success" />
+                            <!-- SECTION - FlashMassages END -->
 
                             <form class="o-form-edit__form" @submit.prevent="editForm">
                                 <div class="o-form-edit__items">
@@ -88,21 +81,21 @@
                                         <label class="m-label">
                                             <span class="m-label__name">Image List:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="imageList" v-model="postImageList" />
+                                        <input class="a-input" type="text" name="imageList" v-model="postIdImageCover" />
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Image Hero:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="imageHero" v-model="postImageHero" />
+                                        <input class="a-input" type="text" name="imageHero" v-model="postIdImageHero" />
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Image Map:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="imageMap" v-model="postImageMap" />
+                                        <input class="a-input" type="text" name="imageMap" v-model="postIdImageMap" />
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
@@ -256,18 +249,19 @@
 </template>
 
 <script lang="ts">
+    import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
     interface Post {
         dir: string
         slug: string
         path: string,
-        date: string,
-        dataUpdate: string,
-        dataInformation: string,
-        imageList: string,
-        imageHero: string,
-        imageMap: string,
+        date: Date,
+        dateUpdate: Date,
+        dateInformation: Date,
+        id_image_cover: number,
+        id_image_hero: number,
+        id_image_map: number,
         urlYoutube: string,
         urlWiki: string,
         urlMap: string,
@@ -294,6 +288,7 @@
 
         //COMPONENTS
         components: {
+            oFlashMessages,
             oHero
         },
 
@@ -330,12 +325,12 @@
             const postDir = ref('')
             const postSlug = ref('')
             const postPath = ref('')
-            const postDate = ref('')
-            const postDateUpdate = ref('')
-            const postDateInformation = ref('')
-            const postImageList = ref('')
-            const postImageHero = ref('')
-            const postImageMap = ref('')
+            const postDate = ref(new Date())
+            const postDateUpdate = ref(new Date())
+            const postDateInformation = ref(new Date())
+            const postIdImageCover = ref(0)
+            const postIdImageHero = ref(0)
+            const postIdImageMap = ref(0)
             const postUrlYoutube = ref('')
             const postUrlWiki = ref('')
             const postUrlMap = ref('')
@@ -367,11 +362,11 @@
                     postSlug.value = Post[0].slug;
                     postPath.value = Post[0].path;
                     postDate.value = Post[0].date;
-                    postDateUpdate.value = Post[0].dataUpdate;
-                    postDateInformation.value = Post[0].dataInformation;
-                    postImageList.value = Post[0].imageList;
-                    postImageHero.value = Post[0].imageHero;
-                    postImageMap.value = Post[0].imageMap;
+                    postDateUpdate.value = Post[0].dateUpdate;
+                    postDateInformation.value = Post[0].dateInformation;
+                    postIdImageCover.value = Post[0].id_image_cover;
+                    postIdImageHero.value = Post[0].id_image_hero;
+                    postIdImageMap.value = Post[0].id_image_map;
                     postUrlYoutube.value = Post[0].urlYoutube;
                     postUrlWiki.value = Post[0].urlWiki;
                     postUrlMap.value = Post[0].urlMap;
@@ -385,12 +380,12 @@
                     postPerexPrice.value = Post[0].perexPrice;
                     postPerexTriplength.value = Post[0].perexTriplength;
                     postPerexTime.value = Post[0].perexTime;
-                    postTags.value = Post[0].tags;
-                    postLocations.value = Post[0].locations;
-                    postTravels.value = Post[0].travels;
-                    postPrices.value = Post[0].prices;
-                    postTriplengths.value = Post[0].triplengths;
-                    postTimes.value = Post[0].times;
+                    postTags.value = JSON.stringify(Post[0].tags);
+                    postLocations.value = JSON.stringify(Post[0].locations);
+                    postTravels.value = JSON.stringify(Post[0].travels);
+                    postPrices.value = JSON.stringify(Post[0].prices);
+                    postTriplengths.value = JSON.stringify(Post[0].triplengths);
+                    postTimes.value = JSON.stringify(Post[0].times);
                 } else {
 
                 }
@@ -412,11 +407,11 @@
                             'slug': postSlug.value,
                             'path': postPath.value,
                             'date': postDate.value,
-                            'dataUpdate': postDateUpdate.value,
-                            'dataInformation': postDateInformation.value,
-                            'imageList': postImageList.value,
-                            'imageHero': postImageHero.value,
-                            'imageMap': postImageMap.value,
+                            'dateUpdate': postDateUpdate.value,
+                            'dateInformation': postDateInformation.value,
+                            'id_image_cover': postIdImageCover.value,
+                            'id_image_hero': postIdImageHero.value,
+                            'id_image_map': postIdImageMap.value,
                             'urlYoutube': postUrlYoutube.value,
                             'urlWiki': postUrlWiki.value,
                             'urlMap': postUrlMap.value,
@@ -453,7 +448,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, postDir, postSlug, postPath, postDate, postDateUpdate, postDateInformation, postImageList, postImageHero, postImageMap, postUrlYoutube, postUrlWiki, postUrlMap, postTitle, postPerex, postTextOpener, postTextAuthor, postTextWiki, postReviewText, postReviewValue, postPerexPrice, postPerexTriplength, postPerexTime, postTags, postLocations, postTravels, postPrices, postTriplengths, postTimes, editForm }
+            return { successForm, errorForm, postDir, postSlug, postPath, postDate, postDateUpdate, postDateInformation, postIdImageCover, postIdImageHero, postIdImageMap, postUrlYoutube, postUrlWiki, postUrlMap, postTitle, postPerex, postTextOpener, postTextAuthor, postTextWiki, postReviewText, postReviewValue, postPerexPrice, postPerexTriplength, postPerexTime, postTags, postLocations, postTravels, postPrices, postTriplengths, postTimes, editForm }
         },
 
         mounted() {

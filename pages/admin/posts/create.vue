@@ -27,17 +27,10 @@
                     <div class="o-form-create__outer">
                         <div class="o-form-create__inner">
                             
-                            <div class="o-flash-messages" v-if="errorForm">
-                                <div class="o-flash-messages__items">
-                                    <div class="o-flash-messages__item">
-                                        <div class="o-flash-messages__outer">
-                                            <div class="o-flash-messages__inner">
-                                                <span class="o-flash-messages__text">{{ errorForm }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- SECTION - FlashMassages -->
+                            <oFlashMessages :text="errorForm" styleThema=" -error" />
+                            <oFlashMessages :text="successForm" styleThema=" -success" />
+                            <!-- SECTION - FlashMassages END -->
 
                             <form class="o-form-create__form" @submit.prevent="createForm">
                                 <div class="o-form-create__items">
@@ -88,21 +81,21 @@
                                         <label class="m-label">
                                             <span class="m-label__name">Image List:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="imageList" v-model="postImageList" />
+                                        <input class="a-input" type="text" name="imageList" v-model="postIdImageCover" />
                                     </div>
                                                                         
                                     <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Image Hero:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="imageHero" v-model="postImageHero" />
+                                        <input class="a-input" type="text" name="imageHero" v-model="postIdImageHero" />
                                     </div>
                                                                         
                                     <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Image Map:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="imageMap" v-model="postImageMap" />
+                                        <input class="a-input" type="text" name="imageMap" v-model="postIdImageMap" />
                                     </div>
                                                                         
                                     <div class="o-form-create__item">
@@ -256,6 +249,7 @@
 </template>
 
 <script lang="ts">
+    import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
     export default defineComponent({
@@ -263,6 +257,7 @@
 
         //COMPONENTS
         components: {
+            oFlashMessages,
             oHero
         },
 
@@ -298,12 +293,12 @@
             const postDir = ref('')
             const postSlug = ref('')
             const postPath = ref('')
-            const postDate = ref('')
-            const postDateUpdate = ref('')
-            const postDateInformation = ref('')
-            const postImageList = ref('')
-            const postImageHero = ref('')
-            const postImageMap = ref('')
+            const postDate = ref(new Date())
+            const postDateUpdate = ref(new Date())
+            const postDateInformation = ref(new Date())
+            const postIdImageCover = ref(0)
+            const postIdImageHero = ref(0)
+            const postIdImageMap = ref(0)
             const postUrlYoutube = ref('')
             const postUrlWiki = ref('')
             const postUrlMap = ref('')
@@ -340,11 +335,11 @@
                             'slug': postSlug.value,
                             'path': postPath.value,
                             'date': postDate.value,
-                            'dataUpdate': postDateUpdate.value,
-                            'dataInformation': postDateInformation.value,
-                            'imageList': postImageList.value,
-                            'imageHero': postImageHero.value,
-                            'imageMap': postImageMap.value,
+                            'dateUpdate': postDateUpdate.value,
+                            'dateInformation': postDateInformation.value,
+                            'id_image_cover': postIdImageCover.value,
+                            'id_image_hero': postIdImageHero.value,
+                            'id_image_map': postIdImageMap.value,
                             'urlYoutube': postUrlYoutube.value,
                             'urlWiki': postUrlWiki.value,
                             'urlMap': postUrlMap.value,
@@ -382,7 +377,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, postDir, postSlug, postPath, postDate, postDateUpdate, postDateInformation, postImageList, postImageHero, postImageMap, postUrlYoutube, postUrlWiki, postUrlMap, postTitle, postPerex, postTextOpener, postTextAuthor, postTextWiki, postReviewText, postReviewValue, postPerexPrice, postPerexTriplength, postPerexTime, postTags, postLocations, postTravels, postPrices, postTriplengths, postTimes, createForm }
+            return { successForm, errorForm, postDir, postSlug, postPath, postDate, postDateUpdate, postDateInformation, postIdImageCover, postIdImageHero, postIdImageMap, postUrlYoutube, postUrlWiki, postUrlMap, postTitle, postPerex, postTextOpener, postTextAuthor, postTextWiki, postReviewText, postReviewValue, postPerexPrice, postPerexTriplength, postPerexTime, postTags, postLocations, postTravels, postPrices, postTriplengths, postTimes, createForm }
         },
 
         mounted() {

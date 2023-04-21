@@ -34,7 +34,7 @@
         <!-- NAVADMIN - Main END -->
 
         <!-- NAVADMIN - Places -->
-        <Headline :headline="'Místa'" v-if="showNav === 'places' || showNav === 'full'" />
+        <mHeadline :headline="'Místa'" v-if="showNav === 'places' || showNav === 'full'" />
 
         <slot name="places">
             <nav class="o-nav-admin" v-if="showNav === 'places' || showNav === 'full'">
@@ -66,13 +66,13 @@
 </template>
 
 <script>
-    import Headline from '../components/Headline.vue'
+    import mHeadline from '@/components/molecules/mHeadline.vue'
 
     export default defineComponent({
-        name: 'NavAdminComponent',
+        name: 'MoleculesmNavAdminComponent',
 
         components: {
-            Headline
+            mHeadline
         },
     
         props: {

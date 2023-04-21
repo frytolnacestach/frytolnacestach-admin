@@ -1,10 +1,6 @@
 <template>
-	<MenuMain />
-	<LogotypeHeader />
-	<ControlHamburger />
-
+	<ComponentHeader />
 	<slot />
-
 	<ComponentFooter />
 </template>
 

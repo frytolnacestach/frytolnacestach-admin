@@ -1,7 +1,7 @@
 <template>
   <main class="t-main">
       <section class="t-section">
-          <SectionHero 
+          <oHero 
               :headline="headline"
               :perex="perex"
           />
@@ -22,21 +22,22 @@
 </template>
 
 <script>
-import SectionHero from '../components/SectionHero.vue'
+import oHero from '../components/onHero.vue'
 
 export default defineComponent({
 	name: 'ErrorLayout',
 	layout: 'empty',
+
+	//COMPONENTS
+	components: {
+		oHero
+	},
 
 	props: {
 		error: {
 			type: Object,
 			default: null
 		}
-	},
-
-	components: {
-		SectionHero
 	},
 
 	data() {
