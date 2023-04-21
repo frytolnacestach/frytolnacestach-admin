@@ -1,14 +1,6 @@
 <template>
     <main class="t-main">
-        <div class="o-hero">
-            <div class="o-hero__outer">
-                <div class="o-hero__inner">
-                    <h1 class="o-hero__headline">
-                        Přidání nového video
-                    </h1>
-                </div>
-            </div>
-        </div>
+        <oHero headline="Přidání nového video" />
 
         <nav class="m-nav-breadcrumbs">
             <div class="m-nav-breadcrumbs__outer">
@@ -99,6 +91,7 @@
 </template>
 
 <script lang="ts">
+    import oHero from '@/components/organisms/oHero.vue'
 
     interface Platform {
         id: number
@@ -107,6 +100,11 @@
 
     export default defineComponent({
         name: 'AdminVideosCreatePage',
+
+        //COMPONENTS
+        components: {
+            oHero
+        },
 
         setup() {
             //LAYOUT

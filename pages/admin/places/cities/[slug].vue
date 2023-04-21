@@ -1,14 +1,6 @@
 <template>
     <main class="t-main">
-        <div class="o-hero">
-            <div class="o-hero__outer">
-                <div class="o-hero__inner">
-                    <h1 class="o-hero__headline">
-                        Město {{ placesCityName }}
-                    </h1>
-                </div>
-            </div>
-        </div>
+        <oHero :headline="'Město ' + placesCityName" />
 
         <nav class="m-nav-breadcrumbs">
             <div class="m-nav-breadcrumbs__outer">
@@ -127,6 +119,8 @@
 </template>
 
 <script lang="ts">
+    import oHero from '@/components/organisms/oHero.vue'
+
     interface PlacesCity {
         slug: string
         name: string,
@@ -140,6 +134,11 @@
 
     export default defineComponent({
         name: 'AdminPlacesCitiesSlugPage',
+
+        //COMPONENTS
+        components: {
+            oHero
+        },
 
         setup() {
             //LAYOUT

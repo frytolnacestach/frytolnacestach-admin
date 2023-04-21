@@ -1,23 +1,22 @@
 <template>
     <NuxtLayout name="default">
         <main class="t-main">
-            <div class="o-hero-big">
-                <div class="o-hero-big__outer">
-                    <div class="o-hero-big__inner">
-                        <h1 class="o-hero-big__headline">
-                            ADMIN
-                        </h1>
-                        <p class="o-hero-big__perex">Frytol na cestách</p>
-                    </div>
-                </div>
-            </div>
+            <oHeroBig headline="ADMIN" perex="Frytol na cestách" />
         </main>
     </NuxtLayout>
 </template>
 
 <script lang="ts">
+
+    import oHeroBig from '../components/organisms/oHeroBig.vue'
+
     export default defineComponent({
         name: 'IndexPage',
+
+        //COMPONENTS
+        components: {
+            oHeroBig
+        },
 
         setup() {
             //LAYOUT

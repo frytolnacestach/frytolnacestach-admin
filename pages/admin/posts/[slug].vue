@@ -1,14 +1,6 @@
 <template>
     <main class="t-main">
-        <div class="o-hero">
-            <div class="o-hero__outer">
-                <div class="o-hero__inner">
-                    <h1 class="o-hero__headline">
-                        Článek {{ postTitle }}
-                    </h1>
-                </div>
-            </div>
-        </div>
+        <oHero :headline="'Článek ' + postTitle" />
 
         <nav class="m-nav-breadcrumbs">
             <div class="m-nav-breadcrumbs__outer">
@@ -264,6 +256,7 @@
 </template>
 
 <script lang="ts">
+    import oHero from '@/components/organisms/oHero.vue'
 
     interface Post {
         dir: string
@@ -298,6 +291,11 @@
 
     export default defineComponent({
         name: 'AdminPostsSlugPage',
+
+        //COMPONENTS
+        components: {
+            oHero
+        },
 
         setup() {
             //LAYOUT

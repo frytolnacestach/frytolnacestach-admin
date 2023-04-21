@@ -1,14 +1,6 @@
 <template>
     <main class="t-main">
-        <div class="o-hero">
-            <div class="o-hero__outer">
-                <div class="o-hero__inner">
-                    <h1 class="o-hero__headline">
-                        Administrace - základní údaje
-                    </h1>
-                </div>
-            </div>
-        </div>
+        <oHero headline="Administrace - základní údaje" />
 
         <nav class="m-nav-breadcrumbs">
             <div class="m-nav-breadcrumbs__outer">
@@ -93,9 +85,15 @@
 <script lang="ts">
     import { defineComponent } from 'vue'
     import { useRouter } from 'vue-router'
+    import oHero from '@/components/organisms/oHero.vue'
 
     export default defineComponent({
         name: 'AdminBaseIndexPage',
+
+        //COMPONENTS
+        components: {
+            oHero
+        },
 
         setup() {
              //LAYOUT
