@@ -7,8 +7,16 @@
 
     &__item {
         width: 100%;
-        background-color: $errorBackgroundcolor;
-        border: 2px solid $errorBordercolor;
+
+        &.-success {
+            background-color: $successBackgroundcolor;
+            border: 2px solid $successBordercolor;
+        }
+
+        &.-error {
+            background-color: $errorBackgroundcolor;
+            border: 2px solid $errorBordercolor;
+        }
     }
 
     &__outer {

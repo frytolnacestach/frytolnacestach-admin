@@ -4,7 +4,7 @@
             <div class="o-hero__outer">
                 <div class="o-hero__inner">
                     <h1 class="o-hero__headline">
-                        Administrace - základní údaje
+                        Platforma {{ platformName }}
                     </h1>
                 </div>
             </div>
@@ -18,7 +18,10 @@
                             <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Základní údaje</span>
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/platforms">Platformy</NuxtLink>
+                        </li>
+                        <li class="m-nav-breadcrumbs__item">
+                            <span class="m-nav-breadcrumbs__span">Editace platformy - {{ platformName }}</span>
                         </li>
                     </ul>
                 </div>
@@ -32,24 +35,12 @@
                     <div class="o-form-edit__outer">
                         <div class="o-form-edit__inner">
                             
-                            <div class="o-flash-messages" v-if="errorForm" >
+                            <div class="o-flash-messages" v-if="errorForm">
                                 <div class="o-flash-messages__items">
-                                    <div class="o-flash-messages__item -error">
+                                    <div class="o-flash-messages__item">
                                         <div class="o-flash-messages__outer">
                                             <div class="o-flash-messages__inner">
                                                 <span class="o-flash-messages__text">{{ errorForm }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="o-flash-messages" v-if="successForm" >
-                                <div class="o-flash-messages__items">
-                                    <div class="o-flash-messages__item -success">
-                                        <div class="o-flash-messages__outer">
-                                            <div class="o-flash-messages__inner">
-                                                <span class="o-flash-messages__text">{{ successForm }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -61,18 +52,45 @@
                                     
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Kdo jsem:</span>
+                                            <span class="m-label__name">Slug:</span>
                                         </label>
-                                        <textarea class="a-textarea" name="iam" v-model="iam"></textarea>
+                                        <input class="a-input" type="text" name="slug" v-model="platformSlug" />
+                                    </div>
+                                                                        
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Name:</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="name" v-model="platformName" />
+                                    </div>
+                             
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Perex:</span>
+                                        </label>
+                                        <textarea class="a-textarea" type="text" name="perex" v-model="platformPerex"></textarea>
+                                    </div>
+  
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">URL:</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="url" v-model="platformUrl" />
                                     </div>
 
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Jak mě podpořit:</span>
+                                            <span class="m-label__name">Facts(json):</span>
                                         </label>
-                                        <textarea class="a-textarea" name="donate" v-model="donate"></textarea>
+                                        <textarea class="a-textarea" type="text" name="facts" v-model="platformFacts"></textarea>
                                     </div>
-
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Date:</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="date" v-model="platformDate" />
+                                    </div>
+                                                                    
                                 </div>
                                 <div class="o-form-edit__buttons mt-1">
                                     <div class="o-form-edit__button">
@@ -91,21 +109,28 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent } from 'vue'
-    import { useRouter } from 'vue-router'
+
+    interface Platform {
+        slug: string
+        name: string,
+        perex: string,
+        url: string,
+        facts: string,
+        date: string
+    }
 
     export default defineComponent({
-        name: 'AdminBaseIndexPage',
+        name: 'AdminPlatformsSlugPage',
 
         setup() {
-             //LAYOUT
+            //LAYOUT
             definePageMeta({
                 layout: 'admin'
             })
 
             //META HEAD
             useHead({
-                title: 'Základní informace',
+                title: 'Platformy - úprava',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -114,8 +139,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Základní informace',
-                ogTitle: 'Základní informace',
+                title: 'Platformy - úprava',
+                ogTitle: 'Platformy - úprava',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
@@ -124,23 +149,38 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig()
+            const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
-            const iam = ref('')
-            const donate = ref('')
+            const platformSlug = ref('')
+            const platformName = ref('')
+            const platformPerex = ref('')
+            const platformUrl = ref('')
+            const platformFacts = ref('')
+            const platformDate = ref('')
 
-            //API - Base
+            //API - Platform
             ;(async () => {
-                const { data: base } = await useFetch(`${runTimeConfig.public.baseURL}/base`)
+                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/platform/${route.params.slug}`)
+                
+                const Platform: Platform[] = JSON.parse(_rawValue)
+                
+                if (Array.isArray(Platform) && Platform.length > 0) {
+                    platformSlug.value = Platform[0].slug;
+                    platformName.value = Platform[0].name;
+                    platformPerex.value = Platform[0].perex;
+                    platformUrl.value = Platform[0].url;
+                    platformFacts.value = Platform[0].facts;
+                    platformDate.value = Platform[0].date;
+                } else {
 
-                iam.value = JSON.parse(base._rawValue)[0].iam;
-                donate.value = JSON.parse(base._rawValue)[0].donate;
+                }
             })()
 
             //FORM - edit
             const editForm = async () => {
                 try {
-                    await useFetch(`${runTimeConfig.public.baseURL}/base-edit`, {
+                    await useFetch(`${runTimeConfig.public.baseURL}/platform-edit`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -149,8 +189,12 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
-                            'iam': iam.value,
-                            'donate': donate.value,
+                            'slug': platformSlug.value,
+                            'name': platformName.value,
+                            'perex': platformPerex.value,
+                            'url': platformUrl.value,
+                            'facts': platformFacts.value,
+                            'date': platformDate.value
                         })
                     })
                     .then(() => {
@@ -168,9 +212,9 @@
             }
 
             //RETURN
-            return { successForm, errorForm, iam, donate, editForm }
+            return { successForm, errorForm, platformSlug, platformName, platformPerex, platformUrl, platformFacts, platformDate, editForm }
         },
-        
+
         mounted() {
             //Kontrola přihlášení
             let user = localStorage.getItem('user-info')

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    export default {
-        name: 'LogotypeHeader'
-    }
+    export default defineComponent({
+        name: 'LogotypeHeaderComponent'
+    })
 </script>

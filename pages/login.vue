@@ -1,23 +1,15 @@
 <template>
     <main class="t-main">
-        <div class="o-hero">
-            <div class="o-hero__outer">
-                <div class="o-hero__inner">
-                    <h1 class="o-hero__headline">
-                        Přihlášení do administrace
-                    </h1>
-                </div>
-            </div>
-        </div>
+        <oHero headline="Odhlášení" />
 
         <section class="t-section">
             <div class="o-form-login">
                 <div class="o-form-login__outer">
                     <div class="o-form-login__inner">
                         
-                        <div class="o-flash-messages" v-if="errorForm">
+                        <div class="o-flash-messages" v-if="errorForm" >
                             <div class="o-flash-messages__items">
-                                <div class="o-flash-messages__item">
+                                <div class="o-flash-messages__item -error">
                                     <div class="o-flash-messages__outer">
                                         <div class="o-flash-messages__inner">
                                             <span class="o-flash-messages__text">{{ errorForm }}</span>
@@ -27,23 +19,36 @@
                             </div>
                         </div>
 
+                        <div class="o-flash-messages" v-if="successForm" >
+                            <div class="o-flash-messages__items">
+                                <div class="o-flash-messages__item -success">
+                                    <div class="o-flash-messages__outer">
+                                        <div class="o-flash-messages__inner">
+                                            <span class="o-flash-messages__text">{{ successForm }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <form class="o-form-login__form" @submit.prevent="loginForm">
                             <div class="o-form-login__items">
                                 <div class="o-form-login__item">
-                                    <input class="a-input a-input--big" type="text" name="email" v-model="login.email" placeholder="E-mail"/>
+                                    <input class="a-input a-input--big" type="text" name="email" v-model="email" placeholder="E-mail"/>
                                 </div>
                                 <div class="o-form-login__item">
-                                    <input class="a-input a-input--big" type="password" name="password" v-model="login.password" placeholder="Heslo"/>
+                                    <input class="a-input a-input--big" type="password" name="password" v-model="password" placeholder="Heslo"/>
                                 </div>
                             </div>
                             <div class="o-form-login__buttons mt-1">
                                 <div class="o-form-login__button">
                                     <div class="m-button">
-                                        <button class="m-button__input" type="submit">Login</button>
+                                        <button class="m-button__input" type="submit">Přihlásit se</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -51,61 +56,96 @@
     </main>
 </template>
 
-<script>
-import axios from "axios";
+<script lang="ts">
+    import { defineComponent } from 'vue'
+    import { useRouter } from 'vue-router'
 
-    export default {
+    import oHero from '../components/organisms/oHero.vue'
+
+    export default defineComponent({
         name: 'LoginPage',
 
-        data(){
-            return {
-                login: {
-                    email: '',
-                    password: ''
-                },
-                errorForm: ''
-            }
+        //COMPONENTS
+        components: {
+            oHero
         },
-        methods: {
-            async loginForm(){
-                try {
-                    let result = await axios.get(`https://frytolnacestach-api.vercel.app/api/login/${this.login.email}/${this.login.password}`)
 
-                    if ( JSON.stringify(result.data.message[0]) != undefined ){
-                        if(result.data.status==200) {
-                            
-                            //set storage
-                            localStorage.setItem("user-info",JSON.stringify(result.data.message[0]))
-                            
-                            //set expires
-                            var now = new Date();
-                            now.setMonth( now.getMonth() + 1 );
-                            let expires = "expires="+ now;
-                            
-                            //set cookies
-                            document.cookie = "FNCADMINemail=" + result.data.message[0].email + ";" + expires;
-                            document.cookie = "FNCADMINpass=" + result.data.message[0].password + ";" + expires;
-                            
-                            let user = localStorage.getItem('user-info')
+        setup() {
+            //LAYOUT
+            definePageMeta({
+                layout: 'default'
+            })
+            
+            //META HEAD
+            useHead({
+                title: 'Přihlášení do administrace',
+                meta: [
+                    { name: 'description', content: 'Úžasná administrace pro web.' }
+                ],
+                script: [ { innerHTML: 'console.log(\'Tebe zajímá můj jalový kód? No já se v Nuxt teprve učím a do toho jsem udělal migraci na NUXT3\')' } ]
+            })
 
-                            this.$router.push('admin')
-                        }
-                    } else {
-                        this.errorForm = "Uživatelský email nebo heslo je nesprávné"
-                        console.log("Uživatelský email nebo heslo je nesprávné")
-                    }
-                    
-                } catch (err) {
-                    console.log(err)
+            //META SEO
+            useServerSeoMeta({
+                title: 'Přihlášení do administrace',
+                ogTitle: 'Přihlášení do administrace',
+                description: 'Úžasná administrace pro web.',
+                ogDescription: 'Úžasná administrace pro web.',
+                ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
+                twitterCard: 'summary_large_image',
+            })
+
+            //CONSTS
+            const runTimeConfig = useRuntimeConfig()
+            const errorForm = ref('')
+            const successForm = ref('')
+            const email = ref('')
+            const password = ref('')
+            
+            //FORM - login
+            const loginForm = async () => {
+
+                const { data: login } = await useFetch(`${runTimeConfig.public.baseURL}/login/${email.value}/${password.value}`)
+
+                if (login._rawValue.message.length > 0 && login._rawValue.status === 200) {
+                    //set storage
+                    localStorage.setItem("user-info", JSON.stringify(login._rawValue.message[0]));
+
+                    //set expires
+                    var now = new Date();
+                    now.setMonth(now.getMonth() + 1);
+                    let expires = "expires=" + now;
+
+                    //set cookies
+                    document.cookie = "FNCADMINemail=" + login._rawValue.message[0].email + ";" + expires;
+                    document.cookie = "FNCADMINpass=" + login._rawValue.message[0].password + ";" + expires;
+
+                    let user = localStorage.getItem('user-info')
+
+                    errorForm.value = ""
+                    successForm.value = "Byl jste přihlášen"
+                    console.log("Uživatelský byl přihlášen.")
+
+                    //Přesměrování
+                    await navigateTo('/admin')
+                } else {
+                    errorForm.value = "Uživatelský email nebo heslo je nesprávné"
+                    console.log("Uživatelský email nebo heslo je nesprávné")
                 }
-            }
-        },
-        mounted() {
-            let user = localStorage.getItem('user-info')
 
+            }
+
+            return { successForm, errorForm, email, password, loginForm }
+        },
+
+        mounted() {
+            //Kontrola přihlášení
+            let user = localStorage.getItem('user-info')
             if (user && user != "undefined") {
-                this.$router.push('admin')
+                //Přesměrování
+                const router = useRouter()
+                router.push('/admin')
             }
         }
-    }
+    })
 </script>

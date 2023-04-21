@@ -26,15 +26,16 @@
 </template>
 
 <script>
-    export default {
-        name: 'MenuMain',
+    export default defineComponent({
+        name: 'MenuMainComponent',
+
         data(){
             return {
                 loginStatus: ''
             }
         },
-        mounted() {
 
+        mounted() {
             let user = localStorage.getItem('user-info')
 
             if (user && user != "undefined") {
@@ -43,7 +44,7 @@
 
             }
         }
-    }
+    })
 
     
 </script>

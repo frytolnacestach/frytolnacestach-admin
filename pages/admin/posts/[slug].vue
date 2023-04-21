@@ -4,7 +4,7 @@
             <div class="o-hero__outer">
                 <div class="o-hero__inner">
                     <h1 class="o-hero__headline">
-                        Přidání nového článku
+                        Článek {{ postTitle }}
                     </h1>
                 </div>
             </div>
@@ -21,19 +21,19 @@
                             <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/posts">Články</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Přidání nového článku</span>
+                            <span class="m-nav-breadcrumbs__span">Editace článku - {{ postTitle }}</span>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <section class="t-section mt-4 mb-8">
+        <section class="t-section my-4">
             <div class="t-section__inner">
 
-                <div class="o-form-create">
-                    <div class="o-form-create__outer">
-                        <div class="o-form-create__inner">
+                <div class="o-form-edit">
+                    <div class="o-form-edit__outer">
+                        <div class="o-form-edit__inner">
                             
                             <div class="o-flash-messages" v-if="errorForm">
                                 <div class="o-flash-messages__items">
@@ -47,199 +47,199 @@
                                 </div>
                             </div>
 
-                            <form class="o-form-create__form" @submit.prevent="createForm">
-                                <div class="o-form-create__items">
+                            <form class="o-form-edit__form" @submit.prevent="editForm">
+                                <div class="o-form-edit__items">
                                     
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Dir:</span>
                                         </label>
                                         <input class="a-input" type="text" name="dir" v-model="postDir" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Slug:</span>
                                         </label>
                                         <input class="a-input" type="text" name="slug" v-model="postSlug" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Path:</span>
                                         </label>
                                         <input class="a-input" type="text" name="path" v-model="postPath" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Date:</span>
                                         </label>
                                         <input class="a-input" type="text" name="date" v-model="postDate" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Data update:</span>
                                         </label>
                                         <input class="a-input" type="text" name="dateUpdate" v-model="postDateUpdate" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Date Information:</span>
                                         </label>
                                         <input class="a-input" type="text" name="dateInformation" v-model="postDateInformation" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Image List:</span>
                                         </label>
                                         <input class="a-input" type="text" name="imageList" v-model="postImageList" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Image Hero:</span>
                                         </label>
                                         <input class="a-input" type="text" name="imageHero" v-model="postImageHero" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Image Map:</span>
                                         </label>
                                         <input class="a-input" type="text" name="imageMap" v-model="postImageMap" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Url Youtube:</span>
                                         </label>
                                         <input class="a-input" type="text" name="urlYoutube" v-model="postUrlYoutube" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Url Wiki:</span>
                                         </label>
                                         <input class="a-input" type="text" name="urlWiki" v-model="postUrlWiki" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Url Map:</span>
                                         </label>
                                         <input class="a-input" type="text" name="urlMap" v-model="postUrlMap" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Title:</span>
                                         </label>
                                         <input class="a-input" type="text" name="title" v-model="postTitle" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Perex:</span>
                                         </label>
                                         <input class="a-input" type="text" name="perex" v-model="postPerex" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Text Opener:</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="textOpener" v-model="postTextOpener"></textarea>
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Text Author:</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="textAuthor" v-model="postTextAuthor"></textarea>
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Text Wiki:</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="textWiki" v-model="postTextWiki"></textarea>
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Review Text:</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="reviewText" v-model="postReviewText"></textarea>
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Review Value:</span>
                                         </label>
                                         <input class="a-input" type="text" name="reviewValue" v-model="postReviewValue" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Perex Price:</span>
                                         </label>
                                         <input class="a-input" type="text" name="perexPrice" v-model="postPerexPrice" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Perex Triplength:</span>
                                         </label>
                                         <input class="a-input" type="text" name="perexTriplength" v-model="postPerexTriplength" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Perex Time:</span>
                                         </label>
                                         <input class="a-input" type="text" name="perexTime" v-model="postPerexTime" />
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Tags(json):</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="tags" v-model="postTags"></textarea>
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Locations(json):</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="locations" v-model="postLocations"></textarea>
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Travels(json):</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="travels" v-model="postTravels"></textarea>
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Prices(json):</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="prices" v-model="postPrices"></textarea>
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Triplengths(json):</span>
                                         </label>
                                         <textarea class="a-textarea" type="text" name="triplengths" v-model="postTriplengths"></textarea>
                                     </div>
                                                                         
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Times(json):</span>
                                         </label>
@@ -247,10 +247,10 @@
                                     </div>
 
                                 </div>
-                                <div class="o-form-create__buttons mt-1">
-                                    <div class="o-form-create__button">
+                                <div class="o-form-edit__buttons mt-1">
+                                    <div class="o-form-edit__button">
                                         <div class="m-button">
-                                            <button class="m-button__input" type="submit">Vytvořit článek</button>
+                                            <button class="m-button__input" type="submit">Uložit úpravy</button>
                                         </div>
                                     </div>
                                 </div>
@@ -264,8 +264,40 @@
 </template>
 
 <script lang="ts">
+
+    interface Post {
+        dir: string
+        slug: string
+        path: string,
+        date: string,
+        dataUpdate: string,
+        dataInformation: string,
+        imageList: string,
+        imageHero: string,
+        imageMap: string,
+        urlYoutube: string,
+        urlWiki: string,
+        urlMap: string,
+        title: string,
+        perex: string,
+        textOpener: string,
+        textAuthor: string,
+        textWiki: string,
+        reviewText: string,
+        reviewValue: string,
+        perexPrice: string,
+        perexTriplength: string,
+        perexTime: string,
+        tags: string,
+        locations: string,
+        travels: string,
+        prices: string,
+        triplengths: string,
+        times: string
+    }
+
     export default defineComponent({
-        name: 'AdminPostsCreatePage',
+        name: 'AdminPostsSlugPage',
 
         setup() {
             //LAYOUT
@@ -275,7 +307,7 @@
 
             //META HEAD
             useHead({
-                title: 'Články - vytvoření',
+                title: 'Články - úprava',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -284,8 +316,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Články - vytvoření',
-                ogTitle: 'Články - vytvoření',
+                title: 'Články - úprava',
+                ogTitle: 'Články - úprava',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
@@ -294,6 +326,7 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig()
+            const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
             const postDir = ref('')
@@ -325,10 +358,50 @@
             const postTriplengths = ref('')
             const postTimes = ref('')
 
-            //FORM - create
-            const createForm = async () => {
+            //API - Post
+            ;(async () => {
+                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/post/${route.params.slug}`)
+                
+                const Post: Post[] = JSON.parse(_rawValue)
+                
+                if (Array.isArray(Post) && Post.length > 0) {
+                    postDir.value = Post[0].dir;
+                    postSlug.value = Post[0].slug;
+                    postPath.value = Post[0].path;
+                    postDate.value = Post[0].date;
+                    postDateUpdate.value = Post[0].dataUpdate;
+                    postDateInformation.value = Post[0].dataInformation;
+                    postImageList.value = Post[0].imageList;
+                    postImageHero.value = Post[0].imageHero;
+                    postImageMap.value = Post[0].imageMap;
+                    postUrlYoutube.value = Post[0].urlYoutube;
+                    postUrlWiki.value = Post[0].urlWiki;
+                    postUrlMap.value = Post[0].urlMap;
+                    postTitle.value = Post[0].title;
+                    postPerex.value = Post[0].perex;
+                    postTextOpener.value = Post[0].textOpener;
+                    postTextAuthor.value = Post[0].textAuthor;
+                    postTextWiki.value = Post[0].textWiki;
+                    postReviewText.value = Post[0].reviewText;
+                    postReviewValue.value = Post[0].reviewValue;
+                    postPerexPrice.value = Post[0].perexPrice;
+                    postPerexTriplength.value = Post[0].perexTriplength;
+                    postPerexTime.value = Post[0].perexTime;
+                    postTags.value = Post[0].tags;
+                    postLocations.value = Post[0].locations;
+                    postTravels.value = Post[0].travels;
+                    postPrices.value = Post[0].prices;
+                    postTriplengths.value = Post[0].triplengths;
+                    postTimes.value = Post[0].times;
+                } else {
+
+                }
+            })()
+
+            //FORM - edit
+            const editForm = async () => {
                 try {
-                    await useFetch(`${runTimeConfig.public.baseURL}/post-create`, {
+                    await useFetch(`${runTimeConfig.public.baseURL}/post-edit`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -370,7 +443,6 @@
                     .then(() => {
                         console.log('Data byla odeslaná');
                         successForm.value = "Data byla odeslaná"
-                        navigateTo(`/admin/post/${postSlug.value}`)
                     })
                     .catch((error) => {
                         console.log(error);
@@ -383,7 +455,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, postDir, postSlug, postPath, postDate, postDateUpdate, postDateInformation, postImageList, postImageHero, postImageMap, postUrlYoutube, postUrlWiki, postUrlMap, postTitle, postPerex, postTextOpener, postTextAuthor, postTextWiki, postReviewText, postReviewValue, postPerexPrice, postPerexTriplength, postPerexTime, postTags, postLocations, postTravels, postPrices, postTriplengths, postTimes, createForm }
+            return { successForm, errorForm, postDir, postSlug, postPath, postDate, postDateUpdate, postDateInformation, postImageList, postImageHero, postImageMap, postUrlYoutube, postUrlWiki, postUrlMap, postTitle, postPerex, postTextOpener, postTextAuthor, postTextWiki, postReviewText, postReviewValue, postPerexPrice, postPerexTriplength, postPerexTime, postTags, postLocations, postTravels, postPrices, postTriplengths, postTimes, editForm }
         },
 
         mounted() {

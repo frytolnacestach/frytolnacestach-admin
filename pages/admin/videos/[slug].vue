@@ -4,7 +4,7 @@
             <div class="o-hero__outer">
                 <div class="o-hero__inner">
                     <h1 class="o-hero__headline">
-                        Administrace - základní údaje
+                        <!--video {{ this.edit.title }}-->
                     </h1>
                 </div>
             </div>
@@ -18,7 +18,10 @@
                             <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Základní údaje</span>
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/videos">Videa</NuxtLink>
+                        </li>
+                        <li class="m-nav-breadcrumbs__item">
+                            <span class="m-nav-breadcrumbs__span">Editace videa - {{ videoTitle }}</span>
                         </li>
                     </ul>
                 </div>
@@ -32,9 +35,9 @@
                     <div class="o-form-edit__outer">
                         <div class="o-form-edit__inner">
                             
-                            <div class="o-flash-messages" v-if="errorForm" >
+                            <div class="o-flash-messages" v-if="errorForm">
                                 <div class="o-flash-messages__items">
-                                    <div class="o-flash-messages__item -error">
+                                    <div class="o-flash-messages__item">
                                         <div class="o-flash-messages__outer">
                                             <div class="o-flash-messages__inner">
                                                 <span class="o-flash-messages__text">{{ errorForm }}</span>
@@ -58,21 +61,34 @@
 
                             <form class="o-form-edit__form" @submit.prevent="editForm">
                                 <div class="o-form-edit__items">
-                                    
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Kdo jsem:</span>
+                                            <span class="m-label__name">Slug:</span>
                                         </label>
-                                        <textarea class="a-textarea" name="iam" v-model="iam"></textarea>
+                                        <input class="a-input" type="text" name="slug" v-model="videoSlug" />
                                     </div>
-
+                                    <div class="o-form-create__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Platform:</span>
+                                        </label>
+                                        <select class="m-select" name="platform" v-model="videoPlatform">
+                                            <option value="">- Vyber platformu -</option>
+                                            <option v-for="platform in platforms" :key="platform.id" :value="platform.id">{{platform.name}}</option>
+                                        </select>
+                                    </div>
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Jak mě podpořit:</span>
+                                            <span class="m-label__name">Title:</span>
                                         </label>
-                                        <textarea class="a-textarea" name="donate" v-model="donate"></textarea>
+                                        <input class="a-input" type="text" name="title" v-model="videoTitle" />
                                     </div>
-
+  
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">URL:</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="url" v-model="videoUrl" />
+                                    </div>               
                                 </div>
                                 <div class="o-form-edit__buttons mt-1">
                                     <div class="o-form-edit__button">
@@ -91,21 +107,31 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent } from 'vue'
-    import { useRouter } from 'vue-router'
+
+    interface Platform {
+        id: number
+        name: string
+    }
+
+    interface Video {
+        title: string
+        platform: string
+        slug: string
+        url: string
+    }
 
     export default defineComponent({
-        name: 'AdminBaseIndexPage',
+        name: 'AdminVideosSlugPage',
 
         setup() {
-             //LAYOUT
+            //LAYOUT
             definePageMeta({
                 layout: 'admin'
             })
 
             //META HEAD
             useHead({
-                title: 'Základní informace',
+                title: 'Videa - úprava',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -114,8 +140,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Základní informace',
-                ogTitle: 'Základní informace',
+                title: 'Videa - úprava',
+                ogTitle: 'Videa - úprava',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
@@ -124,23 +150,42 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig()
+            const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
-            const iam = ref('')
-            const donate = ref('')
+            const platforms = ref<Platform[]>([])
+            const videoSlug = ref('')
+            const videoPlatform = ref('')
+            const videoTitle = ref('')
+            const videoUrl = ref('')
 
-            //API - Base
+            //API - Video
             ;(async () => {
-                const { data: base } = await useFetch(`${runTimeConfig.public.baseURL}/base`)
+                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/video/${route.params.slug}`)
+                
+                const video: Video[] = JSON.parse(_rawValue)
+                
+                if (Array.isArray(video) && video.length > 0 && 'slug' in video[0] && 'platform' in video[0] && 'title' in video[0] && 'url' in video[0]) {
+                    videoSlug.value = video[0].slug;
+                    videoPlatform.value = video[0].platform;
+                    videoTitle.value = video[0].title;
+                    videoUrl.value = video[0].url;
+                } else {
 
-                iam.value = JSON.parse(base._rawValue)[0].iam;
-                donate.value = JSON.parse(base._rawValue)[0].donate;
+                }
+            })()
+
+            //API - Platform
+            ;(async () => {
+                fetch(`${runTimeConfig.public.baseURL}/platforms`, {
+                    method: 'GET'
+                }).then(res => res.json()).then(data => platforms.value = data);
             })()
 
             //FORM - edit
             const editForm = async () => {
                 try {
-                    await useFetch(`${runTimeConfig.public.baseURL}/base-edit`, {
+                    await useFetch(`${runTimeConfig.public.baseURL}/video-edit`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -149,8 +194,10 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
-                            'iam': iam.value,
-                            'donate': donate.value,
+                            'slug': videoSlug.value,
+                            'platform': videoPlatform.value,
+                            'title': videoTitle.value,
+                            'url': videoUrl.value
                         })
                     })
                     .then(() => {
@@ -168,9 +215,9 @@
             }
 
             //RETURN
-            return { successForm, errorForm, iam, donate, editForm }
+            return { successForm, errorForm, videoSlug, videoPlatform, videoTitle, videoUrl, platforms, editForm }
         },
-        
+
         mounted() {
             //Kontrola přihlášení
             let user = localStorage.getItem('user-info')

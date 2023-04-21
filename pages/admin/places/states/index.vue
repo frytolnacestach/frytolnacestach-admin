@@ -78,23 +78,60 @@
     </main>
 </template>
 
-<script>
+<script lang="ts">
+    export default defineComponent({
+        name: 'AdminPlacesStatesIndexPage',
 
-export default {
-    name: 'AdminPlacesStatesPage',
+        setup() {
+            //LAYOUT
+            definePageMeta({
+                layout: 'admin'
+            })
 
-    mounted() {
-        let user = localStorage.getItem('user-info')
+            //META HEAD
+            useHead({
+                title: 'Místa - Státy - výpis',
+                meta: [
+                    { name: 'description', content: 'Úžasná administrace pro web.' }
+                ],
+                script: [ { innerHTML: 'console.log(\'Tebe zajímá můj jalový kód? No já se v Nuxt teprve učím a do toho jsem udělal migraci na NUXT3\')' } ]
+            })
 
-        if ( user && user != "undefined" ) {
+            //META SEO
+            useServerSeoMeta({
+                title: 'Místa - Státy - výpis',
+                ogTitle: 'Místa - Státy - výpis',
+                description: 'Úžasná administrace pro web.',
+                ogDescription: 'Úžasná administrace pro web.',
+                ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
+                twitterCard: 'summary_large_image',
+            })
 
-        } else {
-            this.$router.push('login')
+            //CONSTS
+            const runTimeConfig = useRuntimeConfig()
+            const placesStates = ref([])
+
+            //API - PlaceStates
+            onMounted(() => {
+                fetch(`${runTimeConfig.public.baseURL}/places-states`, {
+                    method: 'GET'
+                }).then(res => res.json()).then(data => placesStates.value = data);
+            })
+
+            //RETURN
+            return { placesStates }
+        },
+
+        mounted() {
+            //Kontrola přihlášení
+            let user = localStorage.getItem('user-info')
+            if ( user && user != "undefined" ) {
+                console.log("Jsi přihlášen")
+            } else {
+                //Přesměrování
+                const router = useRouter()
+                router.push('/login')
+            }
         }
-    },
-    async asyncData({ $axios }) {
-        const placesStates = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/places-states`)
-        return { placesStates }
-    }
-}
+    })
 </script>

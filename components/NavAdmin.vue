@@ -51,18 +51,6 @@
                                     <NuxtLink class="o-nav-admin__title" to="/admin/places/states">Státy</NuxtLink>
                                 </div>
                             </li>
-                            <!--
-                            <li class="o-nav-admin__item">
-                                <div class="o-nav-admin__item-container">
-                                    <NuxtLink class="o-nav-admin__title" to="/admin/places/administrative-units">Administrativní celky</NuxtLink>
-                                </div>
-                            </li>
-                            <li class="o-nav-admin__item">
-                                <div class="o-nav-admin__item-container">
-                                    <NuxtLink class="o-nav-admin__title" to="/admin/places/districts">Kraje</NuxtLink>
-                                </div>
-                            </li>
-                            -->
                             <li class="o-nav-admin__item">
                                 <div class="o-nav-admin__item-container">
                                     <NuxtLink class="o-nav-admin__title" to="/admin/places/cities">Města</NuxtLink>
@@ -80,8 +68,9 @@
 <script>
     import Headline from '../components/Headline.vue'
 
-    export default {
-        name: 'NavAdmin',
+    export default defineComponent({
+        name: 'NavAdminComponent',
+
         components: {
             Headline
         },
@@ -97,5 +86,5 @@
                 showNav: this.showNav
             }
         },
-    }
+    })
 </script>

@@ -33,24 +33,53 @@
     </main>
 </template>
 
-<script>
+<script lang="ts">
+    import NavAdmin from '../../../components/NavAdmin.vue'
 
-import NavAdmin from '../../../components/NavAdmin.vue'
+    export default defineComponent({
+        name: 'AdminPlacesIndexPage',
 
-export default {
-    name: 'AdminPlacesPage',
-    components: {
-        NavAdmin
-    },
+        //COMPONENTS
+        components: {
+            NavAdmin
+        },
 
-    mounted() {
-        let user = localStorage.getItem('user-info')
+        setup() {
+            //LAYOUT
+            definePageMeta({
+                layout: 'admin'
+            })
 
-        if ( user && user != "undefined" ) {
+            //META HEAD
+            useHead({
+                title: 'Místa - rozcestník',
+                meta: [
+                    { name: 'description', content: 'Úžasná administrace pro web.' }
+                ],
+                script: [ { innerHTML: 'console.log(\'Tebe zajímá můj jalový kód? No já se v Nuxt teprve učím a do toho jsem udělal migraci na NUXT3\')' } ]
+            })
 
-        } else {
-            this.$router.push('login')
+            //META SEO
+            useServerSeoMeta({
+                title: 'Místa - rozcestník',
+                ogTitle: 'Místa - rozcestník',
+                description: 'Úžasná administrace pro web.',
+                ogDescription: 'Úžasná administrace pro web.',
+                ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
+                twitterCard: 'summary_large_image',
+            })
+        },
+
+        mounted() {
+            //Kontrola přihlášení
+            let user = localStorage.getItem('user-info')
+            if ( user && user != "undefined" ) {
+                console.log("Jsi přihlášen")
+            } else {
+                //Přesměrování
+                const router = useRouter()
+                router.push('/login')
+            }
         }
-    }
-}
+    })
 </script>

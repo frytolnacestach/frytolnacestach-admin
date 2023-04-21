@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    export default {
-        name: 'ComponentFooter'
-    }
+    export default defineComponent({
+        name: 'ComponentFooterComponent'
+    })
 </script>

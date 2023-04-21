@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    export default {
-        name: 'ControlHamburger'
-    }
+    export default defineComponent({
+        name: 'ControlHamburgerComponent'
+    })
 </script>

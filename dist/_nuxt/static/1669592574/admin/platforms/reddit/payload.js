@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/admin/platforms/reddit", {data:[{platform:[{id:7,slug:"reddit",name:"Reddit",perex:"Zatím ho nevyužívám ale jednou se může hodit!",url:"https:\u002F\u002Fwww.reddit.com\u002Fuser\u002FFrytolNaCestach",facts:[{name:"Založeno",value:"Srpen 2022"}],date:""}]}],fetch:{},mutations:void 0});

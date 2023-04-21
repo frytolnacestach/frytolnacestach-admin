@@ -3,10 +3,11 @@
 </template>
 
 <script>
-    export default {
-        name: 'Headline',
+    export default defineComponent({
+        name: 'HeadlineComponent',
+
         props: {
             headline: {}
         }
-    }
+    })
 </script>

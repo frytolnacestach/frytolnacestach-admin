@@ -57,63 +57,63 @@
                                         <label class="m-label">
                                             <span class="m-label__name">Slug:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="slug" v-model="create.slug" />
+                                        <input class="a-input" type="text" name="slug" v-model="placesStateSlug" />
                                     </div>
 
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">MPZ:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="mpz" v-model="create.mpz" />
+                                        <input class="a-input" type="text" name="mpz" v-model="placesStateMpz" />
                                     </div>
                                                                         
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">TLD:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="tld" v-model="create.tld" />
+                                        <input class="a-input" type="text" name="tld" v-model="placesStateTld" />
                                     </div>
                                                                         
                                     <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Name:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="name" v-model="create.name" />
+                                        <input class="a-input" type="text" name="name" v-model="placesStateName" />
                                     </div>
 
                                     <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Area:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="area" v-model="create.area" />
+                                        <input class="a-input" type="text" name="area" v-model="placesStateArea" />
                                     </div>
   
                                     <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Population:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="population" v-model="create.population" />
+                                        <input class="a-input" type="text" name="population" v-model="placesStatePopulation" />
                                     </div>
 
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Informace (Chat GPT):</span>
                                         </label>
-                                        <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="create.information_chatgpt"></textarea>
+                                        <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesStateInformationChatgpt"></textarea>
                                     </div>
 
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Image (Cover):</span>
                                         </label>
-                                        <input class="a-input" type="text" name="image_cover" v-model="create.image_cover" />
+                                        <input class="a-input" type="text" name="image_cover" v-model="placesStateImageCover" />
                                     </div>
 
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Image (Hero):</span>
                                         </label>
-                                        <input class="a-input" type="text" name="image_hero" v-model="create.image_hero" />
+                                        <input class="a-input" type="text" name="image_hero" v-model="placesStateImageHero" />
                                     </div>
 
                                 </div>
@@ -133,80 +133,101 @@
     </main>
 </template>
 
-<script>
-    import axios from "axios";
-
-    export default {
+<script lang="ts">
+    export default defineComponent({
         name: 'AdminPlacesStatesCreatePage',
 
-        data() {
-            return {
-                create: {
-                    slug: '',
-                    mpz: '',
-                    tld: '',
-                    name: '',
-                    area: '',
-                    population: '',
-                    information_chatgpt: '',
-                    image_cover: '',
-                    image_hero: ''
+        setup() {
+            //LAYOUT
+            definePageMeta({
+                layout: 'admin'
+            })
 
-                },
-                errorForm: ''
-            }
-        },
-        methods: {
-            async createForm(){
+            //META HEAD
+            useHead({
+                title: 'Místa - Státy - vytvoření',
+                meta: [
+                    { name: 'description', content: 'Úžasná administrace pro web.' }
+                ],
+                script: [ { innerHTML: 'console.log(\'Tebe zajímá můj jalový kód? No já se v Nuxt teprve učím a do toho jsem udělal migraci na NUXT3\')' } ]
+            })
+
+            //META SEO
+            useServerSeoMeta({
+                title: 'Místa - Státy - vytvoření',
+                ogTitle: 'Místa - Státy - vytvoření',
+                description: 'Úžasná administrace pro web.',
+                ogDescription: 'Úžasná administrace pro web.',
+                ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
+                twitterCard: 'summary_large_image',
+            })
+
+            //CONSTS
+            const runTimeConfig = useRuntimeConfig()
+            const errorForm = ref('')
+            const successForm = ref('')
+            const placesStateSlug = ref('')
+            const placesStateMpz = ref('')
+            const placesStateTld = ref('')
+            const placesStateName = ref('')
+            const placesStateArea = ref('')
+            const placesStatePopulation = ref('')
+            const placesStateInformationChatgpt = ref('')
+            const placesStateImageCover = ref('')
+            const placesStateImageHero = ref('')
+
+            //FORM - create
+            const createForm = async () => {
                 try {
-                    let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/places-state-create`, {
+                    await useFetch(`${runTimeConfig.public.baseURL}/places-state-create`, {
                         headers: {
                             "Content-Type": "application/json",
-                            "Access-Control-Allow-Headers": "x-access-token, Origin, Content-Type, Accept",
+                            "Access-Control-Allow-Origin": "http://localhost:3000",
+                            "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept",
+                            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH"
                         },
                         method: 'POST',
-                        body: {
-                            'slug': this.create.slug,
-                            'mpz': this.create.mpz,
-                            'tld': this.create.tld,
-                            'name': this.create.name,
-                            'area': this.create.area,
-                            'population': this.create.population,
-                            'information_chatgpt': this.create.information_chatgpt,
-                            'image_cover': this.create.image_cover,
-                            'image_hero': this.create.image_hero
-                        }
+                        body: JSON.stringify({
+                            'slug': placesStateSlug.value,
+                            'mpz': placesStateMpz.value,
+                            'tld': placesStateTld.value,
+                            'name': placesStateName.value,
+                            'area': placesStateArea.value,
+                            'population': placesStatePopulation.value,
+                            'information_chatgpt': placesStateInformationChatgpt.value,
+                            'image_cover': placesStateImageCover.value,
+                            'image_hero': placesStateImageHero.value
+                        })
                     })
-                    .then((response) => {
-                        console.log(response);
-                        this.$router.push(`/admin/places/states/${this.create.slug}`)
+                    .then(() => {
+                        console.log('Data byla odeslaná');
+                        successForm.value = "Data byla odeslaná"
+                        navigateTo(`/admin/places/states/${placesStateSlug.value}`)
                     })
-                    .catch(function (error) {
+                    .catch((error) => {
                         console.log(error);
-                    });
+                        errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
+                });
                 } catch (err) {
                     console.log(err)
+                    errorForm.value = "Chyba připojení k API"
                 }
             }
+
+            //RETURN
+            return { successForm, errorForm, placesStateSlug, placesStateMpz, placesStateTld, placesStateName, placesStateArea, placesStatePopulation, placesStateInformationChatgpt, placesStateImageCover, placesStateImageHero, createForm }
         },
+
         mounted() {
+            //Kontrola přihlášení
             let user = localStorage.getItem('user-info')
-
             if ( user && user != "undefined" ) {
-
+                console.log("Jsi přihlášen")
             } else {
-                this.$router.push('login')
+                //Přesměrování
+                const router = useRouter()
+                router.push('/login')
             }
-
-            this.create.slug = ''
-            this.create.mpz = ''
-            this.create.tld = ''
-            this.create.name = ''
-            this.create.area = ''
-            this.create.population = ''
-            this.create.information_chatgpt = ''
-            this.create.image_cover = ''
-            this.create.image_hero = ''
         }
-    }
+    })
 </script>

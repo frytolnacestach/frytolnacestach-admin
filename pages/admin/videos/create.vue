@@ -54,14 +54,14 @@
                                         <label class="m-label">
                                             <span class="m-label__name">Slug:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="slug" v-model="create.slug" />
+                                        <input class="a-input" type="text" name="slug" v-model="videoSlug" />
                                     </div>
                                                                         
                                     <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Platform:</span>
                                         </label>
-                                        <select class="m-select" name="platform" v-model="create.platform">
+                                        <select class="m-select" name="platform" v-model="videoPlatform">
                                             <option value="">- Vyber platformu -</option>
                                             <option v-for="platform in platforms" :key="platform.id" :value="platform.id">{{platform.name}}</option>
                                         </select>
@@ -71,21 +71,21 @@
                                         <label class="m-label">
                                             <span class="m-label__name">Title:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="title" v-model="create.title" />
+                                        <input class="a-input" type="text" name="title" v-model="videoTitle" />
                                     </div>
   
                                     <div class="o-form-create__item">
                                         <label class="m-label">
                                             <span class="m-label__name">URL:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="url" v-model="create.url" />
+                                        <input class="a-input" type="text" name="url" v-model="videoUrl" />
                                     </div>
 
                                 </div>
                                 <div class="o-form-create__buttons mt-1">
                                     <div class="o-form-create__button">
                                         <div class="m-button">
-                                            <button class="m-button__input" type="submit">Vytvořit platformu</button>
+                                            <button class="m-button__input" type="submit">Přidat video</button>
                                         </div>
                                     </div>
                                 </div>
@@ -98,68 +98,105 @@
     </main>
 </template>
 
-<script>
-    import axios from "axios";
+<script lang="ts">
 
-    export default {
-        name: 'AdminPlatformsSlugPage',
+    interface Platform {
+        id: number
+        name: string
+    }
 
-        data() {
-            return {
-                create: {
-                    slug: '',
-                    platform: '',
-                    title: '',
-                    url: ''
-                },
-                errorForm: ''
-            }
-        },
-        methods: {
-            async createForm(){
+    export default defineComponent({
+        name: 'AdminVideosCreatePage',
+
+        setup() {
+            //LAYOUT
+            definePageMeta({
+                layout: 'admin'
+            })
+
+            //META HEAD
+            useHead({
+                title: 'Videa - vytvoření',
+                meta: [
+                    { name: 'description', content: 'Úžasná administrace pro web.' }
+                ],
+                script: [ { innerHTML: 'console.log(\'Tebe zajímá můj jalový kód? No já se v Nuxt teprve učím a do toho jsem udělal migraci na NUXT3\')' } ]
+            })
+
+            //META SEO
+            useServerSeoMeta({
+                title: 'Videa - vytvoření',
+                ogTitle: 'Videa - vytvoření',
+                description: 'Úžasná administrace pro web.',
+                ogDescription: 'Úžasná administrace pro web.',
+                ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
+                twitterCard: 'summary_large_image',
+            })
+
+            //CONSTS
+            const runTimeConfig = useRuntimeConfig()
+            const errorForm = ref('')
+            const successForm = ref('')
+            const platforms = ref<Platform[]>([])
+            const videoSlug = ref('')
+            const videoPlatform = ref('')
+            const videoTitle = ref('')
+            const videoUrl = ref('')
+
+            //API - Platform
+            ;(async () => {
+                fetch(`${runTimeConfig.public.baseURL}/platforms`, {
+                    method: 'GET'
+                }).then(res => res.json()).then(data => platforms.value = data);
+            })()
+
+            //FORM - create
+            const createForm = async () => {
                 try {
-                    let result = await axios.post(`https://frytolnacestach-api.vercel.app/api/video-create`, {
+                    await useFetch(`${runTimeConfig.public.baseURL}/video-create`, {
                         headers: {
                             "Content-Type": "application/json",
-                            "Access-Control-Allow-Headers": "x-access-token, Origin, Content-Type, Accept",
+                            "Access-Control-Allow-Origin": "http://localhost:3000",
+                            "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept",
+                            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH"
                         },
                         method: 'POST',
-                        body: {
-                            'slug': this.create.slug,
-                            'platform': this.create.platform,
-                            'title': this.create.title,
-                            'url': this.create.url
-                        }
+                        body: JSON.stringify({
+                            'slug': videoSlug.value,
+                            'platform': videoPlatform.value,
+                            'title': videoTitle.value,
+                            'url': videoUrl.value
+                        })
                     })
-                    .then((response) => {
-                        console.log(response);
-                        this.$router.push(`/admin/videos/${this.create.slug}`)
+                    .then(() => {
+                        console.log('Data byla odeslaná');
+                        successForm.value = "Data byla odeslaná"
+                        navigateTo(`/admin/videos/${videoSlug.value}`)
                     })
-                    .catch(function (error) {
+                    .catch((error) => {
                         console.log(error);
-                    });
+                        errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
+                });
                 } catch (err) {
                     console.log(err)
+                    errorForm.value = "Chyba připojení k API"
                 }
             }
+
+            //RETURN
+            return { successForm, errorForm, videoSlug, videoPlatform, videoTitle, videoUrl, platforms, createForm }
         },
+
         mounted() {
+            //Kontrola přihlášení
             let user = localStorage.getItem('user-info')
-
             if ( user && user != "undefined" ) {
-
+                console.log("Jsi přihlášen")
             } else {
-                this.$router.push('login')
+                //Přesměrování
+                const router = useRouter()
+                router.push('/login')
             }
-
-            this.create.slug = ''
-            this.create.platform = ''
-            this.create.title = ''
-            this.create.url = ''
-        },
-        async asyncData({ $axios }) {
-            const platforms = await $axios.$get(`https://frytolnacestach-api.vercel.app/api/platforms`)
-            return { platforms }
         }
-    }
+    })
 </script>

@@ -4,7 +4,7 @@
             <div class="o-hero__outer">
                 <div class="o-hero__inner">
                     <h1 class="o-hero__headline">
-                        Administrace
+                        Generování obrázku
                     </h1>
                 </div>
             </div>
@@ -15,31 +15,30 @@
                 <div class="m-nav-breadcrumbs__inner">
                     <ul class="m-nav-breadcrumbs__items">
                         <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Administrace</span>
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
+                        </li>
+                        <li class="m-nav-breadcrumbs__item">
+                            <span class="m-nav-breadcrumbs__span">Generování obrázků</span>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <section class="t-section py-4">
+        <section class="t-section mt-4 mb-8">
             <div class="t-section__inner">
-                <NavAdmin :showNav="'full'" />
+
+            
+
+
             </div>
         </section>
     </main>
 </template>
 
 <script lang="ts">
-    import NavAdmin from '../../components/NavAdmin.vue'
-
     export default defineComponent({
-        name: 'AdminIndexPage',
-        
-        //COMPONENTS
-        components: {
-            NavAdmin
-        },
+        name: 'AdminImagesPage',
 
         setup() {
             //LAYOUT
@@ -49,7 +48,7 @@
 
             //META HEAD
             useHead({
-                title: 'Rozcestník administrace',
+                title: 'Generování velikostí obrázků',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -58,8 +57,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Rozcestník administrace',
-                ogTitle: 'Rozcestník administrace',
+                title: 'Generování velikostí obrázků',
+                ogTitle: 'Generování velikostí obrázků',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',

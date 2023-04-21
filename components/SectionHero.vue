@@ -10,11 +10,12 @@
 </template>
 
 <script>
-    export default {
-        name: 'SectionHero',
+    export default defineComponent({
+        name: 'SectionHeroComponent',
+
         props: [
             'headline',
             'perex'
         ]
-    }
+    })
 </script>

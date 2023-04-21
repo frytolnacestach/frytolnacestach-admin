@@ -4,7 +4,7 @@
             <div class="o-hero__outer">
                 <div class="o-hero__inner">
                     <h1 class="o-hero__headline">
-                        Přidání nového kontinentu
+                        Město {{ placesCityName }}
                     </h1>
                 </div>
             </div>
@@ -21,22 +21,22 @@
                             <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places">Místa</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places/continents">Kontinenty</NuxtLink>
+                            <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places/cities">Města</NuxtLink>
                         </li>
                         <li class="m-nav-breadcrumbs__item">
-                            <span class="m-nav-breadcrumbs__span">Přidání nového kontinentu</span>
+                            <span class="m-nav-breadcrumbs__span">Editace města - {{ placesCityName }}</span>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <section class="t-section mt-4 mb-8">
+        <section class="t-section my-4">
             <div class="t-section__inner">
 
-                <div class="o-form-create">
-                    <div class="o-form-create__outer">
-                        <div class="o-form-create__inner">
+                <div class="o-form-edit">
+                    <div class="o-form-edit__outer">
+                        <div class="o-form-edit__inner">
                             
                             <div class="o-flash-messages" v-if="errorForm">
                                 <div class="o-flash-messages__items">
@@ -50,77 +50,70 @@
                                 </div>
                             </div>
 
-                            <form class="o-form-create__form" @submit.prevent="createForm">
-                                <div class="o-form-create__items">
+                            <form class="o-form-edit__form" @submit.prevent="editForm">
+                                <div class="o-form-edit__items">
                                     
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Slug:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="slug" v-model="placesContinentSlug" />
-                                    </div>
-                                                                        
-                                    <div class="o-form-create__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Name:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="name" v-model="placesContinentName" />
+                                        <input class="a-input" type="text" name="slug" v-model="placesCitySlug" />
                                     </div>
                              
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Area:</span>
+                                            <span class="m-label__name">Jméno:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="area" v-model="placesContinentArea" />
-                                    </div>
-  
-                                    <div class="o-form-create__item">
-                                        <label class="m-label">
-                                            <span class="m-label__name">Population:</span>
-                                        </label>
-                                        <input class="a-input" type="text" name="population" v-model="placesContinentPopulation" />
+                                        <input class="a-input" type="text" name="name" v-model="placesCityName" />
                                     </div>
 
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">Population density:</span>
+                                            <span class="m-label__name">Rozloha:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="populationDensity" v-model="placesContinentPopulationDensity" />
+                                        <input class="a-input" type="text" name="area" v-model="placesCityArea" />
                                     </div>
 
-                                    <div class="o-form-create__item">
+                                    <div class="o-form-edit__item">
                                         <label class="m-label">
-                                            <span class="m-label__name">States</span>
+                                            <span class="m-label__name">Populace:</span>
                                         </label>
-                                        <input class="a-input" type="text" name="number_states" v-model="placesContinentNumberStates" />
+                                        <input class="a-input" type="text" name="population" v-model="placesCityPopulation" />
+                                    </div>
+
+                                    <div class="o-form-edit__item">
+                                        <label class="m-label">
+                                            <span class="m-label__name">Nadmořká výška:</span>
+                                        </label>
+                                        <input class="a-input" type="text" name="altitude" v-model="placesCityAltitude" />
                                     </div>
 
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Informace (Chat GPT):</span>
                                         </label>
-                                        <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesContinentInformationCahtgpt"></textarea>
+                                        <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesCityInformationChatgpt"></textarea>
                                     </div>
 
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Image (Cover):</span>
                                         </label>
-                                        <input class="a-input" type="text" name="image_cover" v-model="placesContinentImageCover" />
+                                        <input class="a-input" type="text" name="image_cover" v-model="placesCityImageCover" />
                                     </div>
 
                                     <div class="o-form-edit__item">
                                         <label class="m-label">
                                             <span class="m-label__name">Image (Hero):</span>
                                         </label>
-                                        <input class="a-input" type="text" name="image_hero" v-model="placesContinentImageHero" />
+                                        <input class="a-input" type="text" name="image_hero" v-model="placesCityImageHero" />
                                     </div>
-
+                                                                    
                                 </div>
-                                <div class="o-form-create__buttons mt-1">
-                                    <div class="o-form-create__button">
+                                <div class="o-form-edit__buttons mt-1">
+                                    <div class="o-form-edit__button">
                                         <div class="m-button">
-                                            <button class="m-button__input" type="submit">Vytvořit kontinent</button>
+                                            <button class="m-button__input" type="submit">Uložit úpravy</button>
                                         </div>
                                     </div>
                                 </div>
@@ -134,8 +127,19 @@
 </template>
 
 <script lang="ts">
+    interface PlacesCity {
+        slug: string
+        name: string,
+        area: string,
+        population: string,
+        altitude: string,
+        information_chatgpt: string,
+        image_cover: string,
+        image_hero: string
+    }
+
     export default defineComponent({
-        name: 'AdminPlacesContinentsCreatePage',
+        name: 'AdminPlacesCitiesSlugPage',
 
         setup() {
             //LAYOUT
@@ -145,7 +149,7 @@
 
             //META HEAD
             useHead({
-                title: 'Místa - Kontinenty - vytvoření',
+                title: 'Místa - Města - úprava',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -154,8 +158,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Místa - Kontinenty - vytvoření',
-                ogTitle: 'Místa - Kontinenty - vytvoření',
+                title: 'Místa - Města - úprava',
+                ogTitle: 'Místa - Města - úprava',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
@@ -164,22 +168,42 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig()
+            const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
-            const placesContinentSlug = ref('')
-            const placesContinentName = ref('')
-            const placesContinentArea = ref('')
-            const placesContinentPopulation = ref('')
-            const placesContinentPopulationDensity = ref('')
-            const placesContinentNumberStates = ref('')
-            const placesContinentInformationCahtgpt = ref('')
-            const placesContinentImageCover = ref('')
-            const placesContinentImageHero = ref('')
+            const placesCitySlug = ref('')
+            const placesCityName = ref('')
+            const placesCityArea = ref('')
+            const placesCityPopulation = ref('')
+            const placesCityAltitude = ref('')
+            const placesCityInformationChatgpt = ref('')
+            const placesCityImageCover = ref('')
+            const placesCityImageHero = ref('')
 
-            //FORM - create
-            const createForm = async () => {
+            //API - Places City
+            ;(async () => {
+                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/places-city/${route.params.slug}`)
+                
+                const PlacesCity: PlacesCity[] = JSON.parse(_rawValue)
+                
+                if (Array.isArray(PlacesCity) && PlacesCity.length > 0) {
+                    placesCitySlug.value = PlacesCity[0].slug;
+                    placesCityName.value = PlacesCity[0].name;
+                    placesCityArea.value = PlacesCity[0].area;
+                    placesCityPopulation.value = PlacesCity[0].population;
+                    placesCityAltitude.value = PlacesCity[0].altitude;
+                    placesCityInformationChatgpt.value = PlacesCity[0].information_chatgpt;
+                    placesCityImageCover.value = PlacesCity[0].image_cover;
+                    placesCityImageHero.value = PlacesCity[0].image_hero;
+                } else {
+
+                }
+            })()
+
+            //FORM - edit
+            const editForm = async () => {
                 try {
-                    await useFetch(`${runTimeConfig.public.baseURL}/places-continent-create`, {
+                    await useFetch(`${runTimeConfig.public.baseURL}/places-city-edit`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -188,21 +212,19 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
-                            'slug': placesContinentSlug.value,
-                            'name': placesContinentName.value,
-                            'area': placesContinentArea.value,
-                            'population': placesContinentPopulation.value,
-                            'populationDensity': placesContinentPopulationDensity.value,
-                            'number_states': placesContinentNumberStates.value,
-                            'information_chatgpt': placesContinentInformationCahtgpt.value,
-                            'image_cover': placesContinentImageCover.value,
-                            'image_hero': placesContinentImageHero.value
+                            'slug': placesCitySlug.value,
+                            'name': placesCityName.value,
+                            'area': placesCityArea.value,
+                            'population': placesCityPopulation.value,
+                            'altitude': placesCityAltitude.value,
+                            'information_chatgpt': placesCityInformationChatgpt.value,
+                            'image_cover': placesCityImageCover.value,
+                            'image_hero': placesCityImageHero.value,
                         })
                     })
                     .then(() => {
                         console.log('Data byla odeslaná');
                         successForm.value = "Data byla odeslaná"
-                        navigateTo(`/admin/places/continents/${placesContinentSlug.value}`)
                     })
                     .catch((error) => {
                         console.log(error);
@@ -215,7 +237,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesContinentSlug, placesContinentName, placesContinentArea, placesContinentPopulation, placesContinentPopulationDensity, placesContinentNumberStates, placesContinentInformationCahtgpt, placesContinentImageCover, placesContinentImageHero, createForm }
+            return { successForm, errorForm, placesCitySlug, placesCityName, placesCityArea, placesCityPopulation, placesCityAltitude, placesCityInformationChatgpt, placesCityImageCover, placesCityImageHero, editForm }
         },
 
         mounted() {

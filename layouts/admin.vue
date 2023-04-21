@@ -10,6 +10,6 @@
 
 <script>
 	export default defineComponent({
-		name: 'DefaultLayout'
+		name: 'AdminLayout'
 	})
 </script>
