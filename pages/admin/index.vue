@@ -17,7 +17,11 @@
 
             <section class="t-section py-4">
                 <div class="t-section__inner">
-                    <mNavAdmin :showNav="'full'" />
+                    <mNavAdmin :links="mNavMenuArrayMain"/>
+
+                    <mHeadline :headline="'Místa'" styleGap=" mt-6" />
+
+                    <mNavAdmin :links="mNavMenuArrayPlaces"/>
                 </div>
             </section>
         </main>
@@ -26,6 +30,7 @@
 
 <script lang="ts">
     import oHero from '@/components/organisms/oHero.vue'
+    import mHeadline from '@/components/molecules/mHeadline.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
 
     export default defineComponent({
@@ -34,7 +39,52 @@
         //COMPONENTS
         components: {
             oHero,
+            mHeadline,
             mNavAdmin
+        },
+
+        data() {
+            return {
+                mNavMenuArrayMain: [
+                    {
+                        id: 1,
+                        name: "Základní informace",
+                        url: "/admin/base"
+                    },
+                    {
+                        id: 2,
+                        name: "Platformy",
+                        url: "/admin/platforms"
+                    },
+                    {
+                        id: 3,
+                        name: "Videa",
+                        url: "/admin/videos"
+                    },
+                    {
+                        id: 4,
+                        name: "Články",
+                        url: "/admin/posts"
+                    }
+                ],
+                mNavMenuArrayPlaces: [
+                    {
+                        id: 1,
+                        name: "Kontinenty",
+                        url: "/admin/places/continents"
+                    },
+                    {
+                        id: 2,
+                        name: "Státy",
+                        url: "/admin/places/states"
+                    },
+                    {
+                        id: 3,
+                        name: "Města",
+                        url: "/admin/places/cities"
+                    }
+                ]
+            }
         },
 
         setup() {

@@ -20,7 +20,7 @@
 
             <section class="t-section py-4">
                 <div class="t-section__inner">
-                    <mNavAdmin :showNav="'places'" />
+                    <mNavAdmin :links="mNavMenuArrayPlaces"/>
                 </div>
             </section>
         </main>
@@ -38,6 +38,28 @@
         components: {
             oHero,
             mNavAdmin
+        },
+
+        data() {
+            return {
+                mNavMenuArrayPlaces: [
+                    {
+                        id: 1,
+                        name: "Kontinenty",
+                        url: "/admin/places/continents"
+                    },
+                    {
+                        id: 2,
+                        name: "Státy",
+                        url: "/admin/places/states"
+                    },
+                    {
+                        id: 3,
+                        name: "Města",
+                        url: "/admin/places/cities"
+                    }
+                ]
+            }
         },
 
         setup() {

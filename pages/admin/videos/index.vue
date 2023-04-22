@@ -18,23 +18,13 @@
                 </div>
             </nav>
 
+            <!-- SECTION - NAV Admin -->
             <section class="t-section my-4">
                 <div class="t-section__inner">
-                    <nav class="o-nav-operation">
-                        <div class="o-nav-operation__outer">
-                            <div class="o-nav-operation__inner">
-                                <ul class="o-nav-operation__items">
-                                    <li class="o-nav-operation__item">
-                                        <div class="o-nav-admin__item-container">
-                                            <NuxtLink class="o-nav-operation__title" to="/admin/videos/create">Přidat video</NuxtLink>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
+                    <mNavAdmin :links="mNavAdminArray"/>
                 </div>
             </section>
+            <!-- SECTION - NAV Admin END -->
 
             <section class="t-section mb-8">
                 <div class="t-section__inner">
@@ -60,6 +50,7 @@
 
 <script lang="ts">
     import oHero from '@/components/organisms/oHero.vue'
+    import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
 
     interface Video {
         id: number
@@ -73,7 +64,20 @@
 
         //COMPONENTS
         components: {
-            oHero
+            oHero,
+            mNavAdmin
+        },
+
+        data() {
+            return {
+                mNavAdminArray: [
+                    {
+                        id: 1,
+                        name: "Přidat video",
+                        url: "/admin/videos/create"
+                    }
+                ]
+            }
         },
 
         setup() {
