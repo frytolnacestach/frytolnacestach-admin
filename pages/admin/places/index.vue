@@ -18,11 +18,13 @@
                 </div>
             </nav>
 
-            <section class="t-section py-4">
+            <!-- SECTION - NAV Admin -->
+            <section class="t-section my-4">
                 <div class="t-section__inner">
-                    <mNavAdmin :links="mNavMenuArrayPlaces"/>
+                    <mNavAdmin :links="mNavAdminArrayPlaces"/>
                 </div>
             </section>
+            <!-- SECTION - NAV Admin END -->
         </main>
     </NuxtLayout>
 </template>
@@ -42,7 +44,7 @@
 
         data() {
             return {
-                mNavMenuArrayPlaces: [
+                mNavAdminArrayPlaces: [
                     {
                         id: 1,
                         name: "Kontinenty",

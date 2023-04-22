@@ -15,15 +15,17 @@
                 </div>
             </nav>
 
+            <!-- SECTION - NAV Admin + HEADLINE -->
             <section class="t-section py-4">
                 <div class="t-section__inner">
-                    <mNavAdmin :links="mNavMenuArrayMain"/>
+                    <mNavAdmin :links="mNavAdminArrayMain"/>
 
                     <mHeadline :headline="'Místa'" styleGap=" mt-6" />
-
-                    <mNavAdmin :links="mNavMenuArrayPlaces"/>
+                    <mNavAdmin :links="mNavAdminArrayPlaces"/>
                 </div>
             </section>
+            <!-- SECTION - NAV Admin + HEADLINE END -->
+
         </main>
     </NuxtLayout>
 </template>
@@ -45,7 +47,7 @@
 
         data() {
             return {
-                mNavMenuArrayMain: [
+                mNavAdminArrayMain: [
                     {
                         id: 1,
                         name: "Základní informace",
@@ -67,7 +69,7 @@
                         url: "/admin/posts"
                     }
                 ],
-                mNavMenuArrayPlaces: [
+                mNavAdminArrayPlaces: [
                     {
                         id: 1,
                         name: "Kontinenty",
