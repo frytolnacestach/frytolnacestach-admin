@@ -1,9 +1,7 @@
 .m-logotype {
-    position: absolute;
+    position: relative;
     display: flex;
     z-index: 1001;
-    left: 15px;
-    top: 10px;
     background-color: white;
     border-radius: 30px;
 
@@ -38,14 +36,24 @@
     &__text {
         height: 40px;
         position: relative;
-        padding-right: 15px;
+        padding-right: 10px;
+        display: none;
+        
+        @media only screen and (min-width: $lg) {
+            display: block;
+            width: 240px;
+        }
+    }
+
+    &__text-link {
+        
     }
 
     &__text-main {
         display: inline-block;
-        font-size: $fs-large-ssss;
+        font-size: $fs-normal;
         font-weight: 700;
-        color: $gray7;
+        color: $brand1;
         line-height: 30px;
         padding: 5px 0 5px 10px;
     }

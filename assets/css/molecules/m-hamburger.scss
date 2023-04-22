@@ -2,7 +2,7 @@
 	$self: &;
 
     display: flex;
-    position: absolute;
+    position: fixed;
     z-index: 1001;
     cursor: pointer;
     top: 10px;
@@ -27,20 +27,20 @@
 		right: 0;
 		width: 30px;
 		height: 2px;
-		background-color: $white;
+		background-color: $black;
 		border-radius: 1.5px;
 		transform-origin: center;
 		transform: rotate(0);
 
-		&--1 {
+		&.-first {
 			top: 11px;
 		}
 
-		&--2 {
+		&.-second {
 			top: 19px;
 		}
 
-		&--3 {
+		&.-third {
 			top: 27px;
 		}
 	}
@@ -53,15 +53,15 @@
 
 	&__text {
 		padding-right: 10px;
-		color: $white;
+		color: $black;
 		font-size: $fs-normal;
 		line-height: 40px;
 
-		&--close {
+		&.-close {
 			display: none;
 		}
 
-		&--open {
+		&.-open {
 			display: block;
 		}
 	}
@@ -73,11 +73,11 @@
 		#{$self}__text {
             color: $black;
 
-			&--close {
+			&.-close {
 				display: block;
 			}
 
-			&--open {
+			&.-open {
 				display: none;
 			}
 		}
@@ -85,17 +85,17 @@
 		#{$self}__line {
             background-color: $black;
 
-			&--1 {
+			&.-first {
 				top: 19px;
 				transform: rotate(45deg);
 			}
 
-			&--2 {
+			&.-second {
 				top: 19px;
 				opacity: 0;
 			}
 
-			&--3 {
+			&.-third {
 				top: 19px;
 				transform: rotate(-45deg);
 			}
