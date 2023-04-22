@@ -1,5 +1,7 @@
 .o-nav-admin {
-    width: 100%;
+    display: block;
+    width: auto;
+    margin: 0 -20px;
 
     &__outer {
         width: 100%;
@@ -23,22 +25,32 @@
     }
 
     &__item-container {
-        padding: 15px 20px;
         border: 1px solid $gray5;
         margin: 15px;
         background-color: $gray2;
         border-radius: 3px;
         text-align: center;
+        min-height: 100px;
+        display: flex;
     }
 
     &__title {
+        display: flex;
         color: $gray7;
         text-decoration: none;
         font-weight: 600;
         font-size: $fs-normal;
+        padding: 15px 20px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
 
         &:hover {
             color: $brand1;
         }
+    }
+
+    &__span {
+        display: block;
     }
 }
