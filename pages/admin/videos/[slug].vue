@@ -5,23 +5,9 @@
             <oHero :headline="videoTitle" />
             <!-- SECTION - HERO END -->
 
-            <nav class="m-nav-breadcrumbs">
-                <div class="m-nav-breadcrumbs__outer">
-                    <div class="m-nav-breadcrumbs__inner">
-                        <ul class="m-nav-breadcrumbs__items">
-                            <li class="m-nav-breadcrumbs__item">
-                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
-                            </li>
-                            <li class="m-nav-breadcrumbs__item">
-                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/videos">Videa</NuxtLink>
-                            </li>
-                            <li class="m-nav-breadcrumbs__item">
-                                <span class="m-nav-breadcrumbs__span">Editace videa - {{ videoTitle }}</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <!-- SECTION - BREADCRUMBS Admin -->
+            <mNavBreadcrumbs :links="mNavBreadcrumbsArray"/>
+            <!-- SECTION - BREADCRUMBS END -->
 
             <section class="t-section my-4">
                 <div class="t-section__inner">
@@ -84,6 +70,7 @@
 </template>
 
 <script lang="ts">
+    import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
@@ -104,8 +91,51 @@
 
         //COMPONENTS
         components: {
+            mNavBreadcrumbs,
             oFlashMessages,
             oHero
+        },
+
+        data() {
+            return {
+                mNavBreadcrumbsArray: [
+                    {
+                        id: 1,
+                        name: "Administrace",
+                        url: "/admin",
+                        status: "link"
+                    },
+                    {
+                        id: 2,
+                        name: "Videa",
+                        url: "/admin/videos",
+                        status: "link"
+                    },
+                    {
+                        id: 3,
+                        name: `Editace videa - NÁZEV VIDEA`,
+                        url: "",
+                        status: "span"
+                    }
+                ]
+            }
+        },
+
+        methods: {
+            updateBreadcrumbs() {
+                const videoTitle = this.videoTitle
+                const breadcrumb = this.mNavBreadcrumbsArray.find(item => item.id === 3)
+                
+                if (breadcrumb) {
+                    breadcrumb.name = `Editace videa - ${videoTitle}`
+                }
+            }
+        },
+
+        watch: {
+            videoTitle: function (newValue, oldValue) {
+                this.updateBreadcrumbs();
+            },
         },
 
         setup() {

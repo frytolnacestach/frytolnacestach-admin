@@ -5,20 +5,9 @@
             <oHero headline="Administrace - místa" />
             <!-- SECTION - HERO END -->
 
-            <nav class="m-nav-breadcrumbs">
-                <div class="m-nav-breadcrumbs__outer">
-                    <div class="m-nav-breadcrumbs__inner">
-                        <ul class="m-nav-breadcrumbs__items">
-                            <li class="m-nav-breadcrumbs__item">
-                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
-                            </li>
-                            <li class="m-nav-breadcrumbs__item">
-                                <span class="m-nav-breadcrumbs__span">Místa</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <!-- SECTION - BREADCRUMBS Admin -->
+            <mNavBreadcrumbs :links="mNavBreadcrumbsArray"/>
+            <!-- SECTION - BREADCRUMBS END -->
 
             <!-- SECTION - NAV Admin -->
             <section class="t-section my-4">
@@ -32,6 +21,7 @@
 </template>
 
 <script lang="ts">
+    import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oHero from '@/components/organisms/oHero.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
 
@@ -40,8 +30,9 @@
 
         //COMPONENTS
         components: {
-            oHero,
-            mNavAdmin
+            mNavAdmin,
+            mNavBreadcrumbs,
+            oHero
         },
 
         data() {
@@ -61,6 +52,20 @@
                         id: 3,
                         name: "Města",
                         url: "/admin/places/cities"
+                    }
+                ],
+                mNavBreadcrumbsArray: [
+                    {
+                        id: 1,
+                        name: "Administrace",
+                        url: "/admin",
+                        status: "link"
+                    },
+                    {
+                        id: 2,
+                        name: "Místa",
+                        url: "",
+                        status: "span"
                     }
                 ]
             }

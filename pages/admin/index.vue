@@ -5,17 +5,9 @@
             <oHero headline="Administrace" />
             <!-- SECTION - HERO END -->
 
-            <nav class="m-nav-breadcrumbs">
-                <div class="m-nav-breadcrumbs__outer">
-                    <div class="m-nav-breadcrumbs__inner">
-                        <ul class="m-nav-breadcrumbs__items">
-                            <li class="m-nav-breadcrumbs__item">
-                                <span class="m-nav-breadcrumbs__span">Administrace</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <!-- SECTION - BREADCRUMBS Admin -->
+            <mNavBreadcrumbs :links="mNavBreadcrumbsArray"/>
+            <!-- SECTION - BREADCRUMBS END -->
 
             <!-- SECTION - NAV Admin + HEADLINE -->
             <section class="t-section py-4">
@@ -42,9 +34,9 @@
         
         //COMPONENTS
         components: {
-            oHero,
             mHeadline,
-            mNavAdmin
+            mNavAdmin,
+            oHero
         },
 
         data() {
@@ -86,6 +78,14 @@
                         id: 3,
                         name: "Města",
                         url: "/admin/places/cities"
+                    }
+                ],
+                mNavBreadcrumbsArray: [
+                    {
+                        id: 1,
+                        name: "Administrace",
+                        url: "",
+                        status: "span"
                     }
                 ]
             }

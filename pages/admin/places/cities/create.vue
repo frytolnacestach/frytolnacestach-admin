@@ -5,26 +5,9 @@
             <oHero headline="Přidání nového města" />
             <!-- SECTION - HERO END -->
 
-            <nav class="m-nav-breadcrumbs">
-                <div class="m-nav-breadcrumbs__outer">
-                    <div class="m-nav-breadcrumbs__inner">
-                        <ul class="m-nav-breadcrumbs__items">
-                            <li class="m-nav-breadcrumbs__item">
-                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/">Administrace</NuxtLink>
-                            </li>
-                            <li class="m-nav-breadcrumbs__item">
-                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places">Místa</NuxtLink>
-                            </li>
-                            <li class="m-nav-breadcrumbs__item">
-                                <NuxtLink class="m-nav-breadcrumbs__link" to="/admin/places/cities">Města</NuxtLink>
-                            </li>
-                            <li class="m-nav-breadcrumbs__item">
-                                <span class="m-nav-breadcrumbs__span">Přidání nového města</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <!-- SECTION - BREADCRUMBS Admin -->
+            <mNavBreadcrumbs :links="mNavBreadcrumbsArray"/>
+            <!-- SECTION - BREADCRUMBS END -->
 
             <section class="t-section mt-4 mb-8">
                 <div class="t-section__inner">
@@ -116,6 +99,7 @@
 </template>
 
 <script lang="ts">
+    import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
@@ -124,8 +108,40 @@
 
         //COMPONENTS
         components: {
+            mNavBreadcrumbs,
             oFlashMessages,
             oHero
+        },
+
+        data() {
+            return {
+                mNavBreadcrumbsArray: [
+                    {
+                        id: 1,
+                        name: "Administrace",
+                        url: "/admin",
+                        status: "link"
+                    },
+                    {
+                        id: 2,
+                        name: "Místa",
+                        url: "/admin/places",
+                        status: "link"
+                    },
+                    {
+                        id: 3,
+                        name: "Města",
+                        url: "/admin/places/cities",
+                        status: "link"
+                    },
+                    {
+                        id: 4,
+                        name: "Přidání nového města",
+                        url: "",
+                        status: "span"
+                    }
+                ]
+            }
         },
 
         setup() {
