@@ -1,7 +1,9 @@
 <template>
     <NuxtLayout name="default">
         <main class="t-main">
+            <!-- SECTION - HERO -->
             <oHero headline="Odhlášení" />
+            <!-- SECTION - HERO END -->
         </main>
     </NuxtLayout>
 </template>

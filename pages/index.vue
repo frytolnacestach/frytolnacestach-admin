@@ -1,7 +1,9 @@
 <template>
     <NuxtLayout name="default">
         <main class="t-main">
+            <!-- SECTION - HERO big -->
             <oHeroBig headline="ADMIN" perex="Frytol na cestách" />
+            <!-- SECTION - HERO big END -->
         </main>
     </NuxtLayout>
 </template>

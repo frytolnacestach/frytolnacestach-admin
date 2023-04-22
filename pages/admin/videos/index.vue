@@ -1,7 +1,9 @@
 <template>
     <NuxtLayout name="admin">
         <main class="t-main">
+            <!-- SECTION - HERO -->
             <oHero headline="Administrace - Videa" />
+            <!-- SECTION - HERO END -->
 
             <nav class="m-nav-breadcrumbs">
                 <div class="m-nav-breadcrumbs__outer">
@@ -44,6 +46,7 @@
                     </div>
                 </div>
             </section>
+
         </main>
     </NuxtLayout>
 </template>

@@ -1,7 +1,9 @@
 <template>
     <NuxtLayout name="default">
         <main class="t-main">
-            <oHero headline="Odhlášení" />
+            <!-- SECTION - HERO -->
+            <oHero headline="Příhlášení" />
+            <!-- SECTION - HERO END -->
 
             <section class="t-section">
                 <div class="o-form-login">
