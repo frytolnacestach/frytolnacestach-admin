@@ -43,13 +43,21 @@ const config: NuxtConfig = {
     '@/assets/css/main.scss'
   ],
 
-  buildModules: [
-    '@nuxt/image',
+  modules: [
+    '@nuxt/image-edge'
   ],
 
+  buildModules: [
+    '@nuxt/image'
+  ],
 
   image: {
-    dir: 'public/images-generation',
+    /*frytol: {
+      baseURL: "https://image.frytolnacestach.cz"
+    },*/
+    //dir: '/images-generation',
+    //imageDir: '/generated',
+    staticFilename: '[publicPath]/images-generation/[name][suffix].[ext]',
     presets: {
       hero: {
         modifiers: {
@@ -66,56 +74,9 @@ const config: NuxtConfig = {
           width: 600,
           height: 'auto',
         },
+        "suffix": "-2x"
       }
     }
-    /*
-    screens: {
-      sm: 640, // šířka pro 300px
-      md: 768, // šířka pro 600px
-    },
-    presets: {
-      // pro 300px
-      hero: {
-        modifiers: {
-          format: 'webp',
-          quality: 75
-        },
-        screens: {
-          sm: {
-            width: 300,
-            height: 'auto',
-            quality: 75
-          },
-          md: {
-            width: 300,
-            height: 'auto',
-            quality: 75
-          }
-        }
-      },
-      // pro 600px
-      heroRetina: {
-        modifiers: {
-          format: 'webp',
-          quality: 85
-        },
-        screens: {
-          md: {
-            width: 600,
-            height: 'auto',
-            quality: 85
-          },
-          lg: {
-            width: 600,
-            height: 'auto',
-            quality: 85,
-            options: {
-              dpi: 2 // pro retina
-            }
-          }
-        }
-      }
-    }*/
   }
 }
 

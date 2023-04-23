@@ -11,15 +11,15 @@
 
             <section class="t-section mt-4 mb-8">
                 <div class="t-section__inner">
-                    <nuxt-image
-                        :src="`/images/storage/_default/hero.png`"
-                        :format="'webp'"
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        format="webp"
                         preset="hero"
                         alt="Hero image"
                     />
-                    <nuxt-image
-                        :src="`/images/storage/_default/hero.png`"
-                        :format="'webp'"
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        format="webp"
                         preset="heroRetina"
                         alt="Place image"
                     />
@@ -42,34 +42,6 @@
             oHero
         },
 
-        props: {
-            hero: {
-                type: String,
-                required: true,
-            },
-            heroRetina: {
-                type: String,
-                required: true,
-            },
-        },
-
-        computed: {
-            heroPreset() {
-                if (this.hero === 'hero1') {
-                    return '300';
-                } else if (this.hero === 'hero2') {
-                    return '600';
-                }
-            },
-            heroRetinaPreset() {
-                if (this.heroRetina === 'heroRetina1') {
-                    return '300';
-                } else if (this.heroRetina === 'heroRetina2') {
-                    return '600';
-                }
-            },
-        },
-
         data() {
             return {
                 mNavBreadcrumbsArray: [
@@ -85,7 +57,9 @@
                         url: "",
                         status: "span"
                     },
-                ]
+                ],
+                imageSrc: 'https://placekitten.com/2000/2000',
+                imageAlt: 'Kitten'
             }
         },
 
