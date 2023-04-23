@@ -77,14 +77,14 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Image (Cover):</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_cover" v-model="placesContinentImageCover" />
+                                            <input class="a-input" type="text" name="image_cover" v-model="placesContinentIdImageCover" />
                                         </div>
 
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Image (Hero):</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_hero" v-model="placesContinentImageHero" />
+                                            <input class="a-input" type="text" name="image_hero" v-model="placesContinentIdImageHero" />
                                         </div>
                                                                         
                                     </div>
@@ -119,8 +119,8 @@
         number_states: string,
         altitude: string,
         information_chatgpt: string,
-        image_cover: string,
-        image_hero: string
+        id_image_cover: number,
+        id_image_hero: number,
     }
 
     export default defineComponent({
@@ -218,8 +218,8 @@
             const placesContinentPopulationDensity = ref('')
             const placesContinentNumberStates = ref('')
             const placesContinentInformationChatgpt = ref('')
-            const placesContinentImageCover = ref('')
-            const placesContinentImageHero = ref('')
+            const placesContinentIdImageCover = ref(0)
+            const placesContinentIdImageHero = ref(0)
 
             //API - Places Continent
             ;(async () => {
@@ -235,8 +235,8 @@
                     placesContinentPopulationDensity.value = PlacesContinent[0].number_states;
                     placesContinentNumberStates.value = PlacesContinent[0].altitude;
                     placesContinentInformationChatgpt.value = PlacesContinent[0].information_chatgpt;
-                    placesContinentImageCover.value = PlacesContinent[0].image_cover;
-                    placesContinentImageHero.value = PlacesContinent[0].image_hero;
+                    placesContinentIdImageCover.value = PlacesContinent[0].id_image_cover;
+                    placesContinentIdImageHero.value = PlacesContinent[0].id_image_hero;
                 } else {
 
                 }
@@ -261,8 +261,8 @@
                             'populationDensity': placesContinentPopulationDensity.value,
                             'number_states': placesContinentNumberStates.value,
                             'information_chatgpt': placesContinentInformationChatgpt.value,
-                            'image_cover': placesContinentImageCover.value,
-                            'image_hero': placesContinentImageHero.value
+                            'image_cover': placesContinentIdImageCover.value,
+                            'image_hero': placesContinentIdImageHero.value
                         })
                     })
                     .then(() => {
@@ -280,7 +280,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesContinentSlug, placesContinentName, placesContinentArea, placesContinentPopulation, placesContinentPopulationDensity, placesContinentNumberStates, placesContinentInformationChatgpt, placesContinentImageCover, placesContinentImageHero, editForm }
+            return { successForm, errorForm, placesContinentSlug, placesContinentName, placesContinentArea, placesContinentPopulation, placesContinentPopulationDensity, placesContinentNumberStates, placesContinentInformationChatgpt, placesContinentIdImageCover, placesContinentIdImageHero, editForm }
         },
 
         mounted() {

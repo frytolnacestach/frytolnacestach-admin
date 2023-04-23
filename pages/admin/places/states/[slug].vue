@@ -77,14 +77,14 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Image (Cover):</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_cover" v-model="placesStateImageCover" />
+                                            <input class="a-input" type="text" name="image_cover" v-model="placesStateIdImageCover" />
                                         </div>
 
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Image (Hero):</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_hero" v-model="placesStateImageHero" />
+                                            <input class="a-input" type="text" name="image_hero" v-model="placesStateIdImageHero" />
                                         </div>
                                                                         
                                     </div>
@@ -118,8 +118,8 @@
         area: string,
         population: string,
         information_chatgpt: string,
-        image_cover: string,
-        image_hero: string
+        id_image_cover: number,
+        id_image_hero: number,
     }
 
     export default defineComponent({
@@ -217,8 +217,8 @@
             const placesStateArea = ref('')
             const placesStatePopulation = ref('')
             const placesStateInformationChatgpt = ref('')
-            const placesStateImageCover = ref('')
-            const placesStateImageHero = ref('')
+            const placesStateIdImageCover = ref(0)
+            const placesStateIdImageHero = ref(0)
 
             //API - Places State
             ;(async () => {
@@ -234,8 +234,8 @@
                     placesStateArea.value = PlacesState[0].area;
                     placesStatePopulation.value = PlacesState[0].population;
                     placesStateInformationChatgpt.value = PlacesState[0].information_chatgpt;
-                    placesStateImageCover.value = PlacesState[0].image_cover;
-                    placesStateImageHero.value = PlacesState[0].image_hero;
+                    placesStateIdImageCover.value = PlacesState[0].id_image_cover;
+                    placesStateIdImageHero.value = PlacesState[0].id_image_hero;
                 } else {
 
                 }
@@ -260,8 +260,8 @@
                             'area': placesStateArea.value,
                             'population': placesStatePopulation.value,
                             'information_chatgpt': placesStateInformationChatgpt.value,
-                            'image_cover': placesStateImageCover.value,
-                            'image_hero': placesStateImageHero.value
+                            'image_cover': placesStateIdImageCover.value,
+                            'image_hero': placesStateIdImageHero.value
                         })
                     })
                     .then(() => {
@@ -279,7 +279,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesStateSlug, placesStateMpz, placesStateTld, placesStateName, placesStateArea, placesStatePopulation, placesStateInformationChatgpt, placesStateImageCover, placesStateImageHero, editForm }
+            return { successForm, errorForm, placesStateSlug, placesStateMpz, placesStateTld, placesStateName, placesStateArea, placesStatePopulation, placesStateInformationChatgpt, placesStateIdImageCover, placesStateIdImageHero, editForm }
         },
 
         mounted() {
