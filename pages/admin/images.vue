@@ -11,9 +11,18 @@
 
             <section class="t-section mt-4 mb-8">
                 <div class="t-section__inner">
-
-                    Tady budou generátor
-
+                    <nuxt-image
+                        :src="`/images/storage/_default/hero.png`"
+                        :format="'webp'"
+                        preset="hero"
+                        alt="Hero image"
+                    />
+                    <nuxt-image
+                        :src="`/images/storage/_default/hero.png`"
+                        :format="'webp'"
+                        preset="heroRetina"
+                        alt="Place image"
+                    />
                 </div>
             </section>
         </main>
@@ -21,6 +30,7 @@
 </template>
 
 <script lang="ts">
+    import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
     export default defineComponent({
@@ -28,7 +38,36 @@
 
         //COMPONENTS
         components: {
+            mNavBreadcrumbs,
             oHero
+        },
+
+        props: {
+            hero: {
+                type: String,
+                required: true,
+            },
+            heroRetina: {
+                type: String,
+                required: true,
+            },
+        },
+
+        computed: {
+            heroPreset() {
+                if (this.hero === 'hero1') {
+                    return '300';
+                } else if (this.hero === 'hero2') {
+                    return '600';
+                }
+            },
+            heroRetinaPreset() {
+                if (this.heroRetina === 'heroRetina1') {
+                    return '300';
+                } else if (this.heroRetina === 'heroRetina2') {
+                    return '600';
+                }
+            },
         },
 
         data() {

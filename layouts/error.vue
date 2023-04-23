@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import oHero from '../components/onHero.vue'
+import oHero from '../components/organisms/oHero.vue'
 
 export default defineComponent({
 	name: 'ErrorLayout',

@@ -9,7 +9,6 @@
 </template>
 
 <script lang="ts">
-
     import oHeroBig from '../components/organisms/oHeroBig.vue'
 
     export default defineComponent({

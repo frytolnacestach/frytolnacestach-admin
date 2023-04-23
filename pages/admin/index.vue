@@ -25,15 +25,17 @@
 </template>
 
 <script lang="ts">
-    import oHero from '@/components/organisms/oHero.vue'
+    import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import mHeadline from '@/components/molecules/mHeadline.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
+    import oHero from '@/components/organisms/oHero.vue'
 
     export default defineComponent({
         name: 'AdminIndexPage',
         
         //COMPONENTS
         components: {
+            mNavBreadcrumbs,
             mHeadline,
             mNavAdmin,
             oHero
