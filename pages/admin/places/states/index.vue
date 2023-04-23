@@ -55,6 +55,16 @@
     import oHero from '@/components/organisms/oHero.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
 
+    interface PlacesStates {
+        id: number
+        name: string
+        slug: string
+        id_continent: string
+        mpz: string
+        area: string
+        population: string
+    }
+
     export default defineComponent({
         name: 'AdminPlacesStatesIndexPage',
 
@@ -124,7 +134,7 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig()
-            const placesStates = ref([])
+            const placesStates = ref<PlacesStates[]>([])
 
             //API - PlaceStates
             onMounted(() => {

@@ -32,8 +32,6 @@
                                             <strong>
                                                 Kontinent: {{ placesCity.id_continent }}<br>
                                                 Stát: {{ placesCity.id_state }}<br>
-                                                Administrativní celek: {{ placesCity.id_administrative_unit }}<br>
-                                                Kraj: {{ placesCity.id_districts }}<br>
                                             </strong>
                                             ____<br>
                                             Rozloha: {{ placesCity.area }} km2<br>
@@ -57,6 +55,17 @@
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oHero from '@/components/organisms/oHero.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
+
+    interface PlacesCities {
+        id: number
+        name: string
+        slug: string
+        id_continent: string
+        id_state: string
+        area: string
+        population: string
+        altitude: string
+    }
 
     export default defineComponent({
         name: 'AdminPlacesCitiesSlugPage',
@@ -127,7 +136,7 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig()
-            const placesCities = ref([])
+            const placesCities = ref<PlacesCities[]>([])
 
             //API - placesCities
             onMounted(() => {

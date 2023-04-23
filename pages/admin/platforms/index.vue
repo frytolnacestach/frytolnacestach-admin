@@ -44,6 +44,13 @@
     import oHero from '@/components/organisms/oHero.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
 
+    interface Platforms {
+        id: number
+        name: string
+        slug: string
+        perex: string
+    }
+
     export default defineComponent({
         name: 'AdminPlatformsIndexPage',
 
@@ -107,7 +114,7 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig()
-            const platforms = ref([])
+            const platforms = ref<Platforms[]>([])
 
             //API - Platforms
             onMounted(() => {

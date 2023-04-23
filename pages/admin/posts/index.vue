@@ -44,6 +44,13 @@
     import oHero from '@/components/organisms/oHero.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
 
+    interface Posts {
+        id: number
+        title: string
+        slug: string
+        perex: string
+    }
+
     export default defineComponent({
         name: 'AdminPostsIndexPage',
 
@@ -107,7 +114,7 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig();
-            const posts = ref([])
+            const posts = ref<Posts[]>([])
 
             //API - Posts
             onMounted(() => {

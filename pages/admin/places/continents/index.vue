@@ -49,6 +49,14 @@
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oHero from '@/components/organisms/oHero.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
+   
+    interface PlacesContinents {
+        id: number
+        name: string
+        slug: string
+        area: string
+        population: string
+    }
 
     export default defineComponent({
         name: 'AdminPlacesContinetnsIndexPage',
@@ -119,7 +127,7 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig()
-            const placesContinents = ref([])
+            const placesContinents = ref<PlacesContinents[]>([])
 
             //API - placesContinents
             onMounted(() => {
