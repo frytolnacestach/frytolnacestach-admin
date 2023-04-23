@@ -58,8 +58,6 @@
                         status: "span"
                     },
                 ],
-                imageSrc: 'https://placekitten.com/2000/2000',
-                imageAlt: 'Kitten'
             }
         },
 

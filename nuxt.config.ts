@@ -52,9 +52,12 @@ const config: NuxtConfig = {
   ],
 
   image: {
-    /*frytol: {
+    /*
+    TODO: FUTURE
+    frytol: {
       baseURL: "https://image.frytolnacestach.cz"
-    },*/
+    },
+    */
     //dir: '/images-generation',
     //imageDir: '/generated',
     staticFilename: '[publicPath]/images-generation/[name][suffix].[ext]',
