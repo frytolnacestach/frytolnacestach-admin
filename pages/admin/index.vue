@@ -61,6 +61,11 @@
                         id: 4,
                         name: "Články",
                         url: "/admin/posts"
+                    },
+                    {
+                        id: 5,
+                        name: "Generování obrázků",
+                        url: "/admin/images"
                     }
                 ],
                 mNavAdminArrayPlaces: [
