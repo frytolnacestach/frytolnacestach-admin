@@ -111,7 +111,7 @@
                     {
                         id: 2,
                         name: "Platformy",
-                        url: "/admin/platformy",
+                        url: "/admin/platforms",
                         status: "link"
                     },
                     {
