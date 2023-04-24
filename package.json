@@ -6,7 +6,15 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "build:generated:article": "node server/images-generated-articles.js",
+    "build:generated:default": "node server/images-generated-default.js",
+    "build:generated:main": "node server/images-generated-main.js",
+    "build:generated:maps": "node server/images-generated-maps.js",
+    "build:generated:videos": "node server/images-generated-videos.js",
+    "build:generated:world-cities": "node server/images-generated-world-cities.js",
+    "build:generated:world-continents": "node server/images-generated-world-continents.js",
+    "build:generated:world-states": "node server/images-generated-world-states.js"
   },
   "devDependencies": {
     "@nuxt/image": "^0.7.1",
@@ -17,6 +25,7 @@
   },
   "dependencies": {
     "@nuxt/types": "^2.16.3",
-    "nuxt3": "^3.4.2-28030302.886350a2"
+    "nuxt3": "^3.4.2-28030302.886350a2",
+    "sharp": "^0.32.0"
   }
 }
