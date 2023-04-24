@@ -88,6 +88,10 @@ fs.readdir(inputDirPath, async (err, files) => {
     const ext = path.extname(file).toLowerCase();
     if (ext === '.png' || ext === '.jpg' || ext === '.jpeg') {
       const originalImagePath = path.join(inputDirPath, file);
+      // Vytvoření kopie v původní velikosti a formátu webp
+      const originalOutputPath = path.join(outputDirPath, `${path.parse(file).name}.webp`);
+      await resizeAndSaveImage(originalImagePath, originalOutputPath, null, null, '');
+      // Vytvoření dalších verzí s novými velikostmi a přidáním suffixu
       for (const sizeObj of sizes) {
         const width = sizeObj.width;
         const height = sizeObj.height;
