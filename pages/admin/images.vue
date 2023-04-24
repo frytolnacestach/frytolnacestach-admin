@@ -13,14 +13,129 @@
                 <div class="t-section__inner">
                     <nuxt-img
                         :src="`/storage/_default/hero.png`"
-                        format="webp"
-                        preset="hero"
+                        :name="'hero-130-'"
+                        preset="default130"
                         alt="Hero image"
                     />
                     <nuxt-img
                         :src="`/storage/_default/hero.png`"
-                        format="webp"
-                        preset="heroRetina"
+                        :name="'hero-180-'"
+                        preset="default180"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default220"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default250"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default280"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default300"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default340"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default345"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default360"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default374"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default380"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default390"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default420"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default400"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default540"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default550"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default575"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default740"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default767"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default980"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default991"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default1139"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default1219"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default1399"
+                        alt="Place image"
+                    />
+                    <nuxt-img
+                        :src="`/storage/_default/hero.png`"
+                        preset="default1920"
                         alt="Place image"
                     />
                 </div>
