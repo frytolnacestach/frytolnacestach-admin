@@ -248,24 +248,24 @@
         slug: string
         path: string,
         date: Date,
-        dateUpdate: Date,
-        dateInformation: Date,
+        date_update: Date,
+        date_information: Date,
         id_image_cover: number,
         id_image_hero: number,
         id_image_map: number,
-        urlYoutube: string,
-        urlWiki: string,
-        urlMap: string,
+        url_youtube: string,
+        url_wiki: string,
+        url_map: string,
         title: string,
         perex: string,
-        textOpener: string,
-        textAuthor: string,
-        textWiki: string,
-        reviewText: string,
-        reviewValue: string,
-        perexPrice: string,
-        perexTriplength: string,
-        perexTime: string,
+        text_opener: string,
+        text_author: string,
+        text_wiki: string,
+        review_text: string,
+        review_value: string,
+        perex_price: string,
+        perex_triplength: string,
+        perex_time: string,
         tags: string,
         locations: string,
         travels: string,
@@ -396,24 +396,24 @@
                     postSlug.value = Post[0].slug;
                     postPath.value = Post[0].path;
                     postDate.value = Post[0].date;
-                    postDateUpdate.value = Post[0].dateUpdate;
-                    postDateInformation.value = Post[0].dateInformation;
+                    postDateUpdate.value = Post[0].date_update;
+                    postDateInformation.value = Post[0].date_information;
                     postIdImageCover.value = Post[0].id_image_cover;
                     postIdImageHero.value = Post[0].id_image_hero;
                     postIdImageMap.value = Post[0].id_image_map;
-                    postUrlYoutube.value = Post[0].urlYoutube;
-                    postUrlWiki.value = Post[0].urlWiki;
-                    postUrlMap.value = Post[0].urlMap;
+                    postUrlYoutube.value = Post[0].url_youtube;
+                    postUrlWiki.value = Post[0].url_wiki;
+                    postUrlMap.value = Post[0].url_map;
                     postTitle.value = Post[0].title;
                     postPerex.value = Post[0].perex;
-                    postTextOpener.value = Post[0].textOpener;
-                    postTextAuthor.value = Post[0].textAuthor;
-                    postTextWiki.value = Post[0].textWiki;
-                    postReviewText.value = Post[0].reviewText;
-                    postReviewValue.value = Post[0].reviewValue;
-                    postPerexPrice.value = Post[0].perexPrice;
-                    postPerexTriplength.value = Post[0].perexTriplength;
-                    postPerexTime.value = Post[0].perexTime;
+                    postTextOpener.value = Post[0].text_opener;
+                    postTextAuthor.value = Post[0].text_author;
+                    postTextWiki.value = Post[0].text_wiki;
+                    postReviewText.value = Post[0].review_text;
+                    postReviewValue.value = Post[0].review_value;
+                    postPerexPrice.value = Post[0].perex_price;
+                    postPerexTriplength.value = Post[0].perex_triplength;
+                    postPerexTime.value = Post[0].perex_time;
                     postTags.value = JSON.stringify(Post[0].tags);
                     postLocations.value = JSON.stringify(Post[0].locations);
                     postTravels.value = JSON.stringify(Post[0].travels);
@@ -441,24 +441,24 @@
                             'slug': postSlug.value,
                             'path': postPath.value,
                             'date': postDate.value,
-                            'dateUpdate': postDateUpdate.value,
-                            'dateInformation': postDateInformation.value,
+                            'date_update': postDateUpdate.value,
+                            'date_information': postDateInformation.value,
                             'id_image_cover': postIdImageCover.value,
                             'id_image_hero': postIdImageHero.value,
                             'id_image_map': postIdImageMap.value,
-                            'urlYoutube': postUrlYoutube.value,
-                            'urlWiki': postUrlWiki.value,
-                            'urlMap': postUrlMap.value,
+                            'url_youtube': postUrlYoutube.value,
+                            'url_wiki': postUrlWiki.value,
+                            'url_map': postUrlMap.value,
                             'title': postTitle.value,
                             'perex': postPerex.value,
-                            'textOpener': postTextOpener.value,
-                            'textAuthor': postTextAuthor.value,
-                            'textWiki': postTextWiki.value,
-                            'reviewText': postReviewText.value,
-                            'reviewValue': postReviewValue.value,
-                            'perexPrice': postPerexPrice.value,
-                            'perexTriplength': postPerexTriplength.value,
-                            'perexTime': postPerexTime.value,
+                            'text_opener': postTextOpener.value,
+                            'text_author': postTextAuthor.value,
+                            'text_wiki': postTextWiki.value,
+                            'review_text': postReviewText.value,
+                            'review_value': postReviewValue.value,
+                            'perex_price': postPerexPrice.value,
+                            'perex_triplength': postPerexTriplength.value,
+                            'perex_time': postPerexTime.value,
                             'tags': postTags.value,
                             'locations': postLocations.value,
                             'travels': postTravels.value,
