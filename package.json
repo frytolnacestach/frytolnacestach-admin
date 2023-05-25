@@ -9,6 +9,7 @@
     "postinstall": "nuxt prepare",
     "build:generated:article": "node server/images-generated-articles.js",
     "build:generated:default": "node server/images-generated-default.js",
+    "build:generated:foods": "node server/images-generated-foods.js",
     "build:generated:main": "node server/images-generated-main.js",
     "build:generated:maps": "node server/images-generated-maps.js",
     "build:generated:videos": "node server/images-generated-videos.js",
