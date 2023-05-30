@@ -18,6 +18,8 @@
     "build:generated:videos": "node server/images-generated-videos.js",
     "build:generated:world-cities": "node server/images-generated-world-cities.js",
     "build:generated:world-continents": "node server/images-generated-world-continents.js",
+    "build:generated:world-regions": "node server/images-generated-world-regions.js",
+    "build:generated:world-spots": "node server/images-generated-world-spots.js",
     "build:generated:world-states": "node server/images-generated-world-states.js"
   },
   "devDependencies": {
