@@ -50,8 +50,18 @@
                     },
                     {
                         id: 3,
+                        name: "Regiony",
+                        url: "/admin/places/regions"
+                    },
+                    {
+                        id: 4,
                         name: "Města",
                         url: "/admin/places/cities"
+                    },
+                    {
+                        id: 5,
+                        name: "Místa",
+                        url: "/admin/places/spots"
                     }
                 ],
                 mNavBreadcrumbsArray: [

@@ -14,6 +14,12 @@
                 <div class="t-section__inner">
                     <mNavAdmin :links="mNavAdminArrayMain"/>
 
+                    <mHeadline :headline="'Blog'" styleGap=" mt-6" />
+                    <mNavAdmin :links="mNavAdminArrayBlog"/>
+
+                    <mHeadline :headline="'Seznamy pro místa'" styleGap=" mt-6" />
+                    <mNavAdmin :links="mNavAdminArrayLists"/>
+
                     <mHeadline :headline="'Místa'" styleGap=" mt-6" />
                     <mNavAdmin :links="mNavAdminArrayPlaces"/>
                 </div>
@@ -56,18 +62,20 @@
                     },
                     {
                         id: 3,
+                        name: "Generování obrázků",
+                        url: "/admin/images"
+                    }
+                ],
+                mNavAdminArrayBlog: [
+                    {
+                        id: 1,
                         name: "Videa",
                         url: "/admin/videos"
                     },
                     {
-                        id: 4,
+                        id: 2,
                         name: "Články",
                         url: "/admin/posts"
-                    },
-                    {
-                        id: 5,
-                        name: "Generování obrázků",
-                        url: "/admin/images"
                     }
                 ],
                 mNavAdminArrayPlaces: [
@@ -83,8 +91,40 @@
                     },
                     {
                         id: 3,
+                        name: "Regiony",
+                        url: "/admin/places/regions"
+                    },
+                    {
+                        id: 4,
                         name: "Města",
                         url: "/admin/places/cities"
+                    },
+                    {
+                        id: 5,
+                        name: "Místa",
+                        url: "/admin/places/spots"
+                    }
+                ],
+                mNavAdminArrayLists: [
+                    {
+                        id: 1,
+                        name: "Flora",
+                        url: "/admin/flora"
+                    },
+                    {
+                        id: 2,
+                        name: "Fauna",
+                        url: "/admin/fauna"
+                    },
+                    {
+                        id: 3,
+                        name: "Značky",
+                        url: "/admin/brands"
+                    },
+                    {
+                        id: 4,
+                        name: "Tradiční jídla",
+                        url: "/admin/foods"
                     }
                 ],
                 mNavBreadcrumbsArray: [
