@@ -59,6 +59,13 @@ const config: NuxtConfig = {
     '@nuxt/image'
   ],
 
+  vue: {
+    config: {
+      productionTip: false,
+      devtools: true,
+    },
+  },
+
   image: {
     providers: {
       local: {

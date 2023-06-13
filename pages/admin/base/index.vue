@@ -21,9 +21,10 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
+                                <!-- FORM -->
                                 <form class="o-form-edit__form" @submit.prevent="editForm">
+                                   
                                     <div class="o-form-edit__items">
-                                        
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Kdo jsem:</span>
@@ -38,7 +39,28 @@
                                             <textarea class="a-textarea" name="donate" v-model="donate"></textarea>
                                         </div>
 
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">TEXT STRÁNKY (Zásady Cookies):</span>
+                                            </label>
+                                            <textarea class="a-textarea" name="cookies" v-model="cookies"></textarea>
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">TEXT STRÁNKY (Obchodní podmínky a zásady ochrany osobních údajů):</span>
+                                            </label>
+                                            <textarea class="a-textarea" name="conditions" v-model="conditions"></textarea>
+                                        </div>
+
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">TEXT STRÁNKY (Obchodní podmínky a zásady ochrany osobních údajů - uživatel):</span>
+                                            </label>
+                                            <textarea class="a-textarea" name="conditionsUser" v-model="conditionsUser"></textarea>
+                                        </div>
                                     </div>
+
                                     <div class="o-form-edit__buttons mt-1">
                                         <div class="o-form-edit__button">
                                             <div class="m-button">
@@ -46,7 +68,10 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </form>
+                                <!-- FORM END-->
+
                             </div>
                         </div>
                     </div>
@@ -130,6 +155,9 @@
             const successForm = ref('')
             const iam = ref('')
             const donate = ref('')
+            const cookies = ref('')
+            const conditions = ref('')
+            const conditionsUser = ref('')
 
             //API - Base
             ;(async () => {
@@ -137,9 +165,12 @@
 
                 iam.value = JSON.parse(base._rawValue)[0].iam;
                 donate.value = JSON.parse(base._rawValue)[0].donate;
+                cookies.value = JSON.parse(base._rawValue)[0].cookies;
+                conditions.value = JSON.parse(base._rawValue)[0].conditions;
+                conditionsUser.value = JSON.parse(base._rawValue)[0].conditions_user;
             })()
 
-            //FORM - edit
+            //API - Base edit
             const editForm = async () => {
                 try {
                     await useFetch(`${runTimeConfig.public.baseURL}/base-edit`, {
@@ -153,11 +184,14 @@
                         body: JSON.stringify({
                             'iam': iam.value,
                             'donate': donate.value,
+                            'cookies': cookies.value,
+                            'conditions': conditions.value,
+                            'conditions_user': conditionsUser.value
                         })
                     })
                     .then(() => {
                         console.log('Data byla odeslaná');
-                        successForm.value = "Data byla odeslaná"
+                        successForm.value = "Data byla uložena"
                     })
                     .catch((error) => {
                         console.log(error);
@@ -170,7 +204,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, iam, donate, editForm }
+            return { successForm, errorForm, iam, donate, cookies, conditions, conditionsUser, editForm }
         },
         
         mounted() {
