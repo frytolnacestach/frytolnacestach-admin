@@ -66,7 +66,7 @@
                 mNavAdminArray: [
                     {
                         id: 1,
-                        name: "Přidat faunu",
+                        name: "Přidat značku",
                         url: "/admin/brands/create"
                     }
                 ],

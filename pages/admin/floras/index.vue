@@ -66,7 +66,7 @@
                 mNavAdminArray: [
                     {
                         id: 1,
-                        name: "Přidat faunu",
+                        name: "Přidat floru",
                         url: "/admin/floras/create"
                     }
                 ],

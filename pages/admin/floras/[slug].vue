@@ -98,8 +98,8 @@
                     },
                     {
                         id: 2,
-                        name: "Články",
-                        url: "/admin/posts",
+                        name: "Flora",
+                        url: "/admin/floras",
                         status: "link"
                     },
                     {

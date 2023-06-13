@@ -89,13 +89,13 @@
                     },
                     {
                         id: 2,
-                        name: "Platformy",
+                        name: "Značky",
                         url: "/admin/brands",
                         status: "link"
                     },
                     {
                         id: 3,
-                        name: "Přidání nové ZNAČKY",
+                        name: "Přidání nové značky",
                         url: "",
                         status: "span"
                     }

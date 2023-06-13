@@ -89,7 +89,7 @@
                     },
                     {
                         id: 2,
-                        name: "Platformy",
+                        name: "Fauna",
                         url: "/admin/faunas",
                         status: "link"
                     },

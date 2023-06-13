@@ -89,13 +89,13 @@
                     },
                     {
                         id: 2,
-                        name: "Platformy",
+                        name: "Jídla",
                         url: "/admin/foods",
                         status: "link"
                     },
                     {
                         id: 3,
-                        name: "Přidání nové flory",
+                        name: "Přidání nového jídla",
                         url: "",
                         status: "span"
                     }

@@ -95,8 +95,8 @@
                     },
                     {
                         id: 2,
-                        name: "Články",
-                        url: "/admin/posts",
+                        name: "Jídla",
+                        url: "/admin/foods",
                         status: "link"
                     },
                     {
