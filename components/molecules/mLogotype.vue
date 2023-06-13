@@ -1,13 +1,10 @@
 <template>
-    <div class="m-logotype">
+    <div class="m-logotype -server">
+        <span class="m-logotype__server">ADMIN</span>
         <div class="m-logotype__image">
             <div class="m-logotype__image-file">
-                <NuxtLink class="m-logotype__image-link" to="/"></NuxtLink>
+                <NuxtLink class="m-logotype__image-link" to="/" :aria-label="`Zpět na úvodní stránku`"></NuxtLink>
             </div>
-        </div>
-        <div class="m-logotype__text">
-            <span class="m-logotype__text-main">ADMIN</span>
-            <span class="m-logotype__text-sub">Frytol na cestách</span>
         </div>
     </div>
 </template>

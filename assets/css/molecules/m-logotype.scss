@@ -1,28 +1,25 @@
 .m-logotype {
+    $self: &;
+
     position: relative;
     display: flex;
-    z-index: 1001;
+    z-index: 999;
     background-color: white;
-    border-radius: 30px;
-
-    @media only screen and (min-width: $lg) {
-        background-color: transparent;
-        border-radius: inherit;
-    }
 
     &__image {
-        width: 40px;
+        width: 200px;
         height: 40px;
+        padding: 5.35px 0;
         position: relative;
     }
 
     &__image-file {
-        background-image: url('../images/_base/logotype.png');
+        background-image: url('../../static/images/_base/logotype.svg');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        width: 40px;
-        height: 40px;
+        width: 200px;
+        height: 29.3px;
     }
 
     &__image-link {
@@ -33,37 +30,34 @@
         left: 0;
     }
 
-    &__text {
-        height: 40px;
-        position: relative;
-        padding-right: 10px;
-        display: none;
-        
-        @media only screen and (min-width: $lg) {
-            display: block;
-            width: 240px;
-        }
-    }
-
-    &__text-link {
-        
-    }
-
-    &__text-main {
+    &__server {
         display: inline-block;
-        font-size: $fs-large-ssss;
+        width: 100%;
+        font-size: $fs-small;
+        height: $fs-small;
         font-weight: 700;
         color: $gray7;
-        line-height: 30px;
-        padding: 5px 0 5px 10px;
+        line-height: $fs-small-ssss;
+        padding: 0;
     }
 
-    &__text-sub {
-        display: inline-block;
-        color: $brand1;
-        font-size: $fs-normal-sss;
-        font-weight: 300;
-        line-height: 20px;
-        padding: 15px 0 5px 3px;
+    &.-server {
+        flex-wrap: wrap;
+
+        #{$self}__image {
+            width: 144px;
+            height: 24px;
+            padding: 3px 0 0;
+            position: relative;
+        }
+    
+        #{$self}__image-file {
+            background-image: url('../../static/images/_base/logotype.svg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 144px;
+            height: 21px;
+        }
     }
 }
