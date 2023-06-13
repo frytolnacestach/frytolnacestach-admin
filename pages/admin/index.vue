@@ -109,12 +109,12 @@
                     {
                         id: 1,
                         name: "Flora",
-                        url: "/admin/flora"
+                        url: "/admin/floras"
                     },
                     {
                         id: 2,
                         name: "Fauna",
-                        url: "/admin/fauna"
+                        url: "/admin/faunas"
                     },
                     {
                         id: 3,
