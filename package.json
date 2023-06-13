@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "frytolnacestach-admin",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -23,15 +23,13 @@
     "build:generated:world-states": "node server/images-generated-world-states.js"
   },
   "devDependencies": {
-    "@nuxt/image": "^0.7.1",
-    "@nuxt/image-edge": "^1.0.0-28020728.5df24eb",
+    "@nuxt/devtools": "latest",
     "@types/node": "^18",
-    "nuxt": "^3.4.1",
-    "sass": "^1.62.0"
+    "nuxt": "^3.5.2"
   },
   "dependencies": {
-    "@nuxt/types": "^2.16.3",
-    "nuxt3": "^3.4.2-28030302.886350a2",
-    "sharp": "^0.32.0"
+    "@nuxt/image-edge": "^1.0.0-rc.1-28110023.6b8ab9c",
+    "sass": "^1.63.3",
+    "sharp": "^0.32.1"
   }
 }
