@@ -2,7 +2,7 @@
     <NuxtLayout name="admin">
         <main class="t-main">
             <!-- SECTION - HERO -->
-            <oHero headline="Administrace - Fauna" />
+            <oHero headline="Administrace - Flora" />
             <!-- SECTION - HERO END -->
 
             <!-- SECTION - BREADCRUMBS Admin -->
@@ -23,11 +23,11 @@
                         <div class="o-admin-list__outer">
                             <div class="o-admin-list__inner">
                                 <div class="o-admin-list__items">
-                                    <div v-for="platform in faunas" :key="platform.id" class="o-admin-list__item">
+                                    <div v-for="flora in floras" :key="flora.id" class="o-admin-list__item">
                                         <h3 class="o-admin-list__title">
-                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/faunas/${platform.slug}`">{{ platform.name}}</NuxtLink>
+                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/floras/${flora.slug}`">{{ flora.name }}</NuxtLink>
                                         </h3>
-                                        <p class="o-admin-list__perex">{{ platform.perex }}</p>
+                                        <p class="o-admin-list__perex">{{ flora.description }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -44,15 +44,15 @@
     import oHero from '@/components/organisms/oHero.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
 
-    interface Faunas {
+    interface Floras {
         id: number
         name: string
         slug: string
-        perex: string
+        description: string
     }
 
     export default defineComponent({
-        name: 'AdminFaunasIndexPage',
+        name: 'AdminFlorasIndexPage',
 
         //COMPONENTS
         components: {
@@ -67,7 +67,7 @@
                     {
                         id: 1,
                         name: "Přidat faunu",
-                        url: "/admin/faunas/create"
+                        url: "/admin/floras/create"
                     }
                 ],
                 mNavBreadcrumbsArray: [
@@ -79,7 +79,7 @@
                     },
                     {
                         id: 2,
-                        name: "Fauna",
+                        name: "Flora",
                         url: "",
                         status: "span"
                     }
@@ -95,7 +95,7 @@
 
             //META HEAD
             useHead({
-                title: 'Fauna - výpis',
+                title: 'Flora - výpis',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -104,8 +104,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Fauna - výpis',
-                ogTitle: 'Fauna - výpis',
+                title: 'Flora - výpis',
+                ogTitle: 'Flora - výpis',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
@@ -114,17 +114,17 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig()
-            const faunas = ref<Faunas[]>([])
+            const floras = ref<Floras[]>([])
 
-            //API - Faunas
+            //API - Floras
             onMounted(() => {
-                fetch(`${runTimeConfig.public.baseURL}/faunas`, {
+                fetch(`${runTimeConfig.public.baseURL}/floras`, {
                     method: 'GET'
-                }).then(res => res.json()).then(data => faunas.value = data);
+                }).then(res => res.json()).then(data => floras.value = data);
             })
 
             //RETURN
-            return { faunas }
+            return { floras }
         },
 
         mounted() {

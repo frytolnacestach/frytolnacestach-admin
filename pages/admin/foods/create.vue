@@ -2,7 +2,7 @@
     <NuxtLayout name="admin">
         <main class="t-main">
             <!-- SECTION - HERO -->
-            <oHero headline="Přidání nové fauny" />
+            <oHero headline="Přidání nového jídla" />
             <!-- SECTION - HERO END -->
 
             <!-- SECTION - BREADCRUMBS Admin -->
@@ -28,28 +28,28 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="faunaSlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="foodSlug" />
                                         </div>
                                                                             
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Name:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="name" v-model="faunaName" />
+                                            <input class="a-input" type="text" name="name" v-model="foodName" />
                                         </div>
                                 
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Perex:</span>
+                                                <span class="m-label__name">Description:</span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="perex" v-model="faunaPerex"></textarea>
+                                            <textarea class="a-textarea" type="text" name="description" v-model="foodDescription"></textarea>
                                         </div>
 
                                     </div>
                                     <div class="o-form-create__buttons mt-1">
                                         <div class="o-form-create__button">
                                             <div class="m-button">
-                                                <button class="m-button__input" type="submit">Vytvořit faunu</button>
+                                                <button class="m-button__input" type="submit">Vytvořit floru</button>
                                             </div>
                                         </div>
                                     </div>
@@ -69,7 +69,7 @@
     import oHero from '@/components/organisms/oHero.vue'
 
     export default defineComponent({
-        name: 'AdminFaunasCreatePage',
+        name: 'AdminfoodsCreatePage',
 
         //COMPONENTS
         components: {
@@ -90,12 +90,12 @@
                     {
                         id: 2,
                         name: "Platformy",
-                        url: "/admin/faunas",
+                        url: "/admin/foods",
                         status: "link"
                     },
                     {
                         id: 3,
-                        name: "Přidání nové platforma",
+                        name: "Přidání nové flory",
                         url: "",
                         status: "span"
                     }
@@ -111,7 +111,7 @@
 
             //META HEAD
             useHead({
-                title: 'Platformy - vytvoření',
+                title: 'Jídlo - vytvoření',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -120,8 +120,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Platformy - vytvoření',
-                ogTitle: 'Platformy - vytvoření',
+                title: 'Jídlo - vytvoření',
+                ogTitle: 'Jídlo - vytvoření',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
@@ -132,9 +132,9 @@
             const runTimeConfig = useRuntimeConfig()
             const errorForm = ref('')
             const successForm = ref('')
-            const faunaSlug = ref('')
-            const faunaName = ref('')
-            const faunaPerex = ref('')
+            const foodSlug = ref('')
+            const foodName = ref('')
+            const foodDescription = ref('')
 
             //FORM - create
             const createForm = async () => {
@@ -148,15 +148,15 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
-                            'slug': faunaSlug.value,
-                            'name': faunaName.value,
-                            'perex': faunaPerex.value
+                            'slug': foodSlug.value,
+                            'name': foodName.value,
+                            'description': foodDescription.value
                         })
                     })
                     .then(() => {
                         console.log('Data byla odeslaná');
                         successForm.value = "Data byla odeslaná"
-                        navigateTo(`/admin/faunas/${faunaSlug.value}`)
+                        navigateTo(`/admin/foods/${foodSlug.value}`)
                     })
                     .catch((error) => {
                         console.log(error);
@@ -169,7 +169,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, faunaSlug, faunaName, faunaPerex, createForm }
+            return { successForm, errorForm, foodSlug, foodName, foodDescription, createForm }
         },
 
         mounted() {

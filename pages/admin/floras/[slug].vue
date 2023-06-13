@@ -2,7 +2,7 @@
     <NuxtLayout name="admin">
         <main class="t-main">
             <!-- SECTION - HERO -->
-            <oHero :headline="'fauna ' + faunaName" />
+            <oHero :headline="'flora ' + floraName" />
             <!-- SECTION - HERO END -->
 
             <!-- SECTION - BREADCRUMBS Admin -->
@@ -28,21 +28,21 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="faunaSlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="floraSlug" />
                                         </div>
                                                                             
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Name:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="name" v-model="faunaName" />
+                                            <input class="a-input" type="text" name="name" v-model="floraName" />
                                         </div>
                                 
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Perex:</span>
+                                                <span class="m-label__name">Description:</span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="perex" v-model="faunaPerex"></textarea>
+                                            <textarea class="a-textarea" type="text" name="description" v-model="floraDescription"></textarea>
                                         </div>
                                                                         
                                     </div>
@@ -68,17 +68,17 @@
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
-    interface Fauna {
+    interface Flora {
         slug: string
         name: string,
-        perex: string,
+        description: string,
         url: string,
         facts: string,
         date: string
     }
 
     export default defineComponent({
-        name: 'AdminFaunasSlugPage',
+        name: 'AdminFlorasSlugPage',
 
         //COMPONENTS
         components: {
@@ -104,7 +104,7 @@
                     },
                     {
                         id: 3,
-                        name: `Editace fauny - NÁZEV FAUNY`,
+                        name: `Editace flory - NÁZEV FLORY`,
                         url: "",
                         status: "span"
                     }
@@ -114,17 +114,17 @@
 
         methods: {
             updateBreadcrumbs() {
-                const faunaName = this.faunaName
+                const floraName = this.floraName
                 const breadcrumb = this.mNavBreadcrumbsArray.find(item => item.id === 3)
                 
                 if (breadcrumb) {
-                    breadcrumb.name = `Editace videa - ${faunaName}`
+                    breadcrumb.name = `Editace flory - ${floraName}`
                 }
             }
         },
 
         watch: {
-            faunaName: function (newValue, oldValue) {
+            floraName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
         },
@@ -137,7 +137,7 @@
 
             //META HEAD
             useHead({
-                title: 'Fauna - úprava',
+                title: 'Flora - úprava',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -146,8 +146,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Fauna - úprava',
-                ogTitle: 'Fauna - úprava',
+                title: 'Flora - úprava',
+                ogTitle: 'Flora - úprava',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
@@ -159,20 +159,20 @@
             const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
-            const faunaSlug = ref('')
-            const faunaName = ref('')
-            const faunaPerex = ref('')
+            const floraSlug = ref('')
+            const floraName = ref('')
+            const floraDescription = ref('')
 
-            //API - fauna
+            //API - flora
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/fauna/${route.params.slug}`)
+                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/flora/${route.params.slug}`)
                 
-                const fauna: Fauna[] = JSON.parse(_rawValue)
+                const flora: Flora[] = JSON.parse(_rawValue)
                 
-                if (Array.isArray(Fauna) && Fauna.length > 0) {
-                    faunaSlug.value = Fauna[0].slug;
-                    faunaName.value = Fauna[0].name;
-                    faunaPerex.value = Fauna[0].perex;
+                if (Array.isArray(Flora) && Flora.length > 0) {
+                    floraSlug.value = Flora[0].slug;
+                    floraName.value = Flora[0].name;
+                    floraDescription.value = Flora[0].description;
                 } else {
 
                 }
@@ -181,7 +181,7 @@
             //FORM - edit
             const editForm = async () => {
                 try {
-                    await useFetch(`${runTimeConfig.public.baseURL}/fauna-edit`, {
+                    await useFetch(`${runTimeConfig.public.baseURL}/flora-edit`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -190,9 +190,9 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
-                            'slug': faunaSlug.value,
-                            'name': faunaName.value,
-                            'perex': faunaPerex.value,
+                            'slug': floraSlug.value,
+                            'name': floraName.value,
+                            'description': floraDescription.value,
                         })
                     })
                     .then(() => {
@@ -210,7 +210,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, faunaSlug, faunaName, faunaPerex, editForm }
+            return { successForm, errorForm, floraSlug, floraName, floraDescription, editForm }
         },
 
         mounted() {

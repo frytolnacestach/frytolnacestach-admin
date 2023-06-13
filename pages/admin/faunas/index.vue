@@ -23,11 +23,11 @@
                         <div class="o-admin-list__outer">
                             <div class="o-admin-list__inner">
                                 <div class="o-admin-list__items">
-                                    <div v-for="platform in faunas" :key="platform.id" class="o-admin-list__item">
+                                    <div v-for="fauna in faunas" :key="fauna.id" class="o-admin-list__item">
                                         <h3 class="o-admin-list__title">
-                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/faunas/${platform.slug}`">{{ platform.name}}</NuxtLink>
+                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/faunas/${fauna.slug}`">{{ fauna.name }}</NuxtLink>
                                         </h3>
-                                        <p class="o-admin-list__perex">{{ platform.perex }}</p>
+                                        <p class="o-admin-list__perex">{{ fauna.description }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
         id: number
         name: string
         slug: string
-        perex: string
+        description: string
     }
 
     export default defineComponent({

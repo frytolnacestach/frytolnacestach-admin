@@ -40,9 +40,9 @@
                                 
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Perex:</span>
+                                                <span class="m-label__name">Description:</span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="perex" v-model="faunaPerex"></textarea>
+                                            <textarea class="a-textarea" type="text" name="description" v-model="faunaDescription"></textarea>
                                         </div>
                                                                         
                                     </div>
@@ -71,7 +71,7 @@
     interface Fauna {
         slug: string
         name: string,
-        perex: string,
+        description: string,
         url: string,
         facts: string,
         date: string
@@ -118,7 +118,7 @@
                 const breadcrumb = this.mNavBreadcrumbsArray.find(item => item.id === 3)
                 
                 if (breadcrumb) {
-                    breadcrumb.name = `Editace videa - ${faunaName}`
+                    breadcrumb.name = `Editace fauny - ${faunaName}`
                 }
             }
         },
@@ -161,7 +161,7 @@
             const successForm = ref('')
             const faunaSlug = ref('')
             const faunaName = ref('')
-            const faunaPerex = ref('')
+            const faunaDescription = ref('')
 
             //API - fauna
             ;(async () => {
@@ -172,7 +172,7 @@
                 if (Array.isArray(Fauna) && Fauna.length > 0) {
                     faunaSlug.value = Fauna[0].slug;
                     faunaName.value = Fauna[0].name;
-                    faunaPerex.value = Fauna[0].perex;
+                    faunaDescription.value = Fauna[0].description;
                 } else {
 
                 }
@@ -192,7 +192,7 @@
                         body: JSON.stringify({
                             'slug': faunaSlug.value,
                             'name': faunaName.value,
-                            'perex': faunaPerex.value,
+                            'description': faunaDescription.value,
                         })
                     })
                     .then(() => {
@@ -210,7 +210,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, faunaSlug, faunaName, faunaPerex, editForm }
+            return { successForm, errorForm, faunaSlug, faunaName, faunaDescription, editForm }
         },
 
         mounted() {

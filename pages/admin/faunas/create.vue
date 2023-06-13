@@ -40,9 +40,9 @@
                                 
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Perex:</span>
+                                                <span class="m-label__name">Description:</span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="perex" v-model="faunaPerex"></textarea>
+                                            <textarea class="a-textarea" type="text" name="description" v-model="faunaDescription"></textarea>
                                         </div>
 
                                     </div>
@@ -95,7 +95,7 @@
                     },
                     {
                         id: 3,
-                        name: "Přidání nové platforma",
+                        name: "Přidání nové fauny",
                         url: "",
                         status: "span"
                     }
@@ -111,7 +111,7 @@
 
             //META HEAD
             useHead({
-                title: 'Platformy - vytvoření',
+                title: 'Fauna - vytvoření',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -120,8 +120,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Platformy - vytvoření',
-                ogTitle: 'Platformy - vytvoření',
+                title: 'Fauna - vytvoření',
+                ogTitle: 'Fauna - vytvoření',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
@@ -134,7 +134,7 @@
             const successForm = ref('')
             const faunaSlug = ref('')
             const faunaName = ref('')
-            const faunaPerex = ref('')
+            const faunaDescription = ref('')
 
             //FORM - create
             const createForm = async () => {
@@ -150,7 +150,7 @@
                         body: JSON.stringify({
                             'slug': faunaSlug.value,
                             'name': faunaName.value,
-                            'perex': faunaPerex.value
+                            'description': faunaDescription.value
                         })
                     })
                     .then(() => {
@@ -169,7 +169,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, faunaSlug, faunaName, faunaPerex, createForm }
+            return { successForm, errorForm, faunaSlug, faunaName, faunaDescription, createForm }
         },
 
         mounted() {
