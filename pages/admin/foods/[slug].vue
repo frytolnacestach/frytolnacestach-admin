@@ -101,7 +101,7 @@
                     },
                     {
                         id: 3,
-                        name: `Editace flory - NÁZEV FLORY`,
+                        name: `Editace jídla - NÁZEV JÍDLA`,
                         url: "",
                         status: "span"
                     }

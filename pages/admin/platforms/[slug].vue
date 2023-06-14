@@ -118,8 +118,8 @@
                     },
                     {
                         id: 2,
-                        name: "Články",
-                        url: "/admin/posts",
+                        name: "Platformy",
+                        url: "/admin/platforms",
                         status: "link"
                     },
                     {
@@ -138,7 +138,7 @@
                 const breadcrumb = this.mNavBreadcrumbsArray.find(item => item.id === 3)
                 
                 if (breadcrumb) {
-                    breadcrumb.name = `Editace videa - ${platformName}`
+                    breadcrumb.name = `Editace platformy - ${platformName}`
                 }
             }
         },

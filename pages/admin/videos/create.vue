@@ -21,16 +21,54 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
+                                <!-- FORM -->
                                 <form class="o-form-create__form" @submit.prevent="createForm">
                                     <div class="o-form-create__items">
-                                        
+                                        <!-- slug -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="videoSlug" />
                                         </div>
-                                                                            
+                                        <!-- ids -->
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">ID Kontinentu:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="id_continent" v-model="videoIDcontinent" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">ID Státu:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="id_state" v-model="videoIDstate" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">ID Regionu:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="id_region" v-model="videoIDregion" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">ID Města:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="id_city" v-model="videoIDcity" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">ID Místa:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="id_spot" v-model="videoIDspot" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">ID Obrázku:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="id_image" v-model="videoIDimage" />
+                                        </div>
+                                        <!-- other -->                       
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Platform:</span>
@@ -40,22 +78,32 @@
                                                 <option v-for="platform in platforms" :key="platform.id" :value="platform.id">{{platform.name}}</option>
                                             </select>
                                         </div>
-                                
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Typ:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="type" v-model="videoType" />
+                                        </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Title:</span>
                                             </label>
                                             <input class="a-input" type="text" name="title" v-model="videoTitle" />
                                         </div>
-    
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Perex:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="perex" v-model="videoPerex"></textarea>
+                                        </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">URL:</span>
                                             </label>
                                             <input class="a-input" type="text" name="url" v-model="videoUrl" />
                                         </div>
-
                                     </div>
+                                    <!--button-->
                                     <div class="o-form-create__buttons mt-1">
                                         <div class="o-form-create__button">
                                             <div class="m-button">
@@ -64,6 +112,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                <!-- FORM END -->
                             </div>
                         </div>
                     </div>
@@ -78,6 +127,7 @@
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
+    //INTERFACES
     interface Platform {
         id: number
         name: string
@@ -149,8 +199,16 @@
             const successForm = ref('')
             const platforms = ref<Platform[]>([])
             const videoSlug = ref('')
+            const videoIDcontinent = ref(0)
+            const videoIDstate = ref(0)
+            const videoIDregion = ref(0)
+            const videoIDcity = ref(0)
+            const videoIDspot = ref(0)
+            const videoIDimage = ref(0)
             const videoPlatform = ref('')
+            const videoType = ref('')
             const videoTitle = ref('')
+            const videoPerex = ref('')
             const videoUrl = ref('')
 
             //API - Platform
@@ -173,8 +231,16 @@
                         method: 'POST',
                         body: JSON.stringify({
                             'slug': videoSlug.value,
+                            'id_continent': videoIDcontinent.value,
+                            'id_state': videoIDstate.value,
+                            'id_region': videoIDregion.value,
+                            'id_city': videoIDcity.value,
+                            'id_spot': videoIDspot.value,
+                            'id_image': videoIDimage.value,
                             'platform': videoPlatform.value,
+                            'type': videoType.value,
                             'title': videoTitle.value,
+                            'perex': videoPerex.value,
                             'url': videoUrl.value
                         })
                     })
@@ -194,7 +260,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, videoSlug, videoPlatform, videoTitle, videoUrl, platforms, createForm }
+            return { successForm, errorForm, videoSlug, videoIDcontinent, videoIDstate, videoIDregion, videoIDcity, videoIDspot, videoIDimage, videoPlatform, videoType, videoTitle, videoPerex, videoUrl, platforms, createForm }
         },
 
         mounted() {

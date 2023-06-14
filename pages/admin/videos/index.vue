@@ -45,6 +45,7 @@
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
 
+    //INTERFACES
     interface Video {
         id: number
         title: string

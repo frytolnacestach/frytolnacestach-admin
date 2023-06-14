@@ -44,6 +44,7 @@
     import oHero from '@/components/organisms/oHero.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
 
+    //INTERFACES
     interface Posts {
         id: number
         title: string
