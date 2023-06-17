@@ -21,45 +21,80 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
+                                <!-- FORM -->
                                 <form class="o-form-edit__form" @submit.prevent="editForm">
                                     <div class="o-form-edit__items">
-                                        
+                                        <!-- slug -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="placesSpotSlug" />
                                         </div>
-
+                                        <!-- ids -->
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Stát:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="state" v-model="placesSpotIDstate" />
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Město:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="city" v-model="placesSpotIDcity" />
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Cover:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageCover" v-model="placesSpotIDimageCover" />
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Hero:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageHero" v-model="placesSpotIDimageHero" />
+                                        </div>
+                                        <!-- other --> 
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Jméno:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="mpz" v-model="placesSpotName" />
+                                            <input class="a-input" type="text" name="name" v-model="placesSpotName" />
                                         </div>
-
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Informace (Chat GPT):</span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesSpotInformationChatgpt"></textarea>
                                         </div>
-
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Cover):</span>
+                                                <span class="m-label__name">Nadmořská výška:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_cover" v-model="placesSpotIdImageCover" />
-                                        </div>
-
+                                            <textarea class="a-textarea" type="text" name="altitude" v-model="placesSpotAltitude"></textarea>
+                                        </div> 
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Hero):</span>
+                                                <span class="m-label__name">Souřadnice:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_hero" v-model="placesSpotIdImageHero" />
+                                            <textarea class="a-textarea" type="text" name="coordinates" v-model="placesSpotCoordinates"></textarea>
                                         </div>
-                                                                        
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Zoom:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="zoom" v-model="placesSpotZoom"></textarea>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Affiliate:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="affiliate" v-model="placesSpotAffiliate"></textarea>
+                                        </div>                            
                                     </div>
+                                    <!-- button -->
                                     <div class="o-form-edit__buttons mt-1">
                                         <div class="o-form-edit__button">
                                             <div class="m-button">
@@ -68,6 +103,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                <!-- FORM END -->
                             </div>
                         </div>
                     </div>
@@ -83,11 +119,18 @@
     import oHero from '@/components/organisms/oHero.vue'
 
     interface PlacesSpot {
+        id_state: number
+        id_city: number
+        id_image_cover: number
+        id_image_hero: number
+        type_place: string
         slug: string
-        name: string,
-        information_chatgpt: string,
-        id_image_cover: number,
-        id_image_hero: number,
+        name: string
+        information_chatgpt: string
+        coordinates: string
+        zoom: string
+        affiliate: string
+        altitude: string
     }
 
     export default defineComponent({
@@ -178,11 +221,18 @@
             const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
+            const placesSpotIDstate = ref(0)
+            const placesSpotIDcity = ref(0)
+            const placesSpotIDimageCover = ref(0)
+            const placesSpotIDimageHero = ref(0)
+            const placesSpotTypePlace = ref('')
             const placesSpotSlug = ref('')
             const placesSpotName = ref('')
             const placesSpotInformationChatgpt = ref('')
-            const placesSpotIdImageCover = ref(0)
-            const placesSpotIdImageHero = ref(0)
+            const placesSpotAltitude = ref('')
+            const placesSpotCoordinates = ref('')
+            const placesSpotZoom = ref('')
+            const placesSpotAffiliate = ref('')
 
             //API - Places Spot
             ;(async () => {
@@ -191,11 +241,18 @@
                 const PlacesSpot: PlacesSpot[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(PlacesSpot) && PlacesSpot.length > 0) {
+                    placesSpotIDstate.value = PlacesSpot[0].id_state;
+                    placesSpotIDcity.value = PlacesSpot[0].id_city;
+                    placesSpotIDimageCover.value = PlacesSpot[0].id_image_cover;
+                    placesSpotIDimageHero.value = PlacesSpot[0].id_image_hero;
+                    placesSpotTypePlace.value = PlacesSpot[0].type_place;
                     placesSpotSlug.value = PlacesSpot[0].slug;
                     placesSpotName.value = PlacesSpot[0].name;
                     placesSpotInformationChatgpt.value = PlacesSpot[0].information_chatgpt;
-                    placesSpotIdImageCover.value = PlacesSpot[0].id_image_cover;
-                    placesSpotIdImageHero.value = PlacesSpot[0].id_image_hero;
+                    placesSpotAltitude.value = PlacesSpot[0].altitude;
+                    placesSpotCoordinates.value = JSON.stringify(PlacesSpot[0].coordinates);
+                    placesSpotZoom.value = JSON.stringify(PlacesSpot[0].zoom);
+                    placesSpotAffiliate.value = JSON.stringify(PlacesSpot[0].affiliate);
                 } else {
 
                 }
@@ -213,11 +270,18 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
+                            'id_state': placesSpotIDstate.value,
+                            'id_city': placesSpotIDcity.value,
+                            'id_image_cover': placesSpotIDimageCover.value,
+                            'id_image_hero': placesSpotIDimageHero.value,
+                            'type_place': placesSpotTypePlace.value,
                             'slug': placesSpotSlug.value,
                             'name': placesSpotName.value,
                             'information_chatgpt': placesSpotInformationChatgpt.value,
-                            'image_cover': placesSpotIdImageCover.value,
-                            'image_hero': placesSpotIdImageHero.value
+                            'altitude': placesSpotAltitude.value,
+                            'coordinates': placesSpotCoordinates.value,
+                            'zoom': placesSpotZoom.value,
+                            'affiliate': placesSpotAffiliate.value,
                         })
                     })
                     .then(() => {
@@ -235,7 +299,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesSpotSlug, placesSpotName, placesSpotInformationChatgpt, placesSpotIdImageCover, placesSpotIdImageHero, editForm }
+            return { successForm, errorForm, placesSpotIDstate, placesSpotIDcity, placesSpotIDimageCover, placesSpotIDimageHero, placesSpotTypePlace, placesSpotSlug, placesSpotName, placesSpotInformationChatgpt, placesSpotAltitude, placesSpotCoordinates, placesSpotZoom, placesSpotAffiliate, editForm }
         },
 
         mounted() {

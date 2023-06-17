@@ -21,31 +21,75 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
+                                <!-- FORM -->
                                 <form class="o-form-edit__form" @submit.prevent="editForm">
                                     <div class="o-form-edit__items">
-                                        
+                                        <!-- slug -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="faunaSlug" />
                                         </div>
-                                                                            
+                                        <!-- ids -->
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Cover:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageCover" v-model="faunaIDimageCover" />
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Hero:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageHero" v-model="faunaIDimageHero" />
+                                        </div>
+                                        <!-- json -->
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">IDs states:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="idsStates" v-model="faunaIDSstates"></textarea>
+                                        </div>
+                                        <!-- other -->                            
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Name:</span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="faunaName" />
                                         </div>
-                                
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Name Lat:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="nameLat" v-model="faunaNameLat" />
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Location:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="nameLocation" v-model="faunaLocation" />
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Status IUCN:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="nameStatusIusn" v-model="faunaStatusIucn" />
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Status danger:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="nameStatusDanger" v-model="faunaStatusDanger" />
+                                        </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Description:</span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="description" v-model="faunaDescription"></textarea>
-                                        </div>
-                                                                        
+                                        </div>                             
                                     </div>
+                                    <!-- button -->
                                     <div class="o-form-edit__buttons mt-1">
                                         <div class="o-form-edit__button">
                                             <div class="m-button">
@@ -54,6 +98,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                <!-- FORM END -->
                             </div>
                         </div>
                     </div>
@@ -69,12 +114,16 @@
     import oHero from '@/components/organisms/oHero.vue'
 
     interface Fauna {
+        id_image_cover: number
+        id_image_hero: number
+        ids_states: string
         slug: string
-        name: string,
-        description: string,
-        url: string,
-        facts: string,
-        date: string
+        name: string
+        name_lat: string
+        location: string
+        status_iucn: string
+        status_danger: string
+        description: string
     }
 
     export default defineComponent({
@@ -160,18 +209,32 @@
             const errorForm = ref('')
             const successForm = ref('')
             const faunaSlug = ref('')
+            const faunaIDimageCover = ref(0)
+            const faunaIDimageHero = ref(0)
+            const faunaIDSstates = ref('')
             const faunaName = ref('')
+            const faunaNameLat = ref('')
+            const faunaLocation = ref('')
+            const faunaStatusIucn = ref('')
+            const faunaStatusDanger = ref('')
             const faunaDescription = ref('')
 
             //API - fauna
             ;(async () => {
                 const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/fauna/${route.params.slug}`)
                 
-                const fauna: Fauna[] = JSON.parse(_rawValue)
+                const Fauna: Fauna[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Fauna) && Fauna.length > 0) {
                     faunaSlug.value = Fauna[0].slug;
+                    faunaIDimageCover.value = Fauna[0].id_image_cover;
+                    faunaIDimageHero.value = Fauna[0].id_image_hero;
+                    faunaIDSstates.value = JSON.stringify(Fauna[0].ids_states);
                     faunaName.value = Fauna[0].name;
+                    faunaNameLat.value = Fauna[0].name_lat;
+                    faunaLocation.value = Fauna[0].location;
+                    faunaStatusIucn.value = Fauna[0].status_iucn;
+                    faunaStatusDanger.value = Fauna[0].status_danger;
                     faunaDescription.value = Fauna[0].description;
                 } else {
 
@@ -191,7 +254,14 @@
                         method: 'POST',
                         body: JSON.stringify({
                             'slug': faunaSlug.value,
+                            'id_image_cover': faunaIDimageCover.value,
+                            'id_image_hero': faunaIDimageHero.value,
+                            'ids_states': faunaIDSstates.value,
                             'name': faunaName.value,
+                            'name_lat': faunaNameLat.value,
+                            'location': faunaLocation.value,
+                            'status_iucn': faunaStatusIucn.value,
+                            'status_danger': faunaStatusDanger.value,
                             'description': faunaDescription.value,
                         })
                     })
@@ -210,7 +280,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, faunaSlug, faunaName, faunaDescription, editForm }
+            return { successForm, errorForm, faunaSlug, faunaIDimageCover, faunaIDimageHero, faunaIDSstates, faunaName, faunaNameLat, faunaLocation, faunaStatusIucn, faunaStatusDanger, faunaDescription, editForm }
         },
 
         mounted() {

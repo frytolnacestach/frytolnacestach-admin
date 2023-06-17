@@ -21,23 +21,67 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
+                                <!-- FORM -->
                                 <form class="o-form-create__form" @submit.prevent="createForm">
                                     <div class="o-form-create__items">
-                                        
+                                        <!-- slug -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="floraSlug" />
                                         </div>
-                                                                            
+                                        <!-- ids -->
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Cover:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageCover" v-model="floraIDimageCover" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Hero:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageHero" v-model="floraIDimageHero" />
+                                        </div>
+                                        <!-- json -->
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">IDs states:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="idsStates" v-model="floraIDSstates"></textarea>
+                                        </div>
+                                        <!-- other -->                            
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Name:</span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="floraName" />
                                         </div>
-                                
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Name Lat:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="nameLat" v-model="floraNameLat" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Location:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="nameLocation" v-model="floraLocation" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Status IUCN:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="nameStatusIucn" v-model="floraStatusIucn" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Status danger:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="nameStatusDanger" v-model="floraStatusDanger" />
+                                        </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Description:</span>
@@ -46,14 +90,16 @@
                                         </div>
 
                                     </div>
+                                    <!-- button -->
                                     <div class="o-form-create__buttons mt-1">
                                         <div class="o-form-create__button">
                                             <div class="m-button">
-                                                <button class="m-button__input" type="submit">Vytvořit floru</button>
+                                                <button class="m-button__input" type="submit">Vytvořit faunu</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+                                <!-- FORM END -->
                             </div>
                         </div>
                     </div>
@@ -133,7 +179,14 @@
             const errorForm = ref('')
             const successForm = ref('')
             const floraSlug = ref('')
+            const floraIDimageCover = ref(0)
+            const floraIDimageHero = ref(0)
+            const floraIDSstates = ref('')
             const floraName = ref('')
+            const floraNameLat = ref('')
+            const floraLocation = ref('')
+            const floraStatusIucn = ref('')
+            const floraStatusDanger = ref('')
             const floraDescription = ref('')
 
             //FORM - create
@@ -148,9 +201,16 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
-                            'slug': floraSlug.value,
-                            'name': floraName.value,
-                            'description': floraDescription.value
+                            'slug': faunaSlug.value,
+                            'id_image_cover': faunaIDimageCover.value,
+                            'id_image_hero': faunaIDimageHero.value,
+                            'ids_states': faunaIDSstates.value,
+                            'name': faunaName.value,
+                            'name_lat': faunaNameLat.value,
+                            'location': faunaLocation.value,
+                            'status_iucn': faunaStatusIucn.value,
+                            'status_danger': faunaStatusDanger.value,
+                            'description': faunaDescription.value,
                         })
                     })
                     .then(() => {
@@ -169,7 +229,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, floraSlug, floraName, floraDescription, createForm }
+            return { successForm, errorForm, floraSlug, floraIDimageCover, floraIDimageHero, floraIDSstates, floraName, floraNameLat, floraLocation, floraStatusIucn, floraStatusDanger, floraDescription, createForm }
         },
 
         mounted() {

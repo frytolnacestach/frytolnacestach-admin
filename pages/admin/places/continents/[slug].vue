@@ -21,73 +21,86 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
+                                <!-- FORM -->
                                 <form class="o-form-edit__form" @submit.prevent="editForm">
                                     <div class="o-form-edit__items">
-                                        
+                                        <!-- slug -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="placesContinentSlug" />
                                         </div>
-                                                                            
+                                        <!-- ids -->
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Cover:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageCover" v-model="placesContinentIDimageCover" />
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Hero:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageHero" v-model="placesContinentIDimageHero" />
+                                        </div>
+                                        <!-- other --> 
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Typ místa:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="typePlace" v-model="placesContinentTypePlace" />
+                                        </div>                    
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Jméno:</span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="placesContinentName" />
                                         </div>
-                                
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Rozloha:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="area" v-model="placesContinentArea" />
-                                        </div>
-
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Populace:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="population" v-model="placesContinentPopulation" />
-                                        </div>
-
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Hustota populace:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="population_density" v-model="placesContinentPopulationDensity" />
-                                        </div>
-
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Počet států:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="number_states" v-model="placesContinentNumberStates" />
-                                        </div>
-
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Informace (Chat GPT):</span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesContinentInformationChatgpt"></textarea>
                                         </div>
-
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Cover):</span>
+                                                <span class="m-label__name">Rozloha:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_cover" v-model="placesContinentIdImageCover" />
+                                            <input class="a-input" type="text" name="area" v-model="placesContinentArea" />
                                         </div>
-
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Hero):</span>
+                                                <span class="m-label__name">Populace:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_hero" v-model="placesContinentIdImageHero" />
+                                            <input class="a-input" type="text" name="population" v-model="placesContinentPopulation" />
                                         </div>
-                                                                        
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Hustota populace:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="population_density" v-model="placesContinentPopulationDensity" />
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Počet států:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="number_states" v-model="placesContinentNumberStates" />
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Souřadnice:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="coordinates" v-model="placesContinentCoordinates"></textarea>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">placesContinentZoom:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="zoom" v-model="placesContinentZoom"></textarea>
+                                        </div>                              
                                     </div>
+                                    <!-- button -->
                                     <div class="o-form-edit__buttons mt-1">
                                         <div class="o-form-edit__button">
                                             <div class="m-button">
@@ -96,6 +109,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                <!-- FORM END -->
                             </div>
                         </div>
                     </div>
@@ -111,16 +125,18 @@
     import oHero from '@/components/organisms/oHero.vue'
     
     interface PlacesContinent {
+        id_image_cover: number
+        id_image_hero: number
+        type_place: string
         slug: string
-        name: string,
-        area: string,
-        population: string,
-        populationDensity: string,
-        number_states: string,
-        altitude: string,
-        information_chatgpt: string,
-        id_image_cover: number,
-        id_image_hero: number,
+        name: string
+        information_chatgpt: string
+        area: string
+        population: string
+        population_density: string
+        number_states: string
+        coordinates: string
+        zoom: string
     }
 
     export default defineComponent({
@@ -211,15 +227,18 @@
             const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
+            const placesContinentIDimageCover = ref(0)
+            const placesContinentIDimageHero = ref(0)
+            const placesContinentTypePlace = ref('')
             const placesContinentSlug = ref('')
             const placesContinentName = ref('')
+            const placesContinentInformationChatgpt = ref('')
             const placesContinentArea = ref('')
             const placesContinentPopulation = ref('')
             const placesContinentPopulationDensity = ref('')
             const placesContinentNumberStates = ref('')
-            const placesContinentInformationChatgpt = ref('')
-            const placesContinentIdImageCover = ref(0)
-            const placesContinentIdImageHero = ref(0)
+            const placesContinentCoordinates = ref('')
+            const placesContinentZoom = ref('')
 
             //API - Places Continent
             ;(async () => {
@@ -228,15 +247,18 @@
                 const PlacesContinent: PlacesContinent[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(PlacesContinent) && PlacesContinent.length > 0) {
+                    placesContinentIDimageCover.value = PlacesContinent[0].id_image_cover;
+                    placesContinentIDimageHero.value = PlacesContinent[0].id_image_hero;
+                    placesContinentTypePlace.value = PlacesContinent[0].type_place;
                     placesContinentSlug.value = PlacesContinent[0].slug;
                     placesContinentName.value = PlacesContinent[0].name;
-                    placesContinentArea.value = PlacesContinent[0].population;
-                    placesContinentPopulation.value = PlacesContinent[0].populationDensity;
-                    placesContinentPopulationDensity.value = PlacesContinent[0].number_states;
-                    placesContinentNumberStates.value = PlacesContinent[0].altitude;
                     placesContinentInformationChatgpt.value = PlacesContinent[0].information_chatgpt;
-                    placesContinentIdImageCover.value = PlacesContinent[0].id_image_cover;
-                    placesContinentIdImageHero.value = PlacesContinent[0].id_image_hero;
+                    placesContinentArea.value = PlacesContinent[0].area;
+                    placesContinentPopulation.value = PlacesContinent[0].population;
+                    placesContinentPopulationDensity.value = PlacesContinent[0].population_density;
+                    placesContinentNumberStates.value = PlacesContinent[0].number_states;
+                    placesContinentCoordinates.value = JSON.stringify(PlacesContinent[0].coordinates);
+                    placesContinentZoom.value = JSON.stringify(PlacesContinent[0].zoom);
                 } else {
 
                 }
@@ -254,15 +276,18 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
+                            'id_image_cover': placesContinentIDimageCover.value,
+                            'id_image_hero': placesContinentIDimageHero.value,
+                            'type_place': placesContinentTypePlace.value,
                             'slug': placesContinentSlug.value,
                             'name': placesContinentName.value,
+                            'information_chatgpt': placesContinentInformationChatgpt.value,
                             'area': placesContinentArea.value,
                             'population': placesContinentPopulation.value,
-                            'populationDensity': placesContinentPopulationDensity.value,
+                            'population_density': placesContinentPopulationDensity.value,
                             'number_states': placesContinentNumberStates.value,
-                            'information_chatgpt': placesContinentInformationChatgpt.value,
-                            'image_cover': placesContinentIdImageCover.value,
-                            'image_hero': placesContinentIdImageHero.value
+                            'coordinates': placesContinentCoordinates.value,
+                            'zoom': placesContinentZoom.value
                         })
                     })
                     .then(() => {
@@ -280,7 +305,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesContinentSlug, placesContinentName, placesContinentArea, placesContinentPopulation, placesContinentPopulationDensity, placesContinentNumberStates, placesContinentInformationChatgpt, placesContinentIdImageCover, placesContinentIdImageHero, editForm }
+            return { successForm, errorForm, placesContinentIDimageCover, placesContinentIDimageHero, placesContinentTypePlace, placesContinentSlug, placesContinentName, placesContinentInformationChatgpt, placesContinentArea, placesContinentPopulation, placesContinentPopulationDensity, placesContinentNumberStates, placesContinentCoordinates, placesContinentZoom, editForm }
         },
 
         mounted() {

@@ -21,53 +21,89 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
-                                <form class="o-form-create__form" @submit.prevent="createForm">
+                                 <!-- FORM -->
+                                 <form class="o-form-create__form" @submit.prevent="createForm">
                                     <div class="o-form-create__items">
-                                        
+                                        <!-- slug -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="placesSpotSlug" />
                                         </div>
-                                                                            
+                                        <!-- ids -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Name:</span>
+                                                <span class="m-label__name">Stát:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="state" v-model="placesSpotIDstate" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Město:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="city" v-model="placesSpotIDcity" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Cover:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageCover" v-model="placesSpotIDimageCover" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Hero:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageHero" v-model="placesSpotIDimageHero" />
+                                        </div>
+                                        <!-- other --> 
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Jméno:</span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="placesSpotName" />
                                         </div>
-
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Informace (Chat GPT):</span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesSpotInformationChatgpt"></textarea>
                                         </div>
-
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Cover):</span>
+                                                <span class="m-label__name">Nadmořská výška:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_cover" v-model="placesSpotImageCover" />
-                                        </div>
-
-                                        <div class="o-form-edit__item">
+                                            <textarea class="a-textarea" type="text" name="altitude" v-model="placesSpotAltitude"></textarea>
+                                        </div>  
+                                        <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Hero):</span>
+                                                <span class="m-label__name">Souřadnice:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_hero" v-model="placesSpotImageHero" />
+                                            <textarea class="a-textarea" type="text" name="coordinates" v-model="placesSpotCoordinates"></textarea>
                                         </div>
-
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Zoom:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="zoom" v-model="placesSpotZoom"></textarea>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Affiliate:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="affiliate" v-model="placesSpotAffiliate"></textarea>
+                                        </div>                           
                                     </div>
+                                    <!-- button -->
                                     <div class="o-form-create__buttons mt-1">
                                         <div class="o-form-create__button">
                                             <div class="m-button">
-                                                <button class="m-button__input" type="submit">Vytvořit stát</button>
+                                                <button class="m-button__input" type="submit">Vytvořit místo</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+                                <!-- FORM END -->
                             </div>
                         </div>
                     </div>
@@ -152,11 +188,18 @@
             const runTimeConfig = useRuntimeConfig()
             const errorForm = ref('')
             const successForm = ref('')
+            const placesSpotIDstate = ref(0)
+            const placesSpotIDcity = ref(0)
+            const placesSpotIDimageCover = ref(0)
+            const placesSpotIDimageHero = ref(0)
+            const placesSpotTypePlace = ref('')
             const placesSpotSlug = ref('')
             const placesSpotName = ref('')
             const placesSpotInformationChatgpt = ref('')
-            const placesSpotImageCover = ref('')
-            const placesSpotImageHero = ref('')
+            const placesSpotAltitude = ref('')
+            const placesSpotCoordinates = ref('')
+            const placesSpotZoom = ref('')
+            const placesSpotAffiliate = ref('')
 
             //FORM - create
             const createForm = async () => {
@@ -170,11 +213,18 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
+                            'id_state': placesSpotIDstate.value,
+                            'id_city': placesSpotIDcity.value,
+                            'id_image_cover': placesSpotIDimageCover.value,
+                            'id_image_hero': placesSpotIDimageHero.value,
+                            'type_place': placesSpotTypePlace.value,
                             'slug': placesSpotSlug.value,
                             'name': placesSpotName.value,
                             'information_chatgpt': placesSpotInformationChatgpt.value,
-                            'image_cover': placesSpotImageCover.value,
-                            'image_hero': placesSpotImageHero.value
+                            'altitude': placesSpotAltitude.value,
+                            'coordinates': placesSpotCoordinates.value,
+                            'zoom': placesSpotZoom.value,
+                            'affiliate': placesSpotAffiliate.value
                         })
                     })
                     .then(() => {
@@ -193,7 +243,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesSpotSlug, placesSpotName, placesSpotInformationChatgpt, placesSpotImageCover, placesSpotImageHero, createForm }
+            return { successForm, errorForm, placesSpotIDstate, placesSpotIDcity, placesSpotIDimageCover, placesSpotIDimageHero, placesSpotTypePlace, placesSpotSlug, placesSpotName, placesSpotInformationChatgpt, placesSpotAltitude, placesSpotCoordinates, placesSpotZoom, placesSpotAffiliate, createForm }
         },
 
         mounted() {

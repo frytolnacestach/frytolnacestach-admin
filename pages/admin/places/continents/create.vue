@@ -21,73 +21,86 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
+                                <!-- FORM -->
                                 <form class="o-form-create__form" @submit.prevent="createForm">
                                     <div class="o-form-create__items">
-                                        
+                                        <!-- slug -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="placesContinentSlug" />
                                         </div>
-                                                                            
+                                        <!-- ids -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Name:</span>
+                                                <span class="m-label__name">Image Cover:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageCover" v-model="placesContinentIDimageCover" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Hero:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageHero" v-model="placesContinentIDimageHero" />
+                                        </div>
+                                        <!-- other --> 
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Typ místa:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="typePlace" v-model="placesContinentTypePlace" />
+                                        </div>                    
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Jméno:</span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="placesContinentName" />
                                         </div>
-                                
                                         <div class="o-form-create__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Area:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="area" v-model="placesContinentArea" />
-                                        </div>
-    
-                                        <div class="o-form-create__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Population:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="population" v-model="placesContinentPopulation" />
-                                        </div>
-
-                                        <div class="o-form-create__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Population density:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="populationDensity" v-model="placesContinentPopulationDensity" />
-                                        </div>
-
-                                        <div class="o-form-create__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">States</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="number_states" v-model="placesContinentNumberStates" />
-                                        </div>
-
-                                        <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Informace (Chat GPT):</span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesContinentInformationCahtgpt"></textarea>
+                                            <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesContinentInformationChatgpt"></textarea>
                                         </div>
-
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Cover):</span>
+                                                <span class="m-label__name">Rozloha:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_cover" v-model="placesContinentImageCover" />
+                                            <input class="a-input" type="text" name="area" v-model="placesContinentArea" />
                                         </div>
-
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Hero):</span>
+                                                <span class="m-label__name">Populace:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_hero" v-model="placesContinentImageHero" />
+                                            <input class="a-input" type="text" name="population" v-model="placesContinentPopulation" />
                                         </div>
-
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Hustota populace:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="population_density" v-model="placesContinentPopulationDensity" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Počet států:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="number_states" v-model="placesContinentNumberStates" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Souřadnice:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="coordinates" v-model="placesContinentCoordinates"></textarea>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Zoom:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="zoom" v-model="placesContinentZoom"></textarea>
+                                        </div>                              
                                     </div>
+                                    <!-- button -->
                                     <div class="o-form-create__buttons mt-1">
                                         <div class="o-form-create__button">
                                             <div class="m-button">
@@ -96,6 +109,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                <!-- FORM END -->
                             </div>
                         </div>
                     </div>
@@ -180,15 +194,18 @@
             const runTimeConfig = useRuntimeConfig()
             const errorForm = ref('')
             const successForm = ref('')
+            const placesContinentIDimageCover = ref(0)
+            const placesContinentIDimageHero = ref(0)
+            const placesContinentTypePlace = ref('')
             const placesContinentSlug = ref('')
             const placesContinentName = ref('')
+            const placesContinentInformationChatgpt = ref('')
             const placesContinentArea = ref('')
             const placesContinentPopulation = ref('')
             const placesContinentPopulationDensity = ref('')
             const placesContinentNumberStates = ref('')
-            const placesContinentInformationCahtgpt = ref('')
-            const placesContinentImageCover = ref('')
-            const placesContinentImageHero = ref('')
+            const placesContinentCoordinates = ref('')
+            const placesContinentZoom = ref('')
 
             //FORM - create
             const createForm = async () => {
@@ -202,15 +219,18 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
+                            'id_image_cover': placesContinentIDimageCover.value,
+                            'id_image_hero': placesContinentIDimageHero.value,
+                            'type_place': placesContinentTypePlace.value,
                             'slug': placesContinentSlug.value,
                             'name': placesContinentName.value,
+                            'information_chatgpt': placesContinentInformationChatgpt.value,
                             'area': placesContinentArea.value,
                             'population': placesContinentPopulation.value,
-                            'populationDensity': placesContinentPopulationDensity.value,
+                            'population_density': placesContinentPopulationDensity.value,
                             'number_states': placesContinentNumberStates.value,
-                            'information_chatgpt': placesContinentInformationCahtgpt.value,
-                            'image_cover': placesContinentImageCover.value,
-                            'image_hero': placesContinentImageHero.value
+                            'coordinates': placesContinentCoordinates.value,
+                            'zoom': placesContinentZoom.value
                         })
                     })
                     .then(() => {
@@ -229,7 +249,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesContinentSlug, placesContinentName, placesContinentArea, placesContinentPopulation, placesContinentPopulationDensity, placesContinentNumberStates, placesContinentInformationCahtgpt, placesContinentImageCover, placesContinentImageHero, createForm }
+            return { successForm, errorForm, placesContinentIDimageCover, placesContinentIDimageHero, placesContinentTypePlace, placesContinentSlug, placesContinentName, placesContinentInformationChatgpt, placesContinentArea, placesContinentPopulation, placesContinentPopulationDensity, placesContinentNumberStates, placesContinentCoordinates, placesContinentZoom, createForm }
         },
 
         mounted() {

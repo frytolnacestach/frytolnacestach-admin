@@ -20,82 +20,168 @@
                                 <oFlashMessages :text="errorForm" styleThema=" -error" />
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
-
+                                
+                                <!-- FORM -->
                                 <form class="o-form-create__form" @submit.prevent="createForm">
                                     <div class="o-form-create__items">
-                                        
+                                        <!-- slug -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="placesStateSlug" />
                                         </div>
-
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">MPZ:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="mpz" v-model="placesStateMpz" />
-                                        </div>
-                                                                            
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">TLD:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="tld" v-model="placesStateTld" />
-                                        </div>
-                                                                            
+                                        <!-- ids -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Name:</span>
+                                                <span class="m-label__name">Kontinent:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="image_hero" v-model="placesStateIDcontinent" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Hlavní město:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="city_main" v-model="placesStateIDcityMain" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image (Cover):</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="image_cover" v-model="placesStateIDimageCover" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image (Hero):</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="image_hero" v-model="placesStateIDimageHero" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Sousední státy:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="neighboring_countries" v-model="placesStateIDSneighboringCountries"></textarea>
+                                        </div>
+                                        <!-- other -->
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Jméno:</span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="placesStateName" />
                                         </div>
-
                                         <div class="o-form-create__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Area:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="area" v-model="placesStateArea" />
-                                        </div>
-    
-                                        <div class="o-form-create__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Population:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="population" v-model="placesStatePopulation" />
-                                        </div>
-
-                                        <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Informace (Chat GPT):</span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesStateInformationChatgpt"></textarea>
                                         </div>
-
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Cover):</span>
+                                                <span class="m-label__name">MPZ:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_cover" v-model="placesStateImageCover" />
-                                        </div>
-
-                                        <div class="o-form-edit__item">
+                                            <input class="a-input" type="text" name="mpz" v-model="placesStateMpz" />
+                                        </div>                               
+                                        <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Hero):</span>
+                                                <span class="m-label__name">TLD:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_hero" v-model="placesStateImageHero" />
+                                            <input class="a-input" type="text" name="tld" v-model="placesStateTld" />
                                         </div>
-
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Rozloha:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="area" v-model="placesStateArea" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Populace:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="population" v-model="placesStatePopulation" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Telefonní předvolba:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="phone_prefix" v-model="placesStatePhonePrefix" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Důležitá telefonní čísla:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="phone_numbers_emergency" v-model="placesStatePhoneNumbersEmergency"></textarea>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Název měny:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="currency_name" v-model="placesStateCurrencyName" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Kód měny:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="currency_code" v-model="placesStateCurrencyCode" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Ceny:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="money_prices" v-model="placesStateMoneyPrices"></textarea>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Náboženství:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="people_religion" v-model="placesStatePeopleReligion"></textarea>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Národnost:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="people_nationality" v-model="placesStatePeopleNationality"></textarea>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Návštěvnická pravidla:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="visitors_entry" v-model="placesStateVisitorsEntry"></textarea>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Souřadnice:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="coordinates" v-model="placesStateCoordinates"></textarea>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Zoom:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="zoom" v-model="placesStateZoom"></textarea>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Affiliate:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="affiliate" v-model="placesStateAffiliate"></textarea>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Alerty:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="alerts" v-model="placesStateAlerts"></textarea>
+                                        </div>                                                                        
                                     </div>
+                                    <!-- button -->
                                     <div class="o-form-create__buttons mt-1">
                                         <div class="o-form-create__button">
                                             <div class="m-button">
-                                                <button class="m-button__input" type="submit">Vytvořit stát</button>
+                                                <button class="m-button__input" type="submit">Uložit úpravy</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+                                <!-- FORM END -->
                             </div>
                         </div>
                     </div>
@@ -180,15 +266,31 @@
             const runTimeConfig = useRuntimeConfig()
             const errorForm = ref('')
             const successForm = ref('')
+            const placesStateIDcontinent = ref(0)
+            const placesStateIDcityMain = ref(0)
+            const placesStateIDimageCover = ref(0)
+            const placesStateIDimageHero = ref(0)
+            const placesStateIDSneighboringCountries = ref('')
+            const placesStateTypePlace = ref('')
             const placesStateSlug = ref('')
+            const placesStateName = ref('')
+            const placesStateInformationChatgpt = ref('')
             const placesStateMpz = ref('')
             const placesStateTld = ref('')
-            const placesStateName = ref('')
-            const placesStateArea = ref('')
-            const placesStatePopulation = ref('')
-            const placesStateInformationChatgpt = ref('')
-            const placesStateImageCover = ref('')
-            const placesStateImageHero = ref('')
+            const placesStateArea = ref(0)
+            const placesStatePopulation = ref(0)
+            const placesStatePhonePrefix = ref('')
+            const placesStatePhoneNumbersEmergency = ref('')
+            const placesStateCurrencyName = ref('')
+            const placesStateCurrencyCode = ref('')
+            const placesStateMoneyPrices = ref('')
+            const placesStatePeopleReligion = ref('')
+            const placesStatePeopleNationality = ref('')
+            const placesStateVisitorsEntry = ref('')
+            const placesStateCoordinates = ref('')
+            const placesStateZoom = ref('')
+            const placesStateAffiliate = ref('')
+            const placesStateAlerts = ref('')
 
             //FORM - create
             const createForm = async () => {
@@ -202,15 +304,31 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
+                            'id_continent': placesStateIDcontinent.value,
+                            'id_city_main': placesStateIDcityMain.value,
+                            'id_image_cover': placesStateIDimageCover.value,
+                            'id_image_hero': placesStateIDimageHero.value,
+                            'ids_neighboring_countries': placesStateIDSneighboringCountries.value,
+                            'type_place': placesStateTypePlace.value,
                             'slug': placesStateSlug.value,
+                            'name': placesStateName.value,
+                            'information_chatgpt': placesStateInformationChatgpt.value,
                             'mpz': placesStateMpz.value,
                             'tld': placesStateTld.value,
-                            'name': placesStateName.value,
                             'area': placesStateArea.value,
                             'population': placesStatePopulation.value,
-                            'information_chatgpt': placesStateInformationChatgpt.value,
-                            'image_cover': placesStateImageCover.value,
-                            'image_hero': placesStateImageHero.value
+                            'phone_prefix': placesStatePhonePrefix.value,
+                            'phone_numbers_emergency': placesStatePhoneNumbersEmergency.value,
+                            'currency_name': placesStateCurrencyName.value,
+                            'currency_code': placesStateCurrencyCode.value,
+                            'money_prices': placesStateMoneyPrices.value,
+                            'people_religion': placesStatePeopleReligion.value,
+                            'people_nationality': placesStatePeopleNationality.value,
+                            'visitors_entry': placesStateVisitorsEntry.value,
+                            'coordinates': placesStateCoordinates.value,
+                            'zoom': placesStateZoom.value,
+                            'affiliate': placesStateAffiliate.value,
+                            'alerts': placesStateAlerts.value
                         })
                     })
                     .then(() => {
@@ -229,7 +347,36 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesStateSlug, placesStateMpz, placesStateTld, placesStateName, placesStateArea, placesStatePopulation, placesStateInformationChatgpt, placesStateImageCover, placesStateImageHero, createForm }
+            return {
+                successForm, 
+                errorForm, 
+                placesStateIDcontinent,
+                placesStateIDcityMain,
+                placesStateIDimageCover,
+                placesStateIDimageHero,
+                placesStateIDSneighboringCountries,
+                placesStateTypePlace,
+                placesStateSlug,
+                placesStateName,
+                placesStateInformationChatgpt,
+                placesStateMpz,
+                placesStateTld,
+                placesStateArea,
+                placesStatePopulation,
+                placesStatePhonePrefix,
+                placesStatePhoneNumbersEmergency,
+                placesStateCurrencyName,
+                placesStateCurrencyCode,
+                placesStateMoneyPrices,
+                placesStatePeopleReligion,
+                placesStatePeopleNationality,
+                placesStateVisitorsEntry,
+                placesStateCoordinates,
+                placesStateZoom,
+                placesStateAffiliate,
+                placesStateAlerts,
+                createForm
+            }
         },
 
         mounted() {

@@ -26,16 +26,14 @@
                                 <div class="o-admin-list__items" v-if="placesStates.length">
                                     <div v-for="placesState in placesStates" :key="placesState.id" class="o-admin-list__item">
                                         <h3 class="o-admin-list__title">
-                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/states/${placesState.slug}`">{{ placesState.name}}</NuxtLink>
+                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/states/${placesState.slug}`">{{ placesState.name }}</NuxtLink>
                                         </h3>
                                         <p class="o-admin-list__perex">
                                             <strong>
                                                 Kontinent: {{ placesState.id_continent }}<br>
                                             </strong>
-                                            ____<br>
-                                            MPZ: {{ placesState.mpz }}<br>
-                                            Rozloha: {{ placesState.area }} m2<br>
-                                            Populace: {{ placesState.population }}<br>
+                                            <hr>
+                                            {{ placesState.information_chatgpt }}
                                         </p>
                                     </div>
                                 </div>
@@ -59,10 +57,8 @@
         id: number
         name: string
         slug: string
-        id_continent: string
-        mpz: string
-        area: string
-        population: string
+        id_continent: number
+        information_chatgpt: string
     }
 
     export default defineComponent({

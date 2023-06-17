@@ -21,31 +21,51 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
+                                <!-- FORM -->
                                 <form class="o-form-create__form" @submit.prevent="createForm">
                                     <div class="o-form-create__items">
-                                        
+                                        <!-- slug -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="brandSlug" />
                                         </div>
-                                                                            
+                                        <!-- ids -->
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Cover:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageCover" v-model="brandIDimageCover" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Hero:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageHero" v-model="brandIDimageHero" />
+                                        </div>
+                                        <!-- json -->
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">IDs states:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="idsStates" v-model="brandIDSstates"></textarea>
+                                        </div>
+                                        <!-- other -->                             
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Name:</span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="brandName" />
                                         </div>
-                                
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Description:</span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="description" v-model="brandDescription"></textarea>
                                         </div>
-
                                     </div>
+                                    <!-- button -->
                                     <div class="o-form-create__buttons mt-1">
                                         <div class="o-form-create__button">
                                             <div class="m-button">
@@ -54,6 +74,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                <!-- FORM END -->
                             </div>
                         </div>
                     </div>
@@ -133,6 +154,9 @@
             const errorForm = ref('')
             const successForm = ref('')
             const brandSlug = ref('')
+            const brandIDimageCover = ref(0)
+            const brandIDimageHero = ref(0)
+            const brandIDSstates = ref('')
             const brandName = ref('')
             const brandDescription = ref('')
 
@@ -149,6 +173,9 @@
                         method: 'POST',
                         body: JSON.stringify({
                             'slug': brandSlug.value,
+                            'id_image_cover': brandIDimageCover.value,
+                            'id_image_hero': brandIDimageHero.value,
+                            'ids_states': brandIDSstates.value,
                             'name': brandName.value,
                             'description': brandDescription.value
                         })
@@ -169,7 +196,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, brandSlug, brandName, brandDescription, createForm }
+            return { successForm, errorForm, brandSlug, brandIDimageCover, brandIDimageHero, brandIDSstates, brandName, brandDescription, createForm }
         },
 
         mounted() {

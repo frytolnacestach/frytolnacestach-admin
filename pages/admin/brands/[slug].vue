@@ -21,31 +21,51 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
+                                <!-- FORM -->
                                 <form class="o-form-edit__form" @submit.prevent="editForm">
                                     <div class="o-form-edit__items">
-                                        
+                                        <!-- slug -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="brandSlug" />
                                         </div>
-                                                                            
+                                        <!-- ids -->
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Cover:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageCover" v-model="brandIDimageCover" />
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Hero:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageHero" v-model="brandIDimageHero" />
+                                        </div>
+                                        <!-- json -->
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">IDs states:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="idsStates" v-model="brandIDSstates"></textarea>
+                                        </div>
+                                        <!-- other -->                            
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Name:</span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="brandName" />
                                         </div>
-                                
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Description:</span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="description" v-model="brandDescription"></textarea>
-                                        </div>
-                                                                        
+                                        </div>                            
                                     </div>
+                                    <!-- button -->
                                     <div class="o-form-edit__buttons mt-1">
                                         <div class="o-form-edit__button">
                                             <div class="m-button">
@@ -54,6 +74,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                <!-- FORM END -->
                             </div>
                         </div>
                     </div>
@@ -69,12 +90,12 @@
     import oHero from '@/components/organisms/oHero.vue'
 
     interface Brand {
+        id_image_cover: number
+        id_image_hero: number
+        ids_states: string
         slug: string
-        name: string,
-        description: string,
-        url: string,
-        facts: string,
-        date: string
+        name: string
+        description: string
     }
 
     export default defineComponent({
@@ -160,6 +181,9 @@
             const errorForm = ref('')
             const successForm = ref('')
             const brandSlug = ref('')
+            const brandIDimageCover = ref(0)
+            const brandIDimageHero = ref(0)
+            const brandIDSstates = ref('')
             const brandName = ref('')
             const brandDescription = ref('')
 
@@ -167,10 +191,13 @@
             ;(async () => {
                 const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/brand/${route.params.slug}`)
                 
-                const brand: Brand[] = JSON.parse(_rawValue)
+                const Brand: Brand[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Brand) && Brand.length > 0) {
                     brandSlug.value = Brand[0].slug;
+                    brandIDimageCover.value = Brand[0].id_image_cover;
+                    brandIDimageHero.value = Brand[0].id_image_hero;
+                    brandIDSstates.value = JSON.stringify(Brand[0].ids_states);
                     brandName.value = Brand[0].name;
                     brandDescription.value = Brand[0].description;
                 } else {
@@ -191,6 +218,9 @@
                         method: 'POST',
                         body: JSON.stringify({
                             'slug': brandSlug.value,
+                            'id_image_cover': brandIDimageCover.value,
+                            'id_image_hero': brandIDimageHero.value,
+                            'ids_states': brandIDSstates.value,
                             'name': brandName.value,
                             'description': brandDescription.value,
                         })
@@ -210,7 +240,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, brandSlug, brandName, brandDescription, editForm }
+            return { successForm, errorForm, brandSlug, brandIDimageCover, brandIDimageHero, brandIDSstates, brandName, brandDescription, editForm }
         },
 
         mounted() {

@@ -21,45 +21,68 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
+                                <!-- FORM -->
                                 <form class="o-form-create__form" @submit.prevent="createForm">
                                     <div class="o-form-create__items">
-                                        
+                                        <!-- slug -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="placesRegionSlug" />
                                         </div>
-                                                                            
+                                        <!-- ids -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Name:</span>
+                                                <span class="m-label__name">Stát:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="state" v-model="placesRegionIDstate" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Cover:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageCover" v-model="placesRegionIDimageCover" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Hero:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageHero" v-model="placesRegionIDimageHero" />
+                                        </div>
+                                        <!-- other --> 
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Jméno:</span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="placesRegionName" />
                                         </div>
-
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Informace (Chat GPT):</span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesRegionInformationChatgpt"></textarea>
                                         </div>
-
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Cover):</span>
+                                                <span class="m-label__name">Souřadnice:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_cover" v-model="placesRegionImageCover" />
+                                            <textarea class="a-textarea" type="text" name="coordinates" v-model="placesRegionCoordinates"></textarea>
                                         </div>
-
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Hero):</span>
+                                                <span class="m-label__name">Zoom:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_hero" v-model="placesRegionImageHero" />
+                                            <textarea class="a-textarea" type="text" name="zoom" v-model="placesRegionZoom"></textarea>
                                         </div>
-
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Affiliate:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="affiliate" v-model="placesRegionAffiliate"></textarea>
+                                        </div>                          
                                     </div>
+                                    <!-- button -->
                                     <div class="o-form-create__buttons mt-1">
                                         <div class="o-form-create__button">
                                             <div class="m-button">
@@ -68,6 +91,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                <!-- FORM END -->
                             </div>
                         </div>
                     </div>
@@ -152,11 +176,16 @@
             const runTimeConfig = useRuntimeConfig()
             const errorForm = ref('')
             const successForm = ref('')
+            const placesRegionIDstate = ref(0)
+            const placesRegionIDimageCover = ref(0)
+            const placesRegionIDimageHero = ref(0)
+            const placesRegionTypePlace = ref('')
             const placesRegionSlug = ref('')
             const placesRegionName = ref('')
             const placesRegionInformationChatgpt = ref('')
-            const placesRegionImageCover = ref('')
-            const placesRegionImageHero = ref('')
+            const placesRegionCoordinates = ref('')
+            const placesRegionZoom = ref('')
+            const placesRegionAffiliate = ref('')
 
             //FORM - create
             const createForm = async () => {
@@ -170,11 +199,16 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
+                            'id_state': placesRegionIDstate.value,
+                            'id_image_cover': placesRegionIDimageCover.value,
+                            'id_image_hero': placesRegionIDimageHero.value,
+                            'type_place': placesRegionTypePlace.value,
                             'slug': placesRegionSlug.value,
                             'name': placesRegionName.value,
                             'information_chatgpt': placesRegionInformationChatgpt.value,
-                            'image_cover': placesRegionImageCover.value,
-                            'image_hero': placesRegionImageHero.value
+                            'coordinates': placesRegionCoordinates.value,
+                            'zoom': placesRegionZoom.value,
+                            'affiliate': placesRegionAffiliate.value
                         })
                     })
                     .then(() => {
@@ -193,7 +227,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesRegionSlug, placesRegionName, placesRegionInformationChatgpt, placesRegionImageCover, placesRegionImageHero, createForm }
+            return { successForm, errorForm, placesRegionIDstate, placesRegionIDimageCover, placesRegionIDimageHero, placesRegionTypePlace, placesRegionSlug, placesRegionName, placesRegionInformationChatgpt, placesRegionCoordinates, placesRegionZoom, placesRegionAffiliate, createForm }
         },
 
         mounted() {

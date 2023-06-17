@@ -26,11 +26,10 @@
                                 <div class="o-admin-list__items" v-if="placesContinents.length">
                                     <div v-for="placesContinent in placesContinents" :key="placesContinent.id" class="o-admin-list__item">
                                         <h3 class="o-admin-list__title">
-                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/continents/${placesContinent.slug}`">{{ placesContinent.name}}</NuxtLink>
+                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/continents/${placesContinent.slug}`">{{ placesContinent.name }}</NuxtLink>
                                         </h3>
                                         <p class="o-admin-list__perex">
-                                            Rozloha: {{ placesContinent.area }} km2<br>
-                                            Populace: {{ placesContinent.population }}<br>
+                                            {{ placesContinent.information_chatgpt }}
                                         </p>
                                     </div>
                                 </div>
@@ -54,8 +53,7 @@
         id: number
         name: string
         slug: string
-        area: string
-        population: string
+        information_chatgpt: string
     }
 
     export default defineComponent({

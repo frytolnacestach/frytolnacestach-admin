@@ -216,7 +216,7 @@
                                             <textarea class="a-textarea" type="text" name="times" v-model="postTimes"></textarea>
                                         </div>
                                     </div>
-                                    <!--button-->
+                                    <!-- button -->
                                     <div class="o-form-edit__buttons mt-1">
                                         <div class="o-form-edit__button">
                                             <div class="m-button">

@@ -21,39 +21,72 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
+                                <!-- FORM -->
                                 <form class="o-form-create__form" @submit.prevent="createForm">
                                     <div class="o-form-create__items">
-                                        
+                                        <!-- slug -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="foodSlug" />
                                         </div>
-                                                                            
+                                        <!-- ids -->
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Cover:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageCover" v-model="foodIDimageCover" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Image Hero:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="imageHero" v-model="foodIDimageHero" />
+                                        </div>
+                                        <!-- json -->
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">IDs states:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="idsStates" v-model="foodIDSstates"></textarea>
+                                        </div>
+                                        <!-- other -->                             
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Name:</span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="foodName" />
                                         </div>
-                                
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Description:</span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="description" v-model="foodDescription"></textarea>
                                         </div>
-
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Ingredients:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="ingredients" v-model="foodIngredients"></textarea>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Recipe:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="recipe" v-model="foodRecipe"></textarea>
+                                        </div>                       
                                     </div>
+                                    <!-- button -->
                                     <div class="o-form-create__buttons mt-1">
                                         <div class="o-form-create__button">
                                             <div class="m-button">
-                                                <button class="m-button__input" type="submit">Vytvořit floru</button>
+                                                <button class="m-button__input" type="submit">Uložit úpravy</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+                                <!-- FORM END -->
                             </div>
                         </div>
                     </div>
@@ -133,8 +166,13 @@
             const errorForm = ref('')
             const successForm = ref('')
             const foodSlug = ref('')
+            const foodIDimageCover = ref(0)
+            const foodIDimageHero = ref(0)
+            const foodIDSstates = ref('')
             const foodName = ref('')
             const foodDescription = ref('')
+            const foodIngredients = ref('')
+            const foodRecipe = ref('')
 
             //FORM - create
             const createForm = async () => {
@@ -149,8 +187,13 @@
                         method: 'POST',
                         body: JSON.stringify({
                             'slug': foodSlug.value,
+                            'id_image_cover': foodIDimageCover.value,
+                            'id_image_hero': foodIDimageHero.value,
+                            'ids_states': foodIDSstates.value,
                             'name': foodName.value,
-                            'description': foodDescription.value
+                            'description': foodDescription.value,
+                            'ingredients': foodIngredients.value,
+                            'recipe': foodRecipe.value,
                         })
                     })
                     .then(() => {
@@ -169,7 +212,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, foodSlug, foodName, foodDescription, createForm }
+            return { successForm, errorForm, foodSlug, foodIDimageCover, foodIDimageHero, foodIDSstates, foodName, foodDescription, foodIngredients, foodRecipe, createForm }
         },
 
         mounted() {
