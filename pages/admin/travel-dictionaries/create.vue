@@ -2,7 +2,7 @@
     <NuxtLayout name="admin">
         <main class="t-main">
             <!-- SECTION - HERO -->
-            <oHero headline="Přidání nové fauny" />
+            <oHero headline="Přidání výrazu do cestovatelskýho slovníku" />
             <!-- SECTION - HERO END -->
 
             <!-- SECTION - BREADCRUMBS Admin -->
@@ -29,72 +29,40 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="faunaSlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="travelDictionarySlug" />
                                         </div>
                                         <!-- ids -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Image Cover:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageCover" v-model="faunaIDimageCover" />
+                                            <input class="a-input" type="text" name="imageCover" v-model="travelDictionaryIDimageCover" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Image Hero:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageHero" v-model="faunaIDimageHero" />
+                                            <input class="a-input" type="text" name="imageHero" v-model="travelDictionaryIDimageHero" />
                                         </div>
-                                        <!-- json -->
-                                        <div class="o-form-create__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">IDs states:</span>
-                                            </label>
-                                            <textarea class="a-textarea" type="text" name="idsStates" v-model="faunaIDSstates"></textarea>
-                                        </div>
-                                        <!-- other -->                            
+                                        <!-- other -->                             
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Name:</span>
                                             </label>
-                                            <input class="a-input" type="text" name="name" v-model="faunaName" />
-                                        </div>
-                                        <div class="o-form-create__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Name Lat:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="nameLat" v-model="faunaNameLat" />
-                                        </div>
-                                        <div class="o-form-create__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Location:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="nameLocation" v-model="faunaLocation" />
-                                        </div>
-                                        <div class="o-form-create__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Status IUCN:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="nameStatusIucn" v-model="faunaStatusIucn" />
-                                        </div>
-                                        <div class="o-form-create__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Status danger:</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="nameStatusDanger" v-model="faunaStatusDanger" />
+                                            <input class="a-input" type="text" name="name" v-model="travelDictionaryName" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Description:</span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="description" v-model="faunaDescription"></textarea>
-                                        </div>
-
+                                            <textarea class="a-textarea" type="text" name="description" v-model="travelDictionaryDescription"></textarea>
+                                        </div>                       
                                     </div>
                                     <!-- button -->
                                     <div class="o-form-create__buttons mt-1">
                                         <div class="o-form-create__button">
                                             <div class="m-button">
-                                                <button class="m-button__input" type="submit">Vytvořit faunu</button>
+                                                <button class="m-button__input" type="submit">Vytvořit položku ve slovníku</button>
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +83,7 @@
     import oHero from '@/components/organisms/oHero.vue'
 
     export default defineComponent({
-        name: 'AdminFaunasCreatePage',
+        name: 'AdminTravelDictionariesCreatePage',
 
         //COMPONENTS
         components: {
@@ -135,13 +103,13 @@
                     },
                     {
                         id: 2,
-                        name: "Fauna",
-                        url: "/admin/faunas",
+                        name: "Cestovatelský slovní",
+                        url: "/admin/travel-dictionaries",
                         status: "link"
                     },
                     {
                         id: 3,
-                        name: "Přidání nové fauny",
+                        name: "Přidání nového výrazu do cestovatelského slovníku",
                         url: "",
                         status: "span"
                     }
@@ -157,7 +125,7 @@
 
             //META HEAD
             useHead({
-                title: 'Fauna - vytvoření',
+                title: 'Cestovatelský slovník - vytvoření',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -166,8 +134,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Fauna - vytvoření',
-                ogTitle: 'Fauna - vytvoření',
+                title: 'Cestovaleský slovník - vytvoření',
+                ogTitle: 'Cestovaleský slovník - vytvoření',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
@@ -178,21 +146,16 @@
             const runTimeConfig = useRuntimeConfig()
             const errorForm = ref('')
             const successForm = ref('')
-            const faunaSlug = ref('')
-            const faunaIDimageCover = ref(0)
-            const faunaIDimageHero = ref(0)
-            const faunaIDSstates = ref('')
-            const faunaName = ref('')
-            const faunaNameLat = ref('')
-            const faunaLocation = ref('')
-            const faunaStatusIucn = ref('')
-            const faunaStatusDanger = ref('')
-            const faunaDescription = ref('')
+            const travelDictionaryIDimageCover = ref(0)
+            const travelDictionaryIDimageHero = ref(0)
+            const travelDictionarySlug = ref('')
+            const travelDictionaryName = ref('')
+            const travelDictionaryDescription = ref('')
 
             //FORM - create
             const createForm = async () => {
                 try {
-                    await useFetch(`${runTimeConfig.public.baseURL}/fauna-create`, {
+                    await useFetch(`${runTimeConfig.public.baseURL}/travel-dictionary-create`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -201,22 +164,17 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
-                            'slug': faunaSlug.value,
-                            'id_image_cover': faunaIDimageCover.value,
-                            'id_image_hero': faunaIDimageHero.value,
-                            'ids_states': faunaIDSstates.value,
-                            'name': faunaName.value,
-                            'name_lat': faunaNameLat.value,
-                            'location': faunaLocation.value,
-                            'status_iucn': faunaStatusIucn.value,
-                            'status_danger': faunaStatusDanger.value,
-                            'description': faunaDescription.value,
+                            'id_image_cover': travelDictionaryIDimageCover.value,
+                            'id_image_hero': travelDictionaryIDimageHero.value,
+                            'slug': travelDictionarySlug.value,
+                            'name': travelDictionaryName.value,
+                            'description': travelDictionaryDescription.value
                         })
                     })
                     .then(() => {
                         console.log('Data byla odeslaná');
                         successForm.value = "Data byla odeslaná"
-                        navigateTo(`/admin/faunas/${faunaSlug.value}`)
+                        navigateTo(`/admin/travel-dictionaries/${travelDictionarySlug.value}`)
                     })
                     .catch((error) => {
                         console.log(error);
@@ -229,7 +187,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, faunaSlug, faunaIDimageCover, faunaIDimageHero, faunaIDSstates, faunaName, faunaNameLat, faunaLocation, faunaStatusIucn, faunaStatusDanger, faunaDescription, createForm }
+            return { successForm, errorForm, travelDictionaryIDimageCover, travelDictionaryIDimageHero, travelDictionarySlug, travelDictionaryName, travelDictionaryDescription, createForm }
         },
 
         mounted() {

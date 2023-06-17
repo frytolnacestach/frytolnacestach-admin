@@ -192,7 +192,7 @@
             //FORM - create
             const createForm = async () => {
                 try {
-                    await useFetch(`${runTimeConfig.public.baseURL}/platform-create`, {
+                    await useFetch(`${runTimeConfig.public.baseURL}/flora-create`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Origin": "http://localhost:3000",

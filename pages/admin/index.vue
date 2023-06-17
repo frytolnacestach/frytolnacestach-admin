@@ -125,6 +125,11 @@
                         id: 4,
                         name: "Tradiční jídla",
                         url: "/admin/foods"
+                    },
+                    {
+                        id: 5,
+                        name: "Cestovatelský slovník",
+                        url: "/admin/travel-dictionaries"
                     }
                 ],
                 mNavBreadcrumbsArray: [
