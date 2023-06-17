@@ -258,7 +258,7 @@
             const eventPrices = ref('')
             const eventLinks = ref('')
 
-            //API - Places City
+            //API - Event
             ;(async () => {
                 const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/event/${route.params.slug}`)
                 
