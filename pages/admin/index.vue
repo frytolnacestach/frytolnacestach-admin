@@ -130,6 +130,11 @@
                         id: 5,
                         name: "Cestovatelský slovník",
                         url: "/admin/travel-dictionaries"
+                    },
+                    {
+                        id: 6,
+                        name: "Události",
+                        url: "/admin/events"
                     }
                 ],
                 mNavBreadcrumbsArray: [
