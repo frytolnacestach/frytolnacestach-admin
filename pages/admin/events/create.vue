@@ -40,6 +40,12 @@
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">Region:</span>
+                                            </label>
+                                            <input class="a-input" type="text" name="region" v-model="eventIDregion" />
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">Město:</span>
                                             </label>
                                             <input class="a-input" type="text" name="city" v-model="eventIDcity" />
@@ -207,6 +213,7 @@
             const errorForm = ref('')
             const successForm = ref('')
             const eventIDstate = ref(0)
+            const eventIDregion = ref(0)
             const eventIDcity = ref(0)
             const eventIDspot = ref(0)
             const eventIDimageCover = ref(0)
@@ -235,6 +242,7 @@
                         method: 'POST',
                         body: JSON.stringify({
                             'id_state': eventIDstate.value,
+                            'id_region': eventIDregion.value,
                             'id_city': eventIDcity.value,
                             'id_spot': eventIDspot.value,
                             'id_image_cover': eventIDimageCover.value,
@@ -267,7 +275,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, eventIDstate, eventIDcity, eventIDspot, eventIDimageCover, eventIDimageHero, eventDateStart, eventDateEnd, eventSlug, eventName, eventDescription, eventCoordinates, eventZoom, eventAffiliate, eventPrices, eventLinks, createForm }
+            return { successForm, errorForm, eventIDstate, eventIDregion, eventIDcity, eventIDspot, eventIDimageCover, eventIDimageHero, eventDateStart, eventDateEnd, eventSlug, eventName, eventDescription, eventCoordinates, eventZoom, eventAffiliate, eventPrices, eventLinks, createForm }
         },
         
         mounted() {

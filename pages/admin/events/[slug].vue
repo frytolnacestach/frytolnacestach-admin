@@ -144,6 +144,7 @@
 
     interface Event {
         id_state: number
+        id_region: number
         id_city: number
         id_spot: number
         id_image_cover: number
@@ -243,6 +244,7 @@
             const errorForm = ref('')
             const successForm = ref('')
             const eventIDstate = ref(0)
+            const eventIDregion = ref(0)
             const eventIDcity = ref(0)
             const eventIDspot = ref(0)
             const eventIDimageCover = ref(0)
@@ -266,6 +268,7 @@
                 
                 if (Array.isArray(Event) && Event.length > 0) {
                     eventIDstate.value = Event[0].id_state;
+                    eventIDregion.value = Event[0].id_region;
                     eventIDcity.value = Event[0].id_city;
                     eventIDspot.value = Event[0].id_spot;
                     eventIDimageCover.value = Event[0].id_image_cover;
@@ -298,6 +301,7 @@
                         method: 'POST',
                         body: JSON.stringify({
                             'id_state': eventIDstate.value,
+                            'id_region': eventIDregion.value,
                             'id_city': eventIDcity.value,
                             'id_spot': eventIDspot.value,
                             'id_image_cover': eventIDimageCover.value,
@@ -329,7 +333,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, eventIDstate, eventIDcity, eventIDspot, eventIDimageCover, eventIDimageHero, eventDateStart, eventDateEnd, eventSlug, eventName, eventDescription, eventCoordinates, eventZoom, eventAffiliate, eventPrices, eventLinks, editForm }
+            return { successForm, errorForm, eventIDstate, eventIDregion, eventIDcity, eventIDspot, eventIDimageCover, eventIDimageHero, eventDateStart, eventDateEnd, eventSlug, eventName, eventDescription, eventCoordinates, eventZoom, eventAffiliate, eventPrices, eventLinks, editForm }
         },
 
         mounted() {
