@@ -234,7 +234,7 @@
                     placesRegionInformationChatgpt.value = PlacesRegion[0].information_chatgpt;
                     placesRegionCoordinates.value = JSON.stringify(PlacesRegion[0].coordinates);
                     placesRegionZoom.value = JSON.stringify(PlacesRegion[0].zoom);
-                    placesRegionAffiliate.value = PlacesRegion[0].affiliate;
+                    placesRegionAffiliate.value = JSON.stringify(PlacesRegion[0].affiliate);
                 } else {
 
                 }

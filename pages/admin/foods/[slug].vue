@@ -216,7 +216,7 @@
                     foodIDSstates.value = JSON.stringify(Food[0].ids_states);
                     foodName.value = Food[0].name;
                     foodDescription.value = Food[0].description;
-                    foodIngredients.value = Food[0].ingredients;
+                    foodIngredients.value = JSON.stringify(Food[0].ingredients);
                     foodRecipe.value = Food[0].recipe;
                 } else {
 
