@@ -73,7 +73,7 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Nadmořská výška:</span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="altitude" v-model="placesSpotAltitude"></textarea>
+                                            <input class="a-input" type="text" name="altitude" v-model="placesSpotAltitude" />
                                         </div>  
                                         <div class="o-form-create__item">
                                             <label class="m-label">
