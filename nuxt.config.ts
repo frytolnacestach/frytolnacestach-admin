@@ -33,7 +33,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      baseURL: 'https://frytolnacestach-api.vercel.app/api'
+      baseURL: 'https://api.frytolnacestach.cz/api'
     }
   },
 
