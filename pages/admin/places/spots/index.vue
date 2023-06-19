@@ -78,7 +78,7 @@
                 mNavAdminArray: [
                     {
                         id: 1,
-                        name: "Přidaní státu",
+                        name: "Přidaní místa",
                         url: "/admin/places/spots/create"
                     }
                 ],
