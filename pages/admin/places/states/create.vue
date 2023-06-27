@@ -170,7 +170,25 @@
                                                 <span class="m-label__name">Alerty:</span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="alerts" v-model="placesStateAlerts"></textarea>
-                                        </div>                                                                        
+                                        </div>    
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Organizace:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="organization" v-model="placesStateOrganization"></textarea>
+                                        </div>  
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Aplikace:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="apps" v-model="placesStateApps"></textarea>
+                                        </div>  
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Odkazy:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="links" v-model="placesStateLinks"></textarea>
+                                        </div>                                                                      
                                     </div>
                                     <!-- button -->
                                     <div class="o-form-create__buttons mt-1">
@@ -291,6 +309,9 @@
             const placesStateZoom = ref('')
             const placesStateAffiliate = ref('')
             const placesStateAlerts = ref('')
+            const placesStateOrganization = ref('')
+            const placesStateApps = ref('')
+            const placesStateLinks = ref('')
 
             //FORM - create
             const createForm = async () => {
@@ -328,7 +349,10 @@
                             'coordinates': placesStateCoordinates.value,
                             'zoom': placesStateZoom.value,
                             'affiliate': placesStateAffiliate.value,
-                            'alerts': placesStateAlerts.value
+                            'alerts': placesStateAlerts.value,
+                            'organization': placesStateOrganization.value,
+                            'apps': placesStateApps.value,
+                            'links': placesStateLinks.value
                         })
                     })
                     .then(() => {
@@ -375,6 +399,9 @@
                 placesStateZoom,
                 placesStateAffiliate,
                 placesStateAlerts,
+                placesStateOrganization,
+                placesStateApps,
+                placesStateLinks,
                 createForm
             }
         },
