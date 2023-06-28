@@ -82,7 +82,7 @@ fs.readdir(inputDirPath, async (err, files) => {
         const height = sizeObj.height;
         const prefix = sizeObj.prefix || '';
         const suffix = sizeObj.suffix || '';
-        const outputImagePath = path.join(outputDirPath, `${prefix}${path.parse(file).name}-${width}${suffix}.webp`);
+        const outputImagePath = path.join(outputDirPath, `${prefix}${path.parse(file).name}-${width ? width : height}${suffix}.webp`);
         await resizeAndSaveImage(originalImagePath, outputImagePath, width, height, suffix);
       }
     }
