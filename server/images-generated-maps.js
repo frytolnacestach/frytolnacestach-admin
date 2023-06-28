@@ -8,19 +8,22 @@ const inputDirPath = 'static/storage/maps';
 const outputDirPath = 'static/generated/maps';
 
 // Velikosti obrázků
+// update 2023-06-28
 const sizes = [
-    { width: 300, height: null },
-    { width: 340, height: null },
-    { width: 420, height: null },
-    { width: 550, height: null },
-    { width: 740, height: null },
-    { width: 980, height: null },
-    { width: 300 * 2, height: null, suffix: "-2x" },
-    { width: 340 * 2, height: null, suffix: "-2x" },
-    { width: 420 * 2, height: null, suffix: "-2x" },
-    { width: 550 * 2, height: null, suffix: "-2x" },
-    { width: 740 * 2, height: null, suffix: "-2x" },
-    { width: 980 * 2, height: null, suffix: "-2x" }
+  { width: 320, height: null, prefix: "h-" },
+  { width: 344, height: null, prefix: "h-" },
+  { width: 370, height: null, prefix: "h-" },
+  { width: 430, height: null, prefix: "h-" },
+  { width: 546, height: null, prefix: "h-" },
+  { width: 738, height: null, prefix: "h-" },
+  { width: 962, height: null, prefix: "h-" },
+  { width: 320 * 2, height: null, prefix: "h-", suffix: "-2x" },
+  { width: 344 * 2, height: null, prefix: "h-", suffix: "-2x" },
+  { width: 370 * 2, height: null, prefix: "h-", suffix: "-2x" },
+  { width: 430 * 2, height: null, prefix: "h-", suffix: "-2x" },
+  { width: 546 * 2, height: null, prefix: "h-", suffix: "-2x" },
+  { width: 738 * 2, height: null, prefix: "h-", suffix: "-2x" },
+  { width: 962 * 2, height: null, prefix: "h-", suffix: "-2x" },
 ];
 
 // Funkce pro změnu velikosti a uložení obrázku
@@ -53,12 +56,13 @@ fs.readdir(inputDirPath, async (err, files) => {
       // Vytvoření kopie v původní velikosti a formátu webp
       const originalOutputPath = path.join(outputDirPath, `${path.parse(file).name}.webp`);
       await resizeAndSaveImage(originalImagePath, originalOutputPath, null, null, '');
-      // Vytvoření dalších verzí s novými velikostmi a přidáním suffixu
+      // Vytvoření dalších verzí s novými velikostmi a přidáním prefixu a suffixu
       for (const sizeObj of sizes) {
         const width = sizeObj.width;
         const height = sizeObj.height;
+        const prefix = sizeObj.prefix || '';
         const suffix = sizeObj.suffix || '';
-        const outputImagePath = path.join(outputDirPath, `${path.parse(file).name}-${width}${suffix}.webp`);
+        const outputImagePath = path.join(outputDirPath, `${prefix}${path.parse(file).name}-${width}${suffix}.webp`);
         await resizeAndSaveImage(originalImagePath, outputImagePath, width, height, suffix);
       }
     }

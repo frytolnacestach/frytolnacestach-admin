@@ -8,29 +8,34 @@ const inputDirPath = 'static/storage/articles';
 const outputDirPath = 'static/generated/articles';
 
 // Velikosti obrázků
+// update 2023-06-28
 const sizes = [
-    { width: 340, height: null },
-    { width: 374, height: null },
-    { width: 400, height: null },
-    { width: 540, height: null },
-    { width: 575, height: null },
-    { width: 767, height: null },
-    { width: 991, height: null },
-    { width: 1139, height: null },
-    { width: 1219, height: null },
-    { width: 1399, height: null },
-    { width: 1920, height: null },
-    { width: 340 * 2, height: null, suffix: "-2x" },
-    { width: 374 * 2, height: null, suffix: "-2x" },
-    { width: 400 * 2, height: null, suffix: "-2x" },
-    { width: 540 * 2, height: null, suffix: "-2x" },
-    { width: 575 * 2, height: null, suffix: "-2x" },
-    { width: 767 * 2, height: null, suffix: "-2x" },
-    { width: 991 * 2, height: null, suffix: "-2x" },
-    { width: 1139 * 2, height: null, suffix: "-2x" },
-    { width: 1219 * 2, height: null, suffix: "-2x" },
-    { width: 1399 * 2, height: null, suffix: "-2x" },
-    { width: 1920 * 2, height: null, suffix: "-2x" }
+    { width: 320, height: null, prefix: "h-" },
+    { width: 340, height: null, prefix: "h-" },
+    { width: 360, height: null, prefix: "h-" },
+    { width: 384, height: null, prefix: "h-" },
+    { width: 420, height: null, prefix: "h-" },
+    { width: 442, height: null, prefix: "h-" },
+    { width: 536, height: null, prefix: "h-" },
+    { width: 620, height: null, prefix: "h-" },
+    { width: 728, height: null, prefix: "h-" },
+    { width: 980, height: null, prefix: "h-" },
+    { width: 1180, height: null, prefix: "h-" },
+    { width: 1360, height: null, prefix: "h-" },
+    { width: 1880, height: null, prefix: "h-" },
+    { width: 320 * 2, height: null, prefix: "h-", suffix: "-2x" },
+    { width: 340 * 2, height: null, prefix: "h-", suffix: "-2x" },
+    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+    { width: 384 * 2, height: null, prefix: "h-", suffix: "-2x" },
+    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+    { width: 442 * 2, height: null, prefix: "h-", suffix: "-2x" },
+    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+    { width: 620 * 2, height: null, prefix: "h-", suffix: "-2x" },
+    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+    { width: 980 * 2, height: null, prefix: "h-", suffix: "-2x" },
+    { width: 1180 * 2, height: null, prefix: "h-", suffix: "-2x" },
+    { width: 1360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+    { width: 1880 * 2, height: null, prefix: "h-", suffix: "-2x" }
 ];
 
 // Funkce pro změnu velikosti a uložení obrázku
@@ -63,12 +68,13 @@ fs.readdir(inputDirPath, async (err, files) => {
       // Vytvoření kopie v původní velikosti a formátu webp
       const originalOutputPath = path.join(outputDirPath, `${path.parse(file).name}.webp`);
       await resizeAndSaveImage(originalImagePath, originalOutputPath, null, null, '');
-      // Vytvoření dalších verzí s novými velikostmi a přidáním suffixu
+      // Vytvoření dalších verzí s novými velikostmi a přidáním prefixu a suffixu
       for (const sizeObj of sizes) {
         const width = sizeObj.width;
         const height = sizeObj.height;
+        const prefix = sizeObj.prefix || '';
         const suffix = sizeObj.suffix || '';
-        const outputImagePath = path.join(outputDirPath, `${path.parse(file).name}-${width}${suffix}.webp`);
+        const outputImagePath = path.join(outputDirPath, `${prefix}${path.parse(file).name}-${width}${suffix}.webp`);
         await resizeAndSaveImage(originalImagePath, outputImagePath, width, height, suffix);
       }
     }

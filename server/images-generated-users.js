@@ -3,49 +3,24 @@ const fs = require('fs');
 const path = require('path');
 
 // Cesta ke složce s originálními obrázky
-const inputDirPath = 'static/storage/foods';
+const inputDirPath = 'static/storage/users';
 // Cesta ke složce s výstupními obrázky
-const outputDirPath = 'static/generated/foods';
+const outputDirPath = 'static/generated/users';
 
 // Velikosti obrázků
 // update 2023-06-28
 const sizes = [
-  { width: 330, height: null, prefix: "h-" },
-  { width: 360, height: null, prefix: "h-" },
-  { width: 420, height: null, prefix: "h-" },
-  { width: 536, height: null, prefix: "h-" },
-  { width: 728, height: null, prefix: "h-" },
-  { width: 780, height: null, prefix: "h-" },
-  { width: 900, height: null, prefix: "h-" },
-  { width: 952, height: null, prefix: "h-" },
-  { width: 1248, height: null, prefix: "h-" },
-  { width: null, height: 172, prefix: "s-" },
-  { width: null, height: 186, prefix: "s-" },
-  { width: null, height: 210, prefix: "s-" },
-  { width: null, height: 224, prefix: "s-" },
-  { width: null, height: 240, prefix: "s-" },
-  { width: null, height: 274, prefix: "s-" },
-  { width: null, height: 306, prefix: "s-" },
-  { width: null, height: 360, prefix: "s-" },
-  { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
-  { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-  { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-  { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-  { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-  { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-  { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-  { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-  { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-  { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
-  { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-  { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-  { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-  { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-  { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-  { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-  { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+    { width: 186, height: null, prefix: "s-" },
+    { width: 230, height: null, prefix: "s-" },
+    { width: 256, height: null, prefix: "s-" },
+    { width: 274, height: null, prefix: "s-" },
+    { width: 360, height: null, prefix: "s-" },
+    { width: 186 * 2, height: null, prefix: "s-", suffix: "-2x" },
+    { width: 230 * 2, height: null, prefix: "s-", suffix: "-2x" },
+    { width: 256 * 2, height: null, prefix: "s-", suffix: "-2x" },
+    { width: 274 * 2, height: null, prefix: "s-", suffix: "-2x" },
+    { width: 360 * 2, height: null, prefix: "s-", suffix: "-2x" }
 ];
-
 
 // Funkce pro změnu velikosti a uložení obrázku
 const resizeAndSaveImage = async (inputPath, outputPath, width, height, suffix) => {
