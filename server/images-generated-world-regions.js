@@ -8,7 +8,7 @@ const inputDirPath = 'static/storage/world/regions';
 const outputDirPath = 'static/generated/world/regions';
 
 // Velikosti obrázků
-// update 2023-06-28
+// update 2023-06-29
 const sizes = [
   { width: 108, height: null, prefix: "h-" },
   { width: 126, height: null, prefix: "h-" },

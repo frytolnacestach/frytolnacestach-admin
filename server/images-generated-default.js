@@ -8,8 +8,9 @@ const inputDirPath = 'static/storage/_default';
 const outputDirPath = 'static/generated/_default';
 
 // Velikosti obrázků
-// update 2023-06-28
+// update 2023-06-30
 const sizes = [
+  { width: 100, height: null, prefix: "h-" },
   { width: 108, height: null, prefix: "h-" },
   { width: 126, height: null, prefix: "h-" },
   { width: 172, height: null, prefix: "h-" },
@@ -76,6 +77,7 @@ const sizes = [
   { width: null, height: 556, prefix: "s-" },
   { width: null, height: 738, prefix: "s-" },
   { width: null, height: 962, prefix: "s-" },
+  { width: 100 * 2, height: null, prefix: "h-", suffix: "-2x" },
   { width: 108 * 2, height: null, prefix: "h-", suffix: "-2x" },
   { width: 126 * 2, height: null, prefix: "h-", suffix: "-2x" },
   { width: 172 * 2, height: null, prefix: "h-", suffix: "-2x" },
