@@ -113,6 +113,12 @@
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">Parkování:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="parking" v-model="placesCityParking"></textarea>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">Je město mezi top10 největšími?:</span>
                                             </label>
                                             <input class="a-input" type="text" name="biggest" v-model="placesCityBiggest" />
@@ -226,6 +232,7 @@
             const placesCityZoom = ref('')
             const placesCityAffiliate = ref('')
             const placesCityAlerts = ref('')
+            const placesCityParking = ref('')
             const placesCityBiggest = ref('')
 
             //FORM - create
@@ -254,6 +261,7 @@
                             'zoom': placesCityZoom.value,
                             'affiliate': placesCityAffiliate.value,
                             'alerts': placesCityAlerts.value,
+                            'parking': placesCityParking.value,
                             'biggest': placesCityBiggest.value
                         })
                     })
@@ -273,7 +281,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesCityIDstate, placesCityIDimageCover, placesCityIDimageHero, placesCityTypePlace, placesCitySlug, placesCityName, placesCityInformationChatgpt, placesCityPopulation, placesCityArea, placesCityAltitude, placesCityCoordinates, placesCityZoom, placesCityAffiliate, placesCityAlerts, placesCityBiggest, createForm }
+            return { successForm, errorForm, placesCityIDstate, placesCityIDimageCover, placesCityIDimageHero, placesCityTypePlace, placesCitySlug, placesCityName, placesCityInformationChatgpt, placesCityPopulation, placesCityArea, placesCityAltitude, placesCityCoordinates, placesCityZoom, placesCityAffiliate, placesCityAlerts, placesCityParking, placesCityBiggest, createForm }
         },
         
         mounted() {

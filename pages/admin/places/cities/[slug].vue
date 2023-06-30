@@ -113,6 +113,12 @@
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">Parkování:</span>
+                                            </label>
+                                            <textarea class="a-textarea" type="text" name="parking" v-model="placesCityParking"></textarea>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">Je město mezi top10 největšími?:</span>
                                             </label>
                                             <input class="a-input" type="text" name="biggest" v-model="placesCityBiggest" />
@@ -157,6 +163,7 @@
         zoom: string
         affiliate: string
         alerts: string
+        parking: string
         biggest: string
     }
 
@@ -262,6 +269,7 @@
             const placesCityZoom = ref('')
             const placesCityAffiliate = ref('')
             const placesCityAlerts = ref('')
+            const placesCityParking = ref('')
             const placesCityBiggest = ref('')
 
             //API - Places City
@@ -285,6 +293,7 @@
                     placesCityZoom.value = JSON.stringify(PlacesCity[0].zoom);
                     placesCityAffiliate.value = JSON.stringify(PlacesCity[0].affiliate);
                     placesCityAlerts.value = JSON.stringify(PlacesCity[0].alerts);
+                    placesCityParking.value = JSON.stringify(PlacesCity[0].parking);
                     placesCityBiggest.value = PlacesCity[0].biggest;
                 } else {
 
@@ -317,6 +326,7 @@
                             'zoom': placesCityZoom.value,
                             'affiliate': placesCityAffiliate.value,
                             'alerts': placesCityAlerts.value,
+                            'parking': placesCityParking.value,
                             'biggest': placesCityBiggest.value
                         })
                     })
@@ -335,7 +345,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesCityIDstate, placesCityIDimageCover, placesCityIDimageHero, placesCityTypePlace, placesCitySlug, placesCityName, placesCityInformationChatgpt, placesCityPopulation, placesCityArea, placesCityAltitude, placesCityCoordinates, placesCityZoom, placesCityAffiliate, placesCityAlerts, placesCityBiggest, editForm }
+            return { successForm, errorForm, placesCityIDstate, placesCityIDimageCover, placesCityIDimageHero, placesCityTypePlace, placesCitySlug, placesCityName, placesCityInformationChatgpt, placesCityPopulation, placesCityArea, placesCityAltitude, placesCityCoordinates, placesCityZoom, placesCityAffiliate, placesCityAlerts, placesCityParking, placesCityBiggest, editForm }
         },
 
         mounted() {
