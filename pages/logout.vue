@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="default">
-        <main class="t-main">
+        <main class="t-main -pt-menu">
             <!-- SECTION - HERO -->
             <oHero headline="Odhlášení" />
             <!-- SECTION - HERO END -->
