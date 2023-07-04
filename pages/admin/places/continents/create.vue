@@ -92,13 +92,67 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="coordinates" v-model="placesContinentCoordinates"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesContinentCoordinatesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeCoordinateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Latitude:</label>
+                                                                <input class="a-input" type="text" v-model="item.latitude" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Longitude:</label>
+                                                                <input class="a-input" type="text" v-model="item.longitude" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addCoordinateInput">Přidat souřadnici</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="zoom" v-model="placesContinentZoom"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesContinentZoomArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Google:</label>
+                                                                <input class="a-input" type="text" v-model="item.google" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Booking:</label>
+                                                                <input class="a-input" type="text" v-model="item.booking" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>                              
                                     </div>
                                     <!-- button -->
@@ -162,8 +216,56 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                placesContinentCoordinatesArray: [],
+                placesContinentZoomArray: [],
             }
+        },
+
+        methods: {
+            // coordinates
+            addCoordinateInput() {
+                this.placesContinentCoordinatesArray.push({
+                    latitude: null,
+                    longitude: null
+                });
+            },
+            removeCoordinateInput(index: number) {
+                this.placesContinentCoordinatesArray.splice(index, 1);
+            },
+            // zoom
+            addZoomInput() {
+                this.placesContinentZoomArray.push({
+                    google: null,
+                    booking: null
+                });
+            },
+            removeZoomInput(index: number) {
+                this.placesContinentZoomArray.splice(index, 1);
+            },
+        },
+
+        watch: {
+            placesContinentCoordinates: function (newValue, oldValue) {
+                try {
+                    this.placesContinentCoordinatesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesContinentCoordinatesArray = [];
+                }
+            },
+            placesContinentCoordinatesArray: function (newValue, oldValue) {
+                this.placesContinentCoordinates = JSON.stringify(newValue);
+            },
+            placesContinentZoom: function (newValue, oldValue) {
+                try {
+                    this.placesContinentZoomArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesContinentZoomArray = [];
+                }
+            },
+            placesContinentZoomArray: function (newValue, oldValue) {
+                this.placesContinentZoom = JSON.stringify(newValue);
+            },
         },
 
         setup() {
@@ -195,8 +297,8 @@
             const runTimeConfig = useRuntimeConfig()
             const errorForm = ref('')
             const successForm = ref('')
-            const placesContinentIDimageCover = ref(0)
-            const placesContinentIDimageHero = ref(0)
+            const placesContinentIDimageCover = ref(null)
+            const placesContinentIDimageHero = ref(null)
             const placesContinentTypePlace = ref('')
             const placesContinentSlug = ref('')
             const placesContinentName = ref('')
@@ -206,7 +308,9 @@
             const placesContinentPopulationDensity = ref('')
             const placesContinentNumberStates = ref('')
             const placesContinentCoordinates = ref('')
+            const placesContinentCoordinatesArray = ref([])
             const placesContinentZoom = ref('')
+            const placesContinentZoomArray = ref([])
 
             //FORM - create
             const createForm = async () => {
@@ -230,8 +334,8 @@
                             'population': placesContinentPopulation.value,
                             'population_density': placesContinentPopulationDensity.value,
                             'number_states': placesContinentNumberStates.value,
-                            'coordinates': placesContinentCoordinates.value,
-                            'zoom': placesContinentZoom.value
+                            'coordinates': JSON.stringify(placesContinentCoordinatesArray._value),
+                            'zoom': JSON.stringify(placesContinentZoomArray._value),
                         })
                     })
                     .then(() => {
@@ -250,7 +354,25 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesContinentIDimageCover, placesContinentIDimageHero, placesContinentTypePlace, placesContinentSlug, placesContinentName, placesContinentInformationChatgpt, placesContinentArea, placesContinentPopulation, placesContinentPopulationDensity, placesContinentNumberStates, placesContinentCoordinates, placesContinentZoom, createForm }
+            return {
+                successForm,
+                errorForm,
+                placesContinentIDimageCover,
+                placesContinentIDimageHero,
+                placesContinentTypePlace,
+                placesContinentSlug,
+                placesContinentName,
+                placesContinentInformationChatgpt,
+                placesContinentArea,
+                placesContinentPopulation,
+                placesContinentPopulationDensity,
+                placesContinentNumberStates,
+                placesContinentCoordinates,
+                placesContinentCoordinatesArray,
+                placesContinentZoom,
+                placesContinentZoomArray,
+                createForm
+            }
         },
 
         mounted() {

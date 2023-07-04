@@ -319,7 +319,12 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                eventCoordinatesArray: [],
+                eventZoomArray: [],
+                eventAffiliateArray: [],
+                eventPricesArray: [],
+                eventLinksArray: [],
             }
         },
 
@@ -459,12 +464,12 @@
             const runTimeConfig = useRuntimeConfig()
             const errorForm = ref('')
             const successForm = ref('')
-            const eventIDstate = ref(0)
-            const eventIDregion = ref(0)
-            const eventIDcity = ref(0)
-            const eventIDspot = ref(0)
-            const eventIDimageCover = ref(0)
-            const eventIDimageHero = ref(0)
+            const eventIDstate = ref(null)
+            const eventIDregion = ref(null)
+            const eventIDcity = ref(null)
+            const eventIDspot = ref(null)
+            const eventIDimageCover = ref(null)
+            const eventIDimageHero = ref(null)
             const eventDateStart = ref('')
             const eventDateEnd = ref('')
             const eventSlug = ref('')
