@@ -27,165 +27,172 @@
                                         <!-- slug -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Slug:</span>
+                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="placesStateSlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="placesStateSlug" required />
                                         </div>
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Kontinent:</span>
+                                                <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="image_hero" v-model="placesStateIDcontinent" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Hlavní město:</span>
+                                                <span class="m-label__name">ID Hlavního města <span class="m-label__name-column">(id_city_main)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="city_main" v-model="placesStateIDcityMain" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Cover):</span>
+                                                <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="image_cover" v-model="placesStateIDimageCover" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image (Hero):</span>
+                                                <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="image_hero" v-model="placesStateIDimageHero" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Sousední státy:</span>
+                                                <span class="m-label__name">Sousední státy <span class="m-label__name-column">(ids_neighboring_countries)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="neighboring_countries" v-model="placesStateIDSneighboringCountries"></textarea>
                                         </div>
                                         <!-- other -->
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Jméno:</span>
+                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="name" v-model="placesStateName" />
+                                            <input class="a-input" type="text" name="typePlace" v-model="placesStateTypePlace" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Informace (Chat GPT):</span>
+                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
+                                            </label>
+                                            <input class="a-input" type="text" name="name" v-model="placesStateName" required />
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Informace od Chat GPT <span class="m-label__name-column">(information_chatgpt)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesStateInformationChatgpt"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">MPZ:</span>
+                                                <span class="m-label__name">MPZ <span class="m-label__name-column">(mpz)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="mpz" v-model="placesStateMpz" />
                                         </div>                               
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">TLD:</span>
+                                                <span class="m-label__name">TLD <span class="m-label__name-column">(tld)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="tld" v-model="placesStateTld" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Rozloha:</span>
+                                                <span class="m-label__name">Rozloha <span class="m-label__name-column">(area)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="area" v-model="placesStateArea" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Populace:</span>
+                                                <span class="m-label__name">Populace <span class="m-label__name-column">(population)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="population" v-model="placesStatePopulation" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Telefonní předvolba:</span>
+                                                <span class="m-label__name">Telefonní předvolba <span class="m-label__name-column">(phone_prefix)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="phone_prefix" v-model="placesStatePhonePrefix" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Důležitá telefonní čísla:</span>
+                                                <span class="m-label__name">Důležitá telefonní čísla <span class="m-label__name-column">(phone_numbers_emergency)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="phone_numbers_emergency" v-model="placesStatePhoneNumbersEmergency"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Název měny:</span>
+                                                <span class="m-label__name">Název měny <span class="m-label__name-column">(currency_name)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="currency_name" v-model="placesStateCurrencyName" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Kód měny:</span>
+                                                <span class="m-label__name">Kód měny <span class="m-label__name-column">(currency_code)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="currency_code" v-model="placesStateCurrencyCode" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Ceny:</span>
+                                                <span class="m-label__name">Ceny <span class="m-label__name-column">(money_prices)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="money_prices" v-model="placesStateMoneyPrices"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Náboženství:</span>
+                                                <span class="m-label__name">Náboženství <span class="m-label__name-column">(people_religion)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="people_religion" v-model="placesStatePeopleReligion"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Národnost:</span>
+                                                <span class="m-label__name">Národnost <span class="m-label__name-column">(people_nationality)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="people_nationality" v-model="placesStatePeopleNationality"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Návštěvnická pravidla:</span>
+                                                <span class="m-label__name">Pravidla pro vstup <span class="m-label__name-column">(visitors_entry)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="visitors_entry" v-model="placesStateVisitorsEntry"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Souřadnice:</span>
+                                                <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="coordinates" v-model="placesStateCoordinates"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Zoom:</span>
+                                                <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="zoom" v-model="placesStateZoom"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Affiliate:</span>
+                                                <span class="m-label__name">Affiliate <span class="m-label__name-column">(affiliate)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="affiliate" v-model="placesStateAffiliate"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Alerty:</span>
+                                                <span class="m-label__name">Upozornění <span class="m-label__name-column">(alerts)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="alerts" v-model="placesStateAlerts"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Organizace:</span>
+                                                <span class="m-label__name">Organizace <span class="m-label__name-column">(organization)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="organization" v-model="placesStateOrganization"></textarea>
                                         </div>  
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Aplikace:</span>
+                                                <span class="m-label__name">Aplikace <span class="m-label__name-column">(apps)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="apps" v-model="placesStateApps"></textarea>
                                         </div>  
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Odkazy:</span>
+                                                <span class="m-label__name">Odkazy <span class="m-label__name-column">(links)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="links" v-model="placesStateLinks"></textarea>
                                         </div>                                                                          

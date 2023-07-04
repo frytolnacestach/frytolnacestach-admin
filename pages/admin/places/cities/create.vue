@@ -27,99 +27,100 @@
                                         <!-- slug -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Slug:</span>
+                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="placesCitySlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="placesCitySlug" required />
                                         </div>
                                         <!-- ids -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Stát:</span>
+                                                <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="state" v-model="placesCityIDstate" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Cover:</span>
+                                                <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageCover" v-model="placesCityIDimageCover" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Hero:</span>
+                                                <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageHero" v-model="placesCityIDimageHero" />
                                         </div>
                                         <!-- other -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Typ místa:</span>
+                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="typePlace" v-model="placesCityTypePlace" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Jméno:</span>
+                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="name" v-model="placesCityName" />
+                                            <input class="a-input" type="text" name="name" v-model="placesCityName" required />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Informace (Chat GPT):</span>
+                                                <span class="m-label__name">Informace od Chat GPT <span class="m-label__name-column">(information_chatgpt)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesCityInformationChatgpt"></textarea>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Populace:</span>
+                                                <span class="m-label__name">Populace <span class="m-label__name-column">(population)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="population" v-model="placesCityPopulation" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Rozloha:</span>
+                                                <span class="m-label__name">Rozloha <span class="m-label__name-column">(area)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="area" v-model="placesCityArea" />
                                         </div>  
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Nadmořská výška:</span>
+                                                <span class="m-label__name">Nadmořská výška <span class="m-label__name-column">(altitude)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="altitude" v-model="placesCityAltitude" />
                                         </div>  
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Souřadnice:</span>
+                                                <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="coordinates" v-model="placesCityCoordinates"></textarea>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Zoom:</span>
+                                                <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="zoom" v-model="placesCityZoom"></textarea>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Affiliate:</span>
+                                                <span class="m-label__name">Affiliate <span class="m-label__name-column">(affiliate)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="affiliate" v-model="placesCityAffiliate"></textarea>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Upozornění:</span>
+                                                <span class="m-label__name">Upozornění <span class="m-label__name-column">(alerts)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="alerts" v-model="placesCityAlerts"></textarea>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Parkování:</span>
+                                                <span class="m-label__name">Parkování <span class="m-label__name-column">(parking)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="parking" v-model="placesCityParking"></textarea>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Je město mezi top10 největšími?:</span>
+                                                <span class="m-label__name">Je město mezi top10 největšími? <span class="m-label__name-column">(biggest)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="biggest" v-model="placesCityBiggest" />
                                         </div>                     

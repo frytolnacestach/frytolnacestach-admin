@@ -1,11 +1,29 @@
 .m-label {
     width: 100%;
     display: inline-block;
+    margin-bottom: 5px;
 
     &__name {
         width: 100%;
-        margin-bottom: 5px;
         font-size: $fs-normal-s;
         display: block;
+        color: $gray8;
+    }
+
+    &__name-column {
+        color: $gray7;
+        font-size: $fs-small-sss;
+    }
+
+    &__name-required {
+        font-size: $fs-normal-sss;
+        color: $gray7;
+        font-weight: 700;
+        vertical-align: top;
+    }
+
+    &__perex {
+        display: block;
+        font-size: $fs-small-ssss;
     }
 }

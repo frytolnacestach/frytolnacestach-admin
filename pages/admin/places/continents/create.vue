@@ -27,75 +27,76 @@
                                         <!-- slug -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Slug:</span>
+                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="placesContinentSlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="placesContinentSlug" required />
                                         </div>
                                         <!-- ids -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Cover:</span>
+                                                <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageCover" v-model="placesContinentIDimageCover" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Hero:</span>
+                                                <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageHero" v-model="placesContinentIDimageHero" />
                                         </div>
                                         <!-- other --> 
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Typ místa:</span>
+                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="typePlace" v-model="placesContinentTypePlace" />
                                         </div>                    
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Jméno:</span>
+                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="name" v-model="placesContinentName" />
+                                            <input class="a-input" type="text" name="name" v-model="placesContinentName" required />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Informace (Chat GPT):</span>
+                                                <span class="m-label__name">Informace od Chat GPT <span class="m-label__name-column">(information_chatgpt)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesContinentInformationChatgpt"></textarea>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Rozloha:</span>
+                                                <span class="m-label__name">Rozloha <span class="m-label__name-column">(area)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="area" v-model="placesContinentArea" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Populace:</span>
+                                                <span class="m-label__name">Populace <span class="m-label__name-column">(population)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="population" v-model="placesContinentPopulation" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Hustota populace:</span>
+                                                <span class="m-label__name">Hustota populace <span class="m-label__name-column">(population_density)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="population_density" v-model="placesContinentPopulationDensity" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Počet států:</span>
+                                                <span class="m-label__name">Počet států <span class="m-label__name-column">(number_states)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="number_states" v-model="placesContinentNumberStates" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Souřadnice:</span>
+                                                <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="coordinates" v-model="placesContinentCoordinates"></textarea>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Zoom:</span>
+                                                <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="zoom" v-model="placesContinentZoom"></textarea>
                                         </div>                              

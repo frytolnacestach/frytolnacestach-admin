@@ -27,33 +27,34 @@
                                         <!-- slug -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Slug:</span>
+                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="travelDictionarySlug" />
                                         </div>
                                         <!-- ids -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Cover:</span>
+                                                <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageCover" v-model="travelDictionaryIDimageCover" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Hero:</span>
+                                                <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageHero" v-model="travelDictionaryIDimageHero" />
                                         </div>
                                         <!-- other -->                             
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Name:</span>
+                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="travelDictionaryName" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Description:</span>
+                                                <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="description" v-model="travelDictionaryDescription"></textarea>
                                         </div>                       

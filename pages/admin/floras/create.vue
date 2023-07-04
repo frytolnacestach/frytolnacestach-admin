@@ -27,68 +27,92 @@
                                         <!-- slug -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Slug:</span>
+                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="floraSlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="floraSlug" required />
                                         </div>
                                         <!-- ids -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Cover:</span>
+                                                <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageCover" v-model="floraIDimageCover" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Hero:</span>
+                                                <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageHero" v-model="floraIDimageHero" />
                                         </div>
                                         <!-- json -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">IDs states:</span>
+                                                <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="idsStates" v-model="floraIDSstates"></textarea>
+
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in floraIDSstatesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">ID:</label>
+                                                                <input class="a-input" type="text" v-model="item.id" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <!-- other -->                            
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Name:</span>
+                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="name" v-model="floraName" />
+                                            <input class="a-input" type="text" name="name" v-model="floraName" required />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Name Lat:</span>
+                                                <span class="m-label__name">Název latinsky <span class="m-label__name-column">(name_lat)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="nameLat" v-model="floraNameLat" />
+                                            <input class="a-input" type="text" name="nameLat" v-model="floraNameLat" required />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Location:</span>
+                                                <span class="m-label__name">Lokace výskytu <span class="m-label__name-column">(location)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="nameLocation" v-model="floraLocation" />
+                                            <input class="a-input" type="text" name="location" v-model="floraLocation" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Status IUCN:</span>
+                                                <span class="m-label__name">Status IUCN <span class="m-label__name-column">(status_iucn)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="nameStatusIucn" v-model="floraStatusIucn" />
+                                            <input class="a-input" type="text" name="statusIucn" v-model="floraStatusIucn" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Status danger:</span>
+                                                <span class="m-label__name">Status nebezpečnosti <span class="m-label__name-column">(status_danger)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="nameStatusDanger" v-model="floraStatusDanger" />
+                                            <input class="a-input" type="text" name="statusDanger" v-model="floraStatusDanger" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Description:</span>
+                                                <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="description" v-model="floraDescription"></textarea>
                                         </div>
-
                                     </div>
                                     <!-- button -->
                                     <div class="o-form-create__buttons mt-1">
@@ -145,7 +169,33 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                floraIDSstatesArray: [],
+            }
+        },
+
+        methods: {
+            // ids states
+            addIDSstateInput() {
+                this.floraIDSstatesArray.push({
+                    id: null
+                });
+            },
+            removeIDSstateInput(index: number) {
+                this.floraIDSstatesArray.splice(index, 1);
+            }
+        },
+
+        watch: {
+            floraIDSstates: function (newValue, oldValue) {
+                try {
+                    this.floraIDSstatesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.floraIDSstatesArray = [];
+                }
+            },
+            floraIDSstatesArray: function (newValue, oldValue) {
+                this.floraIDSstates = JSON.stringify(newValue);
             }
         },
 
@@ -182,6 +232,7 @@
             const floraIDimageCover = ref(0)
             const floraIDimageHero = ref(0)
             const floraIDSstates = ref('')
+            const floraIDSstatesArray = ref([])
             const floraName = ref('')
             const floraNameLat = ref('')
             const floraLocation = ref('')
@@ -201,16 +252,16 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
-                            'slug': faunaSlug.value,
-                            'id_image_cover': faunaIDimageCover.value,
-                            'id_image_hero': faunaIDimageHero.value,
-                            'ids_states': faunaIDSstates.value,
-                            'name': faunaName.value,
-                            'name_lat': faunaNameLat.value,
-                            'location': faunaLocation.value,
-                            'status_iucn': faunaStatusIucn.value,
-                            'status_danger': faunaStatusDanger.value,
-                            'description': faunaDescription.value,
+                            'slug': floraSlug.value,
+                            'id_image_cover': floraIDimageCover.value,
+                            'id_image_hero': floraIDimageHero.value,
+                            'ids_states': JSON.stringify(floraIDSstatesArray._value),
+                            'name': floraName.value,
+                            'name_lat': floraNameLat.value,
+                            'location': floraLocation.value,
+                            'status_iucn': floraStatusIucn.value,
+                            'status_danger': floraStatusDanger.value,
+                            'description': floraDescription.value,
                         })
                     })
                     .then(() => {
@@ -229,7 +280,22 @@
             }
 
             //RETURN
-            return { successForm, errorForm, floraSlug, floraIDimageCover, floraIDimageHero, floraIDSstates, floraName, floraNameLat, floraLocation, floraStatusIucn, floraStatusDanger, floraDescription, createForm }
+            return {
+                successForm,
+                errorForm,
+                floraSlug,
+                floraIDimageCover,
+                floraIDimageHero,
+                floraIDSstates,
+                floraIDSstatesArray,
+                floraName,
+                floraNameLat,
+                floraLocation,
+                floraStatusIucn,
+                floraStatusDanger,
+                floraDescription,
+                createForm
+            }
         },
 
         mounted() {

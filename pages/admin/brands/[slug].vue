@@ -27,40 +27,64 @@
                                         <!-- slug -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Slug:</span>
+                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="brandSlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="brandSlug" required />
                                         </div>
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Cover:</span>
+                                                <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageCover" v-model="brandIDimageCover" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Hero:</span>
+                                                <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageHero" v-model="brandIDimageHero" />
                                         </div>
                                         <!-- json -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">IDs states:</span>
+                                                <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="idsStates" v-model="brandIDSstates"></textarea>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in brandIDSstatesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">ID:</label>
+                                                                <input class="a-input" type="text" v-model="item.id" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <!-- other -->                            
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Name:</span>
+                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="name" v-model="brandName" />
+                                            <input class="a-input" type="text" name="name" v-model="brandName" required />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Description:</span>
+                                                <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="description" v-model="brandDescription"></textarea>
                                         </div>                            
@@ -89,10 +113,15 @@
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
+
+    interface IDSstates {
+        id: number
+    }
+
     interface Brand {
         id_image_cover: number
         id_image_hero: number
-        ids_states: string
+        ids_states: IDSstates[]
         slug: string
         name: string
         description: string
@@ -129,7 +158,8 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                brandIDSstatesArray: [],
             }
         },
 
@@ -141,6 +171,15 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace značky - ${brandName}`
                 }
+            },
+            // ids states
+            addIDSstateInput() {
+                this.brandIDSstatesArray.push({
+                    id: null
+                });
+            },
+            removeIDSstateInput(index: number) {
+                this.brandIDSstatesArray.splice(index, 1);
             }
         },
 
@@ -148,6 +187,16 @@
             brandName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
+            brandIDSstates: function (newValue, oldValue) {
+                try {
+                    this.brandIDSstatesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.brandIDSstatesArray = [];
+                }
+            },
+            brandIDSstatesArray: function (newValue, oldValue) {
+                this.brandIDSstates = JSON.stringify(newValue);
+            }
         },
 
         setup() {
@@ -184,6 +233,7 @@
             const brandIDimageCover = ref(0)
             const brandIDimageHero = ref(0)
             const brandIDSstates = ref('')
+            const brandIDSstatesArray = ref([])
             const brandName = ref('')
             const brandDescription = ref('')
 
@@ -220,7 +270,7 @@
                             'slug': brandSlug.value,
                             'id_image_cover': brandIDimageCover.value,
                             'id_image_hero': brandIDimageHero.value,
-                            'ids_states': brandIDSstates.value,
+                            'ids_states': JSON.stringify(brandIDSstatesArray._value),
                             'name': brandName.value,
                             'description': brandDescription.value,
                         })
@@ -240,7 +290,18 @@
             }
 
             //RETURN
-            return { successForm, errorForm, brandSlug, brandIDimageCover, brandIDimageHero, brandIDSstates, brandName, brandDescription, editForm }
+            return {
+                successForm,
+                errorForm,
+                brandSlug,
+                brandIDimageCover,
+                brandIDimageHero,
+                brandIDSstates,
+                brandIDSstatesArray,
+                brandName,
+                brandDescription,
+                editForm
+            }
         },
 
         mounted() {

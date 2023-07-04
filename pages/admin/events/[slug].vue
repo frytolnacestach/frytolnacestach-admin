@@ -27,95 +27,241 @@
                                         <!-- slug -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Slug:</span>
+                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="eventSlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="eventSlug" required />
                                         </div>
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Stát:</span>
+                                                <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="state" v-model="eventIDstate" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Město:</span>
+                                                <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
+                                            </label>
+                                            <input class="a-input" type="text" name="region" v-model="eventIDregion" />
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="city" v-model="eventIDcity" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Místo:</span>
+                                                <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="spot" v-model="eventIDspot" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Cover:</span>
+                                                <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageCover" v-model="eventIDimageCover" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Hero:</span>
+                                                <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageHero" v-model="eventIDimageHero" />
                                         </div>
                                         <!-- other -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Datum od:</span>
+                                                <span class="m-label__name">Datum začátku události <span class="m-label__name-column">(date_start)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="dateStart" v-model="eventDateStart" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Datum do:</span>
+                                                <span class="m-label__name">Datum konce události <span class="m-label__name-column">(date_end)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="dateEnd" v-model="eventDateEnd" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Jméno:</span>
+                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="name" v-model="eventName" />
+                                            <input class="a-input" type="text" name="name" v-model="eventName" required />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Popis:</span>
+                                                <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="description" v-model="eventDescription"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Souřadnice:</span>
+                                                <span class="m-label__name">Souřadnice místa konání <span class="m-label__name-column">(coordinates)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="coordinates" v-model="eventCoordinates"></textarea>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in eventCoordinatesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeCoordinateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Latitude:</label>
+                                                                <input class="a-input" type="text" v-model="item.latitude" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Longitude:</label>
+                                                                <input class="a-input" type="text" v-model="item.longitude" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addCoordinateInput">Přidat souřadnici</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Zoom:</span>
+                                                <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="zoom" v-model="eventZoom"></textarea>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in eventZoomArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Google:</label>
+                                                                <input class="a-input" type="text" v-model="item.google" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Booking:</label>
+                                                                <input class="a-input" type="text" v-model="item.booking" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Affiliate:</span>
+                                                <span class="m-label__name">Affiliate <span class="m-label__name-column">(affiliate)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="affiliate" v-model="eventAffiliate"></textarea>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in eventAffiliateArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeAffiliateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Value:</label>
+                                                                <input class="a-input" type="text" v-model="item.value" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addAffiliateInput">Přidat affiliate</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Cena:</span>
+                                                <span class="m-label__name">Ceny <span class="m-label__name-column">(prices)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="prices" v-model="eventPrices"></textarea>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in eventPricesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removePriceInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Perex:</label>
+                                                                <input class="a-input" type="text" v-model="item.perex" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Value:</label>
+                                                                <input class="a-input" type="text" v-model="item.value" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addPriceInput">Přidat cenu</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Odkazy:</span>
+                                                <span class="m-label__name">Odkazy <span class="m-label__name-column">(links)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="links" v-model="eventLinks"></textarea>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in eventLinksArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeLinkInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Link:</label>
+                                                                <input class="a-input" type="text" v-model="item.link" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addLinkInput">Přidat odkaz</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>                     
                                     </div>
                                     <!-- button -->
@@ -142,6 +288,32 @@
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
+    interface Coordinates {
+        latitude: number
+        longitude: number
+    }
+
+    interface Zoom {
+        google: number
+        booking: number
+    }
+
+    interface Affiliate {
+        name: string
+        value: boolean
+    }
+
+    interface Prices {
+        name: string
+        perex: string
+        value: string
+    }
+
+    interface Links {
+        name: string
+        link: string
+    }
+
     interface Event {
         id_state: number
         id_region: number
@@ -154,11 +326,11 @@
         slug: string
         name: string
         description: string
-        coordinates: string
-        zoom: string
-        affiliate: string
-        prices: string
-        links: string
+        coordinates: Coordinates[]
+        zoom: Zoom[]
+        affiliate: Affiliate[]
+        prices: Prices[]
+        links: Links[]
     }
 
     export default defineComponent({
@@ -192,7 +364,12 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                eventCoordinatesArray: [],
+                eventZoomArray: [],
+                eventAffiliateArray: [],
+                eventPricesArray: [],
+                eventLinksArray: [],
             }
         },
 
@@ -204,6 +381,57 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace UDÁLOSTI - ${eventName}`
                 }
+            },
+            // coordinates
+            addCoordinateInput() {
+                this.eventCoordinatesArray.push({
+                    latitude: null,
+                    longitude: null
+                });
+            },
+            removeCoordinateInput(index: number) {
+                this.eventCoordinatesArray.splice(index, 1);
+            },
+            // zoom
+            addZoomInput() {
+                this.eventZoomArray.push({
+                    google: null,
+                    booking: null
+                });
+            },
+            removeZoomInput(index: number) {
+                this.eventZoomArray.splice(index, 1);
+            },
+            // affiliate
+            addAffiliateInput() {
+                this.eventAffiliateArray.push({
+                    name: '',
+                    value: true
+                });
+            },
+            removeAffiliateInput(index: number) {
+                this.eventAffiliateArray.splice(index, 1);
+            },
+            // prices
+            addPriceInput() {
+                this.eventPricesArray.push({
+                    name: '',
+                    perex: '',
+                    value: ''
+                });
+            },
+            removePriceInput(index: number) {
+                this.eventPricesArray.splice(index, 1);
+            },
+            // links
+            addLinkInput() {
+                this.eventLinksArray.push({
+                    name: '',
+                    link: ''
+                });
+            },
+            removeLinkInput(index: number) {
+                this.eventLinksArray.splice(index, 1);
             }
         },
 
@@ -211,6 +439,56 @@
             eventName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
+            eventCoordinates: function (newValue, oldValue) {
+                try {
+                    this.eventCoordinatesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.eventCoordinatesArray = [];
+                }
+            },
+            eventCoordinatesArray: function (newValue, oldValue) {
+                this.eventCoordinates = JSON.stringify(newValue);
+            },
+            eventZoom: function (newValue, oldValue) {
+                try {
+                    this.eventZoomArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.eventZoomArray = [];
+                }
+            },
+            eventZoomArray: function (newValue, oldValue) {
+                this.eventZoom = JSON.stringify(newValue);
+            },
+            eventAffiliate: function (newValue, oldValue) {
+                try {
+                    this.eventAffiliateArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.eventAffiliateArray = [];
+                }
+            },
+            eventAffiliateArray: function (newValue, oldValue) {
+                this.eventAffiliate = JSON.stringify(newValue);
+            },
+            eventPrices: function (newValue, oldValue) {
+                try {
+                    this.eventPricesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.eventPricesArray = [];
+                }
+            },
+            eventPricesArray: function (newValue, oldValue) {
+                this.eventPrices = JSON.stringify(newValue);
+            },
+            eventLinks: function (newValue, oldValue) {
+                try {
+                    this.eventLinksArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.eventLinksArray = [];
+                }
+            },
+            eventLinksArray: function (newValue, oldValue) {
+                this.eventLinks = JSON.stringify(newValue);
+            }
         },
 
         setup() {
@@ -255,10 +533,15 @@
             const eventName = ref('')
             const eventDescription = ref('')
             const eventCoordinates = ref('')
+            const eventCoordinatesArray = ref([])
             const eventZoom = ref('')
+            const eventZoomArray = ref([])
             const eventAffiliate = ref('')
+            const eventAffiliateArray = ref([])
             const eventPrices = ref('')
+            const eventPricesArray = ref([])
             const eventLinks = ref('')
+            const eventLinksArray = ref([])
 
             //API - Event
             ;(async () => {
@@ -311,11 +594,11 @@
                             'slug': eventSlug.value,
                             'name': eventName.value,
                             'description': eventDescription.value,
-                            'coordinates': eventCoordinates.value,
-                            'zoom': eventZoom.value,
-                            'affiliate': eventAffiliate.value,
-                            'prices': eventPrices.value,
-                            'links': eventLinks.value
+                            'coordinates': JSON.stringify(eventCoordinatesArray._value),
+                            'zoom': JSON.stringify(eventZoomArray._value),
+                            'affiliate': JSON.stringify(eventAffiliateArray._value),
+                            'prices': JSON.stringify(eventPricesArray._value),
+                            'links': JSON.stringify(eventLinksArray._value)
                         })
                     })
                     .then(() => {
@@ -333,7 +616,32 @@
             }
 
             //RETURN
-            return { successForm, errorForm, eventIDstate, eventIDregion, eventIDcity, eventIDspot, eventIDimageCover, eventIDimageHero, eventDateStart, eventDateEnd, eventSlug, eventName, eventDescription, eventCoordinates, eventZoom, eventAffiliate, eventPrices, eventLinks, editForm }
+            return {
+                successForm,
+                errorForm,
+                eventIDstate,
+                eventIDregion,
+                eventIDcity,
+                eventIDspot,
+                eventIDimageCover,
+                eventIDimageHero,
+                eventDateStart,
+                eventDateEnd,
+                eventSlug,
+                eventName,
+                eventDescription,
+                eventCoordinates,
+                eventCoordinatesArray,
+                eventZoom,
+                eventZoomArray,
+                eventAffiliate,
+                eventAffiliateArray,
+                eventPrices,
+                eventPricesArray,
+                eventLinks,
+                eventLinksArray,
+                editForm
+            }
         },
 
         mounted() {

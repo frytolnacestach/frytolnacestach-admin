@@ -21,51 +21,81 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
+                                <!-- FORM -->
                                 <form class="o-form-edit__form" @submit.prevent="editForm">
                                     <div class="o-form-edit__items">
-                                        
+                                        <!-- slug -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Slug:</span>
+                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="platformSlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="platformSlug" required />
                                         </div>
-                                                                            
+                                        <!-- other -->                              
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Name:</span>
+                                                <span class="m-label__name">Název platformy <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="name" v-model="platformName" />
+                                            <input class="a-input" type="text" name="name" v-model="platformName" required />
                                         </div>
-                                
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Perex:</span>
+                                                <span class="m-label__name">Můj popis <span class="m-label__name-column">(perex)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="perex" v-model="platformPerex"></textarea>
                                         </div>
-    
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">URL:</span>
+                                                <span class="m-label__name">Odkaz na profil <span class="m-label__name-column">(url)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="url" v-model="platformUrl" />
+                                            <input class="a-input" type="text" name="url" v-model="platformUrl" required />
                                         </div>
-
+                                        <!-- dates -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Facts(json):</span>
-                                            </label>
-                                            <textarea class="a-textarea" type="text" name="facts" v-model="platformFacts"></textarea>
-                                        </div>
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Date:</span>
+                                                <span class="m-label__name">Datum údajů <span class="m-label__name-column">(date)</span></span>
+                                                <span class="m-label__perex">Datum k jakému platí údaje o platformě ve formátu <i>k 13. Říjnu 2022</i></span>
                                             </label>
                                             <input class="a-input" type="text" name="date" v-model="platformDate" />
                                         </div>
-                                                                        
+                                        <!-- json -->
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">Fakta o síťi <span class="m-label__name-column">(facts)</span></span>
+                                                <span class="m-label__perex">Fakta o síťi například datum založení a počet sledujícíh</span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in platformFactsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeFactInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Value:</label>
+                                                                <input class="a-input" type="number" v-model="item.value" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addFactInput">Přidat fakt</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                                                        
                                     </div>
+                                    <!--button-->
                                     <div class="o-form-edit__buttons mt-1">
                                         <div class="o-form-edit__button">
                                             <div class="m-button">
@@ -74,6 +104,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                <!-- FORM END -->
                             </div>
                         </div>
                     </div>
@@ -88,12 +119,17 @@
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
+    interface PlatformFact {
+        name: string
+        value: string
+    }
+
     interface Platform {
         slug: string
-        name: string,
-        perex: string,
-        url: string,
-        facts: string,
+        name: string
+        perex: string
+        url: string
+        facts: PlatformFact[]
         date: string
     }
 
@@ -128,7 +164,8 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                platformFactsArray: []
             }
         },
 
@@ -140,6 +177,15 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace platformy - ${platformName}`
                 }
+            },
+            addFactInput() {
+                this.platformFactsArray.push({
+                    name: '',
+                    value: ''
+                });
+            },
+            removeFactInput(index: number) {
+                this.platformFactsArray.splice(index, 1);
             }
         },
 
@@ -147,6 +193,16 @@
             platformName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
+            platformFacts: function (newValue, oldValue) {
+                try {
+                    this.platformFactsArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.platformFactsArray = [];
+                }
+            },
+            platformFactsArray: function (newValue, oldValue) {
+                this.platformFacts = JSON.stringify(newValue);
+            }
         },
 
         setup() {
@@ -184,6 +240,7 @@
             const platformPerex = ref('')
             const platformUrl = ref('')
             const platformFacts = ref('')
+            const platformFactsArray = ref([])
             const platformDate = ref('')
 
             //API - Platform
@@ -220,7 +277,7 @@
                             'name': platformName.value,
                             'perex': platformPerex.value,
                             'url': platformUrl.value,
-                            'facts': platformFacts.value,
+                            'facts': JSON.stringify(platformFactsArray._value),
                             'date': platformDate.value
                         })
                     })
@@ -239,7 +296,7 @@
             }
 
             //RETURN
-            return { successForm, errorForm, platformSlug, platformName, platformPerex, platformUrl, platformFacts, platformDate, editForm }
+            return { successForm, errorForm, platformSlug, platformName, platformPerex, platformUrl, platformFacts, platformFactsArray, platformDate, editForm }
         },
 
         mounted() {

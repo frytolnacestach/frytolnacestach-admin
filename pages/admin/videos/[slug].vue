@@ -27,80 +27,82 @@
                                         <!-- slug -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Slug:</span>
+                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="videoSlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="videoSlug" required />
                                         </div>
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">ID Kontinentu:</span>
+                                                <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="id_continent" v-model="videoIDcontinent" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">ID Státu:</span>
+                                                <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="id_state" v-model="videoIDstate" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">ID Regionu:</span>
+                                                <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="id_region" v-model="videoIDregion" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">ID Města:</span>
+                                                <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="id_city" v-model="videoIDcity" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">ID Místa:</span>
+                                                <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="id_spot" v-model="videoIDspot" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">ID Obrázku:</span>
+                                                <span class="m-label__name">ID Obrázku <span class="m-label__name-column">(id_image)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="id_image" v-model="videoIDimage" />
                                         </div>
                                         <!-- other -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Platform:</span>
+                                                <span class="m-label__name">Platforma <span class="m-label__name-column">(platform)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <select class="m-select" name="platform" v-model="videoPlatform">
+                                            <select class="m-select" name="platform" v-model="videoPlatform" required>
                                                 <option value="">- Vyber platformu -</option>
                                                 <option v-for="platform in platforms" :key="platform.id" :value="platform.id">{{platform.name}}</option>
                                             </select>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Typ:</span>
+                                                <span class="m-label__name">Žánr <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
+                                                <span class="m-label__perex">Například <i>travel</i>, <i>event</i> nebo <i>talk</i></span>
                                             </label>
-                                            <input class="a-input" type="text" name="type" v-model="videoType" />
+                                            <input class="a-input" type="text" name="type" v-model="videoType" required />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Title:</span>
+                                                <span class="m-label__name">Název <span class="m-label__name-column">(title)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="title" v-model="videoTitle" />
+                                            <input class="a-input" type="text" name="title" v-model="videoTitle" required />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Perex:</span>
+                                                <span class="m-label__name">Popis <span class="m-label__name-column">(perex)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="perex" v-model="videoPerex"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">URL:</span>
+                                                <span class="m-label__name">Odkaz <span class="m-label__name-column">(url)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="url" v-model="videoUrl" />
+                                            <input class="a-input" type="text" name="url" v-model="videoUrl" required />
                                         </div>               
                                     </div>
                                     <!--button-->

@@ -27,64 +27,89 @@
                                         <!-- slug -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Slug:</span>
+                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="faunaSlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="faunaSlug" required />
                                         </div>
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Cover:</span>
+                                                <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageCover" v-model="faunaIDimageCover" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Hero:</span>
+                                                <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageHero" v-model="faunaIDimageHero" />
                                         </div>
                                         <!-- json -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">IDs states:</span>
+                                                <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="idsStates" v-model="faunaIDSstates"></textarea>
+                                            
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in faunaIDSstatesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">ID:</label>
+                                                                <input class="a-input" type="text" v-model="item.id" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <!-- other -->                            
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Name:</span>
+                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="name" v-model="faunaName" />
+                                            <input class="a-input" type="text" name="name" v-model="faunaName" required />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Name Lat:</span>
+                                                <span class="m-label__name">Název latinsky <span class="m-label__name-column">(name_lat)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="nameLat" v-model="faunaNameLat" />
+                                            <input class="a-input" type="text" name="nameLat" v-model="faunaNameLat" required />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Location:</span>
+                                                <span class="m-label__name">Lokace výskytu <span class="m-label__name-column">(location)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="nameLocation" v-model="faunaLocation" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Status IUCN:</span>
+                                                <span class="m-label__name">Status IUCN <span class="m-label__name-column">(status_iucn)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="nameStatusIusn" v-model="faunaStatusIucn" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Status danger:</span>
+                                                <span class="m-label__name">Status nebezpečnosti <span class="m-label__name-column">(status_danger)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="nameStatusDanger" v-model="faunaStatusDanger" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Description:</span>
+                                                <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="description" v-model="faunaDescription"></textarea>
                                         </div>                             
@@ -113,10 +138,14 @@
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
+    interface IDSstates {
+        id: number
+    }
+
     interface Fauna {
         id_image_cover: number
         id_image_hero: number
-        ids_states: string
+        ids_states: IDSstates[]
         slug: string
         name: string
         name_lat: string
@@ -157,7 +186,8 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                faunaIDSstatesArray: [],
             }
         },
 
@@ -169,6 +199,15 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace fauny - ${faunaName}`
                 }
+            },
+            // ids states
+            addIDSstateInput() {
+                this.faunaIDSstatesArray.push({
+                    id: null
+                });
+            },
+            removeIDSstateInput(index: number) {
+                this.faunaIDSstatesArray.splice(index, 1);
             }
         },
 
@@ -176,6 +215,16 @@
             faunaName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
+            faunaIDSstates: function (newValue, oldValue) {
+                try {
+                    this.faunaIDSstatesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.faunaIDSstatesArray = [];
+                }
+            },
+            faunaIDSstatesArray: function (newValue, oldValue) {
+                this.faunaIDSstates = JSON.stringify(newValue);
+            }
         },
 
         setup() {
@@ -212,6 +261,7 @@
             const faunaIDimageCover = ref(0)
             const faunaIDimageHero = ref(0)
             const faunaIDSstates = ref('')
+            const faunaIDSstatesArray = ref([])
             const faunaName = ref('')
             const faunaNameLat = ref('')
             const faunaLocation = ref('')
@@ -256,7 +306,7 @@
                             'slug': faunaSlug.value,
                             'id_image_cover': faunaIDimageCover.value,
                             'id_image_hero': faunaIDimageHero.value,
-                            'ids_states': faunaIDSstates.value,
+                            'ids_states': JSON.stringify(faunaIDSstatesArray._value),
                             'name': faunaName.value,
                             'name_lat': faunaNameLat.value,
                             'location': faunaLocation.value,
@@ -280,7 +330,22 @@
             }
 
             //RETURN
-            return { successForm, errorForm, faunaSlug, faunaIDimageCover, faunaIDimageHero, faunaIDSstates, faunaName, faunaNameLat, faunaLocation, faunaStatusIucn, faunaStatusDanger, faunaDescription, editForm }
+            return {
+                successForm,
+                errorForm,
+                faunaSlug,
+                faunaIDimageCover,
+                faunaIDimageHero,
+                faunaIDSstates,
+                faunaIDSstatesArray,
+                faunaName,
+                faunaNameLat,
+                faunaLocation,
+                faunaStatusIucn,
+                faunaStatusDanger,
+                faunaDescription,
+                editForm
+            }
         },
 
         mounted() {

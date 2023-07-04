@@ -27,52 +27,77 @@
                                         <!-- slug -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Slug:</span>
+                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="foodSlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="foodSlug" required />
                                         </div>
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Cover:</span>
+                                                <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageCover" v-model="foodIDimageCover" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Image Hero:</span>
+                                                <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="imageHero" v-model="foodIDimageHero" />
                                         </div>
                                         <!-- json -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">IDs states:</span>
+                                                <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="idsStates" v-model="foodIDSstates"></textarea>
+
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in foodIDSstatesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">ID:</label>
+                                                                <input class="a-input" type="text" v-model="item.id" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <!-- other -->                             
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Name:</span>
+                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="name" v-model="foodName" />
+                                            <input class="a-input" type="text" name="name" v-model="foodName" required />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Description:</span>
+                                                <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="description" v-model="foodDescription"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Ingredients:</span>
+                                                <span class="m-label__name">Ingredience <span class="m-label__name-column">(ingredients)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="ingredients" v-model="foodIngredients"></textarea>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Recipe:</span>
+                                                <span class="m-label__name">Recept <span class="m-label__name-column">(recipe)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="recipe" v-model="foodRecipe"></textarea>
                                         </div>                       
@@ -101,10 +126,14 @@
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
+    interface IDSstates {
+        id: number
+    }
+
     interface Food {
         id_image_cover: number
         id_image_hero: number
-        ids_states: string
+        ids_states: IDSstates[]
         slug: string
         name: string
         description: string
@@ -143,7 +172,8 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                foodIDSstatesArray: [],
             }
         },
 
@@ -155,6 +185,15 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace jídla - ${foodName}`
                 }
+            },
+            // ids states
+            addIDSstateInput() {
+                this.foodIDSstatesArray.push({
+                    id: null
+                });
+            },
+            removeIDSstateInput(index: number) {
+                this.foodIDSstatesArray.splice(index, 1);
             }
         },
 
@@ -162,6 +201,16 @@
             foodName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
+            foodIDSstates: function (newValue, oldValue) {
+                try {
+                    this.foodIDSstatesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.foodIDSstatesArray = [];
+                }
+            },
+            foodIDSstatesArray: function (newValue, oldValue) {
+                this.foodIDSstates = JSON.stringify(newValue);
+            }
         },
 
         setup() {
@@ -198,6 +247,7 @@
             const foodIDimageCover = ref(0)
             const foodIDimageHero = ref(0)
             const foodIDSstates = ref('')
+            const foodIDSstatesArray = ref([])
             const foodName = ref('')
             const foodDescription = ref('')
             const foodIngredients = ref('')
@@ -238,7 +288,7 @@
                             'slug': foodSlug.value,
                             'id_image_cover': foodIDimageCover.value,
                             'id_image_hero': foodIDimageHero.value,
-                            'ids_states': foodIDSstates.value,
+                            'ids_states': JSON.stringify(foodIDSstatesArray._value),
                             'name': foodName.value,
                             'description': foodDescription.value,
                             'ingredients': foodIngredients.value,
@@ -260,7 +310,20 @@
             }
 
             //RETURN
-            return { successForm, errorForm, foodSlug, foodIDimageCover, foodIDimageHero, foodIDSstates, foodName, foodDescription, foodIngredients, foodRecipe, editForm }
+            return {
+                successForm,
+                errorForm,
+                foodSlug,
+                foodIDimageCover,
+                foodIDimageHero,
+                foodIDSstates,
+                foodIDSstatesArray,
+                foodName,
+                foodDescription,
+                foodIngredients,
+                foodRecipe,
+                editForm
+            }
         },
 
         mounted() {

@@ -27,37 +27,37 @@
                                     <div class="o-form-edit__items">
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Kdo jsem:</span>
+                                                <span class="m-label__name">Kdo jsem <span class="m-label__name-column">(iam)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <textarea class="a-textarea" name="iam" v-model="iam"></textarea>
+                                            <textarea class="a-textarea" name="iam" v-model="iam" required></textarea>
                                         </div>
 
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Jak mě podpořit:</span>
+                                                <span class="m-label__name">Jak mě podpořit <span class="m-label__name-column">(donate)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <textarea class="a-textarea" name="donate" v-model="donate"></textarea>
+                                            <textarea class="a-textarea" name="donate" v-model="donate" required></textarea>
                                         </div>
 
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">TEXT STRÁNKY (Zásady Cookies):</span>
+                                                <span class="m-label__name">Zásady Cookies <span class="m-label__name-column">(cookies)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <textarea class="a-textarea" name="cookies" v-model="cookies"></textarea>
+                                            <textarea class="a-textarea" name="cookies" v-model="cookies" required></textarea>
                                         </div>
 
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">TEXT STRÁNKY (Obchodní podmínky a zásady ochrany osobních údajů):</span>
+                                                <span class="m-label__name">Obchodní podmínky a zásady ochrany osobních údajů <span class="m-label__name-column">(conditions)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <textarea class="a-textarea" name="conditions" v-model="conditions"></textarea>
+                                            <textarea class="a-textarea" name="conditions" v-model="conditions" required></textarea>
                                         </div>
 
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">TEXT STRÁNKY (Obchodní podmínky a zásady ochrany osobních údajů - uživatel):</span>
+                                                <span class="m-label__name">Obchodní podmínky a zásady ochrany osobních údajů - uživatel <span class="m-label__name-column">(conditions_user)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <textarea class="a-textarea" name="conditionsUser" v-model="conditionsUser"></textarea>
+                                            <textarea class="a-textarea" name="conditionsUser" v-model="conditionsUser" required></textarea>
                                         </div>
                                     </div>
 

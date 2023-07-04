@@ -1,0 +1,24 @@
+.m-button-remove {
+    $self: &;
+
+    text-align: right;
+    position: relative;
+    width: auto;
+    height: auto;
+
+    &__input {
+        cursor: pointer;
+        width: auto;
+        height: auto;
+        background-color: $gray1;
+        color: $white;
+        border: 0;
+        padding: 7px 12px;
+    }
+
+    &:hover {
+        #{self}__input {
+            background-color: $gray8;
+        }
+    }
+}
