@@ -416,9 +416,9 @@
                     placesSpotName.value = PlacesSpot[0].name;
                     placesSpotInformationChatgpt.value = PlacesSpot[0].information_chatgpt;
                     placesSpotAltitude.value = PlacesSpot[0].altitude;
-                    placesSpotCoordinates.value = JSON.stringify(PlacesSpot[0].coordinates);
-                    placesSpotZoom.value = JSON.stringify(PlacesSpot[0].zoom);
-                    placesSpotAffiliate.value = JSON.stringify(PlacesSpot[0].affiliate);
+                    placesSpotCoordinates.value = PlacesSpot[0].coordinates ? JSON.stringify(PlacesSpot[0].coordinates) : JSON.stringify([]);
+                    placesSpotZoom.value = PlacesSpot[0].zoom ? JSON.stringify(PlacesSpot[0].zoom) : JSON.stringify([]);
+                    placesSpotAffiliate.value = PlacesSpot[0].affiliate ? JSON.stringify(PlacesSpot[0].affiliate) : JSON.stringify([]);
                 } else {
 
                 }

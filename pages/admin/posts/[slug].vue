@@ -836,12 +836,12 @@
                     postPerexPrice.value = Post[0].perex_price;
                     postPerexTriplength.value = Post[0].perex_triplength;
                     postPerexTime.value = Post[0].perex_time;
-                    postTags.value = JSON.stringify(Post[0].tags);
-                    postLocations.value = JSON.stringify(Post[0].locations);
-                    postTravels.value = JSON.stringify(Post[0].travels);
-                    postPrices.value = JSON.stringify(Post[0].prices);
-                    postTriplengths.value = JSON.stringify(Post[0].triplengths);
-                    postTimes.value = JSON.stringify(Post[0].times);
+                    postTags.value = Post[0].tags ? JSON.stringify(Post[0].tags) : JSON.stringify([])
+                    postLocations.value = Post[0].locations ? JSON.stringify(Post[0].locations) : JSON.stringify([])
+                    postTravels.value = Post[0].travels ? JSON.stringify(Post[0].travels) : JSON.stringify([])
+                    postPrices.value = Post[0].prices ? JSON.stringify(Post[0].prices) : JSON.stringify([])
+                    postTriplengths.value = Post[0].triplengths ? JSON.stringify(Post[0].triplengths) : JSON.stringify([])
+                    postTimes.value = Post[0].times ? JSON.stringify(Post[0].times) : JSON.stringify([])
                 } else {
 
                 }

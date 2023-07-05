@@ -366,8 +366,8 @@
                     placesContinentPopulation.value = PlacesContinent[0].population;
                     placesContinentPopulationDensity.value = PlacesContinent[0].population_density;
                     placesContinentNumberStates.value = PlacesContinent[0].number_states;
-                    placesContinentCoordinates.value = JSON.stringify(PlacesContinent[0].coordinates);
-                    placesContinentZoom.value = JSON.stringify(PlacesContinent[0].zoom);
+                    placesContinentCoordinates.value = PlacesContinent[0].coordinates ? JSON.stringify(PlacesContinent[0].coordinates) : JSON.stringify([]);
+                    placesContinentZoom.value = PlacesContinent[0].zoom ? JSON.stringify(PlacesContinent[0].zoom) : JSON.stringify([]);
                 } else {
 
                 }

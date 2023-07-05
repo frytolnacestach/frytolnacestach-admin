@@ -247,7 +247,7 @@
                     brandSlug.value = Brand[0].slug;
                     brandIDimageCover.value = Brand[0].id_image_cover;
                     brandIDimageHero.value = Brand[0].id_image_hero;
-                    brandIDSstates.value = JSON.stringify(Brand[0].ids_states);
+                    brandIDSstates.value = Brand[0].ids_states ? JSON.stringify(Brand[0].ids_states) : JSON.stringify([]);
                     brandName.value = Brand[0].name;
                     brandDescription.value = Brand[0].description;
                 } else {

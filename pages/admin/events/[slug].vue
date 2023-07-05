@@ -561,11 +561,11 @@
                     eventSlug.value = Event[0].slug;
                     eventName.value = Event[0].name;
                     eventDescription.value = Event[0].description;
-                    eventCoordinates.value = JSON.stringify(Event[0].coordinates);
-                    eventZoom.value = JSON.stringify(Event[0].zoom);
-                    eventAffiliate.value = JSON.stringify(Event[0].affiliate);
-                    eventPrices.value = JSON.stringify(Event[0].prices);
-                    eventLinks.value = JSON.stringify(Event[0].links);
+                    eventCoordinates.value = Event[0].coordinates ? JSON.stringify(Event[0].coordinates) : JSON.stringify([]);
+                    eventZoom.value = Event[0].zoom ? JSON.stringify(Event[0].zoom) : JSON.stringify([]);
+                    eventAffiliate.value = Event[0].affiliate ? JSON.stringify(Event[0].affiliate) : JSON.stringify([]);
+                    eventPrices.value = Event[0].prices ? JSON.stringify(Event[0].prices) : JSON.stringify([]);
+                    eventLinks.value = Event[0].links ? JSON.stringify(Event[0].links) : JSON.stringify([]);
                 } else {
 
                 }

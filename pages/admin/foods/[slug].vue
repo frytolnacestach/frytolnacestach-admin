@@ -263,10 +263,10 @@
                     foodSlug.value = Food[0].slug;
                     foodIDimageCover.value = Food[0].id_image_cover;
                     foodIDimageHero.value = Food[0].id_image_hero;
-                    foodIDSstates.value = JSON.stringify(Food[0].ids_states);
+                    foodIDSstates.value = Food[0].ids_states ? JSON.stringify(Food[0].ids_states) : JSON.stringify([]);
                     foodName.value = Food[0].name;
                     foodDescription.value = Food[0].description;
-                    foodIngredients.value = JSON.stringify(Food[0].ingredients);
+                    foodIngredients.value = Food[0].ingredients ? JSON.stringify(Food[0].ingredients) : JSON.stringify([]);
                     foodRecipe.value = Food[0].recipe;
                 } else {
 

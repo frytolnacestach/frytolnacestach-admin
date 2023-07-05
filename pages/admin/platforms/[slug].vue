@@ -254,7 +254,7 @@
                     platformName.value = Platform[0].name;
                     platformPerex.value = Platform[0].perex;
                     platformUrl.value = Platform[0].url;
-                    platformFacts.value = JSON.stringify(Platform[0].facts);
+                    platformFacts.value = Platform[0].facts ? JSON.stringify(Platform[0].facts) : JSON.stringify([])
                     platformDate.value = Platform[0].date;
                 } else {
 

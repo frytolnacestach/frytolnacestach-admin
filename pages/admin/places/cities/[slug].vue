@@ -638,11 +638,11 @@
                     placesCityPopulation.value = PlacesCity[0].population;
                     placesCityArea.value = PlacesCity[0].area;
                     placesCityAltitude.value = PlacesCity[0].altitude;
-                    placesCityCoordinates.value = JSON.stringify(PlacesCity[0].coordinates);
-                    placesCityZoom.value = JSON.stringify(PlacesCity[0].zoom);
-                    placesCityAffiliate.value = JSON.stringify(PlacesCity[0].affiliate);
-                    placesCityAlerts.value = JSON.stringify(PlacesCity[0].alerts);
-                    placesCityParking.value = JSON.stringify(PlacesCity[0].parking);
+                    placesCityCoordinates.value = PlacesCity[0].coordinates ? JSON.stringify(PlacesCity[0].coordinates) : JSON.stringify([]);
+                    placesCityZoom.value = PlacesCity[0].zoom ? JSON.stringify(PlacesCity[0].zoom) : JSON.stringify([]);
+                    placesCityAffiliate.value = PlacesCity[0].affiliate ? JSON.stringify(PlacesCity[0].affiliate) : JSON.stringify([]);
+                    placesCityAlerts.value = PlacesCity[0].alerts ? JSON.stringify(PlacesCity[0].alerts) : JSON.stringify([]);
+                    placesCityParking.value = PlacesCity[0].parking ? JSON.stringify(PlacesCity[0].parking) : JSON.stringify([]);
                     placesCityBiggest.value = PlacesCity[0].biggest;
                 } else {
 

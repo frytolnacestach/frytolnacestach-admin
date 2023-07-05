@@ -279,7 +279,7 @@
                     faunaSlug.value = Fauna[0].slug;
                     faunaIDimageCover.value = Fauna[0].id_image_cover;
                     faunaIDimageHero.value = Fauna[0].id_image_hero;
-                    faunaIDSstates.value = JSON.stringify(Fauna[0].ids_states);
+                    faunaIDSstates.value = Fauna[0].ids_states ? JSON.stringify(Fauna[0].ids_states) : JSON.stringify([]);
                     faunaName.value = Fauna[0].name;
                     faunaNameLat.value = Fauna[0].name_lat;
                     faunaLocation.value = Fauna[0].location;

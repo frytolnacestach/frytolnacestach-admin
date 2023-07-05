@@ -279,7 +279,7 @@
                     floraSlug.value = Flora[0].slug;
                     floraIDimageCover.value = Flora[0].id_image_cover;
                     floraIDimageHero.value = Flora[0].id_image_hero;
-                    floraIDSstates.value = JSON.stringify(Flora[0].ids_states);
+                    floraIDSstates.value = Flora[0].ids_states ? JSON.stringify(Flora[0].ids_states) : JSON.stringify([]);
                     floraName.value = Flora[0].name;
                     floraNameLat.value = Flora[0].name_lat;
                     floraLocation.value = Flora[0].location;

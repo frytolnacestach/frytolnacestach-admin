@@ -401,9 +401,9 @@
                     placesRegionSlug.value = PlacesRegion[0].slug;
                     placesRegionName.value = PlacesRegion[0].name;
                     placesRegionInformationChatgpt.value = PlacesRegion[0].information_chatgpt;
-                    placesRegionCoordinates.value = JSON.stringify(PlacesRegion[0].coordinates);
-                    placesRegionZoom.value = JSON.stringify(PlacesRegion[0].zoom);
-                    placesRegionAffiliate.value = JSON.stringify(PlacesRegion[0].affiliate);
+                    placesRegionCoordinates.value = PlacesRegion[0].coordinates ? JSON.stringify(PlacesRegion[0].coordinates) : JSON.stringify([]);
+                    placesRegionZoom.value = PlacesRegion[0].zoom ? JSON.stringify(PlacesRegion[0].zoom) : JSON.stringify([])
+                    placesRegionAffiliate.value = PlacesRegion[0].affiliate ? JSON.stringify(PlacesRegion[0].affiliate) : JSON.stringify([])
                 } else {
 
                 }

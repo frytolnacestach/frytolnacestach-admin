@@ -1177,7 +1177,7 @@
             const placesStateIDcityMain = ref(null)
             const placesStateIDimageCover = ref(null)
             const placesStateIDimageHero = ref(null)
-            const placesStateIDSneighboringCountries = ref([])
+            const placesStateIDSneighboringCountries = ref('')
             const placesStateIDSneighboringCountriesArray = ref([])
             const placesStateTypePlace = ref('')
             const placesStateSlug = ref('')
@@ -1226,7 +1226,7 @@
                     placesStateIDcityMain.value = PlacesState[0].id_city_main;
                     placesStateIDimageCover.value = PlacesState[0].id_image_cover;
                     placesStateIDimageHero.value = PlacesState[0].id_image_hero;
-                    placesStateIDSneighboringCountries.value = JSON.stringify(PlacesState[0].ids_neighboring_countries);
+                    placesStateIDSneighboringCountries.value = PlacesState[0].ids_neighboring_countries ? JSON.stringify(PlacesState[0].ids_neighboring_countries) : JSON.stringify([])
                     placesStateTypePlace.value = PlacesState[0].type_place;
                     placesStateSlug.value = PlacesState[0].slug;
                     placesStateName.value = PlacesState[0].name;
@@ -1236,20 +1236,20 @@
                     placesStateArea.value = PlacesState[0].area;
                     placesStatePopulation.value = PlacesState[0].population;
                     placesStatePhonePrefix.value = PlacesState[0].phone_prefix;
-                    placesStatePhoneNumbersEmergency.value = JSON.stringify(PlacesState[0].phone_numbers_emergency);
+                    placesStatePhoneNumbersEmergency.value = PlacesState[0].phone_numbers_emergency ? JSON.stringify(PlacesState[0].phone_numbers_emergency) : JSON.stringify([])
                     placesStateCurrencyName.value = PlacesState[0].currency_name;
                     placesStateCurrencyCode.value = PlacesState[0].currency_code;
-                    placesStateMoneyPrices.value = JSON.stringify(PlacesState[0].money_prices);
-                    placesStatePeopleReligion.value = JSON.stringify(PlacesState[0].people_religion);
-                    placesStatePeopleNationality.value = JSON.stringify(PlacesState[0].people_nationality);
-                    placesStateVisitorsEntry.value = JSON.stringify(PlacesState[0].visitors_entry);
-                    placesStateCoordinates.value = JSON.stringify(PlacesState[0].coordinates);
-                    placesStateZoom.value = JSON.stringify(PlacesState[0].zoom);
-                    placesStateAffiliate.value = JSON.stringify(PlacesState[0].affiliate);
-                    placesStateAlerts.value = JSON.stringify(PlacesState[0].alerts);
-                    placesStateOrganization.value = JSON.stringify(PlacesState[0].organization);
-                    placesStateApps.value = JSON.stringify(PlacesState[0].apps);
-                    placesStateLinks.value = JSON.stringify(PlacesState[0].links);
+                    placesStateMoneyPrices.value = PlacesState[0].money_prices ? JSON.stringify(PlacesState[0].money_prices) : JSON.stringify([])
+                    placesStatePeopleReligion.value = PlacesState[0].people_religion ? JSON.stringify(PlacesState[0].people_religion) : JSON.stringify([])
+                    placesStatePeopleNationality.value = PlacesState[0].people_nationality ? JSON.stringify(PlacesState[0].people_nationality) : JSON.stringify([])
+                    placesStateVisitorsEntry.value = PlacesState[0].visitors_entry ? JSON.stringify(PlacesState[0].visitors_entry) : JSON.stringify([])
+                    placesStateCoordinates.value = PlacesState[0].coordinates ? JSON.stringify(PlacesState[0].coordinates) : JSON.stringify([])
+                    placesStateZoom.value = PlacesState[0].zoom ? JSON.stringify(PlacesState[0].zoom) : JSON.stringify([])
+                    placesStateAffiliate.value = PlacesState[0].affiliate ? JSON.stringify(PlacesState[0].affiliate) : JSON.stringify([])
+                    placesStateAlerts.value = PlacesState[0].alerts ? JSON.stringify(PlacesState[0].alerts) : JSON.stringify([])
+                    placesStateOrganization.value = PlacesState[0].organization ? JSON.stringify(PlacesState[0].organization) : JSON.stringify([])
+                    placesStateApps.value = PlacesState[0].apps ? JSON.stringify(PlacesState[0].apps) : JSON.stringify([])
+                    placesStateLinks.value = PlacesState[0].links ? JSON.stringify(PlacesState[0].links) : JSON.stringify([])
                 } else {
 
                 }
