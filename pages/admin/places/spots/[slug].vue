@@ -86,19 +86,100 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="coordinates" v-model="placesSpotCoordinates"></textarea>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesSpotCoordinatesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeCoordinateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Latitude:</label>
+                                                                <input class="a-input" type="text" v-model="item.latitude" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Longitude:</label>
+                                                                <input class="a-input" type="text" v-model="item.longitude" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addCoordinateInput">Přidat souřadnice</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="zoom" v-model="placesSpotZoom"></textarea>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesSpotZoomArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Google:</label>
+                                                                <input class="a-input" type="text" v-model="item.google" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Booking:</label>
+                                                                <input class="a-input" type="text" v-model="item.booking" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Affiliate <span class="m-label__name-column">(affiliate)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="affiliate" v-model="placesSpotAffiliate"></textarea>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesSpotAffiliateArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeAffiliateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Value:</label>
+                                                                <input class="a-input" type="text" v-model="item.value" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addAffiliateInput">Přidat affileate</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>                            
                                     </div>
                                     <!-- button -->
@@ -125,6 +206,21 @@
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
+    interface Coordinates {
+        latitude: number
+        longitude: number
+    }
+
+    interface Zoom {
+        google: number
+        booking: number
+    }
+
+    interface Affiliate {
+        name: string
+        value: boolean
+    }
+
     interface PlacesSpot {
         id_state: number
         id_city: number
@@ -134,9 +230,9 @@
         slug: string
         name: string
         information_chatgpt: string
-        coordinates: string
-        zoom: string
-        affiliate: string
+        coordinates: Coordinates[]
+        zoom: Zoom[]
+        affiliate: Affiliate[]
         altitude: string
     }
 
@@ -177,7 +273,10 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                placesSpotCoordinatesArray: [],
+                placesSpotZoomArray: [],
+                placesSpotAffiliateArray: []
             }
         },
 
@@ -189,12 +288,69 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace místa - ${placesSpotName}`
                 }
-            }
+            },
+            // coordinates
+            addCoordinateInput() {
+                this.placesSpotCoordinatesArray.push({
+                    latitude: null,
+                    longitude: null
+                });
+            },
+            removeCoordinateInput(index: number) {
+                this.placesSpotCoordinatesArray.splice(index, 1);
+            },
+            // Zoom
+            addZoomInput() {
+                this.placesSpotZoomArray.push({
+                    google: null,
+                    booking: null
+                });
+            },
+            removeZoomInput(index: number) {
+                this.placesSpotZoomArray.splice(index, 1);
+            },
+            // Affiliate
+            addAffiliateInput() {
+                this.placesSpotAffiliateArray.push({
+                    name: '',
+                    value: true
+                });
+            },
+            removeAffiliateInput(index: number) {
+                this.placesSpotAffiliateArray.splice(index, 1);
+            },
         },
 
         watch: {
             placesSpotName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
+            },
+            placesSpotCoordinates: function (newValue, oldValue) {
+                try {
+                    this.placesSpotCoordinatesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesSpotCoordinatesArray = [];
+                }
+            },
+            placesSpotCoordinatesArray: function (newValue, oldValue) {
+                this.placesSpotCoordinates = JSON.stringify(newValue);
+            },
+            placesSpotZoom: function (newValue, oldValue) {
+                try {
+                    this.placesSpotZoomArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesSpotZoomArray = [];
+                }
+            },
+            placesSpotZoomArray: function (newValue, oldValue) {
+                this.placesSpotZoom = JSON.stringify(newValue);
+            },
+            placesSpotAffiliate: function (newValue, oldValue) {
+                try {
+                    this.placesSpotAffiliateArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesSpotAffiliateArray = [];
+                }
             },
         },
 
@@ -238,8 +394,11 @@
             const placesSpotInformationChatgpt = ref('')
             const placesSpotAltitude = ref('')
             const placesSpotCoordinates = ref('')
+            const placesSpotCoordinatesArray = ref([])
             const placesSpotZoom = ref('')
+            const placesSpotZoomArray = ref([])
             const placesSpotAffiliate = ref('')
+            const placesSpotAffiliateArray = ref([])
 
             //API - Places Spot
             ;(async () => {
@@ -286,9 +445,9 @@
                             'name': placesSpotName.value,
                             'information_chatgpt': placesSpotInformationChatgpt.value,
                             'altitude': placesSpotAltitude.value,
-                            'coordinates': placesSpotCoordinates.value,
-                            'zoom': placesSpotZoom.value,
-                            'affiliate': placesSpotAffiliate.value,
+                            'coordinates': JSON.stringify(placesSpotCoordinatesArray._value),
+                            'zoom': JSON.stringify(placesSpotZoomArray._value),
+                            'affiliate': JSON.stringify(placesSpotAffiliateArray._value)
                         })
                     })
                     .then(() => {
@@ -306,7 +465,26 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesSpotIDstate, placesSpotIDcity, placesSpotIDimageCover, placesSpotIDimageHero, placesSpotTypePlace, placesSpotSlug, placesSpotName, placesSpotInformationChatgpt, placesSpotAltitude, placesSpotCoordinates, placesSpotZoom, placesSpotAffiliate, editForm }
+            return {
+                successForm,
+                errorForm,
+                placesSpotIDstate,
+                placesSpotIDcity,
+                placesSpotIDimageCover,
+                placesSpotIDimageHero,
+                placesSpotTypePlace,
+                placesSpotSlug,
+                placesSpotName,
+                placesSpotInformationChatgpt,
+                placesSpotAltitude,
+                placesSpotCoordinates,
+                placesSpotCoordinatesArray,
+                placesSpotZoom,
+                placesSpotZoomArray,
+                placesSpotAffiliate,
+                placesSpotAffiliateArray,
+                editForm
+            }
         },
 
         mounted() {
