@@ -130,11 +130,11 @@
                                                         <div class="o-form-create__group-inputs">
                                                             <div class="o-form-create__group-input">
                                                                 <label class="m-label">Google:</label>
-                                                                <input class="a-input" type="text" v-model="item.google" />
+                                                                <input class="a-input" type="number" v-model="item.google" />
                                                             </div>
                                                             <div class="o-form-create__group-input">
                                                                 <label class="m-label">Booking:</label>
-                                                                <input class="a-input" type="text" v-model="item.booking" />
+                                                                <input class="a-input" type="number" v-model="item.booking" />
                                                             </div>
                                                         </div>
                                                     </div>
