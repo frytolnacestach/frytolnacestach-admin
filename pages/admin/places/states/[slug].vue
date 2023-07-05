@@ -157,8 +157,20 @@
                                                                 <input class="a-input" type="text" v-model="item.value" />
                                                             </div>
                                                             <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Date create:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_create" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Date update:</label>
                                                                 <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author create:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_create" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author update:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_update" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -206,8 +218,20 @@
                                                                 <input class="a-input" type="text" v-model="item.value" />
                                                             </div>
                                                             <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Date create:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_create" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Date update:</label>
                                                                 <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author create:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_create" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author update:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_update" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -243,8 +267,20 @@
                                                                 <input class="a-input" type="text" v-model="item.value" />
                                                             </div>
                                                             <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Date create:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_create" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Date update:</label>
                                                                 <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author create:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_create" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author update:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_update" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -280,8 +316,20 @@
                                                                 <input class="a-input" type="text" v-model="item.value" />
                                                             </div>
                                                             <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Date create:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_create" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Date update:</label>
                                                                 <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author create:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_create" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author update:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_update" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -317,8 +365,20 @@
                                                                 <input class="a-input" type="text" v-model="item.value" />
                                                             </div>
                                                             <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Date create:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_create" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Date update:</label>
                                                                 <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author create:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_create" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author update:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_update" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -675,31 +735,46 @@
     interface PhoneNumbersEmergency {
         name: string
         value: string
+        date_create: string
         date_update: string
+        author_create: number
+        author_update: number
     }
 
     interface MoneyPrices {
         name: string
         value: string
+        date_create: string
         date_update: string
+        author_create: number
+        author_update: number
     }
 
     interface PeopleReligion {
         name: string
         value: string
+        date_create: string
         date_update: string
+        author_create: number
+        author_update: number
     }
 
     interface PeopleNationality {
         name: string
         value: string
+        date_create: string
         date_update: string
+        author_create: number
+        author_update: number
     }
 
     interface VisitorsEntry {
         name: string
         value: string
+        date_create: string
         date_update: string
+        author_create: number
+        author_update: number
     }
 
     interface Coordinates {
@@ -865,7 +940,10 @@
                 this.placesStatePhoneNumbersEmergencyArray.push({
                     name: '',
                     value: '',
-                    date_update: ''
+                    date_create: '',
+                    date_update: '',
+                    author_create: null,
+                    author_update: null
                 });
             },
             removePhoneNumbersEmergencyInput(index: number) {
@@ -876,7 +954,10 @@
                 this.placesStateMoneyPricesArray.push({
                     name: '',
                     value: '',
-                    date_update: ''
+                    date_create: '',
+                    date_update: '',
+                    author_create: null,
+                    author_update: null
                 });
             },
             removeMoneyPriceInput(index: number) {
@@ -887,7 +968,10 @@
                 this.placesStatePeopleReligionArray.push({
                     name: '',
                     value: '',
-                    date_update: ''
+                    date_create: '',
+                    date_update: '',
+                    author_create: null,
+                    author_update: null
                 });
             },
             removePeopleReligionInput(index: number) {
@@ -898,7 +982,10 @@
                 this.placesStatePeopleNationalityArray.push({
                     name: '',
                     value: '',
-                    date_update: ''
+                    date_create: '',
+                    date_update: '',
+                    author_create: null,
+                    author_update: null
                 });
             },
             removePeopleNationalityInput(index: number) {
@@ -909,7 +996,10 @@
                 this.placesStateVisitorsEntryArray.push({
                     name: '',
                     value: '',
-                    date_update: ''
+                    date_create: '',
+                    date_update: '',
+                    author_create: null,
+                    author_update: null
                 });
             },
             removeVisitorsEntryInput(index: number) {
