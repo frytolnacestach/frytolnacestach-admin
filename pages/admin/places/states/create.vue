@@ -61,7 +61,30 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Sousední státy <span class="m-label__name-column">(ids_neighboring_countries)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="neighboring_countries" v-model="placesStateIDSneighboringCountries"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesStateIDSneighboringCountriesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeIDSneighboringCountrieInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">ID:</label>
+                                                                <input class="a-input" type="text" v-model="item.id" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addIDSneighboringCountrieInput">Přidat stát</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <!-- other -->
                                         <div class="o-form-create__item">
@@ -116,7 +139,38 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Důležitá telefonní čísla <span class="m-label__name-column">(phone_numbers_emergency)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="phone_numbers_emergency" v-model="placesStatePhoneNumbersEmergency"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesStatePhoneNumbersEmergencyArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removePhoneNumbersEmergencyInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Value:</label>
+                                                                <input class="a-input" type="text" v-model="item.value" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date update:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addPhoneNumbersEmergencyInput">Přidat číslo</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
@@ -134,68 +188,461 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Ceny <span class="m-label__name-column">(money_prices)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="money_prices" v-model="placesStateMoneyPrices"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesStateMoneyPricesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeMoneyPriceInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Value:</label>
+                                                                <input class="a-input" type="text" v-model="item.value" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date update:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addMoneyPriceInput">Přidat cenu</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Náboženství <span class="m-label__name-column">(people_religion)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="people_religion" v-model="placesStatePeopleReligion"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesStatePeopleReligionArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removePeopleReligionInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Value:</label>
+                                                                <input class="a-input" type="text" v-model="item.value" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date update:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addPeopleReligionInput">Přidat náboženství</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Národnost <span class="m-label__name-column">(people_nationality)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="people_nationality" v-model="placesStatePeopleNationality"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesStatePeopleNationalityArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removePeopleNationalityInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Value:</label>
+                                                                <input class="a-input" type="text" v-model="item.value" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date update:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addPeopleNationalityInput">Přidat číslo</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Pravidla pro vstup <span class="m-label__name-column">(visitors_entry)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="visitors_entry" v-model="placesStateVisitorsEntry"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesStateVisitorsEntryArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeVisitorsEntryInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Value:</label>
+                                                                <input class="a-input" type="text" v-model="item.value" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date update:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addVisitorsEntryInput">Přidat podmínku</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="coordinates" v-model="placesStateCoordinates"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesStateCoordinatesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeCoordinateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Latitude:</label>
+                                                                <input class="a-input" type="text" v-model="item.latitude" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Longitude:</label>
+                                                                <input class="a-input" type="text" v-model="item.longitude" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addCoordinateInput">Přidat souřadnice</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="zoom" v-model="placesStateZoom"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesStateZoomArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Google:</label>
+                                                                <input class="a-input" type="text" v-model="item.google" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Booking:</label>
+                                                                <input class="a-input" type="text" v-model="item.booking" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Affiliate <span class="m-label__name-column">(affiliate)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="affiliate" v-model="placesStateAffiliate"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesStateAffiliateArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeAffiliateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Value:</label>
+                                                                <input class="a-input" type="text" v-model="item.value" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addAffiliateInput">Přidat affileate</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Upozornění <span class="m-label__name-column">(alerts)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="alerts" v-model="placesStateAlerts"></textarea>
-                                        </div>    
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesStateAlertsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeAlertInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Text:</label>
+                                                                <input class="a-input" type="text" v-model="item.text" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Type:</label>
+                                                                <input class="a-input" type="text" v-model="item.type" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Author:</label>
+                                                                <input class="a-input" type="text" v-model="item.author" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date create:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_create" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date update:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date start:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_start" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date end:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_end" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addAlertInput">Přidat upozornění</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Organizace <span class="m-label__name-column">(organization)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="organization" v-model="placesStateOrganization"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesStateOrganizationArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeOrganizationInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date:</label>
+                                                                <input class="a-input" type="text" v-model="item.date" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Author:</label>
+                                                                <input class="a-input" type="text" v-model="item.author" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date update:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Author update:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_update" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date add to organization:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_add_to_organization" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addOrganizationInput">Přidat oragnizaci</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>  
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Aplikace <span class="m-label__name-column">(apps)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="apps" v-model="placesStateApps"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesStateAppsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeAppInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">URL:</label>
+                                                                <input class="a-input" type="text" v-model="item.url" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date:</label>
+                                                                <input class="a-input" type="text" v-model="item.date" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Author:</label>
+                                                                <input class="a-input" type="text" v-model="item.author" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date update:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Description:</label>
+                                                                <input class="a-input" type="text" v-model="item.description" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Author update:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_update" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addAppInput">Přidat aplikaci</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>  
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Odkazy <span class="m-label__name-column">(links)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="links" v-model="placesStateLinks"></textarea>
-                                        </div>                                                                      
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesStateLinksArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeLinkInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">URL:</label>
+                                                                <input class="a-input" type="text" v-model="item.url" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date:</label>
+                                                                <input class="a-input" type="text" v-model="item.date" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Author:</label>
+                                                                <input class="a-input" type="text" v-model="item.author" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date update:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Description:</label>
+                                                                <input class="a-input" type="text" v-model="item.description" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Author update:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_update" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addLinkInput">Přidat odkaz</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                                                          
                                     </div>
                                     <!-- button -->
                                     <div class="o-form-create__buttons mt-1">
@@ -258,7 +705,310 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                placesStateIDSneighboringCountriesArray: [],
+                placesStatePhoneNumbersEmergencyArray: [],
+                placesStateMoneyPricesArray: [],
+                placesStatePeopleReligionArray: [],
+                placesStatePeopleNationalityArray: [],
+                placesStateVisitorsEntryArray: [],
+                placesStateCoordinatesArray: [],
+                placesStateZoomArray: [],
+                placesStateAffiliateArray: [],
+                placesStateAlertsArray: [],
+                placesStateOrganizationArray: [],
+                placesStateAppsArray: [],
+                placesStateLinksArray: []
+            }
+        },
+
+        methods: {
+            // IDSneighboringCountries
+            addIDSneighboringCountrieInput() {
+                this.placesStateIDSneighboringCountriesArray.push({
+                    id: ''
+                });
+            },
+            removeIDSneighboringCountrieInput(index: number) {
+                this.placesStateIDSneighboringCountriesArray.splice(index, 1);
+            },
+            // PhoneNumbersEmergency
+            addPhoneNumbersEmergencyInput() {
+                this.placesStatePhoneNumbersEmergencyArray.push({
+                    name: '',
+                    value: '',
+                    date_update: ''
+                });
+            },
+            removePhoneNumbersEmergencyInput(index: number) {
+                this.placesStatePhoneNumbersEmergencyArray.splice(index, 1);
+            },
+            // MoneyPrices
+            addMoneyPriceInput() {
+                this.placesStateMoneyPricesArray.push({
+                    name: '',
+                    value: '',
+                    date_update: ''
+                });
+            },
+            removeMoneyPriceInput(index: number) {
+                this.placesStateMoneyPricesArray.splice(index, 1);
+            },
+            // PeopleReligion
+            addPeopleReligionInput() {
+                this.placesStatePeopleReligionArray.push({
+                    name: '',
+                    value: '',
+                    date_update: ''
+                });
+            },
+            removePeopleReligionInput(index: number) {
+                this.placesStatePeopleReligionArray.splice(index, 1);
+            },
+            // PeopleNationality
+            addPeopleNationalityInput() {
+                this.placesStatePeopleNationalityArray.push({
+                    name: '',
+                    value: '',
+                    date_update: ''
+                });
+            },
+            removePeopleNationalityInput(index: number) {
+                this.placesStatePeopleNationalityArray.splice(index, 1);
+            },
+            // VisitorsEntry
+            addVisitorsEntryInput() {
+                this.placesStateVisitorsEntryArray.push({
+                    name: '',
+                    value: '',
+                    date_update: ''
+                });
+            },
+            removeVisitorsEntryInput(index: number) {
+                this.placesStateVisitorsEntryArray.splice(index, 1);
+            },
+            // coordinates
+            addCoordinateInput() {
+                this.placesStateCoordinatesArray.push({
+                    latitude: null,
+                    longitude: null
+                });
+            },
+            removeCoordinateInput(index: number) {
+                this.placesStateCoordinatesArray.splice(index, 1);
+            },
+            // Zoom
+            addZoomInput() {
+                this.placesStateZoomArray.push({
+                    google: null,
+                    booking: null
+                });
+            },
+            removeZoomInput(index: number) {
+                this.placesStateZoomArray.splice(index, 1);
+            },
+            // Affiliate
+            addAffiliateInput() {
+                this.placesStateAffiliateArray.push({
+                    name: '',
+                    value: true
+                });
+            },
+            removeAffiliateInput(index: number) {
+                this.placesStateAffiliateArray.splice(index, 1);
+            },
+            // Alerts
+            addAlertInput() {
+                this.placesStateAlertsArray.push({
+                    name: '',
+                    text: '',
+                    type: '',
+                    author: '',
+                    date_create: '',
+                    date_update: '',
+                    date_start: '',
+                    date_end: ''
+                });
+            },
+            removeAlertInput(index: number) {
+                this.placesStateAlertsArray.splice(index, 1);
+            },
+            // Organization
+            addOrganizationInput() {
+                this.placesStateOrganizationArray.push({
+                    date: '',
+                    name: '',
+                    author: '',
+                    date_update: '',
+                    author_update: '',
+                    date_add_to_organization: ''
+                });
+            },
+            removeOrganizationInput(index: number) {
+                this.placesStateOrganizationArray.splice(index, 1);
+            },
+            // Apps
+            addAppInput() {
+                this.placesStateAppsArray.push({
+                    url: '',
+                    date: '',
+                    name: '',
+                    author: '',
+                    date_update: '',
+                    description: '',
+                    author_update: ''
+                });
+            },
+            removeAppInput(index: number) {
+                this.placesStateAppsArray.splice(index, 1);
+            },
+            // Links
+            addLinkInput() {
+                this.placesStateLinksArray.push({
+                    url: '',
+                    date: '',
+                    name: '',
+                    author: '',
+                    date_update: '',
+                    description: '',
+                    author_update: ''
+                });
+            },
+            removeLinkInput(index: number) {
+                this.placesStateLinksArray.splice(index, 1);
+            },
+        },
+
+        watch: {
+            placesStateIDSneighboringCountries: function (newValue, oldValue) {
+                try {
+                    this.placesStateIDSneighboringCountriesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStateIDSneighboringCountriesArray = [];
+                }
+            },
+            placesStateIDSneighboringCountriesArray: function (newValue, oldValue) {
+                this.placesStateIDSneighboringCountries = JSON.stringify(newValue);
+            },
+            placesStatePhoneNumbersEmergency: function (newValue, oldValue) {
+                try {
+                    this.placesStatePhoneNumbersEmergencyArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStatePhoneNumbersEmergencyArray = [];
+                }
+            },
+            placesStatePhoneNumbersEmergencyArray: function (newValue, oldValue) {
+                this.placesStatePhoneNumbersEmergency = JSON.stringify(newValue);
+            },
+            placesStateMoneyPrices: function (newValue, oldValue) {
+                try {
+                    this.placesStateMoneyPricesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStateMoneyPricesArray = [];
+                }
+            },
+            placesStateMoneyPricesArray: function (newValue, oldValue) {
+                this.placesStateMoneyPrices = JSON.stringify(newValue);
+            },
+            placesStatePeopleReligion: function (newValue, oldValue) {
+                try {
+                    this.placesStatePeopleReligionArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStatePeopleReligionArray = [];
+                }
+            },
+            placesStatePeopleReligionArray: function (newValue, oldValue) {
+                this.placesStatePeopleReligion = JSON.stringify(newValue);
+            },
+            placesStatePeopleNationality: function (newValue, oldValue) {
+                try {
+                    this.placesStatePeopleNationalityArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStatePeopleNationalityArray = [];
+                }
+            },
+            placesStatePeopleNationalityArray: function (newValue, oldValue) {
+                this.placesStatePeopleNationality = JSON.stringify(newValue);
+            },
+            placesStateVisitorsEntry: function (newValue, oldValue) {
+                try {
+                    this.placesStateVisitorsEntryArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStateVisitorsEntryArray = [];
+                }
+            },
+            placesStateVisitorsEntryArray: function (newValue, oldValue) {
+                this.placesStateVisitorsEntry = JSON.stringify(newValue);
+            },
+            placesStateCoordinates: function (newValue, oldValue) {
+                try {
+                    this.placesStateCoordinatesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStateCoordinatesArray = [];
+                }
+            },
+            placesStateCoordinatesArray: function (newValue, oldValue) {
+                this.placesStateCoordinates = JSON.stringify(newValue);
+            },
+            placesStateZoom: function (newValue, oldValue) {
+                try {
+                    this.placesStateZoomArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStateZoomArray = [];
+                }
+            },
+            placesStateZoomArray: function (newValue, oldValue) {
+                this.placesStateZoom = JSON.stringify(newValue);
+            },
+            placesStateAffiliate: function (newValue, oldValue) {
+                try {
+                    this.placesStateAffiliateArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStateAffiliateArray = [];
+                }
+            },
+            placesStateAffiliateArray: function (newValue, oldValue) {
+                this.placesStateAffiliate = JSON.stringify(newValue);
+            },
+            placesStateAlerts: function (newValue, oldValue) {
+                try {
+                    this.placesStateAlertsArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStateAlertsArray = [];
+                }
+            },
+            placesStateAlertsArray: function (newValue, oldValue) {
+                this.placesStateIDSneighboringCountries = JSON.stringify(newValue);
+            },
+            placesStateOrganization: function (newValue, oldValue) {
+                try {
+                    this.placesStateOrganizationArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStateOrganizationArray = [];
+                }
+            },
+            placesStateOrganizationArray: function (newValue, oldValue) {
+                this.placesStateOrganization = JSON.stringify(newValue);
+            },
+            placesStateApps: function (newValue, oldValue) {
+                try {
+                    this.placesStateAppsArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStateAppsArray = [];
+                }
+            },
+            placesStateAppsArray: function (newValue, oldValue) {
+                this.placesStateApps = JSON.stringify(newValue);
+            },
+            placesStateLinks: function (newValue, oldValue) {
+                try {
+                    this.placesStateLinksArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStateLinksArray = [];
+                }
+            },
+            placesStateLinksArray: function (newValue, oldValue) {
+                this.placesStateLinks = JSON.stringify(newValue);
             }
         },
 
@@ -289,36 +1039,50 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig()
+            const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
-            const placesStateIDcontinent = ref(0)
-            const placesStateIDcityMain = ref(0)
-            const placesStateIDimageCover = ref(0)
-            const placesStateIDimageHero = ref(0)
+            const placesStateIDcontinent = ref(null)
+            const placesStateIDcityMain = ref(null)
+            const placesStateIDimageCover = ref(null)
+            const placesStateIDimageHero = ref(null)
             const placesStateIDSneighboringCountries = ref('')
+            const placesStateIDSneighboringCountriesArray = ref([])
             const placesStateTypePlace = ref('')
             const placesStateSlug = ref('')
             const placesStateName = ref('')
             const placesStateInformationChatgpt = ref('')
             const placesStateMpz = ref('')
             const placesStateTld = ref('')
-            const placesStateArea = ref(0)
-            const placesStatePopulation = ref(0)
+            const placesStateArea = ref(null)
+            const placesStatePopulation = ref(null)
             const placesStatePhonePrefix = ref('')
             const placesStatePhoneNumbersEmergency = ref('')
+            const placesStatePhoneNumbersEmergencyArray = ref([])
             const placesStateCurrencyName = ref('')
             const placesStateCurrencyCode = ref('')
             const placesStateMoneyPrices = ref('')
+            const placesStateMoneyPricesArray = ref([])
             const placesStatePeopleReligion = ref('')
+            const placesStatePeopleReligionArray = ref([])
             const placesStatePeopleNationality = ref('')
+            const placesStatePeopleNationalityArray = ref([])
             const placesStateVisitorsEntry = ref('')
+            const placesStateVisitorsEntryArray = ref([])
             const placesStateCoordinates = ref('')
+            const placesStateCoordinatesArray = ref([])
             const placesStateZoom = ref('')
+            const placesStateZoomArray = ref([])
             const placesStateAffiliate = ref('')
+            const placesStateAffiliateArray = ref([])
             const placesStateAlerts = ref('')
+            const placesStateAlertsArray = ref([])
             const placesStateOrganization = ref('')
+            const placesStateOrganizationArray = ref([])
             const placesStateApps = ref('')
+            const placesStateAppsArray = ref([])
             const placesStateLinks = ref('')
+            const placesStateLinksArray = ref([])
 
             //FORM - create
             const createForm = async () => {
@@ -336,7 +1100,7 @@
                             'id_city_main': placesStateIDcityMain.value,
                             'id_image_cover': placesStateIDimageCover.value,
                             'id_image_hero': placesStateIDimageHero.value,
-                            'ids_neighboring_countries': placesStateIDSneighboringCountries.value,
+                            'ids_neighboring_countries': JSON.stringify(placesStateIDSneighboringCountriesArray._value),
                             'type_place': placesStateTypePlace.value,
                             'slug': placesStateSlug.value,
                             'name': placesStateName.value,
@@ -346,20 +1110,20 @@
                             'area': placesStateArea.value,
                             'population': placesStatePopulation.value,
                             'phone_prefix': placesStatePhonePrefix.value,
-                            'phone_numbers_emergency': placesStatePhoneNumbersEmergency.value,
+                            'phone_numbers_emergency': JSON.stringify(placesStatePhoneNumbersEmergencyArray._value),
                             'currency_name': placesStateCurrencyName.value,
                             'currency_code': placesStateCurrencyCode.value,
-                            'money_prices': placesStateMoneyPrices.value,
-                            'people_religion': placesStatePeopleReligion.value,
-                            'people_nationality': placesStatePeopleNationality.value,
-                            'visitors_entry': placesStateVisitorsEntry.value,
-                            'coordinates': placesStateCoordinates.value,
-                            'zoom': placesStateZoom.value,
-                            'affiliate': placesStateAffiliate.value,
-                            'alerts': placesStateAlerts.value,
-                            'organization': placesStateOrganization.value,
-                            'apps': placesStateApps.value,
-                            'links': placesStateLinks.value
+                            'money_prices': JSON.stringify(placesStateMoneyPricesArray._value),
+                            'people_religion': JSON.stringify(placesStatePeopleReligionArray._value),
+                            'people_nationality': JSON.stringify(placesStatePeopleNationalityArray._value),
+                            'visitors_entry': JSON.stringify(placesStateVisitorsEntryArray._value),
+                            'coordinates': JSON.stringify(placesStateCoordinatesArray._value),
+                            'zoom': JSON.stringify(placesStateZoomArray._value),
+                            'affiliate': JSON.stringify(placesStateAffiliateArray._value),
+                            'alerts': JSON.stringify(placesStateAlertsArray._value),
+                            'organization': JSON.stringify(placesStateOrganizationArray._value),
+                            'apps': JSON.stringify(placesStateAppsArray._value),
+                            'links': JSON.stringify(placesStateLinksArray._value)
                         })
                     })
                     .then(() => {
@@ -386,6 +1150,7 @@
                 placesStateIDimageCover,
                 placesStateIDimageHero,
                 placesStateIDSneighboringCountries,
+                placesStateIDSneighboringCountriesArray,
                 placesStateTypePlace,
                 placesStateSlug,
                 placesStateName,
@@ -396,19 +1161,31 @@
                 placesStatePopulation,
                 placesStatePhonePrefix,
                 placesStatePhoneNumbersEmergency,
+                placesStatePhoneNumbersEmergencyArray,
                 placesStateCurrencyName,
                 placesStateCurrencyCode,
                 placesStateMoneyPrices,
+                placesStateMoneyPricesArray,
                 placesStatePeopleReligion,
+                placesStatePeopleReligionArray,
                 placesStatePeopleNationality,
+                placesStatePeopleNationalityArray,
                 placesStateVisitorsEntry,
+                placesStateVisitorsEntryArray,
                 placesStateCoordinates,
+                placesStateCoordinatesArray,
                 placesStateZoom,
+                placesStateZoomArray,
                 placesStateAffiliate,
+                placesStateAffiliateArray,
                 placesStateAlerts,
+                placesStateAlertsArray,
                 placesStateOrganization,
+                placesStateOrganizationArray,
                 placesStateApps,
+                placesStateAppsArray,
                 placesStateLinks,
+                placesStateLinksArray,
                 createForm
             }
         },
