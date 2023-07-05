@@ -85,11 +85,11 @@
                                                         <div class="o-form-edit__group-inputs">
                                                             <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Latitude:</label>
-                                                                <input class="a-input" type="text" v-model="item.latitude" />
+                                                                <input class="a-input" type="number" step=".0000001" v-model="item.latitude" />
                                                             </div>
                                                             <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Longitude:</label>
-                                                                <input class="a-input" type="text" v-model="item.longitude" />
+                                                                <input class="a-input" type="number" step=".0000001" v-model="item.longitude" />
                                                             </div>
                                                         </div>
                                                     </div>
