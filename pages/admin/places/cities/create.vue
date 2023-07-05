@@ -92,31 +92,218 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="coordinates" v-model="placesCityCoordinates"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesCityCoordinatesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeCoordinateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Latitude:</label>
+                                                                <input class="a-input" type="text" v-model="item.latitude" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Longitude:</label>
+                                                                <input class="a-input" type="text" v-model="item.longitude" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addCoordinateInput">Přidat souřadnice</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="zoom" v-model="placesCityZoom"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesCityZoomArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Google:</label>
+                                                                <input class="a-input" type="text" v-model="item.google" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Booking:</label>
+                                                                <input class="a-input" type="text" v-model="item.booking" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Affiliate <span class="m-label__name-column">(affiliate)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="affiliate" v-model="placesCityAffiliate"></textarea>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesCityAffiliateArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeAffiliateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Value:</label>
+                                                                <input class="a-input" type="text" v-model="item.value" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addAffiliateInput">Přidat affileate</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Upozornění <span class="m-label__name-column">(alerts)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="alerts" v-model="placesCityAlerts"></textarea>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesCityAlertsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeAlertInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Text:</label>
+                                                                <input class="a-input" type="text" v-model="item.text" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Type:</label>
+                                                                <input class="a-input" type="text" v-model="item.type" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author:</label>
+                                                                <input class="a-input" type="text" v-model="item.author" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Date create:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_create" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Date update:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Date start:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_start" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Date end:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_end" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addAlertInput">Přidat upozornění</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Parkování <span class="m-label__name-column">(parking)</span></span>
                                             </label>
-                                            <textarea class="a-textarea" type="text" name="parking" v-model="placesCityParking"></textarea>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesCityParkingArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeParkingInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Name:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Description:</label>
+                                                                <input class="a-input" type="text" v-model="item.description" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Date:</label>
+                                                                <input class="a-input" type="text" v-model="item.date" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author:</label>
+                                                                <input class="a-input" type="text" v-model="item.author" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author Update:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_update" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Date update:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Pay time:</label>
+                                                                <input class="a-input" type="text" v-model="item.pay_time" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Price:</label>
+                                                                <input class="a-input" type="text" v-model="item.price" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">URL:</label>
+                                                                <input class="a-input" type="text" v-model="item.url" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addParkingInput">Přidat parkování</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
@@ -186,7 +373,131 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                placesCityCoordinatesArray: [],
+                placesCityZoomArray: [],
+                placesCityAffiliateArray: [],
+                placesCityAlertsArray: [],
+                placesCityParkingArray: []
+            }
+        },
+
+        methods: {
+            // coordinates
+            addCoordinateInput() {
+                this.placesCityCoordinatesArray.push({
+                    latitude: null,
+                    longitude: null
+                });
+            },
+            removeCoordinateInput(index: number) {
+                this.placesCityCoordinatesArray.splice(index, 1);
+            },
+            // Zoom
+            addZoomInput() {
+                this.placesCityZoomArray.push({
+                    google: null,
+                    booking: null
+                });
+            },
+            removeZoomInput(index: number) {
+                this.placesCityZoomArray.splice(index, 1);
+            },
+            // Affiliate
+            addAffiliateInput() {
+                this.placesCityAffiliateArray.push({
+                    name: '',
+                    value: true
+                });
+            },
+            removeAffiliateInput(index: number) {
+                this.placesCityAffiliateArray.splice(index, 1);
+            },
+            // Alerts
+            addAlertInput() {
+                this.placesCityAlertsArray.push({
+                    name: '',
+                    text: '',
+                    type: '',
+                    author: '',
+                    date_create: '',
+                    date_update: '',
+                    date_start: '',
+                    date_end: ''
+                });
+            },
+            removeAlertInput(index: number) {
+                this.placesCityAlertsArray.splice(index, 1);
+            },
+            // Parking
+            addParkingInput() {
+                this.placesCityParkingArray.push({
+                    url: '',
+                    date: '',
+                    name: '',
+                    pricE: '',
+                    author: '',
+                    pay_time: '',
+                    date_update: '',
+                    description: '',
+                    author_update: ''
+                });
+            },
+            removeParkingInput(index: number) {
+                this.placesCityParkingArray.splice(index, 1);
+            },
+        },
+
+        watch: {
+            placesCityCoordinates: function (newValue, oldValue) {
+                try {
+                    this.placesCityCoordinatesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesCityCoordinatesArray = [];
+                }
+            },
+            placesCityCoordinatesArray: function (newValue, oldValue) {
+                this.placesCityCoordinates = JSON.stringify(newValue);
+            },
+            placesCityZoom: function (newValue, oldValue) {
+                try {
+                    this.placesCityZoomArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesCityZoomArray = [];
+                }
+            },
+            placesCityZoomArray: function (newValue, oldValue) {
+                this.placesCityZoom = JSON.stringify(newValue);
+            },
+            placesCityAffiliate: function (newValue, oldValue) {
+                try {
+                    this.placesCityAffiliateArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesCityAffiliateArray = [];
+                }
+            },
+            placesCityAffiliateArray: function (newValue, oldValue) {
+                this.placesCityAffiliate = JSON.stringify(newValue);
+            },
+            placesCityAlerts: function (newValue, oldValue) {
+                try {
+                    this.placesCityAlertsArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesCityAlertsArray = [];
+                }
+            },
+            placesCityAlertsArray: function (newValue, oldValue) {
+                this.placesCityAlerts = JSON.stringify(newValue);
+            },
+            placesCityParking: function (newValue, oldValue) {
+                try {
+                    this.placesCityParkingArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesCityParkingArray = [];
+                }
+            },
+            placesCityParkingArray: function (newValue, oldValue) {
+                this.placesCityParking = JSON.stringify(newValue);
             }
         },
 
@@ -230,10 +541,15 @@
             const placesCityArea = ref('')
             const placesCityAltitude = ref('')
             const placesCityCoordinates = ref('')
+            const placesCityCoordinatesArray = ref([])
             const placesCityZoom = ref('')
+            const placesCityZoomArray = ref([])
             const placesCityAffiliate = ref('')
+            const placesCityAffiliateArray = ref([])
             const placesCityAlerts = ref('')
+            const placesCityAlertsArray = ref([])
             const placesCityParking = ref('')
+            const placesCityParkingArray = ref([])
             const placesCityBiggest = ref('')
 
             //FORM - create
@@ -258,11 +574,11 @@
                             'population': placesCityPopulation.value,
                             'area': placesCityArea.value,
                             'altitude': placesCityAltitude.value,
-                            'coordinates': placesCityCoordinates.value,
-                            'zoom': placesCityZoom.value,
-                            'affiliate': placesCityAffiliate.value,
-                            'alerts': placesCityAlerts.value,
-                            'parking': placesCityParking.value,
+                            'coordinates': JSON.stringify(placesCityCoordinatesArray._value),
+                            'zoom': JSON.stringify(placesCityZoomArray._value),
+                            'affiliate': JSON.stringify(placesCityAffiliateArray._value),
+                            'alerts': JSON.stringify(placesCityAlertsArray._value),
+                            'parking': JSON.stringify(placesCityParkingArray._value),
                             'biggest': placesCityBiggest.value
                         })
                     })
@@ -282,7 +598,32 @@
             }
 
             //RETURN
-            return { successForm, errorForm, placesCityIDstate, placesCityIDimageCover, placesCityIDimageHero, placesCityTypePlace, placesCitySlug, placesCityName, placesCityInformationChatgpt, placesCityPopulation, placesCityArea, placesCityAltitude, placesCityCoordinates, placesCityZoom, placesCityAffiliate, placesCityAlerts, placesCityParking, placesCityBiggest, createForm }
+            return {
+                successForm,
+                errorForm,
+                placesCityIDstate,
+                placesCityIDimageCover,
+                placesCityIDimageHero,
+                placesCityTypePlace,
+                placesCitySlug,
+                placesCityName,
+                placesCityInformationChatgpt,
+                placesCityPopulation,
+                placesCityArea,
+                placesCityAltitude,
+                placesCityCoordinates,
+                placesCityCoordinatesArray,
+                placesCityZoom,
+                placesCityZoomArray,
+                placesCityAffiliate,
+                placesCityAffiliateArray,
+                placesCityAlerts,
+                placesCityAlertsArray,
+                placesCityParking,
+                placesCityParkingArray,
+                placesCityBiggest,
+                createForm
+            }
         },
         
         mounted() {
