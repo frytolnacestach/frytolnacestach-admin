@@ -543,7 +543,7 @@
                 postLocationsArray: [],
                 postTravelsArray: [],
                 postPricesArray: [],
-                postTriplengthArray: [],
+                postTriplengthsArray: [],
                 postTimeArray: []
                 /*timezones: [
                     'Pacific/Midway', // -11
@@ -767,14 +767,14 @@
             const errorForm = ref('')
             const successForm = ref('')
             const postSlug = ref('')
-            const postIDcontinent = ref(0)
-            const postIDstate = ref(0)
-            const postIDregion = ref(0)
-            const postIDcity = ref(0)
-            const postIDspot = ref(0)
-            const postIdImageCover = ref(0)
-            const postIdImageHero = ref(0)
-            const postIdImageMap = ref(0)
+            const postIDcontinent = ref(null)
+            const postIDstate = ref(null)
+            const postIDregion = ref(null)
+            const postIDcity = ref(null)
+            const postIDspot = ref(null)
+            const postIdImageCover = ref(null)
+            const postIdImageHero = ref(null)
+            const postIdImageMap = ref(null)
             const postDate = ref(new Date())
             const postDateUpdate = ref(new Date())
             const postDateInformation = ref(new Date())

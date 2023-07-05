@@ -978,7 +978,7 @@
                 }
             },
             placesStateAlertsArray: function (newValue, oldValue) {
-                this.placesStateIDSneighboringCountries = JSON.stringify(newValue);
+                this.placesStateAlerts = JSON.stringify(newValue);
             },
             placesStateOrganization: function (newValue, oldValue) {
                 try {

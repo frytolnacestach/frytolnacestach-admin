@@ -854,7 +854,7 @@
             // IDSneighboringCountries
             addIDSneighboringCountrieInput() {
                 this.placesStateIDSneighboringCountriesArray.push({
-                    id: ''
+                    id: null
                 });
             },
             removeIDSneighboringCountrieInput(index: number) {
@@ -1109,7 +1109,7 @@
                 }
             },
             placesStateAlertsArray: function (newValue, oldValue) {
-                this.placesStateIDSneighboringCountries = JSON.stringify(newValue);
+                this.placesStateAlerts = JSON.stringify(newValue);
             },
             placesStateOrganization: function (newValue, oldValue) {
                 try {
@@ -1177,7 +1177,7 @@
             const placesStateIDcityMain = ref(null)
             const placesStateIDimageCover = ref(null)
             const placesStateIDimageHero = ref(null)
-            const placesStateIDSneighboringCountries = ref('')
+            const placesStateIDSneighboringCountries = ref([])
             const placesStateIDSneighboringCountriesArray = ref([])
             const placesStateTypePlace = ref('')
             const placesStateSlug = ref('')

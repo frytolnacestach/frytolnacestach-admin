@@ -80,7 +80,7 @@
                                                             </div>
                                                             <div class="o-form-create__group-input">
                                                                 <label class="m-label">Value:</label>
-                                                                <input class="a-input" type="number" v-model="item.value" />
+                                                                <input class="a-input" type="text" v-model="item.value" />
                                                             </div>
                                                         </div>
                                                     </div>

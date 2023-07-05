@@ -92,28 +92,28 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
                                             </label>
-                                            <div class="o-o-form-edit__group">
-                                                <div class="o-o-form-edit__group-items">
-                                                    <div class="o-o-form-edit__group-item" v-for="(item, index) in placesContinentCoordinatesArray" :key="index">
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesContinentCoordinatesArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeCoordinateInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-o-form-edit__group-inputs">
-                                                            <div class="o-o-form-edit__group-input">
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Latitude:</label>
                                                                 <input class="a-input" type="text" v-model="item.latitude" />
                                                             </div>
-                                                            <div class="o-o-form-edit__group-input">
+                                                            <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Longitude:</label>
                                                                 <input class="a-input" type="text" v-model="item.longitude" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-o-form-edit__buttons mt-1">
-                                                    <div class="o-o-form-edit__button">
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addCoordinateInput">Přidat souřadnici</button>
                                                         </div>
@@ -125,28 +125,28 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
                                             </label>
-                                            <div class="o-o-form-edit__group">
-                                                <div class="o-o-form-edit__group-items">
-                                                    <div class="o-o-form-edit__group-item" v-for="(item, index) in placesContinentZoomArray" :key="index">
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesContinentZoomArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-o-form-edit__group-inputs">
-                                                            <div class="o-o-form-edit__group-input">
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Google:</label>
                                                                 <input class="a-input" type="text" v-model="item.google" />
                                                             </div>
-                                                            <div class="o-o-form-edit__group-input">
+                                                            <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Booking:</label>
                                                                 <input class="a-input" type="text" v-model="item.booking" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-o-form-edit__buttons mt-1">
-                                                    <div class="o-o-form-edit__button">
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
                                                         </div>
