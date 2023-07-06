@@ -131,7 +131,7 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Nadmořská výška <span class="m-label__name-column">(altitude)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="altitude" v-model="placesCityAltitude" />
+                                            <input class="a-input" type="number" name="altitude" v-model="placesCityAltitude" />
                                         </div>  
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
@@ -688,7 +688,7 @@
             const placesCityInformationAuthorArray = ref([])
             const placesCityPopulation = ref('')
             const placesCityArea = ref('')
-            const placesCityAltitude = ref('')
+            const placesCityAltitude = ref(null)
             const placesCityCoordinates = ref('')
             const placesCityCoordinatesArray = ref([])
             const placesCityZoom = ref('')
@@ -715,7 +715,7 @@
                     placesCitySlug.value = PlacesCity[0].slug;
                     placesCityName.value = PlacesCity[0].name;
                     placesCityInformationChatgpt.value = PlacesCity[0].information_chatgpt;
-                    placesCityInformationAuthor.value = placesCity[0].information_author ? JSON.stringify(placesCity[0].information_author) : JSON.stringify([]);
+                    placesCityInformationAuthor.value = PlacesCity[0].information_author ? JSON.stringify(PlacesCity[0].information_author) : JSON.stringify([]);
                     placesCityPopulation.value = PlacesCity[0].population;
                     placesCityArea.value = PlacesCity[0].area;
                     placesCityAltitude.value = PlacesCity[0].altitude;

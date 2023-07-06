@@ -125,7 +125,7 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Nadmořská výška <span class="m-label__name-column">(altitude)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="altitude" v-model="placesSpotAltitude" />
+                                            <input class="a-input" type="number" name="altitude" v-model="placesSpotAltitude" />
                                         </div> 
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
@@ -472,7 +472,7 @@
             const placesSpotInformationChatgpt = ref('')
             const placesSpotInformationAuthor = ref('')
             const placesSpotInformationAuthorArray = ref([])
-            const placesSpotAltitude = ref('')
+            const placesSpotAltitude = ref(null)
             const placesSpotCoordinates = ref([])
             const placesSpotCoordinatesArray = ref([])
             const placesSpotZoom = ref('')
@@ -495,7 +495,7 @@
                     placesSpotSlug.value = PlacesSpot[0].slug;
                     placesSpotName.value = PlacesSpot[0].name;
                     placesSpotInformationChatgpt.value = PlacesSpot[0].information_chatgpt;
-                    placesSpotInformationAuthor.value = placesSpot[0].information_author ? JSON.stringify(placesSpot[0].information_author) : JSON.stringify([]);
+                    placesSpotInformationAuthor.value = PlacesSpot[0].information_author ? JSON.stringify(PlacesSpot[0].information_author) : JSON.stringify([]);
                     placesSpotAltitude.value = PlacesSpot[0].altitude;
                     placesSpotCoordinates.value = PlacesSpot[0].coordinates ? JSON.stringify(PlacesSpot[0].coordinates) : JSON.stringify([]);
                     placesSpotZoom.value = PlacesSpot[0].zoom ? JSON.stringify(PlacesSpot[0].zoom) : JSON.stringify([]);

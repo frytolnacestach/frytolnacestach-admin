@@ -1401,7 +1401,7 @@
                     placesStateSlug.value = PlacesState[0].slug;
                     placesStateName.value = PlacesState[0].name;
                     placesStateInformationChatgpt.value = PlacesState[0].information_chatgpt;
-                    placesStateInformationAuthor.value = placesState[0].information_author ? JSON.stringify(placesState[0].information_author) : JSON.stringify([]);
+                    placesStateInformationAuthor.value = PlacesState[0].information_author ? JSON.stringify(PlacesState[0].information_author) : JSON.stringify([]);
                     placesStateMpz.value = PlacesState[0].mpz;
                     placesStateTld.value = PlacesState[0].tld;
                     placesStateArea.value = PlacesState[0].area;

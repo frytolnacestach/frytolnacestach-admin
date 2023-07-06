@@ -125,7 +125,7 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Nadmořská výška <span class="m-label__name-column">(altitude)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="altitude" v-model="placesSpotAltitude" />
+                                            <input class="a-input" type="number" name="altitude" v-model="placesSpotAltitude" />
                                         </div>  
                                         <div class="o-form-create__item">
                                             <label class="m-label">
@@ -421,7 +421,7 @@
             const placesSpotInformationChatgpt = ref('')
             const placesSpotInformationAuthor = ref('')
             const placesSpotInformationAuthorArray = ref([])
-            const placesSpotAltitude = ref('')
+            const placesSpotAltitude = ref(null)
             const placesSpotCoordinates = ref('')
             const placesSpotCoordinatesArray = ref([])
             const placesSpotZoom = ref('')
