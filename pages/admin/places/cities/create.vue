@@ -72,6 +72,51 @@
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">Informace od autora <span class="m-label__name-column">(information_author)</span></span>
+                                            </label>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesCityInformationAuthorArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeInformationAuthorInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Text:</label>
+                                                                <textarea class="a-textarea" type="text" v-model="item.text"></textarea>
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date create:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_create" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Date update:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Author create:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_create" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Author update:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_update" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addInformationAuthorInput">Přidat text</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">Populace <span class="m-label__name-column">(population)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="population" v-model="placesCityPopulation" />
@@ -191,52 +236,52 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Upozornění <span class="m-label__name-column">(alerts)</span></span>
                                             </label>
-                                            <div class="o-form-edit__group">
-                                                <div class="o-form-edit__group-items">
-                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesCityAlertsArray" :key="index">
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesCityAlertsArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeAlertInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-edit__group-inputs">
-                                                            <div class="o-form-edit__group-input">
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Name:</label>
                                                                 <input class="a-input" type="text" v-model="item.name" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Text:</label>
                                                                 <input class="a-input" type="text" v-model="item.text" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Type:</label>
                                                                 <input class="a-input" type="text" v-model="item.type" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Author:</label>
                                                                 <input class="a-input" type="text" v-model="item.author" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Date create:</label>
                                                                 <input class="a-input" type="text" v-model="item.date_create" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Date update:</label>
                                                                 <input class="a-input" type="text" v-model="item.date_update" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Date start:</label>
                                                                 <input class="a-input" type="text" v-model="item.date_start" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Date end:</label>
                                                                 <input class="a-input" type="text" v-model="item.date_end" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-edit__buttons mt-1">
-                                                    <div class="o-form-edit__button">
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addAlertInput">Přidat upozornění</button>
                                                         </div>
@@ -248,56 +293,56 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Parkování <span class="m-label__name-column">(parking)</span></span>
                                             </label>
-                                            <div class="o-form-edit__group">
-                                                <div class="o-form-edit__group-items">
-                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesCityParkingArray" :key="index">
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesCityParkingArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeParkingInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-edit__group-inputs">
-                                                            <div class="o-form-edit__group-input">
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Name:</label>
                                                                 <input class="a-input" type="text" v-model="item.name" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Description:</label>
                                                                 <input class="a-input" type="text" v-model="item.description" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Date:</label>
                                                                 <input class="a-input" type="text" v-model="item.date" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Author:</label>
                                                                 <input class="a-input" type="text" v-model="item.author" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Author Update:</label>
                                                                 <input class="a-input" type="text" v-model="item.author_update" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Date update:</label>
                                                                 <input class="a-input" type="text" v-model="item.date_update" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Pay time:</label>
                                                                 <input class="a-input" type="text" v-model="item.pay_time" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">Price:</label>
                                                                 <input class="a-input" type="text" v-model="item.price" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-create__group-input">
                                                                 <label class="m-label">URL:</label>
                                                                 <input class="a-input" type="text" v-model="item.url" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-edit__buttons mt-1">
-                                                    <div class="o-form-edit__button">
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addParkingInput">Přidat parkování</button>
                                                         </div>
@@ -374,6 +419,7 @@
                         status: "span"
                     }
                 ],
+                placesCityInformationAuthorArray: [],
                 placesCityCoordinatesArray: [],
                 placesCityZoomArray: [],
                 placesCityAffiliateArray: [],
@@ -383,6 +429,19 @@
         },
 
         methods: {
+            // information author
+            addInformationAuthorInput() {
+                this.placesCityInformationAuthorArray.push({
+                    text: '',
+                    date_create: '',
+                    date_update: '',
+                    author_create: '',
+                    author_update: ''
+                });
+            },
+            removeInformationAuthorInput(index: number) {
+                this.placesCityInformationAuthorArray.splice(index, 1);
+            },
             // coordinates
             addCoordinateInput() {
                 this.placesCityCoordinatesArray.push({
@@ -449,6 +508,16 @@
         },
 
         watch: {
+            placesCityName: function (newValue, oldValue) {
+                this.updateBreadcrumbs();
+            },
+            placesCityInformationAuthor: function (newValue, oldValue) {
+                try {
+                    this.placesCityInformationAuthorArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesCityInformationAuthorArray = [];
+                }
+            },
             placesCityCoordinates: function (newValue, oldValue) {
                 try {
                     this.placesCityCoordinatesArray = JSON.parse(newValue);
@@ -537,6 +606,8 @@
             const placesCitySlug = ref('')
             const placesCityName = ref('')
             const placesCityInformationChatgpt = ref('')
+            const placesCityInformationAuthor = ref('')
+            const placesCityInformationAuthorArray = ref([])
             const placesCityPopulation = ref('')
             const placesCityArea = ref('')
             const placesCityAltitude = ref('')
@@ -571,6 +642,7 @@
                             'slug': placesCitySlug.value,
                             'name': placesCityName.value,
                             'information_chatgpt': placesCityInformationChatgpt.value,
+                            'information_author': JSON.stringify(placesCityInformationAuthorArray._value),
                             'population': placesCityPopulation.value,
                             'area': placesCityArea.value,
                             'altitude': placesCityAltitude.value,
@@ -608,6 +680,8 @@
                 placesCitySlug,
                 placesCityName,
                 placesCityInformationChatgpt,
+                placesCityInformationAuthor,
+                placesCityInformationAuthorArray,
                 placesCityPopulation,
                 placesCityArea,
                 placesCityAltitude,

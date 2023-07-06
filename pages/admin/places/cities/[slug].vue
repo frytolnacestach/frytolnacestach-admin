@@ -72,6 +72,51 @@
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">Informace od autora <span class="m-label__name-column">(information_author)</span></span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesCityInformationAuthorArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeInformationAuthorInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Text:</label>
+                                                                <textarea class="a-textarea" type="text" v-model="item.text"></textarea>
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Date create:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_create" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Date update:</label>
+                                                                <input class="a-input" type="text" v-model="item.date_update" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author create:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_create" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Author update:</label>
+                                                                <input class="a-input" type="text" v-model="item.author_update" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addInformationAuthorInput">Přidat text</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">Populace <span class="m-label__name-column">(population)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="population" v-model="placesCityPopulation" />
@@ -336,6 +381,14 @@
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
+    interface InformationAuthor {
+        text: string
+        date_create: string
+        date_update: string
+        author_create: string
+        author_update: string
+    }
+    
     interface Coordinates {
         latitude: number
         longitude: number
@@ -382,6 +435,7 @@
         slug: string
         name: string
         information_chatgpt: string
+        information_author: InformationAuthor[]
         population: string
         area: string
         altitude: string
@@ -431,6 +485,7 @@
                         status: "span"
                     }
                 ],
+                placesCityInformationAuthorArray: [],
                 placesCityCoordinatesArray: [],
                 placesCityZoomArray: [],
                 placesCityAffiliateArray: [],
@@ -447,6 +502,19 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace města - ${placesCityName}`
                 }
+            },
+            // information author
+            addInformationAuthorInput() {
+                this.placesCityInformationAuthorArray.push({
+                    text: '',
+                    date_create: '',
+                    date_update: '',
+                    author_create: '',
+                    author_update: ''
+                });
+            },
+            removeInformationAuthorInput(index: number) {
+                this.placesCityInformationAuthorArray.splice(index, 1);
             },
             // coordinates
             addCoordinateInput() {
@@ -516,6 +584,16 @@
         watch: {
             placesCityName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
+            },
+            placesCityName: function (newValue, oldValue) {
+                this.updateBreadcrumbs();
+            },
+            placesCityInformationAuthor: function (newValue, oldValue) {
+                try {
+                    this.placesCityInformationAuthorArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesCityInformationAuthorArray = [];
+                }
             },
             placesCityCoordinates: function (newValue, oldValue) {
                 try {
@@ -606,6 +684,8 @@
             const placesCitySlug = ref('')
             const placesCityName = ref('')
             const placesCityInformationChatgpt = ref('')
+            const placesCityInformationAuthor = ref('')
+            const placesCityInformationAuthorArray = ref([])
             const placesCityPopulation = ref('')
             const placesCityArea = ref('')
             const placesCityAltitude = ref('')
@@ -635,6 +715,7 @@
                     placesCitySlug.value = PlacesCity[0].slug;
                     placesCityName.value = PlacesCity[0].name;
                     placesCityInformationChatgpt.value = PlacesCity[0].information_chatgpt;
+                    placesCityInformationAuthor.value = placesCity[0].information_author ? JSON.stringify(placesCity[0].information_author) : JSON.stringify([]);
                     placesCityPopulation.value = PlacesCity[0].population;
                     placesCityArea.value = PlacesCity[0].area;
                     placesCityAltitude.value = PlacesCity[0].altitude;
@@ -668,6 +749,7 @@
                             'slug': placesCitySlug.value,
                             'name': placesCityName.value,
                             'information_chatgpt': placesCityInformationChatgpt.value,
+                            'information_author': JSON.stringify(placesCityInformationAuthorArray._value),
                             'population': placesCityPopulation.value,
                             'area': placesCityArea.value,
                             'altitude': placesCityAltitude.value,
@@ -704,6 +786,8 @@
                 placesCitySlug,
                 placesCityName,
                 placesCityInformationChatgpt,
+                placesCityInformationAuthor,
+                placesCityInformationAuthorArray,
                 placesCityPopulation,
                 placesCityArea,
                 placesCityAltitude,
