@@ -37,21 +37,21 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageCover" v-model="placesContinentIDimageCover" />
+                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="placesContinentIDimageCover" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageHero" v-model="placesContinentIDimageHero" />
+                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="placesContinentIDimageHero" />
                                         </div>
                                         <!-- other --> 
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span></span>
+                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="typePlace" v-model="placesContinentTypePlace" />
-                                        </div>                    
+                                            <input class="a-input" type="text" name="typePlace" disabled="true" v-model="placesContinentTypePlace" required />
+                                        </div>     
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
@@ -113,25 +113,25 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Rozloha <span class="m-label__name-column">(area)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="area" v-model="placesContinentArea" />
+                                            <input class="a-input" type="number" min="0" step=".01" name="area" v-model="placesContinentArea" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Populace <span class="m-label__name-column">(population)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="population" v-model="placesContinentPopulation" />
+                                            <input class="a-input" type="number" min="0" name="population" v-model="placesContinentPopulation" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Hustota populace <span class="m-label__name-column">(population_density)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="population_density" v-model="placesContinentPopulationDensity" />
+                                            <input class="a-input" type="number" min="0" step=".01" name="population_density" v-model="placesContinentPopulationDensity" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Počet států <span class="m-label__name-column">(number_states)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="number_states" v-model="placesContinentNumberStates" />
+                                            <input class="a-input" type="number" min="0" name="number_states" v-model="placesContinentNumberStates" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
@@ -181,11 +181,11 @@
                                                         <div class="o-form-edit__group-inputs">
                                                             <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Google:</label>
-                                                                <input class="a-input" type="number" v-model="item.google" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.google" />
                                                             </div>
                                                             <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Booking:</label>
-                                                                <input class="a-input" type="number" v-model="item.booking" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.booking" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -250,10 +250,10 @@
         name: string
         information_chatgpt: string
         information_author: InformationAuthor[]
-        area: string
-        population: string
-        population_density: string
-        number_states: string
+        area: number
+        population: number
+        population_density: number
+        number_states: number
         coordinates: Coordinates[]
         zoom: Zoom[]
     }
@@ -414,19 +414,19 @@
             const successForm = ref('')
             const placesContinentIDimageCover = ref(null)
             const placesContinentIDimageHero = ref(null)
-            const placesContinentTypePlace = ref('')
+            const placesContinentTypePlace = ref('continent')
             const placesContinentSlug = ref('')
             const placesContinentName = ref('')
             const placesContinentInformationChatgpt = ref('')
-            const placesContinentInformationAuthor = ref('')
+            const placesContinentInformationAuthor = ref([])
             const placesContinentInformationAuthorArray = ref([])
-            const placesContinentArea = ref('')
-            const placesContinentPopulation = ref('')
-            const placesContinentPopulationDensity = ref('')
-            const placesContinentNumberStates = ref('')
-            const placesContinentCoordinates = ref('')
+            const placesContinentArea = ref(null)
+            const placesContinentPopulation = ref(null)
+            const placesContinentPopulationDensity = ref(null)
+            const placesContinentNumberStates = ref(null)
+            const placesContinentCoordinates = ref([])
             const placesContinentCoordinatesArray = ref([])
-            const placesContinentZoom = ref('')
+            const placesContinentZoom = ref([])
             const placesContinentZoomArray = ref([])
 
             //API - Places Continent

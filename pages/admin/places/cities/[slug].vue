@@ -35,28 +35,28 @@
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
+                                                <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="state" v-model="placesCityIDstate" />
+                                            <input class="a-input" type="number" min="0" name="state" v-model="placesCityIDstate" required />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageCover" v-model="placesCityIDimageCover" />
+                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="placesCityIDimageCover" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageHero" v-model="placesCityIDimageHero" />
+                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="placesCityIDimageHero" />
                                         </div>
                                         <!-- other -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span></span>
+                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="typePlace" v-model="placesCityTypePlace" />
+                                            <input class="a-input" type="text" disabled="true" name="typePlace" v-model="placesCityTypePlace" required />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
@@ -119,19 +119,19 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Populace <span class="m-label__name-column">(population)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="population" v-model="placesCityPopulation" />
+                                            <input class="a-input" type="number" min="0" name="population" v-model="placesCityPopulation" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Rozloha <span class="m-label__name-column">(area)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="area" v-model="placesCityArea" />
+                                            <input class="a-input" type="number" min="0" step=".01" name="area" v-model="placesCityArea" />
                                         </div>  
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Nadmořská výška <span class="m-label__name-column">(altitude)</span></span>
                                             </label>
-                                            <input class="a-input" type="number" name="altitude" v-model="placesCityAltitude" />
+                                            <input class="a-input" type="number" min="0" name="altitude" v-model="placesCityAltitude" />
                                         </div>  
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
@@ -181,11 +181,11 @@
                                                         <div class="o-form-edit__group-inputs">
                                                             <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Google:</label>
-                                                                <input class="a-input" type="number" v-model="item.google" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.google" />
                                                             </div>
                                                             <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Booking:</label>
-                                                                <input class="a-input" type="number" v-model="item.booking" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.booking" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -680,26 +680,26 @@
             const placesCityIDstate = ref(null)
             const placesCityIDimageCover = ref(null)
             const placesCityIDimageHero = ref(null)
-            const placesCityTypePlace = ref('')
+            const placesCityTypePlace = ref('city')
             const placesCitySlug = ref('')
             const placesCityName = ref('')
             const placesCityInformationChatgpt = ref('')
-            const placesCityInformationAuthor = ref('')
+            const placesCityInformationAuthor = ref([])
             const placesCityInformationAuthorArray = ref([])
-            const placesCityPopulation = ref('')
-            const placesCityArea = ref('')
+            const placesCityPopulation = ref(null)
+            const placesCityArea = ref(null)
             const placesCityAltitude = ref(null)
-            const placesCityCoordinates = ref('')
+            const placesCityCoordinates = ref([])
             const placesCityCoordinatesArray = ref([])
-            const placesCityZoom = ref('')
+            const placesCityZoom = ref([])
             const placesCityZoomArray = ref([])
-            const placesCityAffiliate = ref('')
+            const placesCityAffiliate = ref([])
             const placesCityAffiliateArray = ref([])
-            const placesCityAlerts = ref('')
+            const placesCityAlerts = ref([])
             const placesCityAlertsArray = ref([])
-            const placesCityParking = ref('')
+            const placesCityParking = ref([])
             const placesCityParkingArray = ref([])
-            const placesCityBiggest = ref('')
+            const placesCityBiggest = ref([])
 
             //API - Places City
             ;(async () => {

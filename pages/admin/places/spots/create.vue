@@ -35,34 +35,34 @@
                                         <!-- ids -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
+                                                <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="state" v-model="placesSpotIDstate" />
+                                            <input class="a-input" type="number" min="0" name="state" v-model="placesSpotIDstate" required />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="city" v-model="placesSpotIDcity" />
+                                            <input class="a-input" type="number" min="0" name="city" v-model="placesSpotIDcity" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageCover" v-model="placesSpotIDimageCover" />
+                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="placesSpotIDimageCover" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageHero" v-model="placesSpotIDimageHero" />
+                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="placesSpotIDimageHero" />
                                         </div>
                                         <!-- other --> 
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span></span>
+                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="typePlace" v-model="placesSpotTypePlace" />
+                                            <input class="a-input" type="text" disabled="true" name="typePlace" v-model="placesSpotTypePlace" required />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
@@ -125,7 +125,7 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Nadmořská výška <span class="m-label__name-column">(altitude)</span></span>
                                             </label>
-                                            <input class="a-input" type="number" name="altitude" v-model="placesSpotAltitude" />
+                                            <input class="a-input" type="number" min="0" name="altitude" v-model="placesSpotAltitude" />
                                         </div>  
                                         <div class="o-form-create__item">
                                             <label class="m-label">
@@ -175,11 +175,11 @@
                                                         <div class="o-form-create__group-inputs">
                                                             <div class="o-form-create__group-input">
                                                                 <label class="m-label">Google:</label>
-                                                                <input class="a-input" type="number" v-model="item.google" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.google" />
                                                             </div>
                                                             <div class="o-form-create__group-input">
                                                                 <label class="m-label">Booking:</label>
-                                                                <input class="a-input" type="number" v-model="item.booking" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.booking" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -415,18 +415,18 @@
             const placesSpotIDcity = ref(null)
             const placesSpotIDimageCover = ref(null)
             const placesSpotIDimageHero = ref(null)
-            const placesSpotTypePlace = ref('')
+            const placesSpotTypePlace = ref('spot')
             const placesSpotSlug = ref('')
             const placesSpotName = ref('')
             const placesSpotInformationChatgpt = ref('')
-            const placesSpotInformationAuthor = ref('')
+            const placesSpotInformationAuthor = ref([])
             const placesSpotInformationAuthorArray = ref([])
             const placesSpotAltitude = ref(null)
-            const placesSpotCoordinates = ref('')
+            const placesSpotCoordinates = ref([])
             const placesSpotCoordinatesArray = ref([])
-            const placesSpotZoom = ref('')
+            const placesSpotZoom = ref([])
             const placesSpotZoomArray = ref([])
-            const placesSpotAffiliate = ref('')
+            const placesSpotAffiliate = ref([])
             const placesSpotAffiliateArray = ref([])
 
             //FORM - create

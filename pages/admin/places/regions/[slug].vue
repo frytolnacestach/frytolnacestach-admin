@@ -35,28 +35,28 @@
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
+                                                <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="state" v-model="placesRegionIDstate" />
+                                            <input class="a-input" type="number" min="0" name="state" v-model="placesRegionIDstate" required />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageCover" v-model="placesRegionIDimageCover" />
+                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="placesRegionIDimageCover" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageHero" v-model="placesRegionIDimageHero" />
+                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="placesRegionIDimageHero" />
                                         </div>
                                         <!-- other --> 
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span></span>
+                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="typePlace" v-model="placesRegionTypePlace" />
+                                            <input class="a-input" type="text" disabled="true" name="typePlace" v-model="placesRegionTypePlace" required />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
@@ -163,11 +163,11 @@
                                                         <div class="o-form-edit__group-inputs">
                                                             <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Google:</label>
-                                                                <input class="a-input" type="number" v-model="item.google" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.google" />
                                                             </div>
                                                             <div class="o-form-edit__group-input">
                                                                 <label class="m-label">Booking:</label>
-                                                                <input class="a-input" type="number" v-model="item.booking" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.booking" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -454,17 +454,17 @@
             const placesRegionIDstate = ref(null)
             const placesRegionIDimageCover = ref(null)
             const placesRegionIDimageHero = ref(null)
-            const placesRegionTypePlace = ref('')
+            const placesRegionTypePlace = ref('region')
             const placesRegionSlug = ref('')
             const placesRegionName = ref('')
             const placesRegionInformationChatgpt = ref('')
-            const placesRegionInformationAuthor = ref('')
+            const placesRegionInformationAuthor = ref([])
             const placesRegionInformationAuthorArray = ref([])
-            const placesRegionCoordinates = ref('')
+            const placesRegionCoordinates = ref([])
             const placesRegionCoordinatesArray = ref([])
-            const placesRegionZoom = ref('')
+            const placesRegionZoom = ref([])
             const placesRegionZoomArray = ref([])
-            const placesRegionAffiliate = ref('')
+            const placesRegionAffiliate = ref([])
             const placesRegionAffiliateArray = ref([])
 
             //API - Places Region

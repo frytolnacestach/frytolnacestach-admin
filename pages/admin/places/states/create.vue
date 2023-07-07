@@ -35,27 +35,27 @@
                                         <!-- ids -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span></span>
+                                                <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_hero" v-model="placesStateIDcontinent" />
+                                            <input class="a-input" type="number" min="0" name="image_hero" v-model="placesStateIDcontinent" required />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Hlavního města <span class="m-label__name-column">(id_city_main)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="city_main" v-model="placesStateIDcityMain" />
+                                            <input class="a-input" type="number" min="0" name="city_main" v-model="placesStateIDcityMain" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_cover" v-model="placesStateIDimageCover" />
+                                            <input class="a-input" type="number" min="0" name="image_cover" v-model="placesStateIDimageCover" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="image_hero" v-model="placesStateIDimageHero" />
+                                            <input class="a-input" type="number" min="0" name="image_hero" v-model="placesStateIDimageHero" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
@@ -72,7 +72,7 @@
                                                         <div class="o-form-create__group-inputs">
                                                             <div class="o-form-create__group-input">
                                                                 <label class="m-label">ID:</label>
-                                                                <input class="a-input" type="text" v-model="item.id" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.id" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -89,9 +89,9 @@
                                         <!-- other -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
-                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span></span>
+                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="typePlace" v-model="placesStateTypePlace" />
+                                            <input class="a-input" type="text" disabled="true" name="typePlace" v-model="placesStateTypePlace" required />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
@@ -166,13 +166,13 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Rozloha <span class="m-label__name-column">(area)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="area" v-model="placesStateArea" />
+                                            <input class="a-input" type="number" min="0" step=".01" name="area" v-model="placesStateArea" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Populace <span class="m-label__name-column">(population)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="population" v-model="placesStatePopulation" />
+                                            <input class="a-input" type="number" min="0" name="population" v-model="placesStatePopulation" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
@@ -485,11 +485,11 @@
                                                         <div class="o-form-create__group-inputs">
                                                             <div class="o-form-create__group-input">
                                                                 <label class="m-label">Google:</label>
-                                                                <input class="a-input" type="number" v-model="item.google" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.google" />
                                                             </div>
                                                             <div class="o-form-create__group-input">
                                                                 <label class="m-label">Booking:</label>
-                                                                <input class="a-input" type="number" v-model="item.booking" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.booking" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1190,44 +1190,44 @@
             const placesStateIDcityMain = ref(null)
             const placesStateIDimageCover = ref(null)
             const placesStateIDimageHero = ref(null)
-            const placesStateIDSneighboringCountries = ref('')
+            const placesStateIDSneighboringCountries = ref([])
             const placesStateIDSneighboringCountriesArray = ref([])
-            const placesStateTypePlace = ref('')
+            const placesStateTypePlace = ref('state')
             const placesStateSlug = ref('')
             const placesStateName = ref('')
             const placesStateInformationChatgpt = ref('')
-            const placesStateInformationAuthor = ref('')
+            const placesStateInformationAuthor = ref([])
             const placesStateInformationAuthorArray = ref([])
             const placesStateMpz = ref('')
             const placesStateTld = ref('')
             const placesStateArea = ref(null)
             const placesStatePopulation = ref(null)
             const placesStatePhonePrefix = ref('')
-            const placesStatePhoneNumbersEmergency = ref('')
+            const placesStatePhoneNumbersEmergency = ref([])
             const placesStatePhoneNumbersEmergencyArray = ref([])
             const placesStateCurrencyName = ref('')
             const placesStateCurrencyCode = ref('')
-            const placesStateMoneyPrices = ref('')
+            const placesStateMoneyPrices = ref([])
             const placesStateMoneyPricesArray = ref([])
-            const placesStatePeopleReligion = ref('')
+            const placesStatePeopleReligion = ref([])
             const placesStatePeopleReligionArray = ref([])
-            const placesStatePeopleNationality = ref('')
+            const placesStatePeopleNationality = ref([])
             const placesStatePeopleNationalityArray = ref([])
-            const placesStateVisitorsEntry = ref('')
+            const placesStateVisitorsEntry = ref([])
             const placesStateVisitorsEntryArray = ref([])
-            const placesStateCoordinates = ref('')
+            const placesStateCoordinates = ref([])
             const placesStateCoordinatesArray = ref([])
-            const placesStateZoom = ref('')
+            const placesStateZoom = ref([])
             const placesStateZoomArray = ref([])
-            const placesStateAffiliate = ref('')
+            const placesStateAffiliate = ref([])
             const placesStateAffiliateArray = ref([])
-            const placesStateAlerts = ref('')
+            const placesStateAlerts = ref([])
             const placesStateAlertsArray = ref([])
-            const placesStateOrganization = ref('')
+            const placesStateOrganization = ref([])
             const placesStateOrganizationArray = ref([])
-            const placesStateApps = ref('')
+            const placesStateApps = ref([])
             const placesStateAppsArray = ref([])
-            const placesStateLinks = ref('')
+            const placesStateLinks = ref([])
             const placesStateLinksArray = ref([])
 
             //FORM - create
