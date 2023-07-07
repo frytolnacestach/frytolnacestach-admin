@@ -172,7 +172,7 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Populace <span class="m-label__name-column">(population)</span></span>
                                             </label>
-                                            <input class="a-input" type="number" name="population" v-model="placesStatePopulation" />
+                                            <input class="a-input" type="number" min="0" name="population" v-model="placesStatePopulation" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">

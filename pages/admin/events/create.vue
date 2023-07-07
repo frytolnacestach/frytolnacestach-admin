@@ -37,37 +37,37 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="state" v-model="eventIDstate" />
+                                            <input class="a-input" type="number" min="0" name="state" v-model="eventIDstate" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="region" v-model="eventIDregion" />
+                                            <input class="a-input" type="number" min="0" name="region" v-model="eventIDregion" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="city" v-model="eventIDcity" />
+                                            <input class="a-input" type="number" min="0" name="city" v-model="eventIDcity" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="spot" v-model="eventIDspot" />
+                                            <input class="a-input" type="number" min="0" name="spot" v-model="eventIDspot" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageCover" v-model="eventIDimageCover" />
+                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="eventIDimageCover" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageHero" v-model="eventIDimageHero" />
+                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="eventIDimageHero" />
                                         </div>
                                         <!-- other -->
                                         <div class="o-form-create__item">
@@ -142,11 +142,11 @@
                                                         <div class="o-form-create__group-inputs">
                                                             <div class="o-form-create__group-input">
                                                                 <label class="m-label">Google:</label>
-                                                                <input class="a-input" type="number" v-model="item.google" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.google" />
                                                             </div>
                                                             <div class="o-form-create__group-input">
                                                                 <label class="m-label">Booking:</label>
-                                                                <input class="a-input" type="number" v-model="item.booking" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.booking" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -475,15 +475,15 @@
             const eventSlug = ref('')
             const eventName = ref('')
             const eventDescription = ref('')
-            const eventCoordinates = ref('')
+            const eventCoordinates = ref([])
             const eventCoordinatesArray = ref([])
-            const eventZoom = ref('')
+            const eventZoom = ref([])
             const eventZoomArray = ref([])
-            const eventAffiliate = ref('')
+            const eventAffiliate = ref([])
             const eventAffiliateArray = ref([])
-            const eventPrices = ref('')
+            const eventPrices = ref([])
             const eventPricesArray = ref([])
-            const eventLinks = ref('')
+            const eventLinks = ref([])
             const eventLinksArray = ref([])
 
             //FORM - create

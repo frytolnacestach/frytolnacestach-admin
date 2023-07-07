@@ -30,27 +30,27 @@
                                                 <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
                                                 <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
                                             </label>
-                                            <input class="a-input" type="text" name="slug" v-model="travelDictionarySlug" />
+                                            <input class="a-input" type="text" name="slug" v-model="travelDictionarySlug" required />
                                         </div>
                                         <!-- ids -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageCover" v-model="travelDictionaryIDimageCover" />
+                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="travelDictionaryIDimageCover" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageHero" v-model="travelDictionaryIDimageHero" />
+                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="travelDictionaryIDimageHero" />
                                         </div>
                                         <!-- other -->                             
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="name" v-model="travelDictionaryName" />
+                                            <input class="a-input" type="text" name="name" v-model="travelDictionaryName" required />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
@@ -147,8 +147,8 @@
             const runTimeConfig = useRuntimeConfig()
             const errorForm = ref('')
             const successForm = ref('')
-            const travelDictionaryIDimageCover = ref(0)
-            const travelDictionaryIDimageHero = ref(0)
+            const travelDictionaryIDimageCover = ref(null)
+            const travelDictionaryIDimageHero = ref(null)
             const travelDictionarySlug = ref('')
             const travelDictionaryName = ref('')
             const travelDictionaryDescription = ref('')

@@ -37,13 +37,13 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageCover" v-model="foodIDimageCover" />
+                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="foodIDimageCover" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageHero" v-model="foodIDimageHero" />
+                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="foodIDimageHero" />
                                         </div>
                                         <!-- json -->
                                         <div class="o-form-create__item">
@@ -62,7 +62,7 @@
                                                         <div class="o-form-edit__group-inputs">
                                                             <div class="o-form-edit__group-input">
                                                                 <label class="m-label">ID:</label>
-                                                                <input class="a-input" type="text" v-model="item.id" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.id" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -217,9 +217,9 @@
             const errorForm = ref('')
             const successForm = ref('')
             const foodSlug = ref('')
-            const foodIDimageCover = ref(0)
-            const foodIDimageHero = ref(0)
-            const foodIDSstates = ref('')
+            const foodIDimageCover = ref(null)
+            const foodIDimageHero = ref(null)
+            const foodIDSstates = ref([])
             const foodIDSstatesArray = ref([])
             const foodName = ref('')
             const foodDescription = ref('')

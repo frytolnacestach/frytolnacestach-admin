@@ -37,13 +37,13 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageCover" v-model="faunaIDimageCover" />
+                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="faunaIDimageCover" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageHero" v-model="faunaIDimageHero" />
+                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="faunaIDimageHero" />
                                         </div>
                                         <!-- json -->
                                         <div class="o-form-create__item">
@@ -62,7 +62,7 @@
                                                         <div class="o-form-edit__group-inputs">
                                                             <div class="o-form-edit__group-input">
                                                                 <label class="m-label">ID:</label>
-                                                                <input class="a-input" type="text" v-model="item.id" />
+                                                                <input class="a-input" type="number" min="0" v-model="item.id" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -229,9 +229,9 @@
             const errorForm = ref('')
             const successForm = ref('')
             const faunaSlug = ref('')
-            const faunaIDimageCover = ref(0)
-            const faunaIDimageHero = ref(0)
-            const faunaIDSstates = ref('')
+            const faunaIDimageCover = ref(null)
+            const faunaIDimageHero = ref(null)
+            const faunaIDSstates = ref([])
             const faunaIDSstatesArray = ref([])
             const faunaName = ref('')
             const faunaNameLat = ref('')
