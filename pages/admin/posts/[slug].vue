@@ -37,55 +37,55 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="id_continent" v-model="postIDcontinent" />
+                                            <input class="a-input" type="number" min="0" name="id_continent" v-model="postIDcontinent" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="id_state" v-model="postIDstate" />
+                                            <input class="a-input" type="number" min="0" name="id_state" v-model="postIDstate" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="id_region" v-model="postIDregion" />
+                                            <input class="a-input" type="number" min="0" name="id_region" v-model="postIDregion" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="id_city" v-model="postIDcity" />
+                                            <input class="a-input" type="number" min="0" name="id_city" v-model="postIDcity" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="id_spot" v-model="postIDspot" />
+                                            <input class="a-input" type="number" min="0" name="id_spot" v-model="postIDspot" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageList" v-model="postIdImageCover" />
+                                            <input class="a-input" type="number" min="0" name="imageList" v-model="postIdImageCover" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageHero" v-model="postIdImageHero" />
+                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="postIdImageHero" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku mapy <span class="m-label__name-column">(id_image_map)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="imageMap" v-model="postIdImageMap" />
+                                            <input class="a-input" type="number" min="0" name="imageMap" v-model="postIdImageMap" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku og <span class="m-label__name-column">(id_image_og)</span></span>
                                             </label>
-                                            <!--<input class="a-input" type="text" name="imageOg" v-model="postIdImageOg" />-->
+                                            <!--<input class="a-input" type="number" min="0" name="imageOg" v-model="postIdImageOg" />-->
                                         </div>
                                         <!-- dates -->
                                         <div class="o-form-edit__item">
@@ -791,17 +791,17 @@
             const postPerexPrice = ref('')
             const postPerexTriplength = ref('')
             const postPerexTime = ref('')
-            const postTags = ref('')
+            const postTags = ref([])
             const postTagsArray = ref([])
-            const postLocations = ref('')
+            const postLocations = ref([])
             const postLocationsArray = ref([])
-            const postTravels = ref('')
+            const postTravels = ref([])
             const postTravelsArray = ref([])
-            const postPrices = ref('')
+            const postPrices = ref([])
             const postPricesArray = ref([])
-            const postTriplengths = ref('')
+            const postTriplengths = ref([])
             const postTriplengthsArray = ref([])
-            const postTimes = ref('')
+            const postTimes= ref([])
             const postTimesArray = ref([])
 
             //API - Post

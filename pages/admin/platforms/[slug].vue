@@ -296,7 +296,18 @@
             }
 
             //RETURN
-            return { successForm, errorForm, platformSlug, platformName, platformPerex, platformUrl, platformFacts, platformFactsArray, platformDate, editForm }
+            return {
+                successForm,
+                errorForm,
+                platformSlug,
+                platformName,
+                platformPerex,
+                platformUrl,
+                platformFacts,
+                platformFactsArray,
+                platformDate,
+                editForm
+            }
         },
 
         mounted() {

@@ -37,37 +37,37 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="id_continent" v-model="videoIDcontinent" />
+                                            <input class="a-input" type="number" min="0" name="id_continent" v-model="videoIDcontinent" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="id_state" v-model="videoIDstate" />
+                                            <input class="a-input" type="number" min="0" name="id_state" v-model="videoIDstate" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="id_region" v-model="videoIDregion" />
+                                            <input class="a-input" type="number" min="0" name="id_region" v-model="videoIDregion" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="id_city" v-model="videoIDcity" />
+                                            <input class="a-input" type="number" min="0" name="id_city" v-model="videoIDcity" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="id_spot" v-model="videoIDspot" />
+                                            <input class="a-input" type="number" min="0" name="id_spot" v-model="videoIDspot" />
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku <span class="m-label__name-column">(id_image)</span></span>
                                             </label>
-                                            <input class="a-input" type="text" name="id_image" v-model="videoIDimage" />
+                                            <input class="a-input" type="number" min="0" name="id_image" v-model="videoIDimage" />
                                         </div>
                                         <!-- other -->                       
                                         <div class="o-form-create__item">
@@ -262,7 +262,24 @@
             }
 
             //RETURN
-            return { successForm, errorForm, videoSlug, videoIDcontinent, videoIDstate, videoIDregion, videoIDcity, videoIDspot, videoIDimage, videoPlatform, videoType, videoTitle, videoPerex, videoUrl, platforms, createForm }
+            return {
+                successForm,
+                errorForm,
+                videoSlug,
+                videoIDcontinent,
+                videoIDstate,
+                videoIDregion,
+                videoIDcity,
+                videoIDspot,
+                videoIDimage,
+                videoPlatform,
+                videoType,
+                videoTitle,
+                videoPerex,
+                videoUrl,
+                platforms,
+                createForm
+            }
         },
 
         mounted() {

@@ -253,7 +253,18 @@
             }
 
             //RETURN
-            return { successForm, errorForm, platformSlug, platformName, platformPerex, platformUrl, platformFacts, platformFactsArray, platformDate, createForm }
+            return {
+                successForm,
+                errorForm,
+                platformSlug,
+                platformName,
+                platformPerex,
+                platformUrl,
+                platformFacts,
+                platformFactsArray,
+                platformDate,
+                createForm
+            }
         },
 
         mounted() {
