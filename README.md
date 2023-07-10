@@ -61,3 +61,9 @@ yarn preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+
+## Generování obrázku za pomocí GULPu
+
+npm run build
+např. npm run build:generated:world-states 
