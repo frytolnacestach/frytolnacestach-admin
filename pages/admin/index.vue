@@ -62,7 +62,7 @@
                     },
                     {
                         id: 3,
-                        name: "Generování obrázků",
+                        name: "Obrázky",
                         url: "/admin/images"
                     }
                 ],
