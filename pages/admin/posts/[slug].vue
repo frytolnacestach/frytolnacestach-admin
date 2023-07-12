@@ -67,25 +67,29 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <input class="a-input" type="number" min="0" name="imageList" v-model="postIdImageCover" />
+                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0]">
+                                            <input class="a-input" type="number" min="0" name="imageList" v-model="postIDImageCover" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="postIdImageHero" />
+                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0]">
+                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="postIDImageHero" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku mapy <span class="m-label__name-column">(id_image_map)</span></span>
                                             </label>
-                                            <input class="a-input" type="number" min="0" name="imageMap" v-model="postIdImageMap" />
+                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageMap[0].source + imageMap[0].name}.webp`" v-if="imageMap[0]">
+                                            <input class="a-input" type="number" min="0" name="imageMap" v-model="postIDImageMap" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku og <span class="m-label__name-column">(id_image_og)</span></span>
                                             </label>
-                                            <!--<input class="a-input" type="number" min="0" name="imageOg" v-model="postIdImageOg" />-->
+                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageOG[0].source + imageOG[0].name}.webp`" v-if="imageOG[0]">
+                                            <input class="a-input" type="number" min="0" name="imageOg" v-model="postIDImageOG" />
                                         </div>
                                         <!-- dates -->
                                         <div class="o-form-edit__item">
@@ -481,6 +485,7 @@
         id_image_cover: number
         id_image_hero: number
         id_image_map: number
+        id_image_og: number
         slug: string
         date: Date
         date_update: Date
@@ -504,6 +509,34 @@
         prices: Prices[]
         triplengths: Triplengths[]
         times: Times[]
+    }
+
+    interface ImageCover {
+        id: number
+        source: string
+        name: string
+        type: string
+    }
+
+    interface ImageHero {
+        id: number
+        source: string
+        name: string
+        type: string
+    }
+
+    interface ImageMap {
+        id: number
+        source: string
+        name: string
+        type: string
+    }
+
+    interface ImageOG {
+        id: number
+        source: string
+        name: string
+        type: string
     }
 
     export default defineComponent({
@@ -772,9 +805,10 @@
             const postIDregion = ref(null)
             const postIDcity = ref(null)
             const postIDspot = ref(null)
-            const postIdImageCover = ref(null)
-            const postIdImageHero = ref(null)
-            const postIdImageMap = ref(null)
+            const postIDImageCover = ref(null)
+            const postIDImageHero = ref(null)
+            const postIDImageMap = ref(null)
+            const postIDImageOG = ref(null)
             const postDate = ref(new Date())
             const postDateUpdate = ref(new Date())
             const postDateInformation = ref(new Date())
@@ -803,6 +837,10 @@
             const postTriplengthsArray = ref([])
             const postTimes= ref([])
             const postTimesArray = ref([])
+            const imageCover = ref<ImageCover[]>([])
+            const imageHero = ref<ImageHero[]>([])
+            const imageMap = ref<ImageMap[]>([])
+            const imageOG = ref<ImageOG[]>([])
 
             //API - Post
             ;(async () => {
@@ -817,9 +855,10 @@
                     postIDregion.value = Post[0].id_region;
                     postIDcity.value = Post[0].id_city;
                     postIDspot.value = Post[0].id_spot;
-                    postIdImageCover.value = Post[0].id_image_cover;
-                    postIdImageHero.value = Post[0].id_image_hero;
-                    postIdImageMap.value = Post[0].id_image_map;
+                    postIDImageCover.value = Post[0].id_image_cover;
+                    postIDImageHero.value = Post[0].id_image_hero;
+                    postIDImageMap.value = Post[0].id_image_map;
+                    postIDImageOG.value = Post[0].id_image_og;
                     postDate.value = Post[0].date;
                     postDateUpdate.value = Post[0].date_update;
                     postDateInformation.value = Post[0].date_information;
@@ -842,6 +881,26 @@
                     postPrices.value = Post[0].prices ? JSON.stringify(Post[0].prices) : JSON.stringify([])
                     postTriplengths.value = Post[0].triplengths ? JSON.stringify(Post[0].triplengths) : JSON.stringify([])
                     postTimes.value = Post[0].times ? JSON.stringify(Post[0].times) : JSON.stringify([])
+
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDImageCover.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageCover.value = data);
+
+                    // Načítání imageHero
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDImageHero.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageHero.value = data);
+
+                    // Načítání imageHero
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDImageMap.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageMap.value = data);
+
+                    // Načítání imageOG
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDImageOG.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageOG.value = data);
                 } else {
 
                 }
@@ -865,9 +924,10 @@
                             'id_region': postIDregion.value,
                             'id_city': postIDcity.value,
                             'id_spot': postIDspot.value,
-                            'id_image_cover': postIdImageCover.value,
-                            'id_image_hero': postIdImageHero.value,
-                            'id_image_map': postIdImageMap.value,
+                            'id_image_cover': postIDImageCover.value,
+                            'id_image_hero': postIDImageHero.value,
+                            'id_image_map': postIDImageMap.value,
+                            'id_image_og': postIDImageOG.value,
                             //'date': postDate.value.toISOString(),
                             'date': postDate.value,
                             'date_update': postDateUpdate.value,
@@ -917,9 +977,10 @@
                 postIDregion,
                 postIDcity,
                 postIDspot,
-                postIdImageCover,
-                postIdImageHero,
-                postIdImageMap,
+                postIDImageCover,
+                postIDImageHero,
+                postIDImageMap,
+                postIDImageOG,
                 postDate,
                 postDateUpdate,
                 postDateInformation,
@@ -948,6 +1009,10 @@
                 postTriplengthsArray,
                 postTimes,
                 postTimesArray,
+                imageCover,
+                imageHero,
+                imageMap,
+                imageOG,
                 editForm
             }
         },

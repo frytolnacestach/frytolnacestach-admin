@@ -67,6 +67,7 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku <span class="m-label__name-column">(id_image)</span></span>
                                             </label>
+                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${image[0].source + image[0].name}.webp`" v-if="image[0]">
                                             <input class="a-input" type="number" min="0" name="id_image" v-model="videoIDimage" />
                                         </div>
                                         <!-- other -->
@@ -148,6 +149,13 @@
         title: string
         perex: string
         url: string
+    }
+
+    interface Image {
+        id: number
+        source: string
+        name: string
+        type: string
     }
 
     export default defineComponent({
@@ -245,6 +253,7 @@
             const videoTitle = ref('')
             const videoPerex = ref('')
             const videoUrl = ref('')
+            const image = ref<Image[]>([])
 
             //API - Video
             ;(async () => {
@@ -265,6 +274,11 @@
                     videoTitle.value = video[0].title;
                     videoPerex.value = video[0].perex;
                     videoUrl.value = video[0].url;
+
+                    // Načítání image
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${videoIDimage.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => image.value = data);
                 } else {
 
                 }
@@ -334,6 +348,7 @@
                 videoPerex,
                 videoUrl,
                 platforms,
+                image,
                 editForm
             }
         },

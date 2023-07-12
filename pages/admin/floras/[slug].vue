@@ -37,12 +37,14 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
+                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0]">
                                             <input class="a-input" type="number" min="0" name="imageCover" v-model="floraIDimageCover" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
+                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0]">
                                             <input class="a-input" type="number" min="0" name="imageHero" v-model="floraIDimageHero" />
                                         </div>
                                         <!-- json -->
@@ -153,6 +155,20 @@
         status_iucn: string
         status_danger: string
         description: string
+    }
+
+    interface ImageCover {
+        id: number
+        source: string
+        name: string
+        type: string
+    }
+
+    interface ImageHero {
+        id: number
+        source: string
+        name: string
+        type: string
     }
 
     export default defineComponent({
@@ -268,6 +284,8 @@
             const floraStatusIucn = ref('')
             const floraStatusDanger = ref('')
             const floraDescription = ref('')
+            const imageCover = ref<ImageCover[]>([])
+            const imageHero = ref<ImageHero[]>([])
 
             //API - flora
             ;(async () => {
@@ -286,6 +304,16 @@
                     floraStatusIucn.value = Flora[0].status_iucn;
                     floraStatusDanger.value = Flora[0].status_danger;
                     floraDescription.value = Flora[0].description;
+
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${floraIDimageCover.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageCover.value = data);
+
+                    // Načítání imageHero
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${floraIDimageHero.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageHero.value = data);
                 } else {
 
                 }
@@ -344,6 +372,8 @@
                 floraStatusIucn,
                 floraStatusDanger,
                 floraDescription,
+                imageCover,
+                imageHero,
                 editForm
             }
         },

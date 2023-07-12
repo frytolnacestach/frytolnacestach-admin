@@ -61,12 +61,14 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
+                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0]">
                                             <input class="a-input" type="number" min="0" name="imageCover" v-model="eventIDimageCover" />
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
+                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0]">
                                             <input class="a-input" type="number" min="0" name="imageHero" v-model="eventIDimageHero" />
                                         </div>
                                         <!-- other -->
@@ -333,6 +335,20 @@
         links: Links[]
     }
 
+    interface ImageCover {
+        id: number
+        source: string
+        name: string
+        type: string
+    }
+
+    interface ImageHero {
+        id: number
+        source: string
+        name: string
+        type: string
+    }
+
     export default defineComponent({
         name: 'AdminPlacesCitiesSlugPage',
 
@@ -542,6 +558,8 @@
             const eventPricesArray = ref([])
             const eventLinks = ref([])
             const eventLinksArray = ref([])
+            const imageCover = ref<ImageCover[]>([])
+            const imageHero = ref<ImageHero[]>([])
 
             //API - Event
             ;(async () => {
@@ -566,6 +584,16 @@
                     eventAffiliate.value = Event[0].affiliate ? JSON.stringify(Event[0].affiliate) : JSON.stringify([]);
                     eventPrices.value = Event[0].prices ? JSON.stringify(Event[0].prices) : JSON.stringify([]);
                     eventLinks.value = Event[0].links ? JSON.stringify(Event[0].links) : JSON.stringify([]);
+
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${eventIDimageCover.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageCover.value = data);
+
+                    // Načítání imageHero
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${eventIDimageHero.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageHero.value = data);
                 } else {
 
                 }
@@ -640,6 +668,8 @@
                 eventPricesArray,
                 eventLinks,
                 eventLinksArray,
+                imageCover,
+                imageHero,
                 editForm
             }
         },
