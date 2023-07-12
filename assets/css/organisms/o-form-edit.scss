@@ -58,4 +58,14 @@
     &__button {
         width: auto;
     }
+
+    &__image{
+        width: 100%;
+        max-width: 100%;
+
+        &.-small {
+            width: 100%;
+            max-width: 320px;
+        }
+    }
 }
