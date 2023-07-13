@@ -75,7 +75,7 @@
                                                 <span class="o-form-edit__image-text" v-if="!imageCover[0] && postIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
                                                 <span class="o-form-edit__image-text" v-if="postIDimageCoverLoad === postIDimageCoverChange && !imageCover[0] && postIDimageCover && postIDimageCover !== null && postIDimageCover !== 0">Vybraní obrázek neexistuje</span>
                                                 <span class="o-form-edit__image-text" v-if="!imageCover[0] && (!postIDimageCover || postIDimageCover === null || postIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                <input class="a-input -c-gray" type="number" min="0" name="imageList" v-model="postIDImageCover" @input="handlePostIDimageCoverChange" />
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageList" v-model="postIDimageCover" @input="handlepostIDimageCoverChange" />
                                             </div>
                                         </div>
                                         <div class="o-form-edit__item">
@@ -91,7 +91,7 @@
                                                 <span class="o-form-edit__image-text" v-if="!imageHero[0] && postIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
                                                 <span class="o-form-edit__image-text" v-if="postIDimageHeroLoad === postIDimageHeroChange && !imageHero[0] && postIDimageHero && postIDimageHero !== null && postIDimageHero !== 0">Vybraní obrázek neexistuje</span>
                                                 <span class="o-form-edit__image-text" v-if="!imageHero[0] && (!postIDimageHero || postIDimageHero === null || postIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="postIDImageHero" @input="handlePostIDimageHeroChange" />
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="postIDimageHero" @input="handlepostIDimageHeroChange" />
                                             </div>
                                         </div>
                                         <div class="o-form-edit__item">
@@ -99,7 +99,7 @@
                                                 <span class="m-label__name">ID Obrázku mapy <span class="m-label__name-column">(id_image_map)</span></span>
                                             </label>
                                             <div class="o-form-edit__image">
-                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': brandIDimageMapLoading}">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': postIDimageMapLoading}">
                                                     <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageMap[0].source + imageMap[0].name}.webp`" v-if="imageMap[0] && postIDimageMap" @load="handleImageMapLoad">
                                                 </div>
                                                 <span class="o-form-edit__image-text" v-if="imageMap[0] && postIDimageMapLoad !== postIDimageMapChange && (postIDimageMap && postIDimageMap !== null && postIDimageMap !== 0)">Byl vybrán nový obrázek</span>
@@ -107,7 +107,7 @@
                                                 <span class="o-form-edit__image-text" v-if="!imageMap[0] && postIDimageMap">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
                                                 <span class="o-form-edit__image-text" v-if="postIDimageMapLoad === postIDimageMapChange && !imageMap[0] && postIDimageMap && postIDimageMap !== null && postIDimageMap !== 0">Vybraní obrázek neexistuje</span>
                                                 <span class="o-form-edit__image-text" v-if="!imageMap[0] && (!postIDimageMap || postIDimageMap === null || postIDimageMap === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                <input class="a-input -c-gray" type="number" min="0" name="imageMap" v-model="postIDImageMap" @input="handlePostIDimageMapChange" />
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageMap" v-model="postIDimageMap" @input="handlepostIDimageMapChange" />
                                             </div>
                                         </div>
                                         <div class="o-form-edit__item">
@@ -115,14 +115,14 @@
                                                 <span class="m-label__name">ID Obrázku og <span class="m-label__name-column">(id_image_og)</span></span>
                                             </label>
                                             <div class="o-form-edit__image">
-                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': brandIDimageOGLoading}"></div>
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': postIDimageOGLoading}"></div>
                                                 <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageOG[0].source + imageOG[0].name}.webp`" v-if="imageOG[0] && postIDimageOG" @load="handleImageOGLoad">
                                                 <span class="o-form-edit__image-text" v-if="imageOG[0] && postIDimageOGLoad !== postIDimageOGChange && (postIDimageOG && postIDimageOG !== null && postIDimageOG !== 0)">Byl vybrán nový obrázek</span>
                                                 <span class="o-form-edit__image-text" v-if="imageOG[0] && (!postIDimageOG || postIDimageOG === null || postIDimageOG === 0)">Obrázek byl odebrán</span>
                                                 <span class="o-form-edit__image-text" v-if="!imageOG[0] && postIDimageOG">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
                                                 <span class="o-form-edit__image-text" v-if="postIDimageOGLoad === postIDimageOGChange && !imageOG[0] && postIDimageOG && postIDimageOG !== null && postIDimageOG !== 0">Vybraní obrázek neexistuje</span>
                                                 <span class="o-form-edit__image-text" v-if="!imageOG[0] && (!postIDimageOG || postIDimageOG === null || postIDimageOG === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                <input class="a-input -c-gray" type="number" min="0" name="imageOg" v-model="postIDImageOG" @input="handlePostIDimageOGChange" />
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageOg" v-model="postIDimageOG" @input="handlepostIDimageOGChange" />
                                             </div>
                                         </div>
                                         <!-- dates -->
@@ -657,22 +657,22 @@
                 }
             },
             // change image id
-            handlePostIDimageCoverChange() {
+            handlepostIDimageCoverChange() {
                 this.postIDimageCoverChange = this.postIDimageCover
                 this.postIDimageCoverLoading = true
                 this.loadImageCover()
             },
-            handlePostIDimageHeroChange() {
+            handlepostIDimageHeroChange() {
                 this.postIDimageHeroChange = this.postIDimageHero
                 this.postIDimageHeroLoading = true
                 this.loadImageHero()
             },
-            handlePostIDimageMapChange() {
+            handlepostIDimageMapChange() {
                 this.postIDimageMapChange = this.postIDimageMap
                 this.postIDimageMapLoading = true
                 this.loadImageMap()
             },
-            handlePostIDimageOGChange() {
+            handlepostIDimageOGChange() {
                 this.postIDimageOGChange = this.postIDimageOG
                 this.postIDimageOGLoading = true
                 this.loadImageOG()
@@ -872,10 +872,10 @@
             const postIDregion = ref(null)
             const postIDcity = ref(null)
             const postIDspot = ref(null)
-            const postIDImageCover = ref(null)
-            const postIDImageHero = ref(null)
-            const postIDImageMap = ref(null)
-            const postIDImageOG = ref(null)
+            const postIDimageCover = ref(null)
+            const postIDimageHero = ref(null)
+            const postIDimageMap = ref(null)
+            const postIDimageOG = ref(null)
             const postDate = ref(new Date())
             const postDateUpdate = ref(new Date())
             const postDateInformation = ref(new Date())
@@ -934,10 +934,10 @@
                     postIDregion.value = Post[0].id_region;
                     postIDcity.value = Post[0].id_city;
                     postIDspot.value = Post[0].id_spot;
-                    postIDImageCover.value = Post[0].id_image_cover;
-                    postIDImageHero.value = Post[0].id_image_hero;
-                    postIDImageMap.value = Post[0].id_image_map;
-                    postIDImageOG.value = Post[0].id_image_og;
+                    postIDimageCover.value = Post[0].id_image_cover;
+                    postIDimageHero.value = Post[0].id_image_hero;
+                    postIDimageMap.value = Post[0].id_image_map;
+                    postIDimageOG.value = Post[0].id_image_og;
                     postDate.value = Post[0].date;
                     postDateUpdate.value = Post[0].date_update;
                     postDateInformation.value = Post[0].date_information;
@@ -976,22 +976,22 @@
                     postIDimageOGLoading.value = true
 
                     // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDImageCover.value}`, {
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageCover.value}`, {
                     method: 'GET'
                     }).then(res => res.json()).then(data => imageCover.value = data);
 
                     // Načítání imageHero
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDImageHero.value}`, {
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageHero.value}`, {
                     method: 'GET'
                     }).then(res => res.json()).then(data => imageHero.value = data);
 
                     // Načítání imageHero
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDImageMap.value}`, {
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageMap.value}`, {
                     method: 'GET'
                     }).then(res => res.json()).then(data => imageMap.value = data);
 
                     // Načítání imageOG
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDImageOG.value}`, {
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageOG.value}`, {
                     method: 'GET'
                     }).then(res => res.json()).then(data => imageOG.value = data);
                 } else {
@@ -1065,10 +1065,10 @@
                             'id_region': postIDregion.value,
                             'id_city': postIDcity.value,
                             'id_spot': postIDspot.value,
-                            'id_image_cover': postIDImageCover.value,
-                            'id_image_hero': postIDImageHero.value,
-                            'id_image_map': postIDImageMap.value,
-                            'id_image_og': postIDImageOG.value,
+                            'id_image_cover': postIDimageCover.value,
+                            'id_image_hero': postIDimageHero.value,
+                            'id_image_map': postIDimageMap.value,
+                            'id_image_og': postIDimageOG.value,
                             //'date': postDate.value.toISOString(),
                             'date': postDate.value,
                             'date_update': postDateUpdate.value,
@@ -1118,10 +1118,10 @@
                 postIDregion,
                 postIDcity,
                 postIDspot,
-                postIDImageCover,
-                postIDImageHero,
-                postIDImageMap,
-                postIDImageOG,
+                postIDimageCover,
+                postIDimageHero,
+                postIDimageMap,
+                postIDimageOG,
                 postDate,
                 postDateUpdate,
                 postDateInformation,
