@@ -37,15 +37,33 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0]">
-                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="brandIDimageCover" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': brandIDimageCoverLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && brandIDimageCover" @load="handleImageCoverLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && brandIDimageCoverLoad !== brandIDimageCoverChange && (brandIDimageCover && brandIDimageCover !== null && brandIDimageCover !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && (!brandIDimageCover || brandIDimageCover === null || brandIDimageCover === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && brandIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="brandIDimageCoverLoad === brandIDimageCoverChange && !imageCover[0] && brandIDimageCover && brandIDimageCover !== null && brandIDimageCover !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && (!brandIDimageCover || brandIDimageCover === null || brandIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="brandIDimageCover" @input="handleBrandIDimageCoverChange" />
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0]">
-                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="brandIDimageHero" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': brandIDimageHeroLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && brandIDimageHero" @load="handleImageHeroLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && brandIDimageHeroLoad !== brandIDimageHeroChange && (brandIDimageHero && brandIDimageHero !== null && brandIDimageHero !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && (!brandIDimageHero || brandIDimageHero === null || brandIDimageHero === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && brandIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="brandIDimageHeroLoad === brandIDimageHeroChange && !imageHero[0] && brandIDimageHero && brandIDimageHero !== null && brandIDimageHero !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && (!brandIDimageHero || brandIDimageHero === null || brandIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="brandIDimageHero" @input="handleBrandIDimageHeroChange" />
+                                            </div>
                                         </div>
                                         <!-- json -->
                                         <div class="o-form-edit__item">
@@ -175,7 +193,7 @@
                         status: "span"
                     }
                 ],
-                brandIDSstatesArray: [],
+                brandIDSstatesArray: []
             }
         },
 
@@ -187,6 +205,23 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace značky - ${brandName}`
                 }
+            },
+            // change image id
+            handleBrandIDimageCoverChange() {
+                this.brandIDimageCoverChange = this.brandIDimageCover
+                this.brandIDimageCoverLoading = true
+                this.loadImageCover()
+            },
+            handleBrandIDimageHeroChange() {
+                this.brandIDimageHeroChange = this.brandIDimageHero
+                this.brandIDimageHeroLoading = true
+                this.loadImageHero()
+            },
+            handleImageCoverLoad() {
+                this.brandIDimageCoverLoading = false;
+            },
+            handleImageHeroLoad() {
+                this.brandIDimageHeroLoading = false;
             },
             // ids states
             addIDSstateInput() {
@@ -254,6 +289,12 @@
             const brandDescription = ref('')
             const imageCover = ref<ImageCover[]>([])
             const imageHero = ref<ImageHero[]>([])
+            const brandIDimageCoverLoad = ref(null)
+            const brandIDimageCoverLoading = ref(false)
+            const brandIDimageCoverChange = ref(null)
+            const brandIDimageHeroLoad = ref(null)
+            const brandIDimageHeroLoading = ref(false)
+            const brandIDimageHeroChange = ref(null)
 
             //API - Brand
             ;(async () => {
@@ -269,6 +310,14 @@
                     brandName.value = Brand[0].name;
                     brandDescription.value = Brand[0].description;
 
+                    // images load ids
+                    brandIDimageCoverLoad.value = brandIDimageCover.value
+                    brandIDimageCoverChange.value = brandIDimageCover.value
+                    brandIDimageCoverLoading.value = true
+                    brandIDimageHeroLoad.value = brandIDimageHero.value
+                    brandIDimageHeroChange.value = brandIDimageHero.value
+                    brandIDimageHeroLoading.value = true
+
                     // Načítání imageCover
                     fetch(`${runTimeConfig.public.baseURL}/image-id/${brandIDimageCover.value}`, {
                     method: 'GET'
@@ -282,6 +331,31 @@
 
                 }
             })()
+
+            const loadImageCover = async () => {
+                try {
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${brandIDimageCover.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageCover.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
+            const loadImageHero = async () => {
+                try {
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${brandIDimageHero.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageHero.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
 
             //FORM - edit
             const editForm = async () => {
@@ -330,7 +404,15 @@
                 brandDescription,
                 imageCover,
                 imageHero,
-                editForm
+                brandIDimageCoverLoad,
+                brandIDimageCoverChange,
+                brandIDimageCoverLoading,
+                brandIDimageHeroLoad,
+                brandIDimageHeroChange,
+                brandIDimageHeroLoading,
+                editForm,
+                loadImageCover,
+                loadImageHero
             }
         },
 

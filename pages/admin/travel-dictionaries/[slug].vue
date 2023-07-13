@@ -37,15 +37,33 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0]">
-                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="travelDictionaryIDimageCover" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': travelDictionaryIDimageCoverLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && travelDictionaryIDimageCover" @load="handleImageCoverLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && travelDictionaryIDimageCoverLoad !== travelDictionaryIDimageCoverChange && (travelDictionaryIDimageCover && travelDictionaryIDimageCover !== null && travelDictionaryIDimageCover !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && (!travelDictionaryIDimageCover || travelDictionaryIDimageCover === null || travelDictionaryIDimageCover === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && travelDictionaryIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="travelDictionaryIDimageCoverLoad === travelDictionaryIDimageCoverChange && !imageCover[0] && travelDictionaryIDimageCover && travelDictionaryIDimageCover !== null && travelDictionaryIDimageCover !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && (!travelDictionaryIDimageCover || travelDictionaryIDimageCover === null || travelDictionaryIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="travelDictionaryIDimageCover" @input="handleTravelDictionaryIDimageCoverChange" />
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0]">
-                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="travelDictionaryIDimageHero" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': travelDictionaryIDimageHeroLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && travelDictionaryIDimageHero" @load="handleImageHeroLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && travelDictionaryIDimageHeroLoad !== travelDictionaryIDimageHeroChange && (travelDictionaryIDimageHero && travelDictionaryIDimageHero !== null && travelDictionaryIDimageHero !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && (!travelDictionaryIDimageHero || travelDictionaryIDimageHero === null || travelDictionaryIDimageHero === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && travelDictionaryIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="travelDictionaryIDimageHeroLoad === travelDictionaryIDimageHeroChange && !imageHero[0] && travelDictionaryIDimageHero && travelDictionaryIDimageHero !== null && travelDictionaryIDimageHero !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && (!travelDictionaryIDimageHero || travelDictionaryIDimageHero === null || travelDictionaryIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="travelDictionaryIDimageHero" @input="handleTravelDictionaryIDimageHeroChange" />
+                                            </div>
                                         </div>
                                         <!-- other -->                             
                                         <div class="o-form-edit__item">
@@ -150,7 +168,24 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace cestovatelského výrazu - ${travelDictionaryName}`
                 }
-            }
+            },
+            // change image id
+            handleTravelDictionaryIDimageCoverChange() {
+                this.travelDictionaryIDimageCoverChange = this.travelDictionaryIDimageCover
+                this.travelDictionaryIDimageCoverLoading = true
+                this.loadImageCover()
+            },
+            handleTravelDictionaryIDimageHeroChange() {
+                this.travelDictionaryIDimageHeroChange = this.travelDictionaryIDimageHero
+                this.travelDictionaryIDimageHeroLoading = true
+                this.loadImageHero()
+            },
+            handleImageCoverLoad() {
+                this.travelDictionaryIDimageCoverLoading = false;
+            },
+            handleImageHeroLoad() {
+                this.travelDictionaryIDimageHeroLoading = false;
+            },
         },
 
         watch: {
@@ -196,6 +231,12 @@
             const travelDictionaryDescription = ref('')
             const imageCover = ref<ImageCover[]>([])
             const imageHero = ref<ImageHero[]>([])
+            const travelDictionaryIDimageCoverLoad = ref(null)
+            const travelDictionaryIDimageCoverLoading = ref(false)
+            const travelDictionaryIDimageCoverChange = ref(null)
+            const travelDictionaryIDimageHeroLoad = ref(null)
+            const travelDictionaryIDimageHeroLoading = ref(false)
+            const travelDictionaryIDimageHeroChange = ref(null)
 
             //API - travelDictionary
             ;(async () => {
@@ -210,6 +251,14 @@
                     travelDictionaryName.value = TravelDictionaries[0].name;
                     travelDictionaryDescription.value = TravelDictionaries[0].description;
 
+                    // images load ids
+                    travelDictionaryIDimageCoverLoad.value = travelDictionaryIDimageCover.value
+                    travelDictionaryIDimageCoverChange.value = travelDictionaryIDimageCover.value
+                    travelDictionaryIDimageCoverLoading.value = true
+                    travelDictionaryIDimageHeroLoad.value = travelDictionaryIDimageHero.value
+                    travelDictionaryIDimageHeroChange.value = travelDictionaryIDimageHero.value
+                    travelDictionaryIDimageHeroLoading.value = true
+
                     // Načítání imageCover
                     fetch(`${runTimeConfig.public.baseURL}/image-id/${travelDictionaryIDimageCover.value}`, {
                     method: 'GET'
@@ -223,6 +272,30 @@
 
                 }
             })()
+
+            const loadImageCover = async () => {
+                try {
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${travelDictionaryIDimageCover.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageCover.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
+            const loadImageHero = async () => {
+                try {
+                    // Načítání imageHero
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${travelDictionaryIDimageHero.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageHero.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
 
             //FORM - edit
             const editForm = async () => {
@@ -268,7 +341,15 @@
                 travelDictionaryDescription,
                 imageCover,
                 imageHero,
-                editForm
+                travelDictionaryIDimageCoverLoad,
+                travelDictionaryIDimageCoverChange,
+                travelDictionaryIDimageCoverLoading,
+                travelDictionaryIDimageHeroLoad,
+                travelDictionaryIDimageHeroChange,
+                travelDictionaryIDimageHeroLoading,
+                editForm,
+                loadImageCover,
+                loadImageHero
             }
         },
 

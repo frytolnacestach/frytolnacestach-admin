@@ -49,15 +49,33 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0]">
-                                            <input class="a-input" type="number" min="0" name="image_cover" v-model="placesStateIDimageCover" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': placesStateIDimageCoverLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && placesStateIDimageCover" @load="handleImageCoverLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && placesStateIDimageCoverLoad !== placesStateIDimageCoverChange && (placesStateIDimageCover && placesStateIDimageCover !== null && placesStateIDimageCover !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && (!placesStateIDimageCover || placesStateIDimageCover === null || placesStateIDimageCover === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && placesStateIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="placesStateIDimageCoverLoad === placesStateIDimageCoverChange && !imageCover[0] && placesStateIDimageCover && placesStateIDimageCover !== null && placesStateIDimageCover !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && (!placesStateIDimageCover || placesStateIDimageCover === null || placesStateIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="image_cover" v-model="placesStateIDimageCover" @input="handlePlacesStateIDimageCoverChange" />
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0]">
-                                            <input class="a-input" type="number" min="0" name="image_hero" v-model="placesStateIDimageHero" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': placesStateIDimageHeroLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && placesStateIDimageHero" @load="handleImageHeroLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && placesStateIDimageHeroLoad !== placesStateIDimageHeroChange && (placesStateIDimageHero && placesStateIDimageHero !== null && placesStateIDimageHero !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && (!placesStateIDimageHero || placesStateIDimageHero === null || placesStateIDimageHero === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && placesStateIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="placesStateIDimageHeroLoad === placesStateIDimageHeroChange && !imageHero[0] && placesStateIDimageHero && placesStateIDimageHero !== null && placesStateIDimageHero !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && (!placesStateIDimageHero || placesStateIDimageHero === null || placesStateIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="image_hero" v-model="placesStateIDimageHero" @input="handlePlacesStateIDimageHeroChange" />
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
@@ -997,6 +1015,23 @@
                     breadcrumb.name = `Editace státu - ${placesStateName}`
                 }
             },
+            // change image id
+            handlePlacesStateIDimageCoverChange() {
+                this.placesStateIDimageCoverChange = this.placesStateIDimageCover
+                this.placesStateIDimageCoverLoading = true
+                this.loadImageCover()
+            },
+            handlePlacesStateIDimageHeroChange() {
+                this.placesStateIDimageHeroChange = this.placesStateIDimageHero
+                this.placesStateIDimageHeroLoading = true
+                this.loadImageHero()
+            },
+            handleImageCoverLoad() {
+                this.placesStateIDimageCoverLoading = false;
+            },
+            handleImageHeroLoad() {
+                this.placesStateIDimageHeroLoading = false;
+            },
             // IDSneighboringCountries
             addIDSneighboringCountrieInput() {
                 this.placesStateIDSneighboringCountriesArray.push({
@@ -1402,6 +1437,12 @@
             const placesStateLinksArray = ref([])
             const imageCover = ref<ImageCover[]>([])
             const imageHero = ref<ImageHero[]>([])
+            const placesStateIDimageCoverLoad = ref(null)
+            const placesStateIDimageCoverLoading = ref(false)
+            const placesStateIDimageCoverChange = ref(null)
+            const placesStateIDimageHeroLoad = ref(null)
+            const placesStateIDimageHeroLoading = ref(false)
+            const placesStateIDimageHeroChange = ref(null)
 
             //API - Places State
             ;(async () => {
@@ -1440,6 +1481,14 @@
                     placesStateApps.value = PlacesState[0].apps ? JSON.stringify(PlacesState[0].apps) : JSON.stringify([])
                     placesStateLinks.value = PlacesState[0].links ? JSON.stringify(PlacesState[0].links) : JSON.stringify([])
 
+                    // images load ids
+                    placesStateIDimageCoverLoad.value = placesStateIDimageCover.value
+                    placesStateIDimageCoverChange.value = placesStateIDimageCover.value
+                    placesStateIDimageCoverLoading.value = true
+                    placesStateIDimageHeroLoad.value = placesStateIDimageHero.value
+                    placesStateIDimageHeroChange.value = placesStateIDimageHero.value
+                    placesStateIDimageHeroLoading.value = true
+                    
                     // Načítání imageCover
                     fetch(`${runTimeConfig.public.baseURL}/image-id/${placesStateIDimageCover.value}`, {
                     method: 'GET'
@@ -1453,6 +1502,30 @@
 
                 }
             })()
+
+            const loadImageCover = async () => {
+                try {
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesStateIDimageCover.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageCover.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
+            const loadImageHero = async () => {
+                try {
+                    // Načítání imageHero
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesStateIDimageHero.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageHero.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
 
             //FORM - edit
             const editForm = async () => {
@@ -1560,7 +1633,15 @@
                 placesStateLinksArray,
                 imageCover,
                 imageHero,
-                editForm
+                placesStateIDimageCoverLoad,
+                placesStateIDimageCoverChange,
+                placesStateIDimageCoverLoading,
+                placesStateIDimageHeroLoad,
+                placesStateIDimageHeroChange,
+                placesStateIDimageHeroLoading,
+                editForm,
+                loadImageCover,
+                loadImageHero
             }
         },
 

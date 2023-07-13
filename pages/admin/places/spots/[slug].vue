@@ -49,15 +49,33 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0]">
-                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="placesSpotIDimageCover" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': placesSpotIDimageCoverLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && placesSpotIDimageCover" @load="handleImageCoverLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && placesSpotIDimageCoverLoad !== placesSpotIDimageCoverChange && (placesSpotIDimageCover && placesSpotIDimageCover !== null && placesSpotIDimageCover !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && (!placesSpotIDimageCover || placesSpotIDimageCover === null || placesSpotIDimageCover === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && placesSpotIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="placesSpotIDimageCoverLoad === placesSpotIDimageCoverChange && !imageCover[0] && placesSpotIDimageCover && placesSpotIDimageCover !== null && placesSpotIDimageCover !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && (!placesSpotIDimageCover || placesSpotIDimageCover === null || placesSpotIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="placesSpotIDimageCover" @input="handlePlacesSpotIDimageCoverChange" />
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0]">
-                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="placesSpotIDimageHero" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': placesSpotIDimageHeroLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && placesSpotIDimageHero" @load="handleImageHeroLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && placesSpotIDimageHeroLoad !== placesSpotIDimageHeroChange && (placesSpotIDimageHero && placesSpotIDimageHero !== null && placesSpotIDimageHero !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && (!placesSpotIDimageHero || placesSpotIDimageHero === null || placesSpotIDimageHero === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && placesSpotIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="placesSpotIDimageHeroLoad === placesSpotIDimageHeroChange && !imageHero[0] && placesSpotIDimageHero && placesSpotIDimageHero !== null && placesSpotIDimageHero !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && (!placesSpotIDimageHero || placesSpotIDimageHero === null || placesSpotIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="placesSpotIDimageHero" @input="handlePlacesSpotIDimageHeroChange" />
+                                            </div>
                                         </div>
                                         <!-- other --> 
                                         <div class="o-form-edit__item">
@@ -360,6 +378,23 @@
                     breadcrumb.name = `Editace místa - ${placesSpotName}`
                 }
             },
+            // change image id
+            handlePlacesSpotIDimageCoverChange() {
+                this.placesSpotIDimageCoverChange = this.placesSpotIDimageCover
+                this.placesSpotIDimageCoverLoading = true
+                this.loadImageCover()
+            },
+            handlePlacesSpotIDimageHeroChange() {
+                this.placesSpotIDimageHeroChange = this.placesSpotIDimageHero
+                this.placesSpotIDimageHeroLoading = true
+                this.loadImageHero()
+            },
+            handleImageCoverLoad() {
+                this.placesSpotIDimageCoverLoading = false;
+            },
+            handleImageHeroLoad() {
+                this.placesSpotIDimageHeroLoading = false;
+            },
             // information author
             addInformationAuthorInput() {
                 this.placesSpotInformationAuthorArray.push({
@@ -406,9 +441,6 @@
         },
 
         watch: {
-            placesSpotName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
-            },
             placesSpotName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
@@ -497,6 +529,12 @@
             const placesSpotAffiliateArray = ref([])
             const imageCover = ref<ImageCover[]>([])
             const imageHero = ref<ImageHero[]>([])
+            const placesSpotIDimageCoverLoad = ref(null)
+            const placesSpotIDimageCoverLoading = ref(false)
+            const placesSpotIDimageCoverChange = ref(null)
+            const placesSpotIDimageHeroLoad = ref(null)
+            const placesSpotIDimageHeroLoading = ref(false)
+            const placesSpotIDimageHeroChange = ref(null)
 
             //API - Places Spot
             ;(async () => {
@@ -519,6 +557,14 @@
                     placesSpotZoom.value = PlacesSpot[0].zoom ? JSON.stringify(PlacesSpot[0].zoom) : JSON.stringify([]);
                     placesSpotAffiliate.value = PlacesSpot[0].affiliate ? JSON.stringify(PlacesSpot[0].affiliate) : JSON.stringify([]);
 
+                    // images load ids
+                    placesSpotIDimageCoverLoad.value = placesSpotIDimageCover.value
+                    placesSpotIDimageCoverChange.value = placesSpotIDimageCover.value
+                    placesSpotIDimageCoverLoading.value = true
+                    placesSpotIDimageHeroLoad.value = placesSpotIDimageHero.value
+                    placesSpotIDimageHeroChange.value = placesSpotIDimageHero.value
+                    placesSpotIDimageHeroLoading.value = true
+                    
                     // Načítání imageCover
                     fetch(`${runTimeConfig.public.baseURL}/image-id/${placesSpotIDimageCover.value}`, {
                     method: 'GET'
@@ -532,6 +578,30 @@
 
                 }
             })()
+
+            const loadImageCover = async () => {
+                try {
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesSpotIDimageCover.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageCover.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
+            const loadImageHero = async () => {
+                try {
+                    // Načítání imageHero
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesSpotIDimageHero.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageHero.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
 
             //FORM - edit
             const editForm = async () => {
@@ -597,7 +667,15 @@
                 placesSpotAffiliateArray,
                 imageCover,
                 imageHero,
-                editForm
+                placesSpotIDimageCoverLoad,
+                placesSpotIDimageCoverChange,
+                placesSpotIDimageCoverLoading,
+                placesSpotIDimageHeroLoad,
+                placesSpotIDimageHeroChange,
+                placesSpotIDimageHeroLoading,
+                editForm,
+                loadImageCover,
+                loadImageHero
             }
         },
 

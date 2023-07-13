@@ -67,29 +67,63 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0]">
-                                            <input class="a-input" type="number" min="0" name="imageList" v-model="postIDImageCover" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': postIDimageCoverLoading}"></div>
+                                                <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && postIDimageCover" @load="handleImageCoverLoad">
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && postIDimageCoverLoad !== postIDimageCoverChange && (postIDimageCover && postIDimageCover !== null && postIDimageCover !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && (!postIDimageCover || postIDimageCover === null || postIDimageCover === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && postIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="postIDimageCoverLoad === postIDimageCoverChange && !imageCover[0] && postIDimageCover && postIDimageCover !== null && postIDimageCover !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && (!postIDimageCover || postIDimageCover === null || postIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageList" v-model="postIDImageCover" @input="handlePostIDimageCoverChange" />
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0]">
-                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="postIDImageHero" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': postIDimageHeroLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && postIDimageHero" @load="handleImageHeroLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && postIDimageHeroLoad !== postIDimageHeroChange && (postIDimageHero && postIDimageHero !== null && postIDimageHero !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && (!postIDimageHero || postIDimageHero === null || postIDimageHero === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && postIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="postIDimageHeroLoad === postIDimageHeroChange && !imageHero[0] && postIDimageHero && postIDimageHero !== null && postIDimageHero !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && (!postIDimageHero || postIDimageHero === null || postIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="postIDImageHero" @input="handlePostIDimageHeroChange" />
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku mapy <span class="m-label__name-column">(id_image_map)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageMap[0].source + imageMap[0].name}.webp`" v-if="imageMap[0]">
-                                            <input class="a-input" type="number" min="0" name="imageMap" v-model="postIDImageMap" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': brandIDimageMapLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageMap[0].source + imageMap[0].name}.webp`" v-if="imageMap[0] && postIDimageMap" @load="handleImageMapLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageMap[0] && postIDimageMapLoad !== postIDimageMapChange && (postIDimageMap && postIDimageMap !== null && postIDimageMap !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageMap[0] && (!postIDimageMap || postIDimageMap === null || postIDimageMap === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageMap[0] && postIDimageMap">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="postIDimageMapLoad === postIDimageMapChange && !imageMap[0] && postIDimageMap && postIDimageMap !== null && postIDimageMap !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageMap[0] && (!postIDimageMap || postIDimageMap === null || postIDimageMap === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageMap" v-model="postIDImageMap" @input="handlePostIDimageMapChange" />
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku og <span class="m-label__name-column">(id_image_og)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageOG[0].source + imageOG[0].name}.webp`" v-if="imageOG[0]">
-                                            <input class="a-input" type="number" min="0" name="imageOg" v-model="postIDImageOG" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': brandIDimageOGLoading}"></div>
+                                                <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageOG[0].source + imageOG[0].name}.webp`" v-if="imageOG[0] && postIDimageOG" @load="handleImageOGLoad">
+                                                <span class="o-form-edit__image-text" v-if="imageOG[0] && postIDimageOGLoad !== postIDimageOGChange && (postIDimageOG && postIDimageOG !== null && postIDimageOG !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageOG[0] && (!postIDimageOG || postIDimageOG === null || postIDimageOG === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageOG[0] && postIDimageOG">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="postIDimageOGLoad === postIDimageOGChange && !imageOG[0] && postIDimageOG && postIDimageOG !== null && postIDimageOG !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageOG[0] && (!postIDimageOG || postIDimageOG === null || postIDimageOG === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageOg" v-model="postIDImageOG" @input="handlePostIDimageOGChange" />
+                                            </div>
                                         </div>
                                         <!-- dates -->
                                         <div class="o-form-edit__item">
@@ -435,8 +469,8 @@
 </template>
 
 <script lang="ts">
-    import VueDatePicker from '@vuepic/vue-datepicker';
-    import '@vuepic/vue-datepicker/dist/main.css'
+    //import VueDatePicker from '@vuepic/vue-datepicker';
+    //import '@vuepic/vue-datepicker/dist/main.css'
 
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -544,7 +578,7 @@
 
         //COMPONENTS
         components: {
-            VueDatePicker,
+            //VueDatePicker,
             mNavBreadcrumbs,
             oFlashMessages,
             oHero
@@ -621,6 +655,39 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace článku - ${postTitle}`
                 }
+            },
+            // change image id
+            handlePostIDimageCoverChange() {
+                this.postIDimageCoverChange = this.postIDimageCover
+                this.postIDimageCoverLoading = true
+                this.loadImageCover()
+            },
+            handlePostIDimageHeroChange() {
+                this.postIDimageHeroChange = this.postIDimageHero
+                this.postIDimageHeroLoading = true
+                this.loadImageHero()
+            },
+            handlePostIDimageMapChange() {
+                this.postIDimageMapChange = this.postIDimageMap
+                this.postIDimageMapLoading = true
+                this.loadImageMap()
+            },
+            handlePostIDimageOGChange() {
+                this.postIDimageOGChange = this.postIDimageOG
+                this.postIDimageOGLoading = true
+                this.loadImageOG()
+            },
+            handleImageCoverLoad() {
+                this.postIDimageCoverLoading = false;
+            },
+            handleImageHeroLoad() {
+                this.postIDimageHeroLoading = false;
+            },
+            handleImageMapLoad() {
+                this.postIDimageMapLoading = false;
+            },
+            handleImageOGLoad() {
+                this.postIDimageOGLoading = false;
             },
             // tags
             addTagInput() {
@@ -841,6 +908,18 @@
             const imageHero = ref<ImageHero[]>([])
             const imageMap = ref<ImageMap[]>([])
             const imageOG = ref<ImageOG[]>([])
+            const postIDimageCoverLoad = ref(null)
+            const postIDimageCoverLoading = ref(false)
+            const postIDimageCoverChange = ref(null)
+            const postIDimageHeroLoad = ref(null)
+            const postIDimageHeroLoading = ref(false)
+            const postIDimageHeroChange = ref(null)
+            const postIDimageMapLoad = ref(null)
+            const postIDimageMapLoading = ref(false)
+            const postIDimageMapChange = ref(null)
+            const postIDimageOGLoad = ref(null)
+            const postIDimageOGLoading = ref(false)
+            const postIDimageOGChange = ref(null)
 
             //API - Post
             ;(async () => {
@@ -882,6 +961,20 @@
                     postTriplengths.value = Post[0].triplengths ? JSON.stringify(Post[0].triplengths) : JSON.stringify([])
                     postTimes.value = Post[0].times ? JSON.stringify(Post[0].times) : JSON.stringify([])
 
+                    // images load ids
+                    postIDimageCoverLoad.value = postIDimageCover.value
+                    postIDimageCoverChange.value = postIDimageCover.value
+                    postIDimageCoverLoading.value = true
+                    postIDimageHeroLoad.value = postIDimageHero.value
+                    postIDimageHeroChange.value = postIDimageHero.value
+                    postIDimageHeroLoading.value = true
+                    postIDimageMapLoad.value = postIDimageMap.value
+                    postIDimageMapChange.value = postIDimageMap.value
+                    postIDimageMapLoading.value = true
+                    postIDimageOGLoad.value = postIDimageOG.value
+                    postIDimageOGChange.value = postIDimageOG.value
+                    postIDimageOGLoading.value = true
+
                     // Načítání imageCover
                     fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDImageCover.value}`, {
                     method: 'GET'
@@ -905,6 +998,54 @@
 
                 }
             })()
+
+            const loadImageCover = async () => {
+                try {
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageCover.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageCover.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
+            const loadImageHero = async () => {
+                try {
+                    // Načítání imageHero
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageHero.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageHero.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
+            const loadImageMap = async () => {
+                try {
+                    // Načítání imageMap
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageMap.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageMap.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
+            const loadImageOG = async () => {
+                try {
+                    // Načítání imageOG
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageOG.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageOG.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
 
             //FORM - edit
             const editForm = async () => {
@@ -1013,7 +1154,23 @@
                 imageHero,
                 imageMap,
                 imageOG,
-                editForm
+                postIDimageCoverLoad,
+                postIDimageCoverChange,
+                postIDimageCoverLoading,
+                postIDimageHeroLoad,
+                postIDimageHeroChange,
+                postIDimageHeroLoading,
+                postIDimageMapLoad,
+                postIDimageMapChange,
+                postIDimageMapLoading,
+                postIDimageOGLoad,
+                postIDimageOGChange,
+                postIDimageOGLoading,
+                editForm,
+                loadImageCover,
+                loadImageHero,
+                loadImageMap,
+                loadImageOG
             }
         },
 

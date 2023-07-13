@@ -37,15 +37,33 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0]">
-                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="foodIDimageCover" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': foodIDimageCoverLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && foodIDimageCover" @load="handleImageCoverLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && foodIDimageCoverLoad !== foodIDimageCoverChange && (foodIDimageCover && foodIDimageCover !== null && foodIDimageCover !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && (!foodIDimageCover || foodIDimageCover === null || foodIDimageCover === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && foodIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="foodIDimageCoverLoad === foodIDimageCoverChange && !imageCover[0] && foodIDimageCover && foodIDimageCover !== null && foodIDimageCover !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && (!foodIDimageCover || foodIDimageCover === null || foodIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="foodIDimageCover" @input="handleFoodIDimageCoverChange" />
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0]">
-                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="foodIDimageHero" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': foodIDimageHeroLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && foodIDimageHero" @load="handleImageHeroLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && foodIDimageHeroLoad !== foodIDimageHeroChange && (foodIDimageHero && foodIDimageHero !== null && foodIDimageHero !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && (!foodIDimageHero || foodIDimageHero === null || foodIDimageHero === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && foodIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="foodIDimageHeroLoad === foodIDimageHeroChange && !imageHero[0] && foodIDimageHero && foodIDimageHero !== null && foodIDimageHero !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && (!foodIDimageHero || foodIDimageHero === null || foodIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="foodIDimageHero" @input="handleFoodIDimageHeroChange" />
+                                            </div>
                                         </div>
                                         <!-- json -->
                                         <div class="o-form-edit__item">
@@ -202,6 +220,23 @@
                     breadcrumb.name = `Editace jídla - ${foodName}`
                 }
             },
+            // change image id
+            handleFoodIDimageCoverChange() {
+                this.foodIDimageCoverChange = this.foodIDimageCover
+                this.foodIDimageCoverLoading = true
+                this.loadImageCover()
+            },
+            handleFoodIDimageHeroChange() {
+                this.foodIDimageHeroChange = this.foodIDimageHero
+                this.foodIDimageHeroLoading = true
+                this.loadImageHero()
+            },
+            handleImageCoverLoad() {
+                this.foodIDimageCoverLoading = false;
+            },
+            handleImageHeroLoad() {
+                this.foodIDimageHeroLoading = false;
+            },
             // ids states
             addIDSstateInput() {
                 this.foodIDSstatesArray.push({
@@ -270,6 +305,12 @@
             const foodRecipe = ref('')
             const imageCover = ref<ImageCover[]>([])
             const imageHero = ref<ImageHero[]>([])
+            const foodIDimageCoverLoad = ref(null)
+            const foodIDimageCoverLoading = ref(false)
+            const foodIDimageCoverChange = ref(null)
+            const foodIDimageHeroLoad = ref(null)
+            const foodIDimageHeroLoading = ref(false)
+            const foodIDimageHeroChange = ref(null)
 
             //API - food
             ;(async () => {
@@ -287,6 +328,14 @@
                     foodIngredients.value = Food[0].ingredients ? JSON.stringify(Food[0].ingredients) : JSON.stringify([]);
                     foodRecipe.value = Food[0].recipe;
 
+                    // images load ids
+                    foodIDimageCoverLoad.value = foodIDimageCover.value
+                    foodIDimageCoverChange.value = foodIDimageCover.value
+                    foodIDimageCoverLoading.value = true
+                    foodIDimageHeroLoad.value = foodIDimageHero.value
+                    foodIDimageHeroChange.value = foodIDimageHero.value
+                    foodIDimageHeroLoading.value = true
+                    
                     // Načítání imageCover
                     fetch(`${runTimeConfig.public.baseURL}/image-id/${foodIDimageCover.value}`, {
                     method: 'GET'
@@ -300,6 +349,30 @@
 
                 }
             })()
+
+            const loadImageCover = async () => {
+                try {
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${foodIDimageCover.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageCover.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
+            const loadImageHero = async () => {
+                try {
+                    // Načítání imageHero
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${foodIDimageHero.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageHero.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
 
             //FORM - edit
             const editForm = async () => {
@@ -352,7 +425,15 @@
                 foodRecipe,
                 imageCover,
                 imageHero,
-                editForm
+                foodIDimageCoverLoad,
+                foodIDimageCoverChange,
+                foodIDimageCoverLoading,
+                foodIDimageHeroLoad,
+                foodIDimageHeroChange,
+                foodIDimageHeroLoading,
+                editForm,
+                loadImageCover,
+                loadImageHero
             }
         },
 

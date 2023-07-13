@@ -10,4 +10,9 @@
         line-height: 38px;
         padding: 5px 10px;
     }
+
+    &.-c-gray {
+        background-color: $gray10;
+        border: 1px solid transparent;
+    }
 }

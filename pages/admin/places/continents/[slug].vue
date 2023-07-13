@@ -37,15 +37,33 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0]">
-                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="placesContinentIDimageCover" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': placesContinentIDimageCoverLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && placesContinentIDimageCover" @load="handleImageCoverLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && placesContinentIDimageCoverLoad !== placesContinentIDimageCoverChange && (placesContinentIDimageCover && placesContinentIDimageCover !== null && placesContinentIDimageCover !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && (!placesContinentIDimageCover || placesContinentIDimageCover === null || placesContinentIDimageCover === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && placesContinentIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="placesContinentIDimageCoverLoad === placesContinentIDimageCoverChange && !imageCover[0] && placesContinentIDimageCover && placesContinentIDimageCover !== null && placesContinentIDimageCover !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && (!placesContinentIDimageCover || placesContinentIDimageCover === null || placesContinentIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="placesContinentIDimageCover" @input="handlePlacesContinentIDimageCoverChange" />
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0]">
-                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="placesContinentIDimageHero" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': placesContinentIDimageHeroLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && placesContinentIDimageHero" @load="handleImageHeroLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && placesContinentIDimageHeroLoad !== placesContinentIDimageHeroChange && (placesContinentIDimageHero && placesContinentIDimageHero !== null && placesContinentIDimageHero !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && (!placesContinentIDimageHero || placesContinentIDimageHero === null || placesContinentIDimageHero === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && placesContinentIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="placesContinentIDimageHeroLoad === placesContinentIDimageHeroChange && !imageHero[0] && placesContinentIDimageHero && placesContinentIDimageHero !== null && placesContinentIDimageHero !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && (!placesContinentIDimageHero || placesContinentIDimageHero === null || placesContinentIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="placesContinentIDimageHero" @input="handlePlacesContinentIDimageHeroChange" />
+                                            </div>
                                         </div>
                                         <!-- other --> 
                                         <div class="o-form-edit__item">
@@ -327,6 +345,23 @@
                     breadcrumb.name = `Editace kontinentu - ${placesContinentName}`
                 }
             },
+            // change image id
+            handlePlacesContinentIDimageCoverChange() {
+                this.placesContinentIDimageCoverChange = this.placesContinentIDimageCover
+                this.placesContinentIDimageCoverLoading = true
+                this.loadImageCover()
+            },
+            handlePlacesContinentIDimageHeroChange() {
+                this.placesContinentIDimageHeroChange = this.placesContinentIDimageHero
+                this.placesContinentIDimageHeroLoading = true
+                this.loadImageHero()
+            },
+            handleImageCoverLoad() {
+                this.placesContinentIDimageCoverLoading = false;
+            },
+            handleImageHeroLoad() {
+                this.placesContinentIDimageHeroLoading = false;
+            },
             // information author
             addInformationAuthorInput() {
                 this.placesContinentInformationAuthorArray.push({
@@ -446,6 +481,12 @@
             const placesContinentZoomArray = ref([])
             const imageCover = ref<ImageCover[]>([])
             const imageHero = ref<ImageHero[]>([])
+            const placesContinentIDimageCoverLoad = ref(null)
+            const placesContinentIDimageCoverLoading = ref(false)
+            const placesContinentIDimageCoverChange = ref(null)
+            const placesContinentIDimageHeroLoad = ref(null)
+            const placesContinentIDimageHeroLoading = ref(false)
+            const placesContinentIDimageHeroChange = ref(null)
 
             //API - Places Continent
             ;(async () => {
@@ -468,6 +509,14 @@
                     placesContinentCoordinates.value = PlacesContinent[0].coordinates ? JSON.stringify(PlacesContinent[0].coordinates) : JSON.stringify([]);
                     placesContinentZoom.value = PlacesContinent[0].zoom ? JSON.stringify(PlacesContinent[0].zoom) : JSON.stringify([]);
 
+                    // images load ids
+                    placesContinentIDimageCoverLoad.value = placesContinentIDimageCover.value
+                    placesContinentIDimageCoverChange.value = placesContinentIDimageCover.value
+                    placesContinentIDimageCoverLoading.value = true
+                    placesContinentIDimageHeroLoad.value = placesContinentIDimageHero.value
+                    placesContinentIDimageHeroChange.value = placesContinentIDimageHero.value
+                    placesContinentIDimageHeroLoading.value = true
+                    
                     // Načítání imageCover
                     fetch(`${runTimeConfig.public.baseURL}/image-id/${placesContinentIDimageCover.value}`, {
                     method: 'GET'
@@ -481,6 +530,30 @@
 
                 }
             })()
+
+            const loadImageCover = async () => {
+                try {
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesContinentIDimageCover.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageCover.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
+            const loadImageHero = async () => {
+                try {
+                    // Načítání imageHero
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesContinentIDimageHero.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageHero.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
 
             //FORM - edit
             const editForm = async () => {
@@ -545,7 +618,15 @@
                 placesContinentZoomArray,
                 imageCover,
                 imageHero,
-                editForm
+                placesContinentIDimageCoverLoad,
+                placesContinentIDimageCoverChange,
+                placesContinentIDimageCoverLoading,
+                placesContinentIDimageHeroLoad,
+                placesContinentIDimageHeroChange,
+                placesContinentIDimageHeroLoading,
+                editForm,
+                loadImageCover,
+                loadImageHero
             }
         },
 

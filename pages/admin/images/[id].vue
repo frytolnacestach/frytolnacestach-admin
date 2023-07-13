@@ -24,7 +24,7 @@
                                 <!-- FORM -->
                                 <form class="o-form-edit__form" @submit.prevent="editForm">
                                     <div class="o-form-edit__items">
-                                        <img class="o-form-edit__image" :src="`https://image.frytolnacestach.cz/storage${imageSource + imageName}.webp`">
+                                        <img class="o-form-edit__image-file" :src="`https://image.frytolnacestach.cz/storage${imageSource + imageName}.webp`">
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">

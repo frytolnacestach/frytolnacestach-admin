@@ -67,8 +67,17 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku <span class="m-label__name-column">(id_image)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${image[0].source + image[0].name}.webp`" v-if="image[0]">
-                                            <input class="a-input" type="number" min="0" name="id_image" v-model="videoIDimage" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': videoIDimageLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${image[0].source + image[0].name}.webp`" v-if="image[0] && videoIDimage" @load="handleImageLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="image[0] && videoIDimageLoad !== videoIDimageChange && (videoIDimage && videoIDimage !== null && videoIDimage !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="image[0] && (!videoIDimage || videoIDimage === null || videoIDimage === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!image[0] && videoIDimage">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="videoIDimageLoad === videoIDimageChange && !image[0] && videoIDimage && videoIDimage !== null && videoIDimage !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!image[0] && (!videoIDimage || videoIDimage === null || videoIDimage === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="id_image" v-model="videoIDimage" @input="handleVideoIDimageChange" />
+                                            </div>
                                         </div>
                                         <!-- other -->
                                         <div class="o-form-edit__item">
@@ -201,7 +210,16 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace videa - ${videoTitle}`
                 }
-            }
+            },
+            // change image id
+            handleVideoIDimageChange() {
+                this.videoIDimageChange = this.videoIDimage
+                this.videoIDimageLoading = true
+                this.loadImage()
+            },
+            handleImageLoad() {
+                this.videoIDimageLoading = false;
+            },
         },
 
         watch: {
@@ -254,6 +272,9 @@
             const videoPerex = ref('')
             const videoUrl = ref('')
             const image = ref<Image[]>([])
+            const videoIDimageLoad = ref(null)
+            const videoIDimageLoading = ref(false)
+            const videoIDimageChange = ref(null)
 
             //API - Video
             ;(async () => {
@@ -275,6 +296,11 @@
                     videoPerex.value = video[0].perex;
                     videoUrl.value = video[0].url;
 
+                    // images load ids
+                    videoIDimageLoad.value = videoIDimage.value
+                    videoIDimageChange.value = videoIDimage.value
+                    videoIDimageLoading.value = true
+
                     // Načítání image
                     fetch(`${runTimeConfig.public.baseURL}/image-id/${videoIDimage.value}`, {
                     method: 'GET'
@@ -283,6 +309,18 @@
 
                 }
             })()
+
+            const loadImage = async () => {
+                try {
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${videoIDimage.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => image.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
 
             //API - Platform
             ;(async () => {
@@ -349,7 +387,11 @@
                 videoUrl,
                 platforms,
                 image,
-                editForm
+                videoIDimageLoad,
+                videoIDimageChange,
+                videoIDimageLoading,
+                editForm,
+                loadImage
             }
         },
 

@@ -37,15 +37,33 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0]">
-                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="faunaIDimageCover" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': faunaIDimageCoverLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && faunaIDimageCover" @load="handleImageCoverLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && faunaIDimageCoverLoad !== faunaIDimageCoverChange && (faunaIDimageCover && faunaIDimageCover !== null && faunaIDimageCover !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && (!faunaIDimageCover || faunaIDimageCover === null || faunaIDimageCover === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && faunaIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="faunaIDimageCoverLoad === faunaIDimageCoverChange && !imageCover[0] && faunaIDimageCover && faunaIDimageCover !== null && faunaIDimageCover !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && (!faunaIDimageCover || faunaIDimageCover === null || faunaIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="faunaIDimageCover" @input="handleFaunaIDimageCoverChange" />
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0]">
-                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="faunaIDimageHero" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': faunaIDimageHeroLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && faunaIDimageHero" @load="handleImageHeroLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && faunaIDimageHeroLoad !== faunaIDimageHeroChange && (faunaIDimageHero && faunaIDimageHero !== null && faunaIDimageHero !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && (!faunaIDimageHero || faunaIDimageHero === null || faunaIDimageHero === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && faunaIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="faunaIDimageHeroLoad === faunaIDimageHeroChange && !imageHero[0] && faunaIDimageHero && faunaIDimageHero !== null && faunaIDimageHero !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && (!faunaIDimageHero || faunaIDimageHero === null || faunaIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="faunaIDimageHero" @input="handleFaunaIDimageHeroChange" />
+                                            </div>
                                         </div>
                                         <!-- json -->
                                         <div class="o-form-edit__item">
@@ -216,6 +234,23 @@
                     breadcrumb.name = `Editace fauny - ${faunaName}`
                 }
             },
+            // change image id
+            handleFaunaIDimageCoverChange() {
+                this.faunaIDimageCoverChange = this.faunaIDimageCover
+                this.faunaIDimageCoverLoading = true
+                this.loadImageCover()
+            },
+            handleFaunaIDimageHeroChange() {
+                this.faunaIDimageHeroChange = this.faunaIDimageHero
+                this.faunaIDimageHeroLoading = true
+                this.loadImageHero()
+            },
+            handleImageCoverLoad() {
+                this.faunaIDimageCoverLoading = false;
+            },
+            handleImageHeroLoad() {
+                this.faunaIDimageHeroLoading = false;
+            },
             // ids states
             addIDSstateInput() {
                 this.faunaIDSstatesArray.push({
@@ -286,6 +321,12 @@
             const faunaDescription = ref('')
             const imageCover = ref<ImageCover[]>([])
             const imageHero = ref<ImageHero[]>([])
+            const faunaIDimageCoverLoad = ref(null)
+            const faunaIDimageCoverLoading = ref(false)
+            const faunaIDimageCoverChange = ref(null)
+            const faunaIDimageHeroLoad = ref(null)
+            const faunaIDimageHeroLoading = ref(false)
+            const faunaIDimageHeroChange = ref(null)
 
             //API - fauna
             ;(async () => {
@@ -305,6 +346,14 @@
                     faunaStatusDanger.value = Fauna[0].status_danger;
                     faunaDescription.value = Fauna[0].description;
 
+                    // images load ids
+                    faunaIDimageCoverLoad.value = faunaIDimageCover.value
+                    faunaIDimageCoverChange.value = faunaIDimageCover.value
+                    faunaIDimageCoverLoading.value = true
+                    faunaIDimageHeroLoad.value = faunaIDimageHero.value
+                    faunaIDimageHeroChange.value = faunaIDimageHero.value
+                    faunaIDimageHeroLoading.value = true
+
                     // Načítání imageCover
                     fetch(`${runTimeConfig.public.baseURL}/image-id/${faunaIDimageCover.value}`, {
                     method: 'GET'
@@ -318,6 +367,30 @@
 
                 }
             })()
+
+            const loadImageCover = async () => {
+                try {
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${faunaIDimageCover.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageCover.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
+            const loadImageHero = async () => {
+                try {
+                    // Načítání imageHero
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${faunaIDimageHero.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageHero.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
 
             //FORM - edit
             const editForm = async () => {
@@ -374,7 +447,15 @@
                 faunaDescription,
                 imageCover,
                 imageHero,
-                editForm
+                faunaIDimageCoverLoad,
+                faunaIDimageCoverChange,
+                faunaIDimageCoverLoading,
+                faunaIDimageHeroLoad,
+                faunaIDimageHeroChange,
+                faunaIDimageHeroLoading,
+                editForm,
+                loadImageCover,
+                loadImageHero
             }
         },
 

@@ -43,15 +43,33 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0]">
-                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="placesCityIDimageCover" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': placesCityIDimageCoverLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && placesCityIDimageCover" @load="handleImageCoverLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && placesCityIDimageCoverLoad !== placesCityIDimageCoverChange && (placesCityIDimageCover && placesCityIDimageCover !== null && placesCityIDimageCover !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && (!placesCityIDimageCover || placesCityIDimageCover === null || placesCityIDimageCover === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && placesCityIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="placesCityIDimageCoverLoad === placesCityIDimageCoverChange && !imageCover[0] && placesCityIDimageCover && placesCityIDimageCover !== null && placesCityIDimageCover !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && (!placesCityIDimageCover || placesCityIDimageCover === null || placesCityIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="placesCityIDimageCover" @input="handlePlacesCityIDimageCoverChange" />
+                                            </div>
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <img class="o-form-edit__image -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0]">
-                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="placesCityIDimageHero" />
+                                            <div class="o-form-edit__image">
+                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': placesCityIDimageHeroLoading}">
+                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && placesCityIDimageHero" @load="handleImageHeroLoad">
+                                                </div>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && placesCityIDimageHeroLoad !== placesCityIDimageHeroChange && (placesCityIDimageHero && placesCityIDimageHero !== null && placesCityIDimageHero !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && (!placesCityIDimageHero || placesCityIDimageHero === null || placesCityIDimageHero === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && placesCityIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="placesCityIDimageHeroLoad === placesCityIDimageHeroChange && !imageHero[0] && placesCityIDimageHero && placesCityIDimageHero !== null && placesCityIDimageHero !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && (!placesCityIDimageHero || placesCityIDimageHero === null || placesCityIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="placesCityIDimageHero" @input="handlePlacesCityIDimageHeroChange" />
+                                            </div>
                                         </div>
                                         <!-- other -->
                                         <div class="o-form-edit__item">
@@ -519,6 +537,23 @@
                     breadcrumb.name = `Editace města - ${placesCityName}`
                 }
             },
+            // change image id
+            handlePlacesCityIDimageCoverChange() {
+                this.placesCityIDimageCoverChange = this.placesCityIDimageCover
+                this.placesCityIDimageCoverLoading = true
+                this.loadImageCover()
+            },
+            handlePlacesCityIDimageHeroChange() {
+                this.placesCityIDimageHeroChange = this.placesCityIDimageHero
+                this.placesCityIDimageHeroLoading = true
+                this.loadImageHero()
+            },
+            handleImageCoverLoad() {
+                this.placesCityIDimageCoverLoading = false;
+            },
+            handleImageHeroLoad() {
+                this.placesCityIDimageHeroLoading = false;
+            },
             // information author
             addInformationAuthorInput() {
                 this.placesCityInformationAuthorArray.push({
@@ -718,6 +753,12 @@
             const placesCityBiggest = ref([])
             const imageCover = ref<ImageCover[]>([])
             const imageHero = ref<ImageHero[]>([])
+            const placesCityIDimageCoverLoad = ref(null)
+            const placesCityIDimageCoverLoading = ref(false)
+            const placesCityIDimageCoverChange = ref(null)
+            const placesCityIDimageHeroLoad = ref(null)
+            const placesCityIDimageHeroLoading = ref(false)
+            const placesCityIDimageHeroChange = ref(null)
 
             //API - Places City
             ;(async () => {
@@ -744,6 +785,14 @@
                     placesCityParking.value = PlacesCity[0].parking ? JSON.stringify(PlacesCity[0].parking) : JSON.stringify([]);
                     placesCityBiggest.value = PlacesCity[0].biggest;
 
+                    // images load ids
+                    placesCityIDimageCoverLoad.value = placesCityIDimageCover.value
+                    placesCityIDimageCoverChange.value = placesCityIDimageCover.value
+                    placesCityIDimageCoverLoading.value = true
+                    placesCityIDimageHeroLoad.value = placesCityIDimageHero.value
+                    placesCityIDimageHeroChange.value = placesCityIDimageHero.value
+                    placesCityIDimageHeroLoading.value = true
+                    
                     // Načítání imageCover
                     fetch(`${runTimeConfig.public.baseURL}/image-id/${placesCityIDimageCover.value}`, {
                     method: 'GET'
@@ -757,6 +806,30 @@
 
                 }
             })()
+
+            const loadImageCover = async () => {
+                try {
+                    // Načítání imageCover
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesCityIDimageCover.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageCover.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
+            const loadImageHero = async () => {
+                try {
+                    // Načítání imageHero
+                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesCityIDimageHero.value}`, {
+                    method: 'GET'
+                    }).then(res => res.json()).then(data => imageHero.value = data);
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
 
             //FORM - edit
             const editForm = async () => {
@@ -832,7 +905,15 @@
                 placesCityBiggest,
                 imageCover,
                 imageHero,
-                editForm
+                placesCityIDimageCoverLoad,
+                placesCityIDimageCoverChange,
+                placesCityIDimageCoverLoading,
+                placesCityIDimageHeroLoad,
+                placesCityIDimageHeroChange,
+                placesCityIDimageHeroLoading,
+                editForm,
+                loadImageCover,
+                loadImageHero
             }
         },
 
