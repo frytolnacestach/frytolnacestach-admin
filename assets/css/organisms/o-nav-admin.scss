@@ -21,7 +21,11 @@
     }
 
     &__item {
-        width: 33.333%;
+        width: 100%;
+
+        @media only screen and (min-width: $md) {
+            width: 33.333%;
+        }
     }
 
     &__item-container {

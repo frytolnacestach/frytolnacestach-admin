@@ -5,8 +5,12 @@
 
     &__outer {
         width: 100%;
-        padding: 20px 30px;
+        padding: 10px;
         background-color: $gray2;
+
+        @media only screen and (min-width: $md) {
+            padding: 20px 30px;
+        }
     }
 
     &__inner {
