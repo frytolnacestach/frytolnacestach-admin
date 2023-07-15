@@ -302,9 +302,13 @@
                     videoIDimageLoading.value = true
 
                     // Načítání image
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${videoIDimage.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => image.value = data);
+                    if (videoIDimage.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${videoIDimage.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => image.value = data);
+                    } else {
+                        image.value = [];
+                    }
                 } else {
 
                 }

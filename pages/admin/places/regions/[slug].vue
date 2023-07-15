@@ -554,14 +554,22 @@
                     placesRegionIDimageHeroLoading.value = true
                     
                     // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesRegionIDimageCover.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageCover.value = data);
+                    if (placesRegionIDimageCover.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${placesRegionIDimageCover.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageCover.value = data);
+                    } else {
+                        imageCover.value = [];
+                    }
 
                     // Načítání imageHero
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesRegionIDimageHero.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageHero.value = data);
+                    if (placesRegionIDimageHero.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${placesRegionIDimageHero.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageHero.value = data);
+                    } else {
+                        imageHero.value = [];
+                    }
                 } else {
 
                 }

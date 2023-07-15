@@ -1490,14 +1490,22 @@
                     placesStateIDimageHeroLoading.value = true
                     
                     // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesStateIDimageCover.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageCover.value = data);
+                    if (placesStateIDimageCover.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${placesStateIDimageCover.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageCover.value = data);
+                    } else {
+                        imageCover.value = [];
+                    }
 
                     // Načítání imageHero
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesStateIDimageHero.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageHero.value = data);
+                    if (placesStateIDimageHero.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${placesStateIDimageHero.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageHero.value = data);
+                    } else {
+                        imageHero.value = [];
+                    }
                 } else {
 
                 }

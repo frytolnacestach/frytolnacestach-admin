@@ -319,14 +319,22 @@
                     brandIDimageHeroLoading.value = true
 
                     // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${brandIDimageCover.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageCover.value = data);
+                    if (brandIDimageCover.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${brandIDimageCover.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageCover.value = data);
+                    } else {
+                        imageCover.value = [];
+                    }
 
                     // Načítání imageHero
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${brandIDimageHero.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageHero.value = data);
+                    if (brandIDimageHero.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${brandIDimageHero.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageHero.value = data);
+                    } else {
+                        imageHero.value = [];
+                    }
                 } else {
 
                 }

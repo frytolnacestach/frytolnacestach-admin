@@ -337,14 +337,22 @@
                     foodIDimageHeroLoading.value = true
                     
                     // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${foodIDimageCover.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageCover.value = data);
+                    if (foodIDimageCover.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${foodIDimageCover.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageCover.value = data);
+                    } else {
+                        imageCover.value = [];
+                    }
 
                     // Načítání imageHero
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${foodIDimageHero.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageHero.value = data);
+                    if (foodIDimageHero.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${foodIDimageHero.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageHero.value = data);
+                    } else {
+                        imageHero.value = [];
+                    }
                 } else {
 
                 }

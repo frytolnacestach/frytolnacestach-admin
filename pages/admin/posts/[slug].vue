@@ -976,24 +976,40 @@
                     postIDimageOGLoading.value = true
 
                     // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageCover.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageCover.value = data);
+                    if (postIDimageCover.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageCover.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageCover.value = data);
+                    } else {
+                        imageCover.value = [];
+                    }
 
                     // Načítání imageHero
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageHero.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageHero.value = data);
+                    if (postIDimageHero.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageHero.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageHero.value = data);
+                    } else {
+                        imageHero.value = [];
+                    }
 
-                    // Načítání imageHero
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageMap.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageMap.value = data);
+                    // Načítání imageMap
+                    if (postIDimageMap.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageMap.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageMap.value = data);
+                    } else {
+                        imageMap.value = [];
+                    }
 
                     // Načítání imageOG
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageOG.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageOG.value = data);
+                    if (postIDimageOG.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${postIDimageOG.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageOG.value = data);
+                    } else {
+                        imageOG.value = [];
+                    }
                 } else {
 
                 }

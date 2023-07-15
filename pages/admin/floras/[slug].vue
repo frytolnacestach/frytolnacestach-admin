@@ -355,14 +355,22 @@
                     floraIDimageHeroLoading.value = true
 
                     // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${floraIDimageCover.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageCover.value = data);
+                    if (floraIDimageCover.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${floraIDimageCover.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageCover.value = data);
+                    } else {
+                        imageCover.value = [];
+                    }
 
                     // Načítání imageHero
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${floraIDimageHero.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageHero.value = data);
+                    if (floraIDimageHero.value) {
+                        fetch(`${runTimeConfig.public.baseURL}/image-id/${floraIDimageHero.value}`, {
+                        method: 'GET'
+                        }).then(res => res.json()).then(data => imageHero.value = data);
+                    } else {
+                        imageHero.value = [];
+                    }
                 } else {
 
                 }
