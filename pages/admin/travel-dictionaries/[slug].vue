@@ -202,7 +202,7 @@
 
             //META HEAD
             useHead({
-                title: 'Jídlo - úprava',
+                title: 'Cestovaleský slovník - úprava',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
