@@ -54,6 +54,15 @@
                                         <!-- other -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">Významnost <span class="m-label__name-column">(importance)</span></span>
+                                            </label>
+                                            <select class="m-select" name="platform" v-model="placesCityImportance">
+                                                <option value="">- Jaká je významnost? -</option>
+                                                <option value="biggest">TOP10 NEJVĚTŠÍ</option>
+                                            </select>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" disabled="true" name="typePlace" v-model="placesCityTypePlace" required />
@@ -602,6 +611,7 @@
             const placesCityIDstate = ref(null)
             const placesCityIDimageCover = ref(null)
             const placesCityIDimageHero = ref(null)
+            const placesCityImportance = ref('')
             const placesCityTypePlace = ref('city')
             const placesCitySlug = ref('')
             const placesCityName = ref('')
@@ -638,6 +648,7 @@
                             'id_state': placesCityIDstate.value,
                             'id_image_cover': placesCityIDimageCover.value,
                             'id_image_hero': placesCityIDimageHero.value,
+                            'importance': placesCityImportance.value,
                             'type_place': placesCityTypePlace.value,
                             'slug': placesCitySlug.value,
                             'name': placesCityName.value,
@@ -676,6 +687,7 @@
                 placesCityIDstate,
                 placesCityIDimageCover,
                 placesCityIDimageHero,
+                placesCityImportance,
                 placesCityTypePlace,
                 placesCitySlug,
                 placesCityName,

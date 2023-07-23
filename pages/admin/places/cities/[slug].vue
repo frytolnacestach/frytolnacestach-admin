@@ -74,6 +74,15 @@
                                         <!-- other -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">Významnost <span class="m-label__name-column">(importance)</span></span>
+                                            </label>
+                                            <select class="m-select" name="platform" v-model="placesCityImportance">
+                                                <option value="">- Jaká je významnost? -</option>
+                                                <option value="biggest">TOP10 NEJVĚTŠÍ</option>
+                                            </select>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" disabled="true" name="typePlace" v-model="placesCityTypePlace" required />
@@ -451,6 +460,7 @@
         id_state: number
         id_image_cover: number
         id_image_hero: number
+        importance: string
         type_place: string
         slug: string
         name: string
@@ -731,6 +741,7 @@
             const placesCityIDstate = ref(null)
             const placesCityIDimageCover = ref(null)
             const placesCityIDimageHero = ref(null)
+            const placesCityImportance = ref('')
             const placesCityTypePlace = ref('city')
             const placesCitySlug = ref('')
             const placesCityName = ref('')
@@ -770,6 +781,7 @@
                     placesCityIDstate.value = PlacesCity[0].id_state;
                     placesCityIDimageCover.value = PlacesCity[0].id_image_cover;
                     placesCityIDimageHero.value = PlacesCity[0].id_image_hero;
+                    placesCityImportance.value = PlacesCity[0].importance;
                     placesCityTypePlace.value = PlacesCity[0].type_place;
                     placesCitySlug.value = PlacesCity[0].slug;
                     placesCityName.value = PlacesCity[0].name;
@@ -854,6 +866,7 @@
                             'id_state': placesCityIDstate.value,
                             'id_image_cover': placesCityIDimageCover.value,
                             'id_image_hero': placesCityIDimageHero.value,
+                            'importance': placesCityImportance.value,
                             'type_place': placesCityTypePlace.value,
                             'slug': placesCitySlug.value,
                             'name': placesCityName.value,
@@ -891,6 +904,7 @@
                 placesCityIDstate,
                 placesCityIDimageCover,
                 placesCityIDimageHero,
+                placesCityImportance,
                 placesCityTypePlace,
                 placesCitySlug,
                 placesCityName,
