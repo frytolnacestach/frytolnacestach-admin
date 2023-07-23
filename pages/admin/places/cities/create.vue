@@ -57,7 +57,7 @@
                                                 <span class="m-label__name">Významnost <span class="m-label__name-column">(importance)</span></span>
                                             </label>
                                             <select class="m-select" name="platform" v-model="placesCityImportance">
-                                                <option value="">- Jaká je významnost? -</option>
+                                                <option :value=null>- Jaká je významnost? -</option>
                                                 <option value="biggest">TOP10 NEJVĚTŠÍ</option>
                                             </select>
                                         </div>
@@ -358,13 +358,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="o-form-create__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Je město mezi top10 největšími? <span class="m-label__name-column">(biggest)</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="biggest" v-model="placesCityBiggest" />
-                                        </div>                     
+                                        </div>                    
                                     </div>
                                     <!-- button -->
                                     <div class="o-form-create__buttons mt-1">
@@ -631,7 +625,6 @@
             const placesCityAlertsArray = ref([])
             const placesCityParking = ref([])
             const placesCityParkingArray = ref([])
-            const placesCityBiggest = ref([])
 
             //FORM - create
             const createForm = async () => {
@@ -661,8 +654,7 @@
                             'zoom': JSON.stringify(placesCityZoomArray._value),
                             'affiliate': JSON.stringify(placesCityAffiliateArray._value),
                             'alerts': JSON.stringify(placesCityAlertsArray._value),
-                            'parking': JSON.stringify(placesCityParkingArray._value),
-                            'biggest': placesCityBiggest.value
+                            'parking': JSON.stringify(placesCityParkingArray._value)
                         })
                     })
                     .then(() => {
@@ -707,7 +699,6 @@
                 placesCityAlertsArray,
                 placesCityParking,
                 placesCityParkingArray,
-                placesCityBiggest,
                 createForm
             }
         },

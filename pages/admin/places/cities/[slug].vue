@@ -77,7 +77,7 @@
                                                 <span class="m-label__name">Významnost <span class="m-label__name-column">(importance)</span></span>
                                             </label>
                                             <select class="m-select" name="platform" v-model="placesCityImportance">
-                                                <option value="">- Jaká je významnost? -</option>
+                                                <option :value=null>- Jaká je významnost? -</option>
                                                 <option value="biggest">TOP10 NEJVĚTŠÍ</option>
                                             </select>
                                         </div>
@@ -378,13 +378,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Je město mezi top10 největšími? <span class="m-label__name-column">(biggest)</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="biggest" v-model="placesCityBiggest" />
-                                        </div>                     
+                                        </div>            
                                     </div>
                                     <!-- button -->
                                     <div class="o-form-edit__buttons mt-1">
@@ -474,7 +468,6 @@
         affiliate: Affiliate[]
         alerts: Alerts[]
         parking: Parking[]
-        biggest: string
     }
 
     interface ImageCover {
@@ -761,7 +754,6 @@
             const placesCityAlertsArray = ref([])
             const placesCityParking = ref([])
             const placesCityParkingArray = ref([])
-            const placesCityBiggest = ref([])
             const imageCover = ref<ImageCover[]>([])
             const imageHero = ref<ImageHero[]>([])
             const placesCityIDimageCoverLoad = ref(null)
@@ -795,7 +787,6 @@
                     placesCityAffiliate.value = PlacesCity[0].affiliate ? JSON.stringify(PlacesCity[0].affiliate) : JSON.stringify([]);
                     placesCityAlerts.value = PlacesCity[0].alerts ? JSON.stringify(PlacesCity[0].alerts) : JSON.stringify([]);
                     placesCityParking.value = PlacesCity[0].parking ? JSON.stringify(PlacesCity[0].parking) : JSON.stringify([]);
-                    placesCityBiggest.value = PlacesCity[0].biggest;
 
                     // images load ids
                     placesCityIDimageCoverLoad.value = placesCityIDimageCover.value
@@ -879,8 +870,7 @@
                             'zoom': JSON.stringify(placesCityZoomArray._value),
                             'affiliate': JSON.stringify(placesCityAffiliateArray._value),
                             'alerts': JSON.stringify(placesCityAlertsArray._value),
-                            'parking': JSON.stringify(placesCityParkingArray._value),
-                            'biggest': placesCityBiggest.value
+                            'parking': JSON.stringify(placesCityParkingArray._value)
                         })
                     })
                     .then(() => {
@@ -924,7 +914,6 @@
                 placesCityAlertsArray,
                 placesCityParking,
                 placesCityParkingArray,
-                placesCityBiggest,
                 imageCover,
                 imageHero,
                 placesCityIDimageCoverLoad,
