@@ -143,6 +143,54 @@
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">Informace o časové náročnosti <span class="m-label__name-column">(information_duration)</span></span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <!-- První výskyt o-form-edit__group-item pro headline -->
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesSpotInformationDurationArray" :key="index">
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <label class="m-label">Title:</label>
+                                                            <input class="a-input" type="text" v-model="item.headline.title" />
+
+                                                            <label class="m-label">Perex:</label>
+                                                            <input class="a-input" type="text" v-model="item.headline.perex" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Druhý výskyt o-form-edit__group-item pro times -->
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesSpotInformationDurationArray[0].times" :key="index" v-if="placesSpotInformationDurationArray[0]">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeInformationDurationTimesInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Název:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Podnázev:</label>
+                                                                <input class="a-input" type="text" v-model="item.subname" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Hodnota:</label>
+                                                                <input class="a-input" type="text" v-model="item.value" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addInformationDurationTimesInput">Přidat text</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">Nadmořská výška <span class="m-label__name-column">(altitude)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="altitude" v-model="placesSpotAltitude" />
@@ -279,6 +327,22 @@
         author_update: string
     }
 
+    interface InformationDurationHeadline {
+        title: string
+        perex: string
+    }
+
+    interface InformationDurationTimes {
+        name: string
+        subname: string
+        value: string
+    }
+
+    interface InformationDuration {
+        headline: InformationDurationHeadline[]
+        times: InformationDurationTimes[]
+    }
+
     interface Coordinates {
         latitude: number
         longitude: number
@@ -304,6 +368,7 @@
         name: string
         information_chatgpt: string
         information_author: InformationAuthor[]
+        information_duration: InformationDuration[]
         coordinates: Coordinates[]
         zoom: Zoom[]
         affiliate: Affiliate[]
@@ -363,6 +428,9 @@
                     }
                 ],
                 placesSpotInformationAuthorArray: [],
+                placesSpotInformationDurationHeadlineArray: [],
+                placesSpotInformationDurationTimesArray: [],
+                placesSpotInformationDurationArray: [],
                 placesSpotCoordinatesArray: [],
                 placesSpotZoomArray: [],
                 placesSpotAffiliateArray: []
@@ -408,6 +476,17 @@
             removeInformationAuthorInput(index: number) {
                 this.placesSpotInformationAuthorArray.splice(index, 1);
             },
+            // information durationTimes
+            addInformationDurationTimesInput() {
+                this.placesSpotInformationDurationArray[0].times.push({
+                    name: '',
+                    subname: '',
+                    value: ''
+                });
+            },
+            removeInformationDurationTimesInput(index: number) {
+                this.placesSpotInformationDurationArray[0].times.splice(index, 1);
+            },
             // coordinates
             addCoordinateInput() {
                 this.placesSpotCoordinatesArray.push({
@@ -449,6 +528,27 @@
                     this.placesSpotInformationAuthorArray = JSON.parse(newValue);
                 } catch (error) {
                     this.placesSpotInformationAuthorArray = [];
+                }
+            },
+            placesSpotInformationDurationHeadline: function (newValue, oldValue) {
+                try {
+                    this.placesSpotInformationDurationHeadlineArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesSpotInformationDurationHeadlineArray = [];
+                }
+            },
+            placesSpotInformationDurationTimes: function (newValue, oldValue) {
+                try {
+                    this.placesSpotInformationDurationTimesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesSpotInformationDurationTimesArray = [];
+                }
+            },
+            placesSpotInformationDuration: function (newValue, oldValue) {
+                try {
+                    this.placesSpotInformationDurationArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesSpotInformationDurationArray = [];
                 }
             },
             placesSpotCoordinates: function (newValue, oldValue) {
@@ -520,6 +620,10 @@
             const placesSpotInformationChatgpt = ref('')
             const placesSpotInformationAuthor = ref([])
             const placesSpotInformationAuthorArray = ref([])
+            const placesSpotInformationDuration = ref([])
+            const placesSpotInformationDurationArray = ref([])
+            const placesSpotInformationDurationTimes = ref([])
+            const placesSpotInformationDurationTimesArray = ref([])
             const placesSpotAltitude = ref(null)
             const placesSpotCoordinates = ref([])
             const placesSpotCoordinatesArray = ref([])
@@ -552,6 +656,8 @@
                     placesSpotName.value = PlacesSpot[0].name;
                     placesSpotInformationChatgpt.value = PlacesSpot[0].information_chatgpt;
                     placesSpotInformationAuthor.value = PlacesSpot[0].information_author ? JSON.stringify(PlacesSpot[0].information_author) : JSON.stringify([]);
+                    placesSpotInformationDuration.value = PlacesSpot[0].information_duration ? JSON.stringify(PlacesSpot[0].information_duration) : JSON.stringify([]);
+                    placesSpotInformationDurationTimes.value = PlacesSpot[0].information_duration.times ? JSON.stringify(PlacesSpot[0].information_duration.times) : JSON.stringify([]);
                     placesSpotAltitude.value = PlacesSpot[0].altitude;
                     placesSpotCoordinates.value = PlacesSpot[0].coordinates ? JSON.stringify(PlacesSpot[0].coordinates) : JSON.stringify([]);
                     placesSpotZoom.value = PlacesSpot[0].zoom ? JSON.stringify(PlacesSpot[0].zoom) : JSON.stringify([]);
@@ -632,10 +738,11 @@
                             'name': placesSpotName.value,
                             'information_chatgpt': placesSpotInformationChatgpt.value,
                             'information_author': JSON.stringify(placesSpotInformationAuthorArray._value),
+                            'information_duration': JSON.stringify(placesSpotInformationDurationArray._value),
                             'altitude': placesSpotAltitude.value,
                             'coordinates': JSON.stringify(placesSpotCoordinatesArray._value),
                             'zoom': JSON.stringify(placesSpotZoomArray._value),
-                            'affiliate': JSON.stringify(placesSpotAffiliateArray._value)
+                            'affiliate': JSON.stringify(placesSpotAffiliateArray._value),
                         })
                     })
                     .then(() => {
@@ -666,6 +773,10 @@
                 placesSpotInformationChatgpt,
                 placesSpotInformationAuthor,
                 placesSpotInformationAuthorArray,
+                placesSpotInformationDuration,
+                placesSpotInformationDurationArray,
+                placesSpotInformationDurationTimes,
+                placesSpotInformationDurationTimesArray,
                 placesSpotAltitude,
                 placesSpotCoordinates,
                 placesSpotCoordinatesArray,

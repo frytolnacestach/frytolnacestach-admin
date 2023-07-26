@@ -123,6 +123,54 @@
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">Informace o časové náročnosti <span class="m-label__name-column">(information_duration)</span></span>
+                                            </label>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <!-- První výskyt o-form-create__group-item pro headline -->
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesSpotInformationDurationArray" :key="index">
+                                                        <div class="o-form-create__group-inputs">
+                                                            <label class="m-label">Title:</label>
+                                                            <input class="a-input" type="text" v-model="item.headline.title" />
+
+                                                            <label class="m-label">Perex:</label>
+                                                            <input class="a-input" type="text" v-model="item.headline.perex" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Druhý výskyt o-form-create__group-item pro times -->
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesSpotInformationDurationArray[0].times" :key="index" v-if="placesSpotInformationDurationArray[0]">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeInformationDurationTimesInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Název:</label>
+                                                                <input class="a-input" type="text" v-model="item.name" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Podnázev:</label>
+                                                                <input class="a-input" type="text" v-model="item.subname" />
+                                                            </div>
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Hodnota:</label>
+                                                                <input class="a-input" type="text" v-model="item.value" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addInformationDurationTimesInput">Přidat text</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">Nadmořská výška <span class="m-label__name-column">(altitude)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="altitude" v-model="placesSpotAltitude" />
@@ -290,6 +338,9 @@
                     }
                 ],
                 placesSpotInformationAuthorArray: [],
+                placesSpotInformationDurationHeadlineArray: [],
+                placesSpotInformationDurationTimesArray: [],
+                placesSpotInformationDurationArray: [],
                 placesSpotCoordinatesArray: [],
                 placesSpotZoomArray: [],
                 placesSpotAffiliateArray: []
@@ -309,6 +360,17 @@
             },
             removeInformationAuthorInput(index: number) {
                 this.placesSpotInformationAuthorArray.splice(index, 1);
+            },
+            // information durationTimes
+            addInformationDurationTimesInput() {
+                this.placesSpotInformationDurationArray[0].times.push({
+                    name: '',
+                    subname: '',
+                    value: ''
+                });
+            },
+            removeInformationDurationTimesInput(index: number) {
+                this.placesSpotInformationDurationArray[0].times.splice(index, 1);
             },
             // coordinates
             addCoordinateInput() {
@@ -351,6 +413,27 @@
                     this.placesSpotInformationAuthorArray = JSON.parse(newValue);
                 } catch (error) {
                     this.placesSpotInformationAuthorArray = [];
+                }
+            },
+            placesSpotInformationDurationHeadline: function (newValue, oldValue) {
+                try {
+                    this.placesSpotInformationDurationHeadlineArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesSpotInformationDurationHeadlineArray = [];
+                }
+            },
+            placesSpotInformationDurationTimes: function (newValue, oldValue) {
+                try {
+                    this.placesSpotInformationDurationTimesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesSpotInformationDurationTimesArray = [];
+                }
+            },
+            placesSpotInformationDuration: function (newValue, oldValue) {
+                try {
+                    this.placesSpotInformationDurationArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesSpotInformationDurationArray = [];
                 }
             },
             placesSpotCoordinates: function (newValue, oldValue) {
