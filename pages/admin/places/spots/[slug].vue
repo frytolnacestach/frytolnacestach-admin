@@ -520,11 +520,11 @@
                         ]
                     });
                 } else if (!this.placesSpotInformationDurationArray[0].hasOwnProperty('times')) {
-                    this.placesSpotInformationDurationArray[0].times = {
+                    this.placesSpotInformationDurationArray[0].times = [{
                         name: '',
                         subname: '',
                         value: ''
-                    };
+                    }];
                 } else {
                     this.placesSpotInformationDurationArray[0].times.push({
                         name: '',
