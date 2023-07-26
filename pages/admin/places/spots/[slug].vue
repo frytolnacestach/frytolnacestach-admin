@@ -147,8 +147,13 @@
                                             </label>
                                             <div class="o-form-edit__group">
                                                 <div class="o-form-edit__group-items">
-                                                    <!-- První výskyt o-form-edit__group-item pro headline -->
-                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesSpotInformationDurationArray" :key="index">
+                                                    <!-- Headline -->
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesSpotInformationDurationArray" :key="index" v-if="placesSpotInformationDurationArray[0]?.headline">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeInformationDurationHeadlineInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
                                                         <div class="o-form-edit__group-inputs">
                                                             <label class="m-label">Title:</label>
                                                             <input class="a-input" type="text" v-model="item.headline.title" />
@@ -157,7 +162,14 @@
                                                             <input class="a-input" type="text" v-model="item.headline.perex" />
                                                         </div>
                                                     </div>
-                                                    <!-- Druhý výskyt o-form-edit__group-item pro times -->
+                                                    <div class="o-form-edit__buttons mt-1" v-if="!placesSpotInformationDurationArray[0]?.headline">
+                                                        <div class="o-form-edit__button">
+                                                            <div class="m-button-add">
+                                                                <button class="m-button-add__input" type="button" @click="addInformationDurationHeadlineInput">Přidat hlavičku</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Times -->
                                                     <div class="o-form-edit__group-item" v-for="(item, index) in placesSpotInformationDurationArray[0].times" :key="index" v-if="placesSpotInformationDurationArray[0]">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeInformationDurationTimesInput(index)">
@@ -179,11 +191,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="o-form-edit__buttons mt-1">
-                                                    <div class="o-form-edit__button">
-                                                        <div class="m-button-add">
-                                                            <button class="m-button-add__input" type="button" @click="addInformationDurationTimesInput">Přidat text</button>
+                                                    <div class="o-form-edit__buttons mt-1">
+                                                        <div class="o-form-edit__button">
+                                                            <div class="m-button-add">
+                                                                <button class="m-button-add__input" type="button" @click="addInformationDurationTimesInput">Přidat text</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -476,13 +488,50 @@
             removeInformationAuthorInput(index: number) {
                 this.placesSpotInformationAuthorArray.splice(index, 1);
             },
+            // information durationHeadline
+            addInformationDurationHeadlineInput() {
+                if (this.placesSpotInformationDurationArray.length === 0) {
+                    this.placesSpotInformationDurationArray.push({
+                        headline: {
+                            title: '',
+                            perex: ''
+                        }
+                    });
+                } else if (!this.placesSpotInformationDurationArray[0].hasOwnProperty('headline')) {
+                    this.placesSpotInformationDurationArray[0].headline = {
+                        title: '',
+                        perex: ''
+                    };
+                }
+            },
+            removeInformationDurationHeadlineInput(index: number) {
+                delete this.placesSpotInformationDurationArray[index].headline;
+            },
             // information durationTimes
             addInformationDurationTimesInput() {
-                this.placesSpotInformationDurationArray[0].times.push({
-                    name: '',
-                    subname: '',
-                    value: ''
-                });
+                if (this.placesSpotInformationDurationArray.length === 0) {
+                    this.placesSpotInformationDurationArray.push({
+                        times: [
+                            {
+                                name: '',
+                                subname: '',
+                                value: ''
+                            }
+                        ]
+                    });
+                } else if (!this.placesSpotInformationDurationArray[0].hasOwnProperty('times')) {
+                    this.placesSpotInformationDurationArray[0].times = {
+                        name: '',
+                        subname: '',
+                        value: ''
+                    };
+                } else {
+                    this.placesSpotInformationDurationArray[0].times.push({
+                        name: '',
+                        subname: '',
+                        value: ''
+                    });
+                }
             },
             removeInformationDurationTimesInput(index: number) {
                 this.placesSpotInformationDurationArray[0].times.splice(index, 1);
