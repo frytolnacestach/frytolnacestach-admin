@@ -64,6 +64,11 @@
                         id: 3,
                         name: "Obrázky",
                         url: "/admin/images"
+                    },
+                    {
+                        id: 4,
+                        name: "Uživatelé",
+                        url: "/admin/users"
                     }
                 ],
                 mNavAdminArrayBlog: [
