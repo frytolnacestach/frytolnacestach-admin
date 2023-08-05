@@ -69,6 +69,11 @@
                         id: 4,
                         name: "Uživatelé",
                         url: "/admin/users"
+                    },
+                    {
+                        id: 5,
+                        name: "Top místa",
+                        url: "/admin/top-places"
                     }
                 ],
                 mNavAdminArrayBlog: [

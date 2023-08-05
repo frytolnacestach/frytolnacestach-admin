@@ -2,7 +2,7 @@
     <NuxtLayout name="admin">
         <main class="t-main">
             <!-- SECTION - HERO -->
-            <oHero headline="Administrace - Uživatelé" />
+            <oHero headline="Administrace - Top místa" />
             <!-- SECTION - HERO END -->
 
             <!-- SECTION - BREADCRUMBS Admin -->
@@ -15,16 +15,14 @@
                         <div class="o-admin-list__outer">
                             <div class="o-admin-list__inner">
                                 <div class="o-admin-list__items">
-                                    <div v-for="user  in users" :key="user.id" class="o-admin-list__item">
+                                    <div v-for="topPlace  in topPlaces" :key="topPlace.id" class="o-admin-list__item">
                                         <h3 class="o-admin-list__title">
-                                            {{ user.nickname}}
+                                            {{ topPlace.id}}
                                         </h3>
                                         <p class="o-admin-list__perex">
-                                            ID: {{ user.id }}<br>
-                                            Status: {{ user.status }}<br>
-                                            Jméno: {{ user.surname }}<br>
-                                            Příjmení: {{ user.lastname }}<br>
-                                            Email: {{ user.email }}
+                                            ID: {{ topPlace.id }}<br>
+                                            ID Místo: {{ topPlace.id_place }}<br>
+                                            Type: {{ topPlace.type }}
                                         </p>
                                     </div>
                                 </div>
@@ -40,24 +38,23 @@
 
 <script lang="ts">
     import oHero from '@/components/organisms/oHero.vue'
+    import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
 
     //INTERFACES
-    interface Users {
+    interface topPlaces {
         id: number
-        nickname: string
-        surname: string
-        lastname: string
-        status: number
-        email: string
+        id_place: number
+        type: string
     }
 
     export default defineComponent({
-        name: 'AdminUsersIndexPage',
+        name: 'AdminTopPlacesIndexPage',
 
         //COMPONENTS
         components: {
             mNavBreadcrumbs,
+            mNavAdmin,
             oHero
         },
 
@@ -72,7 +69,7 @@
                     },
                     {
                         id: 2,
-                        name: "Uživatelé",
+                        name: "Top místa",
                         url: "",
                         status: "span"
                     }
@@ -88,7 +85,7 @@
 
             //META HEAD
             useHead({
-                title: 'Uživatelé - výpis',
+                title: 'Top místa - výpis',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -97,8 +94,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Uživatelé - výpis',
-                ogTitle: 'Uživatelé - výpis',
+                title: 'Top místa - výpis',
+                ogTitle: 'Top místa - výpis',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
@@ -107,17 +104,17 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig();
-            const users = ref<Users[]>([])
+            const topPlaces = ref<topPlaces[]>([])
 
-            //API - Video
+            //API - Users
             onMounted(() => {
-                fetch(`${runTimeConfig.public.baseURL}/users-all`, {
+                fetch(`${runTimeConfig.public.baseURL}/top-places`, {
                     method: 'GET'
-                }).then(res => res.json()).then(data => users.value = data);
+                }).then(res => res.json()).then(data => topPlaces.value = data);
             })
 
             //RETURN
-            return { users }
+            return { topPlaces }
         },
 
         mounted() {
