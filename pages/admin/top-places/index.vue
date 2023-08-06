@@ -9,6 +9,14 @@
                 <mNavBreadcrumbs :links="mNavBreadcrumbsArray"/>
             <!-- SECTION - BREADCRUMBS END -->
 
+            <!-- SECTION - NAV Admin -->
+            <section class="t-section my-4">
+                <div class="t-section__inner">
+                    <mNavAdmin :links="mNavAdminArray"/>
+                </div>
+            </section>
+            <!-- SECTION - NAV Admin END -->
+
             <section class="t-section mt-4 mb-8">
                 <div class="t-section__inner">
                     <div class="o-admin-list">
@@ -17,7 +25,7 @@
                                 <div class="o-admin-list__items">
                                     <div v-for="topPlace  in topPlaces" :key="topPlace.id" class="o-admin-list__item">
                                         <h3 class="o-admin-list__title">
-                                            {{ topPlace.id}}
+                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/top-places/${topPlace.id}`">{{ topPlace.id}}</NuxtLink>
                                         </h3>
                                         <p class="o-admin-list__perex">
                                             ID: {{ topPlace.id }}<br>
@@ -60,6 +68,13 @@
 
         data() {
             return {
+                mNavAdminArray: [
+                    {
+                        id: 1,
+                        name: "Přidat místo",
+                        url: "/admin/top-places/create"
+                    }
+                ],
                 mNavBreadcrumbsArray: [
                     {
                         id: 1,
