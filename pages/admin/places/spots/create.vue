@@ -553,6 +553,10 @@
             const placesSpotInformationChatgpt = ref('')
             const placesSpotInformationAuthor = ref([])
             const placesSpotInformationAuthorArray = ref([])
+            const placesSpotInformationDuration = ref([])
+            const placesSpotInformationDurationArray = ref([])
+            const placesSpotInformationDurationTimes = ref([])
+            const placesSpotInformationDurationTimesArray = ref([])
             const placesSpotAltitude = ref(null)
             const placesSpotCoordinates = ref([])
             const placesSpotCoordinatesArray = ref([])
@@ -582,6 +586,7 @@
                             'name': placesSpotName.value,
                             'information_chatgpt': placesSpotInformationChatgpt.value,
                             'information_author': JSON.stringify(placesSpotInformationAuthorArray._value),
+                            'information_duration': JSON.stringify(placesSpotInformationDurationArray._value),
                             'altitude': placesSpotAltitude.value,
                             'coordinates': JSON.stringify(placesSpotCoordinatesArray._value),
                             'zoom': JSON.stringify(placesSpotZoomArray._value),
@@ -617,6 +622,10 @@
                 placesSpotInformationChatgpt,
                 placesSpotInformationAuthor,
                 placesSpotInformationAuthorArray,
+                placesSpotInformationDuration,
+                placesSpotInformationDurationArray,
+                placesSpotInformationDurationTimes,
+                placesSpotInformationDurationTimesArray,
                 placesSpotAltitude,
                 placesSpotCoordinates,
                 placesSpotCoordinatesArray,
