@@ -160,7 +160,7 @@
                                             <label class="m-label">
                                                 <span class="m-label__name">Nadmořská výška <span class="m-label__name-column">(altitude)</span></span>
                                             </label>
-                                            <input class="a-input" type="number" min="0" name="altitude" v-model="placesCityAltitude" />
+                                            <input class="a-input" type="number" name="altitude" v-model="placesCityAltitude" />
                                         </div>  
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
