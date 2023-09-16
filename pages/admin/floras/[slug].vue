@@ -68,6 +68,35 @@
                                         <!-- json -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in floraSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
                                             </label>
 
@@ -162,9 +191,14 @@
         id: number
     }
 
+    interface seoTags {
+        tag: string
+    }
+
     interface Flora {
         id_image_cover: number
         id_image_hero: number
+        seo_tags: seoTags[]
         ids_states: IDSstates[]
         slug: string
         name: string
@@ -222,6 +256,7 @@
                     }
                 ],
                 floraIDSstatesArray: [],
+                floraSeoTagsArray: []
             }
         },
 
@@ -251,6 +286,15 @@
             handleImageHeroLoad() {
                 this.floraIDimageHeroLoading = false;
             },
+            // seo tags
+            addSeoTagsInput() {
+                this.floraSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.floraSeoTagsArray.splice(index, 1)
+            },
             // ids states
             addIDSstateInput() {
                 this.floraIDSstatesArray.push({
@@ -265,6 +309,16 @@
         watch: {
             floraName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
+            },
+            floraSeoTags: function (newValue, oldValue) {
+                try {
+                    this.floraSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.floraSeoTagsArray = []
+                }
+            },
+            floraSeoTagsArray: function (newValue, oldValue) {
+                this.floraSeoTags = JSON.stringify(newValue)
             },
             floraIDSstates: function (newValue, oldValue) {
                 try {
@@ -311,6 +365,8 @@
             const floraSlug = ref('')
             const floraIDimageCover = ref(null)
             const floraIDimageHero = ref(null)
+            const floraSeoTags = ref([])
+            const floraSeoTagsArray = ref([])
             const floraIDSstates = ref([])
             const floraIDSstatesArray = ref([])
             const floraName = ref('')
@@ -338,6 +394,7 @@
                     floraSlug.value = Flora[0].slug;
                     floraIDimageCover.value = Flora[0].id_image_cover;
                     floraIDimageHero.value = Flora[0].id_image_hero;
+                    floraSeoTags.value = Flora[0].seo_tags ? JSON.stringify(Flora[0].seo_tags) : JSON.stringify([]);
                     floraIDSstates.value = Flora[0].ids_states ? JSON.stringify(Flora[0].ids_states) : JSON.stringify([]);
                     floraName.value = Flora[0].name;
                     floraNameLat.value = Flora[0].name_lat;
@@ -415,6 +472,7 @@
                             'slug': floraSlug.value,
                             'id_image_cover': floraIDimageCover.value,
                             'id_image_hero': floraIDimageHero.value,
+                            'seo_tags': JSON.stringify(floraSeoTagsArray._value),
                             'ids_states': JSON.stringify(floraIDSstatesArray._value),
                             'name': floraName.value,
                             'name_lat': floraNameLat.value,
@@ -443,6 +501,8 @@
                 successForm,
                 errorForm,
                 floraSlug,
+                floraSeoTags,
+                floraSeoTagsArray,
                 floraIDimageCover,
                 floraIDimageHero,
                 floraIDSstates,

@@ -45,7 +45,36 @@
                                             </label>
                                             <input class="a-input" type="number" min="0" name="imageHero" v-model="travelDictionaryIDimageHero" />
                                         </div>
-                                        <!-- other -->                             
+                                        <!-- other -->
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in travelDictionarySeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
@@ -114,7 +143,33 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                travelDictionarySeoTagsArray: []
+            }
+        },
+
+        methods: {
+            // seo tags
+            addSeoTagsInput() {
+                this.travelDictionarySeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.travelDictionarySeoTagsArray.splice(index, 1)
+            }
+        },
+
+        watch: {
+            travelDictionarySeoTags: function (newValue, oldValue) {
+                try {
+                    this.travelDictionarySeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.travelDictionarySeoTagsArray = []
+                }
+            },
+            travelDictionarySeoTagsArray: function (newValue, oldValue) {
+                this.travelDictionarySeoTags = JSON.stringify(newValue)
             }
         },
 
@@ -152,6 +207,8 @@
             const travelDictionarySlug = ref('')
             const travelDictionaryName = ref('')
             const travelDictionaryDescription = ref('')
+            const travelDictionarySeoTags = ref([])
+            const travelDictionarySeoTagsArray = ref([])
 
             //FORM - create
             const createForm = async () => {
@@ -169,7 +226,8 @@
                             'id_image_hero': travelDictionaryIDimageHero.value,
                             'slug': travelDictionarySlug.value,
                             'name': travelDictionaryName.value,
-                            'description': travelDictionaryDescription.value
+                            'description': travelDictionaryDescription.value,
+                            'seo_tags': JSON.stringify(travelDictionarySeoTagsArray._value)
                         })
                     })
                     .then(() => {
@@ -188,7 +246,18 @@
             }
 
             //RETURN
-            return { successForm, errorForm, travelDictionaryIDimageCover, travelDictionaryIDimageHero, travelDictionarySlug, travelDictionaryName, travelDictionaryDescription, createForm }
+            return {
+                successForm,
+                errorForm,
+                travelDictionaryIDimageCover,
+                travelDictionaryIDimageHero,
+                travelDictionarySlug,
+                travelDictionaryName,
+                travelDictionaryDescription,
+                travelDictionarySeoTags,
+                travelDictionarySeoTagsArray,
+                createForm
+            }
         },
 
         mounted() {

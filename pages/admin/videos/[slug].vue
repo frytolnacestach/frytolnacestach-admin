@@ -32,6 +32,35 @@
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="videoSlug" required />
                                         </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in videoSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
@@ -145,6 +174,10 @@
         name: string
     }
 
+    interface seoTags {
+        tag: string
+    }
+
     interface Video {
         slug: string
         id_continent: number
@@ -158,6 +191,7 @@
         title: string
         perex: string
         url: string
+        seo_tags: seoTags[]
     }
 
     interface Image {
@@ -198,7 +232,8 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                videoSeoTagsArray: []
             }
         },
 
@@ -220,12 +255,31 @@
             handleImageLoad() {
                 this.videoIDimageLoading = false;
             },
+            // seo tags
+            addSeoTagsInput() {
+                this.videoSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.videoSeoTagsArray.splice(index, 1)
+            }
         },
 
         watch: {
             videoTitle: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
+            videoSeoTags: function (newValue, oldValue) {
+                try {
+                    this.videoSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.videoSeoTagsArray = []
+                }
+            },
+            videoSeoTagsArray: function (newValue, oldValue) {
+                this.videoSeoTags = JSON.stringify(newValue)
+            }
         },
 
         setup() {
@@ -275,26 +329,29 @@
             const videoIDimageLoad = ref(null)
             const videoIDimageLoading = ref(false)
             const videoIDimageChange = ref(null)
+            const videoSeoTags = ref([])
+            const videoSeoTagsArray = ref([])
 
             //API - Video
             ;(async () => {
                 const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/video/${route.params.slug}`)
                 
-                const video: Video[] = JSON.parse(_rawValue)
+                const Video: Video[] = JSON.parse(_rawValue)
                 
-                if (Array.isArray(video) && video.length > 0 && 'slug' in video[0] && 'platform' in video[0] && 'title' in video[0] && 'url' in video[0]) {
-                    videoSlug.value = video[0].slug;
-                    videoIDcontinent.value = video[0].id_continent;
-                    videoIDstate.value = video[0].id_state;
-                    videoIDregion.value = video[0].id_region;
-                    videoIDcity.value = video[0].id_city;
-                    videoIDspot.value = video[0].id_spot;
-                    videoIDimage.value = video[0].id_image;
-                    videoPlatform.value = video[0].platform;
-                    videoType.value = video[0].type;
-                    videoTitle.value = video[0].title;
-                    videoPerex.value = video[0].perex;
-                    videoUrl.value = video[0].url;
+                if (Array.isArray(Video) && Video.length > 0 && 'slug' in Video[0] && 'platform' in Video[0] && 'title' in Video[0] && 'url' in Video[0]) {
+                    videoSlug.value = Video[0].slug;
+                    videoIDcontinent.value = Video[0].id_continent;
+                    videoIDstate.value = Video[0].id_state;
+                    videoIDregion.value = Video[0].id_region;
+                    videoIDcity.value = Video[0].id_city;
+                    videoIDspot.value = Video[0].id_spot;
+                    videoIDimage.value = Video[0].id_image;
+                    videoPlatform.value = Video[0].platform;
+                    videoType.value = Video[0].type;
+                    videoTitle.value = Video[0].title;
+                    videoPerex.value = Video[0].perex;
+                    videoUrl.value = Video[0].url;
+                    videoSeoTags.value = Video[0].seo_tags ? JSON.stringify(Video[0].seo_tags) : JSON.stringify([]);
 
                     // images load ids
                     videoIDimageLoad.value = videoIDimage.value
@@ -346,6 +403,7 @@
                         method: 'POST',
                         body: JSON.stringify({
                             'slug': videoSlug.value,
+                            'seo_tags': JSON.stringify(videoSeoTagsArray._value),
                             'id_continent': videoIDcontinent.value,
                             'id_state': videoIDstate.value,
                             'id_region': videoIDregion.value,
@@ -378,6 +436,8 @@
                 successForm,
                 errorForm,
                 videoSlug,
+                videoSeoTags,
+                videoSeoTagsArray,
                 videoIDcontinent,
                 videoIDstate,
                 videoIDregion,

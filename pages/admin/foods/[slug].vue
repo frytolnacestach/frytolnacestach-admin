@@ -68,6 +68,35 @@
                                         <!-- json -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in foodSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
                                             </label>
 
@@ -150,9 +179,14 @@
         id: number
     }
 
+    interface seoTags {
+        tag: string
+    }
+
     interface Food {
         id_image_cover: number
         id_image_hero: number
+        seo_tags: seoTags[]
         ids_states: IDSstates[]
         slug: string
         name: string
@@ -208,6 +242,7 @@
                     }
                 ],
                 foodIDSstatesArray: [],
+                foodSeoTagsArray: []
             }
         },
 
@@ -237,6 +272,15 @@
             handleImageHeroLoad() {
                 this.foodIDimageHeroLoading = false;
             },
+            // seo tags
+            addSeoTagsInput() {
+                this.foodSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.foodSeoTagsArray.splice(index, 1)
+            },
             // ids states
             addIDSstateInput() {
                 this.foodIDSstatesArray.push({
@@ -251,6 +295,16 @@
         watch: {
             foodName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
+            },
+            foodSeoTags: function (newValue, oldValue) {
+                try {
+                    this.foodSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.foodSeoTagsArray = []
+                }
+            },
+            foodSeoTagsArray: function (newValue, oldValue) {
+                this.foodSeoTags = JSON.stringify(newValue)
             },
             foodIDSstates: function (newValue, oldValue) {
                 try {
@@ -297,6 +351,8 @@
             const foodSlug = ref('')
             const foodIDimageCover = ref(null)
             const foodIDimageHero = ref(null)
+            const foodSeoTags = ref([])
+            const foodSeoTagsArray = ref([])
             const foodIDSstates = ref([])
             const foodIDSstatesArray = ref([])
             const foodName = ref('')
@@ -322,6 +378,7 @@
                     foodSlug.value = Food[0].slug;
                     foodIDimageCover.value = Food[0].id_image_cover;
                     foodIDimageHero.value = Food[0].id_image_hero;
+                    foodSeoTags.value = Food[0].seo_tags ? JSON.stringify(Food[0].seo_tags) : JSON.stringify([]);
                     foodIDSstates.value = Food[0].ids_states ? JSON.stringify(Food[0].ids_states) : JSON.stringify([]);
                     foodName.value = Food[0].name;
                     foodDescription.value = Food[0].description;
@@ -397,6 +454,7 @@
                             'slug': foodSlug.value,
                             'id_image_cover': foodIDimageCover.value,
                             'id_image_hero': foodIDimageHero.value,
+                            'seo_tags': JSON.stringify(foodSeoTagsArray._value),
                             'ids_states': JSON.stringify(foodIDSstatesArray._value),
                             'name': foodName.value,
                             'description': foodDescription.value,
@@ -423,6 +481,8 @@
                 successForm,
                 errorForm,
                 foodSlug,
+                foodSeoTags,
+                foodSeoTagsArray,
                 foodIDimageCover,
                 foodIDimageHero,
                 foodIDSstates,

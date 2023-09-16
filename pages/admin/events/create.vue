@@ -96,6 +96,35 @@
                                         </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in eventSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">Souřadnice místa konání <span class="m-label__name-column">(coordinates)</span></span>
                                             </label>
                                             <div class="o-form-create__group">
@@ -329,6 +358,15 @@
         },
 
         methods: {
+            // seo tags
+            addSeoTagsInput() {
+                this.eventSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.eventSeoTagsArray.splice(index, 1)
+            },
             // coordinates
             addCoordinateInput() {
                 this.eventCoordinatesArray.push({
@@ -383,6 +421,16 @@
         },
 
         watch: {
+            eventSeoTags: function (newValue, oldValue) {
+                try {
+                    this.eventSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.eventSeoTagsArray = []
+                }
+            },
+            eventSeoTagsArray: function (newValue, oldValue) {
+                this.eventSeoTags = JSON.stringify(newValue)
+            },
             eventCoordinates: function (newValue, oldValue) {
                 try {
                     this.eventCoordinatesArray = JSON.parse(newValue);
@@ -475,6 +523,8 @@
             const eventSlug = ref('')
             const eventName = ref('')
             const eventDescription = ref('')
+            const eventSeoTags = ref([])
+            const eventSeoTagsArray = ref([])
             const eventCoordinates = ref([])
             const eventCoordinatesArray = ref([])
             const eventZoom = ref([])
@@ -509,6 +559,7 @@
                             'slug': eventSlug.value,
                             'name': eventName.value,
                             'description': eventDescription.value,
+                            'seo_tags': JSON.stringify(eventSeoTagsArray._value),
                             'coordinates': JSON.stringify(eventCoordinatesArray._value),
                             'zoom': JSON.stringify(eventZoomArray._value),
                             'affiliate': JSON.stringify(eventAffiliateArray._value),
@@ -546,6 +597,8 @@
                 eventSlug,
                 eventName,
                 eventDescription,
+                eventSeoTags,
+                eventSeoTagsArray,
                 eventCoordinates,
                 eventCoordinatesArray,
                 eventZoom,

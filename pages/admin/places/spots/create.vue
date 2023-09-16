@@ -57,7 +57,36 @@
                                             </label>
                                             <input class="a-input" type="number" min="0" name="imageHero" v-model="placesSpotIDimageHero" />
                                         </div>
-                                        <!-- other --> 
+                                        <!-- other -->
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesSpotsSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="o-form-create__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
@@ -355,11 +384,21 @@
                 placesSpotInformationDurationArray: [],
                 placesSpotCoordinatesArray: [],
                 placesSpotZoomArray: [],
-                placesSpotAffiliateArray: []
+                placesSpotAffiliateArray: [],
+                placesSpotsSeoTagsArray: []
             }
         },
 
         methods: {
+            // seo tags
+            addSeoTagsInput() {
+                this.placesSpotsSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.placesSpotsSeoTagsArray.splice(index, 1)
+            },
             // information author
             addInformationAuthorInput() {
                 this.placesSpotInformationAuthorArray.push({
@@ -456,6 +495,16 @@
         watch: {
             placesSpotName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
+            },
+            placesSpotsSeoTags: function (newValue, oldValue) {
+                try {
+                    this.placesSpotsSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.placesSpotsSeoTagsArray = []
+                }
+            },
+            placesSpotsSeoTagsArray: function (newValue, oldValue) {
+                this.placesSpotsSeoTags = JSON.stringify(newValue)
             },
             placesSpotInformationAuthor: function (newValue, oldValue) {
                 try {
@@ -558,6 +607,8 @@
             const placesSpotInformationDurationTimes = ref([])
             const placesSpotInformationDurationTimesArray = ref([])
             const placesSpotAltitude = ref(null)
+            const placesSpotsSeoTags = ref([])
+            const placesSpotsSeoTagsArray = ref([])
             const placesSpotCoordinates = ref([])
             const placesSpotCoordinatesArray = ref([])
             const placesSpotZoom = ref([])
@@ -588,6 +639,7 @@
                             'information_author': JSON.stringify(placesSpotInformationAuthorArray._value),
                             'information_duration': JSON.stringify(placesSpotInformationDurationArray._value),
                             'altitude': placesSpotAltitude.value,
+                            'seo_tags': JSON.stringify(placesSpotsSeoTagsArray._value),
                             'coordinates': JSON.stringify(placesSpotCoordinatesArray._value),
                             'zoom': JSON.stringify(placesSpotZoomArray._value),
                             'affiliate': JSON.stringify(placesSpotAffiliateArray._value)
@@ -627,6 +679,8 @@
                 placesSpotInformationDurationTimes,
                 placesSpotInformationDurationTimesArray,
                 placesSpotAltitude,
+                placesSpotsSeoTags,
+                placesSpotsSeoTagsArray,
                 placesSpotCoordinates,
                 placesSpotCoordinatesArray,
                 placesSpotZoom,

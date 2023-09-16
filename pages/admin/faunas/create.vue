@@ -171,6 +171,7 @@
                     }
                 ],
                 faunaIDSstatesArray: [],
+                faunaSeoTagsArray: []
             }
         },
 

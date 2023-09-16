@@ -104,6 +104,36 @@
                                             </label>
                                             <input class="a-input" type="text" name="url" v-model="videoUrl" required />
                                         </div>
+                                        <!-- json -->
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in videoSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!--button-->
                                     <div class="o-form-create__buttons mt-1">
@@ -166,7 +196,33 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                videoSeoTagsArray: []
+            }
+        },
+
+        methods: {
+            // seo tags
+            addSeoTagsInput() {
+                this.videoSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.videoSeoTagsArray.splice(index, 1)
+            }
+        },
+
+        watch: {
+            videoSeoTags: function (newValue, oldValue) {
+                try {
+                    this.videoSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.videoSeoTagsArray = []
+                }
+            },
+            videoSeoTagsArray: function (newValue, oldValue) {
+                this.videoSeoTags = JSON.stringify(newValue)
             }
         },
 
@@ -212,6 +268,8 @@
             const videoTitle = ref('')
             const videoPerex = ref('')
             const videoUrl = ref('')
+            const videoSeoTags = ref([])
+            const videoSeoTagsArray = ref([])
 
             //API - Platform
             ;(async () => {
@@ -243,7 +301,8 @@
                             'type': videoType.value,
                             'title': videoTitle.value,
                             'perex': videoPerex.value,
-                            'url': videoUrl.value
+                            'url': videoUrl.value,
+                            'seo_tags': JSON.stringify(videoSeoTagsArray._value)
                         })
                     })
                     .then(() => {
@@ -278,6 +337,8 @@
                 videoPerex,
                 videoUrl,
                 platforms,
+                videoSeoTags,
+                videoSeoTagsArray,
                 createForm
             }
         },

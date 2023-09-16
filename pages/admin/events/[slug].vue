@@ -35,6 +35,35 @@
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in eventSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="state" v-model="eventIDstate" />
@@ -334,6 +363,10 @@
         link: string
     }
 
+    interface seoTags {
+        tag: string
+    }
+
     interface Event {
         id_state: number
         id_region: number
@@ -346,6 +379,7 @@
         slug: string
         name: string
         description: string
+        seo_tags: seoTags[]
         coordinates: Coordinates[]
         zoom: Zoom[]
         affiliate: Affiliate[]
@@ -404,6 +438,7 @@
                 eventAffiliateArray: [],
                 eventPricesArray: [],
                 eventLinksArray: [],
+                eventSeoTagsArray: []
             }
         },
 
@@ -432,6 +467,15 @@
             },
             handleImageHeroLoad() {
                 this.eventIDimageHeroLoading = false;
+            },
+            // seo tags
+            addSeoTagsInput() {
+                this.eventSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.eventSeoTagsArray.splice(index, 1)
             },
             // coordinates
             addCoordinateInput() {
@@ -489,6 +533,16 @@
         watch: {
             eventName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
+            },
+            eventSeoTags: function (newValue, oldValue) {
+                try {
+                    this.eventSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.eventSeoTagsArray = []
+                }
+            },
+            eventSeoTagsArray: function (newValue, oldValue) {
+                this.eventSeoTags = JSON.stringify(newValue)
             },
             eventCoordinates: function (newValue, oldValue) {
                 try {
@@ -583,6 +637,8 @@
             const eventSlug = ref('')
             const eventName = ref('')
             const eventDescription = ref('')
+            const eventSeoTags = ref([])
+            const eventSeoTagsArray = ref([])
             const eventCoordinates = ref([])
             const eventCoordinatesArray = ref([])
             const eventZoom = ref([])
@@ -620,6 +676,7 @@
                     eventSlug.value = Event[0].slug;
                     eventName.value = Event[0].name;
                     eventDescription.value = Event[0].description;
+                    eventSeoTags.value = Event[0].seo_tags ? JSON.stringify(Event[0].seo_tags) : JSON.stringify([]);
                     eventCoordinates.value = Event[0].coordinates ? JSON.stringify(Event[0].coordinates) : JSON.stringify([]);
                     eventZoom.value = Event[0].zoom ? JSON.stringify(Event[0].zoom) : JSON.stringify([]);
                     eventAffiliate.value = Event[0].affiliate ? JSON.stringify(Event[0].affiliate) : JSON.stringify([]);
@@ -703,6 +760,7 @@
                             'slug': eventSlug.value,
                             'name': eventName.value,
                             'description': eventDescription.value,
+                            'seo_tags': JSON.stringify(eventSeoTagsArray._value),
                             'coordinates': JSON.stringify(eventCoordinatesArray._value),
                             'zoom': JSON.stringify(eventZoomArray._value),
                             'affiliate': JSON.stringify(eventAffiliateArray._value),
@@ -728,6 +786,8 @@
             return {
                 successForm,
                 errorForm,
+                eventSeoTags,
+                eventSeoTagsArray,
                 eventIDstate,
                 eventIDregion,
                 eventIDcity,

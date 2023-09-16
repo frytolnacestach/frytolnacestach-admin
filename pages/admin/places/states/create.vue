@@ -89,6 +89,35 @@
                                         <!-- other -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesSpotsSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" disabled="true" name="typePlace" v-model="placesStateTypePlace" required />
@@ -824,11 +853,21 @@
                 placesStateAlertsArray: [],
                 placesStateOrganizationArray: [],
                 placesStateAppsArray: [],
-                placesStateLinksArray: []
+                placesStateLinksArray: [],
+                placesSpotsSeoTagsArray: []
             }
         },
 
         methods: {
+            // seo tags
+            addSeoTagsInput() {
+                this.placesSpotsSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.placesSpotsSeoTagsArray.splice(index, 1)
+            },
             // IDSneighboringCountries
             addIDSneighboringCountrieInput() {
                 this.placesStateIDSneighboringCountriesArray.push({
@@ -1017,6 +1056,16 @@
             placesStateName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
+            placesSpotsSeoTags: function (newValue, oldValue) {
+                try {
+                    this.placesSpotsSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.placesSpotsSeoTagsArray = []
+                }
+            },
+            placesSpotsSeoTagsArray: function (newValue, oldValue) {
+                this.placesSpotsSeoTags = JSON.stringify(newValue)
+            },
             placesStateInformationAuthor: function (newValue, oldValue) {
                 try {
                     this.placesStateInformationAuthorArray = JSON.parse(newValue);
@@ -1203,6 +1252,8 @@
             const placesStateArea = ref(null)
             const placesStatePopulation = ref(null)
             const placesStatePhonePrefix = ref('')
+            const placesSpotsSeoTags = ref([])
+            const placesSpotsSeoTagsArray = ref([])
             const placesStatePhoneNumbersEmergency = ref([])
             const placesStatePhoneNumbersEmergencyArray = ref([])
             const placesStateCurrencyName = ref('')
@@ -1260,6 +1311,7 @@
                             'phone_numbers_emergency': JSON.stringify(placesStatePhoneNumbersEmergencyArray._value),
                             'currency_name': placesStateCurrencyName.value,
                             'currency_code': placesStateCurrencyCode.value,
+                            'seo_tags': JSON.stringify(placesSpotsSeoTagsArray._value),
                             'money_prices': JSON.stringify(placesStateMoneyPricesArray._value),
                             'people_religion': JSON.stringify(placesStatePeopleReligionArray._value),
                             'people_nationality': JSON.stringify(placesStatePeopleNationalityArray._value),
@@ -1309,6 +1361,8 @@
                 placesStateArea,
                 placesStatePopulation,
                 placesStatePhonePrefix,
+                placesSpotsSeoTags,
+                placesSpotsSeoTagsArray,
                 placesStatePhoneNumbersEmergency,
                 placesStatePhoneNumbersEmergencyArray,
                 placesStateCurrencyName,

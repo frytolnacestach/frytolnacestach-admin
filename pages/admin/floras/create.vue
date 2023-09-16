@@ -48,6 +48,35 @@
                                         <!-- json -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in floraSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
                                             </label>
 
@@ -171,10 +200,20 @@
                     }
                 ],
                 floraIDSstatesArray: [],
+                floraSeoTagsArray: []
             }
         },
 
         methods: {
+            // seo tags
+            addSeoTagsInput() {
+                this.floraSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.floraSeoTagsArray.splice(index, 1)
+            },
             // ids states
             addIDSstateInput() {
                 this.floraIDSstatesArray.push({
@@ -187,6 +226,16 @@
         },
 
         watch: {
+            floraSeoTags: function (newValue, oldValue) {
+                try {
+                    this.floraSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.floraSeoTagsArray = []
+                }
+            },
+            floraSeoTagsArray: function (newValue, oldValue) {
+                this.floraSeoTags = JSON.stringify(newValue)
+            },
             floraIDSstates: function (newValue, oldValue) {
                 try {
                     this.floraIDSstatesArray = JSON.parse(newValue);
@@ -231,6 +280,8 @@
             const floraSlug = ref('')
             const floraIDimageCover = ref(null)
             const floraIDimageHero = ref(null)
+            const floraSeoTags = ref([])
+            const floraSeoTagsArray = ref([])
             const floraIDSstates = ref([])
             const floraIDSstatesArray = ref([])
             const floraName = ref('')
@@ -255,6 +306,7 @@
                             'slug': floraSlug.value,
                             'id_image_cover': floraIDimageCover.value,
                             'id_image_hero': floraIDimageHero.value,
+                            'seo_tags': JSON.stringify(floraSeoTagsArray._value),
                             'ids_states': JSON.stringify(floraIDSstatesArray._value),
                             'name': floraName.value,
                             'name_lat': floraNameLat.value,
@@ -286,6 +338,8 @@
                 floraSlug,
                 floraIDimageCover,
                 floraIDimageHero,
+                floraSeoTags,
+                floraSeoTagsArray,
                 floraIDSstates,
                 floraIDSstatesArray,
                 floraName,

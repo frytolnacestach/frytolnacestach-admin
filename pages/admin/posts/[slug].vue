@@ -32,6 +32,35 @@
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="postSlug" required />
                                         </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in postSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
@@ -510,6 +539,10 @@
         value: string
     }
 
+    interface seoTags {
+        tag: string
+    }
+
     interface Post {
         id_continent: number
         id_state: number
@@ -537,6 +570,7 @@
         perex_price: string
         perex_triplength: string
         perex_time: string
+        seo_tags: seoTags[]
         tags: Tags[]
         locations: Location[]
         travels: Travels[]
@@ -611,7 +645,8 @@
                 postTravelsArray: [],
                 postPricesArray: [],
                 postTriplengthsArray: [],
-                postTimeArray: []
+                postTimeArray: [],
+                postSeoTagsArray: []
                 /*timezones: [
                     'Pacific/Midway', // -11
                     'America/Adak', // -10,
@@ -688,6 +723,15 @@
             },
             handleImageOGLoad() {
                 this.postIDimageOGLoading = false;
+            },
+            // seo tags
+            addSeoTagsInput() {
+                this.postSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.postSeoTagsArray.splice(index, 1)
             },
             // tags
             addTagInput() {
@@ -773,6 +817,16 @@
         watch: {
             postTitle: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
+            },
+            postSeoTags: function (newValue, oldValue) {
+                try {
+                    this.postSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.postSeoTagsArray = []
+                }
+            },
+            postSeoTagsArray: function (newValue, oldValue) {
+                this.postSeoTags = JSON.stringify(newValue)
             },
             postTags: function (newValue, oldValue) {
                 try {
@@ -892,6 +946,8 @@
             const postPerexPrice = ref('')
             const postPerexTriplength = ref('')
             const postPerexTime = ref('')
+            const postSeoTags = ref([])
+            const postSeoTagsArray = ref([])
             const postTags = ref([])
             const postTagsArray = ref([])
             const postLocations = ref([])
@@ -954,6 +1010,7 @@
                     postPerexPrice.value = Post[0].perex_price;
                     postPerexTriplength.value = Post[0].perex_triplength;
                     postPerexTime.value = Post[0].perex_time;
+                    postSeoTags.value = Post[0].seo_tags ? JSON.stringify(Post[0].seo_tags) : JSON.stringify([]);
                     postTags.value = Post[0].tags ? JSON.stringify(Post[0].tags) : JSON.stringify([])
                     postLocations.value = Post[0].locations ? JSON.stringify(Post[0].locations) : JSON.stringify([])
                     postTravels.value = Post[0].travels ? JSON.stringify(Post[0].travels) : JSON.stringify([])
@@ -1076,6 +1133,7 @@
                         method: 'POST',
                         body: JSON.stringify({
                             'slug': postSlug.value,
+                            'seo_tags': JSON.stringify(postSeoTagsArray._value),
                             'id_continent': postIDcontinent.value,
                             'id_state': postIDstate.value,
                             'id_region': postIDregion.value,
@@ -1129,6 +1187,8 @@
                 successForm,
                 errorForm,
                 postSlug,
+                postSeoTags,
+                postSeoTagsArray,
                 postIDcontinent,
                 postIDstate,
                 postIDregion,

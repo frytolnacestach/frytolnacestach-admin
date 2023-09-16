@@ -68,6 +68,35 @@
                                         <!-- json -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in brandSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
                                             </label>
                                             <div class="o-form-edit__group">
@@ -138,9 +167,14 @@
         id: number
     }
 
+    interface seoTags {
+        tag: string
+    }
+
     interface Brand {
         id_image_cover: number
         id_image_hero: number
+        seo_tags: seoTags[]
         ids_states: IDSstates[]
         slug: string
         name: string
@@ -193,7 +227,8 @@
                         status: "span"
                     }
                 ],
-                brandIDSstatesArray: []
+                brandIDSstatesArray: [],
+                brandSeoTagsArray: []
             }
         },
 
@@ -223,6 +258,15 @@
             handleImageHeroLoad() {
                 this.brandIDimageHeroLoading = false;
             },
+            // seo tags
+            addSeoTagsInput() {
+                this.brandSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.brandSeoTagsArray.splice(index, 1)
+            },
             // ids states
             addIDSstateInput() {
                 this.brandIDSstatesArray.push({
@@ -237,6 +281,16 @@
         watch: {
             brandName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
+            },
+            brandSeoTags: function (newValue, oldValue) {
+                try {
+                    this.brandSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.brandSeoTagsArray = []
+                }
+            },
+            brandSeoTagsArray: function (newValue, oldValue) {
+                this.brandSeoTags = JSON.stringify(newValue)
             },
             brandIDSstates: function (newValue, oldValue) {
                 try {
@@ -283,6 +337,8 @@
             const brandSlug = ref('')
             const brandIDimageCover = ref(null)
             const brandIDimageHero = ref(null)
+            const brandSeoTags = ref([])
+            const brandSeoTagsArray = ref([])
             const brandIDSstates = ref([])
             const brandIDSstatesArray = ref([])
             const brandName = ref('')
@@ -306,6 +362,7 @@
                     brandSlug.value = Brand[0].slug;
                     brandIDimageCover.value = Brand[0].id_image_cover;
                     brandIDimageHero.value = Brand[0].id_image_hero;
+                    brandSeoTags.value = Brand[0].seo_tags ? JSON.stringify(Brand[0].seo_tags) : JSON.stringify([]);
                     brandIDSstates.value = Brand[0].ids_states ? JSON.stringify(Brand[0].ids_states) : JSON.stringify([]);
                     brandName.value = Brand[0].name;
                     brandDescription.value = Brand[0].description;
@@ -380,6 +437,7 @@
                             'slug': brandSlug.value,
                             'id_image_cover': brandIDimageCover.value,
                             'id_image_hero': brandIDimageHero.value,
+                            'seo_tags': JSON.stringify(brandSeoTagsArray._value),
                             'ids_states': JSON.stringify(brandIDSstatesArray._value),
                             'name': brandName.value,
                             'description': brandDescription.value,
@@ -406,6 +464,8 @@
                 brandSlug,
                 brandIDimageCover,
                 brandIDimageHero,
+                brandSeoTags,
+                brandSeoTagsArray,
                 brandIDSstates,
                 brandIDSstatesArray,
                 brandName,

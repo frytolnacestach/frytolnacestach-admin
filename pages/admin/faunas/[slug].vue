@@ -68,6 +68,35 @@
                                         <!-- json -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in faunaSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
                                             </label>
                                             
@@ -162,9 +191,14 @@
         id: number
     }
 
+    interface seoTags {
+        tag: string
+    }
+
     interface Fauna {
         id_image_cover: number
         id_image_hero: number
+        seo_tags: seoTags[]
         ids_states: IDSstates[]
         slug: string
         name: string
@@ -222,6 +256,7 @@
                     }
                 ],
                 faunaIDSstatesArray: [],
+                faunaSeoTagsArray: []
             }
         },
 
@@ -251,6 +286,15 @@
             handleImageHeroLoad() {
                 this.faunaIDimageHeroLoading = false;
             },
+            // seo tags
+            addSeoTagsInput() {
+                this.faunaSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.faunaSeoTagsArray.splice(index, 1)
+            },
             // ids states
             addIDSstateInput() {
                 this.faunaIDSstatesArray.push({
@@ -265,6 +309,16 @@
         watch: {
             faunaName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
+            },
+            faunaSeoTags: function (newValue, oldValue) {
+                try {
+                    this.faunaSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.faunaSeoTagsArray = []
+                }
+            },
+            faunaSeoTagsArray: function (newValue, oldValue) {
+                this.faunaSeoTags = JSON.stringify(newValue)
             },
             faunaIDSstates: function (newValue, oldValue) {
                 try {
@@ -311,6 +365,8 @@
             const faunaSlug = ref('')
             const faunaIDimageCover = ref(null)
             const faunaIDimageHero = ref(null)
+            const faunaSeoTags = ref([])
+            const faunaSeoTagsArray = ref([])
             const faunaIDSstates = ref([])
             const faunaIDSstatesArray = ref([])
             const faunaName = ref('')
@@ -338,6 +394,7 @@
                     faunaSlug.value = Fauna[0].slug;
                     faunaIDimageCover.value = Fauna[0].id_image_cover;
                     faunaIDimageHero.value = Fauna[0].id_image_hero;
+                    faunaSeoTags.value = Fauna[0].seo_tags ? JSON.stringify(Fauna[0].seo_tags) : JSON.stringify([]);
                     faunaIDSstates.value = Fauna[0].ids_states ? JSON.stringify(Fauna[0].ids_states) : JSON.stringify([]);
                     faunaName.value = Fauna[0].name;
                     faunaNameLat.value = Fauna[0].name_lat;
@@ -415,6 +472,7 @@
                             'slug': faunaSlug.value,
                             'id_image_cover': faunaIDimageCover.value,
                             'id_image_hero': faunaIDimageHero.value,
+                            'seo_tags': JSON.stringify(faunaSeoTagsArray._value),
                             'ids_states': JSON.stringify(faunaIDSstatesArray._value),
                             'name': faunaName.value,
                             'name_lat': faunaNameLat.value,
@@ -443,6 +501,8 @@
                 successForm,
                 errorForm,
                 faunaSlug,
+                faunaSeoTags,
+                faunaSeoTagsArray,
                 faunaIDimageCover,
                 faunaIDimageHero,
                 faunaIDSstates,

@@ -187,6 +187,35 @@
                                             <input class="a-input" type="text" name="perexTime" v-model="postPerexTime" />
                                         </div>
                                         <!-- json -->
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in postSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!-- json - tags -->
                                         <div class="o-form-create__item">
                                             <label class="m-label">
@@ -465,11 +494,21 @@
                 postTravelsArray: [],
                 postPricesArray: [],
                 postTriplengthArray: [],
-                postTimeArray: []
+                postTimeArray: [],
+                postSeoTagsArray: []
             }
         },
 
         methods: {
+            // seo tags
+            addSeoTagsInput() {
+                this.postSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.postSeoTagsArray.splice(index, 1)
+            },
             // tags
             addTagInput() {
                 this.postTagsArray.push({
@@ -536,6 +575,16 @@
         },
 
         watch: {
+            postSeoTags: function (newValue, oldValue) {
+                try {
+                    this.postSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.postSeoTagsArray = []
+                }
+            },
+            postSeoTagsArray: function (newValue, oldValue) {
+                this.postSeoTags = JSON.stringify(newValue)
+            },
             postTags: function (newValue, oldValue) {
                 try {
                     this.postTagsArray = JSON.parse(newValue);
@@ -652,6 +701,8 @@
             const postPerexPrice = ref('')
             const postPerexTriplength = ref('')
             const postPerexTime = ref('')
+            const postSeoTags = ref([])
+            const postSeoTagsArray = ref([])
             const postTags = ref([])
             const postTagsArray = ref([])
             const postLocations = ref([])
@@ -702,6 +753,7 @@
                             'perex_price': postPerexPrice.value,
                             'perex_triplength': postPerexTriplength.value,
                             'perex_time': postPerexTime.value,
+                            'seo_tags': JSON.stringify(postSeoTagsArray._value),
                             'tags': JSON.stringify(postTagsArray._value),
                             'locations': JSON.stringify(postLocationsArray._value),
                             'travels': JSON.stringify(postTravelsArray._value),
@@ -754,6 +806,8 @@
                 postPerexPrice,
                 postPerexTriplength,
                 postPerexTime,
+                postSeoTags,
+                postSeoTagsArray,
                 postTags,
                 postTagsArray,
                 postLocations,

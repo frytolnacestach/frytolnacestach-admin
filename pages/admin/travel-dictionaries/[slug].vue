@@ -32,6 +32,35 @@
                                             </label>
                                             <input class="a-input" type="text" name="slug" v-model="travelDictionarySlug" required />
                                         </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in travelDictionarySeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
@@ -103,6 +132,10 @@
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
+    interface seoTags {
+        tag: string
+    }
+
     interface TravelDictionaries {
         id_image_cover: number
         id_image_hero: number
@@ -123,6 +156,7 @@
         source: string
         name: string
         type: string
+        seo_tags: seoTags[]
     }
 
     export default defineComponent({
@@ -156,7 +190,8 @@
                         url: "",
                         status: "span"
                     }
-                ]
+                ],
+                travelDictionarySeoTagsArray: []
             }
         },
 
@@ -186,12 +221,31 @@
             handleImageHeroLoad() {
                 this.travelDictionaryIDimageHeroLoading = false;
             },
+            // seo tags
+            addSeoTagsInput() {
+                this.travelDictionarySeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.travelDictionarySeoTagsArray.splice(index, 1)
+            }
         },
 
         watch: {
             travelDictionaryName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
+            travelDictionarySeoTags: function (newValue, oldValue) {
+                try {
+                    this.travelDictionarySeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.travelDictionarySeoTagsArray = []
+                }
+            },
+            travelDictionarySeoTagsArray: function (newValue, oldValue) {
+                this.travelDictionarySeoTags = JSON.stringify(newValue)
+            }
         },
 
         setup() {
@@ -237,6 +291,8 @@
             const travelDictionaryIDimageHeroLoad = ref(null)
             const travelDictionaryIDimageHeroLoading = ref(false)
             const travelDictionaryIDimageHeroChange = ref(null)
+            const travelDictionarySeoTags = ref([])
+            const travelDictionarySeoTagsArray = ref([])
 
             //API - travelDictionary
             ;(async () => {
@@ -250,6 +306,7 @@
                     travelDictionarySlug.value = TravelDictionaries[0].slug;
                     travelDictionaryName.value = TravelDictionaries[0].name;
                     travelDictionaryDescription.value = TravelDictionaries[0].description;
+                    travelDictionarySeoTags.value = TravelDictionaries[0].seo_tags ? JSON.stringify(TravelDictionaries[0].seo_tags) : JSON.stringify([]);
 
                     // images load ids
                     travelDictionaryIDimageCoverLoad.value = travelDictionaryIDimageCover.value
@@ -321,7 +378,8 @@
                             'id_image_hero': travelDictionaryIDimageHero.value,
                             'slug': travelDictionarySlug.value,
                             'name': travelDictionaryName.value,
-                            'description': travelDictionaryDescription.value
+                            'description': travelDictionaryDescription.value,
+                            'seo_tags': JSON.stringify(travelDictionarySeoTagsArray._value)
                         })
                     })
                     .then(() => {
@@ -342,6 +400,8 @@
             return {
                 successForm,
                 errorForm,
+                travelDictionarySeoTags,
+                travelDictionarySeoTagsArray,
                 travelDictionaryIDimageCover,
                 travelDictionaryIDimageHero,
                 travelDictionarySlug,

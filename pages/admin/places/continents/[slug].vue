@@ -35,6 +35,35 @@
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesContinentSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
                                             <div class="o-form-edit__image">
@@ -262,6 +291,10 @@
         booking: number
     }
 
+    interface seoTags {
+        tag: string
+    }
+
     interface PlacesContinent {
         id_image_cover: number
         id_image_hero: number
@@ -274,6 +307,7 @@
         population: number
         population_density: number
         number_states: number
+        seo_tags: seoTags[]
         coordinates: Coordinates[]
         zoom: Zoom[]
     }
@@ -333,6 +367,7 @@
                 placesContinentInformationAuthorArray: [],
                 placesContinentCoordinatesArray: [],
                 placesContinentZoomArray: [],
+                placesContinentSeoTagsArray: []
             }
         },
 
@@ -375,6 +410,15 @@
             removeInformationAuthorInput(index: number) {
                 this.placesContinentInformationAuthorArray.splice(index, 1);
             },
+            // seo tags
+            addSeoTagsInput() {
+                this.placesContinentSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.placesContinentSeoTagsArray.splice(index, 1)
+            },
             // coordinates
             addCoordinateInput() {
                 this.placesContinentCoordinatesArray.push({
@@ -400,6 +444,16 @@
         watch: {
             placesContinentName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
+            },
+            placesContinentSeoTags: function (newValue, oldValue) {
+                try {
+                    this.placesContinentSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.placesContinentSeoTagsArray = []
+                }
+            },
+            placesContinentSeoTagsArray: function (newValue, oldValue) {
+                this.placesContinentSeoTags = JSON.stringify(newValue)
             },
             placesContinentInformationAuthor: function (newValue, oldValue) {
                 try {
@@ -475,6 +529,8 @@
             const placesContinentPopulation = ref(null)
             const placesContinentPopulationDensity = ref(null)
             const placesContinentNumberStates = ref(null)
+            const placesContinentSeoTags = ref([])
+            const placesContinentSeoTagsArray = ref([])
             const placesContinentCoordinates = ref([])
             const placesContinentCoordinatesArray = ref([])
             const placesContinentZoom = ref([])
@@ -506,6 +562,7 @@
                     placesContinentPopulation.value = PlacesContinent[0].population;
                     placesContinentPopulationDensity.value = PlacesContinent[0].population_density;
                     placesContinentNumberStates.value = PlacesContinent[0].number_states;
+                    placesContinentSeoTags.value = PlacesContinent[0].seo_tags ? JSON.stringify(PlacesContinent[0].seo_tags) : JSON.stringify([]);
                     placesContinentCoordinates.value = PlacesContinent[0].coordinates ? JSON.stringify(PlacesContinent[0].coordinates) : JSON.stringify([]);
                     placesContinentZoom.value = PlacesContinent[0].zoom ? JSON.stringify(PlacesContinent[0].zoom) : JSON.stringify([]);
 
@@ -586,6 +643,7 @@
                             'population': placesContinentPopulation.value,
                             'population_density': placesContinentPopulationDensity.value,
                             'number_states': placesContinentNumberStates.value,
+                            'seo_tags': JSON.stringify(placesContinentSeoTagsArray._value),
                             'coordinates': JSON.stringify(placesContinentCoordinatesArray._value),
                             'zoom': JSON.stringify(placesContinentZoomArray._value)
                         })
@@ -608,6 +666,8 @@
             return {
                 successForm,
                 errorForm,
+                placesContinentSeoTags,
+                placesContinentSeoTagsArray,
                 placesContinentIDimageCover,
                 placesContinentIDimageHero,
                 placesContinentTypePlace,

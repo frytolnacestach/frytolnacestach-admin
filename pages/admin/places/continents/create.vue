@@ -48,6 +48,35 @@
                                         <!-- other --> 
                                         <div class="o-form-create__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesContinentSeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="typePlace" disabled="true" v-model="placesContinentTypePlace" required />
@@ -265,10 +294,20 @@
                 placesContinentInformationAuthorArray: [],
                 placesContinentCoordinatesArray: [],
                 placesContinentZoomArray: [],
+                placesContinentSeoTagsArray: []
             }
         },
 
         methods: {
+            // seo tags
+            addSeoTagsInput() {
+                this.placesContinentSeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.placesContinentSeoTagsArray.splice(index, 1)
+            },
             // information author
             addInformationAuthorInput() {
                 this.placesContinentInformationAuthorArray.push({
@@ -307,6 +346,16 @@
         watch: {
             placesContinentName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
+            },
+            placesContinentSeoTags: function (newValue, oldValue) {
+                try {
+                    this.placesContinentSeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.placesContinentSeoTagsArray = []
+                }
+            },
+            placesContinentSeoTagsArray: function (newValue, oldValue) {
+                this.placesContinentSeoTags = JSON.stringify(newValue)
             },
             placesContinentInformationAuthor: function (newValue, oldValue) {
                 try {
@@ -378,6 +427,8 @@
             const placesContinentPopulation = ref(null)
             const placesContinentPopulationDensity = ref(null)
             const placesContinentNumberStates = ref(null)
+            const placesContinentSeoTags = ref([])
+            const placesContinentSeoTagsArray = ref([])
             const placesContinentCoordinates = ref([])
             const placesContinentCoordinatesArray = ref([])
             const placesContinentZoom = ref([])
@@ -406,6 +457,7 @@
                             'population': placesContinentPopulation.value,
                             'population_density': placesContinentPopulationDensity.value,
                             'number_states': placesContinentNumberStates.value,
+                            'seo_tags': JSON.stringify(placesContinentSeoTagsArray._value),
                             'coordinates': JSON.stringify(placesContinentCoordinatesArray._value),
                             'zoom': JSON.stringify(placesContinentZoomArray._value),
                         })
@@ -441,6 +493,8 @@
                 placesContinentPopulation,
                 placesContinentPopulationDensity,
                 placesContinentNumberStates,
+                placesContinentSeoTags,
+                placesContinentSeoTagsArray,
                 placesContinentCoordinates,
                 placesContinentCoordinatesArray,
                 placesContinentZoom,

@@ -35,6 +35,35 @@
                                         <!-- ids -->
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesCitySeoTagsArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Tag:</label>
+                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="state" v-model="placesCityIDstate" required />
@@ -450,6 +479,10 @@
         author_update: string
     }
 
+    interface seoTags {
+        tag: string
+    }
+
     interface PlacesCity {
         id_state: number
         id_image_cover: number
@@ -463,6 +496,7 @@
         population: string
         area: string
         altitude: string
+        seo_tags: seoTags[]
         coordinates: Coordinates[]
         zoom: Zoom[]
         affiliate: Affiliate[]
@@ -527,7 +561,8 @@
                 placesCityZoomArray: [],
                 placesCityAffiliateArray: [],
                 placesCityAlertsArray: [],
-                placesCityParkingArray: []
+                placesCityParkingArray: [],
+                placesCitySeoTagsArray: []
             }
         },
 
@@ -569,6 +604,15 @@
             },
             removeInformationAuthorInput(index: number) {
                 this.placesCityInformationAuthorArray.splice(index, 1);
+            },
+            // seo tags
+            addSeoTagsInput() {
+                this.placesCitySeoTagsArray.push({
+                    tag: ''
+                })
+            },
+            removeSeoTagsInput(index: number) {
+                this.placesCitySeoTagsArray.splice(index, 1)
             },
             // coordinates
             addCoordinateInput() {
@@ -641,6 +685,16 @@
             },
             placesCityName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
+            },
+            placesCitySeoTags: function (newValue, oldValue) {
+                try {
+                    this.placesCitySeoTagsArray = JSON.parse(newValue)
+                } catch (error) {
+                    this.placesCitySeoTagsArray = []
+                }
+            },
+            placesCitySeoTagsArray: function (newValue, oldValue) {
+                this.placesCitySeoTags = JSON.stringify(newValue)
             },
             placesCityInformationAuthor: function (newValue, oldValue) {
                 try {
@@ -744,6 +798,8 @@
             const placesCityPopulation = ref(null)
             const placesCityArea = ref(null)
             const placesCityAltitude = ref(null)
+            const placesCitySeoTags = ref([])
+            const placesCitySeoTagsArray = ref([])
             const placesCityCoordinates = ref([])
             const placesCityCoordinatesArray = ref([])
             const placesCityZoom = ref([])
@@ -782,6 +838,7 @@
                     placesCityPopulation.value = PlacesCity[0].population;
                     placesCityArea.value = PlacesCity[0].area;
                     placesCityAltitude.value = PlacesCity[0].altitude;
+                    placesCitySeoTags.value = PlacesCity[0].seo_tags ? JSON.stringify(PlacesCity[0].seo_tags) : JSON.stringify([]);
                     placesCityCoordinates.value = PlacesCity[0].coordinates ? JSON.stringify(PlacesCity[0].coordinates) : JSON.stringify([]);
                     placesCityZoom.value = PlacesCity[0].zoom ? JSON.stringify(PlacesCity[0].zoom) : JSON.stringify([]);
                     placesCityAffiliate.value = PlacesCity[0].affiliate ? JSON.stringify(PlacesCity[0].affiliate) : JSON.stringify([]);
@@ -866,6 +923,7 @@
                             'population': placesCityPopulation.value,
                             'area': placesCityArea.value,
                             'altitude': placesCityAltitude.value,
+                            'seo_tags': JSON.stringify(placesCitySeoTagsArray._value),
                             'coordinates': JSON.stringify(placesCityCoordinatesArray._value),
                             'zoom': JSON.stringify(placesCityZoomArray._value),
                             'affiliate': JSON.stringify(placesCityAffiliateArray._value),
@@ -891,6 +949,8 @@
             return {
                 successForm,
                 errorForm,
+                placesCitySeoTags,
+                placesCitySeoTagsArray,
                 placesCityIDstate,
                 placesCityIDimageCover,
                 placesCityIDimageHero,
