@@ -168,13 +168,13 @@
                     },
                     {
                         id: 2,
-                        name: "Značky",
+                        name: "Řetězce",
                         url: "/admin/chains",
                         status: "link"
                     },
                     {
                         id: 3,
-                        name: "Přidání nové značky",
+                        name: "Přidání nového řetězce",
                         url: "",
                         status: "span"
                     }
@@ -239,7 +239,7 @@
 
             //META HEAD
             useHead({
-                title: 'Značka - vytvoření',
+                title: 'Řetězec - vytvoření',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -248,8 +248,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Značka - vytvoření',
-                ogTitle: 'Značka - vytvoření',
+                title: 'Řetězec - vytvoření',
+                ogTitle: 'Řetězec - vytvoření',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',

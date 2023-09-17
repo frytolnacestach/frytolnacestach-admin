@@ -221,13 +221,13 @@
                     },
                     {
                         id: 2,
-                        name: "Značky",
+                        name: "Řetězce",
                         url: "/admin/chains",
                         status: "link"
                     },
                     {
                         id: 3,
-                        name: `Editace značku - NÁZEV ZNAČKY`,
+                        name: `Editace řetězce - NÁZEV ŘETĚZCE`,
                         url: "",
                         status: "span"
                     }
@@ -320,7 +320,7 @@
 
             //META HEAD
             useHead({
-                title: 'Značka - úprava',
+                title: 'Řetězec - úprava',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -329,8 +329,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Značka - úprava',
-                ogTitle: 'Značka - úprava',
+                title: 'Řetězec - úprava',
+                ogTitle: 'Řetězec - úprava',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',

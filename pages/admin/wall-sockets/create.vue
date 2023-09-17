@@ -140,13 +140,13 @@
                     },
                     {
                         id: 2,
-                        name: "Značky",
+                        name: "Elektrické zásuvky",
                         url: "/admin/wall-sockets",
                         status: "link"
                     },
                     {
                         id: 3,
-                        name: "Přidání nové značky",
+                        name: "Přidání nové elektrické zásuvky",
                         url: "",
                         status: "span"
                     }
@@ -189,7 +189,7 @@
 
             //META HEAD
             useHead({
-                title: 'Značka - vytvoření',
+                title: 'Elektrická zásuvka - vytvoření',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -198,8 +198,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Značka - vytvoření',
-                ogTitle: 'Značka - vytvoření',
+                title: 'Elektrická zásuvka - vytvoření',
+                ogTitle: 'Elektrická zásuvka - vytvoření',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',

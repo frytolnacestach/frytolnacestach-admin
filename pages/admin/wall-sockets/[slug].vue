@@ -188,13 +188,13 @@
                     },
                     {
                         id: 2,
-                        name: "Značky",
+                        name: "Elektrické zásuvky",
                         url: "/admin/wall-sockets",
                         status: "link"
                     },
                     {
                         id: 3,
-                        name: `Editace značku - NÁZEV ZNAČKY`,
+                        name: `Editace elektrické zásuvky - NÁZEV ELEKTRICKÉ ZÁSUVKY`,
                         url: "",
                         status: "span"
                     }
@@ -264,7 +264,7 @@
 
             //META HEAD
             useHead({
-                title: 'Značka - úprava',
+                title: 'Elektrická zásuvka - úprava',
                 meta: [
                     { name: 'description', content: 'Úžasná administrace pro web.' }
                 ],
@@ -273,8 +273,8 @@
 
             //META SEO
             useServerSeoMeta({
-                title: 'Značka - úprava',
-                ogTitle: 'Značka - úprava',
+                title: 'Elektrická zásuvka - úprava',
+                ogTitle: 'Elektrická zásuvka - úprava',
                 description: 'Úžasná administrace pro web.',
                 ogDescription: 'Úžasná administrace pro web.',
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
