@@ -145,6 +145,16 @@
                         id: 6,
                         name: "Události",
                         url: "/admin/events"
+                    },
+                    {
+                        id: 7,
+                        name: "Řetězce",
+                        url: "/admin/chains"
+                    },
+                    {
+                        id: 8,
+                        name: "Elektrické zásuvky",
+                        url: "/admin/wall-sockets"
                     }
                 ],
                 mNavBreadcrumbsArray: [

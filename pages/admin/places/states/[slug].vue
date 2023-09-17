@@ -201,6 +201,47 @@
                                         </div>
                                         <div class="o-form-edit__item">
                                             <label class="m-label">
+                                                <span class="m-label__name">Jazykové fráze <span class="m-label__name-column">(language_phrases)</span></span>
+                                            </label>
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in placesStateLanguagePhrasesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeLanguagePhrasesInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Česky:</label>
+                                                                <input class="a-input" type="text" v-model="item.czech" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Překlad:</label>
+                                                                <input class="a-input" type="text" v-model="item.foreign" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Překlad arabsky:</label>
+                                                                <input class="a-input" type="text" v-model="item.foreign_arabic" />
+                                                            </div>
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">Fonetický přepis:</label>
+                                                                <input class="a-input" type="text" v-model="item.phonetic_transcription" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addLanguagePhrasesInput">Přidat frázy</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
                                                 <span class="m-label__name">MPZ <span class="m-label__name-column">(mpz)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="mpz" v-model="placesStateMpz" />
@@ -938,6 +979,11 @@
         tag: string
     }
 
+    interface LanguagePhrases {
+        czech: string
+        foreign: string
+    }
+
     interface PlacesState {
         id_continent: number
         id_city_main: number
@@ -969,6 +1015,7 @@
         organization: Organization[]
         apps: Apps[]
         links: Links[]
+        language_phrases: LanguagePhrases[]
     }
 
     interface ImageCover {
@@ -1037,7 +1084,8 @@
                 placesStateOrganizationArray: [],
                 placesStateAppsArray: [],
                 placesStateLinksArray: [],
-                placesStateSeoTagsArray: []
+                placesStateSeoTagsArray: [],
+                placesStateLanguagePhrasesArray: []
             }
         },
 
@@ -1258,12 +1306,21 @@
             removeLinkInput(index: number) {
                 this.placesStateLinksArray.splice(index, 1);
             },
+            // LanguagePhrases
+            addLanguagePhrasesInput() {
+                this.placesStateLanguagePhrasesArray.push({
+                    czech: '',
+                    foreign: '',
+                    foreign_arabic: '',
+                    phonetic_transcription: ''
+                });
+            },
+            removeLanguagePhrasesInput(index: number) {
+                this.placesStateLanguagePhrasesArray.splice(index, 1);
+            }
         },
 
         watch: {
-            placesStateName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
-            },
             placesStateName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
@@ -1413,6 +1470,16 @@
             },
             placesStateLinksArray: function (newValue, oldValue) {
                 this.placesStateLinks = JSON.stringify(newValue);
+            },
+            placesStateLanguagePhrases: function (newValue, oldValue) {
+                try {
+                    this.placesStateLanguagePhrasesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.placesStateLanguagePhrasesArray = [];
+                }
+            },
+            placesStateLanguagePhrasesArray: function (newValue, oldValue) {
+                this.placesStateLanguagePhrases = JSON.stringify(newValue);
             }
         },
 
@@ -1491,6 +1558,8 @@
             const placesStateAppsArray = ref([])
             const placesStateLinks = ref([])
             const placesStateLinksArray = ref([])
+            const placesStateLanguagePhrases = ref([])
+            const placesStateLanguagePhrasesArray = ref([])
             const imageCover = ref<ImageCover[]>([])
             const imageHero = ref<ImageHero[]>([])
             const placesStateIDimageCoverLoad = ref(null)
@@ -1537,6 +1606,7 @@
                     placesStateOrganization.value = PlacesState[0].organization ? JSON.stringify(PlacesState[0].organization) : JSON.stringify([])
                     placesStateApps.value = PlacesState[0].apps ? JSON.stringify(PlacesState[0].apps) : JSON.stringify([])
                     placesStateLinks.value = PlacesState[0].links ? JSON.stringify(PlacesState[0].links) : JSON.stringify([])
+                    placesStateLanguagePhrases.value = PlacesState[0].language_phrases ? JSON.stringify(PlacesState[0].language_phrases) : JSON.stringify([])
 
                     // images load ids
                     placesStateIDimageCoverLoad.value = placesStateIDimageCover.value
@@ -1633,7 +1703,8 @@
                             'alerts': JSON.stringify(placesStateAlertsArray._value),
                             'organization': JSON.stringify(placesStateOrganizationArray._value),
                             'apps': JSON.stringify(placesStateAppsArray._value),
-                            'links': JSON.stringify(placesStateLinksArray._value)
+                            'links': JSON.stringify(placesStateLinksArray._value),
+                            'language_phrases': JSON.stringify(placesStateLanguagePhrasesArray._value)
                         })
                     })
                     .then(() => {
@@ -1699,6 +1770,8 @@
                 placesStateAppsArray,
                 placesStateLinks,
                 placesStateLinksArray,
+                placesStateLanguagePhrases,
+                placesStateLanguagePhrasesArray,
                 imageCover,
                 imageHero,
                 placesStateIDimageCoverLoad,
