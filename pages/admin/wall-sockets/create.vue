@@ -99,7 +99,7 @@
                                     <div class="o-form-create__buttons mt-1">
                                         <div class="o-form-create__button">
                                             <div class="m-button">
-                                                <button class="m-button__input" type="submit">Vytvořit faunu</button>
+                                                <button class="m-button__input" type="submit">Vytvořit řetězec</button>
                                             </div>
                                         </div>
                                     </div>
