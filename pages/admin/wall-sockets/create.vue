@@ -264,7 +264,7 @@
                 wallSocketIDimageHero,
                 wallSocketSeoTags,
                 wallSocketSeoTagsArray,
-                wallSocketName,
+                wallSocketLabel,
                 wallSocketName,
                 wallSocketDescription,
                 createForm
