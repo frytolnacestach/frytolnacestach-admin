@@ -122,6 +122,37 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- JSON -->
+                                        <div class="o-form-create__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
+                                            </label>
+                                            
+                                            <div class="o-form-create__group">
+                                                <div class="o-form-create__group-items">
+                                                    <div class="o-form-create__group-item" v-for="(item, index) in chainIDSstatesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-create__group-inputs">
+                                                            <div class="o-form-create__group-input">
+                                                                <label class="m-label">ID:</label>
+                                                                <input class="a-input" type="number" min="0" v-model="item.id" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-create__buttons mt-1">
+                                                    <div class="o-form-create__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- button -->
                                     <div class="o-form-create__buttons mt-1">
@@ -203,6 +234,15 @@
             },
             removeSeoTagsInput(index: number) {
                 this.chainSeoTagsArray.splice(index, 1)
+            },
+            // ids states
+            addIDSstateInput() {
+                this.chainIDSstatesArray.push({
+                    id: null
+                });
+            },
+            removeIDSstateInput(index: number) {
+                this.chainIDSstatesArray.splice(index, 1);
             }
         },
 
@@ -228,6 +268,17 @@
             },
             chainSeoTagsArray: function (newValue, oldValue) {
                 this.chainSeoTags = JSON.stringify(newValue)
+            },
+            // IDS states
+            chainIDSstates: function (newValue, oldValue) {
+                try {
+                    this.chainIDSstatesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.chainIDSstatesArray = [];
+                }
+            },
+            chainIDSstatesArray: function (newValue, oldValue) {
+                this.chainIDSstates = JSON.stringify(newValue);
             }
         },
 
@@ -287,6 +338,7 @@
                             'id_image_hero': chainIDimageHero.value,
                             'information': JSON.stringify(chainInformationArray._value),
                             'seo_tags': JSON.stringify(chainSeoTagsArray._value),
+                            'ids_states': JSON.stringify(chainsIDSstatesArray._value),
                             'name': chainName.value,
                             'description': chainDescription.value
                         })
@@ -313,6 +365,8 @@
                 chainSlug,
                 chainIDimageCover,
                 chainIDimageHero,
+                chainIDSstates,
+                chainIDSstatesArray,
                 chainInformation,
                 chainInformationArray,
                 chainSeoTags,

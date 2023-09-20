@@ -113,7 +113,38 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>                         
+                                        </div>
+                                        <!-- JSON -->
+                                        <div class="o-form-edit__item">
+                                            <label class="m-label">
+                                                <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
+                                            </label>
+                                            
+                                            <div class="o-form-edit__group">
+                                                <div class="o-form-edit__group-items">
+                                                    <div class="o-form-edit__group-item" v-for="(item, index) in wallSocketIDSstatesArray" :key="index">
+                                                        <div class="m-button-remove">
+                                                            <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
+                                                                Odstranit
+                                                            </button>
+                                                        </div>
+                                                        <div class="o-form-edit__group-inputs">
+                                                            <div class="o-form-edit__group-input">
+                                                                <label class="m-label">ID:</label>
+                                                                <input class="a-input" type="number" min="0" v-model="item.id" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="o-form-edit__buttons mt-1">
+                                                    <div class="o-form-edit__button">
+                                                        <div class="m-button-add">
+                                                            <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- button -->
                                     <div class="o-form-edit__buttons mt-1">
@@ -143,10 +174,15 @@
         tag: string
     }
 
-    interface wallSocket {
+    interface IDSstates {
+        id: number
+    }
+
+    interface WallSocket {
         id_image_cover: number
         id_image_hero: number
         seo_tags: seoTags[]
+        ids_states: IDSstates[]
         slug: string
         label: string
         name: string
@@ -237,6 +273,15 @@
             },
             removeSeoTagsInput(index: number) {
                 this.wallSocketSeoTagsArray.splice(index, 1)
+            },
+            // ids states
+            addIDSstateInput() {
+                this.wallSocketIDSstatesArray.push({
+                    id: null
+                });
+            },
+            removeIDSstateInput(index: number) {
+                this.wallSocketIDSstatesArray.splice(index, 1);
             }
         },
 
@@ -253,6 +298,17 @@
             },
             wallSocketSeoTagsArray: function (newValue, oldValue) {
                 this.wallSocketSeoTags = JSON.stringify(newValue)
+            },
+            // IDS states
+            wallSocketIDSstates: function (newValue, oldValue) {
+                try {
+                    this.wallSocketIDSstatesArray = JSON.parse(newValue);
+                } catch (error) {
+                    this.wallSocketIDSstatesArray = [];
+                }
+            },
+            wallSocketIDSstatesArray: function (newValue, oldValue) {
+                this.wallSocketIDSstates = JSON.stringify(newValue);
             }
         },
 
@@ -289,6 +345,8 @@
             const wallSocketSlug = ref('')
             const wallSocketIDimageCover = ref(null)
             const wallSocketIDimageHero = ref(null)
+            const wallSocketIDSstates = ref([])
+            const wallSocketIDSstatesArray = ref([])
             const wallSocketSeoTags = ref([])
             const wallSocketSeoTagsArray = ref([])
             const wallSocketLabel = ref('')
@@ -307,16 +365,17 @@
             ;(async () => {
                 const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/wall-socket/${route.params.slug}`)
                 
-                const wallSocket: wallSocket[] = JSON.parse(_rawValue)
+                const WallSocket: WallSocket[] = JSON.parse(_rawValue)
                 
-                if (Array.isArray(wallSocket) && wallSocket.length > 0) {
-                    wallSocketSlug.value = wallSocket[0].slug;
-                    wallSocketIDimageCover.value = wallSocket[0].id_image_cover;
-                    wallSocketIDimageHero.value = wallSocket[0].id_image_hero;
-                    wallSocketSeoTags.value = wallSocket[0].seo_tags ? JSON.stringify(wallSocket[0].seo_tags) : JSON.stringify([]);
-                    wallSocketLabel.value = wallSocket[0].label;
-                    wallSocketName.value = wallSocket[0].name;
-                    wallSocketDescription.value = wallSocket[0].description;
+                if (Array.isArray(WallSocket) && WallSocket.length > 0) {
+                    wallSocketSlug.value = WallSocket[0].slug;
+                    wallSocketIDimageCover.value = WallSocket[0].id_image_cover;
+                    wallSocketIDimageHero.value = WallSocket[0].id_image_hero;
+                    wallSocketSeoTags.value = WallSocket[0].seo_tags ? JSON.stringify(WallSocket[0].seo_tags) : JSON.stringify([]);
+                    wallSocketIDSstates.value = WallSocket[0].ids_states ? JSON.stringify(WallSocket[0].ids_states) : JSON.stringify([]);
+                    wallSocketLabel.value = WallSocket[0].label;
+                    wallSocketName.value = WallSocket[0].name;
+                    wallSocketDescription.value = WallSocket[0].description;
 
                     // images load ids
                     wallSocketIDimageCoverLoad.value = wallSocketIDimageCover.value
@@ -389,6 +448,7 @@
                             'id_image_cover': wallSocketIDimageCover.value,
                             'id_image_hero': wallSocketIDimageHero.value,
                             'seo_tags': JSON.stringify(wallSocketSeoTagsArray._value),
+                            'ids_states': JSON.stringify(wallSocketIDSstatesArray._value),
                             'label': wallSocketLabel.value,
                             'name': wallSocketName.value,
                             'description': wallSocketDescription.value,
@@ -415,6 +475,8 @@
                 wallSocketSlug,
                 wallSocketIDimageCover,
                 wallSocketIDimageHero,
+                wallSocketIDSstates,
+                wallSocketIDSstatesArray,
                 wallSocketSeoTags,
                 wallSocketSeoTagsArray,
                 wallSocketLabel,
