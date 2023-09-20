@@ -430,7 +430,7 @@
                     chainIDimageHero.value = Chain[0].id_image_hero;
                     chainInformation.value = Chain[0].information ? JSON.stringify(Chain[0].information) : JSON.stringify([]);
                     chainSeoTags.value = Chain[0].seo_tags ? JSON.stringify(Chain[0].seo_tags) : JSON.stringify([]);
-                    ChainIDSstates.value = Chain[0].ids_states ? JSON.stringify(Chain[0].ids_states) : JSON.stringify([]);
+                    chainIDSstates.value = Chain[0].ids_states ? JSON.stringify(Chain[0].ids_states) : JSON.stringify([]);
                     chainName.value = Chain[0].name;
                     chainDescription.value = Chain[0].description;
 
@@ -506,7 +506,7 @@
                             'id_image_hero': chainIDimageHero.value,
                             'information': JSON.stringify(chainInformationArray._value),
                             'seo_tags': JSON.stringify(chainSeoTagsArray._value),
-                            'ids_states': JSON.stringify(chainsIDSstatesArray._value),
+                            'ids_states': JSON.stringify(chainIDSstatesArray._value),
                             'name': chainName.value,
                             'description': chainDescription.value,
                         })
