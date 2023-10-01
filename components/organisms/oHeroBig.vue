@@ -14,6 +14,7 @@
 <script lang="ts">
     export default defineComponent({
         name: 'OrganismsoHeroBigComponent',
+
         props: {
             headline: {
                 type: String,
@@ -23,6 +24,6 @@
                 type: String,
                 required: true
             }
-        },
+        }
     })
 </script>

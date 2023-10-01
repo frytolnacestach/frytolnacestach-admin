@@ -15,6 +15,7 @@
 <script lang="ts">
     export default defineComponent({
         name: 'OrganismsoHeroComponent',
+
         props: {
             text: {
                 type: String,
@@ -24,6 +25,6 @@
                 type: String,
                 required: true
             }
-        },
+        }
     })
 </script>
