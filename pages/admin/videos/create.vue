@@ -197,12 +197,15 @@
                         status: "span"
                     }
                 ],
-                videoSeoTagsArray: []
+                videoSeoTags: '',
+                videoSeoTagsArray: [] as { 
+                    tag: string 
+                }[]
             }
         },
 
         methods: {
-            // seo tags
+            // Input - seo tags
             addSeoTagsInput() {
                 this.videoSeoTagsArray.push({
                     tag: ''
@@ -214,6 +217,7 @@
         },
 
         watch: {
+            // seo tags
             videoSeoTags: function (newValue, oldValue) {
                 try {
                     this.videoSeoTagsArray = JSON.parse(newValue)
@@ -222,7 +226,7 @@
                 }
             },
             videoSeoTagsArray: function (newValue, oldValue) {
-                this.videoSeoTags = JSON.stringify(newValue)
+                this.videoSeoTags = JSON.stringify(this.videoSeoTagsArray)
             }
         },
 
@@ -268,7 +272,7 @@
             const videoTitle = ref('')
             const videoPerex = ref('')
             const videoUrl = ref('')
-            const videoSeoTags = ref([])
+            const videoSeoTags = ref('')
             const videoSeoTagsArray = ref([])
 
             //API - Platform

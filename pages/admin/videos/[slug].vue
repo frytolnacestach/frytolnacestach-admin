@@ -233,11 +233,15 @@
                         status: "span"
                     }
                 ],
-                videoSeoTagsArray: []
+                videoSeoTags: '',
+                videoSeoTagsArray: [] as { 
+                    tag: string 
+                }[]
             }
         },
 
         methods: {
+            // breadcrumbs - update title name
             updateBreadcrumbs() {
                 const videoTitle = this.videoTitle
                 const breadcrumb = this.mNavBreadcrumbsArray.find(item => item.id === 3)
@@ -246,7 +250,7 @@
                     breadcrumb.name = `Editace videa - ${videoTitle}`
                 }
             },
-            // change image id
+            // Input - change image id
             handleVideoIDimageChange() {
                 this.videoIDimageChange = this.videoIDimage
                 this.videoIDimageLoading = true
@@ -255,7 +259,7 @@
             handleImageLoad() {
                 this.videoIDimageLoading = false;
             },
-            // seo tags
+            // Input - seo tags
             addSeoTagsInput() {
                 this.videoSeoTagsArray.push({
                     tag: ''
@@ -267,9 +271,11 @@
         },
 
         watch: {
+            // breadcrumbs - title name
             videoTitle: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
+            // seo tags
             videoSeoTags: function (newValue, oldValue) {
                 try {
                     this.videoSeoTagsArray = JSON.parse(newValue)
@@ -278,7 +284,7 @@
                 }
             },
             videoSeoTagsArray: function (newValue, oldValue) {
-                this.videoSeoTags = JSON.stringify(newValue)
+                this.videoSeoTags = JSON.stringify(this.videoSeoTagsArray)
             }
         },
 
@@ -329,7 +335,7 @@
             const videoIDimageLoad = ref(null)
             const videoIDimageLoading = ref(false)
             const videoIDimageChange = ref(null)
-            const videoSeoTags = ref([])
+            const videoSeoTags = ref('')
             const videoSeoTagsArray = ref([])
 
             //API - Video
