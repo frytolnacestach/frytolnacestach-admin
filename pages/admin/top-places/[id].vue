@@ -2,7 +2,7 @@
     <NuxtLayout name="admin">
         <main class="t-main">
             <!-- SECTION - HERO -->
-            <oHero :headline="'Top místo ' + topPlaceID" />
+            <oHero :headline="'Top místo ' + itemID" />
             <!-- SECTION - HERO END -->
 
             <!-- SECTION - BREADCRUMBS Admin -->
@@ -23,23 +23,51 @@
 
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="editForm">
-                                    <div class="o-form-item__items">
-                                        <!-- ids -->
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID místa <span class="m-label__name-column">(id_place)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="number" min="0" name="idPlace" v-model="topPlaceIDplace" required />
+                                    <!-- BLOCK - Stálé hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Stálé hodnoty" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - id -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
+                                            </div>
+                                            <!-- Form - id END -->
                                         </div>
-                                        <!-- other -->                             
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Typ <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="type" v-model="topPlaceType" required />
-                                        </div>                      
                                     </div>
-                                    <!-- button -->
+                                    <!-- BLOCK - Stálé hodnoty END -->
+
+                                    <!-- BLOCK - Editační hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - ids_place -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID místa <span class="m-label__name-column">(id_place)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="number" min="0" name="idPlace" v-model="topPlaceIDplace" required />
+                                            </div>
+                                            <!-- Form - ids_place END -->
+                                            <!-- Form - type -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Typ <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="type" v-model="topPlaceType" required />
+                                            </div>
+                                            <!-- Form - type END -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Editační hodnoty END -->
+
+                                    <!-- COMPONENT - Button -->
                                     <div class="o-form-item__buttons mt-1">
                                         <div class="o-form-item__button">
                                             <div class="m-button">
@@ -47,6 +75,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- COMPONENT - Button END -->
                                 </form>
                                 <!-- FORM END -->
                             </div>
@@ -59,11 +88,13 @@
 </template>
 
 <script lang="ts">
+    import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
     interface TopPlace {
+        id: number
         id_place: number
         type: string
     }
@@ -73,6 +104,7 @@
 
         //COMPONENTS
         components: {
+            mHeadlineForm,
             mNavBreadcrumbs,
             oFlashMessages,
             oHero
@@ -105,11 +137,11 @@
 
         methods: {
             updateBreadcrumbs() {
-                const topPlaceID = this.topPlaceID
+                const itemID = this.itemID
                 const breadcrumb = this.mNavBreadcrumbsArray.find(item => item.id === 3)
                 
                 if (breadcrumb) {
-                    breadcrumb.name = `Editace top místa - ${topPlaceID}`
+                    breadcrumb.name = `Editace top místa - ${itemID}`
                 }
             }
         },
@@ -150,7 +182,7 @@
             const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
-            const topPlaceID = ref(null)
+            const itemID = ref(null)
             const topPlaceIDplace = ref(null)
             const topPlaceType = ref('')
 
@@ -161,7 +193,7 @@
                 const TopPlace: TopPlace[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(TopPlace) && TopPlace.length > 0) {
-                    topPlaceID.value = TopPlace[0].id;
+                    itemID.value = TopPlace[0].id;
                     topPlaceIDplace.value = TopPlace[0].id_place;
                     topPlaceType.value = TopPlace[0].type;
                 } else {
@@ -181,7 +213,7 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
-                            'id': topPlaceID.value,
+                            'id': itemID.value,
                             'id_place': topPlaceIDplace.value,
                             'type': topPlaceType.value
                         })
@@ -204,7 +236,7 @@
             return {
                 successForm,
                 errorForm,
-                topPlaceID,
+                itemID,
                 topPlaceIDplace,
                 topPlaceType,
                 editForm

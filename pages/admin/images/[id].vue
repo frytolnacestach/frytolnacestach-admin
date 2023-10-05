@@ -2,7 +2,7 @@
     <NuxtLayout name="admin">
         <main class="t-main">
             <!-- SECTION - HERO -->
-            <oHero :headline="'obrazek ' + imageID" />
+            <oHero :headline="'obrazek ' + itemID" />
             <!-- SECTION - HERO END -->
 
             <!-- SECTION - BREADCRUMBS Admin -->
@@ -23,48 +23,80 @@
 
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="editForm">
-                                    <div class="o-form-item__items">
-                                        <img class="o-form-item__image-file" :src="`https://image.frytolnacestach.cz/storage${imageSource + imageName}.webp`">
-                                        <!-- ids -->
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="number" min="0" disabled="true" name="id" v-model="imageID" required />
+                                    <!-- BLOCK - Stálé hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Stálé hodnoty" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - id -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
+                                            </div>
+                                            <!-- Form - id END -->
                                         </div>
-                                        <!-- other -->                            
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="name" v-model="imageName" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Zdroj <span class="m-label__name-column">(source)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="source" v-model="imageSource" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Datum vytvoření <span class="m-label__name-column">(date_create)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="dateCreate" disabled="true" v-model="imageDateCreate" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Typ použití <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="type" v-model="imageType" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Autor <span class="m-label__name-column">(author)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="author" v-model="imageAuthor">
-                                        </div>                             
                                     </div>
-                                    <!-- button -->
+                                    <!-- BLOCK - Stálé hodnoty END -->
+
+                                    <!-- BLOCK - Editační hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Image -->
+                                            <div class="o-form-item__item mt-1">
+                                                <img class="o-form-item__image-file" :src="`https://image.frytolnacestach.cz/storage${imageSource + imageName}.webp`">
+                                            </div>
+                                            <!-- Image END -->
+                                            <!-- Form - name END -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="name" v-model="imageName" required />
+                                            </div>
+                                            <!-- Form - name END -->
+                                            <!-- Form - source -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Zdroj <span class="m-label__name-column">(source)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="source" v-model="imageSource" required />
+                                            </div>
+                                            <!-- Form - source END -->
+                                            <!-- Form - date_create -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Datum vytvoření <span class="m-label__name-column">(date_create)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="dateCreate" disabled="true" v-model="imageDateCreate" required />
+                                            </div>
+                                            <!-- Form - date_create END -->
+                                            <!-- Form - type -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Typ použití <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="type" v-model="imageType" required />
+                                            </div>
+                                            <!-- Form - type END -->
+                                            <!-- Form - author -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Autor <span class="m-label__name-column">(author)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="author" v-model="imageAuthor">
+                                            </div>    
+                                            <!-- Form - author END -->                         
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Editační hodnoty END -->
+
+                                    <!-- COMPONENT - Button -->
                                     <div class="o-form-item__buttons mt-1">
                                         <div class="o-form-item__button">
                                             <div class="m-button">
@@ -72,6 +104,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- COMPONENT - Button END -->
                                 </form>
                                 <!-- FORM END -->
                             </div>
@@ -405,6 +438,7 @@
 </template>
 
 <script lang="ts">
+    import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
@@ -423,6 +457,7 @@
 
         //COMPONENTS
         components: {
+            mHeadlineForm,
             mNavBreadcrumbs,
             oFlashMessages,
             oHero
@@ -1339,11 +1374,11 @@
 
         methods: {
             updateBreadcrumbs() {
-                const imageID = this.imageID
+                const itemID = this.itemID
                 const breadcrumb = this.mNavBreadcrumbsArray.find(item => item.id === 3)
                 
                 if (breadcrumb) {
-                    breadcrumb.name = `Editace obrazku - ${imageID}`
+                    breadcrumb.name = `Editace obrazku - ${itemID}`
                 }
             }
         },
@@ -1384,7 +1419,7 @@
             const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
-            const imageID = ref(null)
+            const itemID = ref(null)
             const imageName = ref('')
             const imageSource = ref('')
             const imageDateCreate = ref('')
@@ -1398,7 +1433,7 @@
                 const Image: Image[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Image) && Image.length > 0) {
-                    imageID.value = Image[0].id;
+                    itemID.value = Image[0].id;
                     imageName.value = Image[0].name;
                     imageSource.value = Image[0].source;
                     imageDateCreate.value = Image[0].date_create;
@@ -1421,7 +1456,7 @@
                         },
                         method: 'POST',
                         body: JSON.stringify({
-                            //'id': imageID.value,
+                            //'id': itemID.value,
                             'name': imageName.value,
                             'source': imageSource.value,
                             'date_create': imageDateCreate.value,
@@ -1472,7 +1507,7 @@
             return {
                 successForm,
                 errorForm,
-                imageID,
+                itemID,
                 imageName,
                 imageSource,
                 imageDateCreate,
