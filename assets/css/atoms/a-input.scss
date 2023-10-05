@@ -15,4 +15,10 @@
         background-color: $gray10;
         border: 1px solid transparent;
     }
+
+    &:disabled {
+        background-color: $gray3;
+        border: 1px solid $gray3;
+        color: $gray4;
+    }
 }

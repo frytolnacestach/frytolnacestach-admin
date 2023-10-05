@@ -23,123 +23,144 @@
 
                                 <!-- FORM -->
                                 <form class="o-form-edit__form" @submit.prevent="editForm">
-                                    <div class="o-form-edit__items">
-                                        <!-- slug -->
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="slug" v-model="wallSocketSlug" required />
-                                        </div>
-                                        <!-- ids -->
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
-                                            </label>
-                                            <div class="o-form-edit__image">
-                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': wallSocketIDimageCoverLoading}">
-                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && wallSocketIDimageCover" @load="handleImageCoverLoad">
-                                                </div>
-                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && wallSocketIDimageCoverLoad !== wallSocketIDimageCoverChange && (wallSocketIDimageCover && wallSocketIDimageCover !== null && wallSocketIDimageCover !== 0)">Byl vybrán nový obrázek</span>
-                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && (!wallSocketIDimageCover || wallSocketIDimageCover === null || wallSocketIDimageCover === 0)">Obrázek byl odebrán</span>
-                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && wallSocketIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                <span class="o-form-edit__image-text" v-if="wallSocketIDimageCoverLoad === wallSocketIDimageCoverChange && !imageCover[0] && wallSocketIDimageCover && wallSocketIDimageCover !== null && wallSocketIDimageCover !== 0">Vybraní obrázek neexistuje</span>
-                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && (!wallSocketIDimageCover || wallSocketIDimageCover === null || wallSocketIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="wallSocketIDimageCover" @input="handlewallSocketIDimageCoverChange" />
+                                    <div class="o-form-edit__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Stálé hodnoty"/>
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-edit__items">
+                                            <!-- Form - id -->
+                                            <div class="o-form-edit__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
+                                            <!-- Form - id END -->
                                         </div>
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
-                                            </label>
-                                            <div class="o-form-edit__image">
-                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': wallSocketIDimageHeroLoading}">
-                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && wallSocketIDimageHero" @load="handleImageHeroLoad">
-                                                </div>
-                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && wallSocketIDimageHeroLoad !== wallSocketIDimageHeroChange && (wallSocketIDimageHero && wallSocketIDimageHero !== null && wallSocketIDimageHero !== 0)">Byl vybrán nový obrázek</span>
-                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && (!wallSocketIDimageHero || wallSocketIDimageHero === null || wallSocketIDimageHero === 0)">Obrázek byl odebrán</span>
-                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && wallSocketIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                <span class="o-form-edit__image-text" v-if="wallSocketIDimageHeroLoad === wallSocketIDimageHeroChange && !imageHero[0] && wallSocketIDimageHero && wallSocketIDimageHero !== null && wallSocketIDimageHero !== 0">Vybraní obrázek neexistuje</span>
-                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && (!wallSocketIDimageHero || wallSocketIDimageHero === null || wallSocketIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="wallSocketIDimageHero" @input="handlewallSocketIDimageHeroChange" />
+                                    </div>
+
+                                    <div class="o-form-edit__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-edit__items">
+                                            <!-- slug -->
+                                            <div class="o-form-edit__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
+                                                </label>
+                                                <input class="a-input" type="text" name="slug" v-model="wallSocketSlug" required />
                                             </div>
-                                        </div>
-                                        <!-- other -->
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Typ zásuvky <span class="m-label__name-column">(label)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="label" v-model="wallSocketLabel" required />
-                                        </div>
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="name" v-model="wallSocketName" required />
-                                        </div>
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
-                                            </label>
-                                            <textarea class="a-textarea" type="text" name="description" v-model="wallSocketDescription"></textarea>
-                                        </div>
-                                        <!-- JSON - Seo Tags -->
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
-                                            </label>
-                                            <div class="o-form-edit__group">
-                                                <div class="o-form-edit__group-items">
-                                                    <div class="o-form-edit__group-item" v-for="(item, index) in wallSocketSeoTagsArray" :key="index">
-                                                        <div class="m-button-remove">
-                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                Odstranit
-                                                            </button>
+                                            <!-- ids -->
+                                            <div class="o-form-edit__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
+                                                </label>
+                                                <div class="o-form-edit__image">
+                                                    <div class="o-form-edit__image-lazyload" :class="{'-loading': wallSocketIDimageCoverLoading}">
+                                                        <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && wallSocketIDimageCover" @load="handleImageCoverLoad">
+                                                    </div>
+                                                    <span class="o-form-edit__image-text" v-if="imageCover[0] && wallSocketIDimageCoverLoad !== wallSocketIDimageCoverChange && (wallSocketIDimageCover && wallSocketIDimageCover !== null && wallSocketIDimageCover !== 0)">Byl vybrán nový obrázek</span>
+                                                    <span class="o-form-edit__image-text" v-if="imageCover[0] && (!wallSocketIDimageCover || wallSocketIDimageCover === null || wallSocketIDimageCover === 0)">Obrázek byl odebrán</span>
+                                                    <span class="o-form-edit__image-text" v-if="!imageCover[0] && wallSocketIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                    <span class="o-form-edit__image-text" v-if="wallSocketIDimageCoverLoad === wallSocketIDimageCoverChange && !imageCover[0] && wallSocketIDimageCover && wallSocketIDimageCover !== null && wallSocketIDimageCover !== 0">Vybraní obrázek neexistuje</span>
+                                                    <span class="o-form-edit__image-text" v-if="!imageCover[0] && (!wallSocketIDimageCover || wallSocketIDimageCover === null || wallSocketIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                    <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="wallSocketIDimageCover" @input="handlewallSocketIDimageCoverChange" />
+                                                </div>
+                                            </div>
+                                            <div class="o-form-edit__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
+                                                </label>
+                                                <div class="o-form-edit__image">
+                                                    <div class="o-form-edit__image-lazyload" :class="{'-loading': wallSocketIDimageHeroLoading}">
+                                                        <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && wallSocketIDimageHero" @load="handleImageHeroLoad">
+                                                    </div>
+                                                    <span class="o-form-edit__image-text" v-if="imageHero[0] && wallSocketIDimageHeroLoad !== wallSocketIDimageHeroChange && (wallSocketIDimageHero && wallSocketIDimageHero !== null && wallSocketIDimageHero !== 0)">Byl vybrán nový obrázek</span>
+                                                    <span class="o-form-edit__image-text" v-if="imageHero[0] && (!wallSocketIDimageHero || wallSocketIDimageHero === null || wallSocketIDimageHero === 0)">Obrázek byl odebrán</span>
+                                                    <span class="o-form-edit__image-text" v-if="!imageHero[0] && wallSocketIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                    <span class="o-form-edit__image-text" v-if="wallSocketIDimageHeroLoad === wallSocketIDimageHeroChange && !imageHero[0] && wallSocketIDimageHero && wallSocketIDimageHero !== null && wallSocketIDimageHero !== 0">Vybraní obrázek neexistuje</span>
+                                                    <span class="o-form-edit__image-text" v-if="!imageHero[0] && (!wallSocketIDimageHero || wallSocketIDimageHero === null || wallSocketIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                    <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="wallSocketIDimageHero" @input="handlewallSocketIDimageHeroChange" />
+                                                </div>
+                                            </div>
+                                            <!-- other -->
+                                            <div class="o-form-edit__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Typ zásuvky <span class="m-label__name-column">(label)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="label" v-model="wallSocketLabel" required />
+                                            </div>
+                                            <div class="o-form-edit__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="name" v-model="wallSocketName" required />
+                                            </div>
+                                            <div class="o-form-edit__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
+                                                </label>
+                                                <textarea class="a-textarea" type="text" name="description" v-model="wallSocketDescription"></textarea>
+                                            </div>
+                                            <!-- JSON - Seo Tags -->
+                                            <div class="o-form-edit__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                                </label>
+                                                <div class="o-form-edit__group">
+                                                    <div class="o-form-edit__group-items">
+                                                        <div class="o-form-edit__group-item" v-for="(item, index) in wallSocketSeoTagsArray" :key="index">
+                                                            <div class="m-button-remove">
+                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                    Odstranit
+                                                                </button>
+                                                            </div>
+                                                            <div class="o-form-edit__group-inputs">
+                                                                <div class="o-form-edit__group-input">
+                                                                    <label class="m-label">Tag:</label>
+                                                                    <input class="a-input" type="text" v-model="item.tag" />
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="o-form-edit__group-inputs">
-                                                            <div class="o-form-edit__group-input">
-                                                                <label class="m-label">Tag:</label>
-                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                    </div>
+                                                    <div class="o-form-edit__buttons mt-1">
+                                                        <div class="o-form-edit__button">
+                                                            <div class="m-button-add">
+                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-edit__buttons mt-1">
-                                                    <div class="o-form-edit__button">
-                                                        <div class="m-button-add">
-                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
-                                        </div>
-                                        <!-- JSON -->
-                                        <div class="o-form-edit__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
-                                            </label>
-                                            
-                                            <div class="o-form-edit__group">
-                                                <div class="o-form-edit__group-items">
-                                                    <div class="o-form-edit__group-item" v-for="(item, index) in wallSocketIDSstatesArray" :key="index">
-                                                        <div class="m-button-remove">
-                                                            <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
-                                                                Odstranit
-                                                            </button>
-                                                        </div>
-                                                        <div class="o-form-edit__group-inputs">
-                                                            <div class="o-form-edit__group-input">
-                                                                <label class="m-label">ID:</label>
-                                                                <input class="a-input" type="number" min="0" v-model="item.id" />
+                                            <!-- JSON -->
+                                            <div class="o-form-edit__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
+                                                </label>
+                                                
+                                                <div class="o-form-edit__group">
+                                                    <div class="o-form-edit__group-items">
+                                                        <div class="o-form-edit__group-item" v-for="(item, index) in wallSocketIDSstatesArray" :key="index">
+                                                            <div class="m-button-remove">
+                                                                <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
+                                                                    Odstranit
+                                                                </button>
+                                                            </div>
+                                                            <div class="o-form-edit__group-inputs">
+                                                                <div class="o-form-edit__group-input">
+                                                                    <label class="m-label">ID:</label>
+                                                                    <input class="a-input" type="number" min="0" v-model="item.id" />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="o-form-edit__buttons mt-1">
-                                                    <div class="o-form-edit__button">
-                                                        <div class="m-button-add">
-                                                            <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
+                                                    <div class="o-form-edit__buttons mt-1">
+                                                        <div class="o-form-edit__button">
+                                                            <div class="m-button-add">
+                                                                <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -166,6 +187,7 @@
 </template>
 
 <script lang="ts">
+    import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
@@ -179,6 +201,7 @@
     }
 
     interface WallSocket {
+        id: number
         id_image_cover: number
         id_image_hero: number
         seo_tags: seoTags[]
@@ -208,6 +231,7 @@
 
         //COMPONENTS
         components: {
+            mHeadlineForm,
             mNavBreadcrumbs,
             oFlashMessages,
             oHero
@@ -342,6 +366,7 @@
             const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
+            const itemID = ref(null)
             const wallSocketSlug = ref('')
             const wallSocketIDimageCover = ref(null)
             const wallSocketIDimageHero = ref(null)
@@ -368,6 +393,7 @@
                 const WallSocket: WallSocket[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(WallSocket) && WallSocket.length > 0) {
+                    itemID.value = WallSocket[0].id;
                     wallSocketSlug.value = WallSocket[0].slug;
                     wallSocketIDimageCover.value = WallSocket[0].id_image_cover;
                     wallSocketIDimageHero.value = WallSocket[0].id_image_hero;
@@ -472,6 +498,7 @@
             return {
                 successForm,
                 errorForm,
+                itemID,
                 wallSocketSlug,
                 wallSocketIDimageCover,
                 wallSocketIDimageHero,
