@@ -23,79 +23,113 @@
 
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="editForm">
-                                    <div class="o-form-item__items">
-                                        <!-- slug -->
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="slug" v-model="platformSlug" required />
-                                        </div>
-                                        <!-- other -->                              
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Název platformy <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="name" v-model="platformName" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Můj popis <span class="m-label__name-column">(perex)</span></span>
-                                            </label>
-                                            <textarea class="a-textarea" type="text" name="perex" v-model="platformPerex"></textarea>
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Odkaz na profil <span class="m-label__name-column">(url)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="url" v-model="platformUrl" required />
-                                        </div>
-                                        <!-- dates -->
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Datum údajů <span class="m-label__name-column">(date)</span></span>
-                                                <span class="m-label__perex">Datum k jakému platí údaje o platformě ve formátu <i>k 13. Říjnu 2022</i></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="date" v-model="platformDate" />
-                                        </div>
-                                        <!-- json -->
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Fakta o síťi <span class="m-label__name-column">(facts)</span></span>
-                                                <span class="m-label__perex">Fakta o síťi například datum založení a počet sledujícíh</span>
-                                            </label>
-                                            <div class="o-form-item__group">
-                                                <div class="o-form-item__group-items">
-                                                    <div class="o-form-item__group-item" v-for="(item, index) in platformFactsArray" :key="index">
-                                                        <div class="m-button-remove">
-                                                            <button class="m-button-remove__input" type="button" @click="removeFactInput(index)">
-                                                                Odstranit
-                                                            </button>
-                                                        </div>
-                                                        <div class="o-form-item__group-inputs">
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Name:</label>
-                                                                <input class="a-input" type="text" v-model="item.name" />
-                                                            </div>
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Value:</label>
-                                                                <input class="a-input" type="text" v-model="item.value" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="o-form-item__buttons mt-1">
-                                                    <div class="o-form-item__button">
-                                                        <div class="m-button-add">
-                                                            <button class="m-button-add__input" type="button" @click="addFactInput">Přidat fakt</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    <!-- BLOCK - Stálé hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Stálé hodnoty" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - id -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
-                                        </div>                                                                        
+                                            <!-- Form - id END -->
+                                        </div>
                                     </div>
-                                    <!--button-->
+                                    <!-- BLOCK - Stálé hodnoty END -->
+
+                                    <!-- BLOCK - Editační hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - slug -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
+                                                </label>
+                                                <input class="a-input" type="text" name="slug" v-model="platformSlug" required />
+                                            </div>
+                                            <!-- Form - slug END -->
+                                            <!-- Form - name -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Název platformy <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="name" v-model="platformName" required />
+                                            </div>
+                                            <!-- Form - name END -->
+                                            <!-- Form - perex -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Můj popis <span class="m-label__name-column">(perex)</span></span>
+                                                </label>
+                                                <textarea class="a-textarea" type="text" name="perex" v-model="platformPerex"></textarea>
+                                            </div>
+                                            <!-- Form - perex END -->
+                                            <!-- Form - url -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Odkaz na profil <span class="m-label__name-column">(url)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="url" v-model="platformUrl" required />
+                                            </div>
+                                            <!-- Form - url END -->
+                                            <!-- Form - date -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Datum údajů <span class="m-label__name-column">(date)</span></span>
+                                                    <span class="m-label__perex">Datum k jakému platí údaje o platformě ve formátu <i>k 13. Říjnu 2022</i></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="date" v-model="platformDate" />
+                                            </div>
+                                            <!-- Form - date END -->
+                                            <!-- Form - facts(JSON) -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Fakta o síťi <span class="m-label__name-column">(facts)</span></span>
+                                                    <span class="m-label__perex">Fakta o síťi například datum založení a počet sledujícíh</span>
+                                                </label>
+                                                <div class="o-form-item__group">
+                                                    <div class="o-form-item__group-items">
+                                                        <div class="o-form-item__group-item" v-for="(item, index) in platformFactsArray" :key="index">
+                                                            <div class="m-button-remove">
+                                                                <button class="m-button-remove__input" type="button" @click="removeFactInput(index)">
+                                                                    Odstranit
+                                                                </button>
+                                                            </div>
+                                                            <div class="o-form-item__group-inputs">
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Name:</label>
+                                                                    <input class="a-input" type="text" v-model="item.name" />
+                                                                </div>
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Value:</label>
+                                                                    <input class="a-input" type="text" v-model="item.value" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="o-form-item__buttons mt-1">
+                                                        <div class="o-form-item__button">
+                                                            <div class="m-button-add">
+                                                                <button class="m-button-add__input" type="button" @click="addFactInput">Přidat fakt</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <!-- Form - facts(JSON) END -->                                                                       
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Editační hodnoty END -->
+
+                                    <!-- COMPONENT - Button -->
                                     <div class="o-form-item__buttons mt-1">
                                         <div class="o-form-item__button">
                                             <div class="m-button">
@@ -103,6 +137,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- COMPONENT - Button END -->
                                 </form>
                                 <!-- FORM END -->
                             </div>
@@ -115,6 +150,7 @@
 </template>
 
 <script lang="ts">
+    import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
@@ -125,6 +161,7 @@
     }
 
     interface Platform {
+        id: number
         slug: string
         name: string
         perex: string
@@ -138,6 +175,7 @@
 
         //COMPONENTS
         components: {
+            mHeadlineForm,
             mNavBreadcrumbs,
             oFlashMessages,
             oHero
@@ -235,6 +273,7 @@
             const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
+            const itemID = ref(null)
             const platformSlug = ref('')
             const platformName = ref('')
             const platformPerex = ref('')
@@ -250,6 +289,7 @@
                 const Platform: Platform[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Platform) && Platform.length > 0) {
+                    itemID.value = Platform[0].id;
                     platformSlug.value = Platform[0].slug;
                     platformName.value = Platform[0].name;
                     platformPerex.value = Platform[0].perex;
@@ -299,6 +339,7 @@
             return {
                 successForm,
                 errorForm,
+                itemID,
                 platformSlug,
                 platformName,
                 platformPerex,

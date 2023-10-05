@@ -23,92 +23,147 @@
 
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="editForm">
-                                    <div class="o-form-item__items">
-                                        <!-- slug -->
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="slug" v-model="travelDictionarySlug" required />
+                                    <!-- BLOCK - Stálé hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Stálé hodnoty" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - id -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
+                                            </div>
+                                            <!-- Form - id END -->
                                         </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
-                                            </label>
-                                            <div class="o-form-item__group">
-                                                <div class="o-form-item__group-items">
-                                                    <div class="o-form-item__group-item" v-for="(item, index) in travelDictionarySeoTagsArray" :key="index">
-                                                        <div class="m-button-remove">
-                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                Odstranit
-                                                            </button>
+                                    </div>
+                                    <!-- BLOCK - Stálé hodnoty END -->
+
+                                    <!-- BLOCK - Obrázky -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Obrázky" styleGap=" mt-2" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - id_image_cover -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
+                                                </label>
+                                                <div class="o-form-item__image">
+                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': travelDictionaryIDimageCoverLoading}">
+                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && travelDictionaryIDimageCover" @load="handleImageCoverLoad">
+                                                    </div>
+                                                    <span class="o-form-item__image-text" v-if="imageCover[0] && travelDictionaryIDimageCoverLoad !== travelDictionaryIDimageCoverChange && (travelDictionaryIDimageCover && travelDictionaryIDimageCover !== null && travelDictionaryIDimageCover !== 0)">Byl vybrán nový obrázek</span>
+                                                    <span class="o-form-item__image-text" v-if="imageCover[0] && (!travelDictionaryIDimageCover || travelDictionaryIDimageCover === null || travelDictionaryIDimageCover === 0)">Obrázek byl odebrán</span>
+                                                    <span class="o-form-item__image-text" v-if="!imageCover[0] && travelDictionaryIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                    <span class="o-form-item__image-text" v-if="travelDictionaryIDimageCoverLoad === travelDictionaryIDimageCoverChange && !imageCover[0] && travelDictionaryIDimageCover && travelDictionaryIDimageCover !== null && travelDictionaryIDimageCover !== 0">Vybraní obrázek neexistuje</span>
+                                                    <span class="o-form-item__image-text" v-if="!imageCover[0] && (!travelDictionaryIDimageCover || travelDictionaryIDimageCover === null || travelDictionaryIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                    <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="travelDictionaryIDimageCover" @input="handleTravelDictionaryIDimageCoverChange" />
+                                                </div>
+                                            </div>
+                                            <!-- Form - id_image_cover END -->
+                                            <!-- Form - id_image_hero -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
+                                                </label>
+                                                <div class="o-form-item__image">
+                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': travelDictionaryIDimageHeroLoading}">
+                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && travelDictionaryIDimageHero" @load="handleImageHeroLoad">
+                                                    </div>
+                                                    <span class="o-form-item__image-text" v-if="imageHero[0] && travelDictionaryIDimageHeroLoad !== travelDictionaryIDimageHeroChange && (travelDictionaryIDimageHero && travelDictionaryIDimageHero !== null && travelDictionaryIDimageHero !== 0)">Byl vybrán nový obrázek</span>
+                                                    <span class="o-form-item__image-text" v-if="imageHero[0] && (!travelDictionaryIDimageHero || travelDictionaryIDimageHero === null || travelDictionaryIDimageHero === 0)">Obrázek byl odebrán</span>
+                                                    <span class="o-form-item__image-text" v-if="!imageHero[0] && travelDictionaryIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                    <span class="o-form-item__image-text" v-if="travelDictionaryIDimageHeroLoad === travelDictionaryIDimageHeroChange && !imageHero[0] && travelDictionaryIDimageHero && travelDictionaryIDimageHero !== null && travelDictionaryIDimageHero !== 0">Vybraní obrázek neexistuje</span>
+                                                    <span class="o-form-item__image-text" v-if="!imageHero[0] && (!travelDictionaryIDimageHero || travelDictionaryIDimageHero === null || travelDictionaryIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                    <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="travelDictionaryIDimageHero" @input="handleTravelDictionaryIDimageHeroChange" />
+                                                </div>
+                                            </div>
+                                            <!-- Form - id_image_hero END -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Obrázky END -->
+
+                                    <!-- BLOCK - SEO -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="SEO" styleGap=" mt-2" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - seo_tags -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                                </label>
+                                                <div class="o-form-item__group">
+                                                    <div class="o-form-item__group-items">
+                                                        <div class="o-form-item__group-item" v-for="(item, index) in travelDictionarySeoTagsArray" :key="index">
+                                                            <div class="m-button-remove">
+                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                    Odstranit
+                                                                </button>
+                                                            </div>
+                                                            <div class="o-form-item__group-inputs">
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Tag:</label>
+                                                                    <input class="a-input" type="text" v-model="item.tag" />
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="o-form-item__group-inputs">
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Tag:</label>
-                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                    </div>
+                                                    <div class="o-form-item__buttons mt-1">
+                                                        <div class="o-form-item__button">
+                                                            <div class="m-button-add">
+                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-item__buttons mt-1">
-                                                    <div class="o-form-item__button">
-                                                        <div class="m-button-add">
-                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
+                                            <!-- Form - seo_tags END -->
                                         </div>
-                                        <!-- ids -->
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
-                                            </label>
-                                            <div class="o-form-item__image">
-                                                <div class="o-form-item__image-lazyload" :class="{'-loading': travelDictionaryIDimageCoverLoading}">
-                                                    <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && travelDictionaryIDimageCover" @load="handleImageCoverLoad">
-                                                </div>
-                                                <span class="o-form-item__image-text" v-if="imageCover[0] && travelDictionaryIDimageCoverLoad !== travelDictionaryIDimageCoverChange && (travelDictionaryIDimageCover && travelDictionaryIDimageCover !== null && travelDictionaryIDimageCover !== 0)">Byl vybrán nový obrázek</span>
-                                                <span class="o-form-item__image-text" v-if="imageCover[0] && (!travelDictionaryIDimageCover || travelDictionaryIDimageCover === null || travelDictionaryIDimageCover === 0)">Obrázek byl odebrán</span>
-                                                <span class="o-form-item__image-text" v-if="!imageCover[0] && travelDictionaryIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                <span class="o-form-item__image-text" v-if="travelDictionaryIDimageCoverLoad === travelDictionaryIDimageCoverChange && !imageCover[0] && travelDictionaryIDimageCover && travelDictionaryIDimageCover !== null && travelDictionaryIDimageCover !== 0">Vybraní obrázek neexistuje</span>
-                                                <span class="o-form-item__image-text" v-if="!imageCover[0] && (!travelDictionaryIDimageCover || travelDictionaryIDimageCover === null || travelDictionaryIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="travelDictionaryIDimageCover" @input="handleTravelDictionaryIDimageCoverChange" />
-                                            </div>
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
-                                            </label>
-                                            <div class="o-form-item__image">
-                                                <div class="o-form-item__image-lazyload" :class="{'-loading': travelDictionaryIDimageHeroLoading}">
-                                                    <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && travelDictionaryIDimageHero" @load="handleImageHeroLoad">
-                                                </div>
-                                                <span class="o-form-item__image-text" v-if="imageHero[0] && travelDictionaryIDimageHeroLoad !== travelDictionaryIDimageHeroChange && (travelDictionaryIDimageHero && travelDictionaryIDimageHero !== null && travelDictionaryIDimageHero !== 0)">Byl vybrán nový obrázek</span>
-                                                <span class="o-form-item__image-text" v-if="imageHero[0] && (!travelDictionaryIDimageHero || travelDictionaryIDimageHero === null || travelDictionaryIDimageHero === 0)">Obrázek byl odebrán</span>
-                                                <span class="o-form-item__image-text" v-if="!imageHero[0] && travelDictionaryIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                <span class="o-form-item__image-text" v-if="travelDictionaryIDimageHeroLoad === travelDictionaryIDimageHeroChange && !imageHero[0] && travelDictionaryIDimageHero && travelDictionaryIDimageHero !== null && travelDictionaryIDimageHero !== 0">Vybraní obrázek neexistuje</span>
-                                                <span class="o-form-item__image-text" v-if="!imageHero[0] && (!travelDictionaryIDimageHero || travelDictionaryIDimageHero === null || travelDictionaryIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="travelDictionaryIDimageHero" @input="handleTravelDictionaryIDimageHeroChange" />
-                                            </div>
-                                        </div>
-                                        <!-- other -->                             
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="name" v-model="travelDictionaryName" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
-                                            </label>
-                                            <textarea class="a-textarea" type="text" name="description" v-model="travelDictionaryDescription"></textarea>
-                                        </div>             
                                     </div>
-                                    <!-- button -->
+                                    <!-- BLOCK - SEO END -->
+
+                                    <!-- BLOCK - Editační hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - slug -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="slug" v-model="travelDictionarySlug" required />
+                                            </div>
+                                            <!-- Form - slug END -->
+                                            <!-- Form - name -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="name" v-model="travelDictionaryName" required />
+                                            </div>
+                                            <!-- Form - name END -->
+                                            <!-- Form - description -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
+                                                </label>
+                                                <textarea class="a-textarea" type="text" name="description" v-model="travelDictionaryDescription"></textarea>
+                                            </div>
+                                            <!-- Form - description END-->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Editační hodnoty END -->
+
+                                    <!-- COMPONENT - Button -->
                                     <div class="o-form-item__buttons mt-1">
                                         <div class="o-form-item__button">
                                             <div class="m-button">
@@ -116,6 +171,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- COMPONENT - Button END -->
                                 </form>
                                 <!-- FORM END -->
                             </div>
@@ -128,6 +184,7 @@
 </template>
 
 <script lang="ts">
+    import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
@@ -137,6 +194,7 @@
     }
 
     interface TravelDictionaries {
+        id: number
         id_image_cover: number
         id_image_hero: number
         slug: string
@@ -164,6 +222,7 @@
 
         //COMPONENTS
         components: {
+            mHeadlineForm,
             mNavBreadcrumbs,
             oFlashMessages,
             oHero
@@ -278,6 +337,7 @@
             const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
+            const itemID = ref(null)
             const travelDictionaryIDimageCover = ref(null)
             const travelDictionaryIDimageHero = ref(null)
             const travelDictionarySlug = ref('')
@@ -301,6 +361,7 @@
                 const TravelDictionaries: TravelDictionaries[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(TravelDictionaries) && TravelDictionaries.length > 0) {
+                    itemID.value = TravelDictionaries[0].id;
                     travelDictionaryIDimageCover.value = TravelDictionaries[0].id_image_cover;
                     travelDictionaryIDimageHero.value = TravelDictionaries[0].id_image_hero;
                     travelDictionarySlug.value = TravelDictionaries[0].slug;
@@ -400,6 +461,7 @@
             return {
                 successForm,
                 errorForm,
+                itemID,
                 travelDictionarySeoTags,
                 travelDictionarySeoTagsArray,
                 travelDictionaryIDimageCover,

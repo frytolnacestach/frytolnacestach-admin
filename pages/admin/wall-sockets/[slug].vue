@@ -11,7 +11,6 @@
 
             <section class="t-section my-4">
                 <div class="t-section__inner">
-
                     <div class="o-form-item">
                         <div class="o-form-item__outer">
                             <div class="o-form-item__inner">
@@ -23,9 +22,10 @@
 
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="editForm">
+                                    <!-- BLOCK - Stálé hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
-                                        <mHeadlineForm title="Stálé hodnoty"/>
+                                        <mHeadlineForm title="Stálé hodnoty" />
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
                                             <!-- Form - id -->
@@ -38,21 +38,15 @@
                                             <!-- Form - id END -->
                                         </div>
                                     </div>
+                                    <!-- BLOCK - Stálé hodnoty END -->
 
+                                    <!-- BLOCK - Obrázky -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
-                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <mHeadlineForm title="Obrázky" styleGap=" mt-2" />
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
-                                            <!-- slug -->
-                                            <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
-                                                </label>
-                                                <input class="a-input" type="text" name="slug" v-model="wallSocketSlug" required />
-                                            </div>
-                                            <!-- ids -->
+                                            <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
@@ -69,6 +63,8 @@
                                                     <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="wallSocketIDimageCover" @input="handlewallSocketIDimageCoverChange" />
                                                 </div>
                                             </div>
+                                            <!-- Form - id_image_cover END -->
+                                            <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
@@ -85,26 +81,18 @@
                                                     <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="wallSocketIDimageHero" @input="handlewallSocketIDimageHeroChange" />
                                                 </div>
                                             </div>
-                                            <!-- other -->
-                                            <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Typ zásuvky <span class="m-label__name-column">(label)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
-                                                <input class="a-input" type="text" name="label" v-model="wallSocketLabel" required />
-                                            </div>
-                                            <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
-                                                <input class="a-input" type="text" name="name" v-model="wallSocketName" required />
-                                            </div>
-                                            <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
-                                                </label>
-                                                <textarea class="a-textarea" type="text" name="description" v-model="wallSocketDescription"></textarea>
-                                            </div>
-                                            <!-- JSON - Seo Tags -->
+                                            <!-- Form - id_image_hero END -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Obrázky END -->
+
+                                    <!-- BLOCK - SEO -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="SEO" styleGap=" mt-2" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
@@ -134,12 +122,55 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- JSON -->
+                                            <!-- Form - seo_tags END -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - SEO END -->
+
+                                    <!-- BLOCK - Editační hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - slug -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
+                                                </label>
+                                                <input class="a-input" type="text" name="slug" v-model="wallSocketSlug" required />
+                                            </div>
+                                            <!-- Form - slug END -->                        
+                                            <!-- Form - label -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Typ zásuvky <span class="m-label__name-column">(label)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="label" v-model="wallSocketLabel" required />
+                                            </div>
+                                            <!-- Form - label END -->
+                                            <!-- Form - name -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="name" v-model="wallSocketName" required />
+                                            </div>
+                                            <!-- Form - name END -->
+                                            <!-- Form - description -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
+                                                </label>
+                                                <textarea class="a-textarea" type="text" name="description" v-model="wallSocketDescription"></textarea>
+                                            </div>
+                                            <!-- Form - description END -->
+                                            <!-- Form - ids_states(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
                                                 </label>
-                                                
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in wallSocketIDSstatesArray" :key="index">
@@ -165,9 +196,12 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Form - ids_states(JSON) END -->
                                         </div>
                                     </div>
-                                    <!-- button -->
+                                    <!-- BLOCK - Editační hodnoty END -->
+
+                                    <!-- COMPONENT - Button -->
                                     <div class="o-form-item__buttons mt-1">
                                         <div class="o-form-item__button">
                                             <div class="m-button">
@@ -175,6 +209,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- COMPONENT - Button END -->
                                 </form>
                                 <!-- FORM END -->
                             </div>

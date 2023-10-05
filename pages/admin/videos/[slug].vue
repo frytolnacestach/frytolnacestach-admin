@@ -23,128 +23,197 @@
 
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="editForm">
-                                    <div class="o-form-item__items">
-                                        <!-- slug -->
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
-                                            </label>
-                                            <input class="a-input" type="text" name="slug" v-model="videoSlug" required />
+                                    <!-- BLOCK - Stálé hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Stálé hodnoty" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - id -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
+                                            </div>
+                                            <!-- Form - id END -->
                                         </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
-                                            </label>
-                                            <div class="o-form-item__group">
-                                                <div class="o-form-item__group-items">
-                                                    <div class="o-form-item__group-item" v-for="(item, index) in videoSeoTagsArray" :key="index">
-                                                        <div class="m-button-remove">
-                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                Odstranit
-                                                            </button>
+                                    </div>
+                                    <!-- BLOCK - Stálé hodnoty END -->
+
+                                    <!-- BLOCK - Obrázky -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Obrázky" styleGap=" mt-2" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - id_image -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Obrázku <span class="m-label__name-column">(id_image)</span></span>
+                                                </label>
+                                                <div class="o-form-item__image">
+                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': videoIDimageLoading}">
+                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${image[0].source + image[0].name}.webp`" v-if="image[0] && videoIDimage" @load="handleImageLoad">
+                                                    </div>
+                                                    <span class="o-form-item__image-text" v-if="image[0] && videoIDimageLoad !== videoIDimageChange && (videoIDimage && videoIDimage !== null && videoIDimage !== 0)">Byl vybrán nový obrázek</span>
+                                                    <span class="o-form-item__image-text" v-if="image[0] && (!videoIDimage || videoIDimage === null || videoIDimage === 0)">Obrázek byl odebrán</span>
+                                                    <span class="o-form-item__image-text" v-if="!image[0] && videoIDimage">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                    <span class="o-form-item__image-text" v-if="videoIDimageLoad === videoIDimageChange && !image[0] && videoIDimage && videoIDimage !== null && videoIDimage !== 0">Vybraní obrázek neexistuje</span>
+                                                    <span class="o-form-item__image-text" v-if="!image[0] && (!videoIDimage || videoIDimage === null || videoIDimage === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                    <input class="a-input -c-gray" type="number" min="0" name="id_image" v-model="videoIDimage" @input="handleVideoIDimageChange" />
+                                                </div>
+                                            </div>
+                                            <!-- Form - id_image_hero END -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Obrázky END -->
+
+                                    <!-- BLOCK - SEO -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="SEO" styleGap=" mt-2" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - seo_tags -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                                </label>
+                                                <div class="o-form-item__group">
+                                                    <div class="o-form-item__group-items">
+                                                        <div class="o-form-item__group-item" v-for="(item, index) in videoSeoTagsArray" :key="index">
+                                                            <div class="m-button-remove">
+                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                    Odstranit
+                                                                </button>
+                                                            </div>
+                                                            <div class="o-form-item__group-inputs">
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Tag:</label>
+                                                                    <input class="a-input" type="text" v-model="item.tag" />
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="o-form-item__group-inputs">
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Tag:</label>
-                                                                <input class="a-input" type="text" v-model="item.tag" />
+                                                    </div>
+                                                    <div class="o-form-item__buttons mt-1">
+                                                        <div class="o-form-item__button">
+                                                            <div class="m-button-add">
+                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-item__buttons mt-1">
-                                                    <div class="o-form-item__button">
-                                                        <div class="m-button-add">
-                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
+                                            <!-- Form - seo_tags END -->
                                         </div>
-                                        <!-- ids -->
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span></span>
-                                            </label>
-                                            <input class="a-input" type="number" min="0" name="id_continent" v-model="videoIDcontinent" />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
-                                            </label>
-                                            <input class="a-input" type="number" min="0" name="id_state" v-model="videoIDstate" />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
-                                            </label>
-                                            <input class="a-input" type="number" min="0" name="id_region" v-model="videoIDregion" />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
-                                            </label>
-                                            <input class="a-input" type="number" min="0" name="id_city" v-model="videoIDcity" />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
-                                            </label>
-                                            <input class="a-input" type="number" min="0" name="id_spot" v-model="videoIDspot" />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID Obrázku <span class="m-label__name-column">(id_image)</span></span>
-                                            </label>
-                                            <div class="o-form-item__image">
-                                                <div class="o-form-item__image-lazyload" :class="{'-loading': videoIDimageLoading}">
-                                                    <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${image[0].source + image[0].name}.webp`" v-if="image[0] && videoIDimage" @load="handleImageLoad">
-                                                </div>
-                                                <span class="o-form-item__image-text" v-if="image[0] && videoIDimageLoad !== videoIDimageChange && (videoIDimage && videoIDimage !== null && videoIDimage !== 0)">Byl vybrán nový obrázek</span>
-                                                <span class="o-form-item__image-text" v-if="image[0] && (!videoIDimage || videoIDimage === null || videoIDimage === 0)">Obrázek byl odebrán</span>
-                                                <span class="o-form-item__image-text" v-if="!image[0] && videoIDimage">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                <span class="o-form-item__image-text" v-if="videoIDimageLoad === videoIDimageChange && !image[0] && videoIDimage && videoIDimage !== null && videoIDimage !== 0">Vybraní obrázek neexistuje</span>
-                                                <span class="o-form-item__image-text" v-if="!image[0] && (!videoIDimage || videoIDimage === null || videoIDimage === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                <input class="a-input -c-gray" type="number" min="0" name="id_image" v-model="videoIDimage" @input="handleVideoIDimageChange" />
-                                            </div>
-                                        </div>
-                                        <!-- other -->
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Platforma <span class="m-label__name-column">(platform)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <select class="m-select" name="platform" v-model="videoPlatform" required>
-                                                <option value="">- Vyber platformu -</option>
-                                                <option v-for="platform in platforms" :key="platform.id" :value="platform.id">{{platform.name}}</option>
-                                            </select>
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Žánr <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
-                                                <span class="m-label__perex">Například <i>travel</i>, <i>event</i> nebo <i>talk</i></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="type" v-model="videoType" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Název <span class="m-label__name-column">(title)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="title" v-model="videoTitle" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Popis <span class="m-label__name-column">(perex)</span></span>
-                                            </label>
-                                            <textarea class="a-textarea" type="text" name="perex" v-model="videoPerex"></textarea>
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Odkaz <span class="m-label__name-column">(url)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="url" v-model="videoUrl" required />
-                                        </div>               
                                     </div>
-                                    <!--button-->
+                                    <!-- BLOCK - SEO END -->
+
+                                    <!-- BLOCK - Editační hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - slug -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
+                                                </label>
+                                                <input class="a-input" type="text" name="slug" v-model="videoSlug" required />
+                                            </div>
+                                            <!-- Form - slug END -->
+                                            <!-- Form - id_continent -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span></span>
+                                                </label>
+                                                <input class="a-input" type="number" min="0" name="id_continent" v-model="videoIDcontinent" />
+                                            </div>
+                                            <!-- Form - id_continent END -->
+                                            <!-- Form - id_state -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
+                                                </label>
+                                                <input class="a-input" type="number" min="0" name="id_state" v-model="videoIDstate" />
+                                            </div>
+                                            <!-- Form - id_state END -->
+                                            <!-- Form - id_region -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
+                                                </label>
+                                                <input class="a-input" type="number" min="0" name="id_region" v-model="videoIDregion" />
+                                            </div>
+                                            <!-- Form - id_region END -->
+                                            <!-- Form - id_city -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
+                                                </label>
+                                                <input class="a-input" type="number" min="0" name="id_city" v-model="videoIDcity" />
+                                            </div>
+                                            <!-- Form - id_city END -->
+                                            <!-- Form - id_spot -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
+                                                </label>
+                                                <input class="a-input" type="number" min="0" name="id_spot" v-model="videoIDspot" />
+                                            </div>
+                                            <!-- Form - id_spot END -->
+                                            <!-- Form - platform -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Platforma <span class="m-label__name-column">(platform)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <select class="m-select" name="platform" v-model="videoPlatform" required>
+                                                    <option value="">- Vyber platformu -</option>
+                                                    <option v-for="platform in platforms" :key="platform.id" :value="platform.id">{{platform.name}}</option>
+                                                </select>
+                                            </div>
+                                            <!-- Form - platform END -->
+                                            <!-- Form - type -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Žánr <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
+                                                    <span class="m-label__perex">Například <i>travel</i>, <i>event</i> nebo <i>talk</i></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="type" v-model="videoType" required />
+                                            </div>
+                                            <!-- Form - type END -->
+                                            <!-- Form - title -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Název <span class="m-label__name-column">(title)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="title" v-model="videoTitle" required />
+                                            </div>
+                                            <!-- Form - title END -->
+                                            <!-- Form - perex -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Popis <span class="m-label__name-column">(perex)</span></span>
+                                                </label>
+                                                <textarea class="a-textarea" type="text" name="perex" v-model="videoPerex"></textarea>
+                                            </div>
+                                            <!-- Form - perex END -->
+                                            <!-- Form - url -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Odkaz <span class="m-label__name-column">(url)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="url" v-model="videoUrl" required />
+                                            </div>
+                                            <!-- Form - url END -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Editační hodnoty END -->
+
+                                    <!-- COMPONENT - Button -->
                                     <div class="o-form-item__buttons mt-1">
                                         <div class="o-form-item__button">
                                             <div class="m-button">
@@ -152,6 +221,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- COMPONENT - Button END -->
                                 </form>
                                 <!-- FORM END -->
                             </div>
@@ -164,6 +234,7 @@
 </template>
 
 <script lang="ts">
+    import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
@@ -179,6 +250,7 @@
     }
 
     interface Video {
+        id: number
         slug: string
         id_continent: number
         id_state: number
@@ -206,6 +278,7 @@
 
         //COMPONENTS
         components: {
+            mHeadlineForm,
             mNavBreadcrumbs,
             oFlashMessages,
             oHero
@@ -318,6 +391,7 @@
             const route = useRoute()
             const errorForm = ref('')
             const successForm = ref('')
+            const itemID = ref(null)
             const platforms = ref<Platform[]>([])
             const videoSlug = ref('')
             const videoIDcontinent = ref(null)
@@ -345,6 +419,7 @@
                 const Video: Video[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Video) && Video.length > 0 && 'slug' in Video[0] && 'platform' in Video[0] && 'title' in Video[0] && 'url' in Video[0]) {
+                    itemID.value = Video[0].id;
                     videoSlug.value = Video[0].slug;
                     videoIDcontinent.value = Video[0].id_continent;
                     videoIDstate.value = Video[0].id_state;
@@ -441,6 +516,7 @@
             return {
                 successForm,
                 errorForm,
+                itemID,
                 videoSlug,
                 videoSeoTags,
                 videoSeoTagsArray,
