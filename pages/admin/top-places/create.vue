@@ -12,9 +12,9 @@
             <section class="t-section mt-4 mb-8">
                 <div class="t-section__inner">
 
-                    <div class="o-form-create">
-                        <div class="o-form-create__outer">
-                            <div class="o-form-create__inner">
+                    <div class="o-form-item">
+                        <div class="o-form-item__outer">
+                            <div class="o-form-item__inner">
                                 
                                 <!-- SECTION - FlashMassages -->
                                 <oFlashMessages :text="errorForm" styleThema=" -error" />
@@ -22,17 +22,17 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-create__form" @submit.prevent="createForm">
-                                    <div class="o-form-create__items">
+                                <form class="o-form-item__form" @submit.prevent="createForm">
+                                    <div class="o-form-item__items">
                                         <!-- ids -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID místa <span class="m-label__name-column">(id_place)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="idPlace" v-model="topPlaceIDplace" required />
                                         </div>
                                         <!-- other -->                             
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Typ <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
                                             </label>
@@ -40,8 +40,8 @@
                                         </div>                      
                                     </div>
                                     <!-- button -->
-                                    <div class="o-form-create__buttons mt-1">
-                                        <div class="o-form-create__button">
+                                    <div class="o-form-item__buttons mt-1">
+                                        <div class="o-form-item__button">
                                             <div class="m-button">
                                                 <button class="m-button__input" type="submit">Vytvořit top místo</button>
                                             </div>

@@ -12,9 +12,9 @@
             <section class="t-section my-4">
                 <div class="t-section__inner">
 
-                    <div class="o-form-edit">
-                        <div class="o-form-edit__outer">
-                            <div class="o-form-edit__inner">
+                    <div class="o-form-item">
+                        <div class="o-form-item__outer">
+                            <div class="o-form-item__inner">
                                 
                                 <!-- SECTION - FlashMassages -->
                                 <oFlashMessages :text="errorForm" styleThema=" -error" />
@@ -22,42 +22,42 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-edit__form" @submit.prevent="editForm">
-                                    <div class="o-form-edit__items">
-                                        <img class="o-form-edit__image-file" :src="`https://image.frytolnacestach.cz/storage${imageSource + imageName}.webp`">
+                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                    <div class="o-form-item__items">
+                                        <img class="o-form-item__image-file" :src="`https://image.frytolnacestach.cz/storage${imageSource + imageName}.webp`">
                                         <!-- ids -->
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" disabled="true" name="id" v-model="imageID" required />
                                         </div>
                                         <!-- other -->                            
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="imageName" required />
                                         </div>
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Zdroj <span class="m-label__name-column">(source)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="source" v-model="imageSource" required />
                                         </div>
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Datum vytvoření <span class="m-label__name-column">(date_create)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="dateCreate" disabled="true" v-model="imageDateCreate" required />
                                         </div>
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Typ použití <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="type" v-model="imageType" required />
                                         </div>
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Autor <span class="m-label__name-column">(author)</span><span class="m-label__name-required">*</span></span>
                                             </label>
@@ -65,8 +65,8 @@
                                         </div>                             
                                     </div>
                                     <!-- button -->
-                                    <div class="o-form-edit__buttons mt-1">
-                                        <div class="o-form-edit__button">
+                                    <div class="o-form-item__buttons mt-1">
+                                        <div class="o-form-item__button">
                                             <div class="m-button">
                                                 <button class="m-button__input" type="submit">Uložit úpravy</button>
                                             </div>

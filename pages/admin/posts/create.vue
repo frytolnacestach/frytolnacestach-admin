@@ -12,9 +12,9 @@
             <section class="t-section mt-4 mb-8">
                 <div class="t-section__inner">
 
-                    <div class="o-form-create">
-                        <div class="o-form-create__outer">
-                            <div class="o-form-create__inner">
+                    <div class="o-form-item">
+                        <div class="o-form-item__outer">
+                            <div class="o-form-item__inner">
                                 
                                 <!-- SECTION - FlashMassages -->
                                 <oFlashMessages :text="errorForm" styleThema=" -error" />
@@ -22,10 +22,10 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-create__form" @submit.prevent="createForm">
-                                    <div class="o-form-create__items">
+                                <form class="o-form-item__form" @submit.prevent="createForm">
+                                    <div class="o-form-item__items">
                                         <!-- slug -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
                                                 <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
@@ -33,182 +33,182 @@
                                             <input class="a-input" type="text" name="slug" v-model="postSlug" required />
                                         </div>
                                         <!-- ids -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="id_continent" v-model="postIDcontinent" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="id_state" v-model="postIDstate" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="id_region" v-model="postIDregion" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="id_city" v-model="postIDcity" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="id_spot" v-model="postIDspot" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="imageList" v-model="postIdImageCover" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="imageHero" v-model="postIdImageHero" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku mapy <span class="m-label__name-column">(id_image_map)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="imageMap" v-model="postIdImageMap" />
                                         </div>
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku og <span class="m-label__name-column">(id_image_og)</span></span>
                                             </label>
                                             <!--<input class="a-input" type="number" min="0" name="imageOg" v-model="postIdImageOg" />-->
                                         </div>
                                         <!-- dates -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Datum vytvoření <span class="m-label__name-column">(date)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="date" v-model="postDate" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Datum poslední úpravy <span class="m-label__name-column">(date_update)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="dateUpdate" v-model="postDateUpdate" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Datum platnosti informací <span class="m-label__name-column">(date_onformation)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="dateInformation" v-model="postDateInformation" />
                                         </div>
                                         <!-- other -->                
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Odkaz na video na Youtube <span class="m-label__name-column">(url_youtube)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="urlYoutube" v-model="postUrlYoutube" />
                                         </div>  
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Odkaz na wiki <span class="m-label__name-column">(url_wiki)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="urlWiki" v-model="postUrlWiki" />
                                         </div>  
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Odkaz na mapu <span class="m-label__name-column">(url_map)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="urlMap" v-model="postUrlMap" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Název <span class="m-label__name-column">(title)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="title" v-model="postTitle" required />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Popis <span class="m-label__name-column">(perex)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="perex" v-model="postPerex" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Text otvírák <span class="m-label__name-column">(text_opener)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="textOpener" v-model="postTextOpener"></textarea>
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Text autora <span class="m-label__name-column">(text_author)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="textAuthor" v-model="postTextAuthor"></textarea>
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Text z wikipedie <span class="m-label__name-column">(text_wiki)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="textWiki" v-model="postTextWiki"></textarea>
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Text k hodnocení <span class="m-label__name-column">(review_text)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="reviewText" v-model="postReviewText"></textarea>
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Hodnocení <span class="m-label__name-column">(review_value)</span></span>
                                                 <span class="m-label__perex">Ve formátu <i>85 %</i></span>
                                             </label>
                                             <input class="a-input" type="text" name="reviewValue" v-model="postReviewValue" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Text k ceně <span class="m-label__name-column">(perex_price)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="perexPrice" v-model="postPerexPrice" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Text k délce cesty <span class="m-label__name-column">(perex_triplength)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="perexTriplength" v-model="postPerexTriplength" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Text k časové náročnosti <span class="m-label__name-column">(perex_time)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="perexTime" v-model="postPerexTime" />
                                         </div>
                                         <!-- json -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
                                             </label>
-                                            <div class="o-form-create__group">
-                                                <div class="o-form-create__group-items">
-                                                    <div class="o-form-create__group-item" v-for="(item, index) in postSeoTagsArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in postSeoTagsArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-create__group-inputs">
-                                                            <div class="o-form-create__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Tag:</label>
                                                                 <input class="a-input" type="text" v-model="item.tag" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-create__buttons mt-1">
-                                                    <div class="o-form-create__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
                                                         </div>
@@ -217,28 +217,28 @@
                                             </div>
                                         </div>
                                         <!-- json - tags -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Tagy <span class="m-label__name-column">(tags)</span></span>
                                             </label>
-                                            <div class="o-form-create__group">
-                                                <div class="o-form-create__group-items">
-                                                    <div class="o-form-create__group-item" v-for="(item, index) in postTagsArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in postTagsArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeTagInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-create__group-inputs">
-                                                            <div class="o-form-create__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Name:</label>
                                                                 <input class="a-input" type="text" v-model="item.name" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-create__buttons mt-1">
-                                                    <div class="o-form-create__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addTagInput">Přidat tag</button>
                                                         </div>
@@ -247,32 +247,32 @@
                                             </div>
                                         </div>
                                         <!-- json - location -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Lokace <span class="m-label__name-column">(locations)</span></span>
                                             </label>
-                                            <div class="o-form-create__group">
-                                                <div class="o-form-create__group-items">
-                                                    <div class="o-form-create__group-item" v-for="(item, index) in postLocationsArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in postLocationsArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeLocationInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-create__group-inputs">
-                                                            <div class="o-form-create__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Name:</label>
                                                                 <input class="a-input" type="text" v-model="item.name" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Type:</label>
                                                                 <input class="a-input" type="text" v-model="item.type" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-create__buttons mt-1">
-                                                    <div class="o-form-create__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addLocationInput">Přidat lokaci</button>
                                                         </div>
@@ -281,36 +281,36 @@
                                             </div>
                                         </div>
                                         <!-- json - travels -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Způsoby dopravy <span class="m-label__name-column">(travels)</span></span>
                                             </label>
-                                            <div class="o-form-create__group">
-                                                <div class="o-form-create__group-items">
-                                                    <div class="o-form-create__group-item" v-for="(item, index) in postTravelsArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in postTravelsArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeTravelInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-create__group-inputs">
-                                                            <div class="o-form-create__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Icon:</label>
                                                                 <input class="a-input" type="text" v-model="item.icon" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Name:</label>
                                                                 <input class="a-input" type="text" v-model="item.name" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Text:</label>
                                                                 <input class="a-input" type="text" v-model="item.text" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-create__buttons mt-1">
-                                                    <div class="o-form-create__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addTravelInput">Přidat položku</button>
                                                         </div>
@@ -319,36 +319,36 @@
                                             </div>
                                         </div>
                                         <!-- json - prices -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Ceny <span class="m-label__name-column">(prices)</span></span>
                                             </label>
-                                            <div class="o-form-create__group">
-                                                <div class="o-form-create__group-items">
-                                                    <div class="o-form-create__group-item" v-for="(item, index) in postPricesArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in postPricesArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removePriceInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-create__group-inputs">
-                                                            <div class="o-form-create__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Name:</label>
                                                                 <input class="a-input" type="text" v-model="item.name" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Subname:</label>
                                                                 <input class="a-input" type="text" v-model="item.subname" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Value:</label>
                                                                 <input class="a-input" type="text" v-model="item.value" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-create__buttons mt-1">
-                                                    <div class="o-form-create__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addPriceInput">Přidat cenu</button>
                                                         </div>
@@ -357,36 +357,36 @@
                                             </div>
                                         </div>
                                         <!-- json - triplengths -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Dělka výletu <span class="m-label__name-column">(triplengths)</span></span>
                                             </label>
-                                            <div class="o-form-create__group">
-                                                <div class="o-form-create__group-items">
-                                                    <div class="o-form-create__group-item" v-for="(item, index) in postTriplengthsArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in postTriplengthsArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeTriplengthInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-create__group-inputs">
-                                                            <div class="o-form-create__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Name:</label>
                                                                 <input class="a-input" type="text" v-model="item.name" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Subname:</label>
                                                                 <input class="a-input" type="text" v-model="item.subname" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Value:</label>
                                                                 <input class="a-input" type="text" v-model="item.value" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-create__buttons mt-1">
-                                                    <div class="o-form-create__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addTriplengthInput">Přidat délku</button>
                                                         </div>
@@ -395,36 +395,36 @@
                                             </div>
                                         </div>
                                         <!-- json - times -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Časová náročnost <span class="m-label__name-column">(times)</span></span>
                                             </label>
-                                            <div class="o-form-create__group">
-                                                <div class="o-form-create__group-items">
-                                                    <div class="o-form-create__group-item" v-for="(item, index) in postTimesArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in postTimesArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeTimeInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-create__group-inputs">
-                                                            <div class="o-form-create__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Name:</label>
                                                                 <input class="a-input" type="text" v-model="item.name" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Subname:</label>
                                                                 <input class="a-input" type="text" v-model="item.subname" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Value:</label>
                                                                 <input class="a-input" type="text" v-model="item.value" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-create__buttons mt-1">
-                                                    <div class="o-form-create__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addTimeInput">Přidat čas</button>
                                                         </div>
@@ -434,8 +434,8 @@
                                         </div>
                                     </div>
                                     <!--button-->
-                                    <div class="o-form-create__buttons mt-1">
-                                        <div class="o-form-create__button">
+                                    <div class="o-form-item__buttons mt-1">
+                                        <div class="o-form-item__button">
                                             <div class="m-button">
                                                 <button class="m-button__input" type="submit">Vytvořit článek</button>
                                             </div>

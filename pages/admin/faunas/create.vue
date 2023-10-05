@@ -12,9 +12,9 @@
             <section class="t-section mt-4 mb-8">
                 <div class="t-section__inner">
 
-                    <div class="o-form-create">
-                        <div class="o-form-create__outer">
-                            <div class="o-form-create__inner">
+                    <div class="o-form-item">
+                        <div class="o-form-item__outer">
+                            <div class="o-form-item__inner">
                                 
                                 <!-- SECTION - FlashMassages -->
                                 <oFlashMessages :text="errorForm" styleThema=" -error" />
@@ -22,10 +22,10 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-create__form" @submit.prevent="createForm">
-                                    <div class="o-form-create__items">
+                                <form class="o-form-item__form" @submit.prevent="createForm">
+                                    <div class="o-form-item__items">
                                         <!-- slug -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
                                                 <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
@@ -33,42 +33,42 @@
                                             <input class="a-input" type="text" name="slug" v-model="faunaSlug" required />
                                         </div>
                                         <!-- ids -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="imageCover" v-model="faunaIDimageCover" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="imageHero" v-model="faunaIDimageHero" />
                                         </div>
                                         <!-- json -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
                                             </label>
 
-                                            <div class="o-form-edit__group">
-                                                <div class="o-form-edit__group-items">
-                                                    <div class="o-form-edit__group-item" v-for="(item, index) in faunaIDSstatesArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in faunaIDSstatesArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-edit__group-inputs">
-                                                            <div class="o-form-edit__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">ID:</label>
                                                                 <input class="a-input" type="number" min="0" v-model="item.id" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-edit__buttons mt-1">
-                                                    <div class="o-form-edit__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
                                                         </div>
@@ -77,37 +77,37 @@
                                             </div>
                                         </div>
                                         <!-- other -->                            
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="faunaName" required />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Název latinsky <span class="m-label__name-column">(name_lat)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="nameLat" v-model="faunaNameLat" required />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Lokace výskytu <span class="m-label__name-column">(location)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="nameLocation" v-model="faunaLocation" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Status IUCN <span class="m-label__name-column">(status_iucn)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="nameStatusIucn" v-model="faunaStatusIucn" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Status nebezpečnosti <span class="m-label__name-column">(status_danger)</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="nameStatusDanger" v-model="faunaStatusDanger" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
                                             </label>
@@ -115,8 +115,8 @@
                                         </div>
                                     </div>
                                     <!-- button -->
-                                    <div class="o-form-create__buttons mt-1">
-                                        <div class="o-form-create__button">
+                                    <div class="o-form-item__buttons mt-1">
+                                        <div class="o-form-item__button">
                                             <div class="m-button">
                                                 <button class="m-button__input" type="submit">Vytvořit faunu</button>
                                             </div>

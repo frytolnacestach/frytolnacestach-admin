@@ -12,9 +12,9 @@
             <section class="t-section my-4">
                 <div class="t-section__inner">
 
-                    <div class="o-form-edit">
-                        <div class="o-form-edit__outer">
-                            <div class="o-form-edit__inner">
+                    <div class="o-form-item">
+                        <div class="o-form-item__outer">
+                            <div class="o-form-item__inner">
                                 
                                 <!-- SECTION - FlashMassages -->
                                 <oFlashMessages :text="errorForm" styleThema=" -error" />
@@ -22,10 +22,10 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-edit__form" @submit.prevent="editForm">
-                                    <div class="o-form-edit__items">
+                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                    <div class="o-form-item__items">
                                         <!-- slug -->
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
                                                 <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
@@ -33,78 +33,78 @@
                                             <input class="a-input" type="text" name="slug" v-model="chainSlug" required />
                                         </div>
                                         <!-- ids -->
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
-                                            <div class="o-form-edit__image">
-                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': chainIDimageCoverLoading}">
-                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && chainIDimageCover" @load="handleImageCoverLoad">
+                                            <div class="o-form-item__image">
+                                                <div class="o-form-item__image-lazyload" :class="{'-loading': chainIDimageCoverLoading}">
+                                                    <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && chainIDimageCover" @load="handleImageCoverLoad">
                                                 </div>
-                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && chainIDimageCoverLoad !== chainIDimageCoverChange && (chainIDimageCover && chainIDimageCover !== null && chainIDimageCover !== 0)">Byl vybrán nový obrázek</span>
-                                                <span class="o-form-edit__image-text" v-if="imageCover[0] && (!chainIDimageCover || chainIDimageCover === null || chainIDimageCover === 0)">Obrázek byl odebrán</span>
-                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && chainIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                <span class="o-form-edit__image-text" v-if="chainIDimageCoverLoad === chainIDimageCoverChange && !imageCover[0] && chainIDimageCover && chainIDimageCover !== null && chainIDimageCover !== 0">Vybraní obrázek neexistuje</span>
-                                                <span class="o-form-edit__image-text" v-if="!imageCover[0] && (!chainIDimageCover || chainIDimageCover === null || chainIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <span class="o-form-item__image-text" v-if="imageCover[0] && chainIDimageCoverLoad !== chainIDimageCoverChange && (chainIDimageCover && chainIDimageCover !== null && chainIDimageCover !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-item__image-text" v-if="imageCover[0] && (!chainIDimageCover || chainIDimageCover === null || chainIDimageCover === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-item__image-text" v-if="!imageCover[0] && chainIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-item__image-text" v-if="chainIDimageCoverLoad === chainIDimageCoverChange && !imageCover[0] && chainIDimageCover && chainIDimageCover !== null && chainIDimageCover !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-item__image-text" v-if="!imageCover[0] && (!chainIDimageCover || chainIDimageCover === null || chainIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
                                                 <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="chainIDimageCover" @input="handlechainIDimageCoverChange" />
                                             </div>
                                         </div>
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
-                                            <div class="o-form-edit__image">
-                                                <div class="o-form-edit__image-lazyload" :class="{'-loading': chainIDimageHeroLoading}">
-                                                    <img class="o-form-edit__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && chainIDimageHero" @load="handleImageHeroLoad">
+                                            <div class="o-form-item__image">
+                                                <div class="o-form-item__image-lazyload" :class="{'-loading': chainIDimageHeroLoading}">
+                                                    <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && chainIDimageHero" @load="handleImageHeroLoad">
                                                 </div>
-                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && chainIDimageHeroLoad !== chainIDimageHeroChange && (chainIDimageHero && chainIDimageHero !== null && chainIDimageHero !== 0)">Byl vybrán nový obrázek</span>
-                                                <span class="o-form-edit__image-text" v-if="imageHero[0] && (!chainIDimageHero || chainIDimageHero === null || chainIDimageHero === 0)">Obrázek byl odebrán</span>
-                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && chainIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                <span class="o-form-edit__image-text" v-if="chainIDimageHeroLoad === chainIDimageHeroChange && !imageHero[0] && chainIDimageHero && chainIDimageHero !== null && chainIDimageHero !== 0">Vybraní obrázek neexistuje</span>
-                                                <span class="o-form-edit__image-text" v-if="!imageHero[0] && (!chainIDimageHero || chainIDimageHero === null || chainIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
+                                                <span class="o-form-item__image-text" v-if="imageHero[0] && chainIDimageHeroLoad !== chainIDimageHeroChange && (chainIDimageHero && chainIDimageHero !== null && chainIDimageHero !== 0)">Byl vybrán nový obrázek</span>
+                                                <span class="o-form-item__image-text" v-if="imageHero[0] && (!chainIDimageHero || chainIDimageHero === null || chainIDimageHero === 0)">Obrázek byl odebrán</span>
+                                                <span class="o-form-item__image-text" v-if="!imageHero[0] && chainIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
+                                                <span class="o-form-item__image-text" v-if="chainIDimageHeroLoad === chainIDimageHeroChange && !imageHero[0] && chainIDimageHero && chainIDimageHero !== null && chainIDimageHero !== 0">Vybraní obrázek neexistuje</span>
+                                                <span class="o-form-item__image-text" v-if="!imageHero[0] && (!chainIDimageHero || chainIDimageHero === null || chainIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
                                                 <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="chainIDimageHero" @input="handlechainIDimageHeroChange" />
                                             </div>
                                         </div>
                                         <!-- other -->                            
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="chainName" required />
                                         </div>
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="description" v-model="chainDescription"></textarea>
                                         </div>
                                         <!-- JSON -->
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Informace <span class="m-label__name-column">(information)</span></span>
                                             </label>
-                                            <div class="o-form-edit__group">
-                                                <div class="o-form-edit__group-items">
-                                                    <div class="o-form-edit__group-item" v-for="(item, index) in chainInformationArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in chainInformationArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeInformationInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-edit__group-inputs">
-                                                            <div class="o-form-edit__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Type:</label>
                                                                 <input class="a-input" type="text" v-model="item.type" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Value:</label>
                                                                 <input class="a-input" type="text" v-model="item.value" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-edit__buttons mt-1">
-                                                    <div class="o-form-edit__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addInformationInput">Přidat information</button>
                                                         </div>
@@ -113,28 +113,28 @@
                                             </div>
                                         </div>
                                         <!-- JSON - Seo Tags -->
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
                                             </label>
-                                            <div class="o-form-edit__group">
-                                                <div class="o-form-edit__group-items">
-                                                    <div class="o-form-edit__group-item" v-for="(item, index) in chainSeoTagsArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in chainSeoTagsArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-edit__group-inputs">
-                                                            <div class="o-form-edit__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Tag:</label>
                                                                 <input class="a-input" type="text" v-model="item.tag" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-edit__buttons mt-1">
-                                                    <div class="o-form-edit__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
                                                         </div>
@@ -143,29 +143,29 @@
                                             </div>
                                         </div>
                                         <!-- JSON -->
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
                                             </label>
                                             
-                                            <div class="o-form-edit__group">
-                                                <div class="o-form-edit__group-items">
-                                                    <div class="o-form-edit__group-item" v-for="(item, index) in chainIDSstatesArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in chainIDSstatesArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-edit__group-inputs">
-                                                            <div class="o-form-edit__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">ID:</label>
                                                                 <input class="a-input" type="number" min="0" v-model="item.id" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-edit__buttons mt-1">
-                                                    <div class="o-form-edit__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
                                                         </div>
@@ -175,8 +175,8 @@
                                         </div>
                                     </div>
                                     <!-- button -->
-                                    <div class="o-form-edit__buttons mt-1">
-                                        <div class="o-form-edit__button">
+                                    <div class="o-form-item__buttons mt-1">
+                                        <div class="o-form-item__button">
                                             <div class="m-button">
                                                 <button class="m-button__input" type="submit">Uložit úpravy</button>
                                             </div>

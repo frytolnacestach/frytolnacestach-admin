@@ -12,9 +12,9 @@
             <section class="t-section my-4">
                 <div class="t-section__inner">
 
-                    <div class="o-form-edit">
-                        <div class="o-form-edit__outer">
-                            <div class="o-form-edit__inner">
+                    <div class="o-form-item">
+                        <div class="o-form-item__outer">
+                            <div class="o-form-item__inner">
                                 
                                 <!-- SECTION - FlashMassages -->
                                 <oFlashMessages :text="errorForm" styleThema=" -error" />
@@ -22,10 +22,10 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-edit__form" @submit.prevent="editForm">
-                                    <div class="o-form-edit__items">
+                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                    <div class="o-form-item__items">
                                         <!-- slug -->
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
                                                 <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
@@ -33,26 +33,26 @@
                                             <input class="a-input" type="text" name="slug" v-model="platformSlug" required />
                                         </div>
                                         <!-- other -->                              
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Název platformy <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="platformName" required />
                                         </div>
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Můj popis <span class="m-label__name-column">(perex)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="perex" v-model="platformPerex"></textarea>
                                         </div>
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Odkaz na profil <span class="m-label__name-column">(url)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="url" v-model="platformUrl" required />
                                         </div>
                                         <!-- dates -->
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Datum údajů <span class="m-label__name-column">(date)</span></span>
                                                 <span class="m-label__perex">Datum k jakému platí údaje o platformě ve formátu <i>k 13. Říjnu 2022</i></span>
@@ -60,33 +60,33 @@
                                             <input class="a-input" type="text" name="date" v-model="platformDate" />
                                         </div>
                                         <!-- json -->
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Fakta o síťi <span class="m-label__name-column">(facts)</span></span>
                                                 <span class="m-label__perex">Fakta o síťi například datum založení a počet sledujícíh</span>
                                             </label>
-                                            <div class="o-form-edit__group">
-                                                <div class="o-form-edit__group-items">
-                                                    <div class="o-form-edit__group-item" v-for="(item, index) in platformFactsArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in platformFactsArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeFactInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-edit__group-inputs">
-                                                            <div class="o-form-edit__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Name:</label>
                                                                 <input class="a-input" type="text" v-model="item.name" />
                                                             </div>
-                                                            <div class="o-form-edit__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Value:</label>
                                                                 <input class="a-input" type="text" v-model="item.value" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-edit__buttons mt-1">
-                                                    <div class="o-form-edit__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addFactInput">Přidat fakt</button>
                                                         </div>
@@ -96,8 +96,8 @@
                                         </div>                                                                        
                                     </div>
                                     <!--button-->
-                                    <div class="o-form-edit__buttons mt-1">
-                                        <div class="o-form-edit__button">
+                                    <div class="o-form-item__buttons mt-1">
+                                        <div class="o-form-item__button">
                                             <div class="m-button">
                                                 <button class="m-button__input" type="submit">Uložit úpravy</button>
                                             </div>

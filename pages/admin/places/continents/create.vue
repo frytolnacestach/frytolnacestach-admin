@@ -12,9 +12,9 @@
             <section class="t-section mt-4 mb-8">
                 <div class="t-section__inner">
 
-                    <div class="o-form-create">
-                        <div class="o-form-create__outer">
-                            <div class="o-form-create__inner">
+                    <div class="o-form-item">
+                        <div class="o-form-item__outer">
+                            <div class="o-form-item__inner">
                                 
                                 <!-- SECTION - FlashMassages -->
                                 <oFlashMessages :text="errorForm" styleThema=" -error" />
@@ -22,10 +22,10 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-create__form" @submit.prevent="createForm">
-                                    <div class="o-form-create__items">
+                                <form class="o-form-item__form" @submit.prevent="createForm">
+                                    <div class="o-form-item__items">
                                         <!-- slug -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
                                                 <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
@@ -33,41 +33,41 @@
                                             <input class="a-input" type="text" name="slug" v-model="placesContinentSlug" required />
                                         </div>
                                         <!-- ids -->
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="imageCover" v-model="placesContinentIDimageCover" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="imageHero" v-model="placesContinentIDimageHero" />
                                         </div>
                                         <!-- other --> 
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
                                             </label>
-                                            <div class="o-form-create__group">
-                                                <div class="o-form-create__group-items">
-                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesContinentSeoTagsArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in placesContinentSeoTagsArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-create__group-inputs">
-                                                            <div class="o-form-create__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Tag:</label>
                                                                 <input class="a-input" type="text" v-model="item.tag" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-create__buttons mt-1">
-                                                    <div class="o-form-create__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
                                                         </div>
@@ -75,62 +75,62 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="typePlace" disabled="true" v-model="placesContinentTypePlace" required />
                                         </div>                    
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <input class="a-input" type="text" name="name" v-model="placesContinentName" required />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Informace od Chat GPT <span class="m-label__name-column">(information_chatgpt)</span></span>
                                             </label>
                                             <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesContinentInformationChatgpt"></textarea>
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Informace od autora <span class="m-label__name-column">(information_author)</span></span>
                                             </label>
-                                            <div class="o-form-create__group">
-                                                <div class="o-form-create__group-items">
-                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesContinentInformationAuthorArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in placesContinentInformationAuthorArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeInformationAuthorInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-create__group-inputs">
-                                                            <div class="o-form-create__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Text:</label>
                                                                 <textarea class="a-textarea" type="text" v-model="item.text"></textarea>
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Date create:</label>
                                                                 <input class="a-input" type="text" v-model="item.date_create" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Date update:</label>
                                                                 <input class="a-input" type="text" v-model="item.date_update" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Author create:</label>
                                                                 <input class="a-input" type="text" v-model="item.author_create" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Author update:</label>
                                                                 <input class="a-input" type="text" v-model="item.author_update" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-create__buttons mt-1">
-                                                    <div class="o-form-create__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addInformationAuthorInput">Přidat text</button>
                                                         </div>
@@ -138,56 +138,56 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Rozloha <span class="m-label__name-column">(area)</span></span>
                                             </label>
                                             <input class="a-input" type="number" step=".01" min="0" name="area" v-model="placesContinentArea" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Populace <span class="m-label__name-column">(population)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="population" v-model="placesContinentPopulation" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Hustota populace <span class="m-label__name-column">(population_density)</span></span>
                                             </label>
                                             <input class="a-input" type="number" step=".01" min="0" name="population_density" v-model="placesContinentPopulationDensity" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Počet států <span class="m-label__name-column">(number_states)</span></span>
                                             </label>
                                             <input class="a-input" type="number" min="0" name="number_states" v-model="placesContinentNumberStates" />
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
                                             </label>
-                                            <div class="o-form-create__group">
-                                                <div class="o-form-create__group-items">
-                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesContinentCoordinatesArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in placesContinentCoordinatesArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeCoordinateInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-create__group-inputs">
-                                                            <div class="o-form-create__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Latitude:</label>
                                                                 <input class="a-input" type="number" step=".0000001" v-model="item.latitude" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Longitude:</label>
                                                                 <input class="a-input" type="number" step=".0000001" v-model="item.longitude" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-create__buttons mt-1">
-                                                    <div class="o-form-create__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addCoordinateInput">Přidat souřadnici</button>
                                                         </div>
@@ -195,32 +195,32 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="o-form-create__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
                                             </label>
-                                            <div class="o-form-create__group">
-                                                <div class="o-form-create__group-items">
-                                                    <div class="o-form-create__group-item" v-for="(item, index) in placesContinentZoomArray" :key="index">
+                                            <div class="o-form-item__group">
+                                                <div class="o-form-item__group-items">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in placesContinentZoomArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
                                                                 Odstranit
                                                             </button>
                                                         </div>
-                                                        <div class="o-form-create__group-inputs">
-                                                            <div class="o-form-create__group-input">
+                                                        <div class="o-form-item__group-inputs">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Google:</label>
                                                                 <input class="a-input" type="number" min="0" v-model="item.google" />
                                                             </div>
-                                                            <div class="o-form-create__group-input">
+                                                            <div class="o-form-item__group-input">
                                                                 <label class="m-label">Booking:</label>
                                                                 <input class="a-input" type="number" min="0" v-model="item.booking" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="o-form-create__buttons mt-1">
-                                                    <div class="o-form-create__button">
+                                                <div class="o-form-item__buttons mt-1">
+                                                    <div class="o-form-item__button">
                                                         <div class="m-button-add">
                                                             <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
                                                         </div>
@@ -230,8 +230,8 @@
                                         </div>                              
                                     </div>
                                     <!-- button -->
-                                    <div class="o-form-create__buttons mt-1">
-                                        <div class="o-form-create__button">
+                                    <div class="o-form-item__buttons mt-1">
+                                        <div class="o-form-item__button">
                                             <div class="m-button">
                                                 <button class="m-button__input" type="submit">Vytvořit kontinent</button>
                                             </div>

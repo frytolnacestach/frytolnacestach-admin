@@ -12,9 +12,9 @@
             <section class="t-section my-4">
                 <div class="t-section__inner">
 
-                    <div class="o-form-edit">
-                        <div class="o-form-edit__outer">
-                            <div class="o-form-edit__inner">
+                    <div class="o-form-item">
+                        <div class="o-form-item__outer">
+                            <div class="o-form-item__inner">
                                 
                                 <!-- SECTION - FlashMassages -->
                                 <oFlashMessages :text="errorForm" styleThema=" -error" />
@@ -22,38 +22,38 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-edit__form" @submit.prevent="editForm">
+                                <form class="o-form-item__form" @submit.prevent="editForm">
                                    
-                                    <div class="o-form-edit__items">
-                                        <div class="o-form-edit__item">
+                                    <div class="o-form-item__items">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Kdo jsem <span class="m-label__name-column">(iam)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <textarea class="a-textarea" name="iam" v-model="iam" required></textarea>
                                         </div>
 
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Jak mě podpořit <span class="m-label__name-column">(donate)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <textarea class="a-textarea" name="donate" v-model="donate" required></textarea>
                                         </div>
 
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Zásady Cookies <span class="m-label__name-column">(cookies)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <textarea class="a-textarea" name="cookies" v-model="cookies" required></textarea>
                                         </div>
 
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Obchodní podmínky a zásady ochrany osobních údajů <span class="m-label__name-column">(conditions)</span><span class="m-label__name-required">*</span></span>
                                             </label>
                                             <textarea class="a-textarea" name="conditions" v-model="conditions" required></textarea>
                                         </div>
 
-                                        <div class="o-form-edit__item">
+                                        <div class="o-form-item__item">
                                             <label class="m-label">
                                                 <span class="m-label__name">Obchodní podmínky a zásady ochrany osobních údajů - uživatel <span class="m-label__name-column">(conditions_user)</span><span class="m-label__name-required">*</span></span>
                                             </label>
@@ -61,8 +61,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="o-form-edit__buttons mt-1">
-                                        <div class="o-form-edit__button">
+                                    <div class="o-form-item__buttons mt-1">
+                                        <div class="o-form-item__button">
                                             <div class="m-button">
                                                 <button class="m-button__input" type="submit">Uložit úpravy</button>
                                             </div>
