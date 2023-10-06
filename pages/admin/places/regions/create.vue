@@ -23,235 +23,268 @@
 
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="createForm">
-                                    <div class="o-form-item__items">
-                                        <!-- slug -->
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="slug" v-model="placesRegionSlug" required />
-                                        </div>
-                                        <!-- ids -->
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="number" min="0" name="state" v-model="placesRegionIDstate" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
-                                            </label>
-                                            <input class="a-input" type="number" min="0" name="imageCover" v-model="placesRegionIDimageCover" />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
-                                            </label>
-                                            <input class="a-input" type="number" min="0" name="imageHero" v-model="placesRegionIDimageHero" />
-                                        </div>
-                                        <!-- other -->
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
-                                            </label>
-                                            <div class="o-form-item__group">
-                                                <div class="o-form-item__group-items">
-                                                    <div class="o-form-item__group-item" v-for="(item, index) in placesRegionSeoTagsArray" :key="index">
-                                                        <div class="m-button-remove">
-                                                            <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                Odstranit
-                                                            </button>
-                                                        </div>
-                                                        <div class="o-form-item__group-inputs">
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Tag:</label>
-                                                                <input class="a-input" type="text" v-model="item.tag" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="o-form-item__buttons mt-1">
-                                                    <div class="o-form-item__button">
-                                                        <div class="m-button-add">
-                                                            <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    <!-- BLOCK - Obrázky -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Obrázky" styleGap=" mt-2" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - id_image_cover -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
+                                                </label>
+                                                <input class="a-input" type="number" min="0" name="imageCover" v-model="placesRegionIDimageCover" />
                                             </div>
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" disabled="true" name="typePlace" v-model="placesRegionTypePlace" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="name" v-model="placesRegionName" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Informace od Chat GPT <span class="m-label__name-column">(information_chatgpt)</span></span>
-                                            </label>
-                                            <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesRegionInformationChatgpt"></textarea>
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Informace od autora <span class="m-label__name-column">(information_author)</span></span>
-                                            </label>
-                                            <div class="o-form-item__group">
-                                                <div class="o-form-item__group-items">
-                                                    <div class="o-form-item__group-item" v-for="(item, index) in placesRegionInformationAuthorArray" :key="index">
-                                                        <div class="m-button-remove">
-                                                            <button class="m-button-remove__input" type="button" @click="removeInformationAuthorInput(index)">
-                                                                Odstranit
-                                                            </button>
-                                                        </div>
-                                                        <div class="o-form-item__group-inputs">
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Text:</label>
-                                                                <textarea class="a-textarea" type="text" v-model="item.text"></textarea>
-                                                            </div>
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Date create:</label>
-                                                                <input class="a-input" type="text" v-model="item.date_create" />
-                                                            </div>
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Date update:</label>
-                                                                <input class="a-input" type="text" v-model="item.date_update" />
-                                                            </div>
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Author create:</label>
-                                                                <input class="a-input" type="text" v-model="item.author_create" />
-                                                            </div>
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Author update:</label>
-                                                                <input class="a-input" type="text" v-model="item.author_update" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="o-form-item__buttons mt-1">
-                                                    <div class="o-form-item__button">
-                                                        <div class="m-button-add">
-                                                            <button class="m-button-add__input" type="button" @click="addInformationAuthorInput">Přidat text</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <!-- Form - id_image_cover END -->
+                                            <!-- Form - id_image_hero -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
+                                                </label>
+                                                <input class="a-input" type="number" min="0" name="imageHero" v-model="placesRegionIDimageHero" />
                                             </div>
+                                            <!-- Form - id_image_hero END -->
                                         </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
-                                            </label>
-                                            <div class="o-form-item__group">
-                                                <div class="o-form-item__group-items">
-                                                    <div class="o-form-item__group-item" v-for="(item, index) in placesRegionCoordinatesArray" :key="index">
-                                                        <div class="m-button-remove">
-                                                            <button class="m-button-remove__input" type="button" @click="removeCoordinateInput(index)">
-                                                                Odstranit
-                                                            </button>
-                                                        </div>
-                                                        <div class="o-form-item__group-inputs">
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Latitude:</label>
-                                                                <input class="a-input" type="number" step=".0000001" v-model="item.latitude" />
-                                                            </div>
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Longitude:</label>
-                                                                <input class="a-input" type="number" step=".0000001" v-model="item.longitude" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="o-form-item__buttons mt-1">
-                                                    <div class="o-form-item__button">
-                                                        <div class="m-button-add">
-                                                            <button class="m-button-add__input" type="button" @click="addCoordinateInput">Přidat souřadnice</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
-                                            </label>
-                                            <div class="o-form-item__group">
-                                                <div class="o-form-item__group-items">
-                                                    <div class="o-form-item__group-item" v-for="(item, index) in placesRegionZoomArray" :key="index">
-                                                        <div class="m-button-remove">
-                                                            <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
-                                                                Odstranit
-                                                            </button>
-                                                        </div>
-                                                        <div class="o-form-item__group-inputs">
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Google:</label>
-                                                                <input class="a-input" type="number" min="0" v-model="item.google" />
-                                                            </div>
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Booking:</label>
-                                                                <input class="a-input" type="number" min="0" v-model="item.booking" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="o-form-item__buttons mt-1">
-                                                    <div class="o-form-item__button">
-                                                        <div class="m-button-add">
-                                                            <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Affiliate <span class="m-label__name-column">(affiliate)</span></span>
-                                            </label>
-                                            <div class="o-form-item__group">
-                                                <div class="o-form-item__group-items">
-                                                    <div class="o-form-item__group-item" v-for="(item, index) in placesRegionAffiliateArray" :key="index">
-                                                        <div class="m-button-remove">
-                                                            <button class="m-button-remove__input" type="button" @click="removeAffiliateInput(index)">
-                                                                Odstranit
-                                                            </button>
-                                                        </div>
-                                                        <div class="o-form-item__group-inputs">
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Name:</label>
-                                                                <input class="a-input" type="text" v-model="item.name" />
-                                                            </div>
-                                                            <div class="o-form-item__group-input">
-                                                                <label class="m-label">Value:</label>
-                                                                <input class="a-input" type="text" v-model="item.value" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="o-form-item__buttons mt-1">
-                                                    <div class="o-form-item__button">
-                                                        <div class="m-button-add">
-                                                            <button class="m-button-add__input" type="button" @click="addAffiliateInput">Přidat affileate</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>                          
                                     </div>
-                                    <!-- button -->
+                                    <!-- BLOCK - Obrázky END -->
+
+                                    <!-- BLOCK - SEO -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="SEO" styleGap=" mt-2" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - seo_tags -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
+                                                </label>
+                                                <div class="o-form-item__group">
+                                                    <div class="o-form-item__group-items">
+                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesRegionSeoTagsArray" :key="index">
+                                                            <div class="m-button-remove">
+                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
+                                                                    Odstranit
+                                                                </button>
+                                                            </div>
+                                                            <div class="o-form-item__group-inputs">
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Tag:</label>
+                                                                    <input class="a-input" type="text" v-model="item.tag" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="o-form-item__buttons mt-1">
+                                                        <div class="o-form-item__button">
+                                                            <div class="m-button-add">
+                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Form - seo_tags END -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - SEO END -->
+
+                                    <!-- BLOCK - Editační hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- slug -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="slug" v-model="placesRegionSlug" required />
+                                            </div>
+                                            <!-- ids -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="number" min="0" name="state" v-model="placesRegionIDstate" required />
+                                            </div>
+                                            <!-- other -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" disabled="true" name="typePlace" v-model="placesRegionTypePlace" required />
+                                            </div>
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="name" v-model="placesRegionName" required />
+                                            </div>
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Informace od Chat GPT <span class="m-label__name-column">(information_chatgpt)</span></span>
+                                                </label>
+                                                <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesRegionInformationChatgpt"></textarea>
+                                            </div>
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Informace od autora <span class="m-label__name-column">(information_author)</span></span>
+                                                </label>
+                                                <div class="o-form-item__group">
+                                                    <div class="o-form-item__group-items">
+                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesRegionInformationAuthorArray" :key="index">
+                                                            <div class="m-button-remove">
+                                                                <button class="m-button-remove__input" type="button" @click="removeInformationAuthorInput(index)">
+                                                                    Odstranit
+                                                                </button>
+                                                            </div>
+                                                            <div class="o-form-item__group-inputs">
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Text:</label>
+                                                                    <textarea class="a-textarea" type="text" v-model="item.text"></textarea>
+                                                                </div>
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Date create:</label>
+                                                                    <input class="a-input" type="text" v-model="item.date_create" />
+                                                                </div>
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Date update:</label>
+                                                                    <input class="a-input" type="text" v-model="item.date_update" />
+                                                                </div>
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Author create:</label>
+                                                                    <input class="a-input" type="text" v-model="item.author_create" />
+                                                                </div>
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Author update:</label>
+                                                                    <input class="a-input" type="text" v-model="item.author_update" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="o-form-item__buttons mt-1">
+                                                        <div class="o-form-item__button">
+                                                            <div class="m-button-add">
+                                                                <button class="m-button-add__input" type="button" @click="addInformationAuthorInput">Přidat text</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
+                                                </label>
+                                                <div class="o-form-item__group">
+                                                    <div class="o-form-item__group-items">
+                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesRegionCoordinatesArray" :key="index">
+                                                            <div class="m-button-remove">
+                                                                <button class="m-button-remove__input" type="button" @click="removeCoordinateInput(index)">
+                                                                    Odstranit
+                                                                </button>
+                                                            </div>
+                                                            <div class="o-form-item__group-inputs">
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Latitude:</label>
+                                                                    <input class="a-input" type="number" step=".0000001" v-model="item.latitude" />
+                                                                </div>
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Longitude:</label>
+                                                                    <input class="a-input" type="number" step=".0000001" v-model="item.longitude" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="o-form-item__buttons mt-1">
+                                                        <div class="o-form-item__button">
+                                                            <div class="m-button-add">
+                                                                <button class="m-button-add__input" type="button" @click="addCoordinateInput">Přidat souřadnice</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
+                                                </label>
+                                                <div class="o-form-item__group">
+                                                    <div class="o-form-item__group-items">
+                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesRegionZoomArray" :key="index">
+                                                            <div class="m-button-remove">
+                                                                <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
+                                                                    Odstranit
+                                                                </button>
+                                                            </div>
+                                                            <div class="o-form-item__group-inputs">
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Google:</label>
+                                                                    <input class="a-input" type="number" min="0" v-model="item.google" />
+                                                                </div>
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Booking:</label>
+                                                                    <input class="a-input" type="number" min="0" v-model="item.booking" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="o-form-item__buttons mt-1">
+                                                        <div class="o-form-item__button">
+                                                            <div class="m-button-add">
+                                                                <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Affiliate <span class="m-label__name-column">(affiliate)</span></span>
+                                                </label>
+                                                <div class="o-form-item__group">
+                                                    <div class="o-form-item__group-items">
+                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesRegionAffiliateArray" :key="index">
+                                                            <div class="m-button-remove">
+                                                                <button class="m-button-remove__input" type="button" @click="removeAffiliateInput(index)">
+                                                                    Odstranit
+                                                                </button>
+                                                            </div>
+                                                            <div class="o-form-item__group-inputs">
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Name:</label>
+                                                                    <input class="a-input" type="text" v-model="item.name" />
+                                                                </div>
+                                                                <div class="o-form-item__group-input">
+                                                                    <label class="m-label">Value:</label>
+                                                                    <input class="a-input" type="text" v-model="item.value" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="o-form-item__buttons mt-1">
+                                                        <div class="o-form-item__button">
+                                                            <div class="m-button-add">
+                                                                <button class="m-button-add__input" type="button" @click="addAffiliateInput">Přidat affileate</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                          
+                                        </div>
+                                    </div>
+                                    <!-- COMPONENT - Button -->
                                     <div class="o-form-item__buttons mt-1">
                                         <div class="o-form-item__button">
                                             <div class="m-button">
-                                                <button class="m-button__input" type="submit">Vytvořit region</button>
+                                                <button class="m-button__input" type="submit">Přidat region</button>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- COMPONENT - Button END -->
                                 </form>
                                 <!-- FORM END -->
                             </div>
@@ -264,6 +297,7 @@
 </template>
 
 <script lang="ts">
+    import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
@@ -273,6 +307,7 @@
 
         //COMPONENTS
         components: {
+            mHeadlineForm,
             mNavBreadcrumbs,
             oFlashMessages,
             oHero

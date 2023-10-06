@@ -23,47 +23,54 @@
 
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="createForm">
-                                    <div class="o-form-item__items">
-                                        <!-- other -->                            
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="name" v-model="imageName" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Zdroj <span class="m-label__name-column">(source)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="source" v-model="imageSource" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Typ použití <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="type" v-model="imageType" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Autor <span class="m-label__name-column">(author)</span><span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input class="a-input" type="text" name="author" v-model="imageAuthor" required />
-                                        </div>
-                                        <div class="o-form-item__item">
-                                            <label class="m-label">
-                                                <span class="m-label__name">Obrázek<span class="m-label__name-required">*</span></span>
-                                            </label>
-                                            <input type="file" name="image" @change="handleFileChange" required />
-                                        </div>
-                                    </div>
-                                    <!-- button -->
-                                    <div class="o-form-item__buttons mt-1">
-                                        <div class="o-form-item__button">
-                                            <div class="m-button">
-                                                <button class="m-button__input" type="submit">Nahrát obrázek</button>
+                                    <!-- BLOCK - Editační hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- other -->                            
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="name" v-model="imageName" required />
+                                            </div>
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Zdroj <span class="m-label__name-column">(source)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="source" v-model="imageSource" required />
+                                            </div>
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Typ použití <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="type" v-model="imageType" required />
+                                            </div>
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Autor <span class="m-label__name-column">(author)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="author" v-model="imageAuthor" required />
+                                            </div>
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Obrázek<span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input type="file" name="image" @change="handleFileChange" required />
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- COMPONENT - Button -->
+                                    <div class="o-form-item__buttons mt-1">
+                                        <div class="o-form-item__button">
+                                            <div class="m-button">
+                                                <button class="m-button__input" type="submit">Přidat obrázek</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- COMPONENT - Button END -->
                                 </form>
                                 <!-- FORM END -->
                             </div>
@@ -76,6 +83,7 @@
 </template>
 
 <script lang="ts">
+    import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
@@ -85,6 +93,7 @@
 
         //COMPONENTS
         components: {
+            mHeadlineForm,
             mNavBreadcrumbs,
             oFlashMessages,
             oHero
