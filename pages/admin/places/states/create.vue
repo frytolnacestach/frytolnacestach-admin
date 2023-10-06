@@ -93,7 +93,7 @@
                                             </label>
                                             <div class="o-form-item__group">
                                                 <div class="o-form-item__group-items">
-                                                    <div class="o-form-item__group-item" v-for="(item, index) in placesSpotsSeoTagsArray" :key="index">
+                                                    <div class="o-form-item__group-item" v-for="(item, index) in placesStateSeoTagsArray" :key="index">
                                                         <div class="m-button-remove">
                                                             <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
                                                                 Odstranit
@@ -895,7 +895,7 @@
                 placesStateOrganizationArray: [],
                 placesStateAppsArray: [],
                 placesStateLinksArray: [],
-                placesSpotsSeoTagsArray: [],
+                placesStateSeoTagsArray: [],
                 placesStateLanguagePhrasesArray: []
             }
         },
@@ -903,12 +903,12 @@
         methods: {
             // seo tags
             addSeoTagsInput() {
-                this.placesSpotsSeoTagsArray.push({
+                this.placesStateSeoTagsArray.push({
                     tag: ''
                 })
             },
             removeSeoTagsInput(index: number) {
-                this.placesSpotsSeoTagsArray.splice(index, 1)
+                this.placesStateSeoTagsArray.splice(index, 1)
             },
             // IDSneighboringCountries
             addIDSneighboringCountrieInput() {
@@ -1110,15 +1110,15 @@
             placesStateName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
-            placesSpotsSeoTags: function (newValue, oldValue) {
+            placesStateSeoTags: function (newValue, oldValue) {
                 try {
-                    this.placesSpotsSeoTagsArray = JSON.parse(newValue)
+                    this.placesStateSeoTagsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotsSeoTagsArray = []
+                    this.placesStateSeoTagsArray = []
                 }
             },
-            placesSpotsSeoTagsArray: function (newValue, oldValue) {
-                this.placesSpotsSeoTags = JSON.stringify(newValue)
+            placesStateSeoTagsArray: function (newValue, oldValue) {
+                this.placesStateSeoTags = JSON.stringify(newValue)
             },
             placesStateInformationAuthor: function (newValue, oldValue) {
                 try {
@@ -1316,8 +1316,8 @@
             const placesStateArea = ref(null)
             const placesStatePopulation = ref(null)
             const placesStatePhonePrefix = ref('')
-            const placesSpotsSeoTags = ref([])
-            const placesSpotsSeoTagsArray = ref([])
+            const placesStateSeoTags = ref([])
+            const placesStateSeoTagsArray = ref([])
             const placesStatePhoneNumbersEmergency = ref([])
             const placesStatePhoneNumbersEmergencyArray = ref([])
             const placesStateCurrencyName = ref('')
@@ -1377,7 +1377,7 @@
                             'phone_numbers_emergency': JSON.stringify(placesStatePhoneNumbersEmergencyArray._value),
                             'currency_name': placesStateCurrencyName.value,
                             'currency_code': placesStateCurrencyCode.value,
-                            'seo_tags': JSON.stringify(placesSpotsSeoTagsArray._value),
+                            'seo_tags': JSON.stringify(placesStateSeoTagsArray._value),
                             'money_prices': JSON.stringify(placesStateMoneyPricesArray._value),
                             'people_religion': JSON.stringify(placesStatePeopleReligionArray._value),
                             'people_nationality': JSON.stringify(placesStatePeopleNationalityArray._value),
@@ -1428,8 +1428,8 @@
                 placesStateArea,
                 placesStatePopulation,
                 placesStatePhonePrefix,
-                placesSpotsSeoTags,
-                placesSpotsSeoTagsArray,
+                placesStateSeoTags,
+                placesStateSeoTagsArray,
                 placesStatePhoneNumbersEmergency,
                 placesStatePhoneNumbersEmergencyArray,
                 placesStateCurrencyName,
