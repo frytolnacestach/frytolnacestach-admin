@@ -24,6 +24,7 @@
                             <div class="o-admin-list__inner">
                                 <div class="o-admin-list__items">
                                     <div v-for="brand in brands" :key="brand.id" class="o-admin-list__item">
+                                        <span class="o-admin-list__id">{{ brand.id }}</span>
                                         <h3 class="o-admin-list__title">
                                             <NuxtLink class="o-admin-list__title-link" :to="`/admin/brands/${brand.slug}`">{{ brand.name }}</NuxtLink>
                                         </h3>

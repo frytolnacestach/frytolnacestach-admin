@@ -25,6 +25,7 @@
                             
                                 <div class="o-admin-list__items" v-if="events.length">
                                     <div v-for="event in events" :key="event.id" class="o-admin-list__item">
+                                        <span class="o-admin-list__id">{{ event.id }}</span>
                                         <h3 class="o-admin-list__title">
                                             <NuxtLink class="o-admin-list__title-link" :to="`/admin/events/${event.slug}`">{{ event.name }}</NuxtLink>
                                         </h3>

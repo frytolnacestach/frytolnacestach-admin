@@ -16,11 +16,11 @@
                             <div class="o-admin-list__inner">
                                 <div class="o-admin-list__items">
                                     <div v-for="user  in users" :key="user.id" class="o-admin-list__item">
+                                        <span class="o-admin-list__id">{{ user.id }}</span>
                                         <h3 class="o-admin-list__title">
                                             {{ user.nickname}}
                                         </h3>
                                         <p class="o-admin-list__perex">
-                                            ID: {{ user.id }}<br>
                                             Status: {{ user.status }}<br>
                                             Jméno: {{ user.surname }}<br>
                                             Příjmení: {{ user.lastname }}<br>

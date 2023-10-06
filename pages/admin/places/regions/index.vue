@@ -25,6 +25,7 @@
                             
                                 <div class="o-admin-list__items" v-if="placesRegions.length">
                                     <div v-for="placesRegion in placesRegions" :key="placesRegion.id" class="o-admin-list__item">
+                                        <span class="o-admin-list__id">{{ placesRegion.id }}</span>
                                         <h3 class="o-admin-list__title">
                                             <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/regions/${placesRegion.slug}`">{{ placesRegion.name }}</NuxtLink>
                                         </h3>

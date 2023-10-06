@@ -24,6 +24,7 @@
                             <div class="o-admin-list__inner">
                                 <div class="o-admin-list__items">
                                     <div v-for="platform in platforms" :key="platform.id" class="o-admin-list__item">
+                                        <span class="o-admin-list__id">{{ platform.id }}</span>
                                         <h3 class="o-admin-list__title">
                                             <NuxtLink class="o-admin-list__title-link" :to="`/admin/platforms/${platform.slug}`">{{ platform.name}}</NuxtLink>
                                         </h3>

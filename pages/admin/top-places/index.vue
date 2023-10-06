@@ -24,11 +24,11 @@
                             <div class="o-admin-list__inner">
                                 <div class="o-admin-list__items">
                                     <div v-for="topPlace  in topPlaces" :key="topPlace.id" class="o-admin-list__item">
+                                        <span class="o-admin-list__id">{{ topPlace.id }}</span>
                                         <h3 class="o-admin-list__title">
                                             <NuxtLink class="o-admin-list__title-link" :to="`/admin/top-places/${topPlace.id}`">{{ topPlace.id}}</NuxtLink>
                                         </h3>
                                         <p class="o-admin-list__perex">
-                                            ID: {{ topPlace.id }}<br>
                                             ID Místo: {{ topPlace.id_place }}<br>
                                             Type: {{ topPlace.type }}
                                         </p>

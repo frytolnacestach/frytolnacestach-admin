@@ -25,7 +25,7 @@
     &__item {
         width: 100%;
         display: grid;
-        grid-template-columns: [first] 33% [second] 67%;
+        grid-template-columns: [first] 7% [second] 33% [third] 60%;
         border-right: 1px solid $gray5;
         border-bottom: 1px solid $gray5;
         border-left: 1px solid $gray5;
@@ -39,6 +39,14 @@
         &:last-of-type {
             border-radius: 0 0 3px 3px;
         }
+    }
+
+    &__id {
+        padding: 5px 12px;
+        margin: 0;
+        border-right: 1px solid $gray5;
+        font-weight: 700;
+        font-size: $fs-normal;
     }
 
     &__title {

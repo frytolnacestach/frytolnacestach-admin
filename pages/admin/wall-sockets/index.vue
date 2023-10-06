@@ -24,6 +24,7 @@
                             <div class="o-admin-list__inner">
                                 <div class="o-admin-list__items">
                                     <div v-for="wallSocket in wallSockets" :key="wallSocket.id" class="o-admin-list__item">
+                                        <span class="o-admin-list__id">{{ wallSocket.id }}</span>
                                         <h3 class="o-admin-list__title">
                                             <NuxtLink class="o-admin-list__title-link" :to="`/admin/wall-sockets/${wallSocket.slug}`">{{ wallSocket.name }}</NuxtLink>
                                         </h3>
