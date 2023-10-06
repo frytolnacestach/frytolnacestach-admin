@@ -119,6 +119,8 @@
                                             </div>                       
                                         </div>
                                     </div>
+                                    <!-- BLOCK - Editační hodnoty END -->
+
                                     <!-- COMPONENT - Button -->
                                     <div class="o-form-item__buttons mt-1">
                                         <div class="o-form-item__button">
