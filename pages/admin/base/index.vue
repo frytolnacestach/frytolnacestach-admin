@@ -89,6 +89,8 @@
 <script lang="ts">
     import { defineComponent } from 'vue'
     import { useRouter } from 'vue-router'
+
+    import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
@@ -98,6 +100,7 @@
 
         //COMPONENTS
         components: {
+            mHeadlineForm,
             mNavBreadcrumbs,
             oFlashMessages,
             oHero
