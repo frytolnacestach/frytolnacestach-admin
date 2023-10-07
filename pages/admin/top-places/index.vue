@@ -17,6 +17,18 @@
             </section>
             <!-- SECTION - NAV Admin END -->
 
+            <section class="t-section mb-8" v-if="dataLoading">
+                <div class="t-section__inner">
+                    <skeletonoAdminList />
+                </div>
+            </section>
+
+            <section class="t-section mb-8" v-if="!dataLoading && !topPlaces.length">
+                <div class="t-section__inner">
+                    <div class="o-admin-list__no-items">Není tu žádná položka</div>
+                </div>
+            </section>
+
             <section class="t-section mt-4 mb-8">
                 <div class="t-section__inner">
                     <div class="o-admin-list">
@@ -48,6 +60,7 @@
     import oHero from '@/components/organisms/oHero.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
+    import skeletonoAdminList from '@/components/skeleton/skeletonOAdminList.vue'
 
     //INTERFACES
     interface topPlaces {
@@ -63,7 +76,8 @@
         components: {
             mNavBreadcrumbs,
             mNavAdmin,
-            oHero
+            oHero,
+            skeletonoAdminList
         },
 
         data() {
@@ -118,18 +132,27 @@
             })
 
             //CONSTS
-            const runTimeConfig = useRuntimeConfig();
+            const runTimeConfig = useRuntimeConfig()
+            const dataLoading = ref(true)
             const topPlaces = ref<topPlaces[]>([])
 
             //API - Users
             onMounted(() => {
                 fetch(`${runTimeConfig.public.baseURL}/top-places`, {
                     method: 'GET'
-                }).then(res => res.json()).then(data => topPlaces.value = data);
+                })
+                .then(res => res.json())
+                .then(data => {
+                    dataLoading.value = false
+                    topPlaces.value = data
+                })
             })
 
             //RETURN
-            return { topPlaces }
+            return {
+                dataLoading,
+                topPlaces
+            }
         },
 
         mounted() {

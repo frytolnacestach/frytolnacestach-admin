@@ -17,6 +17,18 @@
             </section>
             <!-- SECTION - NAV Admin END -->
 
+            <section class="t-section mb-8" v-if="dataLoading">
+                <div class="t-section__inner">
+                    <skeletonoAdminList />
+                </div>
+            </section>
+
+            <section class="t-section mb-8" v-if="!dataLoading && !images.length">
+                <div class="t-section__inner">
+                    <div class="o-admin-list__no-items">Není tu žádná položka</div>
+                </div>
+            </section>
+
             <section class="t-section mb-8">
                 <div class="t-section__inner">
                     <div class="o-admin-list">
@@ -45,6 +57,7 @@
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oHero from '@/components/organisms/oHero.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
+    import skeletonoAdminList from '@/components/skeleton/skeletonOAdminList.vue'
 
     interface Images {
         id: number
@@ -59,7 +72,8 @@
         components: {
             mNavAdmin,
             mNavBreadcrumbs,
-            oHero
+            oHero,
+            skeletonoAdminList
         },
 
         data() {
@@ -117,17 +131,26 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig()
+            const dataLoading = ref(true)
             const images = ref<Images[]>([])
 
             //API - Floras
             onMounted(() => {
                 fetch(`${runTimeConfig.public.baseURL}/images`, {
                     method: 'GET'
-                }).then(res => res.json()).then(data => images.value = data);
+                })
+                .then(res => res.json())
+                .then(data => {
+                    dataLoading.value = false
+                    images.value = data
+                })
             })
 
             //RETURN
-            return { images }
+            return {
+                dataLoading,
+                images
+            }
         },
 
 

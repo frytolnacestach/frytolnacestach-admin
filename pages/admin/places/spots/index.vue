@@ -17,12 +17,23 @@
             </section>
             <!-- SECTION - NAV Admin END -->
 
+            <section class="t-section mb-8" v-if="dataLoading">
+                <div class="t-section__inner">
+                    <skeletonoAdminList />
+                </div>
+            </section>
+
+            <section class="t-section mb-8" v-if="!dataLoading && !placesSpots.length">
+                <div class="t-section__inner">
+                    <div class="o-admin-list__no-items">Není tu žádná položka</div>
+                </div>
+            </section>
+
             <section class="t-section mb-8">
                 <div class="t-section__inner">
                     <div class="o-admin-list">
                         <div class="o-admin-list__outer">
                             <div class="o-admin-list__inner">
-                            
                                 <div class="o-admin-list__items" v-if="placesSpots.length">
                                     <div v-for="placesSpot in placesSpots" :key="placesSpot.id" class="o-admin-list__item">
                                         <span class="o-admin-list__id">{{ placesSpot.id }}</span>
@@ -39,8 +50,6 @@
                                         </p>
                                     </div>
                                 </div>
-
-                                <div class="o-admin-list__no-items" v-if="!placesSpots.length">Není tu žádná položka</div>
                             </div>
                         </div>
                     </div>
@@ -54,6 +63,7 @@
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oHero from '@/components/organisms/oHero.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
+    import skeletonoAdminList from '@/components/skeleton/skeletonOAdminList.vue'
 
     interface PlacesSpots {
         id: number
@@ -71,7 +81,8 @@
         components: {
             mNavBreadcrumbs,
             oHero,
-            mNavAdmin
+            mNavAdmin,
+            skeletonoAdminList
         },
 
         data() {
@@ -133,17 +144,26 @@
 
             //CONSTS
             const runTimeConfig = useRuntimeConfig()
+            const dataLoading = ref(true)
             const placesSpots = ref<PlacesSpots[]>([])
 
             //API - PlaceSpots
             onMounted(() => {
                 fetch(`${runTimeConfig.public.baseURL}/places-spots`, {
                     method: 'GET'
-                }).then(res => res.json()).then(data => placesSpots.value = data);
+                })
+                .then(res => res.json())
+                .then(data => {
+                    dataLoading.value = false
+                    placesSpots.value = data
+                })
             })
 
             //RETURN
-            return { placesSpots }
+            return {
+                dataLoading,
+                placesSpots
+            }
         },
 
         mounted() {
