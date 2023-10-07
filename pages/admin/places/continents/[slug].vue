@@ -37,6 +37,14 @@
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
+                                            <!-- Form - type_place -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="typePlace" disabled="true" v-model="placesContinentTypePlace" required />
+                                            </div>
+                                            <!-- Form - type_place END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Stálé hodnoty END -->
@@ -143,14 +151,6 @@
                                                 <input class="a-input" type="text" name="slug" v-model="placesContinentSlug" required />
                                             </div>
                                             <!-- Form - slug END -->
-                                            <!-- Form - type_place -->
-                                            <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
-                                                <input class="a-input" type="text" name="typePlace" disabled="true" v-model="placesContinentTypePlace" required />
-                                            </div>
-                                            <!-- Form - type_place END -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">

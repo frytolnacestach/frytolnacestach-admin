@@ -128,21 +128,12 @@
                                     </div>
                                     <!-- BLOCK - SEO END -->
 
-                                    <!-- BLOCK - Editační hodnoty -->
+                                    <!-- BLOCK - Geolokační umístění -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
-                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <mHeadlineForm title="Geolokační umístění" styleGap=" mt-2" />
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
-                                            <!-- Form - slug -->
-                                            <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
-                                                </label>
-                                                <input class="a-input" type="text" name="slug" v-model="eventSlug" required />
-                                            </div>
-                                            <!-- Form - slug END -->
                                             <!-- Form - id_state -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
@@ -175,6 +166,25 @@
                                                 <input class="a-input" type="number" min="0" name="spot" v-model="eventIDspot" />
                                             </div>
                                             <!-- Form - id_spot END -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Geolokační umístění END -->
+
+                                    <!-- BLOCK - Editační hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - slug -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="slug" v-model="eventSlug" required />
+                                            </div>
+                                            <!-- Form - slug END -->
                                             <!-- Form - date_start -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">

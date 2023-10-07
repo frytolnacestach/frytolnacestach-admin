@@ -23,6 +23,24 @@
 
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="createForm">
+                                    <!-- BLOCK - Stálé hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Stálé hodnoty" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - type_place -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" disabled="true" name="typePlace" v-model="placesRegionTypePlace" required />
+                                            </div>
+                                            <!-- Form - type_place END -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Stálé hodnoty END -->
+
                                     <!-- BLOCK - Obrázky -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -90,6 +108,24 @@
                                     </div>
                                     <!-- BLOCK - SEO END -->
 
+                                    <!-- BLOCK - Geolokační umístění -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Geolokační umístění" styleGap=" mt-2" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - id_state -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="number" min="0" name="state" v-model="placesRegionIDstate" required />
+                                            </div>
+                                            <!-- Form - id_state END -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Geolokační umístění END -->
+
                                     <!-- BLOCK - Editační hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -105,22 +141,6 @@
                                                 <input class="a-input" type="text" name="slug" v-model="placesRegionSlug" required />
                                             </div>
                                             <!-- Form - slug END -->
-                                            <!-- Form - id_state -->
-                                            <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
-                                                <input class="a-input" type="number" min="0" name="state" v-model="placesRegionIDstate" required />
-                                            </div>
-                                            <!-- Form - id_state END -->
-                                            <!-- Form - type_place -->
-                                            <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
-                                                <input class="a-input" type="text" disabled="true" name="typePlace" v-model="placesRegionTypePlace" required />
-                                            </div>
-                                            <!-- Form - type_place END -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">

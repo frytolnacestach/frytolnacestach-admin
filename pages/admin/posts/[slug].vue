@@ -37,6 +37,22 @@
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
+                                            <!-- Form - date -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Datum vytvoření <span class="m-label__name-column">(date)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" disabled="true" name="date" v-model="postDate" required />
+                                            </div>
+                                            <!-- Form - date END -->
+                                            <!-- Form - date_update -->
+                                            <div class="o-form-item__item">
+                                                <label class="m-label">
+                                                    <span class="m-label__name">Datum poslední úpravy <span class="m-label__name-column">(date_update)</span><span class="m-label__name-required">*</span></span>
+                                                </label>
+                                                <input class="a-input" type="text" name="dateUpdate" v-model="postDateUpdate" required />
+                                            </div>
+                                            <!-- Form - date_update END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Stálé hodnoty END -->
@@ -162,21 +178,12 @@
                                     </div>
                                     <!-- BLOCK - SEO END -->
 
-                                    <!-- BLOCK - Editační hodnoty -->
+                                    <!-- BLOCK - Geolokační umístění -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
-                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <mHeadlineForm title="Geolokační umístění" styleGap=" mt-2" />
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
-                                            <!-- Form - slug -->
-                                            <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
-                                                </label>
-                                                <input class="a-input" type="text" name="slug" v-model="postSlug" required />
-                                            </div>
-                                            <!-- Form - slug END -->
                                             <!-- Form - id_continent -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
@@ -217,22 +224,25 @@
                                                 <input class="a-input" type="number" min="0" name="id_spot" v-model="postIDspot" />
                                             </div>
                                             <!-- Form - id_spot END -->
-                                            <!-- Form - date -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Geolokační umístění END -->
+
+                                    <!-- BLOCK - Editační hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - slug -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
-                                                    <span class="m-label__name">Datum vytvoření <span class="m-label__name-column">(date)</span><span class="m-label__name-required">*</span></span>
+                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
+                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
                                                 </label>
-                                                <input class="a-input" type="text" name="date" v-model="postDate" required />
+                                                <input class="a-input" type="text" name="slug" v-model="postSlug" required />
                                             </div>
-                                            <!-- Form - date END -->
-                                            <!-- Form - date_update -->
-                                            <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Datum poslední úpravy <span class="m-label__name-column">(date_update)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
-                                                <input class="a-input" type="text" name="dateUpdate" v-model="postDateUpdate" required />
-                                            </div>
-                                            <!-- Form - date_update END -->
+                                            <!-- Form - slug END -->
                                             <!-- Form - date_onformation -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
