@@ -29,40 +29,46 @@
                                         <mHeadlineForm title="Základní informace" />
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
+                                            <!-- Form - iam -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Kdo jsem <span class="m-label__name-column">(iam)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" name="iam" v-model="iam" required></textarea>
                                             </div>
-
+                                            <!-- Form - iam END -->
+                                            <!-- Form - donate -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Jak mě podpořit <span class="m-label__name-column">(donate)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" name="donate" v-model="donate" required></textarea>
                                             </div>
-
+                                            <!-- Form - donate END -->
+                                            <!-- Form - cookies -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Zásady Cookies <span class="m-label__name-column">(cookies)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" name="cookies" v-model="cookies" required></textarea>
                                             </div>
-
+                                            <!-- Form - cookies END -->
+                                            <!-- Form - conditions -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Obchodní podmínky a zásady ochrany osobních údajů <span class="m-label__name-column">(conditions)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" name="conditions" v-model="conditions" required></textarea>
                                             </div>
-
+                                            <!-- Form - conditions END -->
+                                            <!-- Form - conditions_user -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Obchodní podmínky a zásady ochrany osobních údajů - uživatel <span class="m-label__name-column">(conditions_user)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" name="conditionsUser" v-model="conditionsUser" required></textarea>
                                             </div>
+                                            <!-- Form - conditions_user END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Základní informace END-->

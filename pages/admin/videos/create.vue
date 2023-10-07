@@ -88,7 +88,7 @@
                                         <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
-                                            <!-- slug -->
+                                            <!-- Form - slug -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
@@ -96,38 +96,48 @@
                                                 </label>
                                                 <input class="a-input" type="text" name="slug" v-model="videoSlug" required />
                                             </div>
-                                            <!-- ids -->
+                                            <!-- Form - slug END -->
+                                            <!-- Form - id_continent -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="id_continent" v-model="videoIDcontinent" />
                                             </div>
+                                            <!-- Form - id_continent END -->
+                                            <!-- Form - id_state -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="id_state" v-model="videoIDstate" />
                                             </div>
+                                            <!-- Form - id_state END -->
+                                            <!-- Form - id_region -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="id_region" v-model="videoIDregion" />
                                             </div>
+                                            <!-- Form - id_region END -->
+                                            <!-- Form - id_city -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="id_city" v-model="videoIDcity" />
                                             </div>
+                                            <!-- Form - id_city END -->
+                                            <!-- Form - id_spot -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="id_spot" v-model="videoIDspot" />
                                             </div>
-                                            <!-- other -->                       
+                                            <!-- Form - id_spot END -->
+                                            <!-- Form - platform -->                       
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Platforma <span class="m-label__name-column">(platform)</span><span class="m-label__name-required">*</span></span>
@@ -137,6 +147,8 @@
                                                     <option v-for="platform in platforms" :key="platform.id" :value="platform.id">{{platform.name}}</option>
                                                 </select>
                                             </div>
+                                            <!-- Form - platform END -->
+                                            <!-- Form - type -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Žánr <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
@@ -144,24 +156,31 @@
                                                 </label>
                                                 <input class="a-input" type="text" name="type" v-model="videoType" required />
                                             </div>
+                                            <!-- Form - type END -->
+                                            <!-- Form - title -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Název <span class="m-label__name-column">(title)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="title" v-model="videoTitle" required />
                                             </div>
+                                            <!-- Form - title END -->
+                                            <!-- Form - perex -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Popis <span class="m-label__name-column">(perex)</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" type="text" name="perex" v-model="videoPerex"></textarea>
                                             </div>
+                                            <!-- Form - perex END -->
+                                            <!-- Form - url -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Odkaz <span class="m-label__name-column">(url)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="url" v-model="videoUrl" required />
                                             </div>
+                                            <!-- Form - url END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->

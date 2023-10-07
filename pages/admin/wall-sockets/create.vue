@@ -96,7 +96,7 @@
                                         <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
-                                            <!-- slug -->
+                                            <!-- Form - slug -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
@@ -104,31 +104,36 @@
                                                 </label>
                                                 <input class="a-input" type="text" name="slug" v-model="wallSocketSlug" required />
                                             </div>
-                                            <!-- other -->
+                                            <!-- Form - slug END -->
+                                            <!-- Form - label -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Typ zásuvky <span class="m-label__name-column">(label)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="label" v-model="wallSocketLabel" required />
                                             </div>
+                                            <!-- Form - label -->
+                                            <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="name" v-model="wallSocketName" required />
                                             </div>
+                                            <!-- Form - name -->
+                                            <!-- Form - description -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" type="text" name="description" v-model="wallSocketDescription"></textarea>
                                             </div>
-                                            <!-- JSON -->
+                                            <!-- Form - description -->
+                                            <!-- Form - ids_states(JSON) END -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
                                                 </label>
-                                                
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in wallSocketIDSstatesArray" :key="index">
@@ -154,6 +159,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Form - ids_states(JSON) END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->

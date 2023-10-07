@@ -29,20 +29,22 @@
                                         <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
-                                            <!-- ids -->
+                                            <!-- Form - id_place -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID místa <span class="m-label__name-column">(id_place)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="idPlace" v-model="topPlaceIDplace" required />
                                             </div>
-                                            <!-- other -->                             
+                                            <!-- Form - id_place END -->
+                                            <!-- Form - type -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Typ <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="type" v-model="topPlaceType" required />
-                                            </div>                      
+                                            </div>
+                                            <!-- Form - type END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->

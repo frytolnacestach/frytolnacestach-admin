@@ -96,7 +96,7 @@
                                         <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
-                                            <!-- slug -->
+                                            <!-- Form - slug -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
@@ -104,56 +104,72 @@
                                                 </label>
                                                 <input class="a-input" type="text" name="slug" v-model="eventSlug" required />
                                             </div>
-                                            <!-- ids -->
+                                            <!-- Form - slug END -->
+                                            <!-- Form - id_state -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="state" v-model="eventIDstate" />
                                             </div>
+                                            <!-- Form - id_state END -->
+                                            <!-- Form - id_region -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="region" v-model="eventIDregion" />
                                             </div>
+                                            <!-- Form - id_region END -->
+                                            <!-- Form - id_city -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="city" v-model="eventIDcity" />
                                             </div>
+                                            <!-- Form - id_city END -->
+                                            <!-- Form - id_spot -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="spot" v-model="eventIDspot" />
                                             </div>
-                                            <!-- other -->
+                                            <!-- Form - id_spot END -->
+                                            <!-- Form - date_start -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Datum začátku události <span class="m-label__name-column">(date_start)</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="dateStart" v-model="eventDateStart" />
                                             </div>
+                                            <!-- Form - date_start END -->
+                                            <!-- Form - date_end -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Datum konce události <span class="m-label__name-column">(date_end)</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="dateEnd" v-model="eventDateEnd" />
                                             </div>
+                                            <!-- Form - date_end END -->
+                                            <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="name" v-model="eventName" required />
                                             </div>
+                                            <!-- Form - name END -->
+                                            <!-- Form - description -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" type="text" name="description" v-model="eventDescription"></textarea>
                                             </div>
+                                            <!-- Form - description END -->
+                                            <!-- Form - coordinates(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Souřadnice místa konání <span class="m-label__name-column">(coordinates)</span></span>
@@ -187,6 +203,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Form - coordinates(JSON) -->
+                                            <!-- Form - zoom(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
@@ -220,6 +238,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Form - zoom(JSON) END -->
+                                            <!-- Form - affiliate(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Affiliate <span class="m-label__name-column">(affiliate)</span></span>
@@ -253,6 +273,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Form - affiliate(JSON) END -->
+                                            <!-- Form - prices(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Ceny <span class="m-label__name-column">(prices)</span></span>
@@ -290,6 +312,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Form - prices(JSON) END -->
+                                            <!-- Form - links(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Odkazy <span class="m-label__name-column">(links)</span></span>
@@ -322,7 +346,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>                     
+                                            </div>
+                                            <!-- Form - links(JSON) END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->

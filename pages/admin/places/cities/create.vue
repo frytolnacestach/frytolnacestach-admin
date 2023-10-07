@@ -96,7 +96,7 @@
                                         <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
-                                            <!-- slug -->
+                                            <!-- Form - slug -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
@@ -104,14 +104,16 @@
                                                 </label>
                                                 <input class="a-input" type="text" name="slug" v-model="placesCitySlug" required />
                                             </div>
-                                            <!-- ids -->
+                                            <!-- Form - slug END -->
+                                            <!-- Form - id_state -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="state" v-model="placesCityIDstate" required />
                                             </div>
-                                            <!-- other -->
+                                            <!-- Form - id_state END -->
+                                            <!-- Form - importance -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Významnost <span class="m-label__name-column">(importance)</span></span>
@@ -121,24 +123,32 @@
                                                     <option value="biggest">TOP10 NEJVĚTŠÍ</option>
                                                 </select>
                                             </div>
+                                            <!-- Form - importance END -->
+                                            <!-- Form - type_place -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" disabled="true" name="typePlace" v-model="placesCityTypePlace" required />
                                             </div>
+                                            <!-- Form - type_place END -->
+                                            <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="name" v-model="placesCityName" required />
                                             </div>
+                                            <!-- Form - name END -->
+                                            <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Informace od Chat GPT <span class="m-label__name-column">(information_chatgpt)</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesCityInformationChatgpt"></textarea>
                                             </div>
+                                            <!-- Form - information_chatgpt END -->
+                                            <!-- Form - information_author(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Informace od autora <span class="m-label__name-column">(information_author)</span></span>
@@ -184,24 +194,32 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Form - information_author(JSON) END -->
+                                            <!-- Form - population -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Populace <span class="m-label__name-column">(population)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="population" v-model="placesCityPopulation" />
                                             </div>
+                                            <!-- Form - population END -->
+                                            <!-- Form - area -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Rozloha <span class="m-label__name-column">(area)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" step=".01" name="area" v-model="placesCityArea" />
-                                            </div>  
+                                            </div>
+                                            <!-- Form - area END -->
+                                            <!-- Form - altitude -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Nadmořská výška <span class="m-label__name-column">(altitude)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" name="altitude" v-model="placesCityAltitude" />
-                                            </div>  
+                                            </div>
+                                            <!-- Form - altitude END -->
+                                            <!-- Form - coordinates(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
@@ -235,6 +253,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Form - coordinates(JSON) END -->
+                                            <!-- Form - zoom(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
@@ -268,6 +288,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Form - zoom(JSON) END -->
+                                            <!-- Form - affiliate(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Affiliate <span class="m-label__name-column">(affiliate)</span></span>
@@ -301,6 +323,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Form - affiliate(JSON) END -->
+                                            <!-- Form - alerts(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Upozornění <span class="m-label__name-column">(alerts)</span></span>
@@ -358,6 +382,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Form - alerts(JSON) END -->
+                                            <!-- Form - parking(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Parkování <span class="m-label__name-column">(parking)</span></span>
@@ -418,7 +444,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>                    
+                                            </div>
+                                            <!-- Form - parking(JSON) END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->

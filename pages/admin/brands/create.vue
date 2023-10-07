@@ -96,7 +96,7 @@
                                         <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
-                                            <!-- slug -->
+                                            <!-- Form - slug -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
@@ -104,7 +104,8 @@
                                                 </label>
                                                 <input class="a-input" type="text" name="slug" v-model="brandSlug" required />
                                             </div>
-                                            <!-- json -->
+                                            <!-- Form - slug END -->
+                                            <!-- Form - ids_states(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
@@ -134,19 +135,23 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- other -->                             
+                                            <!-- Form - ids_states(JSON) END -->
+                                            <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="name" v-model="brandName" required />
                                             </div>
+                                            <!-- Form - name END -->
+                                            <!-- Form - description -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" type="text" name="description" v-model="brandDescription"></textarea>
                                             </div>
+                                            <!-- Form - description END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->

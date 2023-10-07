@@ -29,7 +29,7 @@
                                         <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
-                                            <!-- slug -->
+                                            <!-- Form - slug -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
@@ -37,26 +37,32 @@
                                                 </label>
                                                 <input class="a-input" type="text" name="slug" v-model="platformSlug" required />
                                             </div>
-                                            <!-- other -->  
+                                            <!-- Form - slug END -->
+                                            <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Název platformy <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="name" v-model="platformName" required />
                                             </div>
+                                            <!-- Form - name END -->
+                                            <!-- Form - perex -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Můj popis <span class="m-label__name-column">(perex)</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" type="text" name="perex" v-model="platformPerex"></textarea>
                                             </div>
+                                            <!-- Form - perex END -->
+                                            <!-- Form - url -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Odkaz na profil <span class="m-label__name-column">(url)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="url" v-model="platformUrl" required />
                                             </div>
-                                            <!-- dates -->
+                                            <!-- Form - url END -->
+                                            <!-- Form - date -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Datum údajů <span class="m-label__name-column">(date)</span></span>
@@ -64,7 +70,8 @@
                                                 </label>
                                                 <input class="a-input" type="text" name="date" v-model="platformDate" />
                                             </div>
-                                            <!-- json -->
+                                            <!-- Form - date END -->
+                                            <!-- Form - facts(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Fakta o síťi <span class="m-label__name-column">(facts)</span></span>
@@ -99,6 +106,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Form - facts(JSON) -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->

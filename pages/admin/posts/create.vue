@@ -112,7 +112,7 @@
                                         <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
-                                            <!-- slug -->
+                                            <!-- Form - slug -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
@@ -120,111 +120,144 @@
                                                 </label>
                                                 <input class="a-input" type="text" name="slug" v-model="postSlug" required />
                                             </div>
-                                            <!-- ids -->
+                                            <!-- Form - slug END -->
+                                            <!-- Form - id_continent -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="id_continent" v-model="postIDcontinent" />
                                             </div>
+                                            <!-- Form - id_continent -->
+                                            <!-- Form - id_state -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="id_state" v-model="postIDstate" />
                                             </div>
+                                            <!-- Form - id_state END -->
+                                            <!-- Form - id_region -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="id_region" v-model="postIDregion" />
                                             </div>
+                                            <!-- Form - id_region END -->
+                                            <!-- Form - id_city -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="id_city" v-model="postIDcity" />
                                             </div>
+                                            <!-- Form - id_city END -->
+                                            <!-- Form - id_spot -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
                                                 </label>
                                                 <input class="a-input" type="number" min="0" name="id_spot" v-model="postIDspot" />
                                             </div>
-                                            <!-- dates -->
+                                            <!-- Form - id_spot END -->
+                                            <!-- Form - date -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Datum vytvoření <span class="m-label__name-column">(date)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="date" v-model="postDate" />
                                             </div>
+                                            <!-- Form - date END -->
+                                            <!-- Form - date_update -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Datum poslední úpravy <span class="m-label__name-column">(date_update)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="dateUpdate" v-model="postDateUpdate" />
                                             </div>
+                                            <!-- Form - date_update END -->
+                                            <!-- Form - date_onformation -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Datum platnosti informací <span class="m-label__name-column">(date_onformation)</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="dateInformation" v-model="postDateInformation" />
                                             </div>
-                                            <!-- other -->                
+                                            <!-- Form - date_onformation END -->
+                                            <!-- Form - url_youtube -->             
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Odkaz na video na Youtube <span class="m-label__name-column">(url_youtube)</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="urlYoutube" v-model="postUrlYoutube" />
-                                            </div>  
+                                            </div>
+                                            <!-- Form - url_youtube END -->
+                                            <!-- Form - url_wiki -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Odkaz na wiki <span class="m-label__name-column">(url_wiki)</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="urlWiki" v-model="postUrlWiki" />
-                                            </div>  
+                                            </div>
+                                            <!-- Form - url_wiki END -->
+                                            <!-- Form - url_map -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Odkaz na mapu <span class="m-label__name-column">(url_map)</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="urlMap" v-model="postUrlMap" />
                                             </div>
+                                            <!-- Form - url_map END -->
+                                            <!-- Form - title -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Název <span class="m-label__name-column">(title)</span><span class="m-label__name-required">*</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="title" v-model="postTitle" required />
                                             </div>
+                                            <!-- Form - title END -->
+                                            <!-- Form - perex -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Popis <span class="m-label__name-column">(perex)</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="perex" v-model="postPerex" />
                                             </div>
+                                            <!-- Form - perex END -->
+                                            <!-- Form - text_opener -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Text otvírák <span class="m-label__name-column">(text_opener)</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" type="text" name="textOpener" v-model="postTextOpener"></textarea>
                                             </div>
+                                            <!-- Form - text_opener END -->
+                                            <!-- Form - text_author -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Text autora <span class="m-label__name-column">(text_author)</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" type="text" name="textAuthor" v-model="postTextAuthor"></textarea>
                                             </div>
+                                            <!-- Form - text_author END -->
+                                            <!-- Form - text_wiki -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Text z wikipedie <span class="m-label__name-column">(text_wiki)</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" type="text" name="textWiki" v-model="postTextWiki"></textarea>
                                             </div>
+                                            <!-- Form - text_wiki END -->
+                                            <!-- Form - review_text -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Text k hodnocení <span class="m-label__name-column">(review_text)</span></span>
                                                 </label>
                                                 <textarea class="a-textarea" type="text" name="reviewText" v-model="postReviewText"></textarea>
                                             </div>
+                                            <!-- Form - review_text END -->
+                                            <!-- Form - review_value -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Hodnocení <span class="m-label__name-column">(review_value)</span></span>
@@ -232,25 +265,32 @@
                                                 </label>
                                                 <input class="a-input" type="text" name="reviewValue" v-model="postReviewValue" />
                                             </div>
+                                            <!-- Form - review_value END -->
+                                            <!-- Form - perex_price -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Text k ceně <span class="m-label__name-column">(perex_price)</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="perexPrice" v-model="postPerexPrice" />
                                             </div>
+                                            <!-- Form - perex_price END -->
+                                            <!-- Form - perex_triplength -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Text k délce cesty <span class="m-label__name-column">(perex_triplength)</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="perexTriplength" v-model="postPerexTriplength" />
                                             </div>
+                                            <!-- Form - perex_triplength END -->
+                                            <!-- Form - perex_time -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Text k časové náročnosti <span class="m-label__name-column">(perex_time)</span></span>
                                                 </label>
                                                 <input class="a-input" type="text" name="perexTime" v-model="postPerexTime" />
                                             </div>
-                                            <!-- json - tags -->
+                                            <!-- Form - perex_time END -->
+                                            <!-- Form - tags(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Tagy <span class="m-label__name-column">(tags)</span></span>
@@ -280,7 +320,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- json - location -->
+                                            <!-- Form - tags(JSON) END -->
+                                            <!-- Form - locations(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Lokace <span class="m-label__name-column">(locations)</span></span>
@@ -314,7 +355,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- json - travels -->
+                                            <!-- Form - locations(JSON) END -->
+                                            <!-- Form - travels(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Způsoby dopravy <span class="m-label__name-column">(travels)</span></span>
@@ -352,7 +394,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- json - prices -->
+                                            <!-- Form - travels(JSON) END -->
+                                            <!-- Form - prices(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Ceny <span class="m-label__name-column">(prices)</span></span>
@@ -390,7 +433,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- json - triplengths -->
+                                            <!-- Form - prices(JSON) END -->
+                                            <!-- Form - triplengths(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Dělka výletu <span class="m-label__name-column">(triplengths)</span></span>
@@ -428,7 +472,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- json - times -->
+                                            <!-- Form - triplengths(JSON) END -->
+                                            <!-- Form - times(JSON) -->
                                             <div class="o-form-item__item">
                                                 <label class="m-label">
                                                     <span class="m-label__name">Časová náročnost <span class="m-label__name-column">(times)</span></span>
@@ -466,6 +511,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Form - times(JSON) END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->
