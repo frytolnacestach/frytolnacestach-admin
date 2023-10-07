@@ -1,10 +1,6 @@
 .o-admin-list {
     margin: 0;
 
-    @media only screen and (min-width: $md) {
-        margin: 0 15px;
-    }
-
     &__outer {
         width: 100%;
     }
