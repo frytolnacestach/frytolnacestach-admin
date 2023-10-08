@@ -31,17 +31,13 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku listu" nameDB="id_image_cover" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="imageCover" v-model="wallSocketIDimageCover" />
                                             </div>
                                             <!-- Form - id_image_cover END -->
                                             <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku detailu" nameDB="id_image_hero" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="imageHero" v-model="wallSocketIDimageHero" />
                                             </div>
                                             <!-- Form - id_image_hero END -->
@@ -57,9 +53,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
-                                                </label>
+                                                <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in wallSocketSeoTagsArray" :key="index">
@@ -98,42 +92,31 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - slug -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
-                                                </label>
+                                                <mLabel name="Slug" nameDB="slug" perex="Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky" :required=true />
                                                 <input class="a-input" type="text" name="slug" v-model="wallSocketSlug" required />
                                             </div>
                                             <!-- Form - slug END -->
                                             <!-- Form - label -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Typ zásuvky <span class="m-label__name-column">(label)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Typ zásuvky" nameDB="label" perex="" :required=true />
                                                 <input class="a-input" type="text" name="label" v-model="wallSocketLabel" required />
                                             </div>
                                             <!-- Form - label -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Název" nameDB="name" perex="" :required=true />
                                                 <input class="a-input" type="text" name="name" v-model="wallSocketName" required />
                                             </div>
                                             <!-- Form - name -->
                                             <!-- Form - description -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
-                                                </label>
+                                                <mLabel name="Popis" nameDB="description" perex="" :required=false />
                                                 <textarea class="a-textarea" type="text" name="description" v-model="wallSocketDescription"></textarea>
                                             </div>
                                             <!-- Form - description -->
                                             <!-- Form - ids_states(JSON) END -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
-                                                </label>
+                                                <mLabel name="IDčka států" nameDB="ids_states" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in wallSocketIDSstatesArray" :key="index">
@@ -186,6 +169,7 @@
 
 <script lang="ts">
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
@@ -196,6 +180,7 @@
         //COMPONENTS
         components: {
             mHeadlineForm,
+            mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
             oHero

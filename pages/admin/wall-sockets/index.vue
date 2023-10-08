@@ -53,9 +53,9 @@
 </template>
 
 <script lang="ts">
+    import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oHero from '@/components/organisms/oHero.vue'
-    import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
     import skeletonoAdminList from '@/components/skeleton/skeletonOAdminList.vue'
 
     interface WallSockets {
