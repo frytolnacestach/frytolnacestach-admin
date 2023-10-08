@@ -31,9 +31,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="ID" nameDB="id" perex="" :required=true />
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
@@ -54,41 +52,31 @@
                                             <!-- Image END -->
                                             <!-- Form - name END -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Název" nameDB="name" perex="" :required=true />
                                                 <input class="a-input" type="text" name="name" v-model="imageName" required />
                                             </div>
                                             <!-- Form - name END -->
                                             <!-- Form - source -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Zdroj <span class="m-label__name-column">(source)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Zdroj" nameDB="source" perex="" :required=true />
                                                 <input class="a-input" type="text" name="source" v-model="imageSource" required />
                                             </div>
                                             <!-- Form - source END -->
                                             <!-- Form - date_create -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Datum vytvoření <span class="m-label__name-column">(date_create)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Datum vytvoření" nameDB="date_create" perex="" :required=true />
                                                 <input class="a-input" type="text" name="dateCreate" disabled="true" v-model="imageDateCreate" required />
                                             </div>
                                             <!-- Form - date_create END -->
                                             <!-- Form - type -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Typ použití <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Typ použití" nameDB="type" perex="" :required=true />
                                                 <input class="a-input" type="text" name="type" v-model="imageType" required />
                                             </div>
                                             <!-- Form - type END -->
                                             <!-- Form - author -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Autor <span class="m-label__name-column">(author)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Autor" nameDB="author" perex="" :required=true />
                                                 <input class="a-input" type="text" name="author" v-model="imageAuthor">
                                             </div>    
                                             <!-- Form - author END -->                         

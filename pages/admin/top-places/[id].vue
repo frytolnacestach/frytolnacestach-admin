@@ -31,9 +31,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="ID" nameDB="id" perex="" :required=true />
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
@@ -49,17 +47,13 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - ids_place -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID místa <span class="m-label__name-column">(id_place)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="ID místa" nameDB="id_place" perex="" :required=true />
                                                 <input class="a-input" type="number" min="0" name="idPlace" v-model="topPlaceIDplace" required />
                                             </div>
                                             <!-- Form - ids_place END -->
                                             <!-- Form - type -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Typ <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Typ" nameDB="type" perex="" :required=true />
                                                 <input class="a-input" type="text" name="type" v-model="topPlaceType" required />
                                             </div>
                                             <!-- Form - type END -->
