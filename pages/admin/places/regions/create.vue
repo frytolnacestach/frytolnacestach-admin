@@ -316,9 +316,7 @@
                                     <!-- COMPONENT - Button -->
                                     <div class="o-form-item__buttons mt-1">
                                         <div class="o-form-item__button">
-                                            <div class="m-button">
-                                                <button class="m-button__input" type="submit">Přidat region</button>
-                                            </div>
+                                            <mButton text="Přidat region" />
                                         </div>
                                     </div>
                                     <!-- COMPONENT - Button END -->
@@ -334,7 +332,9 @@
 </template>
 
 <script lang="ts">
+    import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
@@ -344,7 +344,9 @@
 
         //COMPONENTS
         components: {
+            mButton,
             mHeadlineForm,
+            mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
             oHero
