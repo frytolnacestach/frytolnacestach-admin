@@ -5,7 +5,7 @@
             <span class="m-label__name-column" v-if="nameDB"> ({{ nameDB }})</span>
             <span class="m-label__name-required" v-if="required">*</span>
         </span>
-        <span class="m-label__perex" v-if="perex">{{ perex }}</span>
+        <span class="m-label__perex" v-if="perex" v-html="perex"></span>
     </label>
 </template>
 

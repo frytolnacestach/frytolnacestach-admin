@@ -31,41 +31,31 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Název" nameDB="name" perex="" :required=true />
                                                 <input class="a-input" type="text" name="name" v-model="imageName" required />
                                             </div>
                                             <!-- Form - name -->
                                             <!-- Form - source -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Zdroj <span class="m-label__name-column">(source)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Zdroj" nameDB="source" perex="" :required=true />
                                                 <input class="a-input" type="text" name="source" v-model="imageSource" required />
                                             </div>
                                             <!-- Form - source END -->
                                             <!-- Form - type -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Typ použití <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Typ použití" nameDB="type" perex="" :required=true />
                                                 <input class="a-input" type="text" name="type" v-model="imageType" required />
                                             </div>
                                             <!-- Form - type END -->
                                             <!-- Form - author -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Autor <span class="m-label__name-column">(author)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Autor" nameDB="author" perex="" :required=true />
                                                 <input class="a-input" type="text" name="author" v-model="imageAuthor" required />
                                             </div>
                                             <!-- Form - author END -->
                                             <!-- Form - FILE -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Obrázek<span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Obrázek" nameDB="" perex="" :required=true />
                                                 <input type="file" name="image" @change="handleFileChange" required />
                                             </div>
                                             <!-- Form - FILE END -->

@@ -31,9 +31,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="ID" nameDB="id" perex="" :required=true />
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
@@ -49,9 +47,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_image -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku <span class="m-label__name-column">(id_image)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku" nameDB="id_image" perex="" :required=false />
                                                 <div class="o-form-item__image">
                                                     <div class="o-form-item__image-lazyload" :class="{'-loading': videoIDimageLoading}">
                                                         <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${image[0].source + image[0].name}.webp`" v-if="image[0] && videoIDimage" @load="handleImageLoad">
@@ -77,9 +73,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
-                                                </label>
+                                                <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in videoSeoTagsArray" :key="index">
@@ -118,41 +112,31 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_continent -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span></span>
-                                                </label>
+                                                <mLabel name="ID Kontinentu" nameDB="id_continent" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="id_continent" v-model="videoIDcontinent" />
                                             </div>
                                             <!-- Form - id_continent END -->
                                             <!-- Form - id_state -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
-                                                </label>
+                                                <mLabel name="ID Státu" nameDB="id_state" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="id_state" v-model="videoIDstate" />
                                             </div>
                                             <!-- Form - id_state END -->
                                             <!-- Form - id_region -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
-                                                </label>
+                                                <mLabel name="ID Regionu" nameDB="id_region" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="id_region" v-model="videoIDregion" />
                                             </div>
                                             <!-- Form - id_region END -->
                                             <!-- Form - id_city -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
-                                                </label>
+                                                <mLabel name="ID Města" nameDB="id_city" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="id_city" v-model="videoIDcity" />
                                             </div>
                                             <!-- Form - id_city END -->
                                             <!-- Form - id_spot -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
-                                                </label>
+                                                <mLabel name="ID Místa" nameDB="id_spot" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="id_spot" v-model="videoIDspot" />
                                             </div>
                                             <!-- Form - id_spot END -->
@@ -168,18 +152,13 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - slug -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
-                                                </label>
+                                                <mLabel name="Slug" nameDB="slug" perex="Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky" :required=true />
                                                 <input class="a-input" type="text" name="slug" v-model="videoSlug" required />
                                             </div>
                                             <!-- Form - slug END -->
                                             <!-- Form - platform -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Platforma <span class="m-label__name-column">(platform)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Platforma" nameDB="platform" perex="" :required=true />
                                                 <select class="m-select" name="platform" v-model="videoPlatform" required>
                                                     <option value="">- Vyber platformu -</option>
                                                     <option v-for="platform in platforms" :key="platform.id" :value="platform.id">{{platform.name}}</option>
@@ -188,34 +167,25 @@
                                             <!-- Form - platform END -->
                                             <!-- Form - type -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Žánr <span class="m-label__name-column">(type)</span><span class="m-label__name-required">*</span></span>
-                                                    <span class="m-label__perex">Například <i>travel</i>, <i>event</i> nebo <i>talk</i></span>
-                                                </label>
+                                                <mLabel name="Žánr" nameDB="type" perex="Například <i>travel</i>, <i>event</i> nebo <i>talk</i>" :required=true />
                                                 <input class="a-input" type="text" name="type" v-model="videoType" required />
                                             </div>
                                             <!-- Form - type END -->
                                             <!-- Form - title -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Název <span class="m-label__name-column">(title)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Název" nameDB="title" perex="" :required=true />
                                                 <input class="a-input" type="text" name="title" v-model="videoTitle" required />
                                             </div>
                                             <!-- Form - title END -->
                                             <!-- Form - perex -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Popis <span class="m-label__name-column">(perex)</span></span>
-                                                </label>
+                                                <mLabel name="Popis" nameDB="perex" perex="" :required=false />
                                                 <textarea class="a-textarea" type="text" name="perex" v-model="videoPerex"></textarea>
                                             </div>
                                             <!-- Form - perex END -->
                                             <!-- Form - url -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Odkaz <span class="m-label__name-column">(url)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Odkaz" nameDB="url" perex="" :required=true />
                                                 <input class="a-input" type="text" name="url" v-model="videoUrl" required />
                                             </div>
                                             <!-- Form - url END -->

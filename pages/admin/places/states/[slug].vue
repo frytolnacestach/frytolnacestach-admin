@@ -31,17 +31,13 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="ID" nameDB="id" perex="" :required=true />
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
                                             <!-- Form - type_place -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Typ místa" nameDB="type_place" perex="" :required=true />
                                                 <input class="a-input" type="text" disabled="true" name="typePlace" v-model="placesStateTypePlace" required />
                                             </div>
                                             <!-- Form - type_place END -->
@@ -57,9 +53,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku listu" nameDB="id_image_cover" perex="" :required=false />
                                                 <div class="o-form-item__image">
                                                     <div class="o-form-item__image-lazyload" :class="{'-loading': placesStateIDimageCoverLoading}">
                                                         <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && placesStateIDimageCover" @load="handleImageCoverLoad">
@@ -75,9 +69,7 @@
                                             <!-- Form - id_image_cover END -->
                                             <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku detailu" nameDB="id_image_hero" perex="" :required=false />
                                                 <div class="o-form-item__image">
                                                     <div class="o-form-item__image-lazyload" :class="{'-loading': placesStateIDimageHeroLoading}">
                                                         <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && placesStateIDimageHero" @load="handleImageHeroLoad">
@@ -103,9 +95,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
-                                                </label>
+                                                <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStateSeoTagsArray" :key="index">
@@ -144,9 +134,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_continent -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="ID Kontinentu" nameDB="id_continent" perex="" :required=true />
                                                 <input class="a-input" type="number" min="0" name="image_hero" v-model="placesStateIDcontinent" required />
                                             </div>
                                             <!-- Form - id_continent -->
@@ -162,26 +150,19 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - slug -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
-                                                </label>
+                                                <mLabel name="Slug" nameDB="slug" perex="Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky" :required=true />
                                                 <input class="a-input" type="text" name="slug" v-model="placesStateSlug" required />
                                             </div>
                                             <!-- Form - slug END -->
                                             <!-- Form - id_city_main -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Hlavního města <span class="m-label__name-column">(id_city_main)</span></span>
-                                                </label>
+                                                <mLabel name="ID Hlavního města" nameDB="id_city_main" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="city_main" v-model="placesStateIDcityMain" />
                                             </div>
                                             <!-- Form - id_city_main END -->
                                             <!-- Form - ids_neighboring_countries(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Sousední státy <span class="m-label__name-column">(ids_neighboring_countries)</span></span>
-                                                </label>
+                                                <mLabel name="Sousední státy" nameDB="ids_neighboring_countries" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStateIDSneighboringCountriesArray" :key="index">
@@ -210,25 +191,19 @@
                                             <!-- Form - ids_neighboring_countries(JSON) END -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Název" nameDB="name" perex="" :required=true />
                                                 <input class="a-input" type="text" name="name" v-model="placesStateName" required />
                                             </div>
                                             <!-- Form - name END -->
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Informace od Chat GPT <span class="m-label__name-column">(information_chatgpt)</span></span>
-                                                </label>
+                                                <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
                                                 <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesStateInformationChatgpt"></textarea>
                                             </div>
                                             <!-- Form - information_chatgpt END -->
                                             <!-- Form - information_author(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Informace od autora <span class="m-label__name-column">(information_author)</span></span>
-                                                </label>
+                                                <mLabel name="Informace od autora" nameDB="information_author" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStateInformationAuthorArray" :key="index">
@@ -273,9 +248,7 @@
                                             <!-- Form - information_author(JSON) END -->
                                             <!-- Form - language_phrases(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Jazykové fráze <span class="m-label__name-column">(language_phrases)</span></span>
-                                                </label>
+                                                <mLabel name="Jazykové fráze" nameDB="language_phrases" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStateLanguagePhrasesArray" :key="index">
@@ -316,49 +289,37 @@
                                             <!-- Form - language_phrases(JSON) END -->
                                             <!-- Form - mpz -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">MPZ <span class="m-label__name-column">(mpz)</span></span>
-                                                </label>
+                                                <mLabel name="MPZ" nameDB="mpz" perex="" :required=false />
                                                 <input class="a-input" type="text" name="mpz" v-model="placesStateMpz" />
                                             </div>
                                             <!-- Form - mpz END -->
                                             <!-- Form - tld -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">TLD <span class="m-label__name-column">(tld)</span></span>
-                                                </label>
+                                                <mLabel name="TLD" nameDB="tld" perex="" :required=false />
                                                 <input class="a-input" type="text" name="tld" v-model="placesStateTld" />
                                             </div>
                                             <!-- Form - tld END -->
                                             <!-- Form - area -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Rozloha <span class="m-label__name-column">(area)</span></span>
-                                                </label>
+                                                <mLabel name="Rozloha" nameDB="area" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" step=".01" name="area" v-model="placesStateArea" />
                                             </div>
                                             <!-- Form - area END -->
                                             <!-- Form - population -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Populace <span class="m-label__name-column">(population)</span></span>
-                                                </label>
+                                                <mLabel name="Populace" nameDB="population" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="population" v-model="placesStatePopulation" />
                                             </div>
                                             <!-- Form - population END -->
                                             <!-- Form - phone_prefix -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Telefonní předvolba <span class="m-label__name-column">(phone_prefix)</span></span>
-                                                </label>
+                                                <mLabel name="Telefonní předvolba" nameDB="phone_prefix" perex="" :required=false />
                                                 <input class="a-input" type="text" name="phone_prefix" v-model="placesStatePhonePrefix" />
                                             </div>
                                             <!-- Form - phone_prefix END -->
                                             <!-- Form - phone_numbers_emergency(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Důležitá telefonní čísla <span class="m-label__name-column">(phone_numbers_emergency)</span></span>
-                                                </label>
+                                                <mLabel name="Důležitá telefonní čísla" nameDB="phone_numbers_emergency" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStatePhoneNumbersEmergencyArray" :key="index">
@@ -407,25 +368,19 @@
                                             <!-- Form - phone_numbers_emergency(JSON) END -->
                                             <!-- Form - currency_name -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Název měny <span class="m-label__name-column">(currency_name)</span></span>
-                                                </label>
+                                                <mLabel name="Název měny" nameDB="currency_name" perex="" :required=false />
                                                 <input class="a-input" type="text" name="currency_name" v-model="placesStateCurrencyName" />
                                             </div>
                                             <!-- Form - currency_name END -->
                                             <!-- Form - currency_code -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Kód měny <span class="m-label__name-column">(currency_code)</span></span>
-                                                </label>
+                                                <mLabel name="Kód měny" nameDB="currency_code" perex="" :required=false />
                                                 <input class="a-input" type="text" name="currency_code" v-model="placesStateCurrencyCode" />
                                             </div>
                                             <!-- Form - currency_code END -->
                                             <!-- Form - money_prices(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Ceny <span class="m-label__name-column">(money_prices)</span></span>
-                                                </label>
+                                                <mLabel name="Ceny" nameDB="money_prices" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStateMoneyPricesArray" :key="index">
@@ -474,9 +429,7 @@
                                             <!-- Form - money_prices(JSON) END -->
                                             <!-- Form - people_religion(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Náboženství <span class="m-label__name-column">(people_religion)</span></span>
-                                                </label>
+                                                <mLabel name="Náboženství" nameDB="people_religion" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStatePeopleReligionArray" :key="index">
@@ -525,9 +478,7 @@
                                             <!-- Form - people_religion(JSON) END -->
                                             <!-- Form - people_nationality(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Národnost <span class="m-label__name-column">(people_nationality)</span></span>
-                                                </label>
+                                                <mLabel name="Národnost" nameDB="people_nationality" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStatePeopleNationalityArray" :key="index">
@@ -576,9 +527,7 @@
                                             <!-- Form - people_nationality(JSON) END -->
                                             <!-- Form - visitors_entry(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Pravidla pro vstup <span class="m-label__name-column">(visitors_entry)</span></span>
-                                                </label>
+                                                <mLabel name="Pravidla pro vstup" nameDB="visitors_entry" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStateVisitorsEntryArray" :key="index">
@@ -627,9 +576,7 @@
                                             <!-- Form - visitors_entry(JSON) END -->
                                             <!-- Form - coordinates(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
-                                                </label>
+                                                <mLabel name="Souřadnice" nameDB="coordinates" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStateCoordinatesArray" :key="index">
@@ -662,9 +609,7 @@
                                             <!-- Form - coordinates(JSON) END -->
                                             <!-- Form - zoom(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
-                                                </label>
+                                                <mLabel name="Zoom map" nameDB="zoom" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStateZoomArray" :key="index">
@@ -697,9 +642,7 @@
                                             <!-- Form - zoom(JSON) END -->
                                             <!-- Form - affiliate(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Affiliate <span class="m-label__name-column">(affiliate)</span></span>
-                                                </label>
+                                                <mLabel name="Affiliate" nameDB="affiliate" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStateAffiliateArray" :key="index">
@@ -732,9 +675,7 @@
                                             <!-- Form - affiliate(JSON) END -->
                                             <!-- Form - alerts(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Upozornění <span class="m-label__name-column">(alerts)</span></span>
-                                                </label>
+                                                <mLabel name="Upozornění" nameDB="alerts" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStateAlertsArray" :key="index">
@@ -791,9 +732,7 @@
                                             <!-- Form - alerts(JSON) END -->
                                             <!-- Form - organization(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Organizace <span class="m-label__name-column">(organization)</span></span>
-                                                </label>
+                                                <mLabel name="Organizace" nameDB="organization" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStateOrganizationArray" :key="index">
@@ -842,9 +781,7 @@
                                             <!-- Form - organization(JSON) END -->
                                             <!-- Form - apps(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Aplikace <span class="m-label__name-column">(apps)</span></span>
-                                                </label>
+                                                <mLabel name="Aplikace" nameDB="apps" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStateAppsArray" :key="index">
@@ -897,9 +834,7 @@
                                             <!-- Form - apps(JSON) END -->
                                             <!-- Form - links(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Odkazy <span class="m-label__name-column">(links)</span></span>
-                                                </label>
+                                                <mLabel name="Odkazy" nameDB="links" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesStateLinksArray" :key="index">

@@ -31,41 +31,31 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - iam -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Kdo jsem <span class="m-label__name-column">(iam)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Kdo jsem" nameDB="iam" perex="" :required=true />
                                                 <textarea class="a-textarea" name="iam" v-model="iam" required></textarea>
                                             </div>
                                             <!-- Form - iam END -->
                                             <!-- Form - donate -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Jak mě podpořit <span class="m-label__name-column">(donate)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Jak mě podpořit" nameDB="donate" perex="" :required=true />
                                                 <textarea class="a-textarea" name="donate" v-model="donate" required></textarea>
                                             </div>
                                             <!-- Form - donate END -->
                                             <!-- Form - cookies -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Zásady Cookies <span class="m-label__name-column">(cookies)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Zásady Cookies" nameDB="cookies" perex="" :required=true />
                                                 <textarea class="a-textarea" name="cookies" v-model="cookies" required></textarea>
                                             </div>
                                             <!-- Form - cookies END -->
                                             <!-- Form - conditions -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Obchodní podmínky a zásady ochrany osobních údajů <span class="m-label__name-column">(conditions)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Obchodní podmínky a zásady ochrany osobních údajů" nameDB="conditions" perex="" :required=true />
                                                 <textarea class="a-textarea" name="conditions" v-model="conditions" required></textarea>
                                             </div>
                                             <!-- Form - conditions END -->
                                             <!-- Form - conditions_user -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Obchodní podmínky a zásady ochrany osobních údajů - uživatel <span class="m-label__name-column">(conditions_user)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Obchodní podmínky a zásady ochrany osobních údajů - uživatel" nameDB="conditions_user" perex="" :required=true />
                                                 <textarea class="a-textarea" name="conditionsUser" v-model="conditionsUser" required></textarea>
                                             </div>
                                             <!-- Form - conditions_user END -->
@@ -75,9 +65,7 @@
                                     <!-- COMPONENT - Button -->
                                     <div class="o-form-item__buttons mt-1">
                                         <div class="o-form-item__button">
-                                            <div class="m-button">
-                                                <button class="m-button__input" type="submit">Uložit úprav</button>
-                                            </div>
+                                            <mButton text="Uložit úpravy" />
                                         </div>
                                     </div>
                                     <!-- COMPONENT - Button END -->
@@ -96,7 +84,9 @@
     import { defineComponent } from 'vue'
     import { useRouter } from 'vue-router'
 
+    import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
@@ -106,7 +96,9 @@
 
         //COMPONENTS
         components: {
+            mButton,
             mHeadlineForm,
+            mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
             oHero

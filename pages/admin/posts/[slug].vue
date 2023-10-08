@@ -31,25 +31,19 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="ID" nameDB="id" perex="" :required=true />
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
                                             <!-- Form - date -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Datum vytvoření <span class="m-label__name-column">(date)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Datum vytvoření" nameDB="date" perex="" :required=true />
                                                 <input class="a-input" type="text" disabled="true" name="date" v-model="postDate" required />
                                             </div>
                                             <!-- Form - date END -->
                                             <!-- Form - date_update -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Datum poslední úpravy <span class="m-label__name-column">(date_update)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Datum poslední úpravy" nameDB="date_update" perex="" :required=true />
                                                 <input class="a-input" type="text" name="dateUpdate" v-model="postDateUpdate" required />
                                             </div>
                                             <!-- Form - date_update END -->
@@ -65,9 +59,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku listu" nameDB="id_image_cover" perex="" :required=false />
                                                 <div class="o-form-item__image">
                                                     <div class="o-form-item__image-lazyload" :class="{'-loading': postIDimageCoverLoading}"></div>
                                                     <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && postIDimageCover" @load="handleImageCoverLoad">
@@ -82,9 +74,7 @@
                                             <!-- Form - id_image_cover END -->
                                             <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku detailu" nameDB="id_image_hero" perex="" :required=false />
                                                 <div class="o-form-item__image">
                                                     <div class="o-form-item__image-lazyload" :class="{'-loading': postIDimageHeroLoading}">
                                                         <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && postIDimageHero" @load="handleImageHeroLoad">
@@ -100,9 +90,7 @@
                                             <!-- Form - id_image_hero END -->
                                             <!-- Form - id_image_map -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku mapy <span class="m-label__name-column">(id_image_map)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku mapy" nameDB="id_image_map" perex="" :required=false />
                                                 <div class="o-form-item__image">
                                                     <div class="o-form-item__image-lazyload" :class="{'-loading': postIDimageMapLoading}">
                                                         <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageMap[0].source + imageMap[0].name}.webp`" v-if="imageMap[0] && postIDimageMap" @load="handleImageMapLoad">
@@ -118,9 +106,7 @@
                                             <!-- Form - id_image_map END -->
                                             <!-- Form - id_image_og -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku og <span class="m-label__name-column">(id_image_og)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku og" nameDB="id_image_og" perex="" :required=false />
                                                 <div class="o-form-item__image">
                                                     <div class="o-form-item__image-lazyload" :class="{'-loading': postIDimageOGLoading}"></div>
                                                     <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageOG[0].source + imageOG[0].name}.webp`" v-if="imageOG[0] && postIDimageOG" @load="handleImageOGLoad">
@@ -145,9 +131,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
-                                                </label>
+                                                <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in postSeoTagsArray" :key="index">
@@ -186,41 +170,31 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_continent -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Kontinentu <span class="m-label__name-column">(id_continent)</span></span>
-                                                </label>
+                                                <mLabel name="ID Kontinentu" nameDB="id_continent" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="id_continent" v-model="postIDcontinent" />
                                             </div>
                                             <!-- Form - id_continent END -->
                                             <!-- Form - id_state -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
-                                                </label>
+                                                <mLabel name="ID Státu" nameDB="id_state" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="id_state" v-model="postIDstate" />
                                             </div>
                                             <!-- Form - id_state END -->
                                             <!-- Form - id_region -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
-                                                </label>
+                                                <mLabel name="ID Regionu" nameDB="id_region" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="id_region" v-model="postIDregion" />
                                             </div>
                                             <!-- Form - id_region END -->
                                             <!-- Form - id_city -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
-                                                </label>
+                                                <mLabel name="ID Města" nameDB="id_city" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="id_city" v-model="postIDcity" />
                                             </div>
                                             <!-- Form - id_city END -->
                                             <!-- Form - id_spot -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
-                                                </label>
+                                                <mLabel name="ID Místa" nameDB="id_spot" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="id_spot" v-model="postIDspot" />
                                             </div>
                                             <!-- Form - id_spot END -->
@@ -236,131 +210,97 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - slug -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
-                                                </label>
+                                                <mLabel name="Slug" nameDB="slug" perex="Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky" :required=true />
                                                 <input class="a-input" type="text" name="slug" v-model="postSlug" required />
                                             </div>
                                             <!-- Form - slug END -->
-                                            <!-- Form - date_onformation -->
+                                            <!-- Form - date_information -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Datum platnosti informací <span class="m-label__name-column">(date_onformation)</span></span>
-                                                </label>
+                                                <mLabel name="Datum platnosti informací" nameDB="date_information" perex="" :required=false />
                                                 <input class="a-input" type="text" name="dateInformation" v-model="postDateInformation" />
                                             </div>
-                                            <!-- Form - date_onformation END -->
+                                            <!-- Form - date_information END -->
                                             <!-- Form - url_youtube -->              
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Odkaz na video na Youtube <span class="m-label__name-column">(url_youtube)</span></span>
-                                                </label>
+                                                <mLabel name="Odkaz na video na Youtube" nameDB="url_youtube" perex="" :required=false />
                                                 <input class="a-input" type="text" name="urlYoutube" v-model="postUrlYoutube" />
                                             </div>
                                             <!-- Form - url_youtube END -->
                                             <!-- Form - url_wiki -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Odkaz na wiki <span class="m-label__name-column">(url_wiki)</span></span>
-                                                </label>
+                                                <mLabel name="Odkaz na wiki" nameDB="url_wiki" perex="" :required=false />
                                                 <input class="a-input" type="text" name="urlWiki" v-model="postUrlWiki" />
                                             </div>
                                             <!-- Form - url_wiki END -->
                                             <!-- Form - url_map -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Odkaz na mapu <span class="m-label__name-column">(url_map)</span></span>
-                                                </label>
+                                                <mLabel name="Odkaz na mapu" nameDB="url_map" perex="" :required=false />
                                                 <input class="a-input" type="text" name="urlMap" v-model="postUrlMap" />
                                             </div>
                                             <!-- Form - url_map END -->
                                             <!-- Form - title -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Název <span class="m-label__name-column">(title)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Název" nameDB="title" perex="" :required=true />
                                                 <input class="a-input" type="text" name="title" v-model="postTitle" required />
                                             </div>
                                             <!-- Form - title END -->
                                             <!-- Form - perex -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Popis <span class="m-label__name-column">(perex)</span></span>
-                                                </label>
+                                                <mLabel name="Popis" nameDB="perex" perex="" :required=false />
                                                 <input class="a-input" type="text" name="perex" v-model="postPerex" />
                                             </div>
                                             <!-- Form - perex END -->
                                             <!-- Form - text_opener -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Text otvírák <span class="m-label__name-column">(text_opener)</span></span>
-                                                </label>
+                                                <mLabel name="Text otvírák" nameDB="text_opener" perex="" :required=false />
                                                 <textarea class="a-textarea" type="text" name="textOpener" v-model="postTextOpener"></textarea>
                                             </div>
                                             <!-- Form - text_opener END -->
                                             <!-- Form - text_author -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Text autora <span class="m-label__name-column">(text_author)</span></span>
-                                                </label>
+                                                <mLabel name="Text autora" nameDB="text_author" perex="" :required=false />
                                                 <textarea class="a-textarea" type="text" name="textAuthor" v-model="postTextAuthor"></textarea>
                                             </div>
                                             <!-- Form - text_author END -->
                                             <!-- Form - text_wiki -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Text z wikipedie <span class="m-label__name-column">(text_wiki)</span></span>
-                                                </label>
+                                                <mLabel name="Text z wikipedie" nameDB="text_wiki" perex="" :required=false />
                                                 <textarea class="a-textarea" type="text" name="textWiki" v-model="postTextWiki"></textarea>
                                             </div>
                                             <!-- Form - text_wiki END -->
                                             <!-- Form - review_text -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Text k hodnocení <span class="m-label__name-column">(review_text)</span></span>
-                                                </label>
+                                                <mLabel name="Text k hodnocení" nameDB="review_text" perex="" :required=false />
                                                 <textarea class="a-textarea" type="text" name="reviewText" v-model="postReviewText"></textarea>
                                             </div>
                                             <!-- Form - review_text END -->
                                             <!-- Form - review_value -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Hodnocení <span class="m-label__name-column">(review_value)</span></span>
-                                                    <span class="m-label__perex">Ve formátu <i>85 %</i></span>
-                                                </label>
+                                                <mLabel name="Hodnocení" nameDB="review_value" perex="Ve formátu <i>85 %</i>" :required=false />
                                                 <input class="a-input" type="text" name="reviewValue" v-model="postReviewValue" />
                                             </div>
                                             <!-- Form - review_value END -->
                                             <!-- Form - perex_price -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Text k ceně <span class="m-label__name-column">(perex_price)</span></span>
-                                                </label>
+                                                <mLabel name="Text k ceně" nameDB="perex_price" perex="" :required=false />
                                                 <input class="a-input" type="text" name="perexPrice" v-model="postPerexPrice" />
                                             </div>
                                             <!-- Form - perex_price END -->
                                             <!-- Form - perex_triplength -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Text k délce cesty <span class="m-label__name-column">(perex_triplength)</span></span>
-                                                </label>
+                                                <mLabel name="Text k délce cesty" nameDB="perex_triplength" perex="" :required=false />
                                                 <input class="a-input" type="text" name="perexTriplength" v-model="postPerexTriplength" />
                                             </div>
                                             <!-- Form - perex_triplength END -->
                                             <!-- Form - perex_time -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Text k časové náročnosti <span class="m-label__name-column">(perex_time)</span></span>
-                                                </label>
+                                                <mLabel name="Text k časové náročnosti" nameDB="perex_time" perex="" :required=false />
                                                 <input class="a-input" type="text" name="perexTime" v-model="postPerexTime" />
                                             </div>
                                             <!-- Form - perex_time END -->
                                             <!-- Form - tags(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Tagy <span class="m-label__name-column">(tags)</span></span>
-                                                </label>
+                                                <mLabel name="Tagy" nameDB="tags" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in postTagsArray" :key="index">
@@ -389,9 +329,7 @@
                                             <!-- Form - tags(JSON) END -->
                                             <!-- Form - locations(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Lokace <span class="m-label__name-column">(locations)</span></span>
-                                                </label>
+                                                <mLabel name="Lokace" nameDB="locations" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in postLocationsArray" :key="index">
@@ -424,9 +362,7 @@
                                             <!-- Form - locations(JSON) END -->
                                             <!-- Form - travels(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Způsoby dopravy <span class="m-label__name-column">(travels)</span></span>
-                                                </label>
+                                                <mLabel name="Způsoby dopravy" nameDB="travels" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in postTravelsArray" :key="index">
@@ -463,9 +399,7 @@
                                             <!-- Form - travels(JSON) END -->
                                             <!-- Form - prices(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Ceny <span class="m-label__name-column">(prices)</span></span>
-                                                </label>
+                                                <mLabel name="Ceny" nameDB="prices" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in postPricesArray" :key="index">
@@ -502,9 +436,7 @@
                                             <!-- Form - prices(JSON) END -->
                                             <!-- Form - triplengths(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Dělka výletu <span class="m-label__name-column">(triplengths)</span></span>
-                                                </label>
+                                                <mLabel name="Délka výletu" nameDB="triplengths" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in postTriplengthsArray" :key="index">
@@ -541,9 +473,7 @@
                                             <!-- Form - triplengths(JSON) END -->
                                             <!-- Form - times(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Časová náročnost <span class="m-label__name-column">(times)</span></span>
-                                                </label>
+                                                <mLabel name="Časová náročnost" nameDB="times" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in postTimesArray" :key="index">

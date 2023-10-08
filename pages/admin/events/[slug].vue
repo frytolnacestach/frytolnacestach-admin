@@ -31,9 +31,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="ID" nameDB="id" perex="" :required=true />
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
@@ -49,9 +47,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku listu" nameDB="id_image_cover" perex="" :required=false />
                                                 <div class="o-form-item__image">
                                                     <div class="o-form-item__image-lazyload" :class="{'-loading': eventIDimageCoverLoading}">
                                                         <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && eventIDimageCover" @load="handleImageCoverLoad">
@@ -67,9 +63,7 @@
                                             <!-- Form - id_image_cover END -->
                                             <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku detailu" nameDB="id_image_hero" perex="" :required=false />
                                                 <div class="o-form-item__image">
                                                     <div class="o-form-item__image-lazyload" :class="{'-loading': eventIDimageHeroLoading}">
                                                         <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && eventIDimageHero" @load="handleImageHeroLoad">
@@ -95,9 +89,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
-                                                </label>
+                                                <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in eventSeoTagsArray" :key="index">
@@ -136,33 +128,25 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_state -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Státu <span class="m-label__name-column">(id_state)</span></span>
-                                                </label>
+                                                <mLabel name="ID Státu" nameDB="id_state" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="state" v-model="eventIDstate" />
                                             </div>
                                             <!-- Form - id_state END -->
                                             <!-- Form - id_region -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Regionu <span class="m-label__name-column">(id_region)</span></span>
-                                                </label>
+                                                <mLabel name="ID Regionu" nameDB="id_region" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="region" v-model="eventIDregion" />
                                             </div>
                                             <!-- Form - id_region END -->
                                             <!-- Form - id_city -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Města <span class="m-label__name-column">(id_city)</span></span>
-                                                </label>
+                                                <mLabel name="ID Města" nameDB="id_city" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="city" v-model="eventIDcity" />
                                             </div>
                                             <!-- Form - id_city END -->
                                             <!-- Form - id_spot -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Místa <span class="m-label__name-column">(id_spot)</span></span>
-                                                </label>
+                                                <mLabel name="ID Místa" nameDB="id_spot" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="spot" v-model="eventIDspot" />
                                             </div>
                                             <!-- Form - id_spot END -->
@@ -178,50 +162,37 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - slug -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
-                                                </label>
+                                                <mLabel name="Slug" nameDB="slug" perex="Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky" :required=true />
                                                 <input class="a-input" type="text" name="slug" v-model="eventSlug" required />
                                             </div>
                                             <!-- Form - slug END -->
                                             <!-- Form - date_start -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Datum začátku události <span class="m-label__name-column">(date_start)</span></span>
-                                                </label>
+                                                <mLabel name="Datum začátku události" nameDB="date_start" perex="" :required=false />
                                                 <input class="a-input" type="text" name="dateStart" v-model="eventDateStart" />
                                             </div>
                                             <!-- Form - date_start END -->
                                             <!-- Form - date_end -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Datum konce události <span class="m-label__name-column">(date_end)</span></span>
-                                                </label>
+                                                <mLabel name="Datum konce události" nameDB="date_end" perex="" :required=false />
                                                 <input class="a-input" type="text" name="dateEnd" v-model="eventDateEnd" />
                                             </div>
                                             <!-- Form - date_end END -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Název" nameDB="name" perex="" :required=true />
                                                 <input class="a-input" type="text" name="name" v-model="eventName" required />
                                             </div>
                                             <!-- Form - name END -->
                                             <!-- Form - description -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
-                                                </label>
+                                                <mLabel name="Popis" nameDB="description" perex="" :required=false />
                                                 <textarea class="a-textarea" type="text" name="description" v-model="eventDescription"></textarea>
                                             </div>
                                             <!-- Form - description END -->
                                             <!-- Form - coordinates(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Souřadnice místa konání <span class="m-label__name-column">(coordinates)</span></span>
-                                                </label>
+                                                <mLabel name="Souřadnice místa konání" nameDB="coordinates" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in eventCoordinatesArray" :key="index">
@@ -254,9 +225,7 @@
                                             <!-- Form - coordinates(JSON) END -->
                                             <!-- Form - zoom(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
-                                                </label>
+                                                <mLabel name="Zoom map" nameDB="zoom" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in eventZoomArray" :key="index">
@@ -289,9 +258,7 @@
                                             <!-- Form - zoom(JSON) END -->
                                             <!-- Form - affiliate(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Affiliate <span class="m-label__name-column">(affiliate)</span></span>
-                                                </label>
+                                                <mLabel name="Affiliate" nameDB="affiliate" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in eventAffiliateArray" :key="index">
@@ -324,9 +291,7 @@
                                             <!-- Form - affiliate(JSON) END -->
                                             <!-- Form - prices(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Ceny <span class="m-label__name-column">(prices)</span></span>
-                                                </label>
+                                                <mLabel name="Ceny" nameDB="prices" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in eventPricesArray" :key="index">
@@ -363,9 +328,7 @@
                                             <!-- Form - prices(JSON) END -->
                                             <!-- Form - links(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Odkazy <span class="m-label__name-column">(links)</span></span>
-                                                </label>
+                                                <mLabel name="Odkazy" nameDB="links" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in eventLinksArray" :key="index">

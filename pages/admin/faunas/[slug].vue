@@ -31,9 +31,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID <span class="m-label__name-column">(id)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="ID" nameDB="id" perex="" :required=true />
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
@@ -49,9 +47,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku listu" nameDB="id_image_cover" perex="" :required=false />
                                                 <div class="o-form-item__image">
                                                     <div class="o-form-item__image-lazyload" :class="{'-loading': faunaIDimageCoverLoading}">
                                                         <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && faunaIDimageCover" @load="handleImageCoverLoad">
@@ -67,9 +63,7 @@
                                             <!-- Form - id_image_cover END -->
                                             <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku detailu" nameDB="id_image_hero" perex="" :required=false />
                                                 <div class="o-form-item__image">
                                                     <div class="o-form-item__image-lazyload" :class="{'-loading': faunaIDimageHeroLoading}">
                                                         <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && faunaIDimageHero" @load="handleImageHeroLoad">
@@ -95,9 +89,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
-                                                </label>
+                                                <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in faunaSeoTagsArray" :key="index">
@@ -136,18 +128,13 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - slug -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
-                                                </label>
+                                                <mLabel name="Slug" nameDB="slug" perex="Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky" :required=true />
                                                 <input class="a-input" type="text" name="slug" v-model="faunaSlug" required />
                                             </div>
                                             <!-- Form - slug END -->
                                             <!-- Form - ids_states(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">IDčka států <span class="m-label__name-column">(ids_states)</span></span>
-                                                </label>
+                                                <mLabel name="IDčka států" nameDB="ids_states" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in faunaIDSstatesArray" :key="index">
@@ -176,49 +163,37 @@
                                             <!-- Form - ids_states(JSON) END -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Název" nameDB="name" perex="" :required=true />
                                                 <input class="a-input" type="text" name="name" v-model="faunaName" required />
                                             </div>
                                             <!-- Form - name END -->
                                             <!-- Form - name_lat -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Název latinsky <span class="m-label__name-column">(name_lat)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Název latinsky" nameDB="name_lat" perex="" :required=true />
                                                 <input class="a-input" type="text" name="nameLat" v-model="faunaNameLat" required />
                                             </div>
                                             <!-- Form - name_lat END -->
                                             <!-- Form - description -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Popis <span class="m-label__name-column">(description)</span></span>
-                                                </label>
+                                                <mLabel name="Popis" nameDB="description" perex="" :required=false />
                                                 <textarea class="a-textarea" type="text" name="description" v-model="faunaDescription"></textarea>
                                             </div>
                                             <!-- Form - description END -->
                                             <!-- Form - location -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Lokace výskytu <span class="m-label__name-column">(location)</span></span>
-                                                </label>
+                                                <mLabel name="Lokace výskytu" nameDB="location" perex="" :required=false />
                                                 <input class="a-input" type="text" name="nameLocation" v-model="faunaLocation" />
                                             </div>
                                             <!-- Form - location END -->
                                             <!-- Form - status_iucn -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Status IUCN <span class="m-label__name-column">(status_iucn)</span></span>
-                                                </label>
+                                                <mLabel name="Status IUCN" nameDB="status_iucn" perex="" :required=false />
                                                 <input class="a-input" type="text" name="nameStatusIusn" v-model="faunaStatusIucn" />
                                             </div>
                                             <!-- Form - status_iucn END -->
                                             <!-- Form - status_danger -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Status nebezpečnosti <span class="m-label__name-column">(status_danger)</span></span>
-                                                </label>
+                                                <mLabel name="Status nebezpečnosti" nameDB="status_danger" perex="" :required=false />
                                                 <input class="a-input" type="text" name="nameStatusDanger" v-model="faunaStatusDanger" />
                                             </div>
                                             <!-- Form - status_danger END -->

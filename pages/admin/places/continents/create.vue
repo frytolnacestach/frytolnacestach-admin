@@ -31,9 +31,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - type_place -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Typ místa <span class="m-label__name-column">(type_place)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Typ místa" nameDB="type_place" perex="" :required=true />
                                                 <input class="a-input" type="text" name="typePlace" disabled="true" v-model="placesContinentTypePlace" required />
                                             </div>
                                             <!-- Form - type_place END -->
@@ -49,17 +47,13 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku listu <span class="m-label__name-column">(id_image_cover)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku listu" nameDB="id_image_cover" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="imageCover" v-model="placesContinentIDimageCover" />
                                             </div>
                                             <!-- Form - id_image_cover END -->
                                             <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">ID Obrázku detailu <span class="m-label__name-column">(id_image_hero)</span></span>
-                                                </label>
+                                                <mLabel name="ID Obrázku detailu" nameDB="id_image_hero" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="imageHero" v-model="placesContinentIDimageHero" />
                                             </div>
                                             <!-- Form - id_image_hero END -->
@@ -75,9 +69,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">SEO Tagy <span class="m-label__name-column">(seo_tags)</span></span>
-                                                </label>
+                                                <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesContinentSeoTagsArray" :key="index">
@@ -116,34 +108,25 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - slug -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu <i>nazev-polozky</i></span>
-                                                </label>
+                                                <mLabel name="Slug" nameDB="slug" perex="Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky" :required=true />
                                                 <input class="a-input" type="text" name="slug" v-model="placesContinentSlug" required />
                                             </div>
                                             <!-- Form - slug END -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Název <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Název" nameDB="name" perex="" :required=true />
                                                 <input class="a-input" type="text" name="name" v-model="placesContinentName" required />
                                             </div>
                                             <!-- Form - name END -->
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Informace od Chat GPT <span class="m-label__name-column">(information_chatgpt)</span></span>
-                                                </label>
+                                                <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
                                                 <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesContinentInformationChatgpt"></textarea>
                                             </div>
                                             <!-- Form - information_chatgpt END -->
                                             <!-- Form - information_author(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Informace od autora <span class="m-label__name-column">(information_author)</span></span>
-                                                </label>
+                                                <mLabel name="Informace od autora" nameDB="information_author" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesContinentInformationAuthorArray" :key="index">
@@ -188,41 +171,31 @@
                                             <!-- Form - information_author(JSON) END -->
                                             <!-- Form - area -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Rozloha <span class="m-label__name-column">(area)</span></span>
-                                                </label>
+                                                <mLabel name="Rozloha" nameDB="area" perex="" :required=false />
                                                 <input class="a-input" type="number" step=".01" min="0" name="area" v-model="placesContinentArea" />
                                             </div>
                                             <!-- Form - area END -->
                                             <!-- Form - population -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Populace <span class="m-label__name-column">(population)</span></span>
-                                                </label>
+                                                <mLabel name="Populace" nameDB="population" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="population" v-model="placesContinentPopulation" />
                                             </div>
                                             <!-- Form - population END -->
                                             <!-- Form - population_density -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Hustota populace <span class="m-label__name-column">(population_density)</span></span>
-                                                </label>
+                                                <mLabel name="Hustota populace" nameDB="population_density" perex="" :required=false />
                                                 <input class="a-input" type="number" step=".01" min="0" name="population_density" v-model="placesContinentPopulationDensity" />
                                             </div>
                                             <!-- Form - population_density END -->
                                             <!-- Form - number_states -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Počet států <span class="m-label__name-column">(number_states)</span></span>
-                                                </label>
+                                                <mLabel name="Počet států" nameDB="number_states" perex="" :required=false />
                                                 <input class="a-input" type="number" min="0" name="number_states" v-model="placesContinentNumberStates" />
                                             </div>
                                             <!-- Form - number_states END -->
                                             <!-- Form - coordinates(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Souřadnice <span class="m-label__name-column">(coordinates)</span></span>
-                                                </label>
+                                                <mLabel name="Souřadnice" nameDB="coordinates" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesContinentCoordinatesArray" :key="index">
@@ -255,9 +228,7 @@
                                             <!-- Form - coordinates(JSON) END -->
                                             <!-- Form - zoom(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Zoom map <span class="m-label__name-column">(zoom)</span></span>
-                                                </label>
+                                                <mLabel name="Zoom map" nameDB="zoom" perex="" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in placesContinentZoomArray" :key="index">

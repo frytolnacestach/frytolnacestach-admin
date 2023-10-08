@@ -31,52 +31,37 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - slug -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Slug <span class="m-label__name-column">(slug)</span><span class="m-label__name-required">*</span></span>
-                                                    <span class="m-label__perex">Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky</span>
-                                                </label>
+                                                <mLabel name="Slug" nameDB="slug" perex="Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky" :required=true />
                                                 <input class="a-input" type="text" name="slug" v-model="platformSlug" required />
                                             </div>
                                             <!-- Form - slug END -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Název platformy <span class="m-label__name-column">(name)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Název platformy" nameDB="name" perex="" :required=true />
                                                 <input class="a-input" type="text" name="name" v-model="platformName" required />
                                             </div>
                                             <!-- Form - name END -->
                                             <!-- Form - perex -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Můj popis <span class="m-label__name-column">(perex)</span></span>
-                                                </label>
+                                                <mLabel name="Můj popis" nameDB="perex" perex="" :required=false />
                                                 <textarea class="a-textarea" type="text" name="perex" v-model="platformPerex"></textarea>
                                             </div>
                                             <!-- Form - perex END -->
                                             <!-- Form - url -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Odkaz na profil <span class="m-label__name-column">(url)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
+                                                <mLabel name="Odkaz na profil" nameDB="url" perex="" :required=true />
                                                 <input class="a-input" type="text" name="url" v-model="platformUrl" required />
                                             </div>
                                             <!-- Form - url END -->
                                             <!-- Form - date -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Datum údajů <span class="m-label__name-column">(date)</span></span>
-                                                    <span class="m-label__perex">Datum k jakému platí údaje o platformě ve formátu <i>k 13. Říjnu 2022</i></span>
-                                                </label>
+                                                <mLabel name="Datum údajů" nameDB="date" perex="Datum k jakému platí údaje o platformě ve formátu <i>k 13. Říjnu 2022</i>" :required=false />
                                                 <input class="a-input" type="text" name="date" v-model="platformDate" />
                                             </div>
                                             <!-- Form - date END -->
                                             <!-- Form - facts(JSON) -->
                                             <div class="o-form-item__item">
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Fakta o síťi <span class="m-label__name-column">(facts)</span></span>
-                                                    <span class="m-label__perex">Fakta o síťi například datum založení a počet sledujícíh</span>
-                                                </label>
+                                                <mLabel name="Fakta o síťi" nameDB="facts" perex="Fakta o síťi například datum založení a počet sledujícíh" :required=false />
                                                 <div class="o-form-item__group">
                                                     <div class="o-form-item__group-items">
                                                         <div class="o-form-item__group-item" v-for="(item, index) in platformFactsArray" :key="index">

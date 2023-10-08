@@ -134,9 +134,6 @@
                                             <!-- Form - label -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Typ zásuvky" nameDB="label" perex="" :required=true />
-                                                <label class="m-label">
-                                                    <span class="m-label__name">Typ zásuvky <span class="m-label__name-column">(label)</span><span class="m-label__name-required">*</span></span>
-                                                </label>
                                                 <input class="a-input" type="text" name="label" v-model="wallSocketLabel" required />
                                             </div>
                                             <!-- Form - label END -->
