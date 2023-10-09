@@ -128,7 +128,7 @@
                                             <!-- Form - slug -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Slug" nameDB="slug" perex="Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky" :required=true />
-                                                <input class="a-input" type="text" name="slug" v-model="wallSocketSlug" required />
+                                                <aInputSlug :value="wallSocketSlug" :valueCreate="wallSocketName" :edit=false @slug="handleSlug" />
                                             </div>
                                             <!-- Form - slug END -->                        
                                             <!-- Form - label -->
@@ -201,6 +201,7 @@
 </template>
 
 <script lang="ts">
+    import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -247,6 +248,7 @@
 
         //COMPONENTS
         components: {
+            aInputSlug,
             mButton,
             mHeadlineForm,
             mNavBreadcrumbs,
@@ -324,6 +326,10 @@
             },
             removeIDSstateInput(index: number) {
                 this.wallSocketIDSstatesArray.splice(index, 1);
+            },
+            // Components input changes
+            handleSlug(newSlug: string) {
+                this.wallSocketSlug = newSlug
             }
         },
 

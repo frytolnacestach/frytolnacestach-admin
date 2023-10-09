@@ -211,7 +211,7 @@
                                             <!-- Form - slug -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Slug" nameDB="slug" perex="Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky" :required=true />
-                                                <input class="a-input" type="text" name="slug" v-model="postSlug" required />
+                                                <aInputSlug :value="postSlug" :valueCreate="postTitle" :edit=false @slug="handleSlug" />
                                             </div>
                                             <!-- Form - slug END -->
                                             <!-- Form - date_information -->
@@ -541,6 +541,7 @@
     //import VueDatePicker from '@vuepic/vue-datepicker';
     //import '@vuepic/vue-datepicker/dist/main.css'
 
+    import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -616,7 +617,7 @@
         perex_time: string
         seo_tags: seoTags[]
         tags: Tags[]
-        locations: Location[]
+        locations: Locations[]
         travels: Travels[]
         prices: Prices[]
         triplengths: Triplengths[]
@@ -657,6 +658,7 @@
         //COMPONENTS
         components: {
             //VueDatePicker,
+            aInputSlug,
             mButton,
             mHeadlineForm,
             mLabel,
@@ -842,6 +844,10 @@
             },
             removeTimeInput(index: number) {
                 this.postTimesArray.splice(index, 1);
+            },
+            // Components input changes
+            handleSlug(newSlug: string) {
+                this.postSlug = newSlug
             }
 
             /*timeZone(timeZoneRaw: any) {

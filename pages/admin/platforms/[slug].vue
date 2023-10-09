@@ -48,7 +48,7 @@
                                             <!-- Form - slug -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Slug" nameDB="slug" perex="Slug by měl mít stejné pojmenování jako název avšak ve formátu nazev-polozky" :required=true />
-                                                <input class="a-input" type="text" name="slug" v-model="platformSlug" required />
+                                                <aInputSlug :value="platformSlug" :valueCreate="platformName" :edit=false @slug="handleSlug" />
                                             </div>
                                             <!-- Form - slug END -->
                                             <!-- Form - name -->
@@ -131,6 +131,7 @@
 </template>
 
 <script lang="ts">
+    import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -158,6 +159,7 @@
 
         //COMPONENTS
         components: {
+            aInputSlug,
             mButton,
             mHeadlineForm,
             mLabel,
@@ -209,6 +211,10 @@
             },
             removeFactInput(index: number) {
                 this.platformFactsArray.splice(index, 1);
+            },
+            // Components input changes
+            handleSlug(newSlug: string) {
+                this.platformSlug = newSlug
             }
         },
 
