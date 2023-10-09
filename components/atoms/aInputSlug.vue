@@ -22,6 +22,7 @@
         },
 
         data() {
+            return {
                 customSlug: false,
                 slug: this.value,
                 name: this.valueCreate
