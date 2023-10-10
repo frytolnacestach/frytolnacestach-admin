@@ -21,7 +21,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
                                     <!-- BLOCK - Stálé hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -386,10 +386,15 @@
             })
 
             //CONSTS
+            // route
             const runTimeConfig = useRuntimeConfig()
             const route = useRoute()
+            // message
             const errorForm = ref('')
             const successForm = ref('')
+            // variable
+            const loadingData = ref(false)
+            // date
             const itemID = ref(null)
             const wallSocketSlug = ref('')
             const wallSocketIDimageCover = ref(null)
@@ -426,6 +431,7 @@
                     wallSocketLabel.value = WallSocket[0].label;
                     wallSocketName.value = WallSocket[0].name;
                     wallSocketDescription.value = WallSocket[0].description;
+                    loadingData.value = true
 
                     // images load ids
                     wallSocketIDimageCoverLoad.value = wallSocketIDimageCover.value
@@ -522,6 +528,7 @@
             return {
                 successForm,
                 errorForm,
+                loadingData,
                 itemID,
                 wallSocketSlug,
                 wallSocketIDimageCover,

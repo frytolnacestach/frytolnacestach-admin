@@ -1350,10 +1350,15 @@
             })
 
             //CONSTS
+            // route
             const runTimeConfig = useRuntimeConfig()
             const route = useRoute()
+            // message
             const errorForm = ref('')
             const successForm = ref('')
+            // variable
+            const loadingData = ref(false)
+            // date
             const placesStateIDcontinent = ref(null)
             const placesStateIDcityMain = ref(null)
             const placesStateIDimageCover = ref(null)

@@ -22,7 +22,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
                                     <!-- BLOCK - Stálé hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -375,10 +375,15 @@
             })
 
             //CONSTS
+            // route
             const runTimeConfig = useRuntimeConfig()
             const route = useRoute()
+            // message
             const errorForm = ref('')
             const successForm = ref('')
+            // variable
+            const loadingData = ref(false)
+            // date
             const itemID = ref(null)
             const platforms = ref<Platform[]>([])
             const videoSlug = ref('')
@@ -421,6 +426,7 @@
                     videoPerex.value = Video[0].perex;
                     videoUrl.value = Video[0].url;
                     videoSeoTags.value = Video[0].seo_tags ? JSON.stringify(Video[0].seo_tags) : JSON.stringify([]);
+                    loadingData.value = true
 
                     // images load ids
                     videoIDimageLoad.value = videoIDimage.value
@@ -504,6 +510,7 @@
             return {
                 successForm,
                 errorForm,
+                loadingData,
                 itemID,
                 videoSlug,
                 videoSeoTags,

@@ -22,7 +22,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
                                     <!-- BLOCK - Stálé hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -684,10 +684,15 @@
             })
 
             //CONSTS
+            // route
             const runTimeConfig = useRuntimeConfig()
             const route = useRoute()
+            // message
             const errorForm = ref('')
             const successForm = ref('')
+            // variable
+            const loadingData = ref(false)
+            // date
             const itemID = ref(null)
             const eventIDstate = ref(null)
             const eventIDregion = ref(null)
@@ -746,6 +751,7 @@
                     eventAffiliate.value = Event[0].affiliate ? JSON.stringify(Event[0].affiliate) : JSON.stringify([]);
                     eventPrices.value = Event[0].prices ? JSON.stringify(Event[0].prices) : JSON.stringify([]);
                     eventLinks.value = Event[0].links ? JSON.stringify(Event[0].links) : JSON.stringify([]);
+                    loadingData.value = true
 
                     // images load ids
                     eventIDimageCoverLoad.value = eventIDimageCover.value
@@ -850,6 +856,7 @@
             return {
                 successForm,
                 errorForm,
+                loadingData,
                 itemID,
                 eventSeoTags,
                 eventSeoTagsArray,

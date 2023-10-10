@@ -22,7 +22,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
                                     <!-- BLOCK - Stálé hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -1571,10 +1571,15 @@
             })
 
             //CONSTS
+            // route
             const runTimeConfig = useRuntimeConfig()
             const route = useRoute()
+            // message
             const errorForm = ref('')
             const successForm = ref('')
+            // variable
+            const loadingData = ref(false)
+            // date
             const itemID = ref(null)
             const placesStateIDcontinent = ref(null)
             const placesStateIDcityMain = ref(null)
@@ -1671,6 +1676,7 @@
                     placesStateApps.value = PlacesState[0].apps ? JSON.stringify(PlacesState[0].apps) : JSON.stringify([])
                     placesStateLinks.value = PlacesState[0].links ? JSON.stringify(PlacesState[0].links) : JSON.stringify([])
                     placesStateLanguagePhrases.value = PlacesState[0].language_phrases ? JSON.stringify(PlacesState[0].language_phrases) : JSON.stringify([])
+                    loadingData.value = true
 
                     // images load ids
                     placesStateIDimageCoverLoad.value = placesStateIDimageCover.value
@@ -1787,8 +1793,9 @@
 
             //RETURN
             return {
-                successForm, 
+                successForm,
                 errorForm,
+                loadingData,
                 itemID,
                 placesStateSeoTags,
                 placesStateSeoTagsArray,

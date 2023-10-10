@@ -22,7 +22,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
                                     <!-- BLOCK - Stálé hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -408,10 +408,15 @@
             })
 
             //CONSTS
+            // route
             const runTimeConfig = useRuntimeConfig()
             const route = useRoute()
+            // message
             const errorForm = ref('')
             const successForm = ref('')
+            // variable
+            const loadingData = ref(false)
+            // date
             const itemID = ref(null)
             const floraSlug = ref('')
             const floraIDimageCover = ref(null)
@@ -454,6 +459,7 @@
                     floraStatusIucn.value = Flora[0].status_iucn;
                     floraStatusDanger.value = Flora[0].status_danger;
                     floraDescription.value = Flora[0].description;
+                    loadingData.value = true
 
                     // images load ids
                     floraIDimageCoverLoad.value = floraIDimageCover.value
@@ -552,6 +558,7 @@
             return {
                 successForm,
                 errorForm,
+                loadingData,
                 itemID,
                 floraSlug,
                 floraSeoTags,

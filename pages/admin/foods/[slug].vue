@@ -22,7 +22,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
                                     <!-- BLOCK - Stálé hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -394,10 +394,15 @@
             })
 
             //CONSTS
+            // route
             const runTimeConfig = useRuntimeConfig()
             const route = useRoute()
+            // message
             const errorForm = ref('')
             const successForm = ref('')
+            // variable
+            const loadingData = ref(false)
+            // date
             const itemID = ref(null)
             const foodSlug = ref('')
             const foodIDimageCover = ref(null)
@@ -436,6 +441,7 @@
                     foodDescription.value = Food[0].description;
                     foodIngredients.value = Food[0].ingredients ? JSON.stringify(Food[0].ingredients) : JSON.stringify([]);
                     foodRecipe.value = Food[0].recipe;
+                    loadingData.value = true
 
                     // images load ids
                     foodIDimageCoverLoad.value = foodIDimageCover.value
@@ -532,6 +538,7 @@
             return {
                 successForm,
                 errorForm,
+                loadingData,
                 itemID,
                 foodSlug,
                 foodSeoTags,

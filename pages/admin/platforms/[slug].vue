@@ -22,7 +22,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
                                     <!-- BLOCK - Stálé hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -260,10 +260,15 @@
             })
 
             //CONSTS
+            // route
             const runTimeConfig = useRuntimeConfig()
             const route = useRoute()
+            // message
             const errorForm = ref('')
             const successForm = ref('')
+            // variable
+            const loadingData = ref(false)
+            // date
             const itemID = ref(null)
             const platformSlug = ref('')
             const platformName = ref('')
@@ -287,6 +292,7 @@
                     platformUrl.value = Platform[0].url;
                     platformFacts.value = Platform[0].facts ? JSON.stringify(Platform[0].facts) : JSON.stringify([])
                     platformDate.value = Platform[0].date;
+                    loadingData.value = true
                 } else {
 
                 }
@@ -330,6 +336,7 @@
             return {
                 successForm,
                 errorForm,
+                loadingData,
                 itemID,
                 platformSlug,
                 platformName,

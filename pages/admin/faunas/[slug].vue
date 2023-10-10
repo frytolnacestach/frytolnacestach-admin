@@ -22,7 +22,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
                                     <!-- BLOCK - Stálé hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -408,10 +408,15 @@
             })
 
             //CONSTS
+            // route
             const runTimeConfig = useRuntimeConfig()
             const route = useRoute()
+            // message
             const errorForm = ref('')
             const successForm = ref('')
+            // variable
+            const loadingData = ref(false)
+            // date
             const itemID = ref(null)
             const faunaSlug = ref('')
             const faunaIDimageCover = ref(null)
@@ -454,6 +459,7 @@
                     faunaStatusIucn.value = Fauna[0].status_iucn;
                     faunaStatusDanger.value = Fauna[0].status_danger;
                     faunaDescription.value = Fauna[0].description;
+                    loadingData.value = true
 
                     // images load ids
                     faunaIDimageCoverLoad.value = faunaIDimageCover.value
@@ -552,6 +558,7 @@
             return {
                 successForm,
                 errorForm,
+                loadingData,
                 itemID,
                 faunaSlug,
                 faunaSeoTags,

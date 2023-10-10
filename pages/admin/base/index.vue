@@ -22,7 +22,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
                                    <!-- BLOCK - Základní informace -->
                                    <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -156,9 +156,14 @@
             })
 
             //CONSTS
+            // route
             const runTimeConfig = useRuntimeConfig()
+            // message
             const errorForm = ref('')
             const successForm = ref('')
+            // variable
+            const loadingData = ref(false)
+            // date
             const iam = ref('')
             const donate = ref('')
             const cookies = ref('')
@@ -174,6 +179,7 @@
                 cookies.value = JSON.parse(base._rawValue)[0].cookies;
                 conditions.value = JSON.parse(base._rawValue)[0].conditions;
                 conditionsUser.value = JSON.parse(base._rawValue)[0].conditions_user;
+                loadingData.value = true
             })()
 
             //API - Base edit
@@ -210,7 +216,17 @@
             }
 
             //RETURN
-            return { successForm, errorForm, iam, donate, cookies, conditions, conditionsUser, editForm }
+            return {
+                successForm,
+                errorForm,
+                loadingData,
+                iam,
+                donate,
+                cookies,
+                conditions,
+                conditionsUser,
+                editForm
+            }
         },
         
         mounted() {

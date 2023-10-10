@@ -22,7 +22,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
                                     <!-- BLOCK - Stálé hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -381,10 +381,15 @@
             })
 
             //CONSTS
+            // route
             const runTimeConfig = useRuntimeConfig()
             const route = useRoute()
+            // message
             const errorForm = ref('')
             const successForm = ref('')
+            // variable
+            const loadingData = ref(false)
+            // date
             const itemID = ref(null)
             const brandSlug = ref('')
             const brandIDimageCover = ref(null)
@@ -419,6 +424,7 @@
                     brandIDSstates.value = Brand[0].ids_states ? JSON.stringify(Brand[0].ids_states) : JSON.stringify([]);
                     brandName.value = Brand[0].name;
                     brandDescription.value = Brand[0].description;
+                    loadingData.value = true
 
                     // images load ids
                     brandIDimageCoverLoad.value = brandIDimageCover.value
@@ -514,6 +520,7 @@
             return {
                 successForm,
                 errorForm,
+                loadingData,
                 itemID,
                 brandSlug,
                 brandIDimageCover,

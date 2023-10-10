@@ -22,7 +22,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm">
+                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
                                     <!-- BLOCK - Stálé hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -326,10 +326,15 @@
             })
 
             //CONSTS
+            // route
             const runTimeConfig = useRuntimeConfig()
             const route = useRoute()
+            // message
             const errorForm = ref('')
             const successForm = ref('')
+            // variable
+            const loadingData = ref(false)
+            // date
             const itemID = ref(null)
             const travelDictionaryIDimageCover = ref(null)
             const travelDictionaryIDimageHero = ref(null)
@@ -361,6 +366,7 @@
                     travelDictionaryName.value = TravelDictionaries[0].name;
                     travelDictionaryDescription.value = TravelDictionaries[0].description;
                     travelDictionarySeoTags.value = TravelDictionaries[0].seo_tags ? JSON.stringify(TravelDictionaries[0].seo_tags) : JSON.stringify([]);
+                    loadingData.value = true
 
                     // images load ids
                     travelDictionaryIDimageCoverLoad.value = travelDictionaryIDimageCover.value
@@ -454,6 +460,7 @@
             return {
                 successForm,
                 errorForm,
+                loadingData,
                 itemID,
                 travelDictionarySeoTags,
                 travelDictionarySeoTagsArray,
