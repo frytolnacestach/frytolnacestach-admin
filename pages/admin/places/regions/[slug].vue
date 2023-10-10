@@ -536,9 +536,6 @@
             placesRegionName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
-            placesRegionName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
-            },
             placesRegionSeoTags: function (newValue, oldValue) {
                 try {
                     this.placesRegionSeoTagsArray = JSON.parse(newValue)

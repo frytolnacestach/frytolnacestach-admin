@@ -745,9 +745,6 @@
             placesCityName: function (newValue, oldValue) {
                 this.updateBreadcrumbs();
             },
-            placesCityName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
-            },
             placesCitySeoTags: function (newValue, oldValue) {
                 try {
                     this.placesCitySeoTagsArray = JSON.parse(newValue)

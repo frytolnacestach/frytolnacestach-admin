@@ -425,9 +425,6 @@
         },
 
         watch: {
-            placesRegionName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
-            },
             placesRegionSeoTags: function (newValue, oldValue) {
                 try {
                     this.placesRegionSeoTagsArray = JSON.parse(newValue)

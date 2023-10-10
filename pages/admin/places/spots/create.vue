@@ -548,9 +548,6 @@
         },
 
         watch: {
-            placesSpotName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
-            },
             placesSpotsSeoTags: function (newValue, oldValue) {
                 try {
                     this.placesSpotsSeoTagsArray = JSON.parse(newValue)

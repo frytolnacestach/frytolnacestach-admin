@@ -389,9 +389,6 @@
         },
 
         watch: {
-            placesContinentName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
-            },
             placesContinentSeoTags: function (newValue, oldValue) {
                 try {
                     this.placesContinentSeoTagsArray = JSON.parse(newValue)
