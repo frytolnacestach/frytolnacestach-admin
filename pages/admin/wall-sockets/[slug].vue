@@ -47,33 +47,13 @@
                                             <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku listu" nameDB="id_image_cover" perex="" :required=false />
-                                                <div class="o-form-item__image">
-                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': wallSocketIDimageCoverLoading}">
-                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && wallSocketIDimageCover" @load="handleImageCoverLoad">
-                                                    </div>
-                                                    <span class="o-form-item__image-text" v-if="imageCover[0] && wallSocketIDimageCoverLoad !== wallSocketIDimageCoverChange && (wallSocketIDimageCover && wallSocketIDimageCover !== null && wallSocketIDimageCover !== 0)">Byl vybrán nový obrázek</span>
-                                                    <span class="o-form-item__image-text" v-if="imageCover[0] && (!wallSocketIDimageCover || wallSocketIDimageCover === null || wallSocketIDimageCover === 0)">Obrázek byl odebrán</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageCover[0] && wallSocketIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="wallSocketIDimageCoverLoad === wallSocketIDimageCoverChange && !imageCover[0] && wallSocketIDimageCover && wallSocketIDimageCover !== null && wallSocketIDimageCover !== 0">Vybraní obrázek neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageCover[0] && (!wallSocketIDimageCover || wallSocketIDimageCover === null || wallSocketIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                    <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="wallSocketIDimageCover" @input="handlewallSocketIDimageCoverChange" />
-                                                </div>
+                                                <mInputImage :value="wallSocketIDimageCover" @image="handleImageCover" />
                                             </div>
                                             <!-- Form - id_image_cover END -->
                                             <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku detailu" nameDB="id_image_hero" perex="" :required=false />
-                                                <div class="o-form-item__image">
-                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': wallSocketIDimageHeroLoading}">
-                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && wallSocketIDimageHero" @load="handleImageHeroLoad">
-                                                    </div>
-                                                    <span class="o-form-item__image-text" v-if="imageHero[0] && wallSocketIDimageHeroLoad !== wallSocketIDimageHeroChange && (wallSocketIDimageHero && wallSocketIDimageHero !== null && wallSocketIDimageHero !== 0)">Byl vybrán nový obrázek</span>
-                                                    <span class="o-form-item__image-text" v-if="imageHero[0] && (!wallSocketIDimageHero || wallSocketIDimageHero === null || wallSocketIDimageHero === 0)">Obrázek byl odebrán</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageHero[0] && wallSocketIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="wallSocketIDimageHeroLoad === wallSocketIDimageHeroChange && !imageHero[0] && wallSocketIDimageHero && wallSocketIDimageHero !== null && wallSocketIDimageHero !== 0">Vybraní obrázek neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageHero[0] && (!wallSocketIDimageHero || wallSocketIDimageHero === null || wallSocketIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                    <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="wallSocketIDimageHero" @input="handlewallSocketIDimageHeroChange" />
-                                                </div>
+                                                <mInputImage :value="wallSocketIDimageHero" @image="handleImageHero" />
                                             </div>
                                             <!-- Form - id_image_hero END -->
                                         </div>
@@ -204,6 +184,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputImage from '@/components/molecules/mInputImage.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -229,20 +210,6 @@
         description: string
     }
 
-    interface ImageCover {
-        id: number
-        source: string
-        name: string
-        type: string
-    }
-
-    interface ImageHero {
-        id: number
-        source: string
-        name: string
-        type: string
-    }
-
     export default defineComponent({
         name: 'AdminWallSocketsSlugPage',
 
@@ -251,6 +218,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputImage,
             mNavBreadcrumbs,
             mLabel,
             oFlashMessages,
@@ -292,23 +260,6 @@
                     breadcrumb.name = `Editace značky - ${wallSocketName}`
                 }
             },
-            // change image id
-            handlewallSocketIDimageCoverChange() {
-                this.wallSocketIDimageCoverChange = this.wallSocketIDimageCover
-                this.wallSocketIDimageCoverLoading = true
-                this.loadImageCover()
-            },
-            handlewallSocketIDimageHeroChange() {
-                this.wallSocketIDimageHeroChange = this.wallSocketIDimageHero
-                this.wallSocketIDimageHeroLoading = true
-                this.loadImageHero()
-            },
-            handleImageCoverLoad() {
-                this.wallSocketIDimageCoverLoading = false;
-            },
-            handleImageHeroLoad() {
-                this.wallSocketIDimageHeroLoading = false;
-            },
             // seo tags
             addSeoTagsInput() {
                 this.wallSocketSeoTagsArray.push({
@@ -330,6 +281,12 @@
             // Components input changes
             handleSlug(newSlug: string) {
                 this.wallSocketSlug = newSlug
+            },
+            handleImageCover(newImage: string) {
+                this.wallSocketIDimageCover = newImage
+            },
+            handleImageHero(newImage: string) {
+                this.wallSocketIDimageHero = newImage
             }
         },
 
@@ -406,14 +363,6 @@
             const wallSocketLabel = ref('')
             const wallSocketName = ref('')
             const wallSocketDescription = ref('')
-            const imageCover = ref<ImageCover[]>([])
-            const imageHero = ref<ImageHero[]>([])
-            const wallSocketIDimageCoverLoad = ref(null)
-            const wallSocketIDimageCoverLoading = ref(false)
-            const wallSocketIDimageCoverChange = ref(null)
-            const wallSocketIDimageHeroLoad = ref(null)
-            const wallSocketIDimageHeroLoading = ref(false)
-            const wallSocketIDimageHeroChange = ref(null)
 
             //API - wallSocket
             ;(async () => {
@@ -432,61 +381,10 @@
                     wallSocketName.value = WallSocket[0].name;
                     wallSocketDescription.value = WallSocket[0].description;
                     loadingData.value = true
-
-                    // images load ids
-                    wallSocketIDimageCoverLoad.value = wallSocketIDimageCover.value
-                    wallSocketIDimageCoverChange.value = wallSocketIDimageCover.value
-                    wallSocketIDimageCoverLoading.value = true
-                    wallSocketIDimageHeroLoad.value = wallSocketIDimageHero.value
-                    wallSocketIDimageHeroChange.value = wallSocketIDimageHero.value
-                    wallSocketIDimageHeroLoading.value = true
-
-                    // Načítání imageCover
-                    if (wallSocketIDimageCover.value) {
-                        fetch(`${runTimeConfig.public.baseURL}/image-id/${wallSocketIDimageCover.value}`, {
-                        method: 'GET'
-                        }).then(res => res.json()).then(data => imageCover.value = data);
-                    } else {
-                        imageCover.value = [];
-                    }
-
-                    // Načítání imageHero
-                    if (wallSocketIDimageHero.value) {
-                        fetch(`${runTimeConfig.public.baseURL}/image-id/${wallSocketIDimageHero.value}`, {
-                        method: 'GET'
-                        }).then(res => res.json()).then(data => imageHero.value = data);
-                    } else {
-                        imageHero.value = [];
-                    }
                 } else {
 
                 }
             })()
-
-            const loadImageCover = async () => {
-                try {
-                    // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${wallSocketIDimageCover.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageCover.value = data);
-                } catch (err) {
-                    console.log(err)
-                    errorForm.value = "Chyba připojení k API"
-                }
-            }
-
-            const loadImageHero = async () => {
-                try {
-                    // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${wallSocketIDimageHero.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageHero.value = data);
-                } catch (err) {
-                    console.log(err)
-                    errorForm.value = "Chyba připojení k API"
-                }
-            }
-
 
             //FORM - edit
             const editForm = async () => {
@@ -540,17 +438,7 @@
                 wallSocketLabel,
                 wallSocketName,
                 wallSocketDescription,
-                imageCover,
-                imageHero,
-                wallSocketIDimageCoverLoad,
-                wallSocketIDimageCoverChange,
-                wallSocketIDimageCoverLoading,
-                wallSocketIDimageHeroLoad,
-                wallSocketIDimageHeroChange,
-                wallSocketIDimageHeroLoading,
-                editForm,
-                loadImageCover,
-                loadImageHero
+                editForm
             }
         },
 
