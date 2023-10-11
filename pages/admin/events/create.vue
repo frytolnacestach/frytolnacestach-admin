@@ -32,13 +32,13 @@
                                             <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku listu" nameDB="id_image_cover" perex="" :required=false />
-                                                <input class="a-input" type="number" min="0" name="imageCover" v-model="eventIDimageCover" />
+                                                <mInputImage :value="eventIDimageCover" @image="handleImageCover" />
                                             </div>
                                             <!-- Form - id_image_cover END -->
                                             <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku detailu" nameDB="id_image_hero" perex="" :required=false />
-                                                <input class="a-input" type="number" min="0" name="imageHero" v-model="eventIDimageHero" />
+                                                <mInputImage :value="eventIDimageHero" @image="handleImageHero" />
                                             </div>
                                             <!-- Form - id_image_hero END -->
                                         </div>
@@ -349,6 +349,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputImage from '@/components/molecules/mInputImage.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -362,6 +363,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputImage,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -462,6 +464,12 @@
             // Components input changes
             handleSlug(newSlug: string) {
                 this.eventSlug = newSlug
+            },
+            handleImageCover(newImage: string) {
+                this.eventIDimageCover = newImage
+            },
+            handleImageHero(newImage: string) {
+                this.eventIDimageHero = newImage
             }
         },
 

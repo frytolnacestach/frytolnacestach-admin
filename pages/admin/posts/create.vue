@@ -54,25 +54,25 @@
                                             <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku listu" nameDB="id_image_cover" perex="" :required=false />
-                                                <input class="a-input" type="number" min="0" name="imageList" v-model="postIdImageCover" />
+                                                <mInputImage :value="postIDimageCover" @image="handleImageCover" />
                                             </div>
                                             <!-- Form - id_image_cover END -->
                                             <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku detailu" nameDB="id_image_hero" perex="" :required=false />
-                                                <input class="a-input" type="number" min="0" name="imageHero" v-model="postIdImageHero" />
+                                                <mInputImage :value="postIDimageHero" @image="handleImageHero" />
                                             </div>
                                             <!-- Form - id_image_hero END -->
                                             <!-- Form - id_image_map -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku mapy" nameDB="id_image_map" perex="" :required=false />
-                                                <input class="a-input" type="number" min="0" name="imageMap" v-model="postIdImageMap" />
+                                                <mInputImage :value="postIDimageMap" @image="handleImageMap" />
                                             </div>
                                             <!-- Form - id_image_map END -->
                                             <!-- Form - id_image_og -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku og" nameDB="id_image_og" perex="" :required=false />
-                                                <input class="a-input" type="number" min="0" name="imageOg" v-model="postIdImageOg" />
+                                                <mInputImage :value="postIDimageOg" @image="handleImageOg" />
                                             </div>
                                             <!-- Form - id_image_og END -->
                                         </div>
@@ -490,6 +490,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputImage from '@/components/molecules/mInputImage.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -503,6 +504,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputImage,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -617,6 +619,18 @@
             // Components input changes
             handleSlug(newSlug: string) {
                 this.postSlug = newSlug
+            },
+            handleImageCover(newImage: string) {
+                this.postIDimageCover = newImage
+            },
+            handleImageHero(newImage: string) {
+                this.postIDimageHero = newImage
+            },
+            handleImageMap(newImage: string) {
+                this.postIDimageMap = newImage
+            },
+            handleImageOg(newImage: string) {
+                this.postIDimageOg = newImage
             }
         },
 
@@ -728,10 +742,10 @@
             const postIDregion = ref(null)
             const postIDcity = ref(null)
             const postIDspot = ref(null)
-            const postIdImageCover = ref(null)
-            const postIdImageHero = ref(null)
-            const postIdImageMap = ref(null)
-            const postIDimageOG = ref(null)
+            const postIDimageCover = ref(null)
+            const postIDimageHero = ref(null)
+            const postIDimageMap = ref(null)
+            const postIDimageOg = ref(null)
             const postDate = ref(new Date())
             const postDateUpdate = ref(new Date())
             const postDateInformation = ref(new Date())
@@ -781,10 +795,10 @@
                             'id_region': postIDregion.value,
                             'id_city': postIDcity.value,
                             'id_spot': postIDspot.value,
-                            'id_image_cover': postIdImageCover.value,
-                            'id_image_hero': postIdImageHero.value,
-                            'id_image_map': postIdImageMap.value,
-                            'id_image_og': postIDimageOG.value,
+                            'id_image_cover': postIDimageCover.value,
+                            'id_image_hero': postIDimageHero.value,
+                            'id_image_map': postIDimageMap.value,
+                            'id_image_og': postIDimageOg.value,
                             'date': postDate.value,
                             'date_update': postDateUpdate.value,
                             'date_information': postDateInformation.value,
@@ -835,10 +849,10 @@
                 postIDregion,
                 postIDcity,
                 postIDspot,
-                postIdImageCover,
-                postIdImageHero,
-                postIdImageMap,
-                postIDimageOG,
+                postIDimageCover,
+                postIDimageHero,
+                postIDimageMap,
+                postIDimageOg,
                 postDate,
                 postDateUpdate,
                 postDateInformation,
