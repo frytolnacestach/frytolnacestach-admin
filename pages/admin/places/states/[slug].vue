@@ -54,33 +54,13 @@
                                             <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku listu" nameDB="id_image_cover" perex="" :required=false />
-                                                <div class="o-form-item__image">
-                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': placesStateIDimageCoverLoading}">
-                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && placesStateIDimageCover" @load="handleImageCoverLoad">
-                                                    </div>
-                                                    <span class="o-form-item__image-text" v-if="imageCover[0] && placesStateIDimageCoverLoad !== placesStateIDimageCoverChange && (placesStateIDimageCover && placesStateIDimageCover !== null && placesStateIDimageCover !== 0)">Byl vybrán nový obrázek</span>
-                                                    <span class="o-form-item__image-text" v-if="imageCover[0] && (!placesStateIDimageCover || placesStateIDimageCover === null || placesStateIDimageCover === 0)">Obrázek byl odebrán</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageCover[0] && placesStateIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="placesStateIDimageCoverLoad === placesStateIDimageCoverChange && !imageCover[0] && placesStateIDimageCover && placesStateIDimageCover !== null && placesStateIDimageCover !== 0">Vybraní obrázek neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageCover[0] && (!placesStateIDimageCover || placesStateIDimageCover === null || placesStateIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                    <input class="a-input -c-gray" type="number" min="0" name="image_cover" v-model="placesStateIDimageCover" @input="handlePlacesStateIDimageCoverChange" />
-                                                </div>
+                                                <mInputImage :value="placesStateIDimageCover" @image="handleImageCover" />
                                             </div>
                                             <!-- Form - id_image_cover END -->
                                             <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku detailu" nameDB="id_image_hero" perex="" :required=false />
-                                                <div class="o-form-item__image">
-                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': placesStateIDimageHeroLoading}">
-                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && placesStateIDimageHero" @load="handleImageHeroLoad">
-                                                    </div>
-                                                    <span class="o-form-item__image-text" v-if="imageHero[0] && placesStateIDimageHeroLoad !== placesStateIDimageHeroChange && (placesStateIDimageHero && placesStateIDimageHero !== null && placesStateIDimageHero !== 0)">Byl vybrán nový obrázek</span>
-                                                    <span class="o-form-item__image-text" v-if="imageHero[0] && (!placesStateIDimageHero || placesStateIDimageHero === null || placesStateIDimageHero === 0)">Obrázek byl odebrán</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageHero[0] && placesStateIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="placesStateIDimageHeroLoad === placesStateIDimageHeroChange && !imageHero[0] && placesStateIDimageHero && placesStateIDimageHero !== null && placesStateIDimageHero !== 0">Vybraní obrázek neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageHero[0] && (!placesStateIDimageHero || placesStateIDimageHero === null || placesStateIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                    <input class="a-input -c-gray" type="number" min="0" name="image_hero" v-model="placesStateIDimageHero" @input="handlePlacesStateIDimageHeroChange" />
-                                                </div>
+                                                <mInputImage :value="placesStateIDimageHero" @image="handleImageHero" />
                                             </div>
                                             <!-- Form - id_image_hero END -->
                                         </div>
@@ -911,6 +891,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputImage from '@/components/molecules/mInputImage.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -1072,20 +1053,6 @@
         language_phrases: LanguagePhrases[]
     }
 
-    interface ImageCover {
-        id: number
-        source: string
-        name: string
-        type: string
-    }
-
-    interface ImageHero {
-        id: number
-        source: string
-        name: string
-        type: string
-    }
-
     export default defineComponent({
         name: 'AdminPlacesStatesSlugPage',
 
@@ -1094,6 +1061,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputImage,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -1379,6 +1347,12 @@
             // Components input changes
             handleSlug(newSlug: string) {
                 this.placesStateSlug = newSlug
+            },
+            handleImageCover(newImage: string) {
+                this.placesStateIDimageCover = newImage
+            },
+            handleImageHero(newImage: string) {
+                this.placesStateIDimageHero = newImage
             }
         },
 
@@ -1628,14 +1602,6 @@
             const placesStateLinksArray = ref([])
             const placesStateLanguagePhrases = ref([])
             const placesStateLanguagePhrasesArray = ref([])
-            const imageCover = ref<ImageCover[]>([])
-            const imageHero = ref<ImageHero[]>([])
-            const placesStateIDimageCoverLoad = ref(null)
-            const placesStateIDimageCoverLoading = ref(false)
-            const placesStateIDimageCoverChange = ref(null)
-            const placesStateIDimageHeroLoad = ref(null)
-            const placesStateIDimageHeroLoading = ref(false)
-            const placesStateIDimageHeroChange = ref(null)
 
             //API - Places State
             ;(async () => {
@@ -1677,60 +1643,10 @@
                     placesStateLinks.value = PlacesState[0].links ? JSON.stringify(PlacesState[0].links) : JSON.stringify([])
                     placesStateLanguagePhrases.value = PlacesState[0].language_phrases ? JSON.stringify(PlacesState[0].language_phrases) : JSON.stringify([])
                     loadingData.value = true
-
-                    // images load ids
-                    placesStateIDimageCoverLoad.value = placesStateIDimageCover.value
-                    placesStateIDimageCoverChange.value = placesStateIDimageCover.value
-                    placesStateIDimageCoverLoading.value = true
-                    placesStateIDimageHeroLoad.value = placesStateIDimageHero.value
-                    placesStateIDimageHeroChange.value = placesStateIDimageHero.value
-                    placesStateIDimageHeroLoading.value = true
-                    
-                    // Načítání imageCover
-                    if (placesStateIDimageCover.value) {
-                        fetch(`${runTimeConfig.public.baseURL}/image-id/${placesStateIDimageCover.value}`, {
-                        method: 'GET'
-                        }).then(res => res.json()).then(data => imageCover.value = data);
-                    } else {
-                        imageCover.value = [];
-                    }
-
-                    // Načítání imageHero
-                    if (placesStateIDimageHero.value) {
-                        fetch(`${runTimeConfig.public.baseURL}/image-id/${placesStateIDimageHero.value}`, {
-                        method: 'GET'
-                        }).then(res => res.json()).then(data => imageHero.value = data);
-                    } else {
-                        imageHero.value = [];
-                    }
                 } else {
 
                 }
             })()
-
-            const loadImageCover = async () => {
-                try {
-                    // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesStateIDimageCover.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageCover.value = data);
-                } catch (err) {
-                    console.log(err)
-                    errorForm.value = "Chyba připojení k API"
-                }
-            }
-
-            const loadImageHero = async () => {
-                try {
-                    // Načítání imageHero
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${placesStateIDimageHero.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageHero.value = data);
-                } catch (err) {
-                    console.log(err)
-                    errorForm.value = "Chyba připojení k API"
-                }
-            }
 
             //FORM - edit
             const editForm = async () => {
@@ -1844,17 +1760,7 @@
                 placesStateLinksArray,
                 placesStateLanguagePhrases,
                 placesStateLanguagePhrasesArray,
-                imageCover,
-                imageHero,
-                placesStateIDimageCoverLoad,
-                placesStateIDimageCoverChange,
-                placesStateIDimageCoverLoading,
-                placesStateIDimageHeroLoad,
-                placesStateIDimageHeroChange,
-                placesStateIDimageHeroLoading,
-                editForm,
-                loadImageCover,
-                loadImageHero
+                editForm
             }
         },
 

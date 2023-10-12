@@ -48,33 +48,13 @@
                                             <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku listu" nameDB="id_image_cover" perex="" :required=false />
-                                                <div class="o-form-item__image">
-                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': floraIDimageCoverLoading}">
-                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && floraIDimageCover" @load="handleImageCoverLoad">
-                                                    </div>
-                                                    <span class="o-form-item__image-text" v-if="imageCover[0] && floraIDimageCoverLoad !== floraIDimageCoverChange && (floraIDimageCover && floraIDimageCover !== null && floraIDimageCover !== 0)">Byl vybrán nový obrázek</span>
-                                                    <span class="o-form-item__image-text" v-if="imageCover[0] && (!floraIDimageCover || floraIDimageCover === null || floraIDimageCover === 0)">Obrázek byl odebrán</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageCover[0] && floraIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="floraIDimageCoverLoad === floraIDimageCoverChange && !imageCover[0] && floraIDimageCover && floraIDimageCover !== null && floraIDimageCover !== 0">Vybraní obrázek neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageCover[0] && (!floraIDimageCover || floraIDimageCover === null || floraIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                    <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="floraIDimageCover" @input="handleFloraIDimageCoverChange" />
-                                                </div>
+                                                <mInputImage :value="floraIDimageCover" @image="handleImageCover" />
                                             </div>
                                             <!-- Form - id_image_cover END -->
                                             <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku detailu" nameDB="id_image_hero" perex="" :required=false />
-                                                <div class="o-form-item__image">
-                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': floraIDimageHeroLoading}">
-                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && floraIDimageHero" @load="handleImageHeroLoad">
-                                                    </div>
-                                                    <span class="o-form-item__image-text" v-if="imageHero[0] && floraIDimageHeroLoad !== floraIDimageHeroChange && (floraIDimageHero && floraIDimageHero !== null && floraIDimageHero !== 0)">Byl vybrán nový obrázek</span>
-                                                    <span class="o-form-item__image-text" v-if="imageHero[0] && (!floraIDimageHero || floraIDimageHero === null || floraIDimageHero === 0)">Obrázek byl odebrán</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageHero[0] && floraIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="floraIDimageHeroLoad === floraIDimageHeroChange && !imageHero[0] && floraIDimageHero && floraIDimageHero !== null && floraIDimageHero !== 0">Vybraní obrázek neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageHero[0] && (!floraIDimageHero || floraIDimageHero === null || floraIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                    <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="floraIDimageHero" @input="handleFloraIDimageHeroChange" />
-                                                </div>
+                                                <mInputImage :value="floraIDimageHero" @image="handleImageHero" />
                                             </div>
                                             <!-- Form - id_image_hero END -->
                                         </div>
@@ -223,6 +203,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputImage from '@/components/molecules/mInputImage.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -251,20 +232,6 @@
         description: string
     }
 
-    interface ImageCover {
-        id: number
-        source: string
-        name: string
-        type: string
-    }
-
-    interface ImageHero {
-        id: number
-        source: string
-        name: string
-        type: string
-    }
-
     export default defineComponent({
         name: 'AdminFlorasSlugPage',
 
@@ -273,6 +240,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputImage,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -353,6 +321,12 @@
             // Components input changes
             handleSlug(newSlug: string) {
                 this.floraSlug = newSlug
+            },
+            handleImageCover(newImage: string) {
+                this.floraIDimageCover = newImage
+            },
+            handleImageHero(newImage: string) {
+                this.floraIDimageHero = newImage
             }
         },
 
@@ -431,14 +405,6 @@
             const floraStatusIucn = ref('')
             const floraStatusDanger = ref('')
             const floraDescription = ref('')
-            const imageCover = ref<ImageCover[]>([])
-            const imageHero = ref<ImageHero[]>([])
-            const floraIDimageCoverLoad = ref(null)
-            const floraIDimageCoverLoading = ref(false)
-            const floraIDimageCoverChange = ref(null)
-            const floraIDimageHeroLoad = ref(null)
-            const floraIDimageHeroLoading = ref(false)
-            const floraIDimageHeroChange = ref(null)
 
             //API - flora
             ;(async () => {
@@ -460,60 +426,10 @@
                     floraStatusDanger.value = Flora[0].status_danger;
                     floraDescription.value = Flora[0].description;
                     loadingData.value = true
-
-                    // images load ids
-                    floraIDimageCoverLoad.value = floraIDimageCover.value
-                    floraIDimageCoverChange.value = floraIDimageCover.value
-                    floraIDimageCoverLoading.value = true
-                    floraIDimageHeroLoad.value = floraIDimageHero.value
-                    floraIDimageHeroChange.value = floraIDimageHero.value
-                    floraIDimageHeroLoading.value = true
-
-                    // Načítání imageCover
-                    if (floraIDimageCover.value) {
-                        fetch(`${runTimeConfig.public.baseURL}/image-id/${floraIDimageCover.value}`, {
-                        method: 'GET'
-                        }).then(res => res.json()).then(data => imageCover.value = data);
-                    } else {
-                        imageCover.value = [];
-                    }
-
-                    // Načítání imageHero
-                    if (floraIDimageHero.value) {
-                        fetch(`${runTimeConfig.public.baseURL}/image-id/${floraIDimageHero.value}`, {
-                        method: 'GET'
-                        }).then(res => res.json()).then(data => imageHero.value = data);
-                    } else {
-                        imageHero.value = [];
-                    }
                 } else {
 
                 }
             })()
-
-            const loadImageCover = async () => {
-                try {
-                    // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${floraIDimageCover.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageCover.value = data);
-                } catch (err) {
-                    console.log(err)
-                    errorForm.value = "Chyba připojení k API"
-                }
-            }
-
-            const loadImageHero = async () => {
-                try {
-                    // Načítání imageHero
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${floraIDimageHero.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageHero.value = data);
-                } catch (err) {
-                    console.log(err)
-                    errorForm.value = "Chyba připojení k API"
-                }
-            }
 
             //FORM - edit
             const editForm = async () => {
@@ -573,17 +489,7 @@
                 floraStatusIucn,
                 floraStatusDanger,
                 floraDescription,
-                imageCover,
-                imageHero,
-                floraIDimageCoverLoad,
-                floraIDimageCoverChange,
-                floraIDimageCoverLoading,
-                floraIDimageHeroLoad,
-                floraIDimageHeroChange,
-                floraIDimageHeroLoading,
-                editForm,
-                loadImageCover,
-                loadImageHero
+                editForm
             }
         },
 

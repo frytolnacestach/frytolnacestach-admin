@@ -48,33 +48,13 @@
                                             <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku listu" nameDB="id_image_cover" perex="" :required=false />
-                                                <div class="o-form-item__image">
-                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': foodIDimageCoverLoading}">
-                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && foodIDimageCover" @load="handleImageCoverLoad">
-                                                    </div>
-                                                    <span class="o-form-item__image-text" v-if="imageCover[0] && foodIDimageCoverLoad !== foodIDimageCoverChange && (foodIDimageCover && foodIDimageCover !== null && foodIDimageCover !== 0)">Byl vybrán nový obrázek</span>
-                                                    <span class="o-form-item__image-text" v-if="imageCover[0] && (!foodIDimageCover || foodIDimageCover === null || foodIDimageCover === 0)">Obrázek byl odebrán</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageCover[0] && foodIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="foodIDimageCoverLoad === foodIDimageCoverChange && !imageCover[0] && foodIDimageCover && foodIDimageCover !== null && foodIDimageCover !== 0">Vybraní obrázek neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageCover[0] && (!foodIDimageCover || foodIDimageCover === null || foodIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                    <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="foodIDimageCover" @input="handleFoodIDimageCoverChange" />
-                                                </div>
+                                                <mInputImage :value="foodIDimageCover" @image="handleImageCover" />
                                             </div>
                                             <!-- Form - id_image_cover END -->
                                             <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku detailu" nameDB="id_image_hero" perex="" :required=false />
-                                                <div class="o-form-item__image">
-                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': foodIDimageHeroLoading}">
-                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && foodIDimageHero" @load="handleImageHeroLoad">
-                                                    </div>
-                                                    <span class="o-form-item__image-text" v-if="imageHero[0] && foodIDimageHeroLoad !== foodIDimageHeroChange && (foodIDimageHero && foodIDimageHero !== null && foodIDimageHero !== 0)">Byl vybrán nový obrázek</span>
-                                                    <span class="o-form-item__image-text" v-if="imageHero[0] && (!foodIDimageHero || foodIDimageHero === null || foodIDimageHero === 0)">Obrázek byl odebrán</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageHero[0] && foodIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="foodIDimageHeroLoad === foodIDimageHeroChange && !imageHero[0] && foodIDimageHero && foodIDimageHero !== null && foodIDimageHero !== 0">Vybraní obrázek neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageHero[0] && (!foodIDimageHero || foodIDimageHero === null || foodIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                    <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="foodIDimageHero" @input="handleFoodIDimageHeroChange" />
-                                                </div>
+                                                <mInputImage :value="foodIDimageHero" @image="handleImageHero" />
                                             </div>
                                             <!-- Form - id_image_hero END -->
                                         </div>
@@ -211,6 +191,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputImage from '@/components/molecules/mInputImage.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -237,20 +218,6 @@
         recipe: string
     }
 
-    interface ImageCover {
-        id: number
-        source: string
-        name: string
-        type: string
-    }
-
-    interface ImageHero {
-        id: number
-        source: string
-        name: string
-        type: string
-    }
-
     export default defineComponent({
         name: 'AdminFoodsSlugPage',
 
@@ -259,6 +226,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputImage,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -339,6 +307,12 @@
             // Components input changes
             handleSlug(newSlug: string) {
                 this.foodSlug = newSlug
+            },
+            handleImageCover(newImage: string) {
+                this.foodIDimageCover = newImage
+            },
+            handleImageHero(newImage: string) {
+                this.foodIDimageHero = newImage
             }
         },
 
@@ -415,14 +389,6 @@
             const foodDescription = ref('')
             const foodIngredients = ref('')
             const foodRecipe = ref('')
-            const imageCover = ref<ImageCover[]>([])
-            const imageHero = ref<ImageHero[]>([])
-            const foodIDimageCoverLoad = ref(null)
-            const foodIDimageCoverLoading = ref(false)
-            const foodIDimageCoverChange = ref(null)
-            const foodIDimageHeroLoad = ref(null)
-            const foodIDimageHeroLoading = ref(false)
-            const foodIDimageHeroChange = ref(null)
 
             //API - food
             ;(async () => {
@@ -442,60 +408,10 @@
                     foodIngredients.value = Food[0].ingredients ? JSON.stringify(Food[0].ingredients) : JSON.stringify([]);
                     foodRecipe.value = Food[0].recipe;
                     loadingData.value = true
-
-                    // images load ids
-                    foodIDimageCoverLoad.value = foodIDimageCover.value
-                    foodIDimageCoverChange.value = foodIDimageCover.value
-                    foodIDimageCoverLoading.value = true
-                    foodIDimageHeroLoad.value = foodIDimageHero.value
-                    foodIDimageHeroChange.value = foodIDimageHero.value
-                    foodIDimageHeroLoading.value = true
-                    
-                    // Načítání imageCover
-                    if (foodIDimageCover.value) {
-                        fetch(`${runTimeConfig.public.baseURL}/image-id/${foodIDimageCover.value}`, {
-                        method: 'GET'
-                        }).then(res => res.json()).then(data => imageCover.value = data);
-                    } else {
-                        imageCover.value = [];
-                    }
-
-                    // Načítání imageHero
-                    if (foodIDimageHero.value) {
-                        fetch(`${runTimeConfig.public.baseURL}/image-id/${foodIDimageHero.value}`, {
-                        method: 'GET'
-                        }).then(res => res.json()).then(data => imageHero.value = data);
-                    } else {
-                        imageHero.value = [];
-                    }
                 } else {
 
                 }
             })()
-
-            const loadImageCover = async () => {
-                try {
-                    // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${foodIDimageCover.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageCover.value = data);
-                } catch (err) {
-                    console.log(err)
-                    errorForm.value = "Chyba připojení k API"
-                }
-            }
-
-            const loadImageHero = async () => {
-                try {
-                    // Načítání imageHero
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${foodIDimageHero.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageHero.value = data);
-                } catch (err) {
-                    console.log(err)
-                    errorForm.value = "Chyba připojení k API"
-                }
-            }
 
             //FORM - edit
             const editForm = async () => {
@@ -551,17 +467,7 @@
                 foodDescription,
                 foodIngredients,
                 foodRecipe,
-                imageCover,
-                imageHero,
-                foodIDimageCoverLoad,
-                foodIDimageCoverChange,
-                foodIDimageCoverLoading,
-                foodIDimageHeroLoad,
-                foodIDimageHeroChange,
-                foodIDimageHeroLoading,
-                editForm,
-                loadImageCover,
-                loadImageHero
+                editForm
             }
         },
 

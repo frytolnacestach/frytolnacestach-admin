@@ -48,33 +48,13 @@
                                             <!-- Form - id_image_cover -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku listu" nameDB="id_image_cover" perex="" :required=false />
-                                                <div class="o-form-item__image">
-                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': eventIDimageCoverLoading}">
-                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageCover[0].source + imageCover[0].name}.webp`" v-if="imageCover[0] && eventIDimageCover" @load="handleImageCoverLoad">
-                                                    </div>
-                                                    <span class="o-form-item__image-text" v-if="imageCover[0] && eventIDimageCoverLoad !== eventIDimageCoverChange && (eventIDimageCover && eventIDimageCover !== null && eventIDimageCover !== 0)">Byl vybrán nový obrázek</span>
-                                                    <span class="o-form-item__image-text" v-if="imageCover[0] && (!eventIDimageCover || eventIDimageCover === null || eventIDimageCover === 0)">Obrázek byl odebrán</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageCover[0] && eventIDimageCover">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="eventIDimageCoverLoad === eventIDimageCoverChange && !imageCover[0] && eventIDimageCover && eventIDimageCover !== null && eventIDimageCover !== 0">Vybraní obrázek neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageCover[0] && (!eventIDimageCover || eventIDimageCover === null || eventIDimageCover === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                    <input class="a-input -c-gray" type="number" min="0" name="imageCover" v-model="eventIDimageCover" @input="handleEventIDimageCoverChange" />
-                                                </div>
+                                                <mInputImage :value="eventIDimageCover" @image="handleImageCover" />
                                             </div>
                                             <!-- Form - id_image_cover END -->
                                             <!-- Form - id_image_hero -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku detailu" nameDB="id_image_hero" perex="" :required=false />
-                                                <div class="o-form-item__image">
-                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': eventIDimageHeroLoading}">
-                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${imageHero[0].source + imageHero[0].name}.webp`" v-if="imageHero[0] && eventIDimageHero" @load="handleImageHeroLoad">
-                                                    </div>
-                                                    <span class="o-form-item__image-text" v-if="imageHero[0] && eventIDimageHeroLoad !== eventIDimageHeroChange && (eventIDimageHero && eventIDimageHero !== null && eventIDimageHero !== 0)">Byl vybrán nový obrázek</span>
-                                                    <span class="o-form-item__image-text" v-if="imageHero[0] && (!eventIDimageHero || eventIDimageHero === null || eventIDimageHero === 0)">Obrázek byl odebrán</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageHero[0] && eventIDimageHero">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="eventIDimageHeroLoad === eventIDimageHeroChange && !imageHero[0] && eventIDimageHero && eventIDimageHero !== null && eventIDimageHero !== 0">Vybraní obrázek neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="!imageHero[0] && (!eventIDimageHero || eventIDimageHero === null || eventIDimageHero === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                    <input class="a-input -c-gray" type="number" min="0" name="imageHero" v-model="eventIDimageHero" @input="handleEventIDimageHeroChange" />
-                                                </div>
+                                                <mInputImage :value="eventIDimageHero" @image="handleImageHero" />
                                             </div>
                                             <!-- Form - id_image_hero END -->
                                         </div>
@@ -385,6 +365,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputImage from '@/components/molecules/mInputImage.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -441,20 +422,6 @@
         links: Links[]
     }
 
-    interface ImageCover {
-        id: number
-        source: string
-        name: string
-        type: string
-    }
-
-    interface ImageHero {
-        id: number
-        source: string
-        name: string
-        type: string
-    }
-
     export default defineComponent({
         name: 'AdminPlacesCitiesSlugPage',
 
@@ -463,6 +430,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputImage,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -589,6 +557,12 @@
             // Components input changes
             handleSlug(newSlug: string) {
                 this.eventSlug = newSlug
+            },
+            handleImageCover(newImage: string) {
+                this.eventIDimageCover = newImage
+            },
+            handleImageHero(newImage: string) {
+                this.eventIDimageHero = newImage
             }
         },
 
@@ -717,14 +691,6 @@
             const eventPricesArray = ref([])
             const eventLinks = ref([])
             const eventLinksArray = ref([])
-            const imageCover = ref<ImageCover[]>([])
-            const imageHero = ref<ImageHero[]>([])
-            const eventIDimageCoverLoad = ref(null)
-            const eventIDimageCoverLoading = ref(false)
-            const eventIDimageCoverChange = ref(null)
-            const eventIDimageHeroLoad = ref(null)
-            const eventIDimageHeroLoading = ref(false)
-            const eventIDimageHeroChange = ref(null)
 
             //API - Event
             ;(async () => {
@@ -752,60 +718,10 @@
                     eventPrices.value = Event[0].prices ? JSON.stringify(Event[0].prices) : JSON.stringify([]);
                     eventLinks.value = Event[0].links ? JSON.stringify(Event[0].links) : JSON.stringify([]);
                     loadingData.value = true
-
-                    // images load ids
-                    eventIDimageCoverLoad.value = eventIDimageCover.value
-                    eventIDimageCoverChange.value = eventIDimageCover.value
-                    eventIDimageCoverLoading.value = true
-                    eventIDimageHeroLoad.value = eventIDimageHero.value
-                    eventIDimageHeroChange.value = eventIDimageHero.value
-                    eventIDimageHeroLoading.value = true
-                    
-                    // Načítání imageCover
-                    if (eventIDimageCover.value) {
-                        fetch(`${runTimeConfig.public.baseURL}/image-id/${eventIDimageCover.value}`, {
-                        method: 'GET'
-                        }).then(res => res.json()).then(data => imageCover.value = data);
-                    } else {
-                        imageCover.value = [];
-                    }
-
-                    // Načítání imageHero
-                    if (eventIDimageHero.value) {
-                        fetch(`${runTimeConfig.public.baseURL}/image-id/${eventIDimageHero.value}`, {
-                        method: 'GET'
-                        }).then(res => res.json()).then(data => imageHero.value = data);
-                    } else {
-                        imageHero.value = [];
-                    }
                 } else {
 
                 }
             })()
-
-            const loadImageCover = async () => {
-                try {
-                    // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${eventIDimageCover.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageCover.value = data);
-                } catch (err) {
-                    console.log(err)
-                    errorForm.value = "Chyba připojení k API"
-                }
-            }
-
-            const loadImageHero = async () => {
-                try {
-                    // Načítání imageHero
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${eventIDimageHero.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => imageHero.value = data);
-                } catch (err) {
-                    console.log(err)
-                    errorForm.value = "Chyba připojení k API"
-                }
-            }
 
             //FORM - edit
             const editForm = async () => {
@@ -881,17 +797,7 @@
                 eventPricesArray,
                 eventLinks,
                 eventLinksArray,
-                imageCover,
-                imageHero,
-                eventIDimageCoverLoad,
-                eventIDimageCoverChange,
-                eventIDimageCoverLoading,
-                eventIDimageHeroLoad,
-                eventIDimageHeroChange,
-                eventIDimageHeroLoading,
-                editForm,
-                loadImageCover,
-                loadImageHero
+                editForm
             }
         },
 

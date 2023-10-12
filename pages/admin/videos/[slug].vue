@@ -48,17 +48,7 @@
                                             <!-- Form - id_image -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Obrázku" nameDB="id_image" perex="" :required=false />
-                                                <div class="o-form-item__image">
-                                                    <div class="o-form-item__image-lazyload" :class="{'-loading': videoIDimageLoading}">
-                                                        <img class="o-form-item__image-file -small" :src="`https://image.frytolnacestach.cz/storage${image[0].source + image[0].name}.webp`" v-if="image[0] && videoIDimage" @load="handleImageLoad">
-                                                    </div>
-                                                    <span class="o-form-item__image-text" v-if="image[0] && videoIDimageLoad !== videoIDimageChange && (videoIDimage && videoIDimage !== null && videoIDimage !== 0)">Byl vybrán nový obrázek</span>
-                                                    <span class="o-form-item__image-text" v-if="image[0] && (!videoIDimage || videoIDimage === null || videoIDimage === 0)">Obrázek byl odebrán</span>
-                                                    <span class="o-form-item__image-text" v-if="!image[0] && videoIDimage">Byl vybrán nový obrázek ale bohužel ten neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="videoIDimageLoad === videoIDimageChange && !image[0] && videoIDimage && videoIDimage !== null && videoIDimage !== 0">Vybraní obrázek neexistuje</span>
-                                                    <span class="o-form-item__image-text" v-if="!image[0] && (!videoIDimage || videoIDimage === null || videoIDimage === 0)">Zatím nebyl vybrán žádní obrázek</span>
-                                                    <input class="a-input -c-gray" type="number" min="0" name="id_image" v-model="videoIDimage" @input="handleVideoIDimageChange" />
-                                                </div>
+                                                <mInputImage :value="videoIDimage" @image="handleImage" />
                                             </div>
                                             <!-- Form - id_image_hero END -->
                                         </div>
@@ -215,6 +205,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputImage from '@/components/molecules/mInputImage.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -247,13 +238,6 @@
         seo_tags: seoTags[]
     }
 
-    interface Image {
-        id: number
-        source: string
-        name: string
-        type: string
-    }
-
     export default defineComponent({
         name: 'AdminVideosSlugPage',
 
@@ -262,6 +246,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputImage,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -307,15 +292,6 @@
                     breadcrumb.name = `Editace videa - ${videoTitle}`
                 }
             },
-            // Input - change image id
-            handleVideoIDimageChange() {
-                this.videoIDimageChange = this.videoIDimage
-                this.videoIDimageLoading = true
-                this.loadImage()
-            },
-            handleImageLoad() {
-                this.videoIDimageLoading = false;
-            },
             // Input - seo tags
             addSeoTagsInput() {
                 this.videoSeoTagsArray.push({
@@ -328,6 +304,9 @@
             // Components input changes
             handleSlug(newSlug: string) {
                 this.videoSlug = newSlug
+            },
+            handleImage(newImage: string) {
+                this.videoIDimage = newImage
             }
         },
 
@@ -399,9 +378,6 @@
             const videoPerex = ref('')
             const videoUrl = ref('')
             const image = ref<Image[]>([])
-            const videoIDimageLoad = ref(null)
-            const videoIDimageLoading = ref(false)
-            const videoIDimageChange = ref(null)
             const videoSeoTags = ref('')
             const videoSeoTagsArray = ref([])
 
@@ -427,36 +403,10 @@
                     videoUrl.value = Video[0].url;
                     videoSeoTags.value = Video[0].seo_tags ? JSON.stringify(Video[0].seo_tags) : JSON.stringify([]);
                     loadingData.value = true
-
-                    // images load ids
-                    videoIDimageLoad.value = videoIDimage.value
-                    videoIDimageChange.value = videoIDimage.value
-                    videoIDimageLoading.value = true
-
-                    // Načítání image
-                    if (videoIDimage.value) {
-                        fetch(`${runTimeConfig.public.baseURL}/image-id/${videoIDimage.value}`, {
-                        method: 'GET'
-                        }).then(res => res.json()).then(data => image.value = data);
-                    } else {
-                        image.value = [];
-                    }
                 } else {
 
                 }
             })()
-
-            const loadImage = async () => {
-                try {
-                    // Načítání imageCover
-                    fetch(`${runTimeConfig.public.baseURL}/image-id/${videoIDimage.value}`, {
-                    method: 'GET'
-                    }).then(res => res.json()).then(data => image.value = data);
-                } catch (err) {
-                    console.log(err)
-                    errorForm.value = "Chyba připojení k API"
-                }
-            }
 
             //API - Platform
             ;(async () => {
@@ -528,11 +478,7 @@
                 videoUrl,
                 platforms,
                 image,
-                videoIDimageLoad,
-                videoIDimageChange,
-                videoIDimageLoading,
-                editForm,
-                loadImage
+                editForm
             }
         },
 
