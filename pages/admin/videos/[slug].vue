@@ -377,7 +377,6 @@
             const videoTitle = ref('')
             const videoPerex = ref('')
             const videoUrl = ref('')
-            const image = ref<Image[]>([])
             const videoSeoTags = ref('')
             const videoSeoTagsArray = ref([])
 
