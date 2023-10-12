@@ -425,23 +425,6 @@
                     breadcrumb.name = `Editace region - ${placesRegionName}`
                 }
             },
-            // change image id
-            handlePlacesRegionIDimageCoverChange() {
-                this.placesRegionIDimageCoverChange = this.placesRegionIDimageCover
-                this.placesRegionIDimageCoverLoading = true
-                this.loadImageCover()
-            },
-            handlePlacesRegionIDimageHeroChange() {
-                this.placesRegionIDimageHeroChange = this.placesRegionIDimageHero
-                this.placesRegionIDimageHeroLoading = true
-                this.loadImageHero()
-            },
-            handleImageCoverLoad() {
-                this.placesRegionIDimageCoverLoading = false;
-            },
-            handleImageHeroLoad() {
-                this.placesRegionIDimageHeroLoading = false;
-            },
             // information author
             addInformationAuthorInput() {
                 this.placesRegionInformationAuthorArray.push({

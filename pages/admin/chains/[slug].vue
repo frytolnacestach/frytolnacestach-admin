@@ -294,23 +294,6 @@
                     breadcrumb.name = `Editace značky - ${chainName}`
                 }
             },
-            // change image id
-            handlechainIDimageCoverChange() {
-                this.chainIDimageCoverChange = this.chainIDimageCover
-                this.chainIDimageCoverLoading = true
-                this.loadImageCover()
-            },
-            handlechainIDimageHeroChange() {
-                this.chainIDimageHeroChange = this.chainIDimageHero
-                this.chainIDimageHeroLoading = true
-                this.loadImageHero()
-            },
-            handleImageCoverLoad() {
-                this.chainIDimageCoverLoading = false;
-            },
-            handleImageHeroLoad() {
-                this.chainIDimageHeroLoading = false;
-            },
             // Information
             addInformationInput() {
                 this.chainInformationArray.push({

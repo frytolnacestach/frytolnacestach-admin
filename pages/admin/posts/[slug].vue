@@ -676,39 +676,6 @@
                     breadcrumb.name = `Editace článku - ${postTitle}`
                 }
             },
-            // change image id
-            handlepostIDimageCoverChange() {
-                this.postIDimageCoverChange = this.postIDimageCover
-                this.postIDimageCoverLoading = true
-                this.loadImageCover()
-            },
-            handlepostIDimageHeroChange() {
-                this.postIDimageHeroChange = this.postIDimageHero
-                this.postIDimageHeroLoading = true
-                this.loadImageHero()
-            },
-            handlepostIDimageMapChange() {
-                this.postIDimageMapChange = this.postIDimageMap
-                this.postIDimageMapLoading = true
-                this.loadImageMap()
-            },
-            handlepostIDimageOGChange() {
-                this.postIDimageOGChange = this.postIDimageOG
-                this.postIDimageOGLoading = true
-                this.loadImageOG()
-            },
-            handleImageCoverLoad() {
-                this.postIDimageCoverLoading = false;
-            },
-            handleImageHeroLoad() {
-                this.postIDimageHeroLoading = false;
-            },
-            handleImageMapLoad() {
-                this.postIDimageMapLoading = false;
-            },
-            handleImageOGLoad() {
-                this.postIDimageOGLoading = false;
-            },
             // seo tags
             addSeoTagsInput() {
                 this.postSeoTagsArray.push({

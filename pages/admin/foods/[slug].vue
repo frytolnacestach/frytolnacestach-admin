@@ -269,23 +269,6 @@
                     breadcrumb.name = `Editace jídla - ${foodName}`
                 }
             },
-            // change image id
-            handleFoodIDimageCoverChange() {
-                this.foodIDimageCoverChange = this.foodIDimageCover
-                this.foodIDimageCoverLoading = true
-                this.loadImageCover()
-            },
-            handleFoodIDimageHeroChange() {
-                this.foodIDimageHeroChange = this.foodIDimageHero
-                this.foodIDimageHeroLoading = true
-                this.loadImageHero()
-            },
-            handleImageCoverLoad() {
-                this.foodIDimageCoverLoading = false;
-            },
-            handleImageHeroLoad() {
-                this.foodIDimageHeroLoading = false;
-            },
             // seo tags
             addSeoTagsInput() {
                 this.foodSeoTagsArray.push({

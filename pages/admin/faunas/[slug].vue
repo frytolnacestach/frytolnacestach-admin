@@ -283,23 +283,6 @@
                     breadcrumb.name = `Editace fauny - ${faunaName}`
                 }
             },
-            // change image id
-            handleFaunaIDimageCoverChange() {
-                this.faunaIDimageCoverChange = this.faunaIDimageCover
-                this.faunaIDimageCoverLoading = true
-                this.loadImageCover()
-            },
-            handleFaunaIDimageHeroChange() {
-                this.faunaIDimageHeroChange = this.faunaIDimageHero
-                this.faunaIDimageHeroLoading = true
-                this.loadImageHero()
-            },
-            handleImageCoverLoad() {
-                this.faunaIDimageCoverLoading = false;
-            },
-            handleImageHeroLoad() {
-                this.faunaIDimageHeroLoading = false;
-            },
             // seo tags
             addSeoTagsInput() {
                 this.faunaSeoTagsArray.push({

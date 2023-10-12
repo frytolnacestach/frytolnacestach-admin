@@ -283,23 +283,6 @@
                     breadcrumb.name = `Editace flory - ${floraName}`
                 }
             },
-            // change image id
-            handleFloraIDimageCoverChange() {
-                this.floraIDimageCoverChange = this.floraIDimageCover
-                this.floraIDimageCoverLoading = true
-                this.loadImageCover()
-            },
-            handleFloraIDimageHeroChange() {
-                this.floraIDimageHeroChange = this.floraIDimageHero
-                this.floraIDimageHeroLoading = true
-                this.loadImageHero()
-            },
-            handleImageCoverLoad() {
-                this.floraIDimageCoverLoading = false;
-            },
-            handleImageHeroLoad() {
-                this.floraIDimageHeroLoading = false;
-            },
             // seo tags
             addSeoTagsInput() {
                 this.floraSeoTagsArray.push({

@@ -1124,23 +1124,6 @@
                     breadcrumb.name = `Editace státu - ${placesStateName}`
                 }
             },
-            // change image id
-            handlePlacesStateIDimageCoverChange() {
-                this.placesStateIDimageCoverChange = this.placesStateIDimageCover
-                this.placesStateIDimageCoverLoading = true
-                this.loadImageCover()
-            },
-            handlePlacesStateIDimageHeroChange() {
-                this.placesStateIDimageHeroChange = this.placesStateIDimageHero
-                this.placesStateIDimageHeroLoading = true
-                this.loadImageHero()
-            },
-            handleImageCoverLoad() {
-                this.placesStateIDimageCoverLoading = false;
-            },
-            handleImageHeroLoad() {
-                this.placesStateIDimageHeroLoading = false;
-            },
             // IDSneighboringCountries
             addIDSneighboringCountrieInput() {
                 this.placesStateIDSneighboringCountriesArray.push({

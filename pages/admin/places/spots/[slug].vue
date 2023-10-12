@@ -519,23 +519,6 @@
                     breadcrumb.name = `Editace místa - ${placesSpotName}`
                 }
             },
-            // change image id
-            handlePlacesSpotIDimageCoverChange() {
-                this.placesSpotIDimageCoverChange = this.placesSpotIDimageCover
-                this.placesSpotIDimageCoverLoading = true
-                this.loadImageCover()
-            },
-            handlePlacesSpotIDimageHeroChange() {
-                this.placesSpotIDimageHeroChange = this.placesSpotIDimageHero
-                this.placesSpotIDimageHeroLoading = true
-                this.loadImageHero()
-            },
-            handleImageCoverLoad() {
-                this.placesSpotIDimageCoverLoading = false;
-            },
-            handleImageHeroLoad() {
-                this.placesSpotIDimageHeroLoading = false;
-            },
             // information author
             addInformationAuthorInput() {
                 this.placesSpotInformationAuthorArray.push({

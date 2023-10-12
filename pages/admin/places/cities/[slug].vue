@@ -601,23 +601,6 @@
                     breadcrumb.name = `Editace města - ${placesCityName}`
                 }
             },
-            // change image id
-            handlePlacesCityIDimageCoverChange() {
-                this.placesCityIDimageCoverChange = this.placesCityIDimageCover
-                this.placesCityIDimageCoverLoading = true
-                this.loadImageCover()
-            },
-            handlePlacesCityIDimageHeroChange() {
-                this.placesCityIDimageHeroChange = this.placesCityIDimageHero
-                this.placesCityIDimageHeroLoading = true
-                this.loadImageHero()
-            },
-            handleImageCoverLoad() {
-                this.placesCityIDimageCoverLoading = false;
-            },
-            handleImageHeroLoad() {
-                this.placesCityIDimageHeroLoading = false;
-            },
             // information author
             addInformationAuthorInput() {
                 this.placesCityInformationAuthorArray.push({

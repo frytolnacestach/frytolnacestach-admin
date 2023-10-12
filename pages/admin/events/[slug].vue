@@ -477,23 +477,6 @@
                     breadcrumb.name = `Editace UDÁLOSTI - ${eventName}`
                 }
             },
-            // change image id
-            handleEventIDimageCoverChange() {
-                this.eventIDimageCoverChange = this.eventIDimageCover
-                this.eventIDimageCoverLoading = true
-                this.loadImageCover()
-            },
-            handleEventIDimageHeroChange() {
-                this.eventIDimageHeroChange = this.eventIDimageHero
-                this.eventIDimageHeroLoading = true
-                this.loadImageHero()
-            },
-            handleImageCoverLoad() {
-                this.eventIDimageCoverLoading = false;
-            },
-            handleImageHeroLoad() {
-                this.eventIDimageHeroLoading = false;
-            },
             // seo tags
             addSeoTagsInput() {
                 this.eventSeoTagsArray.push({

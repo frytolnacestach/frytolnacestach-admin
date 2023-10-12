@@ -256,23 +256,6 @@
                     breadcrumb.name = `Editace značky - ${brandName}`
                 }
             },
-            // change image id
-            handleBrandIDimageCoverChange() {
-                this.brandIDimageCoverChange = this.brandIDimageCover
-                this.brandIDimageCoverLoading = true
-                this.loadImageCover()
-            },
-            handleBrandIDimageHeroChange() {
-                this.brandIDimageHeroChange = this.brandIDimageHero
-                this.brandIDimageHeroLoading = true
-                this.loadImageHero()
-            },
-            handleImageCoverLoad() {
-                this.brandIDimageCoverLoading = false;
-            },
-            handleImageHeroLoad() {
-                this.brandIDimageHeroLoading = false;
-            },
             // seo tags
             addSeoTagsInput() {
                 this.brandSeoTagsArray.push({

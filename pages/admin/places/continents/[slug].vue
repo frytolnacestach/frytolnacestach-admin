@@ -396,23 +396,6 @@
                     breadcrumb.name = `Editace kontinentu - ${placesContinentName}`
                 }
             },
-            // change image id
-            handlePlacesContinentIDimageCoverChange() {
-                this.placesContinentIDimageCoverChange = this.placesContinentIDimageCover
-                this.placesContinentIDimageCoverLoading = true
-                this.loadImageCover()
-            },
-            handlePlacesContinentIDimageHeroChange() {
-                this.placesContinentIDimageHeroChange = this.placesContinentIDimageHero
-                this.placesContinentIDimageHeroLoading = true
-                this.loadImageHero()
-            },
-            handleImageCoverLoad() {
-                this.placesContinentIDimageCoverLoading = false;
-            },
-            handleImageHeroLoad() {
-                this.placesContinentIDimageHeroLoading = false;
-            },
             // information author
             addInformationAuthorInput() {
                 this.placesContinentInformationAuthorArray.push({
