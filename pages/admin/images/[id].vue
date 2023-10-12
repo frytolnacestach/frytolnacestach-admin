@@ -1375,7 +1375,7 @@
 
         watch: {
             floraID: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             }
         },
 
@@ -1428,12 +1428,12 @@
                 const Image: Image[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Image) && Image.length > 0) {
-                    itemID.value = Image[0].id;
-                    imageName.value = Image[0].name;
-                    imageSource.value = Image[0].source;
-                    imageDateCreate.value = Image[0].date_create;
-                    imageType.value = Image[0].type;
-                    imageAuthor.value = Image[0].author;
+                    itemID.value = Image[0].id
+                    imageName.value = Image[0].name
+                    imageSource.value = Image[0].source
+                    imageDateCreate.value = Image[0].date_create
+                    imageType.value = Image[0].type
+                    imageAuthor.value = Image[0].author
                     loadingData.value = true
                 } else {
 
@@ -1461,13 +1461,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"
@@ -1486,13 +1486,13 @@
                         method: 'POST'
                     })
                     .then(() => {
-                        console.log('Obrázek byl vytvořen');
+                        console.log('Obrázek byl vytvořen')
                         successForm.value = "Obrázek byl vytvořen"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Obrázek nebyl vytvořen, nastala chyba při jeho vytvoření."
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

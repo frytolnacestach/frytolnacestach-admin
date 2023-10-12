@@ -46,9 +46,9 @@
                 if (id.value) {
                     fetch(`${runTimeConfig.public.baseURL}/image-id/${id.value}`, {
                         method: 'GET'
-                    }).then(res => res.json()).then(data => image.value = data);
+                    }).then(res => res.json()).then(data => image.value = data)
                 } else {
-                    image.value = [];
+                    image.value = []
                 }
             })()
 
@@ -58,7 +58,7 @@
                     // Načítání image
                     fetch(`${runTimeConfig.public.baseURL}/image-id/${id.value}`, {
                         method: 'GET'
-                    }).then(res => res.json()).then(data => image.value = data);
+                    }).then(res => res.json()).then(data => image.value = data)
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"
@@ -82,7 +82,7 @@
                 this.loadImage()
             },
             handleImageLoad() {
-                this.IDimageLoading = false;
+                this.IDimageLoading = false
             }
         },
 

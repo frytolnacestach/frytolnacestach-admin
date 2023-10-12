@@ -282,10 +282,10 @@
             addIDSstateInput() {
                 this.foodIDSstatesArray.push({
                     id: null
-                });
+                })
             },
             removeIDSstateInput(index: number) {
-                this.foodIDSstatesArray.splice(index, 1);
+                this.foodIDSstatesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -301,7 +301,7 @@
 
         watch: {
             foodName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             },
             foodSeoTags: function (newValue, oldValue) {
                 try {
@@ -315,13 +315,13 @@
             },
             foodIDSstates: function (newValue, oldValue) {
                 try {
-                    this.foodIDSstatesArray = JSON.parse(newValue);
+                    this.foodIDSstatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.foodIDSstatesArray = [];
+                    this.foodIDSstatesArray = []
                 }
             },
             foodIDSstatesArray: function (newValue, oldValue) {
-                this.foodIDSstates = JSON.stringify(newValue);
+                this.foodIDSstates = JSON.stringify(newValue)
             }
         },
 
@@ -380,16 +380,16 @@
                 const Food: Food[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Food) && Food.length > 0) {
-                    itemID.value = Food[0].id;
-                    foodSlug.value = Food[0].slug;
-                    foodIDimageCover.value = Food[0].id_image_cover;
-                    foodIDimageHero.value = Food[0].id_image_hero;
-                    foodSeoTags.value = Food[0].seo_tags ? JSON.stringify(Food[0].seo_tags) : JSON.stringify([]);
-                    foodIDSstates.value = Food[0].ids_states ? JSON.stringify(Food[0].ids_states) : JSON.stringify([]);
-                    foodName.value = Food[0].name;
-                    foodDescription.value = Food[0].description;
-                    foodIngredients.value = Food[0].ingredients ? JSON.stringify(Food[0].ingredients) : JSON.stringify([]);
-                    foodRecipe.value = Food[0].recipe;
+                    itemID.value = Food[0].id
+                    foodSlug.value = Food[0].slug
+                    foodIDimageCover.value = Food[0].id_image_cover
+                    foodIDimageHero.value = Food[0].id_image_hero
+                    foodSeoTags.value = Food[0].seo_tags ? JSON.stringify(Food[0].seo_tags) : JSON.stringify([])
+                    foodIDSstates.value = Food[0].ids_states ? JSON.stringify(Food[0].ids_states) : JSON.stringify([])
+                    foodName.value = Food[0].name
+                    foodDescription.value = Food[0].description
+                    foodIngredients.value = Food[0].ingredients ? JSON.stringify(Food[0].ingredients) : JSON.stringify([])
+                    foodRecipe.value = Food[0].recipe
                     loadingData.value = true
                 } else {
 
@@ -420,13 +420,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

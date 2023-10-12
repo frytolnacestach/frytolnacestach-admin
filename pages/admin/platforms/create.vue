@@ -168,10 +168,10 @@
                 this.platformFactsArray.push({
                     name: '',
                     value: ''
-                });
+                })
             },
             removeFactInput(index: number) {
-                this.platformFactsArray.splice(index, 1);
+                this.platformFactsArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -182,13 +182,13 @@
         watch: {
             platformFacts: function (newValue, oldValue) {
                 try {
-                    this.platformFactsArray = JSON.parse(newValue);
+                    this.platformFactsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.platformFactsArray = [];
+                    this.platformFactsArray = []
                 }
             },
             platformFactsArray: function (newValue, oldValue) {
-                this.platformFacts = JSON.stringify(newValue);
+                this.platformFacts = JSON.stringify(newValue)
             }
         },
 
@@ -250,14 +250,14 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/platforms/${platformSlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

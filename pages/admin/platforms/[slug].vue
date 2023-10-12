@@ -207,10 +207,10 @@
                 this.platformFactsArray.push({
                     name: '',
                     value: ''
-                });
+                })
             },
             removeFactInput(index: number) {
-                this.platformFactsArray.splice(index, 1);
+                this.platformFactsArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -220,17 +220,17 @@
 
         watch: {
             platformName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             },
             platformFacts: function (newValue, oldValue) {
                 try {
-                    this.platformFactsArray = JSON.parse(newValue);
+                    this.platformFactsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.platformFactsArray = [];
+                    this.platformFactsArray = []
                 }
             },
             platformFactsArray: function (newValue, oldValue) {
-                this.platformFacts = JSON.stringify(newValue);
+                this.platformFacts = JSON.stringify(newValue)
             }
         },
 
@@ -285,13 +285,13 @@
                 const Platform: Platform[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Platform) && Platform.length > 0) {
-                    itemID.value = Platform[0].id;
-                    platformSlug.value = Platform[0].slug;
-                    platformName.value = Platform[0].name;
-                    platformPerex.value = Platform[0].perex;
-                    platformUrl.value = Platform[0].url;
+                    itemID.value = Platform[0].id
+                    platformSlug.value = Platform[0].slug
+                    platformName.value = Platform[0].name
+                    platformPerex.value = Platform[0].perex
+                    platformUrl.value = Platform[0].url
                     platformFacts.value = Platform[0].facts ? JSON.stringify(Platform[0].facts) : JSON.stringify([])
-                    platformDate.value = Platform[0].date;
+                    platformDate.value = Platform[0].date
                     loadingData.value = true
                 } else {
 
@@ -319,13 +319,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

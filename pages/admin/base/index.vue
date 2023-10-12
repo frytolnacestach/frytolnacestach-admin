@@ -174,11 +174,11 @@
             ;(async () => {
                 const { data: base } = await useFetch(`${runTimeConfig.public.baseURL}/base`)
 
-                iam.value = JSON.parse(base._rawValue)[0].iam;
-                donate.value = JSON.parse(base._rawValue)[0].donate;
-                cookies.value = JSON.parse(base._rawValue)[0].cookies;
-                conditions.value = JSON.parse(base._rawValue)[0].conditions;
-                conditionsUser.value = JSON.parse(base._rawValue)[0].conditions_user;
+                iam.value = JSON.parse(base._rawValue)[0].iam
+                donate.value = JSON.parse(base._rawValue)[0].donate
+                cookies.value = JSON.parse(base._rawValue)[0].cookies
+                conditions.value = JSON.parse(base._rawValue)[0].conditions
+                conditionsUser.value = JSON.parse(base._rawValue)[0].conditions_user
                 loadingData.value = true
             })()
 
@@ -202,13 +202,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla uložena"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

@@ -327,7 +327,7 @@
             ;(async () => {
                 fetch(`${runTimeConfig.public.baseURL}/platforms`, {
                     method: 'GET'
-                }).then(res => res.json()).then(data => platforms.value = data);
+                }).then(res => res.json()).then(data => platforms.value = data)
             })()
 
             //FORM - create
@@ -358,14 +358,14 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/videos/${videoSlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

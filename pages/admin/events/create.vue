@@ -415,30 +415,30 @@
                 this.eventCoordinatesArray.push({
                     latitude: null,
                     longitude: null
-                });
+                })
             },
             removeCoordinateInput(index: number) {
-                this.eventCoordinatesArray.splice(index, 1);
+                this.eventCoordinatesArray.splice(index, 1)
             },
             // zoom
             addZoomInput() {
                 this.eventZoomArray.push({
                     google: null,
                     booking: null
-                });
+                })
             },
             removeZoomInput(index: number) {
-                this.eventZoomArray.splice(index, 1);
+                this.eventZoomArray.splice(index, 1)
             },
             // affiliate
             addAffiliateInput() {
                 this.eventAffiliateArray.push({
                     name: '',
                     value: true
-                });
+                })
             },
             removeAffiliateInput(index: number) {
-                this.eventAffiliateArray.splice(index, 1);
+                this.eventAffiliateArray.splice(index, 1)
             },
             // prices
             addPriceInput() {
@@ -446,20 +446,20 @@
                     name: '',
                     perex: '',
                     value: ''
-                });
+                })
             },
             removePriceInput(index: number) {
-                this.eventPricesArray.splice(index, 1);
+                this.eventPricesArray.splice(index, 1)
             },
             // links
             addLinkInput() {
                 this.eventLinksArray.push({
                     name: '',
                     link: ''
-                });
+                })
             },
             removeLinkInput(index: number) {
-                this.eventLinksArray.splice(index, 1);
+                this.eventLinksArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -486,53 +486,53 @@
             },
             eventCoordinates: function (newValue, oldValue) {
                 try {
-                    this.eventCoordinatesArray = JSON.parse(newValue);
+                    this.eventCoordinatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.eventCoordinatesArray = [];
+                    this.eventCoordinatesArray = []
                 }
             },
             eventCoordinatesArray: function (newValue, oldValue) {
-                this.eventCoordinates = JSON.stringify(newValue);
+                this.eventCoordinates = JSON.stringify(newValue)
             },
             eventZoom: function (newValue, oldValue) {
                 try {
-                    this.eventZoomArray = JSON.parse(newValue);
+                    this.eventZoomArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.eventZoomArray = [];
+                    this.eventZoomArray = []
                 }
             },
             eventZoomArray: function (newValue, oldValue) {
-                this.eventZoom = JSON.stringify(newValue);
+                this.eventZoom = JSON.stringify(newValue)
             },
             eventAffiliate: function (newValue, oldValue) {
                 try {
-                    this.eventAffiliateArray = JSON.parse(newValue);
+                    this.eventAffiliateArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.eventAffiliateArray = [];
+                    this.eventAffiliateArray = []
                 }
             },
             eventAffiliateArray: function (newValue, oldValue) {
-                this.eventAffiliate = JSON.stringify(newValue);
+                this.eventAffiliate = JSON.stringify(newValue)
             },
             eventPrices: function (newValue, oldValue) {
                 try {
-                    this.eventPricesArray = JSON.parse(newValue);
+                    this.eventPricesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.eventPricesArray = [];
+                    this.eventPricesArray = []
                 }
             },
             eventPricesArray: function (newValue, oldValue) {
-                this.eventPrices = JSON.stringify(newValue);
+                this.eventPrices = JSON.stringify(newValue)
             },
             eventLinks: function (newValue, oldValue) {
                 try {
-                    this.eventLinksArray = JSON.parse(newValue);
+                    this.eventLinksArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.eventLinksArray = [];
+                    this.eventLinksArray = []
                 }
             },
             eventLinksArray: function (newValue, oldValue) {
-                this.eventLinks = JSON.stringify(newValue);
+                this.eventLinks = JSON.stringify(newValue)
             }
         },
 
@@ -621,14 +621,14 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/events/${eventSlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

@@ -460,10 +460,10 @@
                     date_update: '',
                     author_create: '',
                     author_update: ''
-                });
+                })
             },
             removeInformationAuthorInput(index: number) {
-                this.placesSpotInformationAuthorArray.splice(index, 1);
+                this.placesSpotInformationAuthorArray.splice(index, 1)
             },
             // information durationHeadline
             addInformationDurationHeadlineInput() {
@@ -473,16 +473,16 @@
                             title: '',
                             perex: ''
                         }
-                    });
+                    })
                 } else if (!this.placesSpotInformationDurationArray[0].hasOwnProperty('headline')) {
                     this.placesSpotInformationDurationArray[0].headline = {
                         title: '',
                         perex: ''
-                    };
+                    }
                 }
             },
             removeInformationDurationHeadlineInput(index: number) {
-                delete this.placesSpotInformationDurationArray[index].headline;
+                delete this.placesSpotInformationDurationArray[index].headline
             },
             // information durationTimes
             addInformationDurationTimesInput() {
@@ -495,53 +495,53 @@
                                 value: ''
                             }
                         ]
-                    });
+                    })
                 } else if (!this.placesSpotInformationDurationArray[0].hasOwnProperty('times')) {
                     this.placesSpotInformationDurationArray[0].times = [{
                         name: '',
                         subname: '',
                         value: ''
-                    }];
+                    }]
                 } else {
                     this.placesSpotInformationDurationArray[0].times.push({
                         name: '',
                         subname: '',
                         value: ''
-                    });
+                    })
                 }
             },
             removeInformationDurationTimesInput(index: number) {
-                this.placesSpotInformationDurationArray[0].times.splice(index, 1);
+                this.placesSpotInformationDurationArray[0].times.splice(index, 1)
             },
             // coordinates
             addCoordinateInput() {
                 this.placesSpotCoordinatesArray.push({
                     latitude: null,
                     longitude: null
-                });
+                })
             },
             removeCoordinateInput(index: number) {
-                this.placesSpotCoordinatesArray.splice(index, 1);
+                this.placesSpotCoordinatesArray.splice(index, 1)
             },
             // Zoom
             addZoomInput() {
                 this.placesSpotZoomArray.push({
                     google: null,
                     booking: null
-                });
+                })
             },
             removeZoomInput(index: number) {
-                this.placesSpotZoomArray.splice(index, 1);
+                this.placesSpotZoomArray.splice(index, 1)
             },
             // Affiliate
             addAffiliateInput() {
                 this.placesSpotAffiliateArray.push({
                     name: '',
                     value: true
-                });
+                })
             },
             removeAffiliateInput(index: number) {
-                this.placesSpotAffiliateArray.splice(index, 1);
+                this.placesSpotAffiliateArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -568,57 +568,57 @@
             },
             placesSpotInformationAuthor: function (newValue, oldValue) {
                 try {
-                    this.placesSpotInformationAuthorArray = JSON.parse(newValue);
+                    this.placesSpotInformationAuthorArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotInformationAuthorArray = [];
+                    this.placesSpotInformationAuthorArray = []
                 }
             },
             placesSpotInformationDurationHeadline: function (newValue, oldValue) {
                 try {
-                    this.placesSpotInformationDurationHeadlineArray = JSON.parse(newValue);
+                    this.placesSpotInformationDurationHeadlineArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotInformationDurationHeadlineArray = [];
+                    this.placesSpotInformationDurationHeadlineArray = []
                 }
             },
             placesSpotInformationDurationTimes: function (newValue, oldValue) {
                 try {
-                    this.placesSpotInformationDurationTimesArray = JSON.parse(newValue);
+                    this.placesSpotInformationDurationTimesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotInformationDurationTimesArray = [];
+                    this.placesSpotInformationDurationTimesArray = []
                 }
             },
             placesSpotInformationDuration: function (newValue, oldValue) {
                 try {
-                    this.placesSpotInformationDurationArray = JSON.parse(newValue);
+                    this.placesSpotInformationDurationArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotInformationDurationArray = [];
+                    this.placesSpotInformationDurationArray = []
                 }
             },
             placesSpotCoordinates: function (newValue, oldValue) {
                 try {
-                    this.placesSpotCoordinatesArray = JSON.parse(newValue);
+                    this.placesSpotCoordinatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotCoordinatesArray = [];
+                    this.placesSpotCoordinatesArray = []
                 }
             },
             placesSpotCoordinatesArray: function (newValue, oldValue) {
-                this.placesSpotCoordinates = JSON.stringify(newValue);
+                this.placesSpotCoordinates = JSON.stringify(newValue)
             },
             placesSpotZoom: function (newValue, oldValue) {
                 try {
-                    this.placesSpotZoomArray = JSON.parse(newValue);
+                    this.placesSpotZoomArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotZoomArray = [];
+                    this.placesSpotZoomArray = []
                 }
             },
             placesSpotZoomArray: function (newValue, oldValue) {
-                this.placesSpotZoom = JSON.stringify(newValue);
+                this.placesSpotZoom = JSON.stringify(newValue)
             },
             placesSpotAffiliate: function (newValue, oldValue) {
                 try {
-                    this.placesSpotAffiliateArray = JSON.parse(newValue);
+                    this.placesSpotAffiliateArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotAffiliateArray = [];
+                    this.placesSpotAffiliateArray = []
                 }
             },
         },
@@ -706,14 +706,14 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/places/spots/${placesSpotSlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

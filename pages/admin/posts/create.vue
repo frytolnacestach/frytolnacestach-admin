@@ -557,20 +557,20 @@
             addTagInput() {
                 this.postTagsArray.push({
                     name: ''
-                });
+                })
             },
             removeTagInput(index: number) {
-                this.postTagsArray.splice(index, 1);
+                this.postTagsArray.splice(index, 1)
             },
             // locations
             addLocationInput() {
                 this.postLocationsArray.push({
                     name: '',
                     type: ''
-                });
+                })
             },
             removeLocationInput(index: number) {
-                this.postLocationsArray.splice(index, 1);
+                this.postLocationsArray.splice(index, 1)
             },
             // travels
             addTravelInput() {
@@ -578,10 +578,10 @@
                     icon: '',
                     name: '',
                     text: ''
-                });
+                })
             },
             removeTravelInput(index: number) {
-                this.postTravelsArray.splice(index, 1);
+                this.postTravelsArray.splice(index, 1)
             },
             // prices
             addPriceInput() {
@@ -589,10 +589,10 @@
                     name: '',
                     subname: '',
                     value: ''
-                });
+                })
             },
             removePriceInput(index: number) {
-                this.postPricesArray.splice(index, 1);
+                this.postPricesArray.splice(index, 1)
             },
             // triplengths
             addTriplengthInput() {
@@ -600,10 +600,10 @@
                     name: '',
                     subname: '',
                     value: ''
-                });
+                })
             },
             removeTriplengthInput(index: number) {
-                this.postTriplengthsArray.splice(index, 1);
+                this.postTriplengthsArray.splice(index, 1)
             },
             // times
             addTimeInput() {
@@ -611,10 +611,10 @@
                     name: '',
                     subname: '',
                     value: ''
-                });
+                })
             },
             removeTimeInput(index: number) {
-                this.postTimesArray.splice(index, 1);
+                this.postTimesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -647,63 +647,63 @@
             },
             postTags: function (newValue, oldValue) {
                 try {
-                    this.postTagsArray = JSON.parse(newValue);
+                    this.postTagsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.postTagsArray = [];
+                    this.postTagsArray = []
                 }
             },
             postTagsArray: function (newValue, oldValue) {
-                this.postTags = JSON.stringify(newValue);
+                this.postTags = JSON.stringify(newValue)
             },
             postLocations: function (newValue, oldValue) {
                 try {
-                    this.postLocationsArray = JSON.parse(newValue);
+                    this.postLocationsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.postLocationsArray = [];
+                    this.postLocationsArray = []
                 }
             },
             postLocationsArray: function (newValue, oldValue) {
-                this.postLocations = JSON.stringify(newValue);
+                this.postLocations = JSON.stringify(newValue)
             },
             postTravels: function (newValue, oldValue) {
                 try {
-                    this.postTravelsArray = JSON.parse(newValue);
+                    this.postTravelsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.postTravelsArray = [];
+                    this.postTravelsArray = []
                 }
             },
             postTravelsArray: function (newValue, oldValue) {
-                this.postTravels = JSON.stringify(newValue);
+                this.postTravels = JSON.stringify(newValue)
             },
             postPrices: function (newValue, oldValue) {
                 try {
-                    this.postPricesArray = JSON.parse(newValue);
+                    this.postPricesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.postPricesArray = [];
+                    this.postPricesArray = []
                 }
             },
             postPricesArray: function (newValue, oldValue) {
-                this.postPrices = JSON.stringify(newValue);
+                this.postPrices = JSON.stringify(newValue)
             },
             postTriplengths: function (newValue, oldValue) {
                 try {
-                    this.postTriplengthsArray = JSON.parse(newValue);
+                    this.postTriplengthsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.postTriplengthsArray = [];
+                    this.postTriplengthsArray = []
                 }
             },
             postTriplengthsArray: function (newValue, oldValue) {
-                this.postTriplengths = JSON.stringify(newValue);
+                this.postTriplengths = JSON.stringify(newValue)
             },
             postTimes: function (newValue, oldValue) {
                 try {
-                    this.postTimesArray = JSON.parse(newValue);
+                    this.postTimesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.postTimesArray = [];
+                    this.postTimesArray = []
                 }
             },
             postTimesArray: function (newValue, oldValue) {
-                this.postTimes = JSON.stringify(newValue);
+                this.postTimes = JSON.stringify(newValue)
             }
         },
 
@@ -825,14 +825,14 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/post/${postSlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

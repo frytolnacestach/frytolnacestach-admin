@@ -268,10 +268,10 @@
             addIDSstateInput() {
                 this.chainIDSstatesArray.push({
                     id: null
-                });
+                })
             },
             removeIDSstateInput(index: number) {
-                this.chainIDSstatesArray.splice(index, 1);
+                this.chainIDSstatesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -311,13 +311,13 @@
             // IDS states
             chainIDSstates: function (newValue, oldValue) {
                 try {
-                    this.chainIDSstatesArray = JSON.parse(newValue);
+                    this.chainIDSstatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.chainIDSstatesArray = [];
+                    this.chainIDSstatesArray = []
                 }
             },
             chainIDSstatesArray: function (newValue, oldValue) {
-                this.chainIDSstates = JSON.stringify(newValue);
+                this.chainIDSstates = JSON.stringify(newValue)
             }
         },
 
@@ -379,20 +379,20 @@
                             'id_image_hero': chainIDimageHero.value,
                             'information': JSON.stringify(chainInformationArray._value),
                             'seo_tags': JSON.stringify(chainSeoTagsArray._value),
-                            'ids_states': JSON.stringify(chainsIDSstatesArray._value),
+                            'ids_states': JSON.stringify(chainIDSstatesArray._value),
                             'name': chainName.value,
                             'description': chainDescription.value
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/chains/${chainSlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

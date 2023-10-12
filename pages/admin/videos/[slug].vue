@@ -313,7 +313,7 @@
         watch: {
             // breadcrumbs - title name
             videoTitle: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             },
             // seo tags
             videoSeoTags: function (newValue, oldValue) {
@@ -387,20 +387,20 @@
                 const Video: Video[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Video) && Video.length > 0 && 'slug' in Video[0] && 'platform' in Video[0] && 'title' in Video[0] && 'url' in Video[0]) {
-                    itemID.value = Video[0].id;
-                    videoSlug.value = Video[0].slug;
-                    videoIDcontinent.value = Video[0].id_continent;
-                    videoIDstate.value = Video[0].id_state;
-                    videoIDregion.value = Video[0].id_region;
-                    videoIDcity.value = Video[0].id_city;
-                    videoIDspot.value = Video[0].id_spot;
-                    videoIDimage.value = Video[0].id_image;
-                    videoPlatform.value = Video[0].platform;
-                    videoType.value = Video[0].type;
-                    videoTitle.value = Video[0].title;
-                    videoPerex.value = Video[0].perex;
-                    videoUrl.value = Video[0].url;
-                    videoSeoTags.value = Video[0].seo_tags ? JSON.stringify(Video[0].seo_tags) : JSON.stringify([]);
+                    itemID.value = Video[0].id
+                    videoSlug.value = Video[0].slug
+                    videoIDcontinent.value = Video[0].id_continent
+                    videoIDstate.value = Video[0].id_state
+                    videoIDregion.value = Video[0].id_region
+                    videoIDcity.value = Video[0].id_city
+                    videoIDspot.value = Video[0].id_spot
+                    videoIDimage.value = Video[0].id_image
+                    videoPlatform.value = Video[0].platform
+                    videoType.value = Video[0].type
+                    videoTitle.value = Video[0].title
+                    videoPerex.value = Video[0].perex
+                    videoUrl.value = Video[0].url
+                    videoSeoTags.value = Video[0].seo_tags ? JSON.stringify(Video[0].seo_tags) : JSON.stringify([])
                     loadingData.value = true
                 } else {
 
@@ -411,7 +411,7 @@
             ;(async () => {
                 fetch(`${runTimeConfig.public.baseURL}/platforms`, {
                     method: 'GET'
-                }).then(res => res.json()).then(data => platforms.value = data);
+                }).then(res => res.json()).then(data => platforms.value = data)
             })()
 
             //FORM - edit
@@ -442,13 +442,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

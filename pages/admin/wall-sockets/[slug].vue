@@ -273,10 +273,10 @@
             addIDSstateInput() {
                 this.wallSocketIDSstatesArray.push({
                     id: null
-                });
+                })
             },
             removeIDSstateInput(index: number) {
-                this.wallSocketIDSstatesArray.splice(index, 1);
+                this.wallSocketIDSstatesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -292,7 +292,7 @@
 
         watch: {
             wallSocketName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             },
             wallSocketSeoTags: function (newValue, oldValue) {
                 try {
@@ -307,13 +307,13 @@
             // IDS states
             wallSocketIDSstates: function (newValue, oldValue) {
                 try {
-                    this.wallSocketIDSstatesArray = JSON.parse(newValue);
+                    this.wallSocketIDSstatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.wallSocketIDSstatesArray = [];
+                    this.wallSocketIDSstatesArray = []
                 }
             },
             wallSocketIDSstatesArray: function (newValue, oldValue) {
-                this.wallSocketIDSstates = JSON.stringify(newValue);
+                this.wallSocketIDSstates = JSON.stringify(newValue)
             }
         },
 
@@ -371,15 +371,15 @@
                 const WallSocket: WallSocket[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(WallSocket) && WallSocket.length > 0) {
-                    itemID.value = WallSocket[0].id;
-                    wallSocketSlug.value = WallSocket[0].slug;
-                    wallSocketIDimageCover.value = WallSocket[0].id_image_cover;
-                    wallSocketIDimageHero.value = WallSocket[0].id_image_hero;
-                    wallSocketSeoTags.value = WallSocket[0].seo_tags ? JSON.stringify(WallSocket[0].seo_tags) : JSON.stringify([]);
-                    wallSocketIDSstates.value = WallSocket[0].ids_states ? JSON.stringify(WallSocket[0].ids_states) : JSON.stringify([]);
-                    wallSocketLabel.value = WallSocket[0].label;
-                    wallSocketName.value = WallSocket[0].name;
-                    wallSocketDescription.value = WallSocket[0].description;
+                    itemID.value = WallSocket[0].id
+                    wallSocketSlug.value = WallSocket[0].slug
+                    wallSocketIDimageCover.value = WallSocket[0].id_image_cover
+                    wallSocketIDimageHero.value = WallSocket[0].id_image_hero
+                    wallSocketSeoTags.value = WallSocket[0].seo_tags ? JSON.stringify(WallSocket[0].seo_tags) : JSON.stringify([])
+                    wallSocketIDSstates.value = WallSocket[0].ids_states ? JSON.stringify(WallSocket[0].ids_states) : JSON.stringify([])
+                    wallSocketLabel.value = WallSocket[0].label
+                    wallSocketName.value = WallSocket[0].name
+                    wallSocketDescription.value = WallSocket[0].description
                     loadingData.value = true
                 } else {
 
@@ -409,13 +409,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

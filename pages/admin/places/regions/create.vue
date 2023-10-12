@@ -385,40 +385,40 @@
                     date_update: '',
                     author_create: '',
                     author_update: ''
-                });
+                })
             },
             removeInformationAuthorInput(index: number) {
-                this.placesRegionInformationAuthorArray.splice(index, 1);
+                this.placesRegionInformationAuthorArray.splice(index, 1)
             },
             // coordinates
             addCoordinateInput() {
                 this.placesRegionCoordinatesArray.push({
                     latitude: null,
                     longitude: null
-                });
+                })
             },
             removeCoordinateInput(index: number) {
-                this.placesRegionCoordinatesArray.splice(index, 1);
+                this.placesRegionCoordinatesArray.splice(index, 1)
             },
             // Zoom
             addZoomInput() {
                 this.placesRegionZoomArray.push({
                     google: null,
                     booking: null
-                });
+                })
             },
             removeZoomInput(index: number) {
-                this.placesRegionZoomArray.splice(index, 1);
+                this.placesRegionZoomArray.splice(index, 1)
             },
             // Affiliate
             addAffiliateInput() {
                 this.placesRegionAffiliateArray.push({
                     name: '',
                     value: true
-                });
+                })
             },
             removeAffiliateInput(index: number) {
-                this.placesRegionAffiliateArray.splice(index, 1);
+                this.placesRegionAffiliateArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -445,40 +445,40 @@
             },
             placesRegionInformationAuthor: function (newValue, oldValue) {
                 try {
-                    this.placesRegionInformationAuthorArray = JSON.parse(newValue);
+                    this.placesRegionInformationAuthorArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesRegionInformationAuthorArray = [];
+                    this.placesRegionInformationAuthorArray = []
                 }
             },
             placesRegionCoordinates: function (newValue, oldValue) {
                 try {
-                    this.placesRegionCoordinatesArray = JSON.parse(newValue);
+                    this.placesRegionCoordinatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesRegionCoordinatesArray = [];
+                    this.placesRegionCoordinatesArray = []
                 }
             },
             placesRegionCoordinatesArray: function (newValue, oldValue) {
-                this.placesRegionCoordinates = JSON.stringify(newValue);
+                this.placesRegionCoordinates = JSON.stringify(newValue)
             },
             placesRegionZoom: function (newValue, oldValue) {
                 try {
-                    this.placesRegionZoomArray = JSON.parse(newValue);
+                    this.placesRegionZoomArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesRegionZoomArray = [];
+                    this.placesRegionZoomArray = []
                 }
             },
             placesRegionZoomArray: function (newValue, oldValue) {
-                this.placesRegionZoom = JSON.stringify(newValue);
+                this.placesRegionZoom = JSON.stringify(newValue)
             },
             placesRegionAffiliate: function (newValue, oldValue) {
                 try {
-                    this.placesRegionAffiliateArray = JSON.parse(newValue);
+                    this.placesRegionAffiliateArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesRegionAffiliateArray = [];
+                    this.placesRegionAffiliateArray = []
                 }
             },
             placesRegionAffiliateArray: function (newValue, oldValue) {
-                this.placesRegionAffiliate = JSON.stringify(newValue);
+                this.placesRegionAffiliate = JSON.stringify(newValue)
             },
         },
 
@@ -557,14 +557,14 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/places/regions/${placesRegionSlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

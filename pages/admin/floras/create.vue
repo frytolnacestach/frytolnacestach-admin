@@ -249,10 +249,10 @@
             addIDSstateInput() {
                 this.floraIDSstatesArray.push({
                     id: null
-                });
+                })
             },
             removeIDSstateInput(index: number) {
-                this.floraIDSstatesArray.splice(index, 1);
+                this.floraIDSstatesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -279,13 +279,13 @@
             },
             floraIDSstates: function (newValue, oldValue) {
                 try {
-                    this.floraIDSstatesArray = JSON.parse(newValue);
+                    this.floraIDSstatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.floraIDSstatesArray = [];
+                    this.floraIDSstatesArray = []
                 }
             },
             floraIDSstatesArray: function (newValue, oldValue) {
-                this.floraIDSstates = JSON.stringify(newValue);
+                this.floraIDSstates = JSON.stringify(newValue)
             }
         },
 
@@ -358,14 +358,14 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/floras/${floraSlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

@@ -296,10 +296,10 @@
             addIDSstateInput() {
                 this.faunaIDSstatesArray.push({
                     id: null
-                });
+                })
             },
             removeIDSstateInput(index: number) {
-                this.faunaIDSstatesArray.splice(index, 1);
+                this.faunaIDSstatesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -329,13 +329,13 @@
             },
             faunaIDSstates: function (newValue, oldValue) {
                 try {
-                    this.faunaIDSstatesArray = JSON.parse(newValue);
+                    this.faunaIDSstatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.faunaIDSstatesArray = [];
+                    this.faunaIDSstatesArray = []
                 }
             },
             faunaIDSstatesArray: function (newValue, oldValue) {
-                this.faunaIDSstates = JSON.stringify(newValue);
+                this.faunaIDSstates = JSON.stringify(newValue)
             }
         },
 
@@ -396,18 +396,18 @@
                 const Fauna: Fauna[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Fauna) && Fauna.length > 0) {
-                    itemID.value = Fauna[0].id;
-                    faunaSlug.value = Fauna[0].slug;
-                    faunaIDimageCover.value = Fauna[0].id_image_cover;
-                    faunaIDimageHero.value = Fauna[0].id_image_hero;
-                    faunaSeoTags.value = Fauna[0].seo_tags ? JSON.stringify(Fauna[0].seo_tags) : JSON.stringify([]);
-                    faunaIDSstates.value = Fauna[0].ids_states ? JSON.stringify(Fauna[0].ids_states) : JSON.stringify([]);
-                    faunaName.value = Fauna[0].name;
-                    faunaNameLat.value = Fauna[0].name_lat;
-                    faunaLocation.value = Fauna[0].location;
-                    faunaStatusIucn.value = Fauna[0].status_iucn;
-                    faunaStatusDanger.value = Fauna[0].status_danger;
-                    faunaDescription.value = Fauna[0].description;
+                    itemID.value = Fauna[0].id
+                    faunaSlug.value = Fauna[0].slug
+                    faunaIDimageCover.value = Fauna[0].id_image_cover
+                    faunaIDimageHero.value = Fauna[0].id_image_hero
+                    faunaSeoTags.value = Fauna[0].seo_tags ? JSON.stringify(Fauna[0].seo_tags) : JSON.stringify([])
+                    faunaIDSstates.value = Fauna[0].ids_states ? JSON.stringify(Fauna[0].ids_states) : JSON.stringify([])
+                    faunaName.value = Fauna[0].name
+                    faunaNameLat.value = Fauna[0].name_lat
+                    faunaLocation.value = Fauna[0].location
+                    faunaStatusIucn.value = Fauna[0].status_iucn
+                    faunaStatusDanger.value = Fauna[0].status_danger
+                    faunaDescription.value = Fauna[0].description
                     loadingData.value = true
                 } else {
 
@@ -440,13 +440,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

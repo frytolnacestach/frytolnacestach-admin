@@ -249,10 +249,10 @@
             addIDSstateInput() {
                 this.faunaIDSstatesArray.push({
                     id: null
-                });
+                })
             },
             removeIDSstateInput(index: number) {
-                this.faunaIDSstatesArray.splice(index, 1);
+                this.faunaIDSstatesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -279,13 +279,13 @@
             },
             faunaIDSstates: function (newValue, oldValue) {
                 try {
-                    this.faunaIDSstatesArray = JSON.parse(newValue);
+                    this.faunaIDSstatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.faunaIDSstatesArray = [];
+                    this.faunaIDSstatesArray = []
                 }
             },
             faunaIDSstatesArray: function (newValue, oldValue) {
-                this.faunaIDSstates = JSON.stringify(newValue);
+                this.faunaIDSstates = JSON.stringify(newValue)
             }
         },
 
@@ -358,14 +358,14 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/faunas/${faunaSlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

@@ -527,10 +527,10 @@
                     date_update: '',
                     author_create: '',
                     author_update: ''
-                });
+                })
             },
             removeInformationAuthorInput(index: number) {
-                this.placesSpotInformationAuthorArray.splice(index, 1);
+                this.placesSpotInformationAuthorArray.splice(index, 1)
             },
             // information durationHeadline
             addInformationDurationHeadlineInput() {
@@ -540,16 +540,16 @@
                             title: '',
                             perex: ''
                         }
-                    });
+                    })
                 } else if (!this.placesSpotInformationDurationArray[0].hasOwnProperty('headline')) {
                     this.placesSpotInformationDurationArray[0].headline = {
                         title: '',
                         perex: ''
-                    };
+                    }
                 }
             },
             removeInformationDurationHeadlineInput(index: number) {
-                delete this.placesSpotInformationDurationArray[index].headline;
+                delete this.placesSpotInformationDurationArray[index].headline
             },
             // information durationTimes
             addInformationDurationTimesInput() {
@@ -562,23 +562,23 @@
                                 value: ''
                             }
                         ]
-                    });
+                    })
                 } else if (!this.placesSpotInformationDurationArray[0].hasOwnProperty('times')) {
                     this.placesSpotInformationDurationArray[0].times = [{
                         name: '',
                         subname: '',
                         value: ''
-                    }];
+                    }]
                 } else {
                     this.placesSpotInformationDurationArray[0].times.push({
                         name: '',
                         subname: '',
                         value: ''
-                    });
+                    })
                 }
             },
             removeInformationDurationTimesInput(index: number) {
-                this.placesSpotInformationDurationArray[0].times.splice(index, 1);
+                this.placesSpotInformationDurationArray[0].times.splice(index, 1)
             },
             // seo tags
             addSeoTagsInput() {
@@ -594,30 +594,30 @@
                 this.placesSpotCoordinatesArray.push({
                     latitude: null,
                     longitude: null
-                });
+                })
             },
             removeCoordinateInput(index: number) {
-                this.placesSpotCoordinatesArray.splice(index, 1);
+                this.placesSpotCoordinatesArray.splice(index, 1)
             },
             // Zoom
             addZoomInput() {
                 this.placesSpotZoomArray.push({
                     google: null,
                     booking: null
-                });
+                })
             },
             removeZoomInput(index: number) {
-                this.placesSpotZoomArray.splice(index, 1);
+                this.placesSpotZoomArray.splice(index, 1)
             },
             // Affiliate
             addAffiliateInput() {
                 this.placesSpotAffiliateArray.push({
                     name: '',
                     value: true
-                });
+                })
             },
             removeAffiliateInput(index: number) {
-                this.placesSpotAffiliateArray.splice(index, 1);
+                this.placesSpotAffiliateArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -633,7 +633,7 @@
 
         watch: {
             placesSpotName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             },
             placesSpotSeoTags: function (newValue, oldValue) {
                 try {
@@ -647,57 +647,57 @@
             },
             placesSpotInformationAuthor: function (newValue, oldValue) {
                 try {
-                    this.placesSpotInformationAuthorArray = JSON.parse(newValue);
+                    this.placesSpotInformationAuthorArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotInformationAuthorArray = [];
+                    this.placesSpotInformationAuthorArray = []
                 }
             },
             placesSpotInformationDurationHeadline: function (newValue, oldValue) {
                 try {
-                    this.placesSpotInformationDurationHeadlineArray = JSON.parse(newValue);
+                    this.placesSpotInformationDurationHeadlineArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotInformationDurationHeadlineArray = [];
+                    this.placesSpotInformationDurationHeadlineArray = []
                 }
             },
             placesSpotInformationDurationTimes: function (newValue, oldValue) {
                 try {
-                    this.placesSpotInformationDurationTimesArray = JSON.parse(newValue);
+                    this.placesSpotInformationDurationTimesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotInformationDurationTimesArray = [];
+                    this.placesSpotInformationDurationTimesArray = []
                 }
             },
             placesSpotInformationDuration: function (newValue, oldValue) {
                 try {
-                    this.placesSpotInformationDurationArray = JSON.parse(newValue);
+                    this.placesSpotInformationDurationArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotInformationDurationArray = [];
+                    this.placesSpotInformationDurationArray = []
                 }
             },
             placesSpotCoordinates: function (newValue, oldValue) {
                 try {
-                    this.placesSpotCoordinatesArray = JSON.parse(newValue);
+                    this.placesSpotCoordinatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotCoordinatesArray = [];
+                    this.placesSpotCoordinatesArray = []
                 }
             },
             placesSpotCoordinatesArray: function (newValue, oldValue) {
-                this.placesSpotCoordinates = JSON.stringify(newValue);
+                this.placesSpotCoordinates = JSON.stringify(newValue)
             },
             placesSpotZoom: function (newValue, oldValue) {
                 try {
-                    this.placesSpotZoomArray = JSON.parse(newValue);
+                    this.placesSpotZoomArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotZoomArray = [];
+                    this.placesSpotZoomArray = []
                 }
             },
             placesSpotZoomArray: function (newValue, oldValue) {
-                this.placesSpotZoom = JSON.stringify(newValue);
+                this.placesSpotZoom = JSON.stringify(newValue)
             },
             placesSpotAffiliate: function (newValue, oldValue) {
                 try {
-                    this.placesSpotAffiliateArray = JSON.parse(newValue);
+                    this.placesSpotAffiliateArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesSpotAffiliateArray = [];
+                    this.placesSpotAffiliateArray = []
                 }
             },
         },
@@ -769,23 +769,23 @@
                 const PlacesSpot: PlacesSpot[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(PlacesSpot) && PlacesSpot.length > 0) {
-                    itemID.value = PlacesSpot[0].id;
-                    placesSpotIDstate.value = PlacesSpot[0].id_state;
-                    placesSpotIDcity.value = PlacesSpot[0].id_city;
-                    placesSpotIDimageCover.value = PlacesSpot[0].id_image_cover;
-                    placesSpotIDimageHero.value = PlacesSpot[0].id_image_hero;
-                    placesSpotTypePlace.value = PlacesSpot[0].type_place;
-                    placesSpotSlug.value = PlacesSpot[0].slug;
-                    placesSpotName.value = PlacesSpot[0].name;
-                    placesSpotInformationChatgpt.value = PlacesSpot[0].information_chatgpt;
-                    placesSpotInformationAuthor.value = PlacesSpot[0].information_author ? JSON.stringify(PlacesSpot[0].information_author) : JSON.stringify([]);
-                    placesSpotInformationDuration.value = PlacesSpot[0].information_duration ? JSON.stringify(PlacesSpot[0].information_duration) : JSON.stringify([]);
-                    placesSpotInformationDurationTimes.value = PlacesSpot[0].information_duration.times ? JSON.stringify(PlacesSpot[0].information_duration.times) : JSON.stringify([]);
-                    placesSpotAltitude.value = PlacesSpot[0].altitude;
-                    placesSpotSeoTags.value = PlacesSpot[0].seo_tags ? JSON.stringify(PlacesSpot[0].seo_tags) : JSON.stringify([]);
-                    placesSpotCoordinates.value = PlacesSpot[0].coordinates ? JSON.stringify(PlacesSpot[0].coordinates) : JSON.stringify([]);
-                    placesSpotZoom.value = PlacesSpot[0].zoom ? JSON.stringify(PlacesSpot[0].zoom) : JSON.stringify([]);
-                    placesSpotAffiliate.value = PlacesSpot[0].affiliate ? JSON.stringify(PlacesSpot[0].affiliate) : JSON.stringify([]);
+                    itemID.value = PlacesSpot[0].id
+                    placesSpotIDstate.value = PlacesSpot[0].id_state
+                    placesSpotIDcity.value = PlacesSpot[0].id_city
+                    placesSpotIDimageCover.value = PlacesSpot[0].id_image_cover
+                    placesSpotIDimageHero.value = PlacesSpot[0].id_image_hero
+                    placesSpotTypePlace.value = PlacesSpot[0].type_place
+                    placesSpotSlug.value = PlacesSpot[0].slug
+                    placesSpotName.value = PlacesSpot[0].name
+                    placesSpotInformationChatgpt.value = PlacesSpot[0].information_chatgpt
+                    placesSpotInformationAuthor.value = PlacesSpot[0].information_author ? JSON.stringify(PlacesSpot[0].information_author) : JSON.stringify([])
+                    placesSpotInformationDuration.value = PlacesSpot[0].information_duration ? JSON.stringify(PlacesSpot[0].information_duration) : JSON.stringify([])
+                    placesSpotInformationDurationTimes.value = PlacesSpot[0].information_duration.times ? JSON.stringify(PlacesSpot[0].information_duration.times) : JSON.stringify([])
+                    placesSpotAltitude.value = PlacesSpot[0].altitude
+                    placesSpotSeoTags.value = PlacesSpot[0].seo_tags ? JSON.stringify(PlacesSpot[0].seo_tags) : JSON.stringify([])
+                    placesSpotCoordinates.value = PlacesSpot[0].coordinates ? JSON.stringify(PlacesSpot[0].coordinates) : JSON.stringify([])
+                    placesSpotZoom.value = PlacesSpot[0].zoom ? JSON.stringify(PlacesSpot[0].zoom) : JSON.stringify([])
+                    placesSpotAffiliate.value = PlacesSpot[0].affiliate ? JSON.stringify(PlacesSpot[0].affiliate) : JSON.stringify([])
                     loadingData.value = true
                 } else {
 
@@ -822,13 +822,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

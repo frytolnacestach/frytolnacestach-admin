@@ -106,14 +106,14 @@
             })
 
             //CONSTS
-            const runTimeConfig = useRuntimeConfig();
+            const runTimeConfig = useRuntimeConfig()
             const users = ref<Users[]>([])
 
             //API - Video
             onMounted(() => {
                 fetch(`${runTimeConfig.public.baseURL}/users-all`, {
                     method: 'GET'
-                }).then(res => res.json()).then(data => users.value = data);
+                }).then(res => res.json()).then(data => users.value = data)
             })
 
             //RETURN

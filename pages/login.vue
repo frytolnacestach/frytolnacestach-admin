@@ -96,16 +96,16 @@
 
                 if (login._rawValue.message.length > 0 && login._rawValue.status === 200) {
                     //set storage
-                    localStorage.setItem("user-info", JSON.stringify(login._rawValue.message[0]));
+                    localStorage.setItem("user-info", JSON.stringify(login._rawValue.message[0]))
 
                     //set expires
-                    var now = new Date();
-                    now.setMonth(now.getMonth() + 1);
-                    let expires = "expires=" + now;
+                    var now = new Date()
+                    now.setMonth(now.getMonth() + 1)
+                    let expires = "expires=" + now
 
                     //set cookies
-                    document.cookie = "FNCADMINemail=" + login._rawValue.message[0].email + ";" + expires;
-                    document.cookie = "FNCADMINpass=" + login._rawValue.message[0].password + ";" + expires;
+                    document.cookie = "FNCADMINemail=" + login._rawValue.message[0].email + ";" + expires
+                    document.cookie = "FNCADMINpass=" + login._rawValue.message[0].password + ";" + expires
 
                     let user = localStorage.getItem('user-info')
 

@@ -296,10 +296,10 @@
             addIDSstateInput() {
                 this.floraIDSstatesArray.push({
                     id: null
-                });
+                })
             },
             removeIDSstateInput(index: number) {
-                this.floraIDSstatesArray.splice(index, 1);
+                this.floraIDSstatesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -315,7 +315,7 @@
 
         watch: {
             floraName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             },
             floraSeoTags: function (newValue, oldValue) {
                 try {
@@ -329,13 +329,13 @@
             },
             floraIDSstates: function (newValue, oldValue) {
                 try {
-                    this.floraIDSstatesArray = JSON.parse(newValue);
+                    this.floraIDSstatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.floraIDSstatesArray = [];
+                    this.floraIDSstatesArray = []
                 }
             },
             floraIDSstatesArray: function (newValue, oldValue) {
-                this.floraIDSstates = JSON.stringify(newValue);
+                this.floraIDSstates = JSON.stringify(newValue)
             }
         },
 
@@ -396,18 +396,18 @@
                 const Flora: Flora[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Flora) && Flora.length > 0) {
-                    itemID.value = Flora[0].id;
-                    floraSlug.value = Flora[0].slug;
-                    floraIDimageCover.value = Flora[0].id_image_cover;
-                    floraIDimageHero.value = Flora[0].id_image_hero;
-                    floraSeoTags.value = Flora[0].seo_tags ? JSON.stringify(Flora[0].seo_tags) : JSON.stringify([]);
-                    floraIDSstates.value = Flora[0].ids_states ? JSON.stringify(Flora[0].ids_states) : JSON.stringify([]);
-                    floraName.value = Flora[0].name;
-                    floraNameLat.value = Flora[0].name_lat;
-                    floraLocation.value = Flora[0].location;
-                    floraStatusIucn.value = Flora[0].status_iucn;
-                    floraStatusDanger.value = Flora[0].status_danger;
-                    floraDescription.value = Flora[0].description;
+                    itemID.value = Flora[0].id
+                    floraSlug.value = Flora[0].slug
+                    floraIDimageCover.value = Flora[0].id_image_cover
+                    floraIDimageHero.value = Flora[0].id_image_hero
+                    floraSeoTags.value = Flora[0].seo_tags ? JSON.stringify(Flora[0].seo_tags) : JSON.stringify([])
+                    floraIDSstates.value = Flora[0].ids_states ? JSON.stringify(Flora[0].ids_states) : JSON.stringify([])
+                    floraName.value = Flora[0].name
+                    floraNameLat.value = Flora[0].name_lat
+                    floraLocation.value = Flora[0].location
+                    floraStatusIucn.value = Flora[0].status_iucn
+                    floraStatusDanger.value = Flora[0].status_danger
+                    floraDescription.value = Flora[0].description
                     loadingData.value = true
                 } else {
 
@@ -440,13 +440,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

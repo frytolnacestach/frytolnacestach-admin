@@ -1128,10 +1128,10 @@
             addIDSneighboringCountrieInput() {
                 this.placesStateIDSneighboringCountriesArray.push({
                     id: null
-                });
+                })
             },
             removeIDSneighboringCountrieInput(index: number) {
-                this.placesStateIDSneighboringCountriesArray.splice(index, 1);
+                this.placesStateIDSneighboringCountriesArray.splice(index, 1)
             },
             // information author
             addInformationAuthorInput() {
@@ -1141,10 +1141,10 @@
                     date_update: '',
                     author_create: '',
                     author_update: ''
-                });
+                })
             },
             removeInformationAuthorInput(index: number) {
-                this.placesStateInformationAuthorArray.splice(index, 1);
+                this.placesStateInformationAuthorArray.splice(index, 1)
             },
             // PhoneNumbersEmergency
             addPhoneNumbersEmergencyInput() {
@@ -1155,10 +1155,10 @@
                     date_update: '',
                     author_create: null,
                     author_update: null
-                });
+                })
             },
             removePhoneNumbersEmergencyInput(index: number) {
-                this.placesStatePhoneNumbersEmergencyArray.splice(index, 1);
+                this.placesStatePhoneNumbersEmergencyArray.splice(index, 1)
             },
             // MoneyPrices
             addMoneyPriceInput() {
@@ -1169,10 +1169,10 @@
                     date_update: '',
                     author_create: null,
                     author_update: null
-                });
+                })
             },
             removeMoneyPriceInput(index: number) {
-                this.placesStateMoneyPricesArray.splice(index, 1);
+                this.placesStateMoneyPricesArray.splice(index, 1)
             },
             // PeopleReligion
             addPeopleReligionInput() {
@@ -1183,10 +1183,10 @@
                     date_update: '',
                     author_create: null,
                     author_update: null
-                });
+                })
             },
             removePeopleReligionInput(index: number) {
-                this.placesStatePeopleReligionArray.splice(index, 1);
+                this.placesStatePeopleReligionArray.splice(index, 1)
             },
             // PeopleNationality
             addPeopleNationalityInput() {
@@ -1197,10 +1197,10 @@
                     date_update: '',
                     author_create: null,
                     author_update: null
-                });
+                })
             },
             removePeopleNationalityInput(index: number) {
-                this.placesStatePeopleNationalityArray.splice(index, 1);
+                this.placesStatePeopleNationalityArray.splice(index, 1)
             },
             // VisitorsEntry
             addVisitorsEntryInput() {
@@ -1211,10 +1211,10 @@
                     date_update: '',
                     author_create: null,
                     author_update: null
-                });
+                })
             },
             removeVisitorsEntryInput(index: number) {
-                this.placesStateVisitorsEntryArray.splice(index, 1);
+                this.placesStateVisitorsEntryArray.splice(index, 1)
             },
             // seo tags
             addSeoTagsInput() {
@@ -1230,30 +1230,30 @@
                 this.placesStateCoordinatesArray.push({
                     latitude: null,
                     longitude: null
-                });
+                })
             },
             removeCoordinateInput(index: number) {
-                this.placesStateCoordinatesArray.splice(index, 1);
+                this.placesStateCoordinatesArray.splice(index, 1)
             },
             // Zoom
             addZoomInput() {
                 this.placesStateZoomArray.push({
                     google: null,
                     booking: null
-                });
+                })
             },
             removeZoomInput(index: number) {
-                this.placesStateZoomArray.splice(index, 1);
+                this.placesStateZoomArray.splice(index, 1)
             },
             // Affiliate
             addAffiliateInput() {
                 this.placesStateAffiliateArray.push({
                     name: '',
                     value: true
-                });
+                })
             },
             removeAffiliateInput(index: number) {
-                this.placesStateAffiliateArray.splice(index, 1);
+                this.placesStateAffiliateArray.splice(index, 1)
             },
             // Alerts
             addAlertInput() {
@@ -1266,10 +1266,10 @@
                     date_update: '',
                     date_start: '',
                     date_end: ''
-                });
+                })
             },
             removeAlertInput(index: number) {
-                this.placesStateAlertsArray.splice(index, 1);
+                this.placesStateAlertsArray.splice(index, 1)
             },
             // Organization
             addOrganizationInput() {
@@ -1280,10 +1280,10 @@
                     date_update: '',
                     author_update: '',
                     date_add_to_organization: ''
-                });
+                })
             },
             removeOrganizationInput(index: number) {
-                this.placesStateOrganizationArray.splice(index, 1);
+                this.placesStateOrganizationArray.splice(index, 1)
             },
             // Apps
             addAppInput() {
@@ -1295,10 +1295,10 @@
                     date_update: '',
                     description: '',
                     author_update: ''
-                });
+                })
             },
             removeAppInput(index: number) {
-                this.placesStateAppsArray.splice(index, 1);
+                this.placesStateAppsArray.splice(index, 1)
             },
             // Links
             addLinkInput() {
@@ -1310,10 +1310,10 @@
                     date_update: '',
                     description: '',
                     author_update: ''
-                });
+                })
             },
             removeLinkInput(index: number) {
-                this.placesStateLinksArray.splice(index, 1);
+                this.placesStateLinksArray.splice(index, 1)
             },
             // LanguagePhrases
             addLanguagePhrasesInput() {
@@ -1322,10 +1322,10 @@
                     foreign: '',
                     foreign_arabic: '',
                     phonetic_transcription: ''
-                });
+                })
             },
             removeLanguagePhrasesInput(index: number) {
-                this.placesStateLanguagePhrasesArray.splice(index, 1);
+                this.placesStateLanguagePhrasesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -1341,7 +1341,7 @@
 
         watch: {
             placesStateName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             },
             placesStateSeoTags: function (newValue, oldValue) {
                 try {
@@ -1355,150 +1355,150 @@
             },
             placesStateInformationAuthor: function (newValue, oldValue) {
                 try {
-                    this.placesStateInformationAuthorArray = JSON.parse(newValue);
+                    this.placesStateInformationAuthorArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStateInformationAuthorArray = [];
+                    this.placesStateInformationAuthorArray = []
                 }
             },
             placesStateIDSneighboringCountries: function (newValue, oldValue) {
                 try {
-                    this.placesStateIDSneighboringCountriesArray = JSON.parse(newValue);
+                    this.placesStateIDSneighboringCountriesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStateIDSneighboringCountriesArray = [];
+                    this.placesStateIDSneighboringCountriesArray = []
                 }
             },
             placesStateIDSneighboringCountriesArray: function (newValue, oldValue) {
-                this.placesStateIDSneighboringCountries = JSON.stringify(newValue);
+                this.placesStateIDSneighboringCountries = JSON.stringify(newValue)
             },
             placesStatePhoneNumbersEmergency: function (newValue, oldValue) {
                 try {
-                    this.placesStatePhoneNumbersEmergencyArray = JSON.parse(newValue);
+                    this.placesStatePhoneNumbersEmergencyArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStatePhoneNumbersEmergencyArray = [];
+                    this.placesStatePhoneNumbersEmergencyArray = []
                 }
             },
             placesStatePhoneNumbersEmergencyArray: function (newValue, oldValue) {
-                this.placesStatePhoneNumbersEmergency = JSON.stringify(newValue);
+                this.placesStatePhoneNumbersEmergency = JSON.stringify(newValue)
             },
             placesStateMoneyPrices: function (newValue, oldValue) {
                 try {
-                    this.placesStateMoneyPricesArray = JSON.parse(newValue);
+                    this.placesStateMoneyPricesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStateMoneyPricesArray = [];
+                    this.placesStateMoneyPricesArray = []
                 }
             },
             placesStateMoneyPricesArray: function (newValue, oldValue) {
-                this.placesStateMoneyPrices = JSON.stringify(newValue);
+                this.placesStateMoneyPrices = JSON.stringify(newValue)
             },
             placesStatePeopleReligion: function (newValue, oldValue) {
                 try {
-                    this.placesStatePeopleReligionArray = JSON.parse(newValue);
+                    this.placesStatePeopleReligionArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStatePeopleReligionArray = [];
+                    this.placesStatePeopleReligionArray = []
                 }
             },
             placesStatePeopleReligionArray: function (newValue, oldValue) {
-                this.placesStatePeopleReligion = JSON.stringify(newValue);
+                this.placesStatePeopleReligion = JSON.stringify(newValue)
             },
             placesStatePeopleNationality: function (newValue, oldValue) {
                 try {
-                    this.placesStatePeopleNationalityArray = JSON.parse(newValue);
+                    this.placesStatePeopleNationalityArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStatePeopleNationalityArray = [];
+                    this.placesStatePeopleNationalityArray = []
                 }
             },
             placesStatePeopleNationalityArray: function (newValue, oldValue) {
-                this.placesStatePeopleNationality = JSON.stringify(newValue);
+                this.placesStatePeopleNationality = JSON.stringify(newValue)
             },
             placesStateVisitorsEntry: function (newValue, oldValue) {
                 try {
-                    this.placesStateVisitorsEntryArray = JSON.parse(newValue);
+                    this.placesStateVisitorsEntryArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStateVisitorsEntryArray = [];
+                    this.placesStateVisitorsEntryArray = []
                 }
             },
             placesStateVisitorsEntryArray: function (newValue, oldValue) {
-                this.placesStateVisitorsEntry = JSON.stringify(newValue);
+                this.placesStateVisitorsEntry = JSON.stringify(newValue)
             },
             placesStateCoordinates: function (newValue, oldValue) {
                 try {
-                    this.placesStateCoordinatesArray = JSON.parse(newValue);
+                    this.placesStateCoordinatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStateCoordinatesArray = [];
+                    this.placesStateCoordinatesArray = []
                 }
             },
             placesStateCoordinatesArray: function (newValue, oldValue) {
-                this.placesStateCoordinates = JSON.stringify(newValue);
+                this.placesStateCoordinates = JSON.stringify(newValue)
             },
             placesStateZoom: function (newValue, oldValue) {
                 try {
-                    this.placesStateZoomArray = JSON.parse(newValue);
+                    this.placesStateZoomArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStateZoomArray = [];
+                    this.placesStateZoomArray = []
                 }
             },
             placesStateZoomArray: function (newValue, oldValue) {
-                this.placesStateZoom = JSON.stringify(newValue);
+                this.placesStateZoom = JSON.stringify(newValue)
             },
             placesStateAffiliate: function (newValue, oldValue) {
                 try {
-                    this.placesStateAffiliateArray = JSON.parse(newValue);
+                    this.placesStateAffiliateArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStateAffiliateArray = [];
+                    this.placesStateAffiliateArray = []
                 }
             },
             placesStateAffiliateArray: function (newValue, oldValue) {
-                this.placesStateAffiliate = JSON.stringify(newValue);
+                this.placesStateAffiliate = JSON.stringify(newValue)
             },
             placesStateAlerts: function (newValue, oldValue) {
                 try {
-                    this.placesStateAlertsArray = JSON.parse(newValue);
+                    this.placesStateAlertsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStateAlertsArray = [];
+                    this.placesStateAlertsArray = []
                 }
             },
             placesStateAlertsArray: function (newValue, oldValue) {
-                this.placesStateAlerts = JSON.stringify(newValue);
+                this.placesStateAlerts = JSON.stringify(newValue)
             },
             placesStateOrganization: function (newValue, oldValue) {
                 try {
-                    this.placesStateOrganizationArray = JSON.parse(newValue);
+                    this.placesStateOrganizationArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStateOrganizationArray = [];
+                    this.placesStateOrganizationArray = []
                 }
             },
             placesStateOrganizationArray: function (newValue, oldValue) {
-                this.placesStateOrganization = JSON.stringify(newValue);
+                this.placesStateOrganization = JSON.stringify(newValue)
             },
             placesStateApps: function (newValue, oldValue) {
                 try {
-                    this.placesStateAppsArray = JSON.parse(newValue);
+                    this.placesStateAppsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStateAppsArray = [];
+                    this.placesStateAppsArray = []
                 }
             },
             placesStateAppsArray: function (newValue, oldValue) {
-                this.placesStateApps = JSON.stringify(newValue);
+                this.placesStateApps = JSON.stringify(newValue)
             },
             placesStateLinks: function (newValue, oldValue) {
                 try {
-                    this.placesStateLinksArray = JSON.parse(newValue);
+                    this.placesStateLinksArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStateLinksArray = [];
+                    this.placesStateLinksArray = []
                 }
             },
             placesStateLinksArray: function (newValue, oldValue) {
-                this.placesStateLinks = JSON.stringify(newValue);
+                this.placesStateLinks = JSON.stringify(newValue)
             },
             placesStateLanguagePhrases: function (newValue, oldValue) {
                 try {
-                    this.placesStateLanguagePhrasesArray = JSON.parse(newValue);
+                    this.placesStateLanguagePhrasesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesStateLanguagePhrasesArray = [];
+                    this.placesStateLanguagePhrasesArray = []
                 }
             },
             placesStateLanguagePhrasesArray: function (newValue, oldValue) {
-                this.placesStateLanguagePhrases = JSON.stringify(newValue);
+                this.placesStateLanguagePhrases = JSON.stringify(newValue)
             }
         },
 
@@ -1593,25 +1593,25 @@
                 const PlacesState: PlacesState[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(PlacesState) && PlacesState.length > 0) {
-                    itemID.value = PlacesState[0].id;
-                    placesStateIDcontinent.value = PlacesState[0].id_continent;
-                    placesStateIDcityMain.value = PlacesState[0].id_city_main;
-                    placesStateIDimageCover.value = PlacesState[0].id_image_cover;
-                    placesStateIDimageHero.value = PlacesState[0].id_image_hero;
+                    itemID.value = PlacesState[0].id
+                    placesStateIDcontinent.value = PlacesState[0].id_continent
+                    placesStateIDcityMain.value = PlacesState[0].id_city_main
+                    placesStateIDimageCover.value = PlacesState[0].id_image_cover
+                    placesStateIDimageHero.value = PlacesState[0].id_image_hero
                     placesStateIDSneighboringCountries.value = PlacesState[0].ids_neighboring_countries ? JSON.stringify(PlacesState[0].ids_neighboring_countries) : JSON.stringify([])
-                    placesStateTypePlace.value = PlacesState[0].type_place;
-                    placesStateSlug.value = PlacesState[0].slug;
-                    placesStateName.value = PlacesState[0].name;
-                    placesStateInformationChatgpt.value = PlacesState[0].information_chatgpt;
-                    placesStateInformationAuthor.value = PlacesState[0].information_author ? JSON.stringify(PlacesState[0].information_author) : JSON.stringify([]);
-                    placesStateMpz.value = PlacesState[0].mpz;
-                    placesStateTld.value = PlacesState[0].tld;
-                    placesStateArea.value = PlacesState[0].area;
-                    placesStatePopulation.value = PlacesState[0].population;
-                    placesStatePhonePrefix.value = PlacesState[0].phone_prefix;
+                    placesStateTypePlace.value = PlacesState[0].type_place
+                    placesStateSlug.value = PlacesState[0].slug
+                    placesStateName.value = PlacesState[0].name
+                    placesStateInformationChatgpt.value = PlacesState[0].information_chatgpt
+                    placesStateInformationAuthor.value = PlacesState[0].information_author ? JSON.stringify(PlacesState[0].information_author) : JSON.stringify([])
+                    placesStateMpz.value = PlacesState[0].mpz
+                    placesStateTld.value = PlacesState[0].tld
+                    placesStateArea.value = PlacesState[0].area
+                    placesStatePopulation.value = PlacesState[0].population
+                    placesStatePhonePrefix.value = PlacesState[0].phone_prefix
                     placesStatePhoneNumbersEmergency.value = PlacesState[0].phone_numbers_emergency ? JSON.stringify(PlacesState[0].phone_numbers_emergency) : JSON.stringify([])
-                    placesStateCurrencyName.value = PlacesState[0].currency_name;
-                    placesStateCurrencyCode.value = PlacesState[0].currency_code;
+                    placesStateCurrencyName.value = PlacesState[0].currency_name
+                    placesStateCurrencyCode.value = PlacesState[0].currency_code
                     placesStateMoneyPrices.value = PlacesState[0].money_prices ? JSON.stringify(PlacesState[0].money_prices) : JSON.stringify([])
                     placesStatePeopleReligion.value = PlacesState[0].people_religion ? JSON.stringify(PlacesState[0].people_religion) : JSON.stringify([])
                     placesStatePeopleNationality.value = PlacesState[0].people_nationality ? JSON.stringify(PlacesState[0].people_nationality) : JSON.stringify([])
@@ -1677,13 +1677,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

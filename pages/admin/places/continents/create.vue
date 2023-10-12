@@ -359,30 +359,30 @@
                     date_update: '',
                     author_create: '',
                     author_update: ''
-                });
+                })
             },
             removeInformationAuthorInput(index: number) {
-                this.placesContinentInformationAuthorArray.splice(index, 1);
+                this.placesContinentInformationAuthorArray.splice(index, 1)
             },
             // coordinates
             addCoordinateInput() {
                 this.placesContinentCoordinatesArray.push({
                     latitude: null,
                     longitude: null
-                });
+                })
             },
             removeCoordinateInput(index: number) {
-                this.placesContinentCoordinatesArray.splice(index, 1);
+                this.placesContinentCoordinatesArray.splice(index, 1)
             },
             // zoom
             addZoomInput() {
                 this.placesContinentZoomArray.push({
                     google: null,
                     booking: null
-                });
+                })
             },
             removeZoomInput(index: number) {
-                this.placesContinentZoomArray.splice(index, 1);
+                this.placesContinentZoomArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -409,30 +409,30 @@
             },
             placesContinentInformationAuthor: function (newValue, oldValue) {
                 try {
-                    this.placesContinentInformationAuthorArray = JSON.parse(newValue);
+                    this.placesContinentInformationAuthorArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesContinentInformationAuthorArray = [];
+                    this.placesContinentInformationAuthorArray = []
                 }
             },
             placesContinentCoordinates: function (newValue, oldValue) {
                 try {
-                    this.placesContinentCoordinatesArray = JSON.parse(newValue);
+                    this.placesContinentCoordinatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesContinentCoordinatesArray = [];
+                    this.placesContinentCoordinatesArray = []
                 }
             },
             placesContinentCoordinatesArray: function (newValue, oldValue) {
-                this.placesContinentCoordinates = JSON.stringify(newValue);
+                this.placesContinentCoordinates = JSON.stringify(newValue)
             },
             placesContinentZoom: function (newValue, oldValue) {
                 try {
-                    this.placesContinentZoomArray = JSON.parse(newValue);
+                    this.placesContinentZoomArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesContinentZoomArray = [];
+                    this.placesContinentZoomArray = []
                 }
             },
             placesContinentZoomArray: function (newValue, oldValue) {
-                this.placesContinentZoom = JSON.stringify(newValue);
+                this.placesContinentZoom = JSON.stringify(newValue)
             },
         },
 
@@ -513,14 +513,14 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/places/continents/${placesContinentSlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

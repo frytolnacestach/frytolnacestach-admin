@@ -433,10 +433,10 @@
                     date_update: '',
                     author_create: '',
                     author_update: ''
-                });
+                })
             },
             removeInformationAuthorInput(index: number) {
-                this.placesRegionInformationAuthorArray.splice(index, 1);
+                this.placesRegionInformationAuthorArray.splice(index, 1)
             },
             // seo tags
             addSeoTagsInput() {
@@ -452,30 +452,30 @@
                 this.placesRegionCoordinatesArray.push({
                     latitude: null,
                     longitude: null
-                });
+                })
             },
             removeCoordinateInput(index: number) {
-                this.placesRegionCoordinatesArray.splice(index, 1);
+                this.placesRegionCoordinatesArray.splice(index, 1)
             },
             // Zoom
             addZoomInput() {
                 this.placesRegionZoomArray.push({
                     google: null,
                     booking: null
-                });
+                })
             },
             removeZoomInput(index: number) {
-                this.placesRegionZoomArray.splice(index, 1);
+                this.placesRegionZoomArray.splice(index, 1)
             },
             // Affiliate
             addAffiliateInput() {
                 this.placesRegionAffiliateArray.push({
                     name: '',
                     value: true
-                });
+                })
             },
             removeAffiliateInput(index: number) {
-                this.placesRegionAffiliateArray.splice(index, 1);
+                this.placesRegionAffiliateArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -491,7 +491,7 @@
 
         watch: {
             placesRegionName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             },
             placesRegionSeoTags: function (newValue, oldValue) {
                 try {
@@ -505,40 +505,40 @@
             },
             placesRegionInformationAuthor: function (newValue, oldValue) {
                 try {
-                    this.placesRegionInformationAuthorArray = JSON.parse(newValue);
+                    this.placesRegionInformationAuthorArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesRegionInformationAuthorArray = [];
+                    this.placesRegionInformationAuthorArray = []
                 }
             },
             placesRegionCoordinates: function (newValue, oldValue) {
                 try {
-                    this.placesRegionCoordinatesArray = JSON.parse(newValue);
+                    this.placesRegionCoordinatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesRegionCoordinatesArray = [];
+                    this.placesRegionCoordinatesArray = []
                 }
             },
             placesRegionCoordinatesArray: function (newValue, oldValue) {
-                this.placesRegionCoordinates = JSON.stringify(newValue);
+                this.placesRegionCoordinates = JSON.stringify(newValue)
             },
             placesRegionZoom: function (newValue, oldValue) {
                 try {
-                    this.placesRegionZoomArray = JSON.parse(newValue);
+                    this.placesRegionZoomArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesRegionZoomArray = [];
+                    this.placesRegionZoomArray = []
                 }
             },
             placesRegionZoomArray: function (newValue, oldValue) {
-                this.placesRegionZoom = JSON.stringify(newValue);
+                this.placesRegionZoom = JSON.stringify(newValue)
             },
             placesRegionAffiliate: function (newValue, oldValue) {
                 try {
-                    this.placesRegionAffiliateArray = JSON.parse(newValue);
+                    this.placesRegionAffiliateArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesRegionAffiliateArray = [];
+                    this.placesRegionAffiliateArray = []
                 }
             },
             placesRegionAffiliateArray: function (newValue, oldValue) {
-                this.placesRegionAffiliate = JSON.stringify(newValue);
+                this.placesRegionAffiliate = JSON.stringify(newValue)
             },
         },
 
@@ -603,17 +603,17 @@
                 const PlacesRegion: PlacesRegion[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(PlacesRegion) && PlacesRegion.length > 0) {
-                    itemID.value = PlacesRegion[0].id;
-                    placesRegionIDstate.value = PlacesRegion[0].id_state;
-                    placesRegionIDimageCover.value = PlacesRegion[0].id_image_cover;
-                    placesRegionIDimageHero.value = PlacesRegion[0].id_image_hero;
-                    placesRegionTypePlace.value = PlacesRegion[0].type_place;
-                    placesRegionSlug.value = PlacesRegion[0].slug;
-                    placesRegionName.value = PlacesRegion[0].name;
-                    placesRegionInformationChatgpt.value = PlacesRegion[0].information_chatgpt;
-                    placesRegionInformationAuthor.value = PlacesRegion[0].information_author ? JSON.stringify(PlacesRegion[0].information_author) : JSON.stringify([]);
-                    placesRegionSeoTags.value = PlacesRegion[0].seo_tags ? JSON.stringify(PlacesRegion[0].seo_tags) : JSON.stringify([]);
-                    placesRegionCoordinates.value = PlacesRegion[0].coordinates ? JSON.stringify(PlacesRegion[0].coordinates) : JSON.stringify([]);
+                    itemID.value = PlacesRegion[0].id
+                    placesRegionIDstate.value = PlacesRegion[0].id_state
+                    placesRegionIDimageCover.value = PlacesRegion[0].id_image_cover
+                    placesRegionIDimageHero.value = PlacesRegion[0].id_image_hero
+                    placesRegionTypePlace.value = PlacesRegion[0].type_place
+                    placesRegionSlug.value = PlacesRegion[0].slug
+                    placesRegionName.value = PlacesRegion[0].name
+                    placesRegionInformationChatgpt.value = PlacesRegion[0].information_chatgpt
+                    placesRegionInformationAuthor.value = PlacesRegion[0].information_author ? JSON.stringify(PlacesRegion[0].information_author) : JSON.stringify([])
+                    placesRegionSeoTags.value = PlacesRegion[0].seo_tags ? JSON.stringify(PlacesRegion[0].seo_tags) : JSON.stringify([])
+                    placesRegionCoordinates.value = PlacesRegion[0].coordinates ? JSON.stringify(PlacesRegion[0].coordinates) : JSON.stringify([])
                     placesRegionZoom.value = PlacesRegion[0].zoom ? JSON.stringify(PlacesRegion[0].zoom) : JSON.stringify([])
                     placesRegionAffiliate.value = PlacesRegion[0].affiliate ? JSON.stringify(PlacesRegion[0].affiliate) : JSON.stringify([])
                     loadingData.value = true
@@ -649,13 +649,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

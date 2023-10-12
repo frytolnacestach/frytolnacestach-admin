@@ -130,7 +130,7 @@
         setup() {
 
             //CONSTS
-            const selectedFile = ref(null);
+            const selectedFile = ref(null)
             const runTimeConfig = useRuntimeConfig()
             const errorForm = ref('')
             const successForm = ref('')
@@ -140,8 +140,8 @@
             const imageAuthor = ref('')
 
             const handleFileChange = (event) => {
-                selectedFile.value = event.target.files[0];
-            };
+                selectedFile.value = event.target.files[0]
+            }
 
 
             //LAYOUT
@@ -171,31 +171,32 @@
             //FORM - edit
             const createForm = async () => {
                 if (!selectedFile.value) {
-                    errorForm.value = 'Prosím vyberte obrázek.';
-                    return;
+                    errorForm.value = 'Prosím vyberte obrázek.'
+
+                    return
                 }
 
-                const formData = new FormData();
-                formData.append('image', selectedFile.value);
-                formData.append('name', imageName.value);
-                formData.append('source', imageSource.value);
-                formData.append('type', imageType.value);
-                formData.append('author', imageAuthor.value);
+                const formData = new FormData()
+                formData.append('image', selectedFile.value)
+                formData.append('name', imageName.value)
+                formData.append('source', imageSource.value)
+                formData.append('type', imageType.value)
+                formData.append('author', imageAuthor.value)
 
                 try {
                     await fetch(`${runTimeConfig.public.baseURL}/image-create`, {
                         method: 'POST',
                         body: formData,
-                    });
+                    })
 
-                    successForm.value = 'Obrázek byl úspěšně nahrán a vytvořen.';
-                    errorForm.value = '';
+                    successForm.value = 'Obrázek byl úspěšně nahrán a vytvořen.'
+                    errorForm.value = ''
                 } catch (error) {
-                    console.log(error);
-                    successForm.value = '';
-                    errorForm.value = 'Chyba při nahrávání a vytvoření obrázku.';
+                    console.log(error)
+                    successForm.value = ''
+                    errorForm.value = 'Chyba při nahrávání a vytvoření obrázku.'
                 }
-            };
+            }
 
 
             return {
@@ -208,7 +209,7 @@
                 imageAuthor,
                 handleFileChange,
                 createForm
-            };
+            }
         },
 
 

@@ -269,10 +269,10 @@
             addIDSstateInput() {
                 this.brandIDSstatesArray.push({
                     id: null
-                });
+                })
             },
             removeIDSstateInput(index: number) {
-                this.brandIDSstatesArray.splice(index, 1);
+                this.brandIDSstatesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -288,7 +288,7 @@
 
         watch: {
             brandName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             },
             brandSeoTags: function (newValue, oldValue) {
                 try {
@@ -302,13 +302,13 @@
             },
             brandIDSstates: function (newValue, oldValue) {
                 try {
-                    this.brandIDSstatesArray = JSON.parse(newValue);
+                    this.brandIDSstatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.brandIDSstatesArray = [];
+                    this.brandIDSstatesArray = []
                 }
             },
             brandIDSstatesArray: function (newValue, oldValue) {
-                this.brandIDSstates = JSON.stringify(newValue);
+                this.brandIDSstates = JSON.stringify(newValue)
             }
         },
 
@@ -365,14 +365,14 @@
                 const Brand: Brand[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Brand) && Brand.length > 0) {
-                    itemID.value = Brand[0].id;
-                    brandSlug.value = Brand[0].slug;
-                    brandIDimageCover.value = Brand[0].id_image_cover;
-                    brandIDimageHero.value = Brand[0].id_image_hero;
-                    brandSeoTags.value = Brand[0].seo_tags ? JSON.stringify(Brand[0].seo_tags) : JSON.stringify([]);
-                    brandIDSstates.value = Brand[0].ids_states ? JSON.stringify(Brand[0].ids_states) : JSON.stringify([]);
-                    brandName.value = Brand[0].name;
-                    brandDescription.value = Brand[0].description;
+                    itemID.value = Brand[0].id
+                    brandSlug.value = Brand[0].slug
+                    brandIDimageCover.value = Brand[0].id_image_cover
+                    brandIDimageHero.value = Brand[0].id_image_hero
+                    brandSeoTags.value = Brand[0].seo_tags ? JSON.stringify(Brand[0].seo_tags) : JSON.stringify([])
+                    brandIDSstates.value = Brand[0].ids_states ? JSON.stringify(Brand[0].ids_states) : JSON.stringify([])
+                    brandName.value = Brand[0].name
+                    brandDescription.value = Brand[0].description
                     loadingData.value = true
                 } else {
 
@@ -401,13 +401,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

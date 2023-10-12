@@ -317,10 +317,10 @@
             addIDSstateInput() {
                 this.chainIDSstatesArray.push({
                     id: null
-                });
+                })
             },
             removeIDSstateInput(index: number) {
-                this.chainIDSstatesArray.splice(index, 1);
+                this.chainIDSstatesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -336,7 +336,7 @@
 
         watch: {
             chainName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             },
             // Information
             chainInformation: function (newValue, oldValue) {
@@ -363,13 +363,13 @@
             // IDS states
             chainIDSstates: function (newValue, oldValue) {
                 try {
-                    this.chainIDSstatesArray = JSON.parse(newValue);
+                    this.chainIDSstatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.chainIDSstatesArray = [];
+                    this.chainIDSstatesArray = []
                 }
             },
             chainIDSstatesArray: function (newValue, oldValue) {
-                this.chainIDSstates = JSON.stringify(newValue);
+                this.chainIDSstates = JSON.stringify(newValue)
             }
         },
 
@@ -428,15 +428,15 @@
                 const Chain: Chain[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Chain) && Chain.length > 0) {
-                    itemID.value = Chain[0].id;
-                    chainSlug.value = Chain[0].slug;
-                    chainIDimageCover.value = Chain[0].id_image_cover;
-                    chainIDimageHero.value = Chain[0].id_image_hero;
-                    chainInformation.value = Chain[0].information ? JSON.stringify(Chain[0].information) : JSON.stringify([]);
-                    chainSeoTags.value = Chain[0].seo_tags ? JSON.stringify(Chain[0].seo_tags) : JSON.stringify([]);
-                    chainIDSstates.value = Chain[0].ids_states ? JSON.stringify(Chain[0].ids_states) : JSON.stringify([]);
-                    chainName.value = Chain[0].name;
-                    chainDescription.value = Chain[0].description;
+                    itemID.value = Chain[0].id
+                    chainSlug.value = Chain[0].slug
+                    chainIDimageCover.value = Chain[0].id_image_cover
+                    chainIDimageHero.value = Chain[0].id_image_hero
+                    chainInformation.value = Chain[0].information ? JSON.stringify(Chain[0].information) : JSON.stringify([])
+                    chainSeoTags.value = Chain[0].seo_tags ? JSON.stringify(Chain[0].seo_tags) : JSON.stringify([])
+                    chainIDSstates.value = Chain[0].ids_states ? JSON.stringify(Chain[0].ids_states) : JSON.stringify([])
+                    chainName.value = Chain[0].name
+                    chainDescription.value = Chain[0].description
                     loadingData.value = true
                 } else {
 
@@ -466,13 +466,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

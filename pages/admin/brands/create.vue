@@ -225,10 +225,10 @@
             addIDSstateInput() {
                 this.brandIDSstatesArray.push({
                     id: null
-                });
+                })
             },
             removeIDSstateInput(index: number) {
-                this.brandIDSstatesArray.splice(index, 1);
+                this.brandIDSstatesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -255,13 +255,13 @@
             },
             brandIDSstates: function (newValue, oldValue) {
                 try {
-                    this.brandIDSstatesArray = JSON.parse(newValue);
+                    this.brandIDSstatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.brandIDSstatesArray = [];
+                    this.brandIDSstatesArray = []
                 }
             },
             brandIDSstatesArray: function (newValue, oldValue) {
-                this.brandIDSstates = JSON.stringify(newValue);
+                this.brandIDSstates = JSON.stringify(newValue)
             }
         },
 
@@ -326,14 +326,14 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/brands/${brandSlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

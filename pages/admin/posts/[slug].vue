@@ -500,7 +500,7 @@
 </template>
 
 <script lang="ts">
-    //import VueDatePicker from '@vuepic/vue-datepicker';
+    //import VueDatePicker from '@vuepic/vue-datepicker'
     //import '@vuepic/vue-datepicker/dist/main.css'
 
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
@@ -689,20 +689,20 @@
             addTagInput() {
                 this.postTagsArray.push({
                     name: ''
-                });
+                })
             },
             removeTagInput(index: number) {
-                this.postTagsArray.splice(index, 1);
+                this.postTagsArray.splice(index, 1)
             },
             // locations
             addLocationInput() {
                 this.postLocationsArray.push({
                     name: '',
                     type: ''
-                });
+                })
             },
             removeLocationInput(index: number) {
-                this.postLocationsArray.splice(index, 1);
+                this.postLocationsArray.splice(index, 1)
             },
             // travels
             addTravelInput() {
@@ -710,10 +710,10 @@
                     icon: '',
                     name: '',
                     text: ''
-                });
+                })
             },
             removeTravelInput(index: number) {
-                this.postTravelsArray.splice(index, 1);
+                this.postTravelsArray.splice(index, 1)
             },
             // prices
             addPriceInput() {
@@ -721,10 +721,10 @@
                     name: '',
                     subname: '',
                     value: ''
-                });
+                })
             },
             removePriceInput(index: number) {
-                this.postPricesArray.splice(index, 1);
+                this.postPricesArray.splice(index, 1)
             },
             // triplengths
             addTriplengthInput() {
@@ -732,10 +732,10 @@
                     name: '',
                     subname: '',
                     value: ''
-                });
+                })
             },
             removeTriplengthInput(index: number) {
-                this.postTriplengthsArray.splice(index, 1);
+                this.postTriplengthsArray.splice(index, 1)
             },
             // times
             addTimeInput() {
@@ -743,10 +743,10 @@
                     name: '',
                     subname: '',
                     value: ''
-                });
+                })
             },
             removeTimeInput(index: number) {
-                this.postTimesArray.splice(index, 1);
+                this.postTimesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -766,25 +766,25 @@
             }
 
             /*timeZone(timeZoneRaw: any) {
-                const timestamp = timeZoneRaw;
-                const date = new Date(timestamp);
-                const timezone = date.toTimeString().substr(9, 6);
+                const timestamp = timeZoneRaw
+                const date = new Date(timestamp)
+                const timezone = date.toTimeString().substr(9, 6)
 
-                return timezone;
+                return timezone
             },
 
             timeZone2(timeZoneRaw: any) {
-                const timestamp = timeZoneRaw;
-                const date = new Date(timestamp);
+                const timestamp = timeZoneRaw
+                const date = new Date(timestamp)
                 const timezone = date.getTimezoneOffset()
 
-                return timezone;
+                return timezone
             }*/
         },
 
         watch: {
             postTitle: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             },
             postSeoTags: function (newValue, oldValue) {
                 try {
@@ -798,63 +798,63 @@
             },
             postTags: function (newValue, oldValue) {
                 try {
-                    this.postTagsArray = JSON.parse(newValue);
+                    this.postTagsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.postTagsArray = [];
+                    this.postTagsArray = []
                 }
             },
             postTagsArray: function (newValue, oldValue) {
-                this.postTags = JSON.stringify(newValue);
+                this.postTags = JSON.stringify(newValue)
             },
             postLocations: function (newValue, oldValue) {
                 try {
-                    this.postLocationsArray = JSON.parse(newValue);
+                    this.postLocationsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.postLocationsArray = [];
+                    this.postLocationsArray = []
                 }
             },
             postLocationsArray: function (newValue, oldValue) {
-                this.postLocations = JSON.stringify(newValue);
+                this.postLocations = JSON.stringify(newValue)
             },
             postTravels: function (newValue, oldValue) {
                 try {
-                    this.postTravelsArray = JSON.parse(newValue);
+                    this.postTravelsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.postTravelsArray = [];
+                    this.postTravelsArray = []
                 }
             },
             postTravelsArray: function (newValue, oldValue) {
-                this.postTravels = JSON.stringify(newValue);
+                this.postTravels = JSON.stringify(newValue)
             },
             postPrices: function (newValue, oldValue) {
                 try {
-                    this.postPricesArray = JSON.parse(newValue);
+                    this.postPricesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.postPricesArray = [];
+                    this.postPricesArray = []
                 }
             },
             postPricesArray: function (newValue, oldValue) {
-                this.postPrices = JSON.stringify(newValue);
+                this.postPrices = JSON.stringify(newValue)
             },
             postTriplengths: function (newValue, oldValue) {
                 try {
-                    this.postTriplengthsArray = JSON.parse(newValue);
+                    this.postTriplengthsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.postTriplengthsArray = [];
+                    this.postTriplengthsArray = []
                 }
             },
             postTriplengthsArray: function (newValue, oldValue) {
-                this.postTriplengths = JSON.stringify(newValue);
+                this.postTriplengths = JSON.stringify(newValue)
             },
             postTimes: function (newValue, oldValue) {
                 try {
-                    this.postTimesArray = JSON.parse(newValue);
+                    this.postTimesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.postTimesArray = [];
+                    this.postTimesArray = []
                 }
             },
             postTimesArray: function (newValue, oldValue) {
-                this.postTimes = JSON.stringify(newValue);
+                this.postTimes = JSON.stringify(newValue)
             }
         },
 
@@ -942,34 +942,34 @@
                 const Post: Post[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(Post) && Post.length > 0) {
-                    itemID.value = Post[0].id;
-                    postSlug.value = Post[0].slug;
-                    postIDcontinent.value = Post[0].id_continent;
-                    postIDstate.value = Post[0].id_state;
-                    postIDregion.value = Post[0].id_region;
-                    postIDcity.value = Post[0].id_city;
-                    postIDspot.value = Post[0].id_spot;
-                    postIDimageCover.value = Post[0].id_image_cover;
-                    postIDimageHero.value = Post[0].id_image_hero;
-                    postIDimageMap.value = Post[0].id_image_map;
-                    postIDimageOG.value = Post[0].id_image_og;
-                    postDate.value = Post[0].date;
-                    postDateUpdate.value = Post[0].date_update;
-                    postDateInformation.value = Post[0].date_information;
-                    postUrlYoutube.value = Post[0].url_youtube;
-                    postUrlWiki.value = Post[0].url_wiki;
-                    postUrlMap.value = Post[0].url_map;
-                    postTitle.value = Post[0].title;
-                    postPerex.value = Post[0].perex;
-                    postTextOpener.value = Post[0].text_opener;
-                    postTextAuthor.value = Post[0].text_author;
-                    postTextWiki.value = Post[0].text_wiki;
-                    postReviewText.value = Post[0].review_text;
-                    postReviewValue.value = Post[0].review_value;
-                    postPerexPrice.value = Post[0].perex_price;
-                    postPerexTriplength.value = Post[0].perex_triplength;
-                    postPerexTime.value = Post[0].perex_time;
-                    postSeoTags.value = Post[0].seo_tags ? JSON.stringify(Post[0].seo_tags) : JSON.stringify([]);
+                    itemID.value = Post[0].id
+                    postSlug.value = Post[0].slug
+                    postIDcontinent.value = Post[0].id_continent
+                    postIDstate.value = Post[0].id_state
+                    postIDregion.value = Post[0].id_region
+                    postIDcity.value = Post[0].id_city
+                    postIDspot.value = Post[0].id_spot
+                    postIDimageCover.value = Post[0].id_image_cover
+                    postIDimageHero.value = Post[0].id_image_hero
+                    postIDimageMap.value = Post[0].id_image_map
+                    postIDimageOG.value = Post[0].id_image_og
+                    postDate.value = Post[0].date
+                    postDateUpdate.value = Post[0].date_update
+                    postDateInformation.value = Post[0].date_information
+                    postUrlYoutube.value = Post[0].url_youtube
+                    postUrlWiki.value = Post[0].url_wiki
+                    postUrlMap.value = Post[0].url_map
+                    postTitle.value = Post[0].title
+                    postPerex.value = Post[0].perex
+                    postTextOpener.value = Post[0].text_opener
+                    postTextAuthor.value = Post[0].text_author
+                    postTextWiki.value = Post[0].text_wiki
+                    postReviewText.value = Post[0].review_text
+                    postReviewValue.value = Post[0].review_value
+                    postPerexPrice.value = Post[0].perex_price
+                    postPerexTriplength.value = Post[0].perex_triplength
+                    postPerexTime.value = Post[0].perex_time
+                    postSeoTags.value = Post[0].seo_tags ? JSON.stringify(Post[0].seo_tags) : JSON.stringify([])
                     postTags.value = Post[0].tags ? JSON.stringify(Post[0].tags) : JSON.stringify([])
                     postLocations.value = Post[0].locations ? JSON.stringify(Post[0].locations) : JSON.stringify([])
                     postTravels.value = Post[0].travels ? JSON.stringify(Post[0].travels) : JSON.stringify([])
@@ -1031,13 +1031,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

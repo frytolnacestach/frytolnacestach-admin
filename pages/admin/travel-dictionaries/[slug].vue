@@ -243,7 +243,7 @@
 
         watch: {
             travelDictionaryName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             },
             travelDictionarySeoTags: function (newValue, oldValue) {
                 try {
@@ -308,13 +308,13 @@
                 const TravelDictionaries: TravelDictionaries[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(TravelDictionaries) && TravelDictionaries.length > 0) {
-                    itemID.value = TravelDictionaries[0].id;
-                    travelDictionaryIDimageCover.value = TravelDictionaries[0].id_image_cover;
-                    travelDictionaryIDimageHero.value = TravelDictionaries[0].id_image_hero;
-                    travelDictionarySlug.value = TravelDictionaries[0].slug;
-                    travelDictionaryName.value = TravelDictionaries[0].name;
-                    travelDictionaryDescription.value = TravelDictionaries[0].description;
-                    travelDictionarySeoTags.value = TravelDictionaries[0].seo_tags ? JSON.stringify(TravelDictionaries[0].seo_tags) : JSON.stringify([]);
+                    itemID.value = TravelDictionaries[0].id
+                    travelDictionaryIDimageCover.value = TravelDictionaries[0].id_image_cover
+                    travelDictionaryIDimageHero.value = TravelDictionaries[0].id_image_hero
+                    travelDictionarySlug.value = TravelDictionaries[0].slug
+                    travelDictionaryName.value = TravelDictionaries[0].name
+                    travelDictionaryDescription.value = TravelDictionaries[0].description
+                    travelDictionarySeoTags.value = TravelDictionaries[0].seo_tags ? JSON.stringify(TravelDictionaries[0].seo_tags) : JSON.stringify([])
                     loadingData.value = true
                 } else {
 
@@ -342,13 +342,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

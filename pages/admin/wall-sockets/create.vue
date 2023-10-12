@@ -230,10 +230,10 @@
             addIDSstateInput() {
                 this.wallSocketIDSstatesArray.push({
                     id: null
-                });
+                })
             },
             removeIDSstateInput(index: number) {
-                this.wallSocketIDSstatesArray.splice(index, 1);
+                this.wallSocketIDSstatesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -262,13 +262,13 @@
             // IDS states
             wallSocketIDSstates: function (newValue, oldValue) {
                 try {
-                    this.wallSocketIDSstatesArray = JSON.parse(newValue);
+                    this.wallSocketIDSstatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.wallSocketIDSstatesArray = [];
+                    this.wallSocketIDSstatesArray = []
                 }
             },
             wallSocketIDSstatesArray: function (newValue, oldValue) {
-                this.wallSocketIDSstates = JSON.stringify(newValue);
+                this.wallSocketIDSstates = JSON.stringify(newValue)
             }
         },
 
@@ -335,14 +335,14 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/wall-sockets/${wallSocketSlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

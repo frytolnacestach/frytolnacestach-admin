@@ -144,7 +144,7 @@
 
         watch: {
             topPlaceName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             }
         },
 
@@ -194,9 +194,9 @@
                 const TopPlace: TopPlace[] = JSON.parse(_rawValue)
                 
                 if (Array.isArray(TopPlace) && TopPlace.length > 0) {
-                    itemID.value = TopPlace[0].id;
-                    topPlaceIDplace.value = TopPlace[0].id_place;
-                    topPlaceType.value = TopPlace[0].type;
+                    itemID.value = TopPlace[0].id
+                    topPlaceIDplace.value = TopPlace[0].id_place
+                    topPlaceType.value = TopPlace[0].type
                 } else {
 
                 }
@@ -220,13 +220,13 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

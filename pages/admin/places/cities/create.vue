@@ -532,40 +532,40 @@
                     date_update: '',
                     author_create: '',
                     author_update: ''
-                });
+                })
             },
             removeInformationAuthorInput(index: number) {
-                this.placesCityInformationAuthorArray.splice(index, 1);
+                this.placesCityInformationAuthorArray.splice(index, 1)
             },
             // coordinates
             addCoordinateInput() {
                 this.placesCityCoordinatesArray.push({
                     latitude: null,
                     longitude: null
-                });
+                })
             },
             removeCoordinateInput(index: number) {
-                this.placesCityCoordinatesArray.splice(index, 1);
+                this.placesCityCoordinatesArray.splice(index, 1)
             },
             // Zoom
             addZoomInput() {
                 this.placesCityZoomArray.push({
                     google: null,
                     booking: null
-                });
+                })
             },
             removeZoomInput(index: number) {
-                this.placesCityZoomArray.splice(index, 1);
+                this.placesCityZoomArray.splice(index, 1)
             },
             // Affiliate
             addAffiliateInput() {
                 this.placesCityAffiliateArray.push({
                     name: '',
                     value: true
-                });
+                })
             },
             removeAffiliateInput(index: number) {
-                this.placesCityAffiliateArray.splice(index, 1);
+                this.placesCityAffiliateArray.splice(index, 1)
             },
             // Alerts
             addAlertInput() {
@@ -578,10 +578,10 @@
                     date_update: '',
                     date_start: '',
                     date_end: ''
-                });
+                })
             },
             removeAlertInput(index: number) {
-                this.placesCityAlertsArray.splice(index, 1);
+                this.placesCityAlertsArray.splice(index, 1)
             },
             // Parking
             addParkingInput() {
@@ -595,10 +595,10 @@
                     date_update: '',
                     description: '',
                     author_update: ''
-                });
+                })
             },
             removeParkingInput(index: number) {
-                this.placesCityParkingArray.splice(index, 1);
+                this.placesCityParkingArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -625,60 +625,60 @@
             },
             placesCityInformationAuthor: function (newValue, oldValue) {
                 try {
-                    this.placesCityInformationAuthorArray = JSON.parse(newValue);
+                    this.placesCityInformationAuthorArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesCityInformationAuthorArray = [];
+                    this.placesCityInformationAuthorArray = []
                 }
             },
             placesCityCoordinates: function (newValue, oldValue) {
                 try {
-                    this.placesCityCoordinatesArray = JSON.parse(newValue);
+                    this.placesCityCoordinatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesCityCoordinatesArray = [];
+                    this.placesCityCoordinatesArray = []
                 }
             },
             placesCityCoordinatesArray: function (newValue, oldValue) {
-                this.placesCityCoordinates = JSON.stringify(newValue);
+                this.placesCityCoordinates = JSON.stringify(newValue)
             },
             placesCityZoom: function (newValue, oldValue) {
                 try {
-                    this.placesCityZoomArray = JSON.parse(newValue);
+                    this.placesCityZoomArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesCityZoomArray = [];
+                    this.placesCityZoomArray = []
                 }
             },
             placesCityZoomArray: function (newValue, oldValue) {
-                this.placesCityZoom = JSON.stringify(newValue);
+                this.placesCityZoom = JSON.stringify(newValue)
             },
             placesCityAffiliate: function (newValue, oldValue) {
                 try {
-                    this.placesCityAffiliateArray = JSON.parse(newValue);
+                    this.placesCityAffiliateArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesCityAffiliateArray = [];
+                    this.placesCityAffiliateArray = []
                 }
             },
             placesCityAffiliateArray: function (newValue, oldValue) {
-                this.placesCityAffiliate = JSON.stringify(newValue);
+                this.placesCityAffiliate = JSON.stringify(newValue)
             },
             placesCityAlerts: function (newValue, oldValue) {
                 try {
-                    this.placesCityAlertsArray = JSON.parse(newValue);
+                    this.placesCityAlertsArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesCityAlertsArray = [];
+                    this.placesCityAlertsArray = []
                 }
             },
             placesCityAlertsArray: function (newValue, oldValue) {
-                this.placesCityAlerts = JSON.stringify(newValue);
+                this.placesCityAlerts = JSON.stringify(newValue)
             },
             placesCityParking: function (newValue, oldValue) {
                 try {
-                    this.placesCityParkingArray = JSON.parse(newValue);
+                    this.placesCityParkingArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.placesCityParkingArray = [];
+                    this.placesCityParkingArray = []
                 }
             },
             placesCityParkingArray: function (newValue, oldValue) {
-                this.placesCityParking = JSON.stringify(newValue);
+                this.placesCityParking = JSON.stringify(newValue)
             }
         },
 
@@ -770,14 +770,14 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/places/cities/${placesCitySlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                    })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

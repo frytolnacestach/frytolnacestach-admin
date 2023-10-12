@@ -237,10 +237,10 @@
             addIDSstateInput() {
                 this.foodIDSstatesArray.push({
                     id: null
-                });
+                })
             },
             removeIDSstateInput(index: number) {
-                this.foodIDSstatesArray.splice(index, 1);
+                this.foodIDSstatesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -267,13 +267,13 @@
             },
             foodIDSstates: function (newValue, oldValue) {
                 try {
-                    this.foodIDSstatesArray = JSON.parse(newValue);
+                    this.foodIDSstatesArray = JSON.parse(newValue)
                 } catch (error) {
-                    this.foodIDSstatesArray = [];
+                    this.foodIDSstatesArray = []
                 }
             },
             foodIDSstatesArray: function (newValue, oldValue) {
-                this.foodIDSstates = JSON.stringify(newValue);
+                this.foodIDSstates = JSON.stringify(newValue)
             }
         },
 
@@ -342,14 +342,14 @@
                         })
                     })
                     .then(() => {
-                        console.log('Data byla odeslaná');
+                        console.log('Data byla odeslaná')
                         successForm.value = "Data byla odeslaná"
                         navigateTo(`/admin/foods/${foodSlug.value}`)
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.log(error)
                         errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                });
+                })
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"
