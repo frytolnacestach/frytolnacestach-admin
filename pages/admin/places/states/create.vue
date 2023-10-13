@@ -109,7 +109,7 @@
                                             <!-- Form - id_continent -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Kontinentu" nameDB="id_continent" perex="" :required=true />
-                                                <input class="a-input" type="number" min="0" name="id_continent" v-model="placesStateIDcontinent" required />
+                                                <mInputIDPlaces :value="placesStateIDcontinent" name="id_continent" :required=true @id-place="handleIDcontinent" />
                                             </div>
                                             <!-- Form - id_continent -->
                                         </div>
@@ -885,6 +885,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -899,6 +900,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputIDPlaces,
             mInputImage,
             mLabel,
             mNavBreadcrumbs,
@@ -1166,6 +1168,9 @@
             },
             handleImageHero(newImage: string) {
                 this.placesStateIDimageHero = newImage
+            },
+            handleIDcontinent(newImage: string) {
+                this.placesStateIDcontinent = newImage
             }
         },
 

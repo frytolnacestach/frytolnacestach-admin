@@ -109,13 +109,13 @@
                                             <!-- Form - id_state -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Státu" nameDB="id_state" perex="" :required=true />
-                                                <input class="a-input" type="number" min="0" name="state" v-model="placesSpotIDstate" required />
+                                                <mInputIDPlaces :value="placesSpotIDstate" name="state" :required=true @id-place="handleIDstate" />
                                             </div>
                                             <!-- Form - id_state END -->
                                             <!-- Form - id_city -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Města" nameDB="id_city" perex="" :required=false />
-                                                <input class="a-input" type="number" min="0" name="city" v-model="placesSpotIDcity" />
+                                                <mInputIDPlaces :value="placesSpotIDcity" name="city" :required=true @id-place="handleIDcity" />
                                             </div>
                                             <!-- Form - id_city END -->
                                         </div>
@@ -382,6 +382,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -396,6 +397,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputIDPlaces,
             mInputImage,
             mLabel,
             mNavBreadcrumbs,
@@ -552,6 +554,12 @@
             },
             handleImageHero(newImage: string) {
                 this.placesSpotIDimageHero = newImage
+            },
+            handleIDcity(newImage: string) {
+                this.placesSpotIDcity = newImage
+            },
+            handleIDstate(newImage: string) {
+                this.placesSpotIDstate = newImage
             }
         },
 

@@ -109,7 +109,7 @@
                                             <!-- Form - id_state -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Státu" nameDB="id_state" perex="" :required=true />
-                                                <input class="a-input" type="number" min="0" name="state" v-model="placesRegionIDstate" required />
+                                                <mInputIDPlaces :value="placesRegionIDstat" name="state" :required=true @id-place="handleIDstate" />
                                             </div>
                                             <!-- Form - id_state END -->
                                         </div>
@@ -310,6 +310,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -324,6 +325,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputIDPlaces,
             mInputImage,
             mLabel,
             mNavBreadcrumbs,
@@ -429,6 +431,9 @@
             },
             handleImageHero(newImage: string) {
                 this.placesRegionIDimageHero = newImage
+            },
+            handleIDstate(newImage: string) {
+                this.placesRegionIDstate = newImage
             }
         },
 
