@@ -115,7 +115,7 @@
                                             <!-- Form - id_state -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Státu" nameDB="id_state" perex="" :required=true />
-                                                <mInputIDPlaces :value="placesRegionIDstat" name="state" :required=true @id-place="handleIDstate" />
+                                                <mInputIDPlaces :value="placesRegionIDstate" name="state" :required=true @id-place="handleIDstate" />
                                             </div>
                                             <!-- Form - id_state END -->
                                         </div>
@@ -484,10 +484,10 @@
                 this.placesRegionSlug = newSlug
             },
             handleImageCover(newImage: string) {
-                this.placesRegionSIDimageCover = newImage
+                this.placesRegionIDimageCover = newImage
             },
             handleImageHero(newImage: string) {
-                this.placesRegionSIDimageHero = newImage
+                this.placesRegionIDimageHero = newImage
             },
             handleIDstate(newImage: string) {
                 this.placesRegionIDstate = newImage
