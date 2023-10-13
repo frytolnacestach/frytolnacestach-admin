@@ -1409,7 +1409,7 @@
             },
 
             imageExists(source: string, name: string, extension: string, width: number, height: number, prefix: string, suffix: string) {
-                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix || '') + extension
+                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension
 
                 const xhr = new XMLHttpRequest()
                 xhr.open('HEAD', imageUrl, false)
