@@ -1,0 +1,22 @@
+.o-box {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+
+    &.-w640 {
+        width: 100%;
+        max-width: 640px;
+    }
+
+    &.-center {
+        margin: 0 auto;
+    }
+
+    &.-gray {
+        background-color: $gray2;
+    }
+    
+    &.-text-center {
+        text-align: center;
+    }
+}

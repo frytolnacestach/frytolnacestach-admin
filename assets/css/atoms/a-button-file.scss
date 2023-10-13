@@ -1,0 +1,32 @@
+.a-button-file {
+    @include transition(background-color, .3s);
+    cursor: pointer;
+    background-color: $gray5;
+    color: $white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: $fs-small-l;
+
+    //size
+    &.-variant {
+        display: inline-block;
+        width: 100%;
+        padding: 3px 5px;
+        font-size: $fs-small-ssss;
+        border-radius: 0;
+        height: 28px;
+        line-height: 22px;
+    }
+
+    // variant
+    &.-existing {
+        background-color: $successBordercolor;
+    }
+
+    &.-no-existing {
+        background-color: $errorBordercolor;
+    }
+}

@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="admin">
-        <main class="t-main">
+        <main class="t-main pb-4">
             <!-- SECTION - HERO -->
             <oHero :headline="'obrazek ' + itemID" />
             <!-- SECTION - HERO END -->
@@ -22,7 +22,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
+                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">        
                                     <!-- BLOCK - Stálé hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -39,10 +39,10 @@
                                     </div>
                                     <!-- BLOCK - Stálé hodnoty END -->
 
-                                    <!-- BLOCK - Editační hodnoty -->
+                                    <!-- BLOCK - Náhled obrázku -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
-                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <mHeadlineForm title="Náhled obrázku" />
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
                                             <!-- Image -->
@@ -50,6 +50,16 @@
                                                 <img class="o-form-item__image-file" :src="`https://image.frytolnacestach.cz/storage${imageSource + imageName}.webp`">
                                             </div>
                                             <!-- Image END -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Náhled obrázku END -->
+
+                                    <!-- BLOCK - Editační hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
                                             <!-- Form - name END -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Název" nameDB="name" perex="" :required=true />
@@ -99,323 +109,345 @@
                 </div>
             </section>
 
-            <section class="t-section mt-4 mb-2">
+            <section class="t-section mt-4">
                 <div class="t-section__inner">
-                    <table>
-                        <tr>
-                            <td><span @click="createWEBPimage('raw', null, null, null, null)">Generovat RAW obrázek</span></td>
-                        </tr>
-                    </table>
+                    <div class="flex flex-center">
+                        <div class="o-box -w640 -center -gray -text-center">
+                            <span :class="'a-button-file' + (webP ? ' -existing' : ' -no-existing') + ' mt-2'" @click="createWEBPimage('raw', null, null, null, null)">{{webP ? 'Znovu generovat WebP obrázek' : 'Generovat WebP obrázek'}}</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <section class="t-section mt-2 mb-4">
+            <section class="t-section" v-if="webP">
                 <div class="t-section__inner">
-                    <div v-if="imageType === 'default'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesDefault" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
+                    <div class="flex flex-center">
+                        <div class="o-box -w640 -gray -text-center">
+                            <div v-if="imageType === 'default'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesDefault" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'main'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesMain" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'user'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr  v-for="item in sizesUsers" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'map'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesMaps" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'article'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesArticle" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'video'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesVideos" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'state'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesWorldStates" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'region'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesWorldRegions" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="o-image-version" v-else-if="imageType === 'city'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesWorldCities" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-else-if="imageType === 'spot'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesWorldSpots" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'continent'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesWorldContinents" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'brand'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesBrands" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'fauna'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesFauna" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'flora'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesFlora" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'food'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesFoods" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'travel_dictionaries'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesTravelDictionaries" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div v-else-if="imageType === 'event'">
+                                <table>
+                                    <tr>
+                                        <th>Šířka</th>
+                                        <th>Výška</th>
+                                        <th>Prefix</th>
+                                        <th>Suffix</th>
+                                        <th>Generování</th>
+                                    </tr>
+                                    <tr v-for="item in sizesEvents" :key="item.prefix">
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.prefix}}</td>
+                                        <td>{{item.suffix}}</td>
+                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <div v-else-if="imageType === 'main'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesMain" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'user'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr  v-for="item in sizesUsers" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'map'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesMaps" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'article'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesArticle" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'video'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesVideos" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'state'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesWorldStates" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'region'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesWorldRegions" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'city'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesWorldCities" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'spot'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesWorldSpots" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'continent'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesWorldContinents" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'brand'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesBrands" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'fauna'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesFauna" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'flora'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesFlora" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'food'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesFoods" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'travel_dictionaries'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesTravelDictionaries" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div v-else-if="imageType === 'event'">
-                        <table>
-                            <tr>
-                                <th>Šířka</th>
-                                <th>Výška</th>
-                                <th>Prefix</th>
-                                <th>Suffix</th>
-                                <th>Generování</th>
-                            </tr>
-                            <tr v-for="item in sizesEvents" :key="item.prefix">
-                                <td>{{item.width}}</td>
-                                <td>{{item.height}}</td>
-                                <td>{{item.prefix}}</td>
-                                <td>{{item.suffix}}</td>
-                                <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                            </tr>
-                        </table>
+                </div>
+            </section>
+
+            <section class="t-section" v-else>
+                <div class="t-section__inner">
+                    <div class="flex flex-center">
+                        <div class="o-box -w640 -center -gray -text-center">
+                            Aby bylo možné generovat další varianty je nejdříve nutné vygenerovat webP variantu.
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1362,6 +1394,10 @@
             }
         },
 
+        mounted() {
+            
+        },
+
         methods: {
             updateBreadcrumbs() {
                 const itemID = this.itemID
@@ -1369,6 +1405,24 @@
                 
                 if (breadcrumb) {
                     breadcrumb.name = `Editace obrazku - ${itemID}`
+                }
+            },
+
+            imageExists(source: string, name: string, extension: string, width: number, height: number, prefix: string, suffix: string) {
+                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix || '') + extension
+
+                const xhr = new XMLHttpRequest()
+                xhr.open('HEAD', imageUrl, false)
+
+                try {
+                    xhr.send()
+                    if (xhr.status === 200) {
+                        return " -existing"
+                    } else {
+                        return " -no-existing"
+                    }
+                } catch (error) {
+                    return " -error"
                 }
             }
         },
@@ -1413,6 +1467,7 @@
             const successForm = ref('')
             // variable
             const loadingData = ref(false)
+            const webP = ref(false)
             // date
             const itemID = ref(null)
             const imageName = ref('')
@@ -1438,6 +1493,8 @@
                 } else {
 
                 }
+
+                imageWebpExists()
             })()
 
             //FORM - edit
@@ -1474,6 +1531,24 @@
                 }
             }
 
+            const imageWebpExists = async () => {
+                const imageUrl = 'https://image.frytolnacestach.cz/storage' + imageSource.value + imageName.value + '.webP'
+                console.log("URL OBRÁZKU:" + imageUrl)
+                const xhr = new XMLHttpRequest()
+                xhr.open('HEAD', imageUrl, false)
+
+                try {
+                    xhr.send();
+                    if (xhr.status === 200) {
+                        webP.value = true
+                    } else {
+                        webP.value = false
+                    }
+                } catch (error) {
+                    webP.value = false
+                }
+            }
+
             const createWEBPimage = async (type, width, height, prefix, suffix) => {
                 try {
                     await useFetch(`${runTimeConfig.public.baseURL}/image-webp-create?type_create=${type}&name=${encodeURIComponent(imageName.value)}&source=${encodeURIComponent(imageSource.value)}&width=${width}&height=${height}&prefix=${prefix}&suffix=${suffix}`, {
@@ -1504,12 +1579,14 @@
                 successForm,
                 errorForm,
                 loadingData,
+                webP,
                 itemID,
                 imageName,
                 imageSource,
                 imageDateCreate,
                 imageType,
                 imageAuthor,
+                imageWebpExists,
                 createWEBPimage,
                 editForm
             }
