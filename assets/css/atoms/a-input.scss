@@ -4,6 +4,7 @@
     line-height: 26px;
     padding: 3px 10px;
     border: 1px solid $gray4;
+    color: $gray7;
 
     &--big {
         height: 50px;
@@ -20,6 +21,7 @@
         background-color: $gray3;
         border: 1px solid $gray3;
         color: $gray4;
+        -webkit-text-fill-color: $gray4;
         opacity: 1;
     }
 }
