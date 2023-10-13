@@ -315,7 +315,7 @@
 
         watch: {
             faunaName: function (newValue, oldValue) {
-                this.updateBreadcrumbs();
+                this.updateBreadcrumbs()
             },
             faunaSeoTags: function (newValue, oldValue) {
                 try {
