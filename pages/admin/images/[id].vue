@@ -1533,7 +1533,6 @@
 
             const imageWebpExists = async () => {
                 const imageUrl = 'https://image.frytolnacestach.cz/storage' + imageSource.value + imageName.value + '.webP'
-                console.log("URL OBRÁZKU:" + imageUrl)
                 const xhr = new XMLHttpRequest()
                 xhr.open('HEAD', imageUrl, false)
 
@@ -1549,7 +1548,7 @@
                 }
             }
 
-            const createWEBPimage = async (type, width, height, prefix, suffix) => {
+            const createWEBPimage = async (type: string, width: number, height: number, prefix: string, suffix: string) => {
                 try {
                     await useFetch(`${runTimeConfig.public.baseURL}/image-webp-create?type_create=${type}&name=${encodeURIComponent(imageName.value)}&source=${encodeURIComponent(imageSource.value)}&width=${width}&height=${height}&prefix=${prefix}&suffix=${suffix}`, {
                         headers: {
@@ -1563,6 +1562,12 @@
                     .then(() => {
                         console.log('Obrázek byl vytvořen')
                         successForm.value = "Obrázek byl vytvořen"
+
+                        if (type === "RAW") {
+                            imageWebpExists()
+                        } else {
+                            // TODO: Varianty velikostí
+                        }
                     })
                     .catch((error) => {
                         console.log(error)
