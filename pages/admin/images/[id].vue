@@ -35,6 +35,12 @@
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
+                                            <!-- Form - date_create -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum vytvoření" nameDB="date_create" perex="" :required=true />
+                                                <input class="a-input" type="text" name="dateCreate" disabled="true" v-model="imageDateCreate" required />
+                                            </div>
+                                            <!-- Form - date_create END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Stálé hodnoty END -->
@@ -72,12 +78,6 @@
                                                 <input class="a-input" type="text" name="source" v-model="imageSource" required />
                                             </div>
                                             <!-- Form - source END -->
-                                            <!-- Form - date_create -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Datum vytvoření" nameDB="date_create" perex="" :required=true />
-                                                <input class="a-input" type="text" name="dateCreate" disabled="true" v-model="imageDateCreate" required />
-                                            </div>
-                                            <!-- Form - date_create END -->
                                             <!-- Form - type -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Typ použití" nameDB="type" perex="" :required=true />
