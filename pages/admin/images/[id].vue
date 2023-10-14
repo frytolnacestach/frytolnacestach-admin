@@ -421,11 +421,13 @@
                                         <th>Generování</th>
                                     </tr>
                                     <tr class="o-image-version__content" v-for="item in sizesBrands" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
+                                        <td class="o-image-version__td">{{item.width}}</td>
+                                        <td class="o-image-version__td">{{item.height}}</td>
+                                        <td class="o-image-version__td">{{item.prefix}}</td>
+                                        <td class="o-image-version__td">{{item.suffix}}</td>
+                                        <td class="o-image-version__td -p0">
+                                            <span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
