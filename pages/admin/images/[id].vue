@@ -123,149 +123,213 @@
                 <div class="t-section__inner">
                     <div class="flex flex-center">
                         <div class="o-box -w640 -gray -text-center">
-                            <div v-if="imageType === 'default'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesDefault" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
+                            <div class="o-image-version" v-if="imageType === 'default'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesDefault" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                            <div v-else-if="imageType === 'main'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesMain" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
+                            <div class="o-image-version" v-else-if="imageType === 'main'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesMain" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                            <div v-else-if="imageType === 'user'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr  v-for="item in sizesUsers" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
+                            <div class="o-image-version" v-else-if="imageType === 'user'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr  v-for="item in sizesUsers" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                            <div v-else-if="imageType === 'map'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesMaps" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
+                            <div class="o-image-version" v-else-if="imageType === 'map'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesMaps" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                            <div v-else-if="imageType === 'article'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesArticle" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
+                            <div class="o-image-version" v-else-if="imageType === 'article'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesArticle" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                            <div v-else-if="imageType === 'video'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesVideos" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
+                            <div class="o-image-version" v-else-if="imageType === 'video'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesVideos" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                            <div v-else-if="imageType === 'state'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesWorldStates" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
+                            <div class="o-image-version" v-else-if="imageType === 'state'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesWorldStates" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                            <div v-else-if="imageType === 'region'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesWorldRegions" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
+                            <div class="o-image-version" v-else-if="imageType === 'region'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesWorldRegions" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                             <div class="o-image-version" v-else-if="imageType === 'city'">
                                 <div class="o-image-version__outer">
@@ -293,8 +357,62 @@
                                     </div>
                                 </div>
                             </div>
-                            <div v-else-if="imageType === 'spot'">
-                                <table>
+                            <div class="o-image-version" v-else-if="imageType === 'spot'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesWorldSpots" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o-image-version" v-else-if="imageType === 'continent'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesWorldContinents" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o-image-version" v-else-if="imageType === 'brand'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
                                     <tr>
                                         <th>Šířka</th>
                                         <th>Výška</th>
@@ -302,7 +420,7 @@
                                         <th>Suffix</th>
                                         <th>Generování</th>
                                     </tr>
-                                    <tr v-for="item in sizesWorldSpots" :key="item.prefix">
+                                    <tr class="o-image-version__content" v-for="item in sizesBrands" :key="item.prefix">
                                         <td>{{item.width}}</td>
                                         <td>{{item.height}}</td>
                                         <td>{{item.prefix}}</td>
@@ -311,131 +429,135 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div v-else-if="imageType === 'continent'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesWorldContinents" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
+                            <div class="o-image-version" v-else-if="imageType === 'fauna'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesFauna" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                            <div v-else-if="imageType === 'brand'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesBrands" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
+                            <div class="o-image-version" v-else-if="imageType === 'flora'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesFlora" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                            <div v-else-if="imageType === 'fauna'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesFauna" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
+                            <div class="o-image-version" v-else-if="imageType === 'food'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesFoods" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                            <div v-else-if="imageType === 'flora'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesFlora" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
+                            <div class="o-image-version" v-else-if="imageType === 'travel_dictionaries'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesTravelDictionaries" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                            <div v-else-if="imageType === 'food'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesFoods" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div v-else-if="imageType === 'travel_dictionaries'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesTravelDictionaries" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div v-else-if="imageType === 'event'">
-                                <table>
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr v-for="item in sizesEvents" :key="item.prefix">
-                                        <td>{{item.width}}</td>
-                                        <td>{{item.height}}</td>
-                                        <td>{{item.prefix}}</td>
-                                        <td>{{item.suffix}}</td>
-                                        <td><span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span></td>
-                                    </tr>
-                                </table>
+                            <div class="o-image-version" v-else-if="imageType === 'event'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesEvents" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
