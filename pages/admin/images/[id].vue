@@ -413,23 +413,25 @@
                                 <div class="o-image-version__outer">
                                     <div class="o-image-version__inner">
                                         <table class="o-image-version__table">
-                                    <tr>
-                                        <th>Šířka</th>
-                                        <th>Výška</th>
-                                        <th>Prefix</th>
-                                        <th>Suffix</th>
-                                        <th>Generování</th>
-                                    </tr>
-                                    <tr class="o-image-version__content" v-for="item in sizesBrands" :key="item.prefix">
-                                        <td class="o-image-version__td">{{item.width}}</td>
-                                        <td class="o-image-version__td">{{item.height}}</td>
-                                        <td class="o-image-version__td">{{item.prefix}}</td>
-                                        <td class="o-image-version__td">{{item.suffix}}</td>
-                                        <td class="o-image-version__td -p0">
-                                            <span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                        </td>
-                                    </tr>
-                                </table>
+                                            <tr>
+                                                <th>Šířka</th>
+                                                <th>Výška</th>
+                                                <th>Prefix</th>
+                                                <th>Suffix</th>
+                                                <th>Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="item in sizesBrands" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                             <div class="o-image-version" v-else-if="imageType === 'fauna'">
                                 <div class="o-image-version__outer">
