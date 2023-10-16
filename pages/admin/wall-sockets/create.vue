@@ -54,30 +54,7 @@
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in wallSocketSeoTagsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Tag:</label>
-                                                                    <input class="a-input" type="text" v-model="item.tag" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsSeoTags :value="wallSocketSeoTags" @seo-tags="handleSeoTags" />
                                             </div>
                                             <!-- Form - seo_tags END -->
                                         </div>
@@ -170,6 +147,7 @@
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -184,6 +162,7 @@
             mButton,
             mHeadlineForm,
             mInputImage,
+            mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -211,21 +190,11 @@
                         url: "",
                         status: "span"
                     }
-                ],
-                wallSocketSeoTagsArray: []
+                ]
             }
         },
 
         methods: {
-            // seo tags
-            addSeoTagsInput() {
-                this.wallSocketSeoTagsArray.push({
-                    tag: ''
-                })
-            },
-            removeSeoTagsInput(index: number) {
-                this.wallSocketSeoTagsArray.splice(index, 1)
-            },
             // ids states
             addIDSstateInput() {
                 this.wallSocketIDSstatesArray.push({
@@ -244,21 +213,13 @@
             },
             handleImageHero(newImage: string) {
                 this.wallSocketIDimageHero = newImage
+            },
+            handleSeoTags(newSeoTags: string) {
+                this.wallSocketSeoTags = JSON.stringify(newSeoTags)
             }
         },
 
         watch: {
-            // seo tags
-            wallSocketSeoTags: function (newValue, oldValue) {
-                try {
-                    this.wallSocketSeoTagsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.wallSocketSeoTagsArray = []
-                }
-            },
-            wallSocketSeoTagsArray: function (newValue, oldValue) {
-                this.wallSocketSeoTags = JSON.stringify(newValue)
-            },
             // IDS states
             wallSocketIDSstates: function (newValue, oldValue) {
                 try {
@@ -307,7 +268,6 @@
             const wallSocketIDSstates = ref([])
             const wallSocketIDSstatesArray = ref([])
             const wallSocketSeoTags = ref([])
-            const wallSocketSeoTagsArray = ref([])
             const wallSocketLabel = ref('')
             const wallSocketName = ref('')
             const wallSocketDescription = ref('')
@@ -327,8 +287,8 @@
                             'slug': wallSocketSlug.value,
                             'id_image_cover': wallSocketIDimageCover.value,
                             'id_image_hero': wallSocketIDimageHero.value,
-                            'seo_tags': JSON.stringify(wallSocketSeoTagsArray._value),
-                            'ids_states': JSON.stringify(wallStocketIDSstatesArray._value),
+                            'seo_tags': wallSocketSeoTags._value,
+                            'ids_states': JSON.stringify(wallSocketIDSstatesArray._value),
                             'label': wallSocketLabel.value,
                             'name': wallSocketName.value,
                             'description': wallSocketDescription.value
@@ -359,7 +319,6 @@
                 wallSocketIDSstates,
                 wallSocketIDSstatesArray,
                 wallSocketSeoTags,
-                wallSocketSeoTagsArray,
                 wallSocketLabel,
                 wallSocketName,
                 wallSocketDescription,
