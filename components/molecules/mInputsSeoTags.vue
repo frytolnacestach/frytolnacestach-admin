@@ -47,12 +47,10 @@
                 this.seoTagsArray.push({
                     tag: ''
                 })
-                console.log("add")
                 this.$emit('seo-tags', this.seoTagsArray)
             },
             removeSeoTagsInput(index) {
                 this.seoTagsArray.splice(index, 1)
-                console.log("remove")
             }
         },
 
