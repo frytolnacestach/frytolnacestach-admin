@@ -179,34 +179,7 @@
                                             <!-- Form - coordinates(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Souřadnice" nameDB="coordinates" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesContinentCoordinatesArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeCoordinateInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Latitude:</label>
-                                                                    <input class="a-input" type="number" step=".0000001" v-model="item.latitude" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Longitude:</label>
-                                                                    <input class="a-input" type="number" step=".0000001" v-model="item.longitude" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addCoordinateInput">Přidat souřadnici</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsCoordinates :value="placesContinentCoordinatesArray" @coordinates="handleCoordinates" />
                                             </div>
                                             <!-- Form - coordinates(JSON) END -->
                                             <!-- Form - zoom(JSON) -->
@@ -269,6 +242,7 @@
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -324,6 +298,7 @@
             mButton,
             mHeadlineForm,
             mInputImage,
+            mInputsCoordinates,
             mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
@@ -360,7 +335,6 @@
                     }
                 ],
                 placesContinentInformationAuthorArray: [],
-                placesContinentCoordinatesArray: [],
                 placesContinentZoomArray: []
             }
         },
@@ -387,16 +361,6 @@
             removeInformationAuthorInput(index: number) {
                 this.placesContinentInformationAuthorArray.splice(index, 1)
             },
-            // coordinates
-            addCoordinateInput() {
-                this.placesContinentCoordinatesArray.push({
-                    latitude: null,
-                    longitude: null
-                })
-            },
-            removeCoordinateInput(index: number) {
-                this.placesContinentCoordinatesArray.splice(index, 1)
-            },
             // zoom
             addZoomInput() {
                 this.placesContinentZoomArray.push({
@@ -419,6 +383,9 @@
             },
             handleSeoTags(newSeoTags: string) {
                 this.placesContinentSeoTags = JSON.stringify(newSeoTags)
+            },
+            handleCoordinates(newCoordinates: string) {
+                this.placesContinentCoordinates = JSON.stringify(newCoordinates)
             }
         },
 
@@ -435,16 +402,6 @@
             },
             placesContinentInformationAuthorArray: function (newValue, oldValue) {
                 this.placesContinentInformationAuthor = JSON.stringify(newValue)
-            },
-            placesContinentCoordinates: function (newValue, oldValue) {
-                try {
-                    this.placesContinentCoordinatesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesContinentCoordinatesArray = []
-                }
-            },
-            placesContinentCoordinatesArray: function (newValue, oldValue) {
-                this.placesContinentCoordinates = JSON.stringify(newValue)
             },
             placesContinentZoom: function (newValue, oldValue) {
                 try {
@@ -508,7 +465,6 @@
             const placesContinentNumberStates = ref(null)
             const placesContinentSeoTags = ref([])
             const placesContinentCoordinates = ref([])
-            const placesContinentCoordinatesArray = ref([])
             const placesContinentZoom = ref([])
             const placesContinentZoomArray = ref([])
 
@@ -564,7 +520,7 @@
                             'population_density': placesContinentPopulationDensity.value,
                             'number_states': placesContinentNumberStates.value,
                             'seo_tags': placesContinentSeoTags._value,
-                            'coordinates': JSON.stringify(placesContinentCoordinatesArray._value),
+                            'coordinates': placesContinentCoordinates._value,
                             'zoom': JSON.stringify(placesContinentZoomArray._value)
                         })
                     })
@@ -602,7 +558,6 @@
                 placesContinentPopulationDensity,
                 placesContinentNumberStates,
                 placesContinentCoordinates,
-                placesContinentCoordinatesArray,
                 placesContinentZoom,
                 placesContinentZoomArray,
                 editForm

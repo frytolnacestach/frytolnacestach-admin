@@ -150,34 +150,7 @@
                                             <!-- Form - coordinates(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Souřadnice místa konání" nameDB="coordinates" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in eventCoordinatesArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeCoordinateInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Latitude:</label>
-                                                                    <input class="a-input" type="number" step=".0000001" v-model="item.latitude" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Longitude:</label>
-                                                                    <input class="a-input" type="number" step=".0000001" v-model="item.longitude" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addCoordinateInput">Přidat souřadnici</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsCoordinates :value="eventCoordinatesArray" @coordinates="handleCoordinates" />
                                             </div>
                                             <!-- Form - coordinates(JSON) END -->
                                             <!-- Form - zoom(JSON) -->
@@ -344,6 +317,7 @@
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -411,6 +385,7 @@
             mHeadlineForm,
             mInputIDPlaces,
             mInputImage,
+            mInputsCoordinates,
             mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
@@ -440,7 +415,6 @@
                         status: "span"
                     }
                 ],
-                eventCoordinatesArray: [],
                 eventZoomArray: [],
                 eventAffiliateArray: [],
                 eventPricesArray: [],
@@ -456,16 +430,6 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace UDÁLOSTI - ${eventName}`
                 }
-            },
-            // coordinates
-            addCoordinateInput() {
-                this.eventCoordinatesArray.push({
-                    latitude: null,
-                    longitude: null
-                })
-            },
-            removeCoordinateInput(index: number) {
-                this.eventCoordinatesArray.splice(index, 1)
             },
             // zoom
             addZoomInput() {
@@ -532,22 +496,15 @@
             },
             handleIDspot(newImage: string) {
                 this.eventIDspot = newImage
+            },
+            handleCoordinates(newCoordinates: string) {
+                this.eventCoordinates = JSON.stringify(newCoordinates)
             }
         },
 
         watch: {
             eventName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            eventCoordinates: function (newValue, oldValue) {
-                try {
-                    this.eventCoordinatesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.eventCoordinatesArray = []
-                }
-            },
-            eventCoordinatesArray: function (newValue, oldValue) {
-                this.eventCoordinates = JSON.stringify(newValue)
             },
             eventZoom: function (newValue, oldValue) {
                 try {
@@ -640,7 +597,6 @@
             const eventDescription = ref('')
             const eventSeoTags = ref([])
             const eventCoordinates = ref([])
-            const eventCoordinatesArray = ref([])
             const eventZoom = ref([])
             const eventZoomArray = ref([])
             const eventAffiliate = ref([])
@@ -705,7 +661,7 @@
                             'name': eventName.value,
                             'description': eventDescription.value,
                             'seo_tags': eventSeoTags._value,
-                            'coordinates': JSON.stringify(eventCoordinatesArray._value),
+                            'coordinates': eventCoordinates._value,
                             'zoom': JSON.stringify(eventZoomArray._value),
                             'affiliate': JSON.stringify(eventAffiliateArray._value),
                             'prices': JSON.stringify(eventPricesArray._value),
@@ -745,7 +701,6 @@
                 eventName,
                 eventDescription,
                 eventCoordinates,
-                eventCoordinatesArray,
                 eventZoom,
                 eventZoomArray,
                 eventAffiliate,

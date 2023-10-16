@@ -171,34 +171,7 @@
                                             <!-- Form - coordinates(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Souřadnice" nameDB="coordinates" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesRegionCoordinatesArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeCoordinateInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Latitude:</label>
-                                                                    <input class="a-input" type="number" step=".0000001" v-model="item.latitude" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Longitude:</label>
-                                                                    <input class="a-input" type="number" step=".0000001" v-model="item.longitude" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addCoordinateInput">Přidat souřadnice</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsCoordinates :value="placesRegionCoordinatesArray" @coordinates="handleCoordinates" />
                                             </div>
                                             <!-- Form - coordinates(JSON) END -->
                                             <!-- Form - zoom(JSON) -->
@@ -295,6 +268,7 @@
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -354,6 +328,7 @@
             mHeadlineForm,
             mInputIDPlaces,
             mInputImage,
+            mInputsCoordinates,
             mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
@@ -390,7 +365,6 @@
                     }
                 ],
                 placesRegionInformationAuthorArray: [],
-                placesRegionCoordinatesArray: [],
                 placesRegionZoomArray: [],
                 placesRegionAffiliateArray: []
             }
@@ -417,16 +391,6 @@
             },
             removeInformationAuthorInput(index: number) {
                 this.placesRegionInformationAuthorArray.splice(index, 1)
-            },
-            // coordinates
-            addCoordinateInput() {
-                this.placesRegionCoordinatesArray.push({
-                    latitude: null,
-                    longitude: null
-                })
-            },
-            removeCoordinateInput(index: number) {
-                this.placesRegionCoordinatesArray.splice(index, 1)
             },
             // Zoom
             addZoomInput() {
@@ -463,6 +427,9 @@
             },
             handleSeoTags(newSeoTags: string) {
                 this.placesRegionSeoTags = JSON.stringify(newSeoTags)
+            },
+            handleCoordinates(newCoordinates: string) {
+                this.placesRegionCoordinates = JSON.stringify(newCoordinates)
             }
         },
 
@@ -476,16 +443,6 @@
                 } catch (error) {
                     this.placesRegionInformationAuthorArray = []
                 }
-            },
-            placesRegionCoordinates: function (newValue, oldValue) {
-                try {
-                    this.placesRegionCoordinatesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesRegionCoordinatesArray = []
-                }
-            },
-            placesRegionCoordinatesArray: function (newValue, oldValue) {
-                this.placesRegionCoordinates = JSON.stringify(newValue)
             },
             placesRegionZoom: function (newValue, oldValue) {
                 try {
@@ -556,7 +513,6 @@
             const placesRegionInformationAuthorArray = ref([])
             const placesRegionSeoTags = ref([])
             const placesRegionCoordinates = ref([])
-            const placesRegionCoordinatesArray = ref([])
             const placesRegionZoom = ref([])
             const placesRegionZoomArray = ref([])
             const placesRegionAffiliate = ref([])
@@ -609,7 +565,7 @@
                             'information_chatgpt': placesRegionInformationChatgpt.value,
                             'information_author': JSON.stringify(placesRegionInformationAuthorArray._value),
                             'seo_tags': placesRegionSeoTags._value,
-                            'coordinates': JSON.stringify(placesRegionCoordinatesArray._value),
+                            'coordinates': placesRegionCoordinates._value,
                             'zoom': JSON.stringify(placesRegionZoomArray._value),
                             'affiliate': JSON.stringify(placesRegionAffiliateArray._value)
                         })
@@ -645,7 +601,6 @@
                 placesRegionInformationAuthor,
                 placesRegionInformationAuthorArray,
                 placesRegionCoordinates,
-                placesRegionCoordinatesArray,
                 placesRegionZoom,
                 placesRegionZoomArray,
                 placesRegionAffiliate,
