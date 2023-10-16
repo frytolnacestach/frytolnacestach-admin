@@ -86,25 +86,25 @@
                                             <!-- Form - id_state -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Státu" nameDB="id_state" perex="" :required=false />
-                                                <input class="a-input" type="number" min="0" name="state" v-model="eventIDstate" />
+                                                <mInputIDPlaces :value="eventIDstate" name="state" :required=false @id-place="handleIDstate" />
                                             </div>
                                             <!-- Form - id_state END -->
                                             <!-- Form - id_region -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Regionu" nameDB="id_region" perex="" :required=false />
-                                                <input class="a-input" type="number" min="0" name="region" v-model="eventIDregion" />
+                                                <mInputIDPlaces :value="eventIDregion" name="region" :required=false @id-place="handleIDregion" />
                                             </div>
                                             <!-- Form - id_region END -->
                                             <!-- Form - id_city -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Města" nameDB="id_city" perex="" :required=false />
-                                                <input class="a-input" type="number" min="0" name="city" v-model="eventIDcity" />
+                                                <mInputIDPlaces :value="eventIDcity" name="city" :required=false @id-place="handleIDcity" />
                                             </div>
                                             <!-- Form - id_city END -->
                                             <!-- Form - id_spot -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Místa" nameDB="id_spot" perex="" :required=false />
-                                                <input class="a-input" type="number" min="0" name="spot" v-model="eventIDspot" />
+                                                <mInputIDPlaces :value="eventIDspot" name="spot" :required=false @id-place="handleIDspot" />
                                             </div>
                                             <!-- Form - id_spot END -->
                                         </div>
@@ -342,6 +342,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -408,6 +409,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputIDPlaces,
             mInputImage,
             mInputsSeoTags,
             mLabel,
@@ -518,6 +520,18 @@
             },
             handleSeoTags(newSeoTags: string) {
                 this.eventSeoTags = JSON.stringify(newSeoTags)
+            },
+            handleIDstate(newImage: string) {
+                this.eventIDstate = newImage
+            },
+            handleIDregion(newImage: string) {
+                this.eventIDregion = newImage
+            },
+            handleIDcity(newImage: string) {
+                this.eventIDcity = newImage
+            },
+            handleIDspot(newImage: string) {
+                this.eventIDspot = newImage
             }
         },
 
