@@ -134,7 +134,7 @@
                                             <!-- Form - coordinates(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Souřadnice místa konání" nameDB="coordinates" perex="" :required=false />
-                                                <mInputsCoordinates :value="eventCoordinatesArray" @coordinates="handleCoordinates" />
+                                                <mInputsCoordinates :value="eventCoordinates" @coordinates="handleCoordinates" />
                                             </div>
                                             <!-- Form - coordinates(JSON) -->
                                             <!-- Form - zoom(JSON) -->

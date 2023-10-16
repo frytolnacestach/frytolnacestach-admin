@@ -165,7 +165,7 @@
                                             <!-- Form - coordinates(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Souřadnice" nameDB="coordinates" perex="" :required=false />
-                                                <mInputsCoordinates :value="placesRegionCoordinatesArray" @coordinates="handleCoordinates" />
+                                                <mInputsCoordinates :value="placesRegionCoordinates" @coordinates="handleCoordinates" />
                                             </div>
                                             <!-- Form - coordinates(JSON) END -->
                                             <!-- Form - zoom(JSON) -->
