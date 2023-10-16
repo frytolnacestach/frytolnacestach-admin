@@ -88,30 +88,7 @@
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in postSeoTagsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Tag:</label>
-                                                                    <input class="a-input" type="text" v-model="item.tag" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsSeoTags :value="postSeoTags" @seo-tags="handleSeoTags" />
                                             </div>
                                             <!-- Form - seo_tags END -->
                                         </div>
@@ -491,6 +468,7 @@
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -505,6 +483,7 @@
             mButton,
             mHeadlineForm,
             mInputImage,
+            mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -538,21 +517,11 @@
                 postTravelsArray: [],
                 postPricesArray: [],
                 postTriplengthArray: [],
-                postTimeArray: [],
-                postSeoTagsArray: []
+                postTimeArray: []
             }
         },
 
         methods: {
-            // seo tags
-            addSeoTagsInput() {
-                this.postSeoTagsArray.push({
-                    tag: ''
-                })
-            },
-            removeSeoTagsInput(index: number) {
-                this.postSeoTagsArray.splice(index, 1)
-            },
             // tags
             addTagInput() {
                 this.postTagsArray.push({
@@ -631,20 +600,13 @@
             },
             handleImageOg(newImage: string) {
                 this.postIDimageOg = newImage
+            },
+            handleSeoTags(newSeoTags: string) {
+                this.postSeoTags = JSON.stringify(newSeoTags)
             }
         },
 
         watch: {
-            postSeoTags: function (newValue, oldValue) {
-                try {
-                    this.postSeoTagsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.postSeoTagsArray = []
-                }
-            },
-            postSeoTagsArray: function (newValue, oldValue) {
-                this.postSeoTags = JSON.stringify(newValue)
-            },
             postTags: function (newValue, oldValue) {
                 try {
                     this.postTagsArray = JSON.parse(newValue)
@@ -763,7 +725,6 @@
             const postPerexTriplength = ref('')
             const postPerexTime = ref('')
             const postSeoTags = ref([])
-            const postSeoTagsArray = ref([])
             const postTags = ref([])
             const postTagsArray = ref([])
             const postLocations = ref([])
@@ -815,7 +776,7 @@
                             'perex_price': postPerexPrice.value,
                             'perex_triplength': postPerexTriplength.value,
                             'perex_time': postPerexTime.value,
-                            'seo_tags': JSON.stringify(postSeoTagsArray._value),
+                            'seo_tags': postSeoTags._value,
                             'tags': JSON.stringify(postTagsArray._value),
                             'locations': JSON.stringify(postLocationsArray._value),
                             'travels': JSON.stringify(postTravelsArray._value),
@@ -870,7 +831,6 @@
                 postPerexTriplength,
                 postPerexTime,
                 postSeoTags,
-                postSeoTagsArray,
                 postTags,
                 postTagsArray,
                 postLocations,

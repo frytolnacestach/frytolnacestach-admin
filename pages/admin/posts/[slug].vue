@@ -94,30 +94,7 @@
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in postSeoTagsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Tag:</label>
-                                                                    <input class="a-input" type="text" v-model="item.tag" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsSeoTags :value="postSeoTags" @seo-tags="handleSeoTags" />
                                             </div>
                                             <!-- Form - seo_tags END -->
                                         </div>
@@ -507,6 +484,7 @@
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -597,6 +575,7 @@
             mButton,
             mHeadlineForm,
             mInputImage,
+            mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -625,13 +604,11 @@
                         status: "span"
                     }
                 ],
-                postTagsArray: [],
                 postLocationsArray: [],
                 postTravelsArray: [],
                 postPricesArray: [],
                 postTriplengthsArray: [],
-                postTimeArray: [],
-                postSeoTagsArray: []
+                postTimeArray: []
                 /*timezones: [
                     'Pacific/Midway', // -11
                     'America/Adak', // -10,
@@ -675,15 +652,6 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace článku - ${postTitle}`
                 }
-            },
-            // seo tags
-            addSeoTagsInput() {
-                this.postSeoTagsArray.push({
-                    tag: ''
-                })
-            },
-            removeSeoTagsInput(index: number) {
-                this.postSeoTagsArray.splice(index, 1)
             },
             // tags
             addTagInput() {
@@ -763,6 +731,9 @@
             },
             handleImageOg(newImage: string) {
                 this.postIDimageOG = newImage
+            },
+            handleSeoTags(newSeoTags: string) {
+                this.postSeoTags = JSON.stringify(newSeoTags)
             }
 
             /*timeZone(timeZoneRaw: any) {
@@ -785,16 +756,6 @@
         watch: {
             postTitle: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            postSeoTags: function (newValue, oldValue) {
-                try {
-                    this.postSeoTagsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.postSeoTagsArray = []
-                }
-            },
-            postSeoTagsArray: function (newValue, oldValue) {
-                this.postSeoTags = JSON.stringify(newValue)
             },
             postTags: function (newValue, oldValue) {
                 try {
@@ -923,7 +884,6 @@
             const postSeoTags = ref([])
             const postSeoTagsArray = ref([])
             const postTags = ref([])
-            const postTagsArray = ref([])
             const postLocations = ref([])
             const postLocationsArray = ref([])
             const postTravels = ref([])
@@ -995,7 +955,7 @@
                         method: 'POST',
                         body: JSON.stringify({
                             'slug': postSlug.value,
-                            'seo_tags': JSON.stringify(postSeoTagsArray._value),
+                            'seo_tags': postSeoTags._value,
                             'id_continent': postIDcontinent.value,
                             'id_state': postIDstate.value,
                             'id_region': postIDregion.value,
@@ -1052,7 +1012,6 @@
                 itemID,
                 postSlug,
                 postSeoTags,
-                postSeoTagsArray,
                 postIDcontinent,
                 postIDstate,
                 postIDregion,

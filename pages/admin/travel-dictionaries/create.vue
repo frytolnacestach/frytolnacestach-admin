@@ -54,30 +54,7 @@
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in travelDictionarySeoTagsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Tag:</label>
-                                                                    <input class="a-input" type="text" v-model="item.tag" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsSeoTags :value="travelDictionarySeoTags" @seo-tags="handleSeoTags" />
                                             </div>
                                             <!-- Form - seo_tags END -->
                                         </div>
@@ -135,6 +112,7 @@
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -149,6 +127,7 @@
             mButton,
             mHeadlineForm,
             mInputImage,
+            mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -176,21 +155,11 @@
                         url: "",
                         status: "span"
                     }
-                ],
-                travelDictionarySeoTagsArray: []
+                ]
             }
         },
 
         methods: {
-            // seo tags
-            addSeoTagsInput() {
-                this.travelDictionarySeoTagsArray.push({
-                    tag: ''
-                })
-            },
-            removeSeoTagsInput(index: number) {
-                this.travelDictionarySeoTagsArray.splice(index, 1)
-            },
             // Components input changes
             handleSlug(newSlug: string) {
                 this.travelDictionarySlug = newSlug
@@ -200,19 +169,9 @@
             },
             handleImageHero(newImage: string) {
                 this.travelDictionaryIDimageHero = newImage
-            }
-        },
-
-        watch: {
-            travelDictionarySeoTags: function (newValue, oldValue) {
-                try {
-                    this.travelDictionarySeoTagsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.travelDictionarySeoTagsArray = []
-                }
             },
-            travelDictionarySeoTagsArray: function (newValue, oldValue) {
-                this.travelDictionarySeoTags = JSON.stringify(newValue)
+            handleSeoTags(newSeoTags: string) {
+                this.travelDictionarySeoTags = JSON.stringify(newSeoTags)
             }
         },
 
@@ -251,7 +210,6 @@
             const travelDictionaryName = ref('')
             const travelDictionaryDescription = ref('')
             const travelDictionarySeoTags = ref([])
-            const travelDictionarySeoTagsArray = ref([])
 
             //FORM - create
             const createForm = async () => {
@@ -270,7 +228,7 @@
                             'slug': travelDictionarySlug.value,
                             'name': travelDictionaryName.value,
                             'description': travelDictionaryDescription.value,
-                            'seo_tags': JSON.stringify(travelDictionarySeoTagsArray._value)
+                            'seo_tags': travelDictionarySeoTags._value
                         })
                     })
                     .then(() => {
@@ -298,7 +256,6 @@
                 travelDictionaryName,
                 travelDictionaryDescription,
                 travelDictionarySeoTags,
-                travelDictionarySeoTagsArray,
                 createForm
             }
         },

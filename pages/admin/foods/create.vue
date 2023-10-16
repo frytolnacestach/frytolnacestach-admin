@@ -54,30 +54,7 @@
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in foodSeoTagsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Tag:</label>
-                                                                    <input class="a-input" type="text" v-model="item.tag" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsSeoTags :value="foodSeoTags" @seo-tags="handleSeoTags" />
                                             </div>
                                             <!-- Form - seo_tags END -->
                                         </div>
@@ -176,6 +153,7 @@
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -190,6 +168,7 @@
             mButton,
             mHeadlineForm,
             mInputImage,
+            mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -218,21 +197,11 @@
                         status: "span"
                     }
                 ],
-                foodIDSstatesArray: [],
-                foodSeoTagsArray: []
+                foodIDSstatesArray: []
             }
         },
 
         methods: {
-            // seo tags
-            addSeoTagsInput() {
-                this.foodSeoTagsArray.push({
-                    tag: ''
-                })
-            },
-            removeSeoTagsInput(index: number) {
-                this.foodSeoTagsArray.splice(index, 1)
-            },
             // ids states
             addIDSstateInput() {
                 this.foodIDSstatesArray.push({
@@ -251,20 +220,13 @@
             },
             handleImageHero(newImage: string) {
                 this.foodIDimageHero = newImage
+            },
+            handleSeoTags(newSeoTags: string) {
+                this.foodSeoTags = JSON.stringify(newSeoTags)
             }
         },
 
         watch: {
-            foodSeoTags: function (newValue, oldValue) {
-                try {
-                    this.foodSeoTagsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.foodSeoTagsArray = []
-                }
-            },
-            foodSeoTagsArray: function (newValue, oldValue) {
-                this.foodSeoTags = JSON.stringify(newValue)
-            },
             foodIDSstates: function (newValue, oldValue) {
                 try {
                     this.foodIDSstatesArray = JSON.parse(newValue)
@@ -310,7 +272,6 @@
             const foodIDimageCover = ref(null)
             const foodIDimageHero = ref(null)
             const foodSeoTags = ref([])
-            const foodSeoTagsArray = ref([])
             const foodIDSstates = ref([])
             const foodIDSstatesArray = ref([])
             const foodName = ref('')
@@ -333,7 +294,7 @@
                             'slug': foodSlug.value,
                             'id_image_cover': foodIDimageCover.value,
                             'id_image_hero': foodIDimageHero.value,
-                            'seo_tags': JSON.stringify(foodSeoTagsArray._value),
+                            'seo_tags': foodSeoTags._value,
                             'ids_states': JSON.stringify(foodIDSstatesArray._value),
                             'name': foodName.value,
                             'description': foodDescription.value,
@@ -364,7 +325,6 @@
                 foodIDimageCover,
                 foodIDimageHero,
                 foodSeoTags,
-                foodSeoTagsArray,
                 foodIDSstates,
                 foodIDSstatesArray,
                 foodName,

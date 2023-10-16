@@ -76,30 +76,7 @@
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesContinentSeoTagsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Tag:</label>
-                                                                    <input class="a-input" type="text" v-model="item.tag" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsSeoTags :value="placesContinentSeoTags" @seo-tags="handleSeoTags" />
                                             </div>
                                             <!-- Form - seo_tags END -->
                                         </div>
@@ -292,6 +269,7 @@
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -346,6 +324,7 @@
             mButton,
             mHeadlineForm,
             mInputImage,
+            mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -382,8 +361,7 @@
                 ],
                 placesContinentInformationAuthorArray: [],
                 placesContinentCoordinatesArray: [],
-                placesContinentZoomArray: [],
-                placesContinentSeoTagsArray: []
+                placesContinentZoomArray: []
             }
         },
 
@@ -408,15 +386,6 @@
             },
             removeInformationAuthorInput(index: number) {
                 this.placesContinentInformationAuthorArray.splice(index, 1)
-            },
-            // seo tags
-            addSeoTagsInput() {
-                this.placesContinentSeoTagsArray.push({
-                    tag: ''
-                })
-            },
-            removeSeoTagsInput(index: number) {
-                this.placesContinentSeoTagsArray.splice(index, 1)
             },
             // coordinates
             addCoordinateInput() {
@@ -447,22 +416,15 @@
             },
             handleImageHero(newImage: string) {
                 this.placesContinentIDimageHero = newImage
+            },
+            handleSeoTags(newSeoTags: string) {
+                this.placesContinentSeoTags = JSON.stringify(newSeoTags)
             }
         },
 
         watch: {
             placesContinentName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            placesContinentSeoTags: function (newValue, oldValue) {
-                try {
-                    this.placesContinentSeoTagsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesContinentSeoTagsArray = []
-                }
-            },
-            placesContinentSeoTagsArray: function (newValue, oldValue) {
-                this.placesContinentSeoTags = JSON.stringify(newValue)
             },
             placesContinentInformationAuthor: function (newValue, oldValue) {
                 try {
@@ -545,7 +507,6 @@
             const placesContinentPopulationDensity = ref(null)
             const placesContinentNumberStates = ref(null)
             const placesContinentSeoTags = ref([])
-            const placesContinentSeoTagsArray = ref([])
             const placesContinentCoordinates = ref([])
             const placesContinentCoordinatesArray = ref([])
             const placesContinentZoom = ref([])
@@ -602,7 +563,7 @@
                             'population': placesContinentPopulation.value,
                             'population_density': placesContinentPopulationDensity.value,
                             'number_states': placesContinentNumberStates.value,
-                            'seo_tags': JSON.stringify(placesContinentSeoTagsArray._value),
+                            'seo_tags': placesContinentSeoTags._value,
                             'coordinates': JSON.stringify(placesContinentCoordinatesArray._value),
                             'zoom': JSON.stringify(placesContinentZoomArray._value)
                         })
@@ -628,7 +589,6 @@
                 loadingData,
                 itemID,
                 placesContinentSeoTags,
-                placesContinentSeoTagsArray,
                 placesContinentIDimageCover,
                 placesContinentIDimageHero,
                 placesContinentTypePlace,

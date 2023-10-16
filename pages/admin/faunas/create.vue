@@ -54,30 +54,7 @@
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in faunaSeoTagsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Tag:</label>
-                                                                    <input class="a-input" type="text" v-model="item.tag" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsSeoTags :value="faunaSeoTags" @seo-tags="handleSeoTags" />
                                             </div>
                                             <!-- Form - seo_tags END -->
                                         </div>
@@ -188,6 +165,7 @@
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -202,6 +180,7 @@
             mButton,
             mHeadlineForm,
             mInputImage,
+            mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -230,21 +209,11 @@
                         status: "span"
                     }
                 ],
-                faunaIDSstatesArray: [],
-                faunaSeoTagsArray: []
+                faunaIDSstatesArray: []
             }
         },
 
         methods: {
-            // seo tags
-            addSeoTagsInput() {
-                this.faunaSeoTagsArray.push({
-                    tag: ''
-                })
-            },
-            removeSeoTagsInput(index: number) {
-                this.faunaSeoTagsArray.splice(index, 1)
-            },
             // ids states
             addIDSstateInput() {
                 this.faunaIDSstatesArray.push({
@@ -263,20 +232,13 @@
             },
             handleImageHero(newImage: string) {
                 this.faunaIDimageHero = newImage
+            },
+            handleSeoTags(newSeoTags: string) {
+                this.faunaSeoTags = JSON.stringify(newSeoTags)
             }
         },
 
         watch: {
-            faunaSeoTags: function (newValue, oldValue) {
-                try {
-                    this.faunaSeoTagsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.faunaSeoTagsArray = []
-                }
-            },
-            faunaSeoTagsArray: function (newValue, oldValue) {
-                this.faunaSeoTags = JSON.stringify(newValue)
-            },
             faunaIDSstates: function (newValue, oldValue) {
                 try {
                     this.faunaIDSstatesArray = JSON.parse(newValue)
@@ -322,7 +284,6 @@
             const faunaIDimageCover = ref(null)
             const faunaIDimageHero = ref(null)
             const faunaSeoTags = ref([])
-            const faunaSeoTagsArray = ref([])
             const faunaIDSstates = ref([])
             const faunaIDSstatesArray = ref([])
             const faunaName = ref('')
@@ -347,7 +308,7 @@
                             'slug': faunaSlug.value,
                             'id_image_cover': faunaIDimageCover.value,
                             'id_image_hero': faunaIDimageHero.value,
-                            'seo_tags': JSON.stringify(faunaSeoTagsArray._value),
+                            'seo_tags': faunaSeoTags._value,
                             'ids_states': JSON.stringify(faunaIDSstatesArray._value),
                             'name': faunaName.value,
                             'name_lat': faunaNameLat.value,
@@ -380,7 +341,6 @@
                 faunaIDimageCover,
                 faunaIDimageHero,
                 faunaSeoTags,
-                faunaSeoTagsArray,
                 faunaIDSstates,
                 faunaIDSstatesArray,
                 faunaName,

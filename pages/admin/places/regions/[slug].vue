@@ -76,30 +76,7 @@
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesRegionSeoTagsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Tag:</label>
-                                                                    <input class="a-input" type="text" v-model="item.tag" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsSeoTags :value="placesRegionSeoTags" @seo-tags="handleSeoTags" />
                                             </div>
                                             <!-- Form - seo_tags END -->
                                         </div>
@@ -318,6 +295,7 @@
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -376,6 +354,7 @@
             mHeadlineForm,
             mInputIDPlaces,
             mInputImage,
+            mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -413,8 +392,7 @@
                 placesRegionInformationAuthorArray: [],
                 placesRegionCoordinatesArray: [],
                 placesRegionZoomArray: [],
-                placesRegionAffiliateArray: [],
-                placesRegionSeoTagsArray: []
+                placesRegionAffiliateArray: []
             }
         },
 
@@ -439,15 +417,6 @@
             },
             removeInformationAuthorInput(index: number) {
                 this.placesRegionInformationAuthorArray.splice(index, 1)
-            },
-            // seo tags
-            addSeoTagsInput() {
-                this.placesRegionSeoTagsArray.push({
-                    tag: ''
-                })
-            },
-            removeSeoTagsInput(index: number) {
-                this.placesRegionSeoTagsArray.splice(index, 1)
             },
             // coordinates
             addCoordinateInput() {
@@ -491,22 +460,15 @@
             },
             handleIDstate(newImage: string) {
                 this.placesRegionIDstate = newImage
+            },
+            handleSeoTags(newSeoTags: string) {
+                this.placesRegionSeoTags = JSON.stringify(newSeoTags)
             }
         },
 
         watch: {
             placesRegionName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            placesRegionSeoTags: function (newValue, oldValue) {
-                try {
-                    this.placesRegionSeoTagsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesRegionSeoTagsArray = []
-                }
-            },
-            placesRegionSeoTagsArray: function (newValue, oldValue) {
-                this.placesRegionSeoTags = JSON.stringify(newValue)
             },
             placesRegionInformationAuthor: function (newValue, oldValue) {
                 try {
@@ -593,7 +555,6 @@
             const placesRegionInformationAuthor = ref([])
             const placesRegionInformationAuthorArray = ref([])
             const placesRegionSeoTags = ref([])
-            const placesRegionSeoTagsArray = ref([])
             const placesRegionCoordinates = ref([])
             const placesRegionCoordinatesArray = ref([])
             const placesRegionZoom = ref([])
@@ -647,7 +608,7 @@
                             'name': placesRegionName.value,
                             'information_chatgpt': placesRegionInformationChatgpt.value,
                             'information_author': JSON.stringify(placesRegionInformationAuthorArray._value),
-                            'seo_tags': JSON.stringify(placesRegionSeoTagsArray._value),
+                            'seo_tags': placesRegionSeoTags._value,
                             'coordinates': JSON.stringify(placesRegionCoordinatesArray._value),
                             'zoom': JSON.stringify(placesRegionZoomArray._value),
                             'affiliate': JSON.stringify(placesRegionAffiliateArray._value)
@@ -674,7 +635,6 @@
                 loadingData,
                 itemID,
                 placesRegionSeoTags,
-                placesRegionSeoTagsArray,
                 placesRegionIDstate,
                 placesRegionIDimageCover,
                 placesRegionIDimageHero,

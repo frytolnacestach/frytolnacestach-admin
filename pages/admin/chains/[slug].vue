@@ -70,30 +70,7 @@
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in chainSeoTagsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Tag:</label>
-                                                                    <input class="a-input" type="text" v-model="item.tag" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsSeoTags :value="chainSeoTags" @seo-tags="handleSeoTags" />
                                             </div>
                                             <!-- Form - seo_tags END -->
                                         </div>
@@ -213,6 +190,7 @@
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -252,6 +230,7 @@
             mButton,
             mHeadlineForm,
             mInputImage,
+            mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -280,8 +259,7 @@
                         status: "span"
                     }
                 ],
-                chainInformationArray: [],
-                chainSeoTagsArray: []
+                chainInformationArray: []
             }
         },
 
@@ -304,15 +282,6 @@
             removeInformationInput(index: number) {
                 this.chainInformationArray.splice(index, 1)
             },
-            // seo tags
-            addSeoTagsInput() {
-                this.chainSeoTagsArray.push({
-                    tag: ''
-                })
-            },
-            removeSeoTagsInput(index: number) {
-                this.chainSeoTagsArray.splice(index, 1)
-            },
             // ids states
             addIDSstateInput() {
                 this.chainIDSstatesArray.push({
@@ -331,6 +300,9 @@
             },
             handleImageHero(newImage: string) {
                 this.chainIDimageHero = newImage
+            },
+            handleSeoTags(newSeoTags: string) {
+                this.chainSeoTags = JSON.stringify(newSeoTags)
             }
         },
 
@@ -348,17 +320,6 @@
             },
             chainInformationArray: function (newValue, oldValue) {
                 this.chainInformation = JSON.stringify(newValue)
-            },
-            // seo tags
-            chainSeoTags: function (newValue, oldValue) {
-                try {
-                    this.chainSeoTagsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.chainSeoTagsArray = []
-                }
-            },
-            chainSeoTagsArray: function (newValue, oldValue) {
-                this.chainSeoTags = JSON.stringify(newValue)
             },
             // IDS states
             chainIDSstates: function (newValue, oldValue) {
@@ -417,7 +378,6 @@
             const chainInformation = ref([])
             const chainInformationArray = ref([])
             const chainSeoTags = ref([])
-            const chainSeoTagsArray = ref([])
             const chainName = ref('')
             const chainDescription = ref('')
 
@@ -459,7 +419,7 @@
                             'id_image_cover': chainIDimageCover.value,
                             'id_image_hero': chainIDimageHero.value,
                             'information': JSON.stringify(chainInformationArray._value),
-                            'seo_tags': JSON.stringify(chainSeoTagsArray._value),
+                            'seo_tags': chainSeoTags._value,
                             'ids_states': JSON.stringify(chainIDSstatesArray._value),
                             'name': chainName.value,
                             'description': chainDescription.value,
@@ -493,7 +453,6 @@
                 chainInformation,
                 chainInformationArray,
                 chainSeoTags,
-                chainSeoTagsArray,
                 chainName,
                 chainDescription,
                 editForm

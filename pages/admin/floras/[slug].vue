@@ -70,30 +70,7 @@
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in floraSeoTagsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeSeoTagsInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Tag:</label>
-                                                                    <input class="a-input" type="text" v-model="item.tag" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addSeoTagsInput">Přidat tag</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsSeoTags :value="floraSeoTags" @seo-tags="handleSeoTags" />
                                             </div>
                                             <!-- Form - seo_tags END -->
                                         </div>
@@ -204,6 +181,7 @@
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -241,6 +219,7 @@
             mButton,
             mHeadlineForm,
             mInputImage,
+            mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -269,8 +248,7 @@
                         status: "span"
                     }
                 ],
-                floraIDSstatesArray: [],
-                floraSeoTagsArray: []
+                floraIDSstatesArray: []
             }
         },
 
@@ -282,15 +260,6 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace flory - ${floraName}`
                 }
-            },
-            // seo tags
-            addSeoTagsInput() {
-                this.floraSeoTagsArray.push({
-                    tag: ''
-                })
-            },
-            removeSeoTagsInput(index: number) {
-                this.floraSeoTagsArray.splice(index, 1)
             },
             // ids states
             addIDSstateInput() {
@@ -310,22 +279,15 @@
             },
             handleImageHero(newImage: string) {
                 this.floraIDimageHero = newImage
+            },
+            handleSeoTags(newSeoTags: string) {
+                this.floraSeoTags = JSON.stringify(newSeoTags)
             }
         },
 
         watch: {
             floraName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            floraSeoTags: function (newValue, oldValue) {
-                try {
-                    this.floraSeoTagsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.floraSeoTagsArray = []
-                }
-            },
-            floraSeoTagsArray: function (newValue, oldValue) {
-                this.floraSeoTags = JSON.stringify(newValue)
             },
             floraIDSstates: function (newValue, oldValue) {
                 try {
@@ -379,7 +341,6 @@
             const floraIDimageCover = ref(null)
             const floraIDimageHero = ref(null)
             const floraSeoTags = ref([])
-            const floraSeoTagsArray = ref([])
             const floraIDSstates = ref([])
             const floraIDSstatesArray = ref([])
             const floraName = ref('')
@@ -429,7 +390,7 @@
                             'slug': floraSlug.value,
                             'id_image_cover': floraIDimageCover.value,
                             'id_image_hero': floraIDimageHero.value,
-                            'seo_tags': JSON.stringify(floraSeoTagsArray._value),
+                            'seo_tags': floraSeoTags._value,
                             'ids_states': JSON.stringify(floraIDSstatesArray._value),
                             'name': floraName.value,
                             'name_lat': floraNameLat.value,
@@ -461,7 +422,6 @@
                 itemID,
                 floraSlug,
                 floraSeoTags,
-                floraSeoTagsArray,
                 floraIDimageCover,
                 floraIDimageHero,
                 floraIDSstates,
