@@ -292,17 +292,6 @@
             },
             chainInformationArray: function (newValue, oldValue) {
                 this.chainInformation = JSON.stringify(newValue)
-            },
-            // IDS states
-            chainIDSstates: function (newValue, oldValue) {
-                try {
-                    this.chainIDSstatesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.chainIDSstatesArray = []
-                }
-            },
-            chainIDSstatesArray: function (newValue, oldValue) {
-                this.chainIDSstates = JSON.stringify(newValue)
             }
         },
 

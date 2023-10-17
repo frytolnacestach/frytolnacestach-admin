@@ -198,19 +198,6 @@
             }
         },
 
-        watch: {
-            foodIDSstates: function (newValue, oldValue) {
-                try {
-                    this.foodIDSstatesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.foodIDSstatesArray = []
-                }
-            },
-            foodIDSstatesArray: function (newValue, oldValue) {
-                this.foodIDSstates = JSON.stringify(newValue)
-            }
-        },
-
         setup() {
             //LAYOUT
             definePageMeta({

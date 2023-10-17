@@ -210,19 +210,6 @@
             }
         },
 
-        watch: {
-            floraIDSstates: function (newValue, oldValue) {
-                try {
-                    this.floraIDSstatesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.floraIDSstatesArray = []
-                }
-            },
-            floraIDSstatesArray: function (newValue, oldValue) {
-                this.floraIDSstates = JSON.stringify(newValue)
-            }
-        },
-
         setup() {
             //LAYOUT
             definePageMeta({

@@ -192,20 +192,6 @@
             }
         },
 
-        watch: {
-            // IDS states
-            wallSocketIDSstates: function (newValue, oldValue) {
-                try {
-                    this.wallSocketIDSstatesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.wallSocketIDSstatesArray = []
-                }
-            },
-            wallSocketIDSstatesArray: function (newValue, oldValue) {
-                this.wallSocketIDSstates = JSON.stringify(newValue)
-            }
-        },
-
         setup() {
             //LAYOUT
             definePageMeta({

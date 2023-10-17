@@ -246,16 +246,6 @@
         watch: {
             foodName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            foodIDSstates: function (newValue, oldValue) {
-                try {
-                    this.foodIDSstatesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.foodIDSstatesArray = []
-                }
-            },
-            foodIDSstatesArray: function (newValue, oldValue) {
-                this.foodIDSstates = JSON.stringify(newValue)
             }
         },
 

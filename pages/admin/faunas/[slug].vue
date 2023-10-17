@@ -260,16 +260,6 @@
         watch: {
             faunaName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            faunaIDSstates: function (newValue, oldValue) {
-                try {
-                    this.faunaIDSstatesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.faunaIDSstatesArray = []
-                }
-            },
-            faunaIDSstatesArray: function (newValue, oldValue) {
-                this.faunaIDSstates = JSON.stringify(newValue)
             }
         },
 

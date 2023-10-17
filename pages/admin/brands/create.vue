@@ -186,19 +186,6 @@
             }
         },
 
-        watch: {
-            brandIDSstates: function (newValue, oldValue) {
-                try {
-                    this.brandIDSstatesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.brandIDSstatesArray = []
-                }
-            },
-            brandIDSstatesArray: function (newValue, oldValue) {
-                this.brandIDSstates = JSON.stringify(newValue)
-            }
-        },
-
         setup() {
             //LAYOUT
             definePageMeta({
