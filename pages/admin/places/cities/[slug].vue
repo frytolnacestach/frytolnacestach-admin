@@ -210,34 +210,7 @@
                                             <!-- Form - affiliate(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Affiliate" nameDB="affiliate" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesCityAffiliateArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeAffiliateInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addAffiliateInput">Přidat affileate</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsAffiliate :value="placesCityAffiliate" @affiliate="handleAffiliate" />
                                             </div>
                                             <!-- Form - affiliate(JSON) END -->
                                             <!-- Form - alerts(JSON) -->
@@ -386,6 +359,7 @@
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
@@ -476,6 +450,7 @@
             mHeadlineForm,
             mInputIDPlaces,
             mInputImage,
+            mInputsAffiliate,
             mInputsCoordinates,
             mInputsSeoTags,
             mInputsZoom,
@@ -514,7 +489,6 @@
                     }
                 ],
                 placesCityInformationAuthorArray: [],
-                placesCityAffiliateArray: [],
                 placesCityAlertsArray: [],
                 placesCityParkingArray: []
             }
@@ -541,16 +515,6 @@
             },
             removeInformationAuthorInput(index: number) {
                 this.placesCityInformationAuthorArray.splice(index, 1)
-            },
-            // Affiliate
-            addAffiliateInput() {
-                this.placesCityAffiliateArray.push({
-                    name: '',
-                    value: true
-                })
-            },
-            removeAffiliateInput(index: number) {
-                this.placesCityAffiliateArray.splice(index, 1)
             },
             // Alerts
             addAlertInput() {
@@ -606,6 +570,9 @@
             },
             handleZoom(newZoom: string) {
                 this.placesCityZoom = JSON.stringify(newZoom)
+            },
+            handleAffiliate(newAffiliate: string) {
+                this.placesCityAffiliate = JSON.stringify(newAffiliate)
             }
         },
 
@@ -619,16 +586,6 @@
                 } catch (error) {
                     this.placesCityInformationAuthorArray = []
                 }
-            },
-            placesCityAffiliate: function (newValue, oldValue) {
-                try {
-                    this.placesCityAffiliateArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesCityAffiliateArray = []
-                }
-            },
-            placesCityAffiliateArray: function (newValue, oldValue) {
-                this.placesCityAffiliate = JSON.stringify(newValue)
             },
             placesCityAlerts: function (newValue, oldValue) {
                 try {
@@ -705,7 +662,6 @@
             const placesCityCoordinates = ref([])
             const placesCityZoom = ref([])
             const placesCityAffiliate = ref([])
-            const placesCityAffiliateArray = ref([])
             const placesCityAlerts = ref([])
             const placesCityAlertsArray = ref([])
             const placesCityParking = ref([])
@@ -770,7 +726,7 @@
                             'seo_tags': placesCitySeoTags._value,
                             'coordinates': placesCityCoordinates._value,
                             'zoom': placesCityZoom._value,
-                            'affiliate': JSON.stringify(placesCityAffiliateArray._value),
+                            'affiliate': placesCityAffiliate._value,
                             'alerts': JSON.stringify(placesCityAlertsArray._value),
                             'parking': JSON.stringify(placesCityParkingArray._value)
                         })
@@ -812,7 +768,6 @@
                 placesCityCoordinates,
                 placesCityZoom,
                 placesCityAffiliate,
-                placesCityAffiliateArray,
                 placesCityAlerts,
                 placesCityAlertsArray,
                 placesCityParking,

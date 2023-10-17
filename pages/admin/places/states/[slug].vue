@@ -546,34 +546,7 @@
                                             <!-- Form - affiliate(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Affiliate" nameDB="affiliate" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesStateAffiliateArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeAffiliateInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addAffiliateInput">Přidat affileate</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsAffiliate :value="placesStateAffiliate" @affiliate="handleAffiliate" />
                                             </div>
                                             <!-- Form - affiliate(JSON) END -->
                                             <!-- Form - alerts(JSON) -->
@@ -816,6 +789,7 @@
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
@@ -990,6 +964,7 @@
             mHeadlineForm,
             mInputIDPlaces,
             mInputImage,
+            mInputsAffiliate,
             mInputsCoordinates,
             mInputsSeoTags,
             mInputsZoom,
@@ -1034,7 +1009,6 @@
                 placesStatePeopleReligionArray: [],
                 placesStatePeopleNationalityArray: [],
                 placesStateVisitorsEntryArray: [],
-                placesStateAffiliateArray: [],
                 placesStateAlertsArray: [],
                 placesStateOrganizationArray: [],
                 placesStateAppsArray: [],
@@ -1144,16 +1118,6 @@
             removeVisitorsEntryInput(index: number) {
                 this.placesStateVisitorsEntryArray.splice(index, 1)
             },
-            // Affiliate
-            addAffiliateInput() {
-                this.placesStateAffiliateArray.push({
-                    name: '',
-                    value: true
-                })
-            },
-            removeAffiliateInput(index: number) {
-                this.placesStateAffiliateArray.splice(index, 1)
-            },
             // Alerts
             addAlertInput() {
                 this.placesStateAlertsArray.push({
@@ -1247,6 +1211,9 @@
             },
             handleZoom(newZoom: string) {
                 this.placesStateZoom = JSON.stringify(newZoom)
+            },
+            handleAffiliate(newAffiliate: string) {
+                this.placesStateAffiliate = JSON.stringify(newAffiliate)
             }
         },
 
@@ -1320,16 +1287,6 @@
             },
             placesStateVisitorsEntryArray: function (newValue, oldValue) {
                 this.placesStateVisitorsEntry = JSON.stringify(newValue)
-            },
-            placesStateAffiliate: function (newValue, oldValue) {
-                try {
-                    this.placesStateAffiliateArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesStateAffiliateArray = []
-                }
-            },
-            placesStateAffiliateArray: function (newValue, oldValue) {
-                this.placesStateAffiliate = JSON.stringify(newValue)
             },
             placesStateAlerts: function (newValue, oldValue) {
                 try {
@@ -1452,7 +1409,6 @@
             const placesStateCoordinates = ref([])
             const placesStateZoom = ref([])
             const placesStateAffiliate = ref([])
-            const placesStateAffiliateArray = ref([])
             const placesStateAlerts = ref([])
             const placesStateAlertsArray = ref([])
             const placesStateOrganization = ref([])
@@ -1546,7 +1502,7 @@
                             'seo_tags': placesStateSeoTags._value,
                             'coordinates': placesStateCoordinates._value,
                             'zoom': placesStateZoom._value,
-                            'affiliate': JSON.stringify(placesStateAffiliateArray._value),
+                            'affiliate': placesStateAffiliate._value,
                             'alerts': JSON.stringify(placesStateAlertsArray._value),
                             'organization': JSON.stringify(placesStateOrganizationArray._value),
                             'apps': JSON.stringify(placesStateAppsArray._value),
@@ -1607,7 +1563,6 @@
                 placesStateCoordinates,
                 placesStateZoom,
                 placesStateAffiliate,
-                placesStateAffiliateArray,
                 placesStateAlerts,
                 placesStateAlertsArray,
                 placesStateOrganization,

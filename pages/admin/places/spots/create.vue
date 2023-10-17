@@ -249,34 +249,7 @@
                                             <!-- Form - affiliate(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Affiliate" nameDB="affiliate" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesSpotAffiliateArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeAffiliateInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addAffiliateInput">Přidat affileate</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsAffiliate :value="placesSpotAffiliate" @affiliate="handleAffiliate" />
                                             </div>
                                             <!-- Form - affiliate(JSON) END -->
                                         </div>
@@ -307,6 +280,7 @@
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
@@ -325,6 +299,7 @@
             mHeadlineForm,
             mInputIDPlaces,
             mInputImage,
+            mInputsAffiliate,
             mInputsCoordinates,
             mInputsSeoTags,
             mInputsZoom,
@@ -365,8 +340,7 @@
                 placesSpotInformationAuthorArray: [],
                 placesSpotInformationDurationHeadlineArray: [],
                 placesSpotInformationDurationTimesArray: [],
-                placesSpotInformationDurationArray: [],
-                placesSpotAffiliateArray: []
+                placesSpotInformationDurationArray: []
             }
         },
 
@@ -432,16 +406,6 @@
             removeInformationDurationTimesInput(index: number) {
                 this.placesSpotInformationDurationArray[0].times.splice(index, 1)
             },
-            // Affiliate
-            addAffiliateInput() {
-                this.placesSpotAffiliateArray.push({
-                    name: '',
-                    value: true
-                })
-            },
-            removeAffiliateInput(index: number) {
-                this.placesSpotAffiliateArray.splice(index, 1)
-            },
             // Components input changes
             handleSlug(newSlug: string) {
                 this.placesSpotSlug = newSlug
@@ -466,6 +430,9 @@
             },
             handleZoom(newZoom: string) {
                 this.placesSpotZoom = JSON.stringify(newZoom)
+            },
+            handleAffiliate(newAffiliate: string) {
+                this.placesSpotAffiliate = JSON.stringify(newAffiliate)
             }
         },
 
@@ -497,14 +464,7 @@
                 } catch (error) {
                     this.placesSpotInformationDurationArray = []
                 }
-            },
-            placesSpotAffiliate: function (newValue, oldValue) {
-                try {
-                    this.placesSpotAffiliateArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesSpotAffiliateArray = []
-                }
-            },
+            }
         },
 
         setup() {
@@ -555,7 +515,6 @@
             const placesSpotCoordinates = ref([])
             const placesSpotZoom = ref([])
             const placesSpotAffiliate = ref([])
-            const placesSpotAffiliateArray = ref([])
 
             //FORM - create
             const createForm = async () => {
@@ -583,7 +542,7 @@
                             'seo_tags': placesSpotsSeoTags._value,
                             'coordinates': placesSpotCoordinates._value,
                             'zoom': placesSpotZoom._value,
-                            'affiliate': JSON.stringify(placesSpotAffiliateArray._value)
+                            'affiliate': placesSpotAffiliate._value
                         })
                     })
                     .then(() => {
@@ -624,7 +583,6 @@
                 placesSpotCoordinates,
                 placesSpotZoom,
                 placesSpotAffiliate,
-                placesSpotAffiliateArray,
                 createForm
             }
         },

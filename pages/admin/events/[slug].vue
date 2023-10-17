@@ -162,34 +162,7 @@
                                             <!-- Form - affiliate(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Affiliate" nameDB="affiliate" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in eventAffiliateArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeAffiliateInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addAffiliateInput">Přidat affiliate</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsAffiliate :value="eventAffiliate" @affiliate="handleAffiliate" />
                                             </div>
                                             <!-- Form - affiliate(JSON) END -->
                                             <!-- Form - prices(JSON) -->
@@ -290,6 +263,7 @@
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
@@ -359,6 +333,7 @@
             mHeadlineForm,
             mInputIDPlaces,
             mInputImage,
+            mInputsAffiliate,
             mInputsCoordinates,
             mInputsSeoTags,
             mInputsZoom,
@@ -390,7 +365,6 @@
                         status: "span"
                     }
                 ],
-                eventAffiliateArray: [],
                 eventPricesArray: [],
                 eventLinksArray: []
             }
@@ -404,16 +378,6 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace UDÁLOSTI - ${eventName}`
                 }
-            },
-            // affiliate
-            addAffiliateInput() {
-                this.eventAffiliateArray.push({
-                    name: '',
-                    value: true
-                })
-            },
-            removeAffiliateInput(index: number) {
-                this.eventAffiliateArray.splice(index, 1)
             },
             // prices
             addPriceInput() {
@@ -466,22 +430,15 @@
             },
             handleZoom(newZoom: string) {
                 this.eventZoom = JSON.stringify(newZoom)
+            },
+            handleAffiliate(newAffiliate: string) {
+                this.eventAffiliate = JSON.stringify(newAffiliate)
             }
         },
 
         watch: {
             eventName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            eventAffiliate: function (newValue, oldValue) {
-                try {
-                    this.eventAffiliateArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.eventAffiliateArray = []
-                }
-            },
-            eventAffiliateArray: function (newValue, oldValue) {
-                this.eventAffiliate = JSON.stringify(newValue)
             },
             eventPrices: function (newValue, oldValue) {
                 try {
@@ -556,7 +513,6 @@
             const eventCoordinates = ref([])
             const eventZoom = ref([])
             const eventAffiliate = ref([])
-            const eventAffiliateArray = ref([])
             const eventPrices = ref([])
             const eventPricesArray = ref([])
             const eventLinks = ref([])
@@ -619,7 +575,7 @@
                             'seo_tags': eventSeoTags._value,
                             'coordinates': eventCoordinates._value,
                             'zoom': eventZoom._value,
-                            'affiliate': JSON.stringify(eventAffiliateArray._value),
+                            'affiliate': eventAffiliate._value,
                             'prices': JSON.stringify(eventPricesArray._value),
                             'links': JSON.stringify(eventLinksArray._value)
                         })
@@ -659,7 +615,6 @@
                 eventCoordinates,
                 eventZoom,
                 eventAffiliate,
-                eventAffiliateArray,
                 eventPrices,
                 eventPricesArray,
                 eventLinks,
