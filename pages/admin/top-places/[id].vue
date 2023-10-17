@@ -182,6 +182,7 @@
             const successForm = ref('')
             // variable
             const loadingData = ref(false)
+
             // date
             const itemID = ref(null)
             const topPlaceIDplace = ref(null)
@@ -197,6 +198,7 @@
                     itemID.value = TopPlace[0].id
                     topPlaceIDplace.value = TopPlace[0].id_place
                     topPlaceType.value = TopPlace[0].type
+                    loadingData.value = true
                 } else {
 
                 }
@@ -237,6 +239,7 @@
             return {
                 successForm,
                 errorForm,
+                loadingData,
                 itemID,
                 topPlaceIDplace,
                 topPlaceType,
