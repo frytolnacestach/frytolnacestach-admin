@@ -62,8 +62,8 @@
                 deep: true,
                 handler(newValue, oldValue) {
                     this.$emit('ids-states', this.IDSstatesArray)
-                },
-            },
+                }
+            }
         }
     })
 </script>

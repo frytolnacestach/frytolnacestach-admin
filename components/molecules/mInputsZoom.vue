@@ -67,8 +67,8 @@
                 deep: true,
                 handler(newValue, oldValue) {
                     this.$emit('zoom', this.zoomArray)
-                },
-            },
+                }
+            }
         }
     })
 </script>

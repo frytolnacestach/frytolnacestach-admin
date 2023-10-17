@@ -70,7 +70,7 @@
                                             <!-- Form - seo_tags -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="SEO Tagy" nameDB="seo_tags" perex="" :required=false />
-                                                <mInputsSeoTags :value="placesSpotsSeoTags" @seo-tags="handleSeoTags" />
+                                                <mInputsSeoTags :value="placesSpotSeoTags" @seo-tags="handleSeoTags" />
                                             </div>
                                             <!-- Form - seo_tags END -->
                                         </div>

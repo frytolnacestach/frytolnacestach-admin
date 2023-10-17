@@ -62,8 +62,8 @@
                 deep: true,
                 handler(newValue, oldValue) {
                     this.$emit('seo-tags', this.seoTagsArray)
-                },
-            },
+                }
+            }
         }
     })
 </script>
