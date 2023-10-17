@@ -243,34 +243,7 @@
                                             <!-- Form - zoom(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Zoom map" nameDB="zoom" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesSpotZoomArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Google:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.google" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Booking:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.booking" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsZoom :value="placesSpotZoom" @zoom="handleZoom" />
                                             </div>
                                             <!-- Form - zoom(JSON) END -->
                                             <!-- Form - affiliate(JSON) -->
@@ -336,6 +309,7 @@
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
+    import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -353,6 +327,7 @@
             mInputImage,
             mInputsCoordinates,
             mInputsSeoTags,
+            mInputsZoom,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -391,7 +366,6 @@
                 placesSpotInformationDurationHeadlineArray: [],
                 placesSpotInformationDurationTimesArray: [],
                 placesSpotInformationDurationArray: [],
-                placesSpotZoomArray: [],
                 placesSpotAffiliateArray: []
             }
         },
@@ -458,16 +432,6 @@
             removeInformationDurationTimesInput(index: number) {
                 this.placesSpotInformationDurationArray[0].times.splice(index, 1)
             },
-            // Zoom
-            addZoomInput() {
-                this.placesSpotZoomArray.push({
-                    google: null,
-                    booking: null
-                })
-            },
-            removeZoomInput(index: number) {
-                this.placesSpotZoomArray.splice(index, 1)
-            },
             // Affiliate
             addAffiliateInput() {
                 this.placesSpotAffiliateArray.push({
@@ -499,6 +463,9 @@
             },
             handleCoordinates(newCoordinates: string) {
                 this.placesSpotCoordinates = JSON.stringify(newCoordinates)
+            },
+            handleZoom(newZoom: string) {
+                this.placesSpotZoom = JSON.stringify(newZoom)
             }
         },
 
@@ -530,16 +497,6 @@
                 } catch (error) {
                     this.placesSpotInformationDurationArray = []
                 }
-            },
-            placesSpotZoom: function (newValue, oldValue) {
-                try {
-                    this.placesSpotZoomArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesSpotZoomArray = []
-                }
-            },
-            placesSpotZoomArray: function (newValue, oldValue) {
-                this.placesSpotZoom = JSON.stringify(newValue)
             },
             placesSpotAffiliate: function (newValue, oldValue) {
                 try {
@@ -597,7 +554,6 @@
             const placesSpotsSeoTags = ref([])
             const placesSpotCoordinates = ref([])
             const placesSpotZoom = ref([])
-            const placesSpotZoomArray = ref([])
             const placesSpotAffiliate = ref([])
             const placesSpotAffiliateArray = ref([])
 
@@ -626,7 +582,7 @@
                             'altitude': placesSpotAltitude.value,
                             'seo_tags': placesSpotsSeoTags._value,
                             'coordinates': placesSpotCoordinates._value,
-                            'zoom': JSON.stringify(placesSpotZoomArray._value),
+                            'zoom': placesSpotZoom._value,
                             'affiliate': JSON.stringify(placesSpotAffiliateArray._value)
                         })
                     })
@@ -667,7 +623,6 @@
                 placesSpotsSeoTags,
                 placesSpotCoordinates,
                 placesSpotZoom,
-                placesSpotZoomArray,
                 placesSpotAffiliate,
                 placesSpotAffiliateArray,
                 createForm

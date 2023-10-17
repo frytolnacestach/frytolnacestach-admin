@@ -140,34 +140,7 @@
                                             <!-- Form - zoom(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Zoom map" nameDB="zoom" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in eventZoomArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Google:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.google" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Booking:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.booking" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsZoom :value="eventZoom" @zoom="handleZoom" />
                                             </div>
                                             <!-- Form - zoom(JSON) END -->
                                             <!-- Form - affiliate(JSON) -->
@@ -303,6 +276,7 @@
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
+    import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -320,6 +294,7 @@
             mInputImage,
             mInputsCoordinates,
             mInputsSeoTags,
+            mInputsZoom,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -348,7 +323,6 @@
                         status: "span"
                     }
                 ],
-                eventZoomArray: [],
                 eventAffiliateArray: [],
                 eventPricesArray: [],
                 eventLinksArray: []
@@ -356,16 +330,6 @@
         },
 
         methods: {
-            // zoom
-            addZoomInput() {
-                this.eventZoomArray.push({
-                    google: null,
-                    booking: null
-                })
-            },
-            removeZoomInput(index: number) {
-                this.eventZoomArray.splice(index, 1)
-            },
             // affiliate
             addAffiliateInput() {
                 this.eventAffiliateArray.push({
@@ -424,20 +388,13 @@
             },
             handleCoordinates(newCoordinates: string) {
                 this.eventCoordinates = JSON.stringify(newCoordinates)
+            },
+            handleZoom(newZoom: string) {
+                this.eventZoom = JSON.stringify(newZoom)
             }
         },
 
         watch: {
-            eventZoom: function (newValue, oldValue) {
-                try {
-                    this.eventZoomArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.eventZoomArray = []
-                }
-            },
-            eventZoomArray: function (newValue, oldValue) {
-                this.eventZoom = JSON.stringify(newValue)
-            },
             eventAffiliate: function (newValue, oldValue) {
                 try {
                     this.eventAffiliateArray = JSON.parse(newValue)
@@ -513,7 +470,6 @@
             const eventSeoTags = ref([])
             const eventCoordinates = ref([])
             const eventZoom = ref([])
-            const eventZoomArray = ref([])
             const eventAffiliate = ref([])
             const eventAffiliateArray = ref([])
             const eventPrices = ref([])
@@ -546,7 +502,7 @@
                             'description': eventDescription.value,
                             'seo_tags': eventSeoTags._value,
                             'coordinates': eventCoordinates._value,
-                            'zoom': JSON.stringify(eventZoomArray._value),
+                            'zoom': eventZoom._value,
                             'affiliate': JSON.stringify(eventAffiliateArray._value),
                             'prices': JSON.stringify(eventPricesArray._value),
                             'links': JSON.stringify(eventLinksArray._value)
@@ -585,7 +541,6 @@
                 eventSeoTags,
                 eventCoordinates,
                 eventZoom,
-                eventZoomArray,
                 eventAffiliate,
                 eventAffiliateArray,
                 eventPrices,

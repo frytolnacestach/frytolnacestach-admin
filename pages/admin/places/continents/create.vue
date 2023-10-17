@@ -179,34 +179,7 @@
                                             <!-- Form - zoom(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Zoom map" nameDB="zoom" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesContinentZoomArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Google:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.google" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Booking:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.booking" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsZoom :value="placesContinentZoom" @zoom="handleZoom" />
                                             </div>
                                             <!-- Form - zoom(JSON) END -->
                                         </div>
@@ -238,6 +211,7 @@
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
+    import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -254,6 +228,7 @@
             mInputImage,
             mInputsCoordinates,
             mInputsSeoTags,
+            mInputsZoom,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -288,8 +263,7 @@
                         status: "span"
                     }
                 ],
-                placesContinentInformationAuthorArray: [],
-                placesContinentZoomArray: []
+                placesContinentInformationAuthorArray: []
             }
         },
 
@@ -307,16 +281,6 @@
             removeInformationAuthorInput(index: number) {
                 this.placesContinentInformationAuthorArray.splice(index, 1)
             },
-            // zoom
-            addZoomInput() {
-                this.placesContinentZoomArray.push({
-                    google: null,
-                    booking: null
-                })
-            },
-            removeZoomInput(index: number) {
-                this.placesContinentZoomArray.splice(index, 1)
-            },
             // Components input changes
             handleSlug(newSlug: string) {
                 this.placesContinentSlug = newSlug
@@ -332,6 +296,9 @@
             },
             handleCoordinates(newCoordinates: string) {
                 this.placesContinentCoordinates = JSON.stringify(newCoordinates)
+            },
+            handleZoom(newZoom: string) {
+                this.placesContinentZoom = JSON.stringify(newZoom)
             }
         },
 
@@ -342,17 +309,7 @@
                 } catch (error) {
                     this.placesContinentInformationAuthorArray = []
                 }
-            },
-            placesContinentZoom: function (newValue, oldValue) {
-                try {
-                    this.placesContinentZoomArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesContinentZoomArray = []
-                }
-            },
-            placesContinentZoomArray: function (newValue, oldValue) {
-                this.placesContinentZoom = JSON.stringify(newValue)
-            },
+            }
         },
 
         setup() {
@@ -399,7 +356,6 @@
             const placesContinentSeoTags = ref([])
             const placesContinentCoordinates = ref([])
             const placesContinentZoom = ref([])
-            const placesContinentZoomArray = ref([])
 
             //FORM - create
             const createForm = async () => {
@@ -426,7 +382,7 @@
                             'number_states': placesContinentNumberStates.value,
                             'seo_tags': placesContinentSeoTags._value,
                             'coordinates': placesContinentCoordinates._value,
-                            'zoom': JSON.stringify(placesContinentZoomArray._value),
+                            'zoom': placesContinentZoom._value,
                         })
                     })
                     .then(() => {
@@ -463,7 +419,6 @@
                 placesContinentSeoTags,
                 placesContinentCoordinates,
                 placesContinentZoom,
-                placesContinentZoomArray,
                 createForm
             }
         },

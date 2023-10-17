@@ -177,34 +177,7 @@
                                             <!-- Form - zoom(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Zoom map" nameDB="zoom" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesRegionZoomArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Google:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.google" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Booking:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.booking" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsZoom :value="placesRegionZoom" @zoom="handleZoom" />
                                             </div>
                                             <!-- Form - zoom(JSON) END -->
                                             <!-- Form - affiliate(JSON) -->
@@ -270,6 +243,7 @@
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
+    import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -330,6 +304,7 @@
             mInputImage,
             mInputsCoordinates,
             mInputsSeoTags,
+            mInputsZoom,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -365,7 +340,6 @@
                     }
                 ],
                 placesRegionInformationAuthorArray: [],
-                placesRegionZoomArray: [],
                 placesRegionAffiliateArray: []
             }
         },
@@ -391,16 +365,6 @@
             },
             removeInformationAuthorInput(index: number) {
                 this.placesRegionInformationAuthorArray.splice(index, 1)
-            },
-            // Zoom
-            addZoomInput() {
-                this.placesRegionZoomArray.push({
-                    google: null,
-                    booking: null
-                })
-            },
-            removeZoomInput(index: number) {
-                this.placesRegionZoomArray.splice(index, 1)
             },
             // Affiliate
             addAffiliateInput() {
@@ -430,6 +394,9 @@
             },
             handleCoordinates(newCoordinates: string) {
                 this.placesRegionCoordinates = JSON.stringify(newCoordinates)
+            },
+            handleZoom(newZoom: string) {
+                this.placesRegionZoom = JSON.stringify(newZoom)
             }
         },
 
@@ -443,16 +410,6 @@
                 } catch (error) {
                     this.placesRegionInformationAuthorArray = []
                 }
-            },
-            placesRegionZoom: function (newValue, oldValue) {
-                try {
-                    this.placesRegionZoomArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesRegionZoomArray = []
-                }
-            },
-            placesRegionZoomArray: function (newValue, oldValue) {
-                this.placesRegionZoom = JSON.stringify(newValue)
             },
             placesRegionAffiliate: function (newValue, oldValue) {
                 try {
@@ -514,7 +471,6 @@
             const placesRegionSeoTags = ref([])
             const placesRegionCoordinates = ref([])
             const placesRegionZoom = ref([])
-            const placesRegionZoomArray = ref([])
             const placesRegionAffiliate = ref([])
             const placesRegionAffiliateArray = ref([])
 
@@ -566,7 +522,7 @@
                             'information_author': JSON.stringify(placesRegionInformationAuthorArray._value),
                             'seo_tags': placesRegionSeoTags._value,
                             'coordinates': placesRegionCoordinates._value,
-                            'zoom': JSON.stringify(placesRegionZoomArray._value),
+                            'zoom': placesRegionZoom._value,
                             'affiliate': JSON.stringify(placesRegionAffiliateArray._value)
                         })
                     })
@@ -602,7 +558,6 @@
                 placesRegionInformationAuthorArray,
                 placesRegionCoordinates,
                 placesRegionZoom,
-                placesRegionZoomArray,
                 placesRegionAffiliate,
                 placesRegionAffiliateArray,
                 editForm

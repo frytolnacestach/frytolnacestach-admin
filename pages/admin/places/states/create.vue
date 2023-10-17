@@ -534,34 +534,7 @@
                                             <!-- Form - zoom(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Zoom map" nameDB="zoom" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesStateZoomArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeZoomInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Google:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.google" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Booking:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.booking" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsZoom :value="placesStateZoom" @zoom="handleZoom" />
                                             </div>
                                             <!-- Form - zoom(JSON) END -->
                                             <!-- Form - affiliate(JSON) -->
@@ -839,6 +812,7 @@
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
+    import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -856,6 +830,7 @@
             mInputImage,
             mInputsCoordinates,
             mInputsSeoTags,
+            mInputsZoom,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -897,7 +872,6 @@
                 placesStatePeopleReligionArray: [],
                 placesStatePeopleNationalityArray: [],
                 placesStateVisitorsEntryArray: [],
-                placesStateZoomArray: [],
                 placesStateAffiliateArray: [],
                 placesStateAlertsArray: [],
                 placesStateOrganizationArray: [],
@@ -1000,16 +974,6 @@
             removeVisitorsEntryInput(index: number) {
                 this.placesStateVisitorsEntryArray.splice(index, 1)
             },
-            // Zoom
-            addZoomInput() {
-                this.placesStateZoomArray.push({
-                    google: null,
-                    booking: null
-                })
-            },
-            removeZoomInput(index: number) {
-                this.placesStateZoomArray.splice(index, 1)
-            },
             // Affiliate
             addAffiliateInput() {
                 this.placesStateAffiliateArray.push({
@@ -1110,6 +1074,9 @@
             },
             handleCoordinates(newCoordinates: string) {
                 this.placesStateCoordinates = JSON.stringify(newCoordinates)
+            },
+            handleZoom(newZoom: string) {
+                this.placesStateZoom = JSON.stringify(newZoom)
             }
         },
 
@@ -1180,16 +1147,6 @@
             },
             placesStateVisitorsEntryArray: function (newValue, oldValue) {
                 this.placesStateVisitorsEntry = JSON.stringify(newValue)
-            },
-            placesStateZoom: function (newValue, oldValue) {
-                try {
-                    this.placesStateZoomArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesStateZoomArray = []
-                }
-            },
-            placesStateZoomArray: function (newValue, oldValue) {
-                this.placesStateZoom = JSON.stringify(newValue)
             },
             placesStateAffiliate: function (newValue, oldValue) {
                 try {
@@ -1320,7 +1277,6 @@
             const placesStateVisitorsEntryArray = ref([])
             const placesStateCoordinates = ref([])
             const placesStateZoom = ref([])
-            const placesStateZoomArray = ref([])
             const placesStateAffiliate = ref([])
             const placesStateAffiliateArray = ref([])
             const placesStateAlerts = ref([])
@@ -1370,7 +1326,7 @@
                             'people_nationality': JSON.stringify(placesStatePeopleNationalityArray._value),
                             'visitors_entry': JSON.stringify(placesStateVisitorsEntryArray._value),
                             'coordinates': placesStateCoordinates._value,
-                            'zoom': JSON.stringify(placesStateZoomArray._value),
+                            'zoom': placesStateZoom._value,
                             'affiliate': JSON.stringify(placesStateAffiliateArray._value),
                             'alerts': JSON.stringify(placesStateAlertsArray._value),
                             'organization': JSON.stringify(placesStateOrganizationArray._value),
@@ -1430,7 +1386,6 @@
                 placesStateVisitorsEntryArray,
                 placesStateCoordinates,
                 placesStateZoom,
-                placesStateZoomArray,
                 placesStateAffiliate,
                 placesStateAffiliateArray,
                 placesStateAlerts,
