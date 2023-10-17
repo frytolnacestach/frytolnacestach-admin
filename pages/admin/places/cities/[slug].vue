@@ -538,7 +538,7 @@
                     url: '',
                     date: '',
                     name: '',
-                    pricE: '',
+                    price: '',
                     author: '',
                     pay_time: '',
                     date_update: '',
