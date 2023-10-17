@@ -92,30 +92,7 @@
                                             <!-- Form - ids_states(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="IDčka států" nameDB="ids_states" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in foodIDSstatesArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">ID:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.id" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsIDSStates :value="foodIDSstates" @ids-states="handleIDSStates" />
                                             </div>
                                             <!-- Form - ids_states(JSON) END -->
                                             <!-- Form - name -->
@@ -168,6 +145,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputsIDSStates from '@/components/molecules/mInputsIDSStates.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -204,6 +182,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputsIDSStates,
             mInputImage,
             mInputsSeoTags,
             mLabel,
@@ -233,8 +212,7 @@
                         url: "",
                         status: "span"
                     }
-                ],
-                foodIDSstatesArray: []
+                ]
             }
         },
 
@@ -246,15 +224,6 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace jídla - ${foodName}`
                 }
-            },
-            // ids states
-            addIDSstateInput() {
-                this.foodIDSstatesArray.push({
-                    id: null
-                })
-            },
-            removeIDSstateInput(index: number) {
-                this.foodIDSstatesArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -268,6 +237,9 @@
             },
             handleSeoTags(newSeoTags: string) {
                 this.foodSeoTags = JSON.stringify(newSeoTags)
+            },
+            handleIDSStates(newIDSStates: string) {
+                this.foodIDSstates = JSON.stringify(newIDSStates)
             }
         },
 
@@ -328,7 +300,6 @@
             const foodIDimageHero = ref(null)
             const foodSeoTags = ref([])
             const foodIDSstates = ref([])
-            const foodIDSstatesArray = ref([])
             const foodName = ref('')
             const foodDescription = ref('')
             const foodIngredients = ref('')
@@ -373,7 +344,7 @@
                             'id_image_cover': foodIDimageCover.value,
                             'id_image_hero': foodIDimageHero.value,
                             'seo_tags': foodSeoTags._value,
-                            'ids_states': JSON.stringify(foodIDSstatesArray._value),
+                            'ids_states': foodIDSstates._value,
                             'name': foodName.value,
                             'description': foodDescription.value,
                             'ingredients': foodIngredients.value,
@@ -405,7 +376,6 @@
                 foodIDimageCover,
                 foodIDimageHero,
                 foodIDSstates,
-                foodIDSstatesArray,
                 foodName,
                 foodDescription,
                 foodIngredients,

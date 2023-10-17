@@ -76,30 +76,7 @@
                                             <!-- Form - ids_states(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="IDčka států" nameDB="ids_states" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in floraIDSstatesArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">ID:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.id" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsIDSStates :value="floraIDSstates" @ids-states="handleIDSStates" />
                                             </div>
                                             <!-- Form - ids_states(JSON) END -->
                                             <!-- Form - name -->
@@ -164,6 +141,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputsIDSStates from '@/components/molecules/mInputsIDSStates.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -179,6 +157,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputsIDSStates,
             mInputImage,
             mInputsSeoTags,
             mLabel,
@@ -208,21 +187,11 @@
                         url: "",
                         status: "span"
                     }
-                ],
-                floraIDSstatesArray: []
+                ]
             }
         },
 
         methods: {
-            // ids states
-            addIDSstateInput() {
-                this.floraIDSstatesArray.push({
-                    id: null
-                })
-            },
-            removeIDSstateInput(index: number) {
-                this.floraIDSstatesArray.splice(index, 1)
-            },
             // Components input changes
             handleSlug(newSlug: string) {
                 this.floraSlug = newSlug
@@ -235,6 +204,9 @@
             },
             handleSeoTags(newSeoTags: string) {
                 this.floraSeoTags = JSON.stringify(newSeoTags)
+            },
+            handleIDSStates(newIDSStates: string) {
+                this.floraIDSstates = JSON.stringify(newIDSStates)
             }
         },
 
@@ -285,7 +257,6 @@
             const floraIDimageHero = ref(null)
             const floraSeoTags = ref([])
             const floraIDSstates = ref([])
-            const floraIDSstatesArray = ref([])
             const floraName = ref('')
             const floraNameLat = ref('')
             const floraLocation = ref('')
@@ -309,7 +280,7 @@
                             'id_image_cover': floraIDimageCover.value,
                             'id_image_hero': floraIDimageHero.value,
                             'seo_tags': floraSeoTags._value,
-                            'ids_states': JSON.stringify(floraIDSstatesArray._value),
+                            'ids_states': floraIDSstates._value,
                             'name': floraName.value,
                             'name_lat': floraNameLat.value,
                             'location': floraLocation.value,
@@ -342,7 +313,6 @@
                 floraIDimageHero,
                 floraSeoTags,
                 floraIDSstates,
-                floraIDSstatesArray,
                 floraName,
                 floraNameLat,
                 floraLocation,

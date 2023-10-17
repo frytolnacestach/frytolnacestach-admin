@@ -109,30 +109,7 @@
                                             <!-- Form - ids_states(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="IDčka států" nameDB="ids_states" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in wallSocketIDSstatesArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">ID:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.id" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsIDSStates :value="wallSocketIDSstates" @ids-states="handleIDSStates" />
                                             </div>
                                             <!-- Form - ids_states(JSON) END -->
                                         </div>
@@ -161,6 +138,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputsIDSStates from '@/components/molecules/mInputsIDSStates.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -196,6 +174,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputsIDSStates,
             mInputImage,
             mInputsSeoTags,
             mNavBreadcrumbs,
@@ -238,15 +217,6 @@
                     breadcrumb.name = `Editace značky - ${wallSocketName}`
                 }
             },
-            // ids states
-            addIDSstateInput() {
-                this.wallSocketIDSstatesArray.push({
-                    id: null
-                })
-            },
-            removeIDSstateInput(index: number) {
-                this.wallSocketIDSstatesArray.splice(index, 1)
-            },
             // Components input changes
             handleSlug(newSlug: string) {
                 this.wallSocketSlug = newSlug
@@ -259,6 +229,9 @@
             },
             handleSeoTags(newSeoTags: string) {
                 this.wallSocketSeoTags = JSON.stringify(newSeoTags)
+            },
+            handleIDSStates(newIDSStates: string) {
+                this.wallSocketIDSstates = JSON.stringify(newIDSStates)
             }
         },
 
@@ -319,7 +292,6 @@
             const wallSocketIDimageCover = ref(null)
             const wallSocketIDimageHero = ref(null)
             const wallSocketIDSstates = ref([])
-            const wallSocketIDSstatesArray = ref([])
             const wallSocketSeoTags = ref([])
             const wallSocketLabel = ref('')
             const wallSocketName = ref('')
@@ -363,7 +335,7 @@
                             'id_image_cover': wallSocketIDimageCover.value,
                             'id_image_hero': wallSocketIDimageHero.value,
                             'seo_tags': wallSocketSeoTags._value,
-                            'ids_states': JSON.stringify(wallSocketIDSstatesArray._value),
+                            'ids_states': wallSocketIDSstates._value,
                             'label': wallSocketLabel.value,
                             'name': wallSocketName.value,
                             'description': wallSocketDescription.value,
@@ -393,7 +365,6 @@
                 wallSocketIDimageCover,
                 wallSocketIDimageHero,
                 wallSocketIDSstates,
-                wallSocketIDSstatesArray,
                 wallSocketSeoTags,
                 wallSocketLabel,
                 wallSocketName,

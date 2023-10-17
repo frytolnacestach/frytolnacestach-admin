@@ -121,30 +121,7 @@
                                             <!-- Form - ids_states(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="IDčka států" nameDB="ids_states" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in chainIDSstatesArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeIDSstateInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">ID:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.id" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addIDSstateInput">Přidat stát</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsIDSStates :value="chainIDSstates" @ids-states="handleIDSStates" />
                                             </div>
                                             <!-- Form - ids_states(JSON) -->
                                         </div>
@@ -173,6 +150,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputsIDSStates from '@/components/molecules/mInputsIDSStates.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -188,6 +166,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputsIDSStates,
             mInputImage,
             mInputsSeoTags,
             mLabel,
@@ -217,8 +196,7 @@
                         url: "",
                         status: "span"
                     }
-                ],
-                chainInformationArray: []
+                ]
             }
         },
 
@@ -233,15 +211,6 @@
             removeInformationInput(index: number) {
                 this.chainIInformationArray.splice(index, 1)
             },
-            // ids states
-            addIDSstateInput() {
-                this.chainIDSstatesArray.push({
-                    id: null
-                })
-            },
-            removeIDSstateInput(index: number) {
-                this.chainIDSstatesArray.splice(index, 1)
-            },
             // Components input changes
             handleSlug(newSlug: string) {
                 this.chainSlug = newSlug
@@ -254,6 +223,9 @@
             },
             handleSeoTags(newSeoTags: string) {
                 this.chainSeoTags = JSON.stringify(newSeoTags)
+            },
+            handleIDSStates(newIDSStates: string) {
+                this.chainIDSstates = JSON.stringify(newIDSStates)
             }
         },
 
@@ -315,7 +287,6 @@
             const chainIDimageCover = ref(null)
             const chainIDimageHero = ref(null)
             const chainIDSstates = ref([])
-            const chainIDSstatesArray = ref([])
             const chainInformation = ref([])
             const chainInformationArray = ref([])
             const chainSeoTags = ref([])
@@ -339,7 +310,7 @@
                             'id_image_hero': chainIDimageHero.value,
                             'information': JSON.stringify(chainInformationArray._value),
                             'seo_tags': chainSeoTags._value,
-                            'ids_states': JSON.stringify(chainIDSstatesArray._value),
+                            'ids_states': chainIDSstates._value,
                             'name': chainName.value,
                             'description': chainDescription.value
                         })
@@ -367,7 +338,6 @@
                 chainIDimageCover,
                 chainIDimageHero,
                 chainIDSstates,
-                chainIDSstatesArray,
                 chainInformation,
                 chainInformationArray,
                 chainSeoTags,
