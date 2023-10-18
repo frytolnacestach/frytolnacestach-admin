@@ -132,46 +132,7 @@
                                             <!-- Form - information_author(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od autora" nameDB="information_author" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesSpotInformationAuthorArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeInformationAuthorInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Text:</label>
-                                                                    <textarea class="a-textarea" type="text" v-model="item.text"></textarea>
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_update" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addInformationAuthorInput">Přidat text</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsInformationAuthor :value="placesSpotInformationAuthor" @information-author="handleInformationAuthor" />
                                             </div>
                                             <!-- Form - information_author(JSON) END -->
                                             <!-- Form - information_duration(JSON) -->
@@ -288,6 +249,7 @@
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
+    import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -369,6 +331,7 @@
             mInputImage,
             mInputsAffiliate,
             mInputsCoordinates,
+            mInputsInformationAuthor,
             mInputsSeoTags,
             mInputsZoom,
             mLabel,
@@ -405,7 +368,6 @@
                         status: "span"
                     }
                 ],
-                placesSpotInformationAuthorArray: [],
                 placesSpotInformationDurationHeadlineArray: [],
                 placesSpotInformationDurationTimesArray: [],
                 placesSpotInformationDurationArray: []
@@ -420,19 +382,6 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace místa - ${placesSpotName}`
                 }
-            },
-            // information author
-            addInformationAuthorInput() {
-                this.placesSpotInformationAuthorArray.push({
-                    text: '',
-                    date_create: '',
-                    date_update: '',
-                    author_create: '',
-                    author_update: ''
-                })
-            },
-            removeInformationAuthorInput(index: number) {
-                this.placesSpotInformationAuthorArray.splice(index, 1)
             },
             // information durationHeadline
             addInformationDurationHeadlineInput() {
@@ -509,19 +458,15 @@
             },
             handleAffiliate(newAffiliate: string) {
                 this.placesSpotAffiliate = JSON.stringify(newAffiliate)
+            },
+            handleInformationAuthor(newInformationAuthor: string) {
+                this.placesSpotInformationAuthor = JSON.stringify(newInformationAuthor)
             }
         },
 
         watch: {
             placesSpotName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            placesSpotInformationAuthor: function (newValue, oldValue) {
-                try {
-                    this.placesSpotInformationAuthorArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesSpotInformationAuthorArray = []
-                }
             },
             placesSpotInformationDurationHeadline: function (newValue, oldValue) {
                 try {
@@ -591,7 +536,6 @@
             const placesSpotName = ref('')
             const placesSpotInformationChatgpt = ref('')
             const placesSpotInformationAuthor = ref([])
-            const placesSpotInformationAuthorArray = ref([])
             const placesSpotInformationDuration = ref([])
             const placesSpotInformationDurationArray = ref([])
             const placesSpotInformationDurationTimes = ref([])
@@ -652,7 +596,7 @@
                             'slug': placesSpotSlug.value,
                             'name': placesSpotName.value,
                             'information_chatgpt': placesSpotInformationChatgpt.value,
-                            'information_author': JSON.stringify(placesSpotInformationAuthorArray._value),
+                            'information_author': placesSpotInformationAuthor._value,
                             'information_duration': JSON.stringify(placesSpotInformationDurationArray._value),
                             'altitude': placesSpotAltitude.value,
                             'seo_tags': placesSpotSeoTags._value,
@@ -691,7 +635,6 @@
                 placesSpotName,
                 placesSpotInformationChatgpt,
                 placesSpotInformationAuthor,
-                placesSpotInformationAuthorArray,
                 placesSpotInformationDuration,
                 placesSpotInformationDurationArray,
                 placesSpotInformationDurationTimes,

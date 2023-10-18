@@ -126,46 +126,7 @@
                                             <!-- Form - information_author(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od autora" nameDB="information_author" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesRegionInformationAuthorArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeInformationAuthorInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Text:</label>
-                                                                    <textarea class="a-textarea" type="text" v-model="item.text"></textarea>
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_update" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addInformationAuthorInput">Přidat text</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsInformationAuthor :value="placesRegionInformationAuthor" @information-author="handleInformationAuthor" />
                                             </div>
                                             <!-- Form - information_author(JSON) END -->
                                             <!-- Form - coordinates(JSON) -->
@@ -216,6 +177,7 @@
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
+    import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -278,6 +240,7 @@
             mInputImage,
             mInputsAffiliate,
             mInputsCoordinates,
+            mInputsInformationAuthor,
             mInputsSeoTags,
             mInputsZoom,
             mLabel,
@@ -313,8 +276,7 @@
                         url: "",
                         status: "span"
                     }
-                ],
-                placesRegionInformationAuthorArray: []
+                ]
             }
         },
 
@@ -326,19 +288,6 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace region - ${placesRegionName}`
                 }
-            },
-            // information author
-            addInformationAuthorInput() {
-                this.placesRegionInformationAuthorArray.push({
-                    text: '',
-                    date_create: '',
-                    date_update: '',
-                    author_create: '',
-                    author_update: ''
-                })
-            },
-            removeInformationAuthorInput(index: number) {
-                this.placesRegionInformationAuthorArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -364,19 +313,15 @@
             },
             handleAffiliate(newAffiliate: string) {
                 this.placesRegionAffiliate = JSON.stringify(newAffiliate)
+            },
+            handleInformationAuthor(newInformationAuthor: string) {
+                this.placesRegionInformationAuthor = JSON.stringify(newInformationAuthor)
             }
         },
 
         watch: {
             placesRegionName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            placesRegionInformationAuthor: function (newValue, oldValue) {
-                try {
-                    this.placesRegionInformationAuthorArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesRegionInformationAuthorArray = []
-                }
             }
         },
 
@@ -424,7 +369,6 @@
             const placesRegionName = ref('')
             const placesRegionInformationChatgpt = ref('')
             const placesRegionInformationAuthor = ref([])
-            const placesRegionInformationAuthorArray = ref([])
             const placesRegionSeoTags = ref([])
             const placesRegionCoordinates = ref([])
             const placesRegionZoom = ref([])
@@ -475,7 +419,7 @@
                             'slug': placesRegionSlug.value,
                             'name': placesRegionName.value,
                             'information_chatgpt': placesRegionInformationChatgpt.value,
-                            'information_author': JSON.stringify(placesRegionInformationAuthorArray._value),
+                            'information_author': placesRegionInformationAuthor._value,
                             'seo_tags': placesRegionSeoTags._value,
                             'coordinates': placesRegionCoordinates._value,
                             'zoom': placesRegionZoom._value,
@@ -511,7 +455,6 @@
                 placesRegionName,
                 placesRegionInformationChatgpt,
                 placesRegionInformationAuthor,
-                placesRegionInformationAuthorArray,
                 placesRegionCoordinates,
                 placesRegionZoom,
                 placesRegionAffiliate,
