@@ -38,11 +38,19 @@
 
         data() {
             return {
-                seoTagsArray: JSON.parse(this.value)
+                seoTagsArray: this.isValidJSON(this.value) ? JSON.parse(this.value) : []
             }
         },
 
         methods: {
+            isValidJSON(value) {
+                try {
+                    JSON.parse(value)
+                    return true
+                } catch (e) {
+                    return false
+                }
+            },
             addSeoTagsInput() {
                 this.seoTagsArray.push({
                     tag: ''

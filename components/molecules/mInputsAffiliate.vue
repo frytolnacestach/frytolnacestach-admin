@@ -42,11 +42,19 @@
 
         data() {
             return {
-                affiliateArray: JSON.parse(this.value)
+                affiliateArray: this.isValidJSON(this.value) ? JSON.parse(this.value) : []
             }
         },
 
         methods: {
+            isValidJSON(value) {
+                try {
+                    JSON.parse(value)
+                    return true
+                } catch (e) {
+                    return false
+                }
+            },
             addAffiliateInput() {
                 this.affiliateArray.push({
                     name: '',

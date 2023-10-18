@@ -54,11 +54,19 @@
 
         data() {
             return {
-                informationAuthor: JSON.parse(this.value)
+                informationAuthor: this.isValidJSON(this.value) ? JSON.parse(this.value) : []
             }
         },
 
         methods: {
+            isValidJSON(value) {
+                try {
+                    JSON.parse(value)
+                    return true
+                } catch (e) {
+                    return false
+                }
+            },
             addInformationAuthorInput() {
                 this.informationAuthor.push({
                     text: '',

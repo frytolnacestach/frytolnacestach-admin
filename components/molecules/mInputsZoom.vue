@@ -42,11 +42,19 @@
 
         data() {
             return {
-                zoomArray: JSON.parse(this.value)
+                zoomArray: this.isValidJSON(this.value) ? JSON.parse(this.value) : []
             }
         },
 
         methods: {
+            isValidJSON(value) {
+                try {
+                    JSON.parse(value)
+                    return true
+                } catch (e) {
+                    return false
+                }
+            },
             addZoomInput() {
                 this.zoomArray.push({
                     google: null,

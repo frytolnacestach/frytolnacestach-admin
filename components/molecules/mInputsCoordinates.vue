@@ -42,11 +42,19 @@
 
         data() {
             return {
-                coordinatesArray: JSON.parse(this.value)
+                coordinatesArray: this.isValidJSON(this.value) ? JSON.parse(this.value) : []
             }
         },
 
         methods: {
+            isValidJSON(value) {
+                try {
+                    JSON.parse(value)
+                    return true
+                } catch (e) {
+                    return false
+                }
+            },
             addCoordinateInput() {
                 this.coordinatesArray.push({
                     latitude: null,

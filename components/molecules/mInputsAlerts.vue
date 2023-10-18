@@ -66,11 +66,19 @@
 
         data() {
             return {
-                alertsArray: JSON.parse(this.value)
+                alertsArray: this.isValidJSON(this.value) ? JSON.parse(this.value) : []
             }
         },
 
         methods: {
+            isValidJSON(value) {
+                try {
+                    JSON.parse(value)
+                    return true
+                } catch (e) {
+                    return false
+                }
+            },
             addAlertInput() {
                 this.alertsArray.push({
                     name: '',

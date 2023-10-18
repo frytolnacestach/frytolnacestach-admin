@@ -38,11 +38,19 @@
 
         data() {
             return {
-                IDSstatesArray: JSON.parse(this.value)
+                IDSstatesArray: this.isValidJSON(this.value) ? JSON.parse(this.value) : []
             }
         },
 
         methods: {
+            isValidJSON(value) {
+                try {
+                    JSON.parse(value)
+                    return true
+                } catch (e) {
+                    return false
+                }
+            },
             addIDSstateInput() {
                 this.IDSstatesArray.push({
                     id: null
