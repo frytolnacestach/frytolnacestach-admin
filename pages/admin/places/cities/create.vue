@@ -177,62 +177,7 @@
                                             <!-- Form - parking(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Parkování" nameDB="parking" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesCityParkingArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeParkingInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Description:</label>
-                                                                    <input class="a-input" type="text" v-model="item.description" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author Update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Pay time:</label>
-                                                                    <input class="a-input" type="text" v-model="item.pay_time" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Price:</label>
-                                                                    <input class="a-input" type="text" v-model="item.price" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">URL:</label>
-                                                                    <input class="a-input" type="text" v-model="item.url" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addParkingInput">Přidat parkování</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsParking :value="placesCityParking" @parking="handleParking" />
                                             </div>
                                             <!-- Form - parking(JSON) END -->
                                         </div>
@@ -267,6 +212,7 @@
     import mInputsAlerts from '@/components/molecules/mInputsAlerts.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
+    import mInputsParking from '@/components/molecules/mInputsParking.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -288,6 +234,7 @@
             mInputsAlerts,
             mInputsCoordinates,
             mInputsInformationAuthor,
+            mInputsParking,
             mInputsSeoTags,
             mInputsZoom,
             mLabel,
@@ -323,29 +270,11 @@
                         url: "",
                         status: "span"
                     }
-                ],
-                placesCityParkingArray: []
+                ]
             }
         },
 
         methods: {
-            // Parking
-            addParkingInput() {
-                this.placesCityParkingArray.push({
-                    url: '',
-                    date: '',
-                    name: '',
-                    price: '',
-                    author: '',
-                    pay_time: '',
-                    date_update: '',
-                    description: '',
-                    author_update: ''
-                })
-            },
-            removeParkingInput(index: number) {
-                this.placesCityParkingArray.splice(index, 1)
-            },
             // Components input changes
             handleSlug(newSlug: string) {
                 this.placesCitySlug = newSlug
@@ -376,19 +305,9 @@
             },
             handleAlerts(newAlerts: string) {
                 this.placesCityAlerts = JSON.stringify(newAlerts)
-            }
-        },
-
-        watch: {
-            placesCityParking: function (newValue, oldValue) {
-                try {
-                    this.placesCityParkingArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesCityParkingArray = []
-                }
             },
-            placesCityParkingArray: function (newValue, oldValue) {
-                this.placesCityParking = JSON.stringify(newValue)
+            handleParking(newParking: string) {
+                this.placesCityParking = JSON.stringify(newParking)
             }
         },
 
@@ -438,9 +357,7 @@
             const placesCityZoom = ref([])
             const placesCityAffiliate = ref([])
             const placesCityAlerts = ref([])
-            const placesCityAlertsArray = ref([])
             const placesCityParking = ref([])
-            const placesCityParkingArray = ref([])
 
             //FORM - create
             const createForm = async () => {
@@ -471,7 +388,7 @@
                             'zoom': placesCityZoom._value,
                             'affiliate': placesCityAffiliate._value,
                             'alerts': placesCityAlerts._value,
-                            'parking': JSON.stringify(placesCityParkingArray._value)
+                            'parking': placesCityParking._value
                         })
                     })
                     .then(() => {
@@ -511,7 +428,6 @@
                 placesCityAffiliate,
                 placesCityAlerts,
                 placesCityParking,
-                placesCityParkingArray,
                 createForm
             }
         },
