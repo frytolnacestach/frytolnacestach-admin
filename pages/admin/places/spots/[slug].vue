@@ -138,61 +138,7 @@
                                             <!-- Form - information_duration(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace o časové náročnosti" nameDB="information_duration" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <!-- Headline -->
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesSpotInformationDurationArray" :key="index" v-if="placesSpotInformationDurationArray[0]?.headline">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeInformationDurationHeadlineInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <label class="m-label">Title:</label>
-                                                                <input class="a-input" type="text" v-model="item.headline.title" />
-
-                                                                <label class="m-label">Perex:</label>
-                                                                <input class="a-input" type="text" v-model="item.headline.perex" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="o-form-item__buttons mt-1" v-if="!placesSpotInformationDurationArray[0]?.headline">
-                                                            <div class="o-form-item__button">
-                                                                <div class="m-button-add">
-                                                                    <button class="m-button-add__input" type="button" @click="addInformationDurationHeadlineInput">Přidat hlavičku</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Times -->
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesSpotInformationDurationArray[0].times" :key="index" v-if="placesSpotInformationDurationArray[0]">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeInformationDurationTimesInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Název:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Podnázev:</label>
-                                                                    <input class="a-input" type="text" v-model="item.subname" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Hodnota:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="o-form-item__buttons mt-1">
-                                                            <div class="o-form-item__button">
-                                                                <div class="m-button-add">
-                                                                    <button class="m-button-add__input" type="button" @click="addInformationDurationTimesInput">Přidat text</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsInformationDuration :value="placesSpotInformationDuration" @information-duration="handleInformationDuration" />
                                             </div>
                                             <!-- Form - information_duration(JSON) END -->
                                             <!-- Form - altitude -->
@@ -250,6 +196,7 @@
     import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
+    import mInputsInformationDuration from '@/components/molecules/mInputsInformationDuration.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -332,6 +279,7 @@
             mInputsAffiliate,
             mInputsCoordinates,
             mInputsInformationAuthor,
+            mInputsInformationDuration,
             mInputsSeoTags,
             mInputsZoom,
             mLabel,
@@ -367,10 +315,7 @@
                         url: "",
                         status: "span"
                     }
-                ],
-                placesSpotInformationDurationHeadlineArray: [],
-                placesSpotInformationDurationTimesArray: [],
-                placesSpotInformationDurationArray: []
+                ]
             }
         },
 
@@ -382,54 +327,6 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace místa - ${placesSpotName}`
                 }
-            },
-            // information durationHeadline
-            addInformationDurationHeadlineInput() {
-                if (this.placesSpotInformationDurationArray.length === 0) {
-                    this.placesSpotInformationDurationArray.push({
-                        headline: {
-                            title: '',
-                            perex: ''
-                        }
-                    })
-                } else if (!this.placesSpotInformationDurationArray[0].hasOwnProperty('headline')) {
-                    this.placesSpotInformationDurationArray[0].headline = {
-                        title: '',
-                        perex: ''
-                    }
-                }
-            },
-            removeInformationDurationHeadlineInput(index: number) {
-                delete this.placesSpotInformationDurationArray[index].headline
-            },
-            // information durationTimes
-            addInformationDurationTimesInput() {
-                if (this.placesSpotInformationDurationArray.length === 0) {
-                    this.placesSpotInformationDurationArray.push({
-                        times: [
-                            {
-                                name: '',
-                                subname: '',
-                                value: ''
-                            }
-                        ]
-                    })
-                } else if (!this.placesSpotInformationDurationArray[0].hasOwnProperty('times')) {
-                    this.placesSpotInformationDurationArray[0].times = [{
-                        name: '',
-                        subname: '',
-                        value: ''
-                    }]
-                } else {
-                    this.placesSpotInformationDurationArray[0].times.push({
-                        name: '',
-                        subname: '',
-                        value: ''
-                    })
-                }
-            },
-            removeInformationDurationTimesInput(index: number) {
-                this.placesSpotInformationDurationArray[0].times.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -461,33 +358,15 @@
             },
             handleInformationAuthor(newInformationAuthor: string) {
                 this.placesSpotInformationAuthor = JSON.stringify(newInformationAuthor)
+            },
+            handleInformationDuration(newInformationDuration: string) {
+                this.placesSpotInformationDuration = JSON.stringify(newInformationDuration)
             }
         },
 
         watch: {
             placesSpotName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            placesSpotInformationDurationHeadline: function (newValue, oldValue) {
-                try {
-                    this.placesSpotInformationDurationHeadlineArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesSpotInformationDurationHeadlineArray = []
-                }
-            },
-            placesSpotInformationDurationTimes: function (newValue, oldValue) {
-                try {
-                    this.placesSpotInformationDurationTimesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesSpotInformationDurationTimesArray = []
-                }
-            },
-            placesSpotInformationDuration: function (newValue, oldValue) {
-                try {
-                    this.placesSpotInformationDurationArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesSpotInformationDurationArray = []
-                }
             }
         },
 
@@ -537,9 +416,7 @@
             const placesSpotInformationChatgpt = ref('')
             const placesSpotInformationAuthor = ref([])
             const placesSpotInformationDuration = ref([])
-            const placesSpotInformationDurationArray = ref([])
             const placesSpotInformationDurationTimes = ref([])
-            const placesSpotInformationDurationTimesArray = ref([])
             const placesSpotAltitude = ref(null)
             const placesSpotSeoTags = ref([])
             const placesSpotCoordinates = ref([])
@@ -597,7 +474,7 @@
                             'name': placesSpotName.value,
                             'information_chatgpt': placesSpotInformationChatgpt.value,
                             'information_author': placesSpotInformationAuthor._value,
-                            'information_duration': JSON.stringify(placesSpotInformationDurationArray._value),
+                            'information_duration': placesSpotInformationDuration._value,
                             'altitude': placesSpotAltitude.value,
                             'seo_tags': placesSpotSeoTags._value,
                             'coordinates': placesSpotCoordinates._value,
@@ -636,9 +513,7 @@
                 placesSpotInformationChatgpt,
                 placesSpotInformationAuthor,
                 placesSpotInformationDuration,
-                placesSpotInformationDurationArray,
                 placesSpotInformationDurationTimes,
-                placesSpotInformationDurationTimesArray,
                 placesSpotAltitude,
                 placesSpotCoordinates,
                 placesSpotZoom,
