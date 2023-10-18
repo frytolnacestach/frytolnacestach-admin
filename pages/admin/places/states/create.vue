@@ -507,58 +507,7 @@
                                             <!-- Form - alerts(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Upozornění" nameDB="alerts" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesStateAlertsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeAlertInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Text:</label>
-                                                                    <input class="a-input" type="text" v-model="item.text" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Type:</label>
-                                                                    <input class="a-input" type="text" v-model="item.type" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date start:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_start" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date end:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_end" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addAlertInput">Přidat upozornění</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsAlerts :value="placesStateAlerts" @alerts="handleAlerts" />
                                             </div>
                                             <!-- Form - alerts(JSON) END -->
                                             <!-- Form - organization(JSON) -->
@@ -745,6 +694,7 @@
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
+    import mInputsAlerts from '@/components/molecules/mInputsAlerts.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
@@ -765,6 +715,7 @@
             mInputIDPlaces,
             mInputImage,
             mInputsAffiliate,
+            mInputsAlerts,
             mInputsCoordinates,
             mInputsInformationAuthor,
             mInputsSeoTags,
@@ -809,7 +760,6 @@
                 placesStatePeopleReligionArray: [],
                 placesStatePeopleNationalityArray: [],
                 placesStateVisitorsEntryArray: [],
-                placesStateAlertsArray: [],
                 placesStateOrganizationArray: [],
                 placesStateAppsArray: [],
                 placesStateLinksArray: [],
@@ -897,22 +847,6 @@
             removeVisitorsEntryInput(index: number) {
                 this.placesStateVisitorsEntryArray.splice(index, 1)
             },
-            // Alerts
-            addAlertInput() {
-                this.placesStateAlertsArray.push({
-                    name: '',
-                    text: '',
-                    type: '',
-                    author: '',
-                    date_create: '',
-                    date_update: '',
-                    date_start: '',
-                    date_end: ''
-                })
-            },
-            removeAlertInput(index: number) {
-                this.placesStateAlertsArray.splice(index, 1)
-            },
             // Organization
             addOrganizationInput() {
                 this.placesStateOrganizationArray.push({
@@ -996,6 +930,9 @@
             },
             handleInformationAuthor(newInformationAuthor: string) {
                 this.placesStateInformationAuthor = JSON.stringify(newInformationAuthor)
+            },
+            handleAlerts(newAlerts: string) {
+                this.placesStateAlerts = JSON.stringify(newAlerts)
             }
         },
 
@@ -1059,16 +996,6 @@
             },
             placesStateVisitorsEntryArray: function (newValue, oldValue) {
                 this.placesStateVisitorsEntry = JSON.stringify(newValue)
-            },
-            placesStateAlerts: function (newValue, oldValue) {
-                try {
-                    this.placesStateAlertsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesStateAlertsArray = []
-                }
-            },
-            placesStateAlertsArray: function (newValue, oldValue) {
-                this.placesStateAlerts = JSON.stringify(newValue)
             },
             placesStateOrganization: function (newValue, oldValue) {
                 try {
@@ -1180,7 +1107,6 @@
             const placesStateZoom = ref([])
             const placesStateAffiliate = ref([])
             const placesStateAlerts = ref([])
-            const placesStateAlertsArray = ref([])
             const placesStateOrganization = ref([])
             const placesStateOrganizationArray = ref([])
             const placesStateApps = ref([])
@@ -1228,7 +1154,7 @@
                             'coordinates': placesStateCoordinates._value,
                             'zoom': placesStateZoom._value,
                             'affiliate': placesStateAffiliate._value,
-                            'alerts': JSON.stringify(placesStateAlertsArray._value),
+                            'alerts': placesStateAlerts._value,
                             'organization': JSON.stringify(placesStateOrganizationArray._value),
                             'apps': JSON.stringify(placesStateAppsArray._value),
                             'links': JSON.stringify(placesStateLinksArray._value),
@@ -1287,7 +1213,6 @@
                 placesStateZoom,
                 placesStateAffiliate,
                 placesStateAlerts,
-                placesStateAlertsArray,
                 placesStateOrganization,
                 placesStateOrganizationArray,
                 placesStateApps,
