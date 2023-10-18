@@ -97,7 +97,7 @@
                         perex: ''
                     }
                 }
-                this.$emit('information-author', this.informationDurationArray)
+                this.$emit('information-duration', this.informationDurationArray)
             },
             removeInformationDurationHeadlineInput(index) {
                 delete this.informationDurationArray[index].headline
