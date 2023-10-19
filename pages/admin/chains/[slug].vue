@@ -110,34 +110,7 @@
                                             <!-- Form - information(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace" nameDB="information" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in chainInformationArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeInformationInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Type:</label>
-                                                                    <input class="a-input" type="text" v-model="item.type" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addInformationInput">Přidat information</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsInformation :value="chainInformation" @information="handleInformation" />
                                             </div>
                                             <!-- Form - information(JSON) END -->
                                         </div>
@@ -168,6 +141,7 @@
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputsIDSStates from '@/components/molecules/mInputsIDSStates.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsInformation from '@/components/molecules/mInputsInformation.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -209,6 +183,7 @@
             mHeadlineForm,
             mInputsIDSStates,
             mInputImage,
+            mInputsInformation,
             mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
@@ -250,16 +225,6 @@
                     breadcrumb.name = `Editace značky - ${chainName}`
                 }
             },
-            // Information
-            addInformationInput() {
-                this.chainInformationArray.push({
-                    type: '',
-                    value: ''
-                })
-            },
-            removeInformationInput(index: number) {
-                this.chainInformationArray.splice(index, 1)
-            },
             // Components input changes
             handleSlug(newSlug: string) {
                 this.chainSlug = newSlug
@@ -275,23 +240,15 @@
             },
             handleIDSStates(newIDSStates: string) {
                 this.chainIDSstates = JSON.stringify(newIDSStates)
+            },
+            handleInformation(newInformation: string) {
+                this.chainInformation = JSON.stringify(newInformation)
             }
         },
 
         watch: {
             chainName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            // Information
-            chainInformation: function (newValue, oldValue) {
-                try {
-                    this.chainInformationArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.chainInformationArray = []
-                }
-            },
-            chainInformationArray: function (newValue, oldValue) {
-                this.chainInformation = JSON.stringify(newValue)
             }
         },
 
@@ -335,7 +292,6 @@
             const chainIDimageCover = ref(null)
             const chainIDimageHero = ref(null)
             const chainIDSstates = ref([])
-            const chainIDSstatesArray = ref([])
             const chainInformation = ref([])
             const chainSeoTags = ref([])
             const chainName = ref('')
@@ -378,7 +334,7 @@
                             'slug': chainSlug.value,
                             'id_image_cover': chainIDimageCover.value,
                             'id_image_hero': chainIDimageHero.value,
-                            'information': JSON.stringify(chainInformationArray._value),
+                            'information': chainInformation._value,
                             'seo_tags': chainSeoTags._value,
                             'ids_states': chainIDSstates._value,
                             'name': chainName.value,
@@ -409,7 +365,6 @@
                 chainIDimageCover,
                 chainIDimageHero,
                 chainIDSstates,
-                chainIDSstatesArray,
                 chainInformation,
                 chainSeoTags,
                 chainName,
