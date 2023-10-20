@@ -168,71 +168,13 @@
                                             <!-- Form - prices(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Ceny" nameDB="prices" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in eventPricesArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removePriceInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Perex:</label>
-                                                                    <input class="a-input" type="text" v-model="item.perex" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addPriceInput">Přidat cenu</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsPrices :value="eventPrices" @prices="handlePrices" />
                                             </div>
                                             <!-- Form - prices(JSON) END -->
                                             <!-- Form - links(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Odkazy" nameDB="links" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in eventLinksArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeLinkInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Link:</label>
-                                                                    <input class="a-input" type="text" v-model="item.link" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addLinkInput">Přidat odkaz</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsLinks :value="eventLinks" @links="handleLinks" />
                                             </div>
                                             <!-- Form - links(JSON) END -->                   
                                         </div>
@@ -265,6 +207,8 @@
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
+    import mInputsLinks from '@/components/molecules/mInputsLinks.vue'
+    import mInputsPrices from '@/components/molecules/mInputsPrices.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -335,6 +279,8 @@
             mInputImage,
             mInputsAffiliate,
             mInputsCoordinates,
+            mInputsLinks,
+            mInputsPrices,
             mInputsSeoTags,
             mInputsZoom,
             mLabel,
@@ -364,9 +310,7 @@
                         url: "",
                         status: "span"
                     }
-                ],
-                eventPricesArray: [],
-                eventLinksArray: []
+                ]
             }
         },
 
@@ -378,27 +322,6 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace UDÁLOSTI - ${eventName}`
                 }
-            },
-            // prices
-            addPriceInput() {
-                this.eventPricesArray.push({
-                    name: '',
-                    perex: '',
-                    value: ''
-                })
-            },
-            removePriceInput(index: number) {
-                this.eventPricesArray.splice(index, 1)
-            },
-            // links
-            addLinkInput() {
-                this.eventLinksArray.push({
-                    name: '',
-                    link: ''
-                })
-            },
-            removeLinkInput(index: number) {
-                this.eventLinksArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -433,32 +356,18 @@
             },
             handleAffiliate(newAffiliate: string) {
                 this.eventAffiliate = JSON.stringify(newAffiliate)
+            },
+            handlePrices(newPrices: string) {
+                this.eventPrices = JSON.stringify(newPrices)
+            },
+            handleLinks(newLinks: string) {
+                this.eventLinks = JSON.stringify(newLinks)
             }
         },
 
         watch: {
             eventName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            eventPrices: function (newValue, oldValue) {
-                try {
-                    this.eventPricesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.eventPricesArray = []
-                }
-            },
-            eventPricesArray: function (newValue, oldValue) {
-                this.eventPrices = JSON.stringify(newValue)
-            },
-            eventLinks: function (newValue, oldValue) {
-                try {
-                    this.eventLinksArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.eventLinksArray = []
-                }
-            },
-            eventLinksArray: function (newValue, oldValue) {
-                this.eventLinks = JSON.stringify(newValue)
             }
         },
 
@@ -514,9 +423,7 @@
             const eventZoom = ref([])
             const eventAffiliate = ref([])
             const eventPrices = ref([])
-            const eventPricesArray = ref([])
             const eventLinks = ref([])
-            const eventLinksArray = ref([])
 
             //API - Event
             ;(async () => {
@@ -576,8 +483,8 @@
                             'coordinates': eventCoordinates._value,
                             'zoom': eventZoom._value,
                             'affiliate': eventAffiliate._value,
-                            'prices': JSON.stringify(eventPricesArray._value),
-                            'links': JSON.stringify(eventLinksArray._value)
+                            'prices': eventPrices._value,
+                            'links': eventLinks._value
                         })
                     })
                     .then(() => {
@@ -616,9 +523,7 @@
                 eventZoom,
                 eventAffiliate,
                 eventPrices,
-                eventPricesArray,
                 eventLinks,
-                eventLinksArray,
                 editForm
             }
         },
