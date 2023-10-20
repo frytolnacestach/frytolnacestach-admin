@@ -519,50 +519,7 @@
                                             <!-- Form - organization(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Organizace" nameDB="organization" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesStateOrganizationArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeOrganizationInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date add to organization:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_add_to_organization" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addOrganizationInput">Přidat oragnizaci</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsOrganization :value="placesStateOrganization" @organization="handleOrganization" />
                                             </div>
                                             <!-- Form - organization(JSON) END -->
                                             <!-- Form - apps(JSON) -->
@@ -657,6 +614,7 @@
     import mInputsApps from '@/components/molecules/mInputsApps.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
+    import mInputsOrganization from '@/components/molecules/mInputsOrganization.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -835,6 +793,7 @@
             mInputsApps,
             mInputsCoordinates,
             mInputsInformationAuthor,
+            mInputsOrganization,
             mInputsSeoTags,
             mInputsZoom,
             mLabel,
@@ -877,7 +836,6 @@
                 placesStatePeopleReligionArray: [],
                 placesStatePeopleNationalityArray: [],
                 placesStateVisitorsEntryArray: [],
-                placesStateOrganizationArray: [],
                 placesStateLinksArray: [],
                 placesStateLanguagePhrasesArray: []
             }
@@ -971,20 +929,6 @@
             removeVisitorsEntryInput(index: number) {
                 this.placesStateVisitorsEntryArray.splice(index, 1)
             },
-            // Organization
-            addOrganizationInput() {
-                this.placesStateOrganizationArray.push({
-                    date: '',
-                    name: '',
-                    author: '',
-                    date_update: '',
-                    author_update: '',
-                    date_add_to_organization: ''
-                })
-            },
-            removeOrganizationInput(index: number) {
-                this.placesStateOrganizationArray.splice(index, 1)
-            },
             // Links
             addLinkInput() {
                 this.placesStateLinksArray.push({
@@ -1045,6 +989,9 @@
             },
             handleApps(newApps: string) {
                 this.placesStateApps = JSON.stringify(newApps)
+            },
+            handleOrganization(newOrganization: string) {
+                this.placesStateOrganization = JSON.stringify(newOrganization)
             }
         },
 
@@ -1111,16 +1058,6 @@
             },
             placesStateVisitorsEntryArray: function (newValue, oldValue) {
                 this.placesStateVisitorsEntry = JSON.stringify(newValue)
-            },
-            placesStateOrganization: function (newValue, oldValue) {
-                try {
-                    this.placesStateOrganizationArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesStateOrganizationArray = []
-                }
-            },
-            placesStateOrganizationArray: function (newValue, oldValue) {
-                this.placesStateOrganization = JSON.stringify(newValue)
             },
             placesStateLinks: function (newValue, oldValue) {
                 try {
@@ -1214,7 +1151,6 @@
             const placesStateAffiliate = ref([])
             const placesStateAlerts = ref([])
             const placesStateOrganization = ref([])
-            const placesStateOrganizationArray = ref([])
             const placesStateApps = ref([])
             const placesStateLinks = ref([])
             const placesStateLinksArray = ref([])
@@ -1305,7 +1241,7 @@
                             'zoom': placesStateZoom._value,
                             'affiliate': placesStateAffiliate._value,
                             'alerts': placesStateAlerts._value,
-                            'organization': JSON.stringify(placesStateOrganizationArray._value),
+                            'organization': placesStateOrganization._value,
                             'apps': placesStateApps._value,
                             'links': JSON.stringify(placesStateLinksArray._value),
                             'language_phrases': JSON.stringify(placesStateLanguagePhrasesArray._value)
@@ -1365,7 +1301,6 @@
                 placesStateAffiliate,
                 placesStateAlerts,
                 placesStateOrganization,
-                placesStateOrganizationArray,
                 placesStateApps,
                 placesStateLinks,
                 placesStateLinksArray,
