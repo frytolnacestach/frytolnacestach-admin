@@ -562,54 +562,7 @@
                                             <!-- Form - apps(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Aplikace" nameDB="apps" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesStateAppsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeAppInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">URL:</label>
-                                                                    <input class="a-input" type="text" v-model="item.url" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Description:</label>
-                                                                    <input class="a-input" type="text" v-model="item.description" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_update" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addAppInput">Přidat aplikaci</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsApps :value="placesStateApps" @apps="handleApps" />
                                             </div>
                                             <!-- Form - apps(JSON) END -->
                                             <!-- Form - links(JSON) -->
@@ -695,6 +648,7 @@
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
     import mInputsAlerts from '@/components/molecules/mInputsAlerts.vue'
+    import mInputsApps from '@/components/molecules/mInputsApps.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
@@ -716,6 +670,7 @@
             mInputImage,
             mInputsAffiliate,
             mInputsAlerts,
+            mInputsApps,
             mInputsCoordinates,
             mInputsInformationAuthor,
             mInputsSeoTags,
@@ -761,7 +716,6 @@
                 placesStatePeopleNationalityArray: [],
                 placesStateVisitorsEntryArray: [],
                 placesStateOrganizationArray: [],
-                placesStateAppsArray: [],
                 placesStateLinksArray: [],
                 placesStateLanguagePhrasesArray: []
             }
@@ -861,21 +815,6 @@
             removeOrganizationInput(index: number) {
                 this.placesStateOrganizationArray.splice(index, 1)
             },
-            // Apps
-            addAppInput() {
-                this.placesStateAppsArray.push({
-                    url: '',
-                    date: '',
-                    name: '',
-                    author: '',
-                    date_update: '',
-                    description: '',
-                    author_update: ''
-                })
-            },
-            removeAppInput(index: number) {
-                this.placesStateAppsArray.splice(index, 1)
-            },
             // Links
             addLinkInput() {
                 this.placesStateLinksArray.push({
@@ -933,6 +872,9 @@
             },
             handleAlerts(newAlerts: string) {
                 this.placesStateAlerts = JSON.stringify(newAlerts)
+            },
+            handleApps(newApps: string) {
+                this.placesStateApps = JSON.stringify(newApps)
             }
         },
 
@@ -1007,16 +949,6 @@
             placesStateOrganizationArray: function (newValue, oldValue) {
                 this.placesStateOrganization = JSON.stringify(newValue)
             },
-            placesStateApps: function (newValue, oldValue) {
-                try {
-                    this.placesStateAppsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesStateAppsArray = []
-                }
-            },
-            placesStateAppsArray: function (newValue, oldValue) {
-                this.placesStateApps = JSON.stringify(newValue)
-            },
             placesStateLinks: function (newValue, oldValue) {
                 try {
                     this.placesStateLinksArray = JSON.parse(newValue)
@@ -1067,12 +999,9 @@
             //CONSTS
             // route
             const runTimeConfig = useRuntimeConfig()
-            const route = useRoute()
             // message
             const errorForm = ref('')
             const successForm = ref('')
-            // variable
-            const loadingData = ref(false)
             // date
             const placesStateIDcontinent = ref(null)
             const placesStateIDcityMain = ref(null)
@@ -1110,7 +1039,6 @@
             const placesStateOrganization = ref([])
             const placesStateOrganizationArray = ref([])
             const placesStateApps = ref([])
-            const placesStateAppsArray = ref([])
             const placesStateLinks = ref([])
             const placesStateLinksArray = ref([])
             const placesStateLanguagePhrases = ref([])
@@ -1156,7 +1084,7 @@
                             'affiliate': placesStateAffiliate._value,
                             'alerts': placesStateAlerts._value,
                             'organization': JSON.stringify(placesStateOrganizationArray._value),
-                            'apps': JSON.stringify(placesStateAppsArray._value),
+                            'apps': placesStateApps._value,
                             'links': JSON.stringify(placesStateLinksArray._value),
                             'language_phrases': JSON.stringify(placesStateLanguagePhrasesArray._value)
                         })
@@ -1216,7 +1144,6 @@
                 placesStateOrganization,
                 placesStateOrganizationArray,
                 placesStateApps,
-                placesStateAppsArray,
                 placesStateLinks,
                 placesStateLinksArray,
                 placesStateLanguagePhrases,
