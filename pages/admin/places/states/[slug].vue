@@ -238,50 +238,7 @@
                                             <!-- Form - phone_numbers_emergency(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Důležitá telefonní čísla" nameDB="phone_numbers_emergency" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesStatePhoneNumbersEmergencyArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removePhoneNumbersEmergencyInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_update" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addPhoneNumbersEmergencyInput">Přidat číslo</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsPhoneNumbersEmergency :value="placesStatePhoneNumbersEmergency" @phoneNumbersEmergency="handlePhoneNumbersEmergency" />
                                             </div>
                                             <!-- Form - phone_numbers_emergency(JSON) END -->
                                             <!-- Form - currency_name -->
@@ -615,6 +572,7 @@
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
     import mInputsOrganization from '@/components/molecules/mInputsOrganization.vue'
+    import mInputsPhoneNumbersEmergency from '@/components/molecules/mInputsPhoneNumbersEmergency.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -794,6 +752,7 @@
             mInputsCoordinates,
             mInputsInformationAuthor,
             mInputsOrganization,
+            mInputsPhoneNumbersEmergency,
             mInputsSeoTags,
             mInputsZoom,
             mLabel,
@@ -831,7 +790,6 @@
                     }
                 ],
                 placesStateIDSneighboringCountriesArray: [],
-                placesStatePhoneNumbersEmergencyArray: [],
                 placesStateMoneyPricesArray: [],
                 placesStatePeopleReligionArray: [],
                 placesStatePeopleNationalityArray: [],
@@ -858,20 +816,6 @@
             },
             removeIDSneighboringCountrieInput(index: number) {
                 this.placesStateIDSneighboringCountriesArray.splice(index, 1)
-            },
-            // PhoneNumbersEmergency
-            addPhoneNumbersEmergencyInput() {
-                this.placesStatePhoneNumbersEmergencyArray.push({
-                    name: '',
-                    value: '',
-                    date_create: '',
-                    date_update: '',
-                    author_create: null,
-                    author_update: null
-                })
-            },
-            removePhoneNumbersEmergencyInput(index: number) {
-                this.placesStatePhoneNumbersEmergencyArray.splice(index, 1)
             },
             // MoneyPrices
             addMoneyPriceInput() {
@@ -992,6 +936,9 @@
             },
             handleOrganization(newOrganization: string) {
                 this.placesStateOrganization = JSON.stringify(newOrganization)
+            },
+            handlePhoneNumbersEmergency(newPhoneNumbersEmergency: string) {
+                this.placesStatePhoneNumbersEmergency = JSON.stringify(newPhoneNumbersEmergency)
             }
         },
 
@@ -1008,16 +955,6 @@
             },
             placesStateIDSneighboringCountriesArray: function (newValue, oldValue) {
                 this.placesStateIDSneighboringCountries = JSON.stringify(newValue)
-            },
-            placesStatePhoneNumbersEmergency: function (newValue, oldValue) {
-                try {
-                    this.placesStatePhoneNumbersEmergencyArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesStatePhoneNumbersEmergencyArray = []
-                }
-            },
-            placesStatePhoneNumbersEmergencyArray: function (newValue, oldValue) {
-                this.placesStatePhoneNumbersEmergency = JSON.stringify(newValue)
             },
             placesStateMoneyPrices: function (newValue, oldValue) {
                 try {
@@ -1134,7 +1071,6 @@
             const placesStatePopulation = ref(null)
             const placesStatePhonePrefix = ref('')
             const placesStatePhoneNumbersEmergency = ref([])
-            const placesStatePhoneNumbersEmergencyArray = ref([])
             const placesStateCurrencyName = ref('')
             const placesStateCurrencyCode = ref('')
             const placesStateMoneyPrices = ref([])
@@ -1229,7 +1165,7 @@
                             'area': placesStateArea.value,
                             'population': placesStatePopulation.value,
                             'phone_prefix': placesStatePhonePrefix.value,
-                            'phone_numbers_emergency': JSON.stringify(placesStatePhoneNumbersEmergencyArray._value),
+                            'phone_numbers_emergency': placesStatePhoneNumbersEmergency._value,
                             'currency_name': placesStateCurrencyName.value,
                             'currency_code': placesStateCurrencyCode.value,
                             'money_prices': JSON.stringify(placesStateMoneyPricesArray._value),
@@ -1285,7 +1221,6 @@
                 placesStatePopulation,
                 placesStatePhonePrefix,
                 placesStatePhoneNumbersEmergency,
-                placesStatePhoneNumbersEmergencyArray,
                 placesStateCurrencyName,
                 placesStateCurrencyCode,
                 placesStateMoneyPrices,
