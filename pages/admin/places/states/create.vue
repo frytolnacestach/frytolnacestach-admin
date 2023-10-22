@@ -397,50 +397,7 @@
                                             <!-- Form - visitors_entry(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Pravidla pro vstup" nameDB="visitors_entry" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesStateVisitorsEntryArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeVisitorsEntryInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_update" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addVisitorsEntryInput">Přidat podmínku</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsVisitorsEntry :value="placesStateVisitorsEntry" @visitors-entry="handleVisitorsEntry" />
                                             </div>
                                             <!-- Form - visitors_entry(JSON) END -->
                                             <!-- Form - coordinates(JSON) -->
@@ -568,6 +525,7 @@
     import mInputsOrganization from '@/components/molecules/mInputsOrganization.vue'
     import mInputsPhoneNumbersEmergency from '@/components/molecules/mInputsPhoneNumbersEmergency.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
+    import mInputsVisitorsEntry from '@/components/molecules/mInputsVisitorsEntry.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -592,6 +550,7 @@
             mInputsOrganization,
             mInputsPhoneNumbersEmergency,
             mInputsSeoTags,
+            mInputsVisitorsEntry,
             mInputsZoom,
             mLabel,
             mNavBreadcrumbs,
@@ -631,7 +590,6 @@
                 placesStateMoneyPricesArray: [],
                 placesStatePeopleReligionArray: [],
                 placesStatePeopleNationalityArray: [],
-                placesStateVisitorsEntryArray: [],
                 placesStateLinksArray: [],
                 placesStateLanguagePhrasesArray: []
             }
@@ -688,20 +646,6 @@
             },
             removePeopleNationalityInput(index: number) {
                 this.placesStatePeopleNationalityArray.splice(index, 1)
-            },
-            // VisitorsEntry
-            addVisitorsEntryInput() {
-                this.placesStateVisitorsEntryArray.push({
-                    name: '',
-                    value: '',
-                    date_create: '',
-                    date_update: '',
-                    author_create: null,
-                    author_update: null
-                })
-            },
-            removeVisitorsEntryInput(index: number) {
-                this.placesStateVisitorsEntryArray.splice(index, 1)
             },
             // Links
             addLinkInput() {
@@ -769,6 +713,9 @@
             },
             handlePhoneNumbersEmergency(newPhoneNumbersEmergency: string) {
                 this.placesStatePhoneNumbersEmergency = JSON.stringify(newPhoneNumbersEmergency)
+            },
+            handleVisitorsEntry(newVisitorsEntry: string) {
+                this.placesStateVisitorsEntry = JSON.stringify(newVisitorsEntry)
             }
         },
 
@@ -812,16 +759,6 @@
             },
             placesStatePeopleNationalityArray: function (newValue, oldValue) {
                 this.placesStatePeopleNationality = JSON.stringify(newValue)
-            },
-            placesStateVisitorsEntry: function (newValue, oldValue) {
-                try {
-                    this.placesStateVisitorsEntryArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesStateVisitorsEntryArray = []
-                }
-            },
-            placesStateVisitorsEntryArray: function (newValue, oldValue) {
-                this.placesStateVisitorsEntry = JSON.stringify(newValue)
             },
             placesStateLinks: function (newValue, oldValue) {
                 try {
@@ -904,7 +841,6 @@
             const placesStatePeopleNationality = ref([])
             const placesStatePeopleNationalityArray = ref([])
             const placesStateVisitorsEntry = ref([])
-            const placesStateVisitorsEntryArray = ref([])
             const placesStateCoordinates = ref([])
             const placesStateZoom = ref([])
             const placesStateAffiliate = ref([])
@@ -950,7 +886,7 @@
                             'money_prices': JSON.stringify(placesStateMoneyPricesArray._value),
                             'people_religion': JSON.stringify(placesStatePeopleReligionArray._value),
                             'people_nationality': JSON.stringify(placesStatePeopleNationalityArray._value),
-                            'visitors_entry': JSON.stringify(placesStateVisitorsEntryArray._value),
+                            'visitors_entry': placesStateVisitorsEntry._value,
                             'coordinates': placesStateCoordinates._value,
                             'zoom': placesStateZoom._value,
                             'affiliate': placesStateAffiliate._value,
@@ -1007,7 +943,6 @@
                 placesStatePeopleNationality,
                 placesStatePeopleNationalityArray,
                 placesStateVisitorsEntry,
-                placesStateVisitorsEntryArray,
                 placesStateCoordinates,
                 placesStateZoom,
                 placesStateAffiliate,
