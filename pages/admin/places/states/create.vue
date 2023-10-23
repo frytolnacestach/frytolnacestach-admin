@@ -161,42 +161,7 @@
                                             <!-- Form - language_phrases(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Jazykové fráze" nameDB="language_phrases" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesStateLanguagePhrasesArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeLanguagePhrasesInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Česky:</label>
-                                                                    <input class="a-input" type="text" v-model="item.czech" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Překlad:</label>
-                                                                    <input class="a-input" type="text" v-model="item.foreign" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Překlad arabsky:</label>
-                                                                    <input class="a-input" type="text" v-model="item.foreign_arabic" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Fonetický přepis:</label>
-                                                                    <input class="a-input" type="text" v-model="item.phonetic_transcription" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addLanguagePhrasesInput">Přidat frázy</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsLanguagePhrases :value="placesStateLanguagePhrases" @language-phrases="handleLanguagePhrases" />
                                             </div>
                                             <!-- Form - language_phrases(JSON) END -->
                                             <!-- Form - mpz -->
@@ -522,6 +487,7 @@
     import mInputsApps from '@/components/molecules/mInputsApps.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
+    import mInputsLanguagePhrases from '@/components/molecules/mInputsLanguagePhrases.vue'
     import mInputsOrganization from '@/components/molecules/mInputsOrganization.vue'
     import mInputsPhoneNumbersEmergency from '@/components/molecules/mInputsPhoneNumbersEmergency.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
@@ -547,6 +513,7 @@
             mInputsApps,
             mInputsCoordinates,
             mInputsInformationAuthor,
+            mInputsLanguagePhrases,
             mInputsOrganization,
             mInputsPhoneNumbersEmergency,
             mInputsSeoTags,
@@ -590,8 +557,7 @@
                 placesStateMoneyPricesArray: [],
                 placesStatePeopleReligionArray: [],
                 placesStatePeopleNationalityArray: [],
-                placesStateLinksArray: [],
-                placesStateLanguagePhrasesArray: []
+                placesStateLinksArray: []
             }
         },
 
@@ -662,18 +628,6 @@
             removeLinkInput(index: number) {
                 this.placesStateLinksArray.splice(index, 1)
             },
-            // LanguagePhrases
-            addLanguagePhrasesInput() {
-                this.placesStateLanguagePhrasesArray.push({
-                    czech: '',
-                    foreign: '',
-                    foreign_arabic: '',
-                    phonetic_transcription: ''
-                })
-            },
-            removeLanguagePhrasesInput(index: number) {
-                this.placesStateLanguagePhrasesArray.splice(index, 1)
-            },
             // Components input changes
             handleSlug(newSlug: string) {
                 this.placesStateSlug = newSlug
@@ -716,6 +670,9 @@
             },
             handleVisitorsEntry(newVisitorsEntry: string) {
                 this.placesStateVisitorsEntry = JSON.stringify(newVisitorsEntry)
+            },
+            handleLanguagePhrases(newLanguagePhrases: string) {
+                this.placesStateLanguagePhrases = JSON.stringify(newLanguagePhrases)
             }
         },
 
@@ -769,16 +726,6 @@
             },
             placesStateLinksArray: function (newValue, oldValue) {
                 this.placesStateLinks = JSON.stringify(newValue)
-            },
-            placesStateLanguagePhrases: function (newValue, oldValue) {
-                try {
-                    this.placesStateLanguagePhrasesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesStateLanguagePhrasesArray = []
-                }
-            },
-            placesStateLanguagePhrasesArray: function (newValue, oldValue) {
-                this.placesStateLanguagePhrases = JSON.stringify(newValue)
             }
         },
 
@@ -850,7 +797,6 @@
             const placesStateLinks = ref([])
             const placesStateLinksArray = ref([])
             const placesStateLanguagePhrases = ref([])
-            const placesStateLanguagePhrasesArray = ref([])
 
             //FORM - create
             const createForm = async () => {
@@ -894,7 +840,7 @@
                             'organization': placesStateOrganization._value,
                             'apps': placesStateApps._value,
                             'links': JSON.stringify(placesStateLinksArray._value),
-                            'language_phrases': JSON.stringify(placesStateLanguagePhrasesArray._value)
+                            'language_phrases': placesStateLanguagePhrases._value
                         })
                     })
                     .then(() => {
@@ -952,7 +898,6 @@
                 placesStateLinks,
                 placesStateLinksArray,
                 placesStateLanguagePhrases,
-                placesStateLanguagePhrasesArray,
                 createForm
             }
         },
