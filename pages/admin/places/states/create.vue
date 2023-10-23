@@ -114,30 +114,7 @@
                                             <!-- Form - ids_neighboring_countries -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Sousední státy" nameDB="ids_neighboring_countries" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesStateIDSneighboringCountriesArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeIDSneighboringCountrieInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">ID:</label>
-                                                                    <input class="a-input" type="number" min="0" v-model="item.id" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addIDSneighboringCountrieInput">Přidat stát</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsIDSNeighboringCountries :value="placesStateIDSneighboringCountries" @ids-neighboring-countries="handleIDSneighboringCountries" />
                                             </div>
                                             <!-- Form - ids_neighboring_countries END -->
                                             <!-- Form - name -->
@@ -486,6 +463,7 @@
     import mInputsAlerts from '@/components/molecules/mInputsAlerts.vue'
     import mInputsApps from '@/components/molecules/mInputsApps.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
+    import mInputsIDSNeighboringCountries from '@/components/molecules/mInputsIDSNeighboringCountries.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
     import mInputsLanguagePhrases from '@/components/molecules/mInputsLanguagePhrases.vue'
     import mInputsOrganization from '@/components/molecules/mInputsOrganization.vue'
@@ -512,6 +490,7 @@
             mInputsAlerts,
             mInputsApps,
             mInputsCoordinates,
+            mInputsIDSNeighboringCountries,
             mInputsInformationAuthor,
             mInputsLanguagePhrases,
             mInputsOrganization,
@@ -553,7 +532,6 @@
                         status: "span"
                     }
                 ],
-                placesStateIDSneighboringCountriesArray: [],
                 placesStateMoneyPricesArray: [],
                 placesStatePeopleReligionArray: [],
                 placesStatePeopleNationalityArray: [],
@@ -562,15 +540,6 @@
         },
 
         methods: {
-            // IDSneighboringCountries
-            addIDSneighboringCountrieInput() {
-                this.placesStateIDSneighboringCountriesArray.push({
-                    id: ''
-                })
-            },
-            removeIDSneighboringCountrieInput(index: number) {
-                this.placesStateIDSneighboringCountriesArray.splice(index, 1)
-            },
             // MoneyPrices
             addMoneyPriceInput() {
                 this.placesStateMoneyPricesArray.push({
@@ -673,20 +642,13 @@
             },
             handleLanguagePhrases(newLanguagePhrases: string) {
                 this.placesStateLanguagePhrases = JSON.stringify(newLanguagePhrases)
+            },
+            handleIDSneighboringCountries(newIDSneighboringCountries: string) {
+                this.placesStateIDSneighboringCountries = JSON.stringify(newIDSneighboringCountries)
             }
         },
 
         watch: {
-            placesStateIDSneighboringCountries: function (newValue, oldValue) {
-                try {
-                    this.placesStateIDSneighboringCountriesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesStateIDSneighboringCountriesArray = []
-                }
-            },
-            placesStateIDSneighboringCountriesArray: function (newValue, oldValue) {
-                this.placesStateIDSneighboringCountries = JSON.stringify(newValue)
-            },
             placesStateMoneyPrices: function (newValue, oldValue) {
                 try {
                     this.placesStateMoneyPricesArray = JSON.parse(newValue)
@@ -766,7 +728,6 @@
             const placesStateIDimageCover = ref(null)
             const placesStateIDimageHero = ref(null)
             const placesStateIDSneighboringCountries = ref([])
-            const placesStateIDSneighboringCountriesArray = ref([])
             const placesStateTypePlace = ref('state')
             const placesStateSlug = ref('')
             const placesStateName = ref('')
@@ -814,7 +775,7 @@
                             'id_city_main': placesStateIDcityMain.value,
                             'id_image_cover': placesStateIDimageCover.value,
                             'id_image_hero': placesStateIDimageHero.value,
-                            'ids_neighboring_countries': JSON.stringify(placesStateIDSneighboringCountriesArray._value),
+                            'ids_neighboring_countries': placesStateIDSneighboringCountries._value,
                             'type_place': placesStateTypePlace.value,
                             'slug': placesStateSlug.value,
                             'name': placesStateName.value,
@@ -867,7 +828,6 @@
                 placesStateIDimageCover,
                 placesStateIDimageHero,
                 placesStateIDSneighboringCountries,
-                placesStateIDSneighboringCountriesArray,
                 placesStateTypePlace,
                 placesStateSlug,
                 placesStateName,
