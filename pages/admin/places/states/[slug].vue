@@ -198,50 +198,7 @@
                                             <!-- Form - money_prices(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Ceny" nameDB="money_prices" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesStateMoneyPricesArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeMoneyPriceInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_update" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addMoneyPriceInput">Přidat cenu</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsMoneyPrices :value="placesStateMoneyPrices" @money-prices="handleMoneyPrices" />
                                             </div>
                                             <!-- Form - money_prices(JSON) END -->
                                             <!-- Form - people_religion(JSON) -->
@@ -472,6 +429,7 @@
     import mInputsIDSNeighboringCountries from '@/components/molecules/mInputsIDSNeighboringCountries.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
     import mInputsLanguagePhrases from '@/components/molecules/mInputsLanguagePhrases.vue'
+    import mInputsMoneyPrices from '@/components/molecules/mInputsMoneyPrices.vue'
     import mInputsOrganization from '@/components/molecules/mInputsOrganization.vue'
     import mInputsPhoneNumbersEmergency from '@/components/molecules/mInputsPhoneNumbersEmergency.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
@@ -655,6 +613,7 @@
             mInputsIDSNeighboringCountries,
             mInputsInformationAuthor,
             mInputsLanguagePhrases,
+            mInputsMoneyPrices,
             mInputsOrganization,
             mInputsPhoneNumbersEmergency,
             mInputsSeoTags,
@@ -694,7 +653,6 @@
                         status: "span"
                     }
                 ],
-                placesStateMoneyPricesArray: [],
                 placesStatePeopleReligionArray: [],
                 placesStatePeopleNationalityArray: [],
                 placesStateLinksArray: []
@@ -709,20 +667,6 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace státu - ${placesStateName}`
                 }
-            },
-            // MoneyPrices
-            addMoneyPriceInput() {
-                this.placesStateMoneyPricesArray.push({
-                    name: '',
-                    value: '',
-                    date_create: '',
-                    date_update: '',
-                    author_create: null,
-                    author_update: null
-                })
-            },
-            removeMoneyPriceInput(index: number) {
-                this.placesStateMoneyPricesArray.splice(index, 1)
             },
             // PeopleReligion
             addPeopleReligionInput() {
@@ -815,22 +759,15 @@
             },
             handleIDSneighboringCountries(newIDSneighboringCountries: string) {
                 this.placesStateIDSneighboringCountries = JSON.stringify(newIDSneighboringCountries)
+            },
+            handleMoneyPrices(newMoneyPrices: string) {
+                this.placesStateMoneyPrices = JSON.stringify(newMoneyPrices)
             }
         },
 
         watch: {
             placesStateName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            placesStateMoneyPrices: function (newValue, oldValue) {
-                try {
-                    this.placesStateMoneyPricesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesStateMoneyPricesArray = []
-                }
-            },
-            placesStateMoneyPricesArray: function (newValue, oldValue) {
-                this.placesStateMoneyPrices = JSON.stringify(newValue)
             },
             placesStatePeopleReligion: function (newValue, oldValue) {
                 try {
@@ -919,7 +856,6 @@
             const placesStateCurrencyName = ref('')
             const placesStateCurrencyCode = ref('')
             const placesStateMoneyPrices = ref([])
-            const placesStateMoneyPricesArray = ref([])
             const placesStatePeopleReligion = ref([])
             const placesStatePeopleReligionArray = ref([])
             const placesStatePeopleNationality = ref([])
@@ -1011,7 +947,7 @@
                             'phone_numbers_emergency': placesStatePhoneNumbersEmergency._value,
                             'currency_name': placesStateCurrencyName.value,
                             'currency_code': placesStateCurrencyCode.value,
-                            'money_prices': JSON.stringify(placesStateMoneyPricesArray._value),
+                            'money_prices': placesStateMoneyPrices._value,
                             'people_religion': JSON.stringify(placesStatePeopleReligionArray._value),
                             'people_nationality': JSON.stringify(placesStatePeopleNationalityArray._value),
                             'visitors_entry': placesStateVisitorsEntry._value,
@@ -1066,7 +1002,6 @@
                 placesStateCurrencyName,
                 placesStateCurrencyCode,
                 placesStateMoneyPrices,
-                placesStateMoneyPricesArray,
                 placesStatePeopleReligion,
                 placesStatePeopleReligionArray,
                 placesStatePeopleNationality,
