@@ -258,54 +258,7 @@
                                             <!-- Form - links(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Odkazy" nameDB="links" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesStateLinksArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeLinkInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">URL:</label>
-                                                                    <input class="a-input" type="text" v-model="item.url" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Description:</label>
-                                                                    <input class="a-input" type="text" v-model="item.description" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_update" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addLinkInput">Přidat odkaz</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsLinksPlace :value="placesStateLinks" @links-place="handleLinksPlace" />
                                             </div>
                                             <!-- Form - links(JSON) END -->
                                         </div>
@@ -343,6 +296,7 @@
     import mInputsIDSNeighboringCountries from '@/components/molecules/mInputsIDSNeighboringCountries.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
     import mInputsLanguagePhrases from '@/components/molecules/mInputsLanguagePhrases.vue'
+    import mInputsLinksPlace from '@/components/molecules/mInputsLinksPlace.vue'
     import mInputsMoneyPrices from '@/components/molecules/mInputsMoneyPrices.vue'
     import mInputsOrganization from '@/components/molecules/mInputsOrganization.vue'
     import mInputsPeopleNationality from '@/components/molecules/mInputsPeopleNationality.vue'
@@ -529,6 +483,7 @@
             mInputsIDSNeighboringCountries,
             mInputsInformationAuthor,
             mInputsLanguagePhrases,
+            mInputsLinksPlace,
             mInputsMoneyPrices,
             mInputsOrganization,
             mInputsPeopleNationality,
@@ -570,8 +525,7 @@
                         url: "",
                         status: "span"
                     }
-                ],
-                placesStateLinksArray: []
+                ]
             }
         },
 
@@ -583,21 +537,6 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace státu - ${placesStateName}`
                 }
-            },
-            // Links
-            addLinkInput() {
-                this.placesStateLinksArray.push({
-                    url: '',
-                    date: '',
-                    name: '',
-                    author: '',
-                    date_update: '',
-                    description: '',
-                    author_update: ''
-                })
-            },
-            removeLinkInput(index: number) {
-                this.placesStateLinksArray.splice(index, 1)
             },
             // Components input changes
             handleSlug(newSlug: string) {
@@ -656,22 +595,15 @@
             },
             handlePeopleNationality(newPeopleNationality: string) {
                 this.placesStatePeopleNationality = JSON.stringify(newPeopleNationality)
+            },
+            handleLinksPlace(newLinksPlace: string) {
+                this.placesStateLinks = JSON.stringify(newLinksPlace)
             }
         },
 
         watch: {
             placesStateName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            placesStateLinks: function (newValue, oldValue) {
-                try {
-                    this.placesStateLinksArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesStateLinksArray = []
-                }
-            },
-            placesStateLinksArray: function (newValue, oldValue) {
-                this.placesStateLinks = JSON.stringify(newValue)
             }
         },
 
@@ -741,7 +673,6 @@
             const placesStateOrganization = ref([])
             const placesStateApps = ref([])
             const placesStateLinks = ref([])
-            const placesStateLinksArray = ref([])
             const placesStateLanguagePhrases = ref([])
 
             //API - Places State
@@ -830,7 +761,7 @@
                             'alerts': placesStateAlerts._value,
                             'organization': placesStateOrganization._value,
                             'apps': placesStateApps._value,
-                            'links': JSON.stringify(placesStateLinksArray._value),
+                            'links': placesStateLinks._value,
                             'language_phrases': placesStateLanguagePhrases._value
                         })
                     })
@@ -884,7 +815,6 @@
                 placesStateOrganization,
                 placesStateApps,
                 placesStateLinks,
-                placesStateLinksArray,
                 placesStateLanguagePhrases,
                 editForm
             }
