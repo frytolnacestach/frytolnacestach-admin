@@ -198,99 +198,13 @@
                                             <!-- Form - people_religion(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Náboženství" nameDB="people_religion" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesStatePeopleReligionArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removePeopleReligionInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_update" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addPeopleReligionInput">Přidat náboženství</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsPeopleReligion :value="placesStatePeopleReligion" @people-religion="handlePeopleReligion" />
                                             </div>
                                             <!-- Form - people_religion(JSON) END -->
                                             <!-- Form - people_nationality(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Národnost" nameDB="people_nationality" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in placesStatePeopleNationalityArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removePeopleNationalityInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Date update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.date_update" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author create:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_create" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Author update:</label>
-                                                                    <input class="a-input" type="text" v-model="item.author_update" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addPeopleNationalityInput">Přidat číslo</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsPeopleNationality :value="placesStatePeopleNationality" @people-nationality="handlePeopleNationality" />
                                             </div>
                                             <!-- Form - people_nationality(JSON) END -->
                                             <!-- Form - visitors_entry(JSON) -->
@@ -425,6 +339,8 @@
     import mInputsLanguagePhrases from '@/components/molecules/mInputsLanguagePhrases.vue'
     import mInputsMoneyPrices from '@/components/molecules/mInputsMoneyPrices.vue'
     import mInputsOrganization from '@/components/molecules/mInputsOrganization.vue'
+    import mInputsPeopleNationality from '@/components/molecules/mInputsPeopleNationality.vue'
+    import mInputsPeopleReligion from '@/components/molecules/mInputsPeopleReligion.vue'
     import mInputsPhoneNumbersEmergency from '@/components/molecules/mInputsPhoneNumbersEmergency.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mInputsVisitorsEntry from '@/components/molecules/mInputsVisitorsEntry.vue'
@@ -453,6 +369,8 @@
             mInputsLanguagePhrases,
             mInputsMoneyPrices,
             mInputsOrganization,
+            mInputsPeopleNationality,
+            mInputsPeopleReligion,
             mInputsPhoneNumbersEmergency,
             mInputsSeoTags,
             mInputsVisitorsEntry,
@@ -491,41 +409,11 @@
                         status: "span"
                     }
                 ],
-                placesStatePeopleReligionArray: [],
-                placesStatePeopleNationalityArray: [],
                 placesStateLinksArray: []
             }
         },
 
         methods: {
-            // PeopleReligion
-            addPeopleReligionInput() {
-                this.placesStatePeopleReligionArray.push({
-                    name: '',
-                    value: '',
-                    date_create: '',
-                    date_update: '',
-                    author_create: null,
-                    author_update: null
-                })
-            },
-            removePeopleReligionInput(index: number) {
-                this.placesStatePeopleReligionArray.splice(index, 1)
-            },
-            // PeopleNationality
-            addPeopleNationalityInput() {
-                this.placesStatePeopleNationalityArray.push({
-                    name: '',
-                    value: '',
-                    date_create: '',
-                    date_update: '',
-                    author_create: null,
-                    author_update: null
-                })
-            },
-            removePeopleNationalityInput(index: number) {
-                this.placesStatePeopleNationalityArray.splice(index, 1)
-            },
             // Links
             addLinkInput() {
                 this.placesStateLinksArray.push({
@@ -592,30 +480,16 @@
             },
             handleMoneyPrices(newMoneyPrices: string) {
                 this.placesStateMoneyPrices = JSON.stringify(newMoneyPrices)
+            },
+            handlePeopleReligion(newPeopleReligion: string) {
+                this.placesStatePeopleReligion = JSON.stringify(newPeopleReligion)
+            },
+            handlePeopleNationality(newPeopleNationality: string) {
+                this.placesStatePeopleNationality = JSON.stringify(newPeopleNationality)
             }
         },
 
         watch: {
-            placesStatePeopleReligion: function (newValue, oldValue) {
-                try {
-                    this.placesStatePeopleReligionArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesStatePeopleReligionArray = []
-                }
-            },
-            placesStatePeopleReligionArray: function (newValue, oldValue) {
-                this.placesStatePeopleReligion = JSON.stringify(newValue)
-            },
-            placesStatePeopleNationality: function (newValue, oldValue) {
-                try {
-                    this.placesStatePeopleNationalityArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesStatePeopleNationalityArray = []
-                }
-            },
-            placesStatePeopleNationalityArray: function (newValue, oldValue) {
-                this.placesStatePeopleNationality = JSON.stringify(newValue)
-            },
             placesStateLinks: function (newValue, oldValue) {
                 try {
                     this.placesStateLinksArray = JSON.parse(newValue)
@@ -681,9 +555,7 @@
             const placesStateCurrencyCode = ref('')
             const placesStateMoneyPrices = ref([])
             const placesStatePeopleReligion = ref([])
-            const placesStatePeopleReligionArray = ref([])
             const placesStatePeopleNationality = ref([])
-            const placesStatePeopleNationalityArray = ref([])
             const placesStateVisitorsEntry = ref([])
             const placesStateCoordinates = ref([])
             const placesStateZoom = ref([])
@@ -727,8 +599,8 @@
                             'currency_code': placesStateCurrencyCode.value,
                             'seo_tags': placesStateSeoTags._value,
                             'money_prices': placesStateMoneyPrices._value,
-                            'people_religion': JSON.stringify(placesStatePeopleReligionArray._value),
-                            'people_nationality': JSON.stringify(placesStatePeopleNationalityArray._value),
+                            'people_religion': placesStatePeopleReligion._value,
+                            'people_nationality': placesStatePeopleNationality._value,
                             'visitors_entry': placesStateVisitorsEntry._value,
                             'coordinates': placesStateCoordinates._value,
                             'zoom': placesStateZoom._value,
@@ -780,9 +652,7 @@
                 placesStateCurrencyCode,
                 placesStateMoneyPrices,
                 placesStatePeopleReligion,
-                placesStatePeopleReligionArray,
                 placesStatePeopleNationality,
-                placesStatePeopleNationalityArray,
                 placesStateVisitorsEntry,
                 placesStateCoordinates,
                 placesStateZoom,
