@@ -60,6 +60,7 @@
                     type: '',
                     value: ''
                 })
+                this.$emit('information', this.informationArray)
             },
             removeInformationInput(index) {
                 this.informationArray.splice(index, 1)
