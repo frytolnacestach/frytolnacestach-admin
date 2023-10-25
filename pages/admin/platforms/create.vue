@@ -62,34 +62,7 @@
                                             <!-- Form - facts(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Fakta o síťi" nameDB="facts" perex="Fakta o síťi například datum založení a počet sledujícíh" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in platformFactsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeFactInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addFactInput">Přidat fakt</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsFacts :value="platformFacts" @facts="handleFacts" />
                                             </div>
                                             <!-- Form - facts(JSON) -->
                                         </div>
@@ -118,6 +91,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputsFacts from '@/components/molecules/mInputsFacts.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -131,6 +105,7 @@
             aInputSlug,
             mButton,
             mHeadlineForm,
+            mInputsFacts,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -158,37 +133,17 @@
                         url: "",
                         status: "span"
                     }
-                ],
-                platformFactsArray: []
+                ]
             }
         },
 
         methods: {
-            addFactInput() {
-                this.platformFactsArray.push({
-                    name: '',
-                    value: ''
-                })
-            },
-            removeFactInput(index: number) {
-                this.platformFactsArray.splice(index, 1)
-            },
             // Components input changes
             handleSlug(newSlug: string) {
                 this.platformSlug = newSlug
-            }
-        },
-
-        watch: {
-            platformFacts: function (newValue, oldValue) {
-                try {
-                    this.platformFactsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.platformFactsArray = []
-                }
             },
-            platformFactsArray: function (newValue, oldValue) {
-                this.platformFacts = JSON.stringify(newValue)
+            handleFacts(newFacts: string) {
+                this.platformFacts = JSON.stringify(newFacts)
             }
         },
 
@@ -226,7 +181,6 @@
             const platformPerex = ref('')
             const platformUrl = ref('')
             const platformFacts = ref('')
-            const platformFactsArray = ref([])
             const platformDate = ref('')
 
             //FORM - create
@@ -245,7 +199,7 @@
                             'name': platformName.value,
                             'perex': platformPerex.value,
                             'url': platformUrl.value,
-                            'facts': JSON.stringify(platformFactsArray._value),
+                            'facts': platformFacts._value,
                             'date': platformDate.value
                         })
                     })
@@ -273,7 +227,6 @@
                 platformPerex,
                 platformUrl,
                 platformFacts,
-                platformFactsArray,
                 platformDate,
                 createForm
             }
