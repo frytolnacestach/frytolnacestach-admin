@@ -234,211 +234,37 @@
                                             <!-- Form - tags(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Tagy" nameDB="tags" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in postTagsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeTagInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addTagInput">Přidat tag</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsTags :value="postTags" @tags="handleTags" />
                                             </div>
                                             <!-- Form - tags(JSON) END -->
                                             <!-- Form - locations(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Lokace" nameDB="locations" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in postLocationsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeLocationInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Type:</label>
-                                                                    <input class="a-input" type="text" v-model="item.type" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addLocationInput">Přidat lokaci</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsLocations :value="postLocations" @locations="handleLocations" />
                                             </div>
                                             <!-- Form - locations(JSON) END -->
                                             <!-- Form - travels(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Způsoby dopravy" nameDB="travels" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in postTravelsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeTravelInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Icon:</label>
-                                                                    <input class="a-input" type="text" v-model="item.icon" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Text:</label>
-                                                                    <input class="a-input" type="text" v-model="item.text" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addTravelInput">Přidat položku</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsTravels :value="postTravels" @travels="handleTravels" />
                                             </div>
                                             <!-- Form - travels(JSON) END -->
                                             <!-- Form - prices(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Ceny" nameDB="prices" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in postPricesArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removePriceInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Subname:</label>
-                                                                    <input class="a-input" type="text" v-model="item.subname" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addPriceInput">Přidat cenu</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsTripPrices :value="postPrices" @trip-prices="handleTripPrices" />
                                             </div>
                                             <!-- Form - prices(JSON) END -->
                                             <!-- Form - triplengths(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Délka výletu" nameDB="triplengths" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in postTriplengthsArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeTriplengthInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Subname:</label>
-                                                                    <input class="a-input" type="text" v-model="item.subname" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addTriplengthInput">Přidat délku</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsTripLengths :value="postTriplengths" @trip-lengths="handleTripLengths" />
                                             </div>
                                             <!-- Form - triplengths(JSON) END -->
                                             <!-- Form - times(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Časová náročnost" nameDB="times" perex="" :required=false />
-                                                <div class="o-form-item__group">
-                                                    <div class="o-form-item__group-items">
-                                                        <div class="o-form-item__group-item" v-for="(item, index) in postTimesArray" :key="index">
-                                                            <div class="m-button-remove">
-                                                                <button class="m-button-remove__input" type="button" @click="removeTimeInput(index)">
-                                                                    Odstranit
-                                                                </button>
-                                                            </div>
-                                                            <div class="o-form-item__group-inputs">
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Name:</label>
-                                                                    <input class="a-input" type="text" v-model="item.name" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Subname:</label>
-                                                                    <input class="a-input" type="text" v-model="item.subname" />
-                                                                </div>
-                                                                <div class="o-form-item__group-input">
-                                                                    <label class="m-label">Value:</label>
-                                                                    <input class="a-input" type="text" v-model="item.value" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="o-form-item__buttons mt-1">
-                                                        <div class="o-form-item__button">
-                                                            <div class="m-button-add">
-                                                                <button class="m-button-add__input" type="button" @click="addTimeInput">Přidat čas</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <mInputsTimes :value="postTimes" @times="handleTimes" />
                                             </div>
                                             <!-- Form - times(JSON) END -->
                                         </div>
@@ -469,7 +295,13 @@
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsLocations from '@/components/molecules/mInputsLocations.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
+    import mInputsTags from '@/components/molecules/mInputsTags.vue'
+    import mInputsTimes from '@/components/molecules/mInputsTimes.vue'
+    import mInputsTravels from '@/components/molecules/mInputsTravels.vue'
+    import mInputsTripLengths from '@/components/molecules/mInputsTripLengths.vue'
+    import mInputsTripPrices from '@/components/molecules/mInputsTripPrices.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -485,7 +317,13 @@
             mHeadlineForm,
             mInputIDPlaces,
             mInputImage,
+            mInputsLocations,
             mInputsSeoTags,
+            mInputsTags,
+            mInputsTimes,
+            mInputsTravels,
+            mInputsTripLengths,
+            mInputsTripPrices,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -513,80 +351,11 @@
                         url: "",
                         status: "span"
                     }
-                ],
-                postTagsArray: [],
-                postLocationsArray: [],
-                postTravelsArray: [],
-                postPricesArray: [],
-                postTriplengthArray: [],
-                postTimeArray: []
+                ]
             }
         },
 
         methods: {
-            // tags
-            addTagInput() {
-                this.postTagsArray.push({
-                    name: ''
-                })
-            },
-            removeTagInput(index: number) {
-                this.postTagsArray.splice(index, 1)
-            },
-            // locations
-            addLocationInput() {
-                this.postLocationsArray.push({
-                    name: '',
-                    type: ''
-                })
-            },
-            removeLocationInput(index: number) {
-                this.postLocationsArray.splice(index, 1)
-            },
-            // travels
-            addTravelInput() {
-                this.postTravelsArray.push({
-                    icon: '',
-                    name: '',
-                    text: ''
-                })
-            },
-            removeTravelInput(index: number) {
-                this.postTravelsArray.splice(index, 1)
-            },
-            // prices
-            addPriceInput() {
-                this.postPricesArray.push({
-                    name: '',
-                    subname: '',
-                    value: ''
-                })
-            },
-            removePriceInput(index: number) {
-                this.postPricesArray.splice(index, 1)
-            },
-            // triplengths
-            addTriplengthInput() {
-                this.postTriplengthsArray.push({
-                    name: '',
-                    subname: '',
-                    value: ''
-                })
-            },
-            removeTriplengthInput(index: number) {
-                this.postTriplengthsArray.splice(index, 1)
-            },
-            // times
-            addTimeInput() {
-                this.postTimesArray.push({
-                    name: '',
-                    subname: '',
-                    value: ''
-                })
-            },
-            removeTimeInput(index: number) {
-                this.postTimesArray.splice(index, 1)
-            },
             // Components input changes
             handleSlug(newSlug: string) {
                 this.postSlug = newSlug
@@ -620,69 +389,24 @@
             },
             handleIDspot(newImage: string) {
                 this.postIDspot = newImage
-            }
-        },
-
-        watch: {
-            postTags: function (newValue, oldValue) {
-                try {
-                    this.postTagsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.postTagsArray = []
-                }
             },
-            postTagsArray: function (newValue, oldValue) {
-                this.postTags = JSON.stringify(newValue)
+            handleTags(newTags: string) {
+                this.postTags = JSON.stringify(newTags)
             },
-            postLocations: function (newValue, oldValue) {
-                try {
-                    this.postLocationsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.postLocationsArray = []
-                }
+            handleLocations(newLocations: string) {
+                this.postLocations = JSON.stringify(newLocations)
             },
-            postLocationsArray: function (newValue, oldValue) {
-                this.postLocations = JSON.stringify(newValue)
+            handleTravels(newTravels: string) {
+                this.postTravels = JSON.stringify(newTravels)
             },
-            postTravels: function (newValue, oldValue) {
-                try {
-                    this.postTravelsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.postTravelsArray = []
-                }
+            handleTripPrices(newPrices: string) {
+                this.postPrices = JSON.stringify(newPrices)
             },
-            postTravelsArray: function (newValue, oldValue) {
-                this.postTravels = JSON.stringify(newValue)
+            handleTripLengths(newTripLengths: string) {
+                this.postTriplengths = JSON.stringify(newTripLengths)
             },
-            postPrices: function (newValue, oldValue) {
-                try {
-                    this.postPricesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.postPricesArray = []
-                }
-            },
-            postPricesArray: function (newValue, oldValue) {
-                this.postPrices = JSON.stringify(newValue)
-            },
-            postTriplengths: function (newValue, oldValue) {
-                try {
-                    this.postTriplengthsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.postTriplengthsArray = []
-                }
-            },
-            postTriplengthsArray: function (newValue, oldValue) {
-                this.postTriplengths = JSON.stringify(newValue)
-            },
-            postTimes: function (newValue, oldValue) {
-                try {
-                    this.postTimesArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.postTimesArray = []
-                }
-            },
-            postTimesArray: function (newValue, oldValue) {
-                this.postTimes = JSON.stringify(newValue)
+            handleTimes(newTimes: string) {
+                this.postTimes = JSON.stringify(newTimes)
             }
         },
 
@@ -743,17 +467,11 @@
             const postPerexTime = ref('')
             const postSeoTags = ref([])
             const postTags = ref([])
-            const postTagsArray = ref([])
             const postLocations = ref([])
-            const postLocationsArray = ref([])
             const postTravels = ref([])
-            const postTravelsArray = ref([])
             const postPrices = ref([])
-            const postPricesArray = ref([])
             const postTriplengths = ref([])
-            const postTriplengthsArray = ref([])
-            const postTimes= ref([])
-            const postTimesArray = ref([])
+            const postTimes = ref([])
 
             //FORM - create
             const createForm = async () => {
@@ -794,12 +512,12 @@
                             'perex_triplength': postPerexTriplength.value,
                             'perex_time': postPerexTime.value,
                             'seo_tags': postSeoTags._value,
-                            'tags': JSON.stringify(postTagsArray._value),
-                            'locations': JSON.stringify(postLocationsArray._value),
-                            'travels': JSON.stringify(postTravelsArray._value),
-                            'prices': JSON.stringify(postPricesArray._value),
-                            'triplengths': JSON.stringify(postTriplengthsArray._value),
-                            'times': JSON.stringify(postTimesArray._value),
+                            'tags': postTags._value,
+                            'locations': postLocations._value,
+                            'travels': postTravels._value,
+                            'prices': postPrices._value,
+                            'triplengths': postTriplengths._value,
+                            'times': postTimes._value,
                         })
                     })
                     .then(() => {
@@ -849,17 +567,11 @@
                 postPerexTime,
                 postSeoTags,
                 postTags,
-                postTagsArray,
                 postLocations,
-                postLocationsArray,
                 postTravels,
-                postTravelsArray,
                 postPrices,
-                postPricesArray,
                 postTriplengths,
-                postTriplengthsArray,
                 postTimes,
-                postTimesArray,
                 createForm
             }
         },
