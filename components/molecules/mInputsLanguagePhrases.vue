@@ -9,19 +9,19 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Česky:</label>
+                        <mLabel name="Česky" nameDB="czech" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.czech" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Překlad:</label>
+                        <mLabel name="Překlad" nameDB="foreign" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.foreign" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Překlad arabsky:</label>
+                        <mLabel name="Překlad arabsky" nameDB="foreign_arabic" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.foreign_arabic" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Fonetický přepis:</label>
+                        <mLabel name="Fonetický přepis" nameDB="phonetic_transcription" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.phonetic_transcription" />
                     </div>
                 </div>
@@ -38,8 +38,15 @@
 </template>
 
 <script>
+    import mLabel from '@/components/molecules/mLabel.vue'
+
     export default defineComponent({
         name: 'MoleculesmInputslanguagePhrasesComponent',
+
+        //COMPONENTS
+        components: {
+            mLabel
+        },
 
         props: {
             value: {

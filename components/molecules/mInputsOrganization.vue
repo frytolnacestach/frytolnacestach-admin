@@ -9,27 +9,27 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Date:</label>
+                        <mLabel name="Date" nameDB="date" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.date" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Name:</label>
+                        <mLabel name="Name" nameDB="name" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.name" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Author:</label>
+                        <mLabel name="Author" nameDB="author" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.author" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Date update:</label>
+                        <mLabel name="Date update" nameDB="date_update" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.date_update" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Author update:</label>
+                        <mLabel name="Author update" nameDB="author_update" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.author_update" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Date add to organization:</label>
+                        <mLabel name="Date add to organization" nameDB="date_add_to_organization" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.date_add_to_organization" />
                     </div>
                 </div>
@@ -46,8 +46,15 @@
 </template>
 
 <script>
+    import mLabel from '@/components/molecules/mLabel.vue'
+
     export default defineComponent({
         name: 'MoleculesmInputsOrganizationComponent',
+
+        //COMPONENTS
+        components: {
+            mLabel
+        },
 
         props: {
             value: {

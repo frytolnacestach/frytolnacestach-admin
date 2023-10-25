@@ -9,7 +9,7 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <label class="m-label">ID:</label>
+                        <mLabel name="ID" nameDB="id" perex="" type="json" :required=false />
                         <input class="a-input" type="number" min="0" v-model="item.id" />
                     </div>
                 </div>
@@ -26,8 +26,15 @@
 </template>
 
 <script>
+    import mLabel from '@/components/molecules/mLabel.vue'
+
     export default defineComponent({
         name: 'MoleculesmInputsIDSNeighboringCountriesComponent',
+
+        //COMPONENTS
+        components: {
+            mLabel
+        },
 
         props: {
             value: {

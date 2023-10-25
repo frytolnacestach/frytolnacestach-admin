@@ -9,15 +9,15 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Icon:</label>
+                        <mLabel name="Icon" nameDB="icon" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.icon" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Name:</label>
+                        <mLabel name="Name" nameDB="name" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.name" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Text:</label>
+                        <mLabel name="Text" nameDB="text" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.text" />
                     </div>
                 </div>
@@ -34,8 +34,15 @@
 </template>
 
 <script>
+    import mLabel from '@/components/molecules/mLabel.vue'
+
     export default defineComponent({
         name: 'MoleculesmInputsTravelsComponent',
+
+        //COMPONENTS
+        components: {
+            mLabel
+        },
 
         props: {
             value: {

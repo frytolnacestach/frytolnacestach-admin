@@ -9,11 +9,11 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Name:</label>
+                        <mLabel name="Name" nameDB="name" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.name" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Value:</label>
+                        <mLabel name="Value" nameDB="value" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.value" />
                     </div>
                 </div>

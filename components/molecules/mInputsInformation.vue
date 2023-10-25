@@ -9,11 +9,11 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Type:</label>
+                        <mLabel name="Type" nameDB="type" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.type" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Value:</label>
+                        <mLabel name="Value" nameDB="value" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.value" />
                     </div>
                 </div>
@@ -30,8 +30,15 @@
 </template>
 
 <script>
+    import mLabel from '@/components/molecules/mLabel.vue'
+
     export default defineComponent({
         name: 'MoleculesmInputInformationComponent',
+
+        //COMPONENTS
+        components: {
+            mLabel
+        },
 
         props: {
             value: {

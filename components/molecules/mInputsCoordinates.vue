@@ -9,11 +9,11 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Latitude:</label>
+                        <mLabel name="Latitude" nameDB="latitude" perex="" type="json" :required=false />
                         <input class="a-input" type="number" step=".0000001" v-model="item.latitude" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Longitude:</label>
+                        <mLabel name="Longitude" nameDB="longitude" perex="" type="json" :required=false />
                         <input class="a-input" type="number" step=".0000001" v-model="item.longitude" />
                     </div>
                 </div>
@@ -30,8 +30,15 @@
 </template>
 
 <script>
+    import mLabel from '@/components/molecules/mLabel.vue'
+
     export default defineComponent({
         name: 'MoleculesmInputsCoordinatesComponent',
+
+        //COMPONENTS
+        components: {
+            mLabel
+        },
 
         props: {
             value: {

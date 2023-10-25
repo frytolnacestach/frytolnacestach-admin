@@ -9,31 +9,31 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <label class="m-label">URL:</label>
+                        <mLabel name="URL" nameDB="url" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.url" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Date:</label>
+                        <mLabel name="Date" nameDB="date" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.date" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Name:</label>
+                        <mLabel name="Name" nameDB="name" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.name" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Author:</label>
+                        <mLabel name="Author" nameDB="author" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.author" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Date update:</label>
+                        <mLabel name="Date update" nameDB="date_update" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.date_update" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Description:</label>
+                        <mLabel name="Description" nameDB="description" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.description" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Author update:</label>
+                        <mLabel name="Author update" nameDB="author_update" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.author_update" />
                     </div>
                 </div>
@@ -50,8 +50,15 @@
 </template>
 
 <script>
+    import mLabel from '@/components/molecules/mLabel.vue'
+
     export default defineComponent({
         name: 'MoleculesmInputsAppsComponent',
+
+        //COMPONENTS
+        components: {
+            mLabel
+        },
 
         props: {
             value: {

@@ -9,10 +9,10 @@
                     </button>
                 </div>
                 <div class="o-form-item__group-inputs">
-                    <label class="m-label">Title:</label>
+                    <mLabel name="Title" nameDB="title" perex="" type="json" :required=false />
                     <input class="a-input" type="text" v-model="item.headline.title" />
 
-                    <label class="m-label">Perex:</label>
+                    <mLabel name="Perex" nameDB="perex" perex="" type="json" :required=false />
                     <input class="a-input" type="text" v-model="item.headline.perex" />
                 </div>
             </div>
@@ -32,15 +32,15 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Název:</label>
+                        <mLabel name="Název" nameDB="name" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.name" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Podnázev:</label>
+                        <mLabel name="Podnázev" nameDB="subname" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.subname" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <label class="m-label">Hodnota:</label>
+                        <mLabel name="Hodnota" nameDB="value" perex="" type="json" :required=false />
                         <input class="a-input" type="text" v-model="item.value" />
                     </div>
                 </div>
@@ -57,8 +57,15 @@
 </template>
 
 <script>
+    import mLabel from '@/components/molecules/mLabel.vue'
+
     export default defineComponent({
         name: 'MoleculesmInputInformationDurationComponent',
+
+        //COMPONENTS
+        components: {
+            mLabel
+        },
 
         props: {
             value: {
