@@ -26,6 +26,10 @@
                 type: String,
                 required: false
             },
+            type: {
+                type: String,
+                required: false
+            },
             required: {
                 type: Boolean,
                 required: false
