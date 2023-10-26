@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 
 // Cesta ke složce s originálními obrázky
-const inputDirPath = 'static/storage/wall-sockets';
+const inputDirPath = 'static/storage/wall_sockets';
 // Cesta ke složce s výstupními obrázky
-const outputDirPath = 'static/generated/wall-sockets';
+const outputDirPath = 'static/generated/wall_sockets';
 
 // Velikosti obrázků
 // update 2023-06-28
