@@ -134,14 +134,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesDefault" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesDefault" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -160,14 +160,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesMain" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesMain" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -186,14 +186,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr  v-for="item in sizesUsers" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesUsers" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -212,14 +212,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesMaps" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesMaps" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -238,14 +238,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesArticle" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesArticle" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -264,14 +264,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesVideos" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesVideos" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -290,14 +290,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesWorldStates" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesWorldStates" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -316,14 +316,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesWorldRegions" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesWorldRegions" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -342,14 +342,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesWorldCities" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesWorldCities" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>
                                             </tr>
@@ -368,14 +368,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesWorldSpots" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesWorldSpots" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -394,14 +394,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesWorldContinents" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesWorldContinents" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -420,13 +420,13 @@
                                                 <th>Suffix</th>
                                                 <th>Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesBrands" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesBrands" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
-                                                    <span @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                 </td>
                                             </tr>
                                         </table>
@@ -444,14 +444,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesFauna" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesFauna" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -470,14 +470,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesFlora" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesFlora" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -496,14 +496,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesFoods" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesFoods" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -522,14 +522,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesTravelDictionaries" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesTravelDictionaries" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -548,14 +548,14 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="item in sizesEvents" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesEvents" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant' + imageExists(imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage('resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -1534,7 +1534,7 @@
                 }
             },
 
-            imageExists(source: string, name: string, extension: string, width: number, height: number, prefix: string, suffix: string) {
+            imageExists(dataIndex: string, dataType: string, source: string, name: string, extension: string, width: number, height: number, prefix: string, suffix: string) {
                 const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension
 
                 const xhr = new XMLHttpRequest()
@@ -1674,8 +1674,47 @@
                 }
             }
 
-            const createWEBPimage = async (type: string, width: number, height: number, prefix: string, suffix: string) => {
+            const imageExistsNew = async (dataIndex: string, dataType: string, source: string, name: string, extension: string, width: number, height: number, prefix: string, suffix: string) => {
+                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension
+
+                const xhr = new XMLHttpRequest()
+                xhr.open('HEAD', imageUrl, false)
+
                 try {
+                    xhr.send()
+                    if (xhr.status === 200) {
+                        addClassToButton('-existing', dataType, dataIndex)
+                    } else {
+                        addClassToButton('-no-existing', dataType, dataIndex)
+                    }
+                } catch (error) {
+                    addClassToButton('-error', dataType, dataIndex)
+                }
+            }
+
+            function addClassToButton(className: string, dataType: string, dataIndex: string) {
+                const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
+                buttons.forEach((button) => {
+                    button.classList.remove('-loading')
+                    button.classList.remove('-existing')
+                    button.classList.remove('-no-existing')
+                    button.classList.remove('-error')
+                    button.classList.add(className)
+                })
+            }
+
+            const createWEBPimage = async (dataIndex: string, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
+                try {
+                    if (type !== "RAW") {
+                        const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
+                        buttons.forEach((button) => {
+                            button.classList.remove('-existing')
+                            button.classList.remove('-no-existing')
+                            button.classList.remove('-error')
+                            button.classList.add('-loading')
+                        })
+                    }
+                    
                     await useFetch(`${runTimeConfig.public.baseURL}/image-webp-create?type_create=${type}&name=${encodeURIComponent(imageName.value)}&source=${encodeURIComponent(imageSource.value)}&width=${width}&height=${height}&prefix=${prefix}&suffix=${suffix}`, {
                         headers: {
                             "Content-Type": "application/json",
@@ -1692,10 +1731,18 @@
                         if (type === "RAW") {
                             imageWebpExists()
                         } else {
-                            // TODO: Varianty velikostí
+                            setTimeout(() => {
+                                imageExistsNew(dataIndex, dataType, source, name, extension, width, height, prefix, suffix)
+                            }, 5000)
                         }
                     })
                     .catch((error) => {
+                        const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
+                        buttons.forEach((button) => {
+                            button.classList.remove('-loading')
+                            button.classList.add('-error')
+                        })
+
                         console.log(error)
                         errorForm.value = "Obrázek nebyl vytvořen, nastala chyba při jeho vytvoření."
                     })

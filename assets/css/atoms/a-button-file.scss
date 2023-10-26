@@ -29,4 +29,13 @@
     &.-no-existing {
         background-color: $errorBordercolor;
     }
+
+    &.-error {
+        background-color: $errorBordercolor;
+    }
+
+    &.-loading {
+        background-color: $gray2;
+        color: $gray7;
+    }
 }
