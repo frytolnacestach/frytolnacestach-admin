@@ -511,6 +511,58 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="o-image-version" v-else-if="imageType === 'chain'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesChains" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o-image-version" v-else-if="imageType === 'wall-socket'">
+                                <div class="o-image-version__outer">
+                                    <div class="o-image-version__inner">
+                                        <table class="o-image-version__table">
+                                            <tr class="o-image-version__header">
+                                                <th class="o-image-version__th">Šířka</th>
+                                                <th class="o-image-version__th">Výška</th>
+                                                <th class="o-image-version__th">Prefix</th>
+                                                <th class="o-image-version__th">Suffix</th>
+                                                <th class="o-image-version__th">Generování</th>
+                                            </tr>
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizesWallSockets" :key="item.prefix">
+                                                <td class="o-image-version__td">{{item.width}}</td>
+                                                <td class="o-image-version__td">{{item.height}}</td>
+                                                <td class="o-image-version__td">{{item.prefix}}</td>
+                                                <td class="o-image-version__td">{{item.suffix}}</td>
+                                                <td class="o-image-version__td -p0">
+                                                    <span class="o-image-version__button">
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    </span>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="o-image-version" v-else-if="imageType === 'travel_dictionaries'">
                                 <div class="o-image-version__outer">
                                     <div class="o-image-version__inner">
@@ -979,6 +1031,42 @@
                     { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
                     { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
                 ],
+                sizesChains: [
+                    { width: 330, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: null, height: 172, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                    { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                ],
                 sizesMain: [
                     { width: 310, height: null, prefix: "h-", suffix: "-1x" },
                     { width: 334, height: null, prefix: "h-", suffix: "-1x" },
@@ -1106,6 +1194,42 @@
                     { width: 1180 * 2, height: null, prefix: "h-", suffix: "-2x" },
                     { width: 1360 * 2, height: null, prefix: "h-", suffix: "-2x" },
                     { width: 1880 * 2, height: null, prefix: "h-", suffix: "-2x" }
+                ],
+                sizesWallSockets: [
+                    { width: 330, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                    { width: null, height: 172, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                    { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
                 ],
                 sizesWorldCities: [
                     { width: 108, height: null, prefix: "h-", suffix: "-1x" },
