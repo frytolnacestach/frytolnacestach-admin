@@ -113,7 +113,7 @@
                 <div class="t-section__inner">
                     <div class="flex flex-center">
                         <div class="o-box -w640 -center -gray -text-center">
-                            <span :class="'a-button-file' + (webP ? ' -existing' : ' -no-existing') + ' mt-2'" @click="createWEBPimage('raw', null, null, null, null)">{{webP ? 'Znovu generovat WebP obrázek' : 'Generovat WebP obrázek'}}</span>
+                            <span :class="'a-button-file ' + (webP ? ' -existing' : ' -no-existing') + ' mt-2'" @click="createWEBPimage('0', imageType, imageSource, imageName, '.webp', 'raw', null, null, null, null)">{{webP ? 'Znovu generovat WebP obrázek' : 'Generovat WebP obrázek'}}</span>
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -167,7 +167,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -193,7 +193,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -219,7 +219,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -245,7 +245,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -271,7 +271,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -297,7 +297,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -323,7 +323,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -349,7 +349,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>
                                             </tr>
@@ -375,7 +375,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -401,7 +401,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -426,7 +426,7 @@
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
-                                                    <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                    <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                 </td>
                                             </tr>
                                         </table>
@@ -451,7 +451,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -477,7 +477,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -503,7 +503,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -529,7 +529,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -555,7 +555,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -581,7 +581,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -607,7 +607,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, 'resize', imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -1641,6 +1641,7 @@
                     { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
                     { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
                 ],
+                webP: false
             }
         },
 
@@ -1726,26 +1727,17 @@
             const imageType = ref('')
             const imageAuthor = ref('')
 
-            //API - image
-            ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/image-id/${route.params.id}`)
-                
-                const Image: Image[] = JSON.parse(_rawValue)
-                
-                if (Array.isArray(Image) && Image.length > 0) {
-                    itemID.value = Image[0].id
-                    imageName.value = Image[0].name
-                    imageSource.value = Image[0].source
-                    imageDateCreate.value = Image[0].date_create
-                    imageType.value = Image[0].type
-                    imageAuthor.value = Image[0].author
-                    loadingData.value = true
-                } else {
-
-                }
-
-                imageWebpExists()
-            })()
+            // Change class in button
+            function addClassToButton(className: string, dataType: string, dataIndex: string) {
+                const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
+                buttons.forEach((button) => {
+                    button.classList.remove('-loading')
+                    button.classList.remove('-existing')
+                    button.classList.remove('-no-existing')
+                    button.classList.remove('-error')
+                    button.classList.add(className)
+                })
+            }
 
             //FORM - edit
             const editForm = async () => {
@@ -1816,20 +1808,9 @@
                 }
             }
 
-            function addClassToButton(className: string, dataType: string, dataIndex: string) {
-                const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
-                buttons.forEach((button) => {
-                    button.classList.remove('-loading')
-                    button.classList.remove('-existing')
-                    button.classList.remove('-no-existing')
-                    button.classList.remove('-error')
-                    button.classList.add(className)
-                })
-            }
-
             const createWEBPimage = async (dataIndex: string, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
                 try {
-                    if (type !== "RAW") {
+                    if (type === "resize") {
                         const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
                         buttons.forEach((button) => {
                             button.classList.remove('-existing')
@@ -1852,7 +1833,7 @@
                         console.log('Obrázek byl vytvořen')
                         successForm.value = "Obrázek byl vytvořen"
 
-                        if (type === "RAW") {
+                        if (type === "raw") {
                             imageWebpExists()
                         } else {
                             setTimeout(() => {
@@ -1875,6 +1856,27 @@
                     errorForm.value = "Chyba připojení k API"
                 }
             }
+
+            //API - image
+            ;(async () => {
+                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/image-id/${route.params.id}`)
+                
+                const Image: Image[] = JSON.parse(_rawValue)
+                
+                if (Array.isArray(Image) && Image.length > 0) {
+                    itemID.value = Image[0].id
+                    imageName.value = Image[0].name
+                    imageSource.value = Image[0].source
+                    imageDateCreate.value = Image[0].date_create
+                    imageType.value = Image[0].type
+                    imageAuthor.value = Image[0].author
+                    loadingData.value = true
+                } else {
+
+                }
+
+                imageWebpExists()
+            })()
 
             //RETURN
             return {
