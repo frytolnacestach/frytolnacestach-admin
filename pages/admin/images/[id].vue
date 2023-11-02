@@ -1820,7 +1820,7 @@
                         })
                     }
                     
-                    await useFetch(`${runTimeConfig.public.baseURL}/image-webp-create?type_create=${type}&name=${encodeURIComponent(imageName.value)}&source=${encodeURIComponent(imageSource.value)}&width=${width}&height=${height}&prefix=${prefix}&suffix=${suffix}`, {
+                    await useFetch(`${runTimeConfig.public.baseURL}/image-webp-create?type_create=${type}&name=${encodeURIComponent(name)}&source=${encodeURIComponent(source)}&width=${width}&height=${height}&prefix=${prefix}&suffix=${suffix}`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Origin": "http://localhost:3000",
