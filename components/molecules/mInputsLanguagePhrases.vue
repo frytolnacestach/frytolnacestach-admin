@@ -13,12 +13,12 @@
                         <input class="a-input" type="text" v-model="item.czech" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <mLabel name="Překlad" nameDB="foreign" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.foreign" />
+                        <mLabel name="Překlad" nameDB="foreign_original" perex="" type="json" :required=false />
+                        <input class="a-input" type="text" v-model="item.foreign_original" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <mLabel name="Překlad arabsky" nameDB="foreign_language" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.foreign_language" />
+                        <mLabel name="Překlad v latince" nameDB="foreign_latin" perex="" type="json" :required=false />
+                        <input class="a-input" type="text" v-model="item.foreign_latin" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Fonetický přepis" nameDB="phonetic_transcription" perex="" type="json" :required=false />
@@ -73,8 +73,8 @@
             addLanguagePhrasesInput() {
                 this.languagePhrasesArray.push({
                     czech: '',
-                    foreign: '',
-                    foreign_language: '',
+                    foreign_original: '',
+                    foreign_latin: '',
                     phonetic_transcription: ''
                 })
                 this.$emit('language-phrases', this.languagePhrasesArray)
