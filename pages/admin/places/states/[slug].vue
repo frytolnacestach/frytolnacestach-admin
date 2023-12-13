@@ -261,6 +261,12 @@
                                                 <mInputsLinksPlace :value="placesStateLinks" @links-place="handleLinksPlace" />
                                             </div>
                                             <!-- Form - links(JSON) END -->
+                                            <!-- Form - factsPlace(JSON) -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Fakta o místě" nameDB="factsPlace" perex="Fakta o místě" :required=false />
+                                                <mInputsFactsPlace :value="placesStateFactsPlace" @factsPlace="handleFactsPlace" />
+                                            </div>
+                                            <!-- Form - factsPlace(JSON) -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->
@@ -293,6 +299,7 @@
     import mInputsAlerts from '@/components/molecules/mInputsAlerts.vue'
     import mInputsApps from '@/components/molecules/mInputsApps.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
+    import mInputsFactsPlace from '@/components/molecules/mInputsFactsPlace.vue'
     import mInputsIDSNeighboringCountries from '@/components/molecules/mInputsIDSNeighboringCountries.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
     import mInputsLanguagePhrases from '@/components/molecules/mInputsLanguagePhrases.vue'
@@ -431,6 +438,11 @@
         foreign: string
     }
 
+    interface PlatformFactPlace {
+        name: string
+        value: string
+    }
+
     interface PlacesState {
         id: number
         id_continent: number
@@ -464,6 +476,7 @@
         apps: Apps[]
         links: Links[]
         language_phrases: LanguagePhrases[]
+        factsPlace: PlatformFactPlace[]
     }
 
     export default defineComponent({
@@ -480,6 +493,7 @@
             mInputsAlerts,
             mInputsApps,
             mInputsCoordinates,
+            mInputsFactsPlace,
             mInputsIDSNeighboringCountries,
             mInputsInformationAuthor,
             mInputsLanguagePhrases,
@@ -598,6 +612,9 @@
             },
             handleLinksPlace(newLinksPlace: string) {
                 this.placesStateLinks = JSON.stringify(newLinksPlace)
+            },
+            handleFactsPlace(newFactsPlace: string) {
+                this.placesStateFactsPlace = JSON.stringify(newFactsPlace)
             }
         },
 
@@ -674,6 +691,7 @@
             const placesStateApps = ref([])
             const placesStateLinks = ref([])
             const placesStateLanguagePhrases = ref([])
+            const placesStateFactsPlace = ref([])
 
             //API - Places State
             ;(async () => {
@@ -714,6 +732,7 @@
                     placesStateApps.value = PlacesState[0].apps ? JSON.stringify(PlacesState[0].apps) : JSON.stringify([])
                     placesStateLinks.value = PlacesState[0].links ? JSON.stringify(PlacesState[0].links) : JSON.stringify([])
                     placesStateLanguagePhrases.value = PlacesState[0].language_phrases ? JSON.stringify(PlacesState[0].language_phrases) : JSON.stringify([])
+                    placesStateFactsPlace.value = PlacesState[0].factsPlace ? JSON.stringify(PlacesState[0].factsPlace) : JSON.stringify([])
                     loadingData.value = true
                 } else {
 
@@ -762,7 +781,8 @@
                             'organization': placesStateOrganization._value,
                             'apps': placesStateApps._value,
                             'links': placesStateLinks._value,
-                            'language_phrases': placesStateLanguagePhrases._value
+                            'language_phrases': placesStateLanguagePhrases._value,
+                            'facts_place': placesStateFactsPlace._value
                         })
                     })
                     .then(() => {
@@ -816,6 +836,7 @@
                 placesStateApps,
                 placesStateLinks,
                 placesStateLanguagePhrases,
+                placesStateFactsPlace,
                 editForm
             }
         },
