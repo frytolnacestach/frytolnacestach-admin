@@ -263,7 +263,7 @@
                                             <!-- Form - links(JSON) END -->
                                             <!-- Form - factsPlace(JSON) -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="Fakta o místě" nameDB="factsPlace" perex="Fakta o místě" :required=false />
+                                                <mLabel name="Fakta o místě" nameDB="facts_place" perex="Fakta o místě" :required=false />
                                                 <mInputsFactsPlace :value="placesStateFactsPlace" @factsPlace="handleFactsPlace" />
                                             </div>
                                             <!-- Form - factsPlace(JSON) -->
@@ -438,7 +438,7 @@
         foreign: string
     }
 
-    interface PlatformFactPlace {
+    interface FactsPlace {
         name: string
         value: string
     }
@@ -476,7 +476,7 @@
         apps: Apps[]
         links: Links[]
         language_phrases: LanguagePhrases[]
-        factsPlace: PlatformFactPlace[]
+        factsPlace: FactsPlace[]
     }
 
     export default defineComponent({
@@ -732,7 +732,7 @@
                     placesStateApps.value = PlacesState[0].apps ? JSON.stringify(PlacesState[0].apps) : JSON.stringify([])
                     placesStateLinks.value = PlacesState[0].links ? JSON.stringify(PlacesState[0].links) : JSON.stringify([])
                     placesStateLanguagePhrases.value = PlacesState[0].language_phrases ? JSON.stringify(PlacesState[0].language_phrases) : JSON.stringify([])
-                    placesStateFactsPlace.value = PlacesState[0].factsPlace ? JSON.stringify(PlacesState[0].factsPlace) : JSON.stringify([])
+                    placesStateFactsPlace.value = PlacesState[0].facts_place ? JSON.stringify(PlacesState[0].facts_place) : JSON.stringify([])
                     loadingData.value = true
                 } else {
 
