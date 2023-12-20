@@ -356,14 +356,14 @@
             const placesContinentSlug = ref('')
             const placesContinentName = ref('')
             const placesContinentInformationChatgpt = ref('')
-            const placesContinentInformationAuthor = ref([])
+            const placesContinentInformationAuthor = ref<never[] | string[]>([])
             const placesContinentArea = ref<number | null>(null)
             const placesContinentPopulation = ref<number | null>(null)
             const placesContinentPopulationDensity = ref<number | null>(null)
             const placesContinentNumberStates = ref<number | null>(null)
-            const placesContinentSeoTags = ref([])
-            const placesContinentCoordinates = ref([])
-            const placesContinentZoom = ref([])
+            const placesContinentSeoTags = ref<never[] | string[]>([])
+            const placesContinentCoordinates = ref<never[] | string[]>([])
+            const placesContinentZoom = ref<never[] | string[]>([])
 
             //API - Places Continent
             ;(async () => {

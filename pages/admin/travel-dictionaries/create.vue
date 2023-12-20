@@ -209,7 +209,7 @@
             const travelDictionarySlug = ref('')
             const travelDictionaryName = ref('')
             const travelDictionaryDescription = ref('')
-            const travelDictionarySeoTags = ref([])
+            const travelDictionarySeoTags = ref<never[] | string[]>([])
 
             //FORM - create
             const createForm = async () => {

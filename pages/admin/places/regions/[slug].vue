@@ -368,11 +368,11 @@
             const placesRegionSlug = ref('')
             const placesRegionName = ref('')
             const placesRegionInformationChatgpt = ref('')
-            const placesRegionInformationAuthor = ref([])
-            const placesRegionSeoTags = ref([])
-            const placesRegionCoordinates = ref([])
-            const placesRegionZoom = ref([])
-            const placesRegionAffiliate = ref([])
+            const placesRegionInformationAuthor = ref<never[] | string[]>([])
+            const placesRegionSeoTags = ref<never[] | string[]>([])
+            const placesRegionCoordinates = ref<never[] | string[]>([])
+            const placesRegionZoom = ref<never[] | string[]>([])
+            const placesRegionAffiliate = ref<never[] | string[]>([])
 
             //API - Places Region
             ;(async () => {

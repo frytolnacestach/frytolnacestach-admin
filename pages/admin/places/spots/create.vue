@@ -325,14 +325,14 @@
             const placesSpotSlug = ref('')
             const placesSpotName = ref('')
             const placesSpotInformationChatgpt = ref('')
-            const placesSpotInformationAuthor = ref([])
-            const placesSpotInformationDuration = ref([])
-            const placesSpotInformationDurationTimes = ref([])
+            const placesSpotInformationAuthor = ref<never[] | string[]>([])
+            const placesSpotInformationDuration = ref<never[] | string[]>([])
+            const placesSpotInformationDurationTimes = ref<never[] | string[]>([])
             const placesSpotAltitude = ref<number | null>(null)
-            const placesSpotsSeoTags = ref([])
-            const placesSpotCoordinates = ref([])
-            const placesSpotZoom = ref([])
-            const placesSpotAffiliate = ref([])
+            const placesSpotsSeoTags = ref<never[] | string[]>([])
+            const placesSpotCoordinates = ref<never[] | string[]>([])
+            const placesSpotZoom = ref<never[] | string[]>([])
+            const placesSpotAffiliate = ref<never[] | string[]>([])
 
             //FORM - create
             const createForm = async () => {

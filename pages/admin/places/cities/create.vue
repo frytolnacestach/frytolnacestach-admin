@@ -348,16 +348,16 @@
             const placesCitySlug = ref('')
             const placesCityName = ref('')
             const placesCityInformationChatgpt = ref('')
-            const placesCityInformationAuthor = ref([])
+            const placesCityInformationAuthor = ref<never[] | string[]>([])
             const placesCityPopulation = ref<number | null>(null)
             const placesCityArea = ref<number | null>(null)
             const placesCityAltitude = ref<number | null>(null)
-            const placesCitySeoTags = ref([])
-            const placesCityCoordinates = ref([])
-            const placesCityZoom = ref([])
-            const placesCityAffiliate = ref([])
-            const placesCityAlerts = ref([])
-            const placesCityParking = ref([])
+            const placesCitySeoTags = ref<never[] | string[]>([])
+            const placesCityCoordinates = ref<never[] | string[]>([])
+            const placesCityZoom = ref<never[] | string[]>([])
+            const placesCityAffiliate = ref<never[] | string[]>([])
+            const placesCityAlerts = ref<never[] | string[]>([])
+            const placesCityParking = ref<never[] | string[]>([])
 
             //FORM - create
             const createForm = async () => {

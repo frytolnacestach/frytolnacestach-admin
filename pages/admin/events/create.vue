@@ -330,12 +330,12 @@
             const eventSlug = ref('')
             const eventName = ref('')
             const eventDescription = ref('')
-            const eventSeoTags = ref([])
-            const eventCoordinates = ref([])
-            const eventZoom = ref([])
-            const eventAffiliate = ref([])
-            const eventPrices = ref([])
-            const eventLinks = ref([])
+            const eventSeoTags = ref<never[] | string[]>([])
+            const eventCoordinates = ref<never[] | string[]>([])
+            const eventZoom = ref<never[] | string[]>([])
+            const eventAffiliate = ref<never[] | string[]>([])
+            const eventPrices = ref<never[] | string[]>([])
+            const eventLinks = ref<never[] | string[]>([])
 
             //FORM - create
             const createForm = async () => {

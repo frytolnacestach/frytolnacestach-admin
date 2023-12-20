@@ -260,7 +260,7 @@
             const travelDictionarySlug = ref('')
             const travelDictionaryName = ref('')
             const travelDictionaryDescription = ref('')
-            const travelDictionarySeoTags = ref([])
+            const travelDictionarySeoTags = ref<never[] | string[]>([])
 
             //API - travelDictionary
             ;(async () => {

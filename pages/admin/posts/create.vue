@@ -465,13 +465,13 @@
             const postPerexPrice = ref('')
             const postPerexTriplength = ref('')
             const postPerexTime = ref('')
-            const postSeoTags = ref([])
-            const postTags = ref([])
-            const postLocations = ref([])
-            const postTravels = ref([])
-            const postPrices = ref([])
-            const postTriplengths = ref([])
-            const postTimes = ref([])
+            const postSeoTags = ref<never[] | string[]>([])
+            const postTags = ref<never[] | string[]>([])
+            const postLocations = ref<never[] | string[]>([])
+            const postTravels = ref<never[] | string[]>([])
+            const postPrices = ref<never[] | string[]>([])
+            const postTriplengths = ref<never[] | string[]>([])
+            const postTimes = ref<never[] | string[]>([])
 
             //FORM - create
             const createForm = async () => {

@@ -291,9 +291,9 @@
             const chainSlug = ref('')
             const chainIDimageCover = ref<number | null>(null)
             const chainIDimageHero = ref<number | null>(null)
-            const chainIDSstates = ref([])
-            const chainInformation = ref([])
-            const chainSeoTags = ref([])
+            const chainIDSstates = ref<never[] | string[]>([])
+            const chainInformation = ref<never[] | string[]>([])
+            const chainSeoTags = ref<never[] | string[]>([])
             const chainName = ref('')
             const chainDescription = ref('')
 

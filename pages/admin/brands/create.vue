@@ -218,8 +218,8 @@
             const brandSlug = ref('')
             const brandIDimageCover = ref<number | null>(null)
             const brandIDimageHero = ref<number | null>(null)
-            const brandSeoTags = ref([])
-            const brandIDSstates = ref([])
+            const brandSeoTags = ref<never[] | string[]>([])
+            const brandIDSstates = ref<never[] | string[]>([])
             const brandName = ref('')
             const brandDescription = ref('')
 
