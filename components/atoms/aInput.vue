@@ -4,7 +4,7 @@
 
 <script>
     export default defineComponent({
-        name: 'MoleculesmInputComponent',
+        name: 'AtomsmInputComponent',
 
         props: {
             value: {
@@ -28,7 +28,7 @@
         },
 
         watch: {
-            // Change image ID
+            // Change value
             inputValue(newValue, oldValue) {
                 this.$emit('inputValue', this.inputValue)
             }
