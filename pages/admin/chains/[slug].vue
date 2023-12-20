@@ -314,8 +314,6 @@
                     chainName.value = Chain[0].name
                     chainDescription.value = Chain[0].description
                     loadingData.value = true
-                } else {
-
                 }
             })()
 
