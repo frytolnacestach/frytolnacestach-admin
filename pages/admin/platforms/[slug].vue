@@ -60,13 +60,13 @@
                                             <!-- Form - perex -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Můj popis" nameDB="perex" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="perex" v-model="platformPerex"></textarea>
+                                                <aTextarea :value="platformPerex" name="perex" :required=true @textareaValue="handlePerex" />
                                             </div>
                                             <!-- Form - perex END -->
                                             <!-- Form - url -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Odkaz na profil" nameDB="url" perex="" :required=true />
-                                                <input class="a-input" type="text" name="url" v-model="platformUrl" required />
+                                                <aInput :value="platformUrl" name="url" :required=true @inputValue="handleUrl" />
                                             </div>
                                             <!-- Form - url END -->
                                             <!-- Form - date -->
@@ -104,7 +104,9 @@
 </template>
 
 <script lang="ts">
+    import aInput from '@/components/atoms/aInput.vue'
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
+    import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputsFacts from '@/components/molecules/mInputsFacts.vue'
@@ -133,7 +135,9 @@
 
         //COMPONENTS
         components: {
+            aInput,
             aInputSlug,
+            aTextarea,
             mButton,
             mHeadlineForm,
             mInputsFacts,
@@ -180,6 +184,12 @@
             // Components input changes
             handleSlug(newSlug: string) {
                 this.platformSlug = newSlug
+            },
+            handlePerex(newPerex: string) {
+                this.platformPerex = newPerex
+            },
+            handleUrl(newUrl: string) {
+                this.platformUrl = newUrl
             },
             handleFacts(newFacts: string) {
                 this.platformFacts = JSON.stringify(newFacts)
