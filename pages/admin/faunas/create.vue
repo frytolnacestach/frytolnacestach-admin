@@ -196,10 +196,10 @@
             handleSlug(newSlug: string) {
                 this.faunaSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.faunaIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.faunaIDimageHero = newImage
             },
             handleSeoTags(newSeoTags: string) {

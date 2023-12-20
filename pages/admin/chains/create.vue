@@ -180,10 +180,10 @@
             handleSlug(newSlug: string) {
                 this.chainSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.chainIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.chainIDimageHero = newImage
             },
             handleSeoTags(newSeoTags: string) {

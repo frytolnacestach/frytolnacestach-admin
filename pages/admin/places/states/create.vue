@@ -380,14 +380,14 @@
             handleSlug(newSlug: string) {
                 this.placesStateSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.placesStateIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.placesStateIDimageHero = newImage
             },
-            handleIDcontinent(newImage: string) {
-                this.placesStateIDcontinent = newImage
+            handleIDcontinent(newIDcontinent: number) {
+                this.placesStateIDcontinent = newIDcontinent
             },
             handleSeoTags(newSeoTags: string) {
                 this.placesStateSeoTags = JSON.stringify(newSeoTags)

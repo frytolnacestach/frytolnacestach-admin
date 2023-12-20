@@ -252,26 +252,26 @@
             handleSlug(newSlug: string) {
                 this.eventSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.eventIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.eventIDimageHero = newImage
             },
             handleSeoTags(newSeoTags: string) {
                 this.eventSeoTags = JSON.stringify(newSeoTags)
             },
-            handleIDstate(newImage: string) {
-                this.eventIDstate = newImage
+            handleIDstate(newIDstate: number) {
+                this.eventIDstate = newIDstate
             },
-            handleIDregion(newImage: string) {
-                this.eventIDregion = newImage
+            handleIDregion(newIDregion: number) {
+                this.eventIDregion = newIDregion
             },
-            handleIDcity(newImage: string) {
-                this.eventIDcity = newImage
+            handleIDcity(newIDcity: number) {
+                this.eventIDcity = newIDcity
             },
-            handleIDspot(newImage: string) {
-                this.eventIDspot = newImage
+            handleIDspot(newIDspot: number) {
+                this.eventIDspot = newIDspot
             },
             handleCoordinates(newCoordinates: string) {
                 this.eventCoordinates = JSON.stringify(newCoordinates)

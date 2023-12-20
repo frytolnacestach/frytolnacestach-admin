@@ -234,10 +234,10 @@
             handleSlug(newSlug: string) {
                 this.placesContinentSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.placesContinentIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.placesContinentIDimageHero = newImage
             },
             handleSeoTags(newSeoTags: string) {

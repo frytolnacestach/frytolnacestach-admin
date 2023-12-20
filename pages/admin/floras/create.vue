@@ -196,10 +196,10 @@
             handleSlug(newSlug: string) {
                 this.floraSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.floraIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.floraIDimageHero = newImage
             },
             handleSeoTags(newSeoTags: string) {

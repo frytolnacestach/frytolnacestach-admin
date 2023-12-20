@@ -492,35 +492,35 @@
             handleSlug(newSlug: string) {
                 this.postSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.postIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.postIDimageHero = newImage
             },
-            handleImageMap(newImage: string) {
+            handleImageMap(newImage: number) {
                 this.postIDimageMap = newImage
             },
-            handleImageOg(newImage: string) {
+            handleImageOg(newImage: number) {
                 this.postIDimageOG = newImage
             },
             handleSeoTags(newSeoTags: string) {
                 this.postSeoTags = JSON.stringify(newSeoTags)
             },
-            handleIDcontinent(newImage: string) {
-                this.postIDcontinent = newImage
+            handleIDcontinent(newIDcontinent: number) {
+                this.postIDcontinent = newIDcontinent
             },
-            handleIDstate(newImage: string) {
-                this.postIDstate = newImage
+            handleIDstate(newIDstate: number) {
+                this.postIDstate = newIDstate
             },
-            handleIDregion(newImage: string) {
-                this.postIDregion = newImage
+            handleIDregion(newIDregion: number) {
+                this.postIDregion = newIDregion
             },
-            handleIDcity(newImage: string) {
-                this.postIDcity = newImage
+            handleIDcity(newIDcity: number) {
+                this.postIDcity = newIDcity
             },
-            handleIDspot(newImage: string) {
-                this.postIDspot = newImage
+            handleIDspot(newIDspot: number) {
+                this.postIDspot = newIDspot
             },
             handleTags(newTags: string) {
                 this.postTags = JSON.stringify(newTags)

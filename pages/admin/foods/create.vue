@@ -184,10 +184,10 @@
             handleSlug(newSlug: string) {
                 this.foodSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.foodIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.foodIDimageHero = newImage
             },
             handleSeoTags(newSeoTags: string) {

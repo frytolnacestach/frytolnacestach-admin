@@ -202,10 +202,10 @@
             handleSlug(newSlug: string) {
                 this.travelDictionarySlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.travelDictionaryIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.travelDictionaryIDimageHero = newImage
             },
             handleSeoTags(newSeoTags: string) {

@@ -279,14 +279,14 @@
             handleSlug(newSlug: string) {
                 this.placesCitySlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.placesCityIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.placesCityIDimageHero = newImage
             },
-            handleIDstate(newImage: string) {
-                this.placesCityIDstate = newImage
+            handleIDstate(newIDstate: number) {
+                this.placesCityIDstate = newIDstate
             },
             handleSeoTags(newSeoTags: string) {
                 this.placesCitySeoTags = JSON.stringify(newSeoTags)

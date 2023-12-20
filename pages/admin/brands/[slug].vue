@@ -216,10 +216,10 @@
             handleSlug(newSlug: string) {
                 this.brandSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.brandIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.brandIDimageHero = newImage
             },
             handleSeoTags(newSeoTags: string) {

@@ -332,17 +332,17 @@
             handleSlug(newSlug: string) {
                 this.placesSpotSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.placesSpotIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.placesSpotIDimageHero = newImage
             },
-            handleIDcity(newImage: string) {
-                this.placesSpotIDstate = newImage
+            handleIDcity(newIDcity: number) {
+                this.placesSpotIDcity = newIDcity
             },
-            handleIDstate(newImage: string) {
-                this.placesSpotIDstate = newImage
+            handleIDstate(newIDstate: number) {
+                this.placesSpotIDstate = newIDstate
             },
             handleSeoTags(newSeoTags: string) {
                 this.placesSpotSeoTags = JSON.stringify(newSeoTags)

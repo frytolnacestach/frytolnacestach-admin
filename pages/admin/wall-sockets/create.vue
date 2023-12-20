@@ -178,10 +178,10 @@
             handleSlug(newSlug: string) {
                 this.wallSocketSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.wallSocketIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.wallSocketIDimageHero = newImage
             },
             handleSeoTags(newSeoTags: string) {

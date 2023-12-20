@@ -273,26 +273,26 @@
             handleSlug(newSlug: string) {
                 this.videoSlug = newSlug
             },
-            handleImage(newImage: string) {
+            handleImage(newImage: number) {
                 this.videoIDimage = newImage
             },
             handleSeoTags(newSeoTags: string) {
                 this.videoSeoTags = JSON.stringify(newSeoTags)
             },
-            handleIDcontinent(newImage: string) {
-                this.videoIDcontinent = newImage
+            handleIDcontinent(newIDcontinent: number) {
+                this.videoIDcontinent = newIDcontinent
             },
-            handleIDstate(newImage: string) {
-                this.videoIDstate = newImage
+            handleIDstate(newIDstate: number) {
+                this.videoIDstate = newIDstate
             },
-            handleIDregion(newImage: string) {
-                this.videoIDregion = newImage
+            handleIDregion(newIDregion: number) {
+                this.videoIDregion = newIDregion
             },
-            handleIDcity(newImage: string) {
-                this.videoIDcity = newImage
+            handleIDcity(newIDcity: number) {
+                this.videoIDcity = newIDcity
             },
-            handleIDspot(newImage: string) {
-                this.videoIDspot = newImage
+            handleIDspot(newIDspot: number) {
+                this.videoIDspot = newIDspot
             }
         },
 

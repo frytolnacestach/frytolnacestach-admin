@@ -236,14 +236,14 @@
             handleSlug(newSlug: string) {
                 this.placesRegionSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.placesRegionIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.placesRegionIDimageHero = newImage
             },
-            handleIDstate(newImage: string) {
-                this.placesRegionIDstate = newImage
+            handleIDstate(newIDstate: number) {
+                this.placesRegionIDstate = newIDstate
             },
             handleSeoTags(newSeoTags: string) {
                 this.placesRegionSeoTags = JSON.stringify(newSeoTags)
