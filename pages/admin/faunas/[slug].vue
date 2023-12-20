@@ -243,10 +243,10 @@
             handleSlug(newSlug: string) {
                 this.faunaSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.faunaIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.faunaIDimageHero = newImage
             },
             handleSeoTags(newSeoTags: string) {
@@ -298,10 +298,10 @@
             // variable
             const loadingData = ref(false)
             // date
-            const itemID = ref(null)
+            const itemID = ref<number | null>(null)
             const faunaSlug = ref('')
-            const faunaIDimageCover = ref(null)
-            const faunaIDimageHero = ref(null)
+            const faunaIDimageCover = ref<number | null>(null)
+            const faunaIDimageHero = ref<number | null>(null)
             const faunaSeoTags = ref([])
             const faunaIDSstates = ref([])
             const faunaName = ref('')

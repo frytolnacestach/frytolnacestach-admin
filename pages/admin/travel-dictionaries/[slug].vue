@@ -254,9 +254,9 @@
             // variable
             const loadingData = ref(false)
             // date
-            const itemID = ref(null)
-            const travelDictionaryIDimageCover = ref(null)
-            const travelDictionaryIDimageHero = ref(null)
+            const itemID = ref<number | null>(null)
+            const travelDictionaryIDimageCover = ref<number | null>(null)
+            const travelDictionaryIDimageHero = ref<number | null>(null)
             const travelDictionarySlug = ref('')
             const travelDictionaryName = ref('')
             const travelDictionaryDescription = ref('')

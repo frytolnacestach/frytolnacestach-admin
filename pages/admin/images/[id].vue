@@ -1720,7 +1720,7 @@
             const loadingData = ref(false)
             const webP = ref(false)
             // date
-            const itemID = ref(null)
+            const itemID = ref<number | null>(null)
             const imageName = ref('')
             const imageSource = ref('')
             const imageDateCreate = ref('')

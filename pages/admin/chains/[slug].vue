@@ -287,10 +287,10 @@
             // variable
             const loadingData = ref(false)
             // date
-            const itemID = ref(null)
+            const itemID = ref<number | null>(null)
             const chainSlug = ref('')
-            const chainIDimageCover = ref(null)
-            const chainIDimageHero = ref(null)
+            const chainIDimageCover = ref<number | null>(null)
+            const chainIDimageHero = ref<number | null>(null)
             const chainIDSstates = ref([])
             const chainInformation = ref([])
             const chainSeoTags = ref([])

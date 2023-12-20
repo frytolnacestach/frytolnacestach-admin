@@ -130,7 +130,7 @@
         setup() {
 
             //CONSTS
-            const selectedFile = ref(null)
+            const selectedFile = ref<number | null>(null)
             const runTimeConfig = useRuntimeConfig()
             const errorForm = ref('')
             const successForm = ref('')

@@ -284,10 +284,10 @@
             // variable
             const loadingData = ref(false)
             // date
-            const itemID = ref(null)
+            const itemID = ref<number | null>(null)
             const foodSlug = ref('')
-            const foodIDimageCover = ref(null)
-            const foodIDimageHero = ref(null)
+            const foodIDimageCover = ref<number | null>(null)
+            const foodIDimageHero = ref<number | null>(null)
             const foodSeoTags = ref([])
             const foodIDSstates = ref([])
             const foodName = ref('')

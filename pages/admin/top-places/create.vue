@@ -139,8 +139,8 @@
             const runTimeConfig = useRuntimeConfig()
             const errorForm = ref('')
             const successForm = ref('')
-            const topPlaceID = ref(null)
-            const topPlaceIDplace = ref(null)
+            const topPlaceID = ref<number | null>(null)
+            const topPlaceIDplace = ref<number | null>(null)
             const topPlaceType = ref('')
 
             //FORM - create

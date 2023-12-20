@@ -360,10 +360,10 @@
             // variable
             const loadingData = ref(false)
             // date
-            const itemID = ref(null)
-            const placesRegionIDstate = ref(null)
-            const placesRegionIDimageCover = ref(null)
-            const placesRegionIDimageHero = ref(null)
+            const itemID = ref<number | null>(null)
+            const placesRegionIDstate = ref<number | null>(null)
+            const placesRegionIDimageCover = ref<number | null>(null)
+            const placesRegionIDimageHero = ref<number | null>(null)
             const placesRegionTypePlace = ref('region')
             const placesRegionSlug = ref('')
             const placesRegionName = ref('')

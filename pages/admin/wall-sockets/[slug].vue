@@ -276,10 +276,10 @@
             // variable
             const loadingData = ref(false)
             // date
-            const itemID = ref(null)
+            const itemID = ref<number | null>(null)
             const wallSocketSlug = ref('')
-            const wallSocketIDimageCover = ref(null)
-            const wallSocketIDimageHero = ref(null)
+            const wallSocketIDimageCover = ref<number | null>(null)
+            const wallSocketIDimageHero = ref<number | null>(null)
             const wallSocketIDSstates = ref([])
             const wallSocketSeoTags = ref([])
             const wallSocketLabel = ref('')

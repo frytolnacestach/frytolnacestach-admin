@@ -227,7 +227,7 @@
             // variable
             const loadingData = ref(false)
             // date
-            const itemID = ref(null)
+            const itemID = ref<number | null>(null)
             const platformSlug = ref('')
             const platformName = ref('')
             const platformPerex = ref('')

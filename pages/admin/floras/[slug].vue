@@ -243,10 +243,10 @@
             handleSlug(newSlug: string) {
                 this.floraSlug = newSlug
             },
-            handleImageCover(newImage: string) {
+            handleImageCover(newImage: number) {
                 this.floraIDimageCover = newImage
             },
-            handleImageHero(newImage: string) {
+            handleImageHero(newImage: number) {
                 this.floraIDimageHero = newImage
             },
             handleSeoTags(newSeoTags: string) {
@@ -298,10 +298,10 @@
             // variable
             const loadingData = ref(false)
             // date
-            const itemID = ref(null)
+            const itemID = ref<number | null>(null)
             const floraSlug = ref('')
-            const floraIDimageCover = ref(null)
-            const floraIDimageHero = ref(null)
+            const floraIDimageCover = ref<number | null>(null)
+            const floraIDimageHero = ref<number | null>(null)
             const floraSeoTags = ref([])
             const floraIDSstates = ref([])
             const floraName = ref('')

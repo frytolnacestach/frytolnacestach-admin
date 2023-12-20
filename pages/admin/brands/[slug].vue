@@ -271,10 +271,10 @@
             // variable
             const loadingData = ref(false)
             // date
-            const itemID = ref(null)
+            const itemID = ref<number | null>(null)
             const brandSlug = ref('')
-            const brandIDimageCover = ref(null)
-            const brandIDimageHero = ref(null)
+            const brandIDimageCover = ref<number | null>(null)
+            const brandIDimageHero = ref<number | null>(null)
             const brandSeoTags = ref([])
             const brandIDSstates = ref([])
             const brandName = ref('')

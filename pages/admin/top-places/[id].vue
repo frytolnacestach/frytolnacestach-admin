@@ -184,8 +184,8 @@
             const loadingData = ref(false)
 
             // date
-            const itemID = ref(null)
-            const topPlaceIDplace = ref(null)
+            const itemID = ref<number | null>(null)
+            const topPlaceIDplace = ref<number | null>(null)
             const topPlaceType = ref('')
 
             //API - topPlace
