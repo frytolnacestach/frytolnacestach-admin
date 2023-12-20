@@ -264,9 +264,10 @@
 
             //API - travelDictionary
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/travel-dictionary/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/travel-dictionary/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const TravelDictionaries: TravelDictionaries[] = JSON.parse(_rawValue)
+                const TravelDictionaries: TravelDictionaries[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(TravelDictionaries) && TravelDictionaries.length > 0) {
                     itemID.value = TravelDictionaries[0].id
@@ -297,7 +298,7 @@
                             'slug': travelDictionarySlug.value,
                             'name': travelDictionaryName.value,
                             'description': travelDictionaryDescription.value,
-                            'seo_tags': travelDictionarySeoTags._value
+                            'seo_tags': travelDictionarySeoTags.value
                         })
                     })
                     .then(() => {

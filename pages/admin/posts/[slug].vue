@@ -636,9 +636,10 @@
 
             //API - Post
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/post/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/post/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const Post: Post[] = JSON.parse(_rawValue)
+                const Post: Post[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(Post) && Post.length > 0) {
                     itemID.value = Post[0].id
@@ -692,7 +693,7 @@
                         method: 'POST',
                         body: JSON.stringify({
                             'slug': postSlug.value,
-                            'seo_tags': postSeoTags._value,
+                            'seo_tags': postSeoTags.value,
                             'id_continent': postIDcontinent.value,
                             'id_state': postIDstate.value,
                             'id_region': postIDregion.value,
@@ -719,12 +720,12 @@
                             'perex_price': postPerexPrice.value,
                             'perex_triplength': postPerexTriplength.value,
                             'perex_time': postPerexTime.value,
-                            'tags': postTags._value,
-                            'locations': postLocations._value,
-                            'travels': postTravels._value,
-                            'prices': postPrices._value,
-                            'triplengths': postTriplengths._value,
-                            'times': postTimes._value,
+                            'tags': postTags.value,
+                            'locations': postLocations.value,
+                            'travels': postTravels.value,
+                            'prices': postPrices.value,
+                            'triplengths': postTriplengths.value,
+                            'times': postTimes.value,
                         })
                     })
                     .then(() => {

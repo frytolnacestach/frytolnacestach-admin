@@ -323,11 +323,11 @@
                             'slug': placesRegionSlug.value,
                             'name': placesRegionName.value,
                             'information_chatgpt': placesRegionInformationChatgpt.value,
-                            'information_author': placesRegionInformationAuthor._value,
-                            'seo_tags': placesRegionSeoTags._value,
-                            'coordinates': placesRegionCoordinates._value,
-                            'zoom': placesRegionZoom._value,
-                            'affiliate': placesRegionAffiliate._value
+                            'information_author': placesRegionInformationAuthor.value,
+                            'seo_tags': placesRegionSeoTags.value,
+                            'coordinates': placesRegionCoordinates.value,
+                            'zoom': placesRegionZoom.value,
+                            'affiliate': placesRegionAffiliate.value
                         })
                     })
                     .then(() => {

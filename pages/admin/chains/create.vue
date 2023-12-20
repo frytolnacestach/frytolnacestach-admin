@@ -250,9 +250,9 @@
                             'slug': chainSlug.value,
                             'id_image_cover': chainIDimageCover.value,
                             'id_image_hero': chainIDimageHero.value,
-                            'information': chainInformation._value,
-                            'seo_tags': chainSeoTags._value,
-                            'ids_states': chainIDSstates._value,
+                            'information': chainInformation.value,
+                            'seo_tags': chainSeoTags.value,
+                            'ids_states': chainIDSstates.value,
                             'name': chainName.value,
                             'description': chainDescription.value
                         })

@@ -1859,9 +1859,10 @@
 
             //API - image
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/image-id/${route.params.id}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/image-id/${route.params.id}`)
+                const dataAPI: any = data._rawValue
                 
-                const Image: Image[] = JSON.parse(_rawValue)
+                const Image: Image[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(Image) && Image.length > 0) {
                     itemID.value = Image[0].id

@@ -238,8 +238,8 @@
                             'slug': brandSlug.value,
                             'id_image_cover': brandIDimageCover.value,
                             'id_image_hero': brandIDimageHero.value,
-                            'seo_tags': brandSeoTags._value,
-                            'ids_states': brandIDSstates._value,
+                            'seo_tags': brandSeoTags.value,
+                            'ids_states': brandIDSstates.value,
                             'name': brandName.value,
                             'description': brandDescription.value
                         })

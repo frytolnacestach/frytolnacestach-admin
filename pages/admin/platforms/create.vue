@@ -199,7 +199,7 @@
                             'name': platformName.value,
                             'perex': platformPerex.value,
                             'url': platformUrl.value,
-                            'facts': platformFacts._value,
+                            'facts': platformFacts.value,
                             'date': platformDate.value
                         })
                     })

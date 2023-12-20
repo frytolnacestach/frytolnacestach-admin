@@ -228,7 +228,7 @@
                             'slug': travelDictionarySlug.value,
                             'name': travelDictionaryName.value,
                             'description': travelDictionaryDescription.value,
-                            'seo_tags': travelDictionarySeoTags._value
+                            'seo_tags': travelDictionarySeoTags.value
                         })
                     })
                     .then(() => {

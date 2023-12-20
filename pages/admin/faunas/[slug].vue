@@ -313,9 +313,10 @@
 
             //API - fauna
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/fauna/${route.params.slug}`)
-                
-                const Fauna: Fauna[] = JSON.parse(_rawValue)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/fauna/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
+
+                const Fauna: Fauna[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(Fauna) && Fauna.length > 0) {
                     itemID.value = Fauna[0].id
@@ -349,8 +350,8 @@
                             'slug': faunaSlug.value,
                             'id_image_cover': faunaIDimageCover.value,
                             'id_image_hero': faunaIDimageHero.value,
-                            'seo_tags': faunaSeoTags._value,
-                            'ids_states': faunaIDSstates._value,
+                            'seo_tags': faunaSeoTags.value,
+                            'ids_states': faunaIDSstates.value,
                             'name': faunaName.value,
                             'name_lat': faunaNameLat.value,
                             'location': faunaLocation.value,

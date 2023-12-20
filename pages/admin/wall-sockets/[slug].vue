@@ -288,9 +288,10 @@
 
             //API - wallSocket
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/wall-socket/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/wall-socket/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const WallSocket: WallSocket[] = JSON.parse(_rawValue)
+                const WallSocket: WallSocket[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(WallSocket) && WallSocket.length > 0) {
                     itemID.value = WallSocket[0].id
@@ -321,8 +322,8 @@
                             'slug': wallSocketSlug.value,
                             'id_image_cover': wallSocketIDimageCover.value,
                             'id_image_hero': wallSocketIDimageHero.value,
-                            'seo_tags': wallSocketSeoTags._value,
-                            'ids_states': wallSocketIDSstates._value,
+                            'seo_tags': wallSocketSeoTags.value,
+                            'ids_states': wallSocketIDSstates.value,
                             'label': wallSocketLabel.value,
                             'name': wallSocketName.value,
                             'description': wallSocketDescription.value,

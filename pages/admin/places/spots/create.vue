@@ -354,13 +354,13 @@
                             'slug': placesSpotSlug.value,
                             'name': placesSpotName.value,
                             'information_chatgpt': placesSpotInformationChatgpt.value,
-                            'information_author': placesSpotInformationAuthor._value,
-                            'information_duration': placesSpotInformationDuration._value,
+                            'information_author': placesSpotInformationAuthor.value,
+                            'information_duration': placesSpotInformationDuration.value,
                             'altitude': placesSpotAltitude.value,
-                            'seo_tags': placesSpotsSeoTags._value,
-                            'coordinates': placesSpotCoordinates._value,
-                            'zoom': placesSpotZoom._value,
-                            'affiliate': placesSpotAffiliate._value
+                            'seo_tags': placesSpotsSeoTags.value,
+                            'coordinates': placesSpotCoordinates.value,
+                            'zoom': placesSpotZoom.value,
+                            'affiliate': placesSpotAffiliate.value
                         })
                     })
                     .then(() => {

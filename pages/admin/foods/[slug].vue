@@ -297,9 +297,10 @@
 
             //API - food
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/food/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/food/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const Food: Food[] = JSON.parse(_rawValue)
+                const Food: Food[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(Food) && Food.length > 0) {
                     itemID.value = Food[0].id
@@ -331,8 +332,8 @@
                             'slug': foodSlug.value,
                             'id_image_cover': foodIDimageCover.value,
                             'id_image_hero': foodIDimageHero.value,
-                            'seo_tags': foodSeoTags._value,
-                            'ids_states': foodIDSstates._value,
+                            'seo_tags': foodSeoTags.value,
+                            'ids_states': foodIDSstates.value,
                             'name': foodName.value,
                             'description': foodDescription.value,
                             'ingredients': foodIngredients.value,

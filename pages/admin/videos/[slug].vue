@@ -356,9 +356,10 @@
 
             //API - Video
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/video/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/video/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const Video: Video[] = JSON.parse(_rawValue)
+                const Video: Video[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(Video) && Video.length > 0 && 'slug' in Video[0] && 'platform' in Video[0] && 'title' in Video[0] && 'url' in Video[0]) {
                     itemID.value = Video[0].id
@@ -399,7 +400,7 @@
                         method: 'POST',
                         body: JSON.stringify({
                             'slug': videoSlug.value,
-                            'seo_tags': videoSeoTags._value,
+                            'seo_tags': videoSeoTags.value,
                             'id_continent': videoIDcontinent.value,
                             'id_state': videoIDstate.value,
                             'id_region': videoIDregion.value,

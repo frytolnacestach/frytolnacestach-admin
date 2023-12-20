@@ -695,9 +695,10 @@
 
             //API - Places State
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/places-state/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/places-state/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const PlacesState: PlacesState[] = JSON.parse(_rawValue)
+                const PlacesState: PlacesState[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(PlacesState) && PlacesState.length > 0) {
                     itemID.value = PlacesState[0].id
@@ -753,34 +754,34 @@
                             'id_city_main': placesStateIDcityMain.value,
                             'id_image_cover': placesStateIDimageCover.value,
                             'id_image_hero': placesStateIDimageHero.value,
-                            'ids_neighboring_countries': placesStateIDSneighboringCountries._value,
+                            'ids_neighboring_countries': placesStateIDSneighboringCountries.value,
                             'type_place': placesStateTypePlace.value,
                             'slug': placesStateSlug.value,
                             'name': placesStateName.value,
                             'information_chatgpt': placesStateInformationChatgpt.value,
-                            'information_author': placesStateInformationAuthor._value,
+                            'information_author': placesStateInformationAuthor.value,
                             'mpz': placesStateMpz.value,
                             'tld': placesStateTld.value,
                             'area': placesStateArea.value,
                             'population': placesStatePopulation.value,
                             'phone_prefix': placesStatePhonePrefix.value,
-                            'phone_numbers_emergency': placesStatePhoneNumbersEmergency._value,
+                            'phone_numbers_emergency': placesStatePhoneNumbersEmergency.value,
                             'currency_name': placesStateCurrencyName.value,
                             'currency_code': placesStateCurrencyCode.value,
-                            'money_prices': placesStateMoneyPrices._value,
-                            'people_religion': placesStatePeopleReligion._value,
-                            'people_nationality': placesStatePeopleNationality._value,
-                            'visitors_entry': placesStateVisitorsEntry._value,
-                            'seo_tags': placesStateSeoTags._value,
-                            'coordinates': placesStateCoordinates._value,
-                            'zoom': placesStateZoom._value,
-                            'affiliate': placesStateAffiliate._value,
-                            'alerts': placesStateAlerts._value,
-                            'organization': placesStateOrganization._value,
-                            'apps': placesStateApps._value,
-                            'links': placesStateLinks._value,
-                            'language_phrases': placesStateLanguagePhrases._value,
-                            'facts_place': placesStateFactsPlace._value
+                            'money_prices': placesStateMoneyPrices.value,
+                            'people_religion': placesStatePeopleReligion.value,
+                            'people_nationality': placesStatePeopleNationality.value,
+                            'visitors_entry': placesStateVisitorsEntry.value,
+                            'seo_tags': placesStateSeoTags.value,
+                            'coordinates': placesStateCoordinates.value,
+                            'zoom': placesStateZoom.value,
+                            'affiliate': placesStateAffiliate.value,
+                            'alerts': placesStateAlerts.value,
+                            'organization': placesStateOrganization.value,
+                            'apps': placesStateApps.value,
+                            'links': placesStateLinks.value,
+                            'language_phrases': placesStateLanguagePhrases.value,
+                            'facts_place': placesStateFactsPlace.value
                         })
                     })
                     .then(() => {

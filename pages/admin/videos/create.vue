@@ -325,7 +325,7 @@
                             'title': videoTitle.value,
                             'perex': videoPerex.value,
                             'url': videoUrl.value,
-                            'seo_tags': videoSeoTags._value
+                            'seo_tags': videoSeoTags.value
                         })
                     })
                     .then(() => {

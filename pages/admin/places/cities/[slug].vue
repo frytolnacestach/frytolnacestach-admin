@@ -460,9 +460,10 @@
 
             //API - Places City
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/places-city/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/places-city/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const PlacesCity: PlacesCity[] = JSON.parse(_rawValue)
+                const PlacesCity: PlacesCity[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(PlacesCity) && PlacesCity.length > 0) {
                     itemID.value = PlacesCity[0].id
@@ -508,16 +509,16 @@
                             'slug': placesCitySlug.value,
                             'name': placesCityName.value,
                             'information_chatgpt': placesCityInformationChatgpt.value,
-                            'information_author': placesCityInformationAuthor._value,
+                            'information_author': placesCityInformationAuthor.value,
                             'population': placesCityPopulation.value,
                             'area': placesCityArea.value,
                             'altitude': placesCityAltitude.value,
-                            'seo_tags': placesCitySeoTags._value,
-                            'coordinates': placesCityCoordinates._value,
-                            'zoom': placesCityZoom._value,
-                            'affiliate': placesCityAffiliate._value,
-                            'alerts': placesCityAlerts._value,
-                            'parking': placesCityParking._value
+                            'seo_tags': placesCitySeoTags.value,
+                            'coordinates': placesCityCoordinates.value,
+                            'zoom': placesCityZoom.value,
+                            'affiliate': placesCityAffiliate.value,
+                            'alerts': placesCityAlerts.value,
+                            'parking': placesCityParking.value
                         })
                     })
                     .then(() => {

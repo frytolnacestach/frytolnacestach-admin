@@ -245,8 +245,8 @@
                             'slug': wallSocketSlug.value,
                             'id_image_cover': wallSocketIDimageCover.value,
                             'id_image_hero': wallSocketIDimageHero.value,
-                            'seo_tags': wallSocketSeoTags._value,
-                            'ids_states': wallSocketIDSstates._value,
+                            'seo_tags': wallSocketSeoTags.value,
+                            'ids_states': wallSocketIDSstates.value,
                             'label': wallSocketLabel.value,
                             'name': wallSocketName.value,
                             'description': wallSocketDescription.value

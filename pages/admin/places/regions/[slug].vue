@@ -376,9 +376,10 @@
 
             //API - Places Region
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/places-region/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/places-region/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const PlacesRegion: PlacesRegion[] = JSON.parse(_rawValue)
+                const PlacesRegion: PlacesRegion[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(PlacesRegion) && PlacesRegion.length > 0) {
                     itemID.value = PlacesRegion[0].id
@@ -417,11 +418,11 @@
                             'slug': placesRegionSlug.value,
                             'name': placesRegionName.value,
                             'information_chatgpt': placesRegionInformationChatgpt.value,
-                            'information_author': placesRegionInformationAuthor._value,
-                            'seo_tags': placesRegionSeoTags._value,
-                            'coordinates': placesRegionCoordinates._value,
-                            'zoom': placesRegionZoom._value,
-                            'affiliate': placesRegionAffiliate._value
+                            'information_author': placesRegionInformationAuthor.value,
+                            'seo_tags': placesRegionSeoTags.value,
+                            'coordinates': placesRegionCoordinates.value,
+                            'zoom': placesRegionZoom.value,
+                            'affiliate': placesRegionAffiliate.value
                         })
                     })
                     .then(() => {

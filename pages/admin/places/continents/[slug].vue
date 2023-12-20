@@ -367,9 +367,10 @@
 
             //API - Places Continent
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/places-continent/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/places-continent/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const PlacesContinent: PlacesContinent[] = JSON.parse(_rawValue)
+                const PlacesContinent: PlacesContinent[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(PlacesContinent) && PlacesContinent.length > 0) {
                     itemID.value = PlacesContinent[0].id
@@ -409,14 +410,14 @@
                             'slug': placesContinentSlug.value,
                             'name': placesContinentName.value,
                             'information_chatgpt': placesContinentInformationChatgpt.value,
-                            'information_author': placesContinentInformationAuthor._value,
+                            'information_author': placesContinentInformationAuthor.value,
                             'area': placesContinentArea.value,
                             'population': placesContinentPopulation.value,
                             'population_density': placesContinentPopulationDensity.value,
                             'number_states': placesContinentNumberStates.value,
-                            'seo_tags': placesContinentSeoTags._value,
-                            'coordinates': placesContinentCoordinates._value,
-                            'zoom': placesContinentZoom._value
+                            'seo_tags': placesContinentSeoTags.value,
+                            'coordinates': placesContinentCoordinates.value,
+                            'zoom': placesContinentZoom.value
                         })
                     })
                     .then(() => {

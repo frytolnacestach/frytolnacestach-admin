@@ -282,9 +282,10 @@
 
             //API - Brand
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/brand/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/brand/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const Brand: Brand[] = JSON.parse(_rawValue)
+                const Brand: Brand[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(Brand) && Brand.length > 0) {
                     itemID.value = Brand[0].id
@@ -314,8 +315,8 @@
                             'slug': brandSlug.value,
                             'id_image_cover': brandIDimageCover.value,
                             'id_image_hero': brandIDimageHero.value,
-                            'seo_tags': brandSeoTags._value,
-                            'ids_states': brandIDSstates._value,
+                            'seo_tags': brandSeoTags.value,
+                            'ids_states': brandIDSstates.value,
                             'name': brandName.value,
                             'description': brandDescription.value,
                         })

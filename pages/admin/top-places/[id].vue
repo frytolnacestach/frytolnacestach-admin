@@ -190,9 +190,10 @@
 
             //API - topPlace
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/top-place/${route.params.id}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/top-place/${route.params.id}`)
+                const dataAPI: any = data._rawValue
                 
-                const TopPlace: TopPlace[] = JSON.parse(_rawValue)
+                const TopPlace: TopPlace[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(TopPlace) && TopPlace.length > 0) {
                     itemID.value = TopPlace[0].id

@@ -425,9 +425,10 @@
 
             //API - Places Spot
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/places-spot/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/places-spot/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const PlacesSpot: PlacesSpot[] = JSON.parse(_rawValue)
+                const PlacesSpot: PlacesSpot[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(PlacesSpot) && PlacesSpot.length > 0) {
                     itemID.value = PlacesSpot[0].id
@@ -471,13 +472,13 @@
                             'slug': placesSpotSlug.value,
                             'name': placesSpotName.value,
                             'information_chatgpt': placesSpotInformationChatgpt.value,
-                            'information_author': placesSpotInformationAuthor._value,
-                            'information_duration': placesSpotInformationDuration._value,
+                            'information_author': placesSpotInformationAuthor.value,
+                            'information_duration': placesSpotInformationDuration.value,
                             'altitude': placesSpotAltitude.value,
-                            'seo_tags': placesSpotSeoTags._value,
-                            'coordinates': placesSpotCoordinates._value,
-                            'zoom': placesSpotZoom._value,
-                            'affiliate': placesSpotAffiliate._value,
+                            'seo_tags': placesSpotSeoTags.value,
+                            'coordinates': placesSpotCoordinates.value,
+                            'zoom': placesSpotZoom.value,
+                            'affiliate': placesSpotAffiliate.value,
                         })
                     })
                     .then(() => {

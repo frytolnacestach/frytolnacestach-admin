@@ -313,9 +313,10 @@
 
             //API - flora
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/flora/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/flora/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const Flora: Flora[] = JSON.parse(_rawValue)
+                const Flora: Flora[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(Flora) && Flora.length > 0) {
                     itemID.value = Flora[0].id
@@ -349,8 +350,8 @@
                             'slug': floraSlug.value,
                             'id_image_cover': floraIDimageCover.value,
                             'id_image_hero': floraIDimageHero.value,
-                            'seo_tags': floraSeoTags._value,
-                            'ids_states': floraIDSstates._value,
+                            'seo_tags': floraSeoTags.value,
+                            'ids_states': floraIDSstates.value,
                             'name': floraName.value,
                             'name_lat': floraNameLat.value,
                             'location': floraLocation.value,

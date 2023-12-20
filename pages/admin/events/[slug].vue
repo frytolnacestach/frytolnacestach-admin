@@ -427,9 +427,10 @@
 
             //API - Event
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/event/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/event/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const Event: Event[] = JSON.parse(_rawValue)
+                const Event: Event[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(Event) && Event.length > 0) {
                     itemID.value = Event[0].id
@@ -477,12 +478,12 @@
                             'slug': eventSlug.value,
                             'name': eventName.value,
                             'description': eventDescription.value,
-                            'seo_tags': eventSeoTags._value,
-                            'coordinates': eventCoordinates._value,
-                            'zoom': eventZoom._value,
-                            'affiliate': eventAffiliate._value,
-                            'prices': eventPrices._value,
-                            'links': eventLinks._value
+                            'seo_tags': eventSeoTags.value,
+                            'coordinates': eventCoordinates.value,
+                            'zoom': eventZoom.value,
+                            'affiliate': eventAffiliate.value,
+                            'prices': eventPrices.value,
+                            'links': eventLinks.value
                         })
                     })
                     .then(() => {

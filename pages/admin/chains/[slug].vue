@@ -299,9 +299,10 @@
 
             //API - chain
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/chain/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/chain/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const Chain: Chain[] = JSON.parse(_rawValue)
+                const Chain: Chain[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(Chain) && Chain.length > 0) {
                     itemID.value = Chain[0].id
@@ -332,9 +333,9 @@
                             'slug': chainSlug.value,
                             'id_image_cover': chainIDimageCover.value,
                             'id_image_hero': chainIDimageHero.value,
-                            'information': chainInformation._value,
-                            'seo_tags': chainSeoTags._value,
-                            'ids_states': chainIDSstates._value,
+                            'information': chainInformation.value,
+                            'seo_tags': chainSeoTags.value,
+                            'ids_states': chainIDSstates.value,
                             'name': chainName.value,
                             'description': chainDescription.value,
                         })

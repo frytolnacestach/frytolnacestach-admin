@@ -237,9 +237,10 @@
 
             //API - Platform
             ;(async () => {
-                const { data: { _rawValue } } = await useFetch(`${runTimeConfig.public.baseURL}/platform/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/platform/${route.params.slug}`)
+                const dataAPI: any = data._rawValue
                 
-                const Platform: Platform[] = JSON.parse(_rawValue)
+                const Platform: Platform[] = JSON.parse(dataAPI)
                 
                 if (Array.isArray(Platform) && Platform.length > 0) {
                     itemID.value = Platform[0].id
@@ -269,7 +270,7 @@
                             'name': platformName.value,
                             'perex': platformPerex.value,
                             'url': platformUrl.value,
-                            'facts': platformFacts._value,
+                            'facts': platformFacts.value,
                             'date': platformDate.value
                         })
                     })

@@ -511,13 +511,13 @@
                             'perex_price': postPerexPrice.value,
                             'perex_triplength': postPerexTriplength.value,
                             'perex_time': postPerexTime.value,
-                            'seo_tags': postSeoTags._value,
-                            'tags': postTags._value,
-                            'locations': postLocations._value,
-                            'travels': postTravels._value,
-                            'prices': postPrices._value,
-                            'triplengths': postTriplengths._value,
-                            'times': postTimes._value,
+                            'seo_tags': postSeoTags.value,
+                            'tags': postTags.value,
+                            'locations': postLocations.value,
+                            'travels': postTravels.value,
+                            'prices': postPrices.value,
+                            'triplengths': postTriplengths.value,
+                            'times': postTimes.value,
                         })
                     })
                     .then(() => {

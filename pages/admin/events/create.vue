@@ -360,12 +360,12 @@
                             'slug': eventSlug.value,
                             'name': eventName.value,
                             'description': eventDescription.value,
-                            'seo_tags': eventSeoTags._value,
-                            'coordinates': eventCoordinates._value,
-                            'zoom': eventZoom._value,
-                            'affiliate': eventAffiliate._value,
-                            'prices': eventPrices._value,
-                            'links': eventLinks._value
+                            'seo_tags': eventSeoTags.value,
+                            'coordinates': eventCoordinates.value,
+                            'zoom': eventZoom.value,
+                            'affiliate': eventAffiliate.value,
+                            'prices': eventPrices.value,
+                            'links': eventLinks.value
                         })
                     })
                     .then(() => {

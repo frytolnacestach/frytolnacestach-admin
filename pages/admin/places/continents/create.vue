@@ -316,14 +316,14 @@
                             'slug': placesContinentSlug.value,
                             'name': placesContinentName.value,
                             'information_chatgpt': placesContinentInformationChatgpt.value,
-                            'information_author': placesContinentInformationAuthor._value,
+                            'information_author': placesContinentInformationAuthor.value,
                             'area': placesContinentArea.value,
                             'population': placesContinentPopulation.value,
                             'population_density': placesContinentPopulationDensity.value,
                             'number_states': placesContinentNumberStates.value,
-                            'seo_tags': placesContinentSeoTags._value,
-                            'coordinates': placesContinentCoordinates._value,
-                            'zoom': placesContinentZoom._value,
+                            'seo_tags': placesContinentSeoTags.value,
+                            'coordinates': placesContinentCoordinates.value,
+                            'zoom': placesContinentZoom.value,
                         })
                     })
                     .then(() => {
