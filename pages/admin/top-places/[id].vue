@@ -199,8 +199,6 @@
                     topPlaceIDplace.value = TopPlace[0].id_place
                     topPlaceType.value = TopPlace[0].type
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

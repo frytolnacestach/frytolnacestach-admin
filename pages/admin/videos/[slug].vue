@@ -376,8 +376,6 @@
                     videoUrl.value = Video[0].url
                     videoSeoTags.value = Video[0].seo_tags ? JSON.stringify(Video[0].seo_tags) : JSON.stringify([])
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

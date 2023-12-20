@@ -1871,8 +1871,6 @@
                     imageType.value = Image[0].type
                     imageAuthor.value = Image[0].author
                     loadingData.value = true
-                } else {
-
                 }
 
                 imageWebpExists()

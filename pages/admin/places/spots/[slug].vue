@@ -448,8 +448,6 @@
                     placesSpotZoom.value = PlacesSpot[0].zoom ? JSON.stringify(PlacesSpot[0].zoom) : JSON.stringify([])
                     placesSpotAffiliate.value = PlacesSpot[0].affiliate ? JSON.stringify(PlacesSpot[0].affiliate) : JSON.stringify([])
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

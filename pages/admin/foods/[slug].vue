@@ -313,8 +313,6 @@
                     foodIngredients.value = Food[0].ingredients ? JSON.stringify(Food[0].ingredients) : JSON.stringify([])
                     foodRecipe.value = Food[0].recipe
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

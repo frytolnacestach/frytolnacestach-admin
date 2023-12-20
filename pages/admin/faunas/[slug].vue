@@ -331,8 +331,6 @@
                     faunaStatusDanger.value = Fauna[0].status_danger
                     faunaDescription.value = Fauna[0].description
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

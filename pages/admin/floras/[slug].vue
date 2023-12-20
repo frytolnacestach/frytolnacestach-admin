@@ -331,8 +331,6 @@
                     floraStatusDanger.value = Flora[0].status_danger
                     floraDescription.value = Flora[0].description
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

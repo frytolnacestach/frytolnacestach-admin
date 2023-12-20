@@ -451,8 +451,6 @@
                     eventPrices.value = Event[0].prices ? JSON.stringify(Event[0].prices) : JSON.stringify([])
                     eventLinks.value = Event[0].links ? JSON.stringify(Event[0].links) : JSON.stringify([])
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

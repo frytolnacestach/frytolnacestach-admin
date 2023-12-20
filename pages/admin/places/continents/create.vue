@@ -230,19 +230,6 @@
         },
 
         methods: {
-            // information author
-            addInformationAuthorInput() {
-                this.placesContinentInformationAuthorArray.push({
-                    text: '',
-                    date_create: '',
-                    date_update: '',
-                    author_create: '',
-                    author_update: ''
-                })
-            },
-            removeInformationAuthorInput(index: number) {
-                this.placesContinentInformationAuthorArray.splice(index, 1)
-            },
             // Components input changes
             handleSlug(newSlug: string) {
                 this.placesContinentSlug = newSlug
@@ -264,16 +251,6 @@
             },
             handleInformationAuthor(newInformationAuthor: string) {
                 this.placesContinentInformationAuthor = JSON.stringify(newInformationAuthor)
-            }
-        },
-
-        watch: {
-            placesContinentInformationAuthor: function (newValue, oldValue) {
-                try {
-                    this.placesContinentInformationAuthorArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.placesContinentInformationAuthorArray = []
-                }
             }
         },
 

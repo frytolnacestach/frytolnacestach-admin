@@ -277,8 +277,6 @@
                     travelDictionaryDescription.value = TravelDictionaries[0].description
                     travelDictionarySeoTags.value = TravelDictionaries[0].seo_tags ? JSON.stringify(TravelDictionaries[0].seo_tags) : JSON.stringify([])
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

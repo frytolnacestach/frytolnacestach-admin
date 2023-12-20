@@ -485,8 +485,6 @@
                     placesCityAlerts.value = PlacesCity[0].alerts ? JSON.stringify(PlacesCity[0].alerts) : JSON.stringify([])
                     placesCityParking.value = PlacesCity[0].parking ? JSON.stringify(PlacesCity[0].parking) : JSON.stringify([])
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

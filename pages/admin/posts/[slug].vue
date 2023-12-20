@@ -676,8 +676,6 @@
                     postTriplengths.value = Post[0].triplengths ? JSON.stringify(Post[0].triplengths) : JSON.stringify([])
                     postTimes.value = Post[0].times ? JSON.stringify(Post[0].times) : JSON.stringify([])
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

@@ -303,8 +303,6 @@
                     wallSocketName.value = WallSocket[0].name
                     wallSocketDescription.value = WallSocket[0].description
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

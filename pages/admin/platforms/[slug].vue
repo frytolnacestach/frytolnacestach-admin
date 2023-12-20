@@ -189,16 +189,6 @@
         watch: {
             platformName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
-            },
-            platformFacts: function (newValue, oldValue) {
-                try {
-                    this.platformFactsArray = JSON.parse(newValue)
-                } catch (error) {
-                    this.platformFactsArray = []
-                }
-            },
-            platformFactsArray: function (newValue, oldValue) {
-                this.platformFacts = JSON.stringify(newValue)
             }
         },
 
@@ -260,8 +250,6 @@
                     platformFacts.value = Platform[0].facts ? JSON.stringify(Platform[0].facts) : JSON.stringify([])
                     platformDate.value = Platform[0].date
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

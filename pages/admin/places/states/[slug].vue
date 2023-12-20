@@ -734,8 +734,6 @@
                     placesStateLanguagePhrases.value = PlacesState[0].language_phrases ? JSON.stringify(PlacesState[0].language_phrases) : JSON.stringify([])
                     placesStateFactsPlace.value = PlacesState[0].facts_place ? JSON.stringify(PlacesState[0].facts_place) : JSON.stringify([])
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

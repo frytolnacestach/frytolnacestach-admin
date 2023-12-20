@@ -388,8 +388,6 @@
                     placesContinentCoordinates.value = PlacesContinent[0].coordinates ? JSON.stringify(PlacesContinent[0].coordinates) : JSON.stringify([])
                     placesContinentZoom.value = PlacesContinent[0].zoom ? JSON.stringify(PlacesContinent[0].zoom) : JSON.stringify([])
                     loadingData.value = true
-                } else {
-
                 }
             })()
 

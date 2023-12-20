@@ -296,8 +296,6 @@
                     brandName.value = Brand[0].name
                     brandDescription.value = Brand[0].description
                     loadingData.value = true
-                } else {
-
                 }
             })()
 
