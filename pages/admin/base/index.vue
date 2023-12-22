@@ -32,31 +32,31 @@
                                             <!-- Form - iam -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Kdo jsem" nameDB="iam" perex="" :required=true />
-                                                <textarea class="a-textarea" name="iam" v-model="iam" required></textarea>
+                                                <aTextarea :value="iam" name="iam" :required=true @textareaValue="handleIam" />
                                             </div>
                                             <!-- Form - iam END -->
                                             <!-- Form - donate -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Jak mě podpořit" nameDB="donate" perex="" :required=true />
-                                                <textarea class="a-textarea" name="donate" v-model="donate" required></textarea>
+                                                <aTextarea :value="donate" name="donate" :required=true @textareaValue="handleDonate" />
                                             </div>
                                             <!-- Form - donate END -->
                                             <!-- Form - cookies -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Zásady Cookies" nameDB="cookies" perex="" :required=true />
-                                                <textarea class="a-textarea" name="cookies" v-model="cookies" required></textarea>
+                                                <aTextarea :value="cookies" name="cookies" :required=true @textareaValue="handleCookies" />
                                             </div>
                                             <!-- Form - cookies END -->
                                             <!-- Form - conditions -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Obchodní podmínky a zásady ochrany osobních údajů" nameDB="conditions" perex="" :required=true />
-                                                <textarea class="a-textarea" name="conditions" v-model="conditions" required></textarea>
+                                                <aTextarea :value="conditions" name="conditions" :required=true @textareaValue="handleConditions" />
                                             </div>
                                             <!-- Form - conditions END -->
                                             <!-- Form - conditions_user -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Obchodní podmínky a zásady ochrany osobních údajů - uživatel" nameDB="conditions_user" perex="" :required=true />
-                                                <textarea class="a-textarea" name="conditionsUser" v-model="conditionsUser" required></textarea>
+                                                <aTextarea :value="conditionsUser" name="conditionsUser" :required=true @textareaValue="handleConditionsUser" />
                                             </div>
                                             <!-- Form - conditions_user END -->
                                         </div>
@@ -84,6 +84,7 @@
     import { defineComponent } from 'vue'
     import { useRouter } from 'vue-router'
 
+    import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
@@ -96,6 +97,7 @@
 
         //COMPONENTS
         components: {
+            aTextarea,
             mButton,
             mHeadlineForm,
             mLabel,
@@ -238,6 +240,24 @@
                 //Přesměrování
                 const router = useRouter()
                 router.push('/login')
+            }
+        },
+
+        methods: {
+            handleIam(newIam: string) {
+                this.iam = newIam
+            },
+            handleDonate(newDonate: string) {
+                this.donate = newDonate
+            },
+            handleCookies(newCookies: string) {
+                this.cookies = newCookies
+            },
+            handleConditions(newConditions: string) {
+                this.conditions = newConditions
+            },
+            handleConditionsUser(newConditionsUser: string) {
+                this.conditionsUser = newConditionsUser
             }
         }
     })

@@ -98,7 +98,7 @@
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="information_chatgpt" v-model="placesContinentInformationChatgpt"></textarea>
+                                                <aTextarea :value="placesContinentInformationChatgpt" name="information_chatgpt" :required=false @textareaValue="handleInformationChatgpt" />
                                             </div>
                                             <!-- Form - information_chatgpt END -->
                                             <!-- Form - information_author(JSON) -->
@@ -167,6 +167,7 @@
 
 <script lang="ts">
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
+    import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
@@ -185,6 +186,7 @@
         //COMPONENTS
         components: {
             aInputSlug,
+            aTextarea,
             mButton,
             mHeadlineForm,
             mInputImage,
@@ -248,6 +250,9 @@
             },
             handleZoom(newZoom: string) {
                 this.placesContinentZoom = JSON.stringify(newZoom)
+            },
+            handleInformationChatgpt(newInformationChatgpt: string) {
+                this.placesContinentInformationChatgpt = newInformationChatgpt
             },
             handleInformationAuthor(newInformationAuthor: string) {
                 this.placesContinentInformationAuthor = JSON.stringify(newInformationAuthor)

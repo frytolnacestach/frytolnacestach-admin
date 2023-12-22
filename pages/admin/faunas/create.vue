@@ -112,7 +112,7 @@
                                             <!-- Form - description -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Popis" nameDB="description" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="description" v-model="faunaDescription"></textarea>
+                                                <aTextarea :value="faunaDescription" name="description" :required=false @textareaValue="handleDescription" />
                                             </div>
                                             <!-- Form - description END -->
                                         </div>
@@ -139,6 +139,7 @@
 
 <script lang="ts">
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
+    import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputsIDSStates from '@/components/molecules/mInputsIDSStates.vue'
@@ -155,6 +156,7 @@
         //COMPONENTS
         components: {
             aInputSlug,
+            aTextarea,
             mButton,
             mHeadlineForm,
             mInputsIDSStates,
@@ -207,6 +209,9 @@
             },
             handleIDSStates(newIDSStates: string) {
                 this.faunaIDSstates = JSON.stringify(newIDSStates)
+            },
+            handleDescription(newDescription: string) {
+                this.faunaDescription = newDescription
             }
         },
 

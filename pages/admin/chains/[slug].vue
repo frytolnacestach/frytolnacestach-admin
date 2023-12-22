@@ -104,7 +104,7 @@
                                             <!-- Form - description -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Popis" nameDB="description" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="description" v-model="chainDescription"></textarea>
+                                                <aTextarea :value="chainDescription" name="description" :required=false @textareaValue="handleDescription" />
                                             </div>
                                             <!-- Form - description END -->
                                             <!-- Form - information(JSON) -->
@@ -137,6 +137,7 @@
 
 <script lang="ts">
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
+    import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputsIDSStates from '@/components/molecules/mInputsIDSStates.vue'
@@ -179,6 +180,7 @@
         //COMPONENTS
         components: {
             aInputSlug,
+            aTextarea,
             mButton,
             mHeadlineForm,
             mInputsIDSStates,
@@ -240,6 +242,9 @@
             },
             handleIDSStates(newIDSStates: string) {
                 this.chainIDSstates = JSON.stringify(newIDSStates)
+            },
+            handleDescription(newDescription: string) {
+                this.chainDescription = newDescription
             },
             handleInformation(newInformation: string) {
                 this.chainInformation = JSON.stringify(newInformation)

@@ -186,25 +186,25 @@
                                             <!-- Form - text_opener -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Text otvírák" nameDB="text_opener" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="textOpener" v-model="postTextOpener"></textarea>
+                                                <aTextarea :value="postTextOpener" name="textOpener" :required=false @textareaValue="handleTextOpener" />
                                             </div>
                                             <!-- Form - text_opener END -->
                                             <!-- Form - text_author -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Text autora" nameDB="text_author" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="textAuthor" v-model="postTextAuthor"></textarea>
+                                                <aTextarea :value="postTextAuthor" name="textAuthor" :required=false @textareaValue="handleTextAuthor" />
                                             </div>
                                             <!-- Form - text_author END -->
                                             <!-- Form - text_wiki -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Text z wikipedie" nameDB="text_wiki" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="textWiki" v-model="postTextWiki"></textarea>
+                                                <aTextarea :value="postTextWiki" name="textWiki" :required=false @textareaValue="handleTextWiki" />
                                             </div>
                                             <!-- Form - text_wiki END -->
                                             <!-- Form - review_text -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Text k hodnocení" nameDB="review_text" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="reviewText" v-model="postReviewText"></textarea>
+                                                <aTextarea :value="postReviewText" name="reviewText" :required=false @textareaValue="handleReviewText" />
                                             </div>
                                             <!-- Form - review_text END -->
                                             <!-- Form - review_value -->
@@ -291,6 +291,7 @@
 
 <script lang="ts">
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
+    import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
@@ -313,6 +314,7 @@
         //COMPONENTS
         components: {
             aInputSlug,
+            aTextarea,
             mButton,
             mHeadlineForm,
             mInputIDPlaces,
@@ -389,6 +391,18 @@
             },
             handleIDspot(newIDspot: number) {
                 this.postIDspot = newIDspot
+            },
+            handleTextOpener(newTextOpener: string) {
+                this.postTextOpener = newTextOpener
+            },
+            handleTextAuthor(newTextAuthor: string) {
+                this.postTextAuthor = newTextAuthor
+            },
+            handleTextWiki(newTextWiki: string) {
+                this.postTextWiki = newTextWiki
+            },
+            handleReviewText(newReviewText: string) {
+                this.postReviewText = newReviewText
             },
             handleTags(newTags: string) {
                 this.postTags = JSON.stringify(newTags)

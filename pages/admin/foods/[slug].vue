@@ -104,19 +104,19 @@
                                             <!-- Form - description -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Popis" nameDB="description" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="description" v-model="foodDescription"></textarea>
+                                                <aTextarea :value="foodDescription" name="description" :required=false @textareaValue="handleDescription" />
                                             </div>
                                             <!-- Form - description END -->
                                             <!-- Form - ingredients -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Ingredience" nameDB="ingredients" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="ingredients" v-model="foodIngredients"></textarea>
+                                                <aTextarea :value="foodIngredients" name="ingredients" :required=false @textareaValue="handleIngredients" />
                                             </div>
                                             <!-- Form - ingredients END -->
                                             <!-- Form - recipe -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Recept" nameDB="recipe" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="recipe" v-model="foodRecipe"></textarea>
+                                                <aTextarea :value="foodRecipe" name="recipe" :required=false @textareaValue="handleRecipe" />
                                             </div>
                                             <!-- Form - recipe END -->
                                         </div>
@@ -143,6 +143,7 @@
 
 <script lang="ts">
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
+    import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputsIDSStates from '@/components/molecules/mInputsIDSStates.vue'
@@ -180,6 +181,7 @@
         //COMPONENTS
         components: {
             aInputSlug,
+            aTextarea,
             mButton,
             mHeadlineForm,
             mInputsIDSStates,
@@ -240,6 +242,15 @@
             },
             handleIDSStates(newIDSStates: string) {
                 this.foodIDSstates = JSON.stringify(newIDSStates)
+            },
+            handleDescription(newDescription: string) {
+                this.foodDescription = newDescription
+            },
+            handleIngredients(newIngredients: string) {
+                this.foodIngredients = newIngredients
+            },
+            handleRecipe(newRecipe: string) {
+                this.foodRecipe = newRecipe
             }
         },
 

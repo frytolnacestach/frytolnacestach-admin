@@ -103,7 +103,7 @@
                                             <!-- Form - description -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Popis" nameDB="description" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="description" v-model="wallSocketDescription"></textarea>
+                                                <aTextarea :value="wallSocketDescription" name="description" :required=false @textareaValue="handleDescription" />
                                             </div>
                                             <!-- Form - description END -->
                                             <!-- Form - ids_states(JSON) -->
@@ -136,6 +136,7 @@
 
 <script lang="ts">
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
+    import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputsIDSStates from '@/components/molecules/mInputsIDSStates.vue'
@@ -172,6 +173,7 @@
         //COMPONENTS
         components: {
             aInputSlug,
+            aTextarea,
             mButton,
             mHeadlineForm,
             mInputsIDSStates,
@@ -229,6 +231,9 @@
             },
             handleSeoTags(newSeoTags: string) {
                 this.wallSocketSeoTags = JSON.stringify(newSeoTags)
+            },
+            handleDescription(newDescription: string) {
+                this.wallSocketDescription = newDescription
             },
             handleIDSStates(newIDSStates: string) {
                 this.wallSocketIDSstates = JSON.stringify(newIDSStates)

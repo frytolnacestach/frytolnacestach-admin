@@ -147,7 +147,7 @@
                                             <!-- Form - perex -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Popis" nameDB="perex" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="perex" v-model="videoPerex"></textarea>
+                                                <aTextarea :value="videoPerex" name="perex" :required=false @textareaValue="handlePerex" />
                                             </div>
                                             <!-- Form - perex END -->
                                             <!-- Form - url -->
@@ -180,6 +180,7 @@
 
 <script lang="ts">
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
+    import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
@@ -223,6 +224,7 @@
         //COMPONENTS
         components: {
             aInputSlug,
+            aTextarea,
             mButton,
             mHeadlineForm,
             mInputIDPlaces,
@@ -293,6 +295,9 @@
             },
             handleIDspot(newIDspot: number) {
                 this.videoIDspot = newIDspot
+            },
+            handlePerex(newPerex: string) {
+                this.videoPerex = newPerex
             }
         },
 

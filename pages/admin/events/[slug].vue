@@ -144,7 +144,7 @@
                                             <!-- Form - description -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Popis" nameDB="description" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="description" v-model="eventDescription"></textarea>
+                                                <aTextarea :value="eventDescription" name="description" :required=false @textareaValue="handleDescritpion" />
                                             </div>
                                             <!-- Form - description END -->
                                             <!-- Form - coordinates(JSON) -->
@@ -201,6 +201,7 @@
 
 <script lang="ts">
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
+    import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
@@ -273,6 +274,7 @@
         //COMPONENTS
         components: {
             aInputSlug,
+            aTextarea,
             mButton,
             mHeadlineForm,
             mInputIDPlaces,
@@ -347,6 +349,9 @@
             },
             handleIDspot(newIDspot: number) {
                 this.eventIDspot = newIDspot
+            },
+            handleDescritpion(newDescription: string) {
+                this.eventDescription = newDescription
             },
             handleCoordinates(newCoordinates: string) {
                 this.eventCoordinates = JSON.stringify(newCoordinates)

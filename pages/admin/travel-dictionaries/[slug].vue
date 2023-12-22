@@ -98,7 +98,7 @@
                                             <!-- Form - description -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Popis" nameDB="description" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="description" v-model="travelDictionaryDescription"></textarea>
+                                                <aTextarea :value="travelDictionaryDescription" name="description" :required=false @textareaValue="handleDictionaryDescription" />
                                             </div>
                                             <!-- Form - description END-->
                                         </div>
@@ -125,6 +125,7 @@
 
 <script lang="ts">
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
+    import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
@@ -154,6 +155,7 @@
         //COMPONENTS
         components: {
             aInputSlug,
+            aTextarea,
             mButton,
             mHeadlineForm,
             mInputImage,
@@ -210,6 +212,9 @@
             },
             handleSeoTags(newSeoTags: string) {
                 this.travelDictionarySeoTags = JSON.stringify(newSeoTags)
+            },
+            handleDescription(newDescription: string) {
+                this.travelDictionaryDescription = newDescription
             }
         },
 

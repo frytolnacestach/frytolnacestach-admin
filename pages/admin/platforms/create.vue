@@ -44,7 +44,7 @@
                                             <!-- Form - perex -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Můj popis" nameDB="perex" perex="" :required=false />
-                                                <textarea class="a-textarea" type="text" name="perex" v-model="platformPerex"></textarea>
+                                                <aTextarea :value="platformPerex" name="perex" :required=false @textareaValue="handlePerex" />
                                             </div>
                                             <!-- Form - perex END -->
                                             <!-- Form - url -->
@@ -89,6 +89,7 @@
 
 <script lang="ts">
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
+    import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputsFacts from '@/components/molecules/mInputsFacts.vue'
@@ -103,6 +104,7 @@
         //COMPONENTS
         components: {
             aInputSlug,
+            aTextarea,
             mButton,
             mHeadlineForm,
             mInputsFacts,
@@ -141,6 +143,9 @@
             // Components input changes
             handleSlug(newSlug: string) {
                 this.platformSlug = newSlug
+            },
+            handlePerex(newPerex: string) {
+                this.platformPerex = newPerex
             },
             handleFacts(newFacts: string) {
                 this.platformFacts = JSON.stringify(newFacts)
