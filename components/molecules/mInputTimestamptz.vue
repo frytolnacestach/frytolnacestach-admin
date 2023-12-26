@@ -1,11 +1,11 @@
 <template>
     <div>
-        <select v-model="timeZoneName" @change="changeTimeZone">
+        <select class="m-select" v-model="timeZoneName" @change="changeTimeZone">
             <option v-for="timeZone in timeZones" :value="timeZone" :key="timeZone">
                 {{ timeZone }}
             </option>
         </select>
-        <input v-model="dateTimeNew" type="datetime-local" @input="changeDateTime" />
+        <input class="a-input" v-model="dateTimeNew" type="datetime-local" @input="changeDateTime" />
         <p>Transformed Date: {{ dateNew }}</p>
     </div>
 </template>
@@ -419,17 +419,14 @@
                 const offsetMinutes = DateTime.fromISO(dateTime.value).setZone(timeZoneName.value).offset;
                 const offsetHours = Math.floor(Math.abs(offsetMinutes) / 60);
                 const offsetMinutesRemainder = Math.abs(offsetMinutes) % 60;
-                const timeZoneNew = (offsetMinutes < 0 ? '-' : '+') + (offsetHours < 10 ? '0' : '') + offsetHours + ':' + (offsetMinutesRemainder < 10 ? '0' : '') + offsetMinutesRemainder;
+                const timeZoneNew = (offsetMinutes < 0 ? '-' : '+') + (offsetHours < 10 ? '0' : '') + offsetHours + ':' + (offsetMinutesRemainder < 10 ? '0' : '') + offsetMinutesRemainder
                 
-                //const dateTimeWithZone = '' // tady potřebuji dateTime ovlinen vysledkem timeZone tak že pokud mám v dateTime 20:20 a v timeZone +02:00 tak vysledek bude 22:20
                 const dateTimeWithZone = computed(() => {
-                    // Kontrola, zda jsou hodnoty k dispozici
                     if (dateTime.value && timeZone.value) {
                         const dateTimeObj = DateTime.fromISO(dateTime.value, { zone: 'utc' })
                         const dateTimeWithZoneObj = dateTimeObj.setZone(timeZoneNew)
                         return dateTimeWithZoneObj.toFormat("yyyy-MM-dd'T'HH:mm:ss")
                     } else {
-                        // Nastavte výchozí hodnotu nebo dejte nějaký jiný způsob, jak s tím zacházet
                         return ''
                     }
                 })
@@ -450,7 +447,7 @@
             const transformDateTime = () => {
                 // Transformuj datum
                 const transformedDate = DateTime.fromISO(dateTimeNew.value, { zone: timeZoneName.value })
-                    .toISO({ includeOffset: true });
+                    .toISO({ includeOffset: true })
 
                 dateTimeNew.value = DateTime.fromISO(transformedDate, { zone: 'utc' }).toFormat("yyyy-MM-dd'T'HH:mm:ss");
 
