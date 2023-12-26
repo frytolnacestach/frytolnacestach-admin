@@ -6,7 +6,7 @@
             </option>
         </select>
         <input class="a-input" v-model="dateTimeNew" type="datetime-local" @input="changeDateTime" />
-        <p>Transformed Date: {{ dateNew }}</p>
+        <span>Date: {{ dateNew }}</span>
     </div>
 </template>
 
