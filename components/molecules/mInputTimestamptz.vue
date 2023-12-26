@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-    import { DateTime, luxon } from 'luxon'
+    import { DateTime, FixedOffsetZone, luxon } from 'luxon'
 
     export default defineComponent({
         name: 'MoleculesmInputTimestamptzComponent',
@@ -385,11 +385,12 @@
             const dateNew = ref(props.value) // format: 2022-10-28T11:20:41+00:00
 
             const dateTime = ref('') // format: 2022-10-28T11:20:41
-            const dateTimeNew = ref(dateTime)
             const timeZone = ref('') // format: +00:00
-            const timeZoneNew = ref(timeZone)
+            
+            const dateTimeNew = ref('')
+            const timeZoneNew = ref('')
 
-            const timeZoneName = ref('Europe/Prague')
+            const timeZoneName = ref('')
 
             const changeTimeZone = () => {
                 transformDateTime()
@@ -400,22 +401,50 @@
             };
 
             onMounted(() => {
-                updateDateTimeAndTimeZone();
+                // Separate dataNew
+                const timeZoneRegex = /([+-]\d{2}:\d{2})$/;
+                const [datePart, timeZonePart] = date.value.split(timeZoneRegex);
+
+                // Set variable for dateTime and timeZone
+                dateTime.value = datePart.trim()
+                timeZone.value = `${timeZonePart.trim()}`
 
                 // Actual TimeZone from browser
                 const browserTimeZone = new Intl.DateTimeFormat().resolvedOptions().timeZone
 
+                // Set timeZoneName
                 timeZoneName.value = timeZones.find(timeZone => timeZone.value === DateTime.local().setZone(timeZone).offsetNameShort) || browserTimeZone
+
+                // Time zone code
+                const offsetMinutes = DateTime.fromISO(dateTime.value).setZone(timeZoneName.value).offset;
+                const offsetHours = Math.floor(Math.abs(offsetMinutes) / 60);
+                const offsetMinutesRemainder = Math.abs(offsetMinutes) % 60;
+                const timeZoneNew = (offsetMinutes < 0 ? '-' : '+') + (offsetHours < 10 ? '0' : '') + offsetHours + ':' + (offsetMinutesRemainder < 10 ? '0' : '') + offsetMinutesRemainder;
+                
+                //const dateTimeWithZone = '' // tady potřebuji dateTime ovlinen vysledkem timeZone tak že pokud mám v dateTime 20:20 a v timeZone +02:00 tak vysledek bude 22:20
+                const dateTimeWithZone = computed(() => {
+                    // Kontrola, zda jsou hodnoty k dispozici
+                    if (dateTime.value && timeZone.value) {
+                        const dateTimeObj = DateTime.fromISO(dateTime.value, { zone: 'utc' })
+                        const dateTimeWithZoneObj = dateTimeObj.setZone(timeZoneNew)
+                        return dateTimeWithZoneObj.toFormat("yyyy-MM-dd'T'HH:mm:ss")
+                    } else {
+                        // Nastavte výchozí hodnotu nebo dejte nějaký jiný způsob, jak s tím zacházet
+                        return ''
+                    }
+                })
+
+                dateTimeNew.value = dateTimeWithZone.value // format: 2022-10-28T11:20:41
             })
 
             const updateDateTimeAndTimeZone = () => {
                 // Separate dataNew
                 const timeZoneRegex = /([+-]\d{2}:\d{2})$/;
-                const [datePart, timeZonePart] = dateNew.value.split(timeZoneRegex);
+                const [datePart, timeZonePart] = dateNew.value.split(timeZoneRegex)
 
                 // Set variable for dateTime and timeZone
-                dateTime.value = datePart.trim()
-                timeZone.value = `+${timeZonePart.trim()}`
+                dateTimeNew.value = datePart.trim()
+                timeZoneNew.value = `${timeZonePart.trim()}`
             }
 
             const transformDateTime = () => {
@@ -435,11 +464,12 @@
             watch(() => props.value, (newValue) => {
                 date.value = newValue
                 updateDateTimeAndTimeZone()
-            });
+            })
             
             watch([dateTime, timeZoneName], () => {
                 transformDateTime()
             })
+
 
             //RETURN
             return {
