@@ -156,7 +156,7 @@
                                             <!-- Form - date_information -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Datum platnosti informací" nameDB="date_information" perex="" :required=false />
-                                                <input class="a-input" type="text" name="dateInformation" v-model="postDateInformation" />
+                                                <mInputTimestamptz :value="postDateInformation" @date="handleDateInformation" />
                                             </div>
                                             <!-- Form - date_information END -->
                                             <!-- Form - url_youtube -->              
@@ -309,6 +309,7 @@
     import mInputsTravels from '@/components/molecules/mInputsTravels.vue'
     import mInputsTripLengths from '@/components/molecules/mInputsTripLengths.vue'
     import mInputsTripPrices from '@/components/molecules/mInputsTripPrices.vue'
+    import mInputTimestamptz from '@/components/molecules/mInputTimestamptz.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -407,6 +408,7 @@
             mInputsTravels,
             mInputsTripLengths,
             mInputsTripPrices,
+            mInputTimestamptz,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -510,6 +512,9 @@
             },
             handleTimes(newTimes: string) {
                 this.postTimes = JSON.stringify(newTimes)
+            },
+            handleDateInformation(newDate: string) {
+                this.postDateInformation = newDate
             }
         },
 
