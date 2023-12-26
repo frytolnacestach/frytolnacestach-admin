@@ -402,41 +402,32 @@
             onMounted(() => {
                 updateDateTimeAndTimeZone();
 
-                // Získej aktuální časovou zónu prohlížeče
+                // Actual TimeZone from browser
                 const browserTimeZone = new Intl.DateTimeFormat().resolvedOptions().timeZone
 
                 timeZoneName.value = timeZones.find(timeZone => timeZone.value === DateTime.local().setZone(timeZone).offsetNameShort) || browserTimeZone
             })
 
             const updateDateTimeAndTimeZone = () => {
-                // Rozdělíme hodnotu 'date' na datum a čas a na časovou zónu
-                const [datePart, timeZonePart] = dateNew.value.split('+');
-                
-                // Nastavíme hodnoty pro dateTime a timeZone
-                dateTime.value = datePart.trim();
-                timeZone.value = `+${timeZonePart.trim()}`;
-            };
+                // Separate dataNew
+                const timeZoneRegex = /([+-]\d{2}:\d{2})$/;
+                const [datePart, timeZonePart] = dateNew.value.split(timeZoneRegex);
+
+                // Set variable for dateTime and timeZone
+                dateTime.value = datePart.trim()
+                timeZone.value = `+${timeZonePart.trim()}`
+            }
 
             const transformDateTime = () => {
-                //const transformedDateForm = DateTime.fromISO(dateTime.value, { zone: 'UTC' })
-                    //.toISO({ includeOffset: true })
-
                 // Transformuj datum
                 const transformedDate = DateTime.fromISO(dateTimeNew.value, { zone: timeZoneName.value })
                     .toISO({ includeOffset: true });
 
                 dateTimeNew.value = DateTime.fromISO(transformedDate, { zone: 'utc' }).toFormat("yyyy-MM-dd'T'HH:mm:ss");
 
-                //dateTime.value = transformedDateForm
-
+                // Update date for emit and edit
                 dateNew.value = transformedDate
 
-                //console.log("transformedDateForm:")
-                //console.log(transformedDateForm)
-                console.log("dateTimeNew:")
-                console.log(dateTimeNew.value)
-                console.log("dateTime")
-                console.log(dateTime.value)
 
                 updateDateTimeAndTimeZone()
             }
@@ -471,8 +462,8 @@
 
         watch: {
             // Change date
-            id(newValue, oldValue) {
-                this.$emit('date', this.date)
+            dateNew(newValue, oldValue) {
+                this.$emit('date', this.dateNew)
             }
         },
     })
