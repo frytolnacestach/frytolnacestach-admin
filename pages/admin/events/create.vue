@@ -140,7 +140,7 @@
                                             <!-- Form - zoom(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Zoom map" nameDB="zoom" perex="" :required=false />
-                                                <mInputsZoom :value="eventZoom" @zoom="handleZoom" />
+                                                <mInputsZoom :value="eventZoom" :inputsMax="1" @zoom="handleZoom" />
                                             </div>
                                             <!-- Form - zoom(JSON) END -->
                                             <!-- Form - affiliate(JSON) -->
