@@ -449,7 +449,7 @@
                 const transformedDate = DateTime.fromISO(dateTimeNew.value, { zone: timeZoneName.value })
                     .toISO({ includeOffset: true })
 
-                dateTimeNew.value = DateTime.fromISO(transformedDate, { zone: 'utc' }).toFormat("yyyy-MM-dd'T'HH:mm:ss");
+                dateTimeNew.value = DateTime.fromISO(transformedDate, { zone: 'utc' }).toFormat("yyyy-MM-dd'T'HH:mm:ss")
 
                 // Update date for emit and edit
                 dateNew.value = transformedDate
