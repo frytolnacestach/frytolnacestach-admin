@@ -22,7 +22,7 @@
         <div class="o-form-item__buttons mt-1">
             <div class="o-form-item__button">
                 <div class="m-button-add">
-                    <button class="m-button-add__input" type="button" @click="addZoomInput">Přidat zoom</button>
+                    <button class="m-button-add__input" type="button" @click="addZoomInput" v-if="zoomArray.length < inputsMax">Přidat zoom</button>
                 </div>
             </div>
         </div>
@@ -44,6 +44,10 @@
             value: {
                 type: Array,
                 required: true
+            },
+            inputsMax: {
+                type: Number,
+                required: false
             }
         },
 
@@ -63,11 +67,13 @@
                 }
             },
             addZoomInput() {
-                this.zoomArray.push({
-                    google: null,
-                    booking: null
-                })
-                this.$emit('zoom', this.zoomArray)
+                if (this.zoomArray.length < this.inputsMax) {
+                    this.zoomArray.push({
+                        google: null,
+                        booking: null
+                    })
+                    this.$emit('zoom', this.zoomArray)
+                }
             },
             removeZoomInput(index) {
                 this.zoomArray.splice(index, 1)
