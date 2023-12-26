@@ -153,13 +153,13 @@
                                             <!-- Form - coordinates(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Souřadnice" nameDB="coordinates" perex="" :required=false />
-                                                <mInputsCoordinates :value="placesCityCoordinates" @coordinates="handleCoordinates" />
+                                                <mInputsCoordinates :value="placesCityCoordinates" :inputsMax="1" @coordinates="handleCoordinates" />
                                             </div>
                                             <!-- Form - coordinates(JSON) END -->
                                             <!-- Form - zoom(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Zoom map" nameDB="zoom" perex="" :required=false />
-                                                <mInputsZoom :value="placesCityZoom" @zoom="handleZoom" />
+                                                <mInputsZoom :value="placesCityZoom" :inputsMax="1" @zoom="handleZoom" />
                                             </div>
                                             <!-- Form - zoom(JSON) END -->
                                             <!-- Form - affiliate(JSON) -->

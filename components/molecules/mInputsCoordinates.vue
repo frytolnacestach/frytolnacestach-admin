@@ -22,7 +22,7 @@
         <div class="o-form-item__buttons mt-1">
             <div class="o-form-item__button">
                 <div class="m-button-add">
-                    <button class="m-button-add__input" type="button" @click="addCoordinateInput">Přidat souřadnice</button>
+                    <button class="m-button-add__input" type="button" @click="addCoordinateInput" v-if="coordinatesArray.length < inputsMax">Přidat souřadnice</button>
                 </div>
             </div>
         </div>
@@ -44,6 +44,10 @@
             value: {
                 type: Array,
                 required: true
+            },
+            inputsMax: {
+                type: Number,
+                required: false
             }
         },
 
@@ -63,11 +67,13 @@
                 }
             },
             addCoordinateInput() {
-                this.coordinatesArray.push({
-                    latitude: null,
-                    longitude: null
-                })
-                this.$emit('coordinates', this.coordinatesArray)
+                if (this.coordinatesArray.length < this.inputsMax) {
+                    this.coordinatesArray.push({
+                        latitude: null,
+                        longitude: null
+                    })
+                    this.$emit('coordinates', this.coordinatesArray)
+                }
             },
             removeCoordinateInput(index) {
                 this.coordinatesArray.splice(index, 1)
