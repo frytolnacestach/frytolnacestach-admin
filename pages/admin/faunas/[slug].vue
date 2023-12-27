@@ -350,7 +350,7 @@
                             "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept",
                             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH"
                         },
-                        method: 'POST',
+                        method: 'PUT',
                         body: JSON.stringify({
                             'slug': faunaSlug.value,
                             'id_image_cover': faunaIDimageCover.value,

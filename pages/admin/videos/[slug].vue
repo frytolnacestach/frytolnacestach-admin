@@ -402,7 +402,7 @@
                             "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept",
                             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH"
                         },
-                        method: 'POST',
+                        method: 'PUT',
                         body: JSON.stringify({
                             'slug': videoSlug.value,
                             'seo_tags': videoSeoTags.value,

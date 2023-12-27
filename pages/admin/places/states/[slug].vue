@@ -753,7 +753,7 @@
                             "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept",
                             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH"
                         },
-                        method: 'POST',
+                        method: 'PUT',
                         body: JSON.stringify({
                             'id_continent': placesStateIDcontinent.value,
                             'id_city_main': placesStateIDcityMain.value,
