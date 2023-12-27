@@ -35,6 +35,18 @@
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
+                                            <!-- Form - created_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum vytvoření" nameDB="created_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="createdAt" v-model="createdAt" required />
+                                            </div>
+                                            <!-- Form - created_at END -->
+                                            <!-- Form - updated_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum úpravy" nameDB="updated_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="updatedAt" v-model="updatedAt" required />
+                                            </div>
+                                            <!-- Form - updated_at END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Needitační hodnoty END -->
@@ -122,6 +134,8 @@
 
     interface Platform {
         id: number
+        created_at: string
+        updated_at: string
         slug: string
         name: string
         perex: string
@@ -238,6 +252,8 @@
             const loadingData = ref(false)
             // date
             const itemID = ref<number | null>(null)
+            const createdAt = ref('')
+            const updatedAt = ref('')
             const platformSlug = ref('')
             const platformName = ref('')
             const platformPerex = ref('')
@@ -254,6 +270,8 @@
                 
                 if (Array.isArray(Platform) && Platform.length > 0) {
                     itemID.value = Platform[0].id
+                    createdAt.value = Platform[0].created_at
+                    updatedAt.value = Platform[0].updated_at
                     platformSlug.value = Platform[0].slug
                     platformName.value = Platform[0].name
                     platformPerex.value = Platform[0].perex
@@ -304,6 +322,8 @@
                 errorForm,
                 loadingData,
                 itemID,
+                createdAt,
+                updatedAt,
                 platformSlug,
                 platformName,
                 platformPerex,

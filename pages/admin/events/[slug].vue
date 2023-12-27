@@ -35,6 +35,18 @@
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
+                                            <!-- Form - created_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum vytvoření" nameDB="created_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="createdAt" v-model="createdAt" required />
+                                            </div>
+                                            <!-- Form - created_at END -->
+                                            <!-- Form - updated_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum úpravy" nameDB="updated_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="updatedAt" v-model="updatedAt" required />
+                                            </div>
+                                            <!-- Form - updated_at END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Needitační hodnoty END -->
@@ -249,6 +261,8 @@
 
     interface Event {
         id: number
+        created_at: string
+        updated_at: string
         id_state: number
         id_region: number
         id_city: number
@@ -412,6 +426,8 @@
             const loadingData = ref(false)
             // date
             const itemID = ref<number | null>(null)
+            const createdAt = ref('')
+            const updatedAt = ref('')
             const eventIDstate = ref<number | null>(null)
             const eventIDregion = ref<number | null>(null)
             const eventIDcity = ref<number | null>(null)
@@ -439,6 +455,8 @@
                 
                 if (Array.isArray(Event) && Event.length > 0) {
                     itemID.value = Event[0].id
+                    createdAt.value = Event[0].created_at
+                    updatedAt.value = Event[0].updated_at
                     eventIDstate.value = Event[0].id_state
                     eventIDregion.value = Event[0].id_region
                     eventIDcity.value = Event[0].id_city
@@ -511,6 +529,8 @@
                 errorForm,
                 loadingData,
                 itemID,
+                createdAt,
+                updatedAt,
                 eventSeoTags,
                 eventIDstate,
                 eventIDregion,

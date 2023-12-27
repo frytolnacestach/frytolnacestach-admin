@@ -23,6 +23,34 @@
 
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
+                                    <!-- BLOCK - Needitační hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Needitační hodnoty" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - id -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="ID" nameDB="id" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
+                                            </div>
+                                            <!-- Form - id END -->
+                                            <!-- Form - created_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum vytvoření" nameDB="created_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="createdAt" v-model="createdAt" required />
+                                            </div>
+                                            <!-- Form - created_at END -->
+                                            <!-- Form - updated_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum úpravy" nameDB="updated_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="updatedAt" v-model="updatedAt" required />
+                                            </div>
+                                            <!-- Form - updated_at END -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Needitační hodnoty END -->
+
                                    <!-- BLOCK - Základní informace -->
                                    <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -91,6 +119,17 @@
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
+
+    interface Base {
+        id: number
+        created_at: string
+        updated_at: string
+        iam: string
+        donate: string
+        cookies: string
+        conditions: string
+        conditions_user: string
+    }
 
     export default defineComponent({
         name: 'AdminBaseIndexPage',
@@ -166,6 +205,9 @@
             // variable
             const loadingData = ref(false)
             // date
+            const itemID = ref<number | null>(null)
+            const createdAt = ref('')
+            const updatedAt = ref('')
             const iam = ref('')
             const donate = ref('')
             const cookies = ref('')
@@ -174,13 +216,21 @@
 
             //API - Base
             ;(async () => {
-                const { data: base } = await useFetch(`${runTimeConfig.public.baseURL}/base`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/base`)
+                const dataAPI: any = data._rawValue
+                
+                const Base: Base[] = JSON.parse(dataAPI)
 
-                iam.value = JSON.parse(base._rawValue)[0].iam
-                donate.value = JSON.parse(base._rawValue)[0].donate
-                cookies.value = JSON.parse(base._rawValue)[0].cookies
-                conditions.value = JSON.parse(base._rawValue)[0].conditions
-                conditionsUser.value = JSON.parse(base._rawValue)[0].conditions_user
+                if (Array.isArray(Base) && Base.length > 0) {
+                    itemID.value = Base[0].id
+                    createdAt.value = Base[0].created_at
+                    updatedAt.value = Base[0].updated_at
+                    iam.value = Base[0].iam
+                    donate.value = Base[0].donate
+                    cookies.value = Base[0].cookies
+                    conditions.value = Base[0].conditions
+                    conditionsUser.value = Base[0].conditions_user
+                }
                 loadingData.value = true
             })()
 
@@ -222,6 +272,9 @@
                 successForm,
                 errorForm,
                 loadingData,
+                itemID,
+                createdAt,
+                updatedAt,
                 iam,
                 donate,
                 cookies,

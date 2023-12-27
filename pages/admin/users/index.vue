@@ -45,6 +45,8 @@
     //INTERFACES
     interface Users {
         id: number
+        created_at: string
+        updated_at: string
         nickname: string
         surname: string
         lastname: string

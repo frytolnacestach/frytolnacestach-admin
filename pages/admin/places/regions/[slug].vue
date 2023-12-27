@@ -35,6 +35,18 @@
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
+                                            <!-- Form - created_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum vytvoření" nameDB="created_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="createdAt" v-model="createdAt" required />
+                                            </div>
+                                            <!-- Form - created_at END -->
+                                            <!-- Form - updated_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum úpravy" nameDB="updated_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="updatedAt" v-model="updatedAt" required />
+                                            </div>
+                                            <!-- Form - updated_at END -->
                                             <!-- Form - type_place -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Typ místa" nameDB="type_place" perex="" :required=true />
@@ -215,6 +227,8 @@
 
     interface PlacesRegion {
         id: number
+        created_at: string
+        updated_at: string
         id_state: number
         id_image_cover: number
         id_image_hero: number
@@ -366,6 +380,8 @@
             const loadingData = ref(false)
             // date
             const itemID = ref<number | null>(null)
+            const createdAt = ref('')
+            const updatedAt = ref('')
             const placesRegionIDstate = ref<number | null>(null)
             const placesRegionIDimageCover = ref<number | null>(null)
             const placesRegionIDimageHero = ref<number | null>(null)
@@ -388,6 +404,8 @@
                 
                 if (Array.isArray(PlacesRegion) && PlacesRegion.length > 0) {
                     itemID.value = PlacesRegion[0].id
+                    createdAt.value = PlacesRegion[0].created_at
+                    updatedAt.value = PlacesRegion[0].updated_at
                     placesRegionIDstate.value = PlacesRegion[0].id_state
                     placesRegionIDimageCover.value = PlacesRegion[0].id_image_cover
                     placesRegionIDimageHero.value = PlacesRegion[0].id_image_hero
@@ -450,6 +468,8 @@
                 errorForm,
                 loadingData,
                 itemID,
+                createdAt,
+                updatedAt,
                 placesRegionSeoTags,
                 placesRegionIDstate,
                 placesRegionIDimageCover,

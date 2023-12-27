@@ -35,6 +35,18 @@
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
+                                            <!-- Form - created_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum vytvoření" nameDB="created_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="createdAt" v-model="createdAt" required />
+                                            </div>
+                                            <!-- Form - created_at END -->
+                                            <!-- Form - updated_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum úpravy" nameDB="updated_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="updatedAt" v-model="updatedAt" required />
+                                            </div>
+                                            <!-- Form - updated_at END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Needitační hodnoty END -->
@@ -164,6 +176,8 @@
 
     interface Chain {
         id: number
+        created_at: string
+        updated_at: string
         id_image_cover: number
         id_image_hero: number
         seo_tags: seoTags[]
@@ -293,6 +307,8 @@
             const loadingData = ref(false)
             // date
             const itemID = ref<number | null>(null)
+            const createdAt = ref('')
+            const updatedAt = ref('')
             const chainSlug = ref('')
             const chainIDimageCover = ref<number | null>(null)
             const chainIDimageHero = ref<number | null>(null)
@@ -311,6 +327,8 @@
                 
                 if (Array.isArray(Chain) && Chain.length > 0) {
                     itemID.value = Chain[0].id
+                    createdAt.value = Chain[0].created_at
+                    updatedAt.value = Chain[0].updated_at
                     chainSlug.value = Chain[0].slug
                     chainIDimageCover.value = Chain[0].id_image_cover
                     chainIDimageHero.value = Chain[0].id_image_hero
@@ -365,6 +383,8 @@
                 errorForm,
                 loadingData,
                 itemID,
+                createdAt,
+                updatedAt,
                 chainSlug,
                 chainIDimageCover,
                 chainIDimageHero,

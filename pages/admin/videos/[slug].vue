@@ -35,6 +35,18 @@
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
+                                            <!-- Form - created_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum vytvoření" nameDB="created_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="createdAt" v-model="createdAt" required />
+                                            </div>
+                                            <!-- Form - created_at END -->
+                                            <!-- Form - updated_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum úpravy" nameDB="updated_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="updatedAt" v-model="updatedAt" required />
+                                            </div>
+                                            <!-- Form - updated_at END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Needitační hodnoty END -->
@@ -203,6 +215,8 @@
 
     interface Video {
         id: number
+        created_at: string
+        updated_at: string
         slug: string
         id_continent: number
         id_state: number
@@ -344,6 +358,8 @@
             const loadingData = ref(false)
             // date
             const itemID = ref<number | null>(null)
+            const createdAt = ref('')
+            const updatedAt = ref('')
             const platforms = ref<Platform[]>([])
             const videoSlug = ref('')
             const videoIDcontinent = ref<number | null>(null)
@@ -368,6 +384,8 @@
                 
                 if (Array.isArray(Video) && Video.length > 0 && 'slug' in Video[0] && 'platform' in Video[0] && 'title' in Video[0] && 'url' in Video[0]) {
                     itemID.value = Video[0].id
+                    createdAt.value = Video[0].created_at
+                    updatedAt.value = Video[0].updated_at
                     videoSlug.value = Video[0].slug
                     videoIDcontinent.value = Video[0].id_continent
                     videoIDstate.value = Video[0].id_state
@@ -439,6 +457,8 @@
                 errorForm,
                 loadingData,
                 itemID,
+                createdAt,
+                updatedAt,
                 videoSlug,
                 videoSeoTags,
                 videoIDcontinent,

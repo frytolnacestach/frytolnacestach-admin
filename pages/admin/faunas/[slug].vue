@@ -35,6 +35,18 @@
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
+                                            <!-- Form - created_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum vytvoření" nameDB="created_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="createdAt" v-model="createdAt" required />
+                                            </div>
+                                            <!-- Form - created_at END -->
+                                            <!-- Form - updated_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum úpravy" nameDB="updated_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="updatedAt" v-model="updatedAt" required />
+                                            </div>
+                                            <!-- Form - updated_at END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Needitační hodnoty END -->
@@ -176,6 +188,8 @@
 
     interface Fauna {
         id: number
+        created_at: string
+        updated_at: string
         id_image_cover: number
         id_image_hero: number
         seo_tags: seoTags[]
@@ -304,6 +318,8 @@
             const loadingData = ref(false)
             // date
             const itemID = ref<number | null>(null)
+            const createdAt = ref('')
+            const updatedAt = ref('')
             const faunaSlug = ref('')
             const faunaIDimageCover = ref<number | null>(null)
             const faunaIDimageHero = ref<number | null>(null)
@@ -325,6 +341,8 @@
                 
                 if (Array.isArray(Fauna) && Fauna.length > 0) {
                     itemID.value = Fauna[0].id
+                    createdAt.value = Fauna[0].created_at
+                    updatedAt.value = Fauna[0].updated_at
                     faunaSlug.value = Fauna[0].slug
                     faunaIDimageCover.value = Fauna[0].id_image_cover
                     faunaIDimageHero.value = Fauna[0].id_image_hero
@@ -385,6 +403,8 @@
                 errorForm,
                 loadingData,
                 itemID,
+                createdAt,
+                updatedAt,
                 faunaSlug,
                 faunaSeoTags,
                 faunaIDimageCover,

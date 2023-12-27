@@ -35,6 +35,18 @@
                                                 <input class="a-input" type="text" disabled="true" name="id" v-model="itemID" required />
                                             </div>
                                             <!-- Form - id END -->
+                                            <!-- Form - created_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum vytvoření" nameDB="created_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="createdAt" v-model="createdAt" required />
+                                            </div>
+                                            <!-- Form - created_at END -->
+                                            <!-- Form - updated_at -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum úpravy" nameDB="updated_at" perex="" :required=true />
+                                                <input class="a-input" type="text" disabled="true" name="updatedAt" v-model="updatedAt" required />
+                                            </div>
+                                            <!-- Form - updated_at END -->
                                             <!-- Form - type_place -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Typ místa" nameDB="type_place" perex="" :required=true />
@@ -210,6 +222,8 @@
 
     interface PlacesContinent {
         id: number
+        created_at: string
+        updated_at: string
         id_image_cover: number
         id_image_hero: number
         type_place: string
@@ -355,6 +369,8 @@
             const loadingData = ref(false)
             // date
             const itemID = ref<number | null>(null)
+            const createdAt = ref('')
+            const updatedAt = ref('')
             const placesContinentIDimageCover = ref<number | null>(null)
             const placesContinentIDimageHero = ref<number | null>(null)
             const placesContinentTypePlace = ref('continent')
@@ -379,6 +395,8 @@
                 
                 if (Array.isArray(PlacesContinent) && PlacesContinent.length > 0) {
                     itemID.value = PlacesContinent[0].id
+                    createdAt.value = PlacesContinent[0].created_at
+                    updatedAt.value = PlacesContinent[0].updated_at
                     placesContinentIDimageCover.value = PlacesContinent[0].id_image_cover
                     placesContinentIDimageHero.value = PlacesContinent[0].id_image_hero
                     placesContinentTypePlace.value = PlacesContinent[0].type_place
@@ -445,6 +463,8 @@
                 errorForm,
                 loadingData,
                 itemID,
+                createdAt,
+                updatedAt,
                 placesContinentSeoTags,
                 placesContinentIDimageCover,
                 placesContinentIDimageHero,
