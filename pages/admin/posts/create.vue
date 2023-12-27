@@ -23,10 +23,10 @@
 
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="createForm">
-                                    <!-- BLOCK - Stálé hodnoty -->
+                                    <!-- BLOCK - Needitační hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
-                                        <mHeadlineForm title="Stálé hodnoty" />
+                                        <mHeadlineForm title="Needitační hodnoty" />
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
                                             <!-- Form - date -->
@@ -43,7 +43,7 @@
                                             <!-- Form - date_update END -->
                                         </div>
                                     </div>
-                                    <!-- BLOCK - Stálé hodnoty END -->
+                                    <!-- BLOCK - Needitační hodnoty END -->
 
                                     <!-- BLOCK - Obrázky -->
                                     <div class="o-form-item__block">
