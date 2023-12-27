@@ -47,12 +47,6 @@
                                                 <input class="a-input" type="text" disabled="true" name="updatedAt" v-model="updatedAt" required />
                                             </div>
                                             <!-- Form - updated_at END -->
-                                            <!-- Form - date_create -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Datum vytvoření" nameDB="date_create" perex="" :required=true />
-                                                <input class="a-input" type="text" name="dateCreate" disabled="true" v-model="imageDateCreate" required />
-                                            </div>
-                                            <!-- Form - date_create END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Needitační hodnoty END -->
@@ -659,7 +653,6 @@
         updated_at: string
         name: string
         source: string
-        date_create: string
         type: string
         author: string
     }
@@ -1739,7 +1732,6 @@
             const updatedAt = ref('')
             const imageName = ref('')
             const imageSource = ref('')
-            const imageDateCreate = ref('')
             const imageType = ref('')
             const imageAuthor = ref('')
 
@@ -1767,10 +1759,8 @@
                         },
                         method: 'PUT',
                         body: JSON.stringify({
-                            //'id': itemID.value,
                             'name': imageName.value,
                             'source': imageSource.value,
-                            'date_create': imageDateCreate.value,
                             'type': imageType.value,
                             'author': imageAuthor.value
                         })
@@ -1886,7 +1876,6 @@
                     updatedAt.value = Image[0].updated_at
                     imageName.value = Image[0].name
                     imageSource.value = Image[0].source
-                    imageDateCreate.value = Image[0].date_create
                     imageType.value = Image[0].type
                     imageAuthor.value = Image[0].author
                     loadingData.value = true
@@ -1906,7 +1895,6 @@
                 updatedAt,
                 imageName,
                 imageSource,
-                imageDateCreate,
                 imageType,
                 imageAuthor,
                 imageWebpExists,
