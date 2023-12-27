@@ -47,18 +47,6 @@
                                                 <input class="a-input" type="text" disabled="true" name="updatedAt" v-model="updatedAt" required />
                                             </div>
                                             <!-- Form - updated_at END -->
-                                            <!-- Form - date -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Datum vytvoření" nameDB="date" perex="" :required=true />
-                                                <input class="a-input" type="text" disabled="true" name="date" v-model="postDate" required />
-                                            </div>
-                                            <!-- Form - date END -->
-                                            <!-- Form - date_update -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Datum poslední úpravy" nameDB="date_update" perex="" :required=true />
-                                                <input class="a-input" type="text" name="dateUpdate" v-model="postDateUpdate" required />
-                                            </div>
-                                            <!-- Form - date_update END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Needitační hodnoty END -->
@@ -379,8 +367,6 @@
         id_image_map: number
         id_image_og: number
         slug: string
-        date: Date
-        date_update: Date
         date_information: Date
         url_youtube: string
         url_wiki: string
@@ -586,8 +572,6 @@
             const postIDimageHero = ref<number | null>(null)
             const postIDimageMap = ref<number | null>(null)
             const postIDimageOG = ref<number | null>(null)
-            const postDate = ref(new Date())
-            const postDateUpdate = ref(new Date())
             const postDateInformation = ref(new Date())
             const postUrlYoutube = ref('')
             const postUrlWiki = ref('')
@@ -631,8 +615,6 @@
                     postIDimageHero.value = Post[0].id_image_hero
                     postIDimageMap.value = Post[0].id_image_map
                     postIDimageOG.value = Post[0].id_image_og
-                    postDate.value = Post[0].date
-                    postDateUpdate.value = Post[0].date_update
                     postDateInformation.value = Post[0].date_information
                     postUrlYoutube.value = Post[0].url_youtube
                     postUrlWiki.value = Post[0].url_wiki
@@ -681,8 +663,6 @@
                             'id_image_hero': postIDimageHero.value,
                             'id_image_map': postIDimageMap.value,
                             'id_image_og': postIDimageOG.value,
-                            'date': postDate.value,
-                            'date_update': postDateUpdate.value,
                             'date_information': postDateInformation.value,
                             'url_youtube': postUrlYoutube.value,
                             'url_wiki': postUrlWiki.value,
@@ -738,8 +718,6 @@
                 postIDimageHero,
                 postIDimageMap,
                 postIDimageOG,
-                postDate,
-                postDateUpdate,
                 postDateInformation,
                 postUrlYoutube,
                 postUrlWiki,
