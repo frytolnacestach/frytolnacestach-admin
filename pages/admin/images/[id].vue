@@ -119,7 +119,7 @@
                 <div class="t-section__inner">
                     <div class="flex flex-center">
                         <div class="o-box -w640 -center -gray -text-center">
-                            <span :class="'a-button-file ' + (webP ? '-existing' : '-no-existing') + ' mt-2'" @click="createWEBPimage('0', imageType, imageSource, imageName, '.webp', 'raw', null, null, null, null)">
+                            <span :class="'a-button-file ' + (webP ? '-existing' : '-no-existing') + ' mt-2'" @click="createImageWebP('0', imageType, imageSource, imageName, '.webp', 'raw', null, null, null, null)">
                                 {{webP ? 'Znovu generovat WebP obrázek' : 'Generovat WebP obrázek'}}
                             </span>
                         </div>
@@ -149,7 +149,7 @@
                                                 <td class="o-image-version__td">{{item.suffix}}</td>
                                                 <td class="o-image-version__td -p0">
                                                     <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
+                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + existImage(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createImageWebP(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
                                                     </span>
                                                 </td>                                            
                                             </tr>
@@ -1199,7 +1199,23 @@
                 }
             },
 
-            
+            existImage(dataIndex: string, dataType: string, source: string, name: string, extension: string, width: number, height: number, prefix: string, suffix: string) {
+                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension
+
+                const xhr = new XMLHttpRequest()
+                xhr.open('HEAD', imageUrl, false)
+
+                try {
+                    xhr.send()
+                    if (xhr.status === 200) {
+                        return " -existing"
+                    } else {
+                        return " -no-existing"
+                    }
+                } catch (error) {
+                    return " -error"
+                }
+            }
         },
 
         setup() {
@@ -1247,7 +1263,16 @@
             const imageAuthor = ref('')
 
             // Change class in button
-            
+            function addClassToButton(className: string, dataType: string, dataIndex: string) {
+                const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
+                buttons.forEach((button) => {
+                    button.classList.remove('-loading')
+                    button.classList.remove('-existing')
+                    button.classList.remove('-no-existing')
+                    button.classList.remove('-error')
+                    button.classList.add(className)
+                })
+            }
 
             //FORM - edit
             const editForm = async () => {
@@ -1282,7 +1307,7 @@
                 }
             }
 
-            const imageWebpExists = async () => {
+            const existImageWebpRaw = async () => {
                 const imageUrl = 'https://image.frytolnacestach.cz/storage' + imageSource.value + imageName.value + '.webP'
                 const xhr = new XMLHttpRequest()
                 xhr.open('HEAD', imageUrl, false)
@@ -1300,7 +1325,72 @@
                 }
             }
 
-         
+            const existImageNew = async (dataIndex: string, dataType: string, source: string, name: string, extension: string, width: number, height: number, prefix: string, suffix: string) => {
+                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension
+
+                const xhr = new XMLHttpRequest()
+                xhr.open('HEAD', imageUrl, false)
+
+                try {
+                    xhr.send()
+                    if (xhr.status === 200) {
+                        addClassToButton('-existing', dataType, dataIndex)
+                    } else {
+                        addClassToButton('-no-existing', dataType, dataIndex)
+                    }
+                } catch (error) {
+                    addClassToButton('-error', dataType, dataIndex)
+                }
+            }
+
+            const createImageWebP = async (dataIndex: string, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
+                try {
+                    if (type === "resize") {
+                        const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
+                        buttons.forEach((button) => {
+                            button.classList.remove('-existing')
+                            button.classList.remove('-no-existing')
+                            button.classList.remove('-error')
+                            button.classList.add('-loading')
+                        })
+                    }
+                    
+                    await useFetch(`${runTimeConfig.public.baseURL}/image-webp-create?type_create=${type}&name=${encodeURIComponent(name)}&source=${encodeURIComponent(source)}&width=${width}&height=${height}&prefix=${prefix}&suffix=${suffix}`, {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Access-Control-Allow-Origin": "http://localhost:3000",
+                            "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept",
+                            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH"
+                        },
+                        method: 'POST'
+                    })
+                    .then(() => {
+                        console.log('Obrázek byl vytvořen')
+                        successForm.value = "Obrázek byl vytvořen"
+
+                        if (type === "raw") {
+                            existImageWebpRaw()
+                        } else {
+                            setTimeout(() => {
+                                existImageNew(dataIndex, dataType, source, name, extension, width, height, prefix, suffix)
+                            }, 5000)
+                        }
+                    })
+                    .catch((error) => {
+                        const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
+                        buttons.forEach((button) => {
+                            button.classList.remove('-loading')
+                            button.classList.add('-error')
+                        })
+
+                        console.log(error)
+                        errorForm.value = "Obrázek nebyl vytvořen, nastala chyba při jeho vytvoření."
+                    })
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
 
             //API - image
             ;(async () => {
@@ -1320,6 +1410,7 @@
                     loadingData.value = true
                 }
 
+                existImageWebpRaw()
             })()
 
             //RETURN
@@ -1335,7 +1426,8 @@
                 imageSource,
                 imageType,
                 imageAuthor,
-                imageWebpExists,
+                existImageWebpRaw,
+                createImageWebP,
                 editForm
             }
         },
