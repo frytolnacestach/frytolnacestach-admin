@@ -1256,7 +1256,6 @@
                     buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
                 }
 
-                console.log(buttons)
                 buttons.forEach((button) => {
                     button.classList.remove('-loading')
                     button.classList.remove('-existing')
