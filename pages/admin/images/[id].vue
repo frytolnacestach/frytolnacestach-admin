@@ -1301,56 +1301,51 @@
             const existImageWebpRaw = async(dataIndex: string, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
                 const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + name + '.webp'
 
-                const xhr = new XMLHttpRequest()
-                xhr.open('HEAD', imageUrl, false)
-
                 try {
-                    xhr.send()
-                    if (xhr.status === 200) {
-                        webP.value = true
-                        addClassToButton('webp-raw', '-existing', dataType, dataIndex)
+                    const response = await fetch(imageUrl, { method: 'HEAD' });
+
+                    if (response.ok) {
+                        webP.value = true;
+                        addClassToButton('webp-raw', '-existing', dataType, dataIndex);
                     } else {
-                        webP.value = false
-                        addClassToButton('webp-raw', '-no-existing', dataType, dataIndex)
+                        webP.value = false;
+                        addClassToButton('webp-raw', '-no-existing', dataType, dataIndex);
                     }
                 } catch (error) {
-                    webP.value = false
-                    addClassToButton('webp-raw', '-error', dataType, dataIndex)
+                    webP.value = false;
+                    addClassToButton('webp-raw', '-error', dataType, dataIndex);
                 }
             }
 
             const existImage = async(dataIndex: string, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
-                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension
-                const xhr = new XMLHttpRequest()
-                xhr.open('HEAD', imageUrl, false)
+                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension;
 
                 try {
-                    xhr.send()
-                    if (xhr.status === 200) {
-                        addClassToButton('webp', '-existing', dataType, dataIndex)
+                    const response = await fetch(imageUrl, { method: 'HEAD' });
+
+                    if (response.ok) {
+                        addClassToButton('webp', '-existing', dataType, dataIndex);
                     } else {
-                        addClassToButton('webp', '-no-existing', dataType, dataIndex)
+                        addClassToButton('webp', '-no-existing', dataType, dataIndex);
                     }
                 } catch (error) {
-                    addClassToButton('webp', '-error', dataType, dataIndex)
+                    addClassToButton('webp', '-error', dataType, dataIndex);
                 }
             }
 
             const existImageNew = async (dataIndex: string, dataType: string, source: string, name: string, extension: string, width: number, height: number, prefix: string, suffix: string) => {
-                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension
-
-                const xhr = new XMLHttpRequest()
-                xhr.open('HEAD', imageUrl, false)
+                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension;
 
                 try {
-                    xhr.send()
-                    if (xhr.status === 200) {
-                        addClassToButton('webp-new', '-existing', dataType, dataIndex)
+                    const response = await fetch(imageUrl, { method: 'HEAD' });
+
+                    if (response.ok) {
+                        addClassToButton('webp-new', '-existing', dataType, dataIndex);
                     } else {
-                        addClassToButton('webp-new', '-no-existing', dataType, dataIndex)
+                        addClassToButton('webp-new', '-no-existing', dataType, dataIndex);
                     }
                 } catch (error) {
-                    addClassToButton('webp-new', '-error', dataType, dataIndex)
+                    addClassToButton('webp-new', '-error', dataType, dataIndex);
                 }
             }
 
