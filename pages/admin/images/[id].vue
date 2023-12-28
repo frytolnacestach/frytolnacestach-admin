@@ -115,17 +115,19 @@
                 </div>
             </section>
 
-            <section class="t-section mt-4">
+            <section class="t-section mt-4" v-if="loadingData">
                 <div class="t-section__inner">
                     <div class="flex flex-center">
                         <div class="o-box -w640 -center -gray -text-center">
-                            <span :class="'a-button-file ' + (webP ? ' -existing' : ' -no-existing') + ' mt-2'" @click="createWEBPimage('0', imageType, imageSource, imageName, '.webp', 'raw', null, null, null, null)">{{webP ? 'Znovu generovat WebP obrázek' : 'Generovat WebP obrázek'}}</span>
+                            <span :class="'a-button-file ' + (webP ? '-existing' : '-no-existing') + ' mt-2'" @click="createWEBPimage('0', imageType, imageSource, imageName, '.webp', 'raw', null, null, null, null)">
+                                {{webP ? 'Znovu generovat WebP obrázek' : 'Generovat WebP obrázek'}}
+                            </span>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="t-section" v-if="webP">
+            <section class="t-section" v-if="loadingData && webP">
                 <div class="t-section__inner">
                     <div class="flex flex-center">
                         <div class="o-box -w640 -gray -text-center">
@@ -1647,13 +1649,8 @@
                     { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
                     { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
                     { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                webP: false
+                ]
             }
-        },
-
-        mounted() {
-            
         },
 
         methods: {
@@ -1682,12 +1679,6 @@
                 } catch (error) {
                     return " -error"
                 }
-            }
-        },
-
-        watch: {
-            floraID: function (newValue, oldValue) {
-                this.updateBreadcrumbs()
             }
         },
 
@@ -1759,6 +1750,7 @@
                         },
                         method: 'PUT',
                         body: JSON.stringify({
+                            'id': itemID.value,
                             'name': imageName.value,
                             'source': imageSource.value,
                             'type': imageType.value,
@@ -1785,7 +1777,8 @@
                 xhr.open('HEAD', imageUrl, false)
 
                 try {
-                    xhr.send();
+                    xhr.send()
+                    
                     if (xhr.status === 200) {
                         webP.value = true
                     } else {
@@ -1913,6 +1906,12 @@
                 const router = useRouter()
                 router.push('/login')
             }
-        }
+        },
+
+        watch: {
+            itemID: function (newValue, oldValue) {
+                this.updateBreadcrumbs()
+            }
+        },
     })
 </script>
