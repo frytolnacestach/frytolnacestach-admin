@@ -1199,23 +1199,7 @@
                 }
             },
 
-            imageExists(dataIndex: string, dataType: string, source: string, name: string, extension: string, width: number, height: number, prefix: string, suffix: string) {
-                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension
-
-                const xhr = new XMLHttpRequest()
-                xhr.open('HEAD', imageUrl, false)
-
-                try {
-                    xhr.send()
-                    if (xhr.status === 200) {
-                        return " -existing"
-                    } else {
-                        return " -no-existing"
-                    }
-                } catch (error) {
-                    return " -error"
-                }
-            }
+            
         },
 
         setup() {
@@ -1263,16 +1247,7 @@
             const imageAuthor = ref('')
 
             // Change class in button
-            function addClassToButton(className: string, dataType: string, dataIndex: string) {
-                const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
-                buttons.forEach((button) => {
-                    button.classList.remove('-loading')
-                    button.classList.remove('-existing')
-                    button.classList.remove('-no-existing')
-                    button.classList.remove('-error')
-                    button.classList.add(className)
-                })
-            }
+            
 
             //FORM - edit
             const editForm = async () => {
@@ -1325,72 +1300,7 @@
                 }
             }
 
-            const imageExistsNew = async (dataIndex: string, dataType: string, source: string, name: string, extension: string, width: number, height: number, prefix: string, suffix: string) => {
-                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension
-
-                const xhr = new XMLHttpRequest()
-                xhr.open('HEAD', imageUrl, false)
-
-                try {
-                    xhr.send()
-                    if (xhr.status === 200) {
-                        addClassToButton('-existing', dataType, dataIndex)
-                    } else {
-                        addClassToButton('-no-existing', dataType, dataIndex)
-                    }
-                } catch (error) {
-                    addClassToButton('-error', dataType, dataIndex)
-                }
-            }
-
-            const createWEBPimage = async (dataIndex: string, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
-                try {
-                    if (type === "resize") {
-                        const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
-                        buttons.forEach((button) => {
-                            button.classList.remove('-existing')
-                            button.classList.remove('-no-existing')
-                            button.classList.remove('-error')
-                            button.classList.add('-loading')
-                        })
-                    }
-                    
-                    await useFetch(`${runTimeConfig.public.baseURL}/image-webp-create?type_create=${type}&name=${encodeURIComponent(name)}&source=${encodeURIComponent(source)}&width=${width}&height=${height}&prefix=${prefix}&suffix=${suffix}`, {
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Access-Control-Allow-Origin": "http://localhost:3000",
-                            "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept",
-                            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH"
-                        },
-                        method: 'POST'
-                    })
-                    .then(() => {
-                        console.log('Obrázek byl vytvořen')
-                        successForm.value = "Obrázek byl vytvořen"
-
-                        if (type === "raw") {
-                            imageWebpExists()
-                        } else {
-                            setTimeout(() => {
-                                imageExistsNew(dataIndex, dataType, source, name, extension, width, height, prefix, suffix)
-                            }, 5000)
-                        }
-                    })
-                    .catch((error) => {
-                        const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
-                        buttons.forEach((button) => {
-                            button.classList.remove('-loading')
-                            button.classList.add('-error')
-                        })
-
-                        console.log(error)
-                        errorForm.value = "Obrázek nebyl vytvořen, nastala chyba při jeho vytvoření."
-                    })
-                } catch (err) {
-                    console.log(err)
-                    errorForm.value = "Chyba připojení k API"
-                }
-            }
+         
 
             //API - image
             ;(async () => {
@@ -1410,7 +1320,6 @@
                     loadingData.value = true
                 }
 
-                imageWebpExists()
             })()
 
             //RETURN
@@ -1427,7 +1336,6 @@
                 imageType,
                 imageAuthor,
                 imageWebpExists,
-                createWEBPimage,
                 editForm
             }
         },
