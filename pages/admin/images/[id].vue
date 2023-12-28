@@ -131,7 +131,7 @@
                 <div class="t-section__inner">
                     <div class="flex flex-center">
                         <div class="o-box -w640 -gray -text-center">
-                            <div class="o-image-version" v-if="imageType === 'default'">
+                            <div class="o-image-version">
                                 <div class="o-image-version__outer">
                                     <div class="o-image-version__inner">
                                         <table class="o-image-version__table">
@@ -142,473 +142,7 @@
                                                 <th class="o-image-version__th">Suffix</th>
                                                 <th class="o-image-version__th">Generování</th>
                                             </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesDefault" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'main'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesMain" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'user'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesUsers" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'map'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesMaps" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'article'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesArticle" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'video'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesVideos" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'state'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesWorldStates" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'region'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesWorldRegions" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'city'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesWorldCities" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'spot'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesWorldSpots" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'continent'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesWorldContinents" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'brand'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr>
-                                                <th>Šířka</th>
-                                                <th>Výška</th>
-                                                <th>Prefix</th>
-                                                <th>Suffix</th>
-                                                <th>Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesBrands" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'fauna'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesFauna" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'flora'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesFlora" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'food'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesFoods" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'chain'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesChains" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'wall-socket'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesWallSockets" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'travel_dictionaries'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesTravelDictionaries" :key="item.prefix">
-                                                <td class="o-image-version__td">{{item.width}}</td>
-                                                <td class="o-image-version__td">{{item.height}}</td>
-                                                <td class="o-image-version__td">{{item.prefix}}</td>
-                                                <td class="o-image-version__td">{{item.suffix}}</td>
-                                                <td class="o-image-version__td -p0">
-                                                    <span class="o-image-version__button">
-                                                        <span :class="'a-button-file -variant -data-type-' + imageType + ' -data-index-' + index + imageExists(index, imageType, imageSource, imageName, '.webp', item.width, item.height, item.prefix, item.suffix)" @click="createWEBPimage(index, imageType, imageSource, imageName, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)">Generovat</span>
-                                                    </span>
-                                                </td>                                            
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o-image-version" v-else-if="imageType === 'event'">
-                                <div class="o-image-version__outer">
-                                    <div class="o-image-version__inner">
-                                        <table class="o-image-version__table">
-                                            <tr class="o-image-version__header">
-                                                <th class="o-image-version__th">Šířka</th>
-                                                <th class="o-image-version__th">Výška</th>
-                                                <th class="o-image-version__th">Prefix</th>
-                                                <th class="o-image-version__th">Suffix</th>
-                                                <th class="o-image-version__th">Generování</th>
-                                            </tr>
-                                            <tr class="o-image-version__content" v-for="(item, index) in sizesEvents" :key="item.prefix">
+                                            <tr class="o-image-version__content" v-for="(item, index) in sizes[imageType]" :key="item.prefix">
                                                 <td class="o-image-version__td">{{item.width}}</td>
                                                 <td class="o-image-version__td">{{item.height}}</td>
                                                 <td class="o-image-version__td">{{item.prefix}}</td>
@@ -694,962 +228,964 @@
                         status: "span"
                     }
                 ],
-                sizesArticle: [
-                    { width: 320, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 340, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 384, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 442, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 620, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 980, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1180, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1880, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 320 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 340 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 384 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 442 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 620 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 980 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1180 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1880 * 2, height: null, prefix: "h-", suffix: "-2x" }
-                ],
-                sizesBrands: [
-                    { width: 330, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 172, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesDefault: [
-                    { width: 100, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 108, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 126, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 172, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 192, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 220, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 258, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 286, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 310, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 312, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 320, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 330, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 334, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 340, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 344, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 370, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 380, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 384, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 430, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 440, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 442, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 468, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 546, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 614, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 620, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 738, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 962, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 980, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1180, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1880, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 226, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 264, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 314, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 332, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 354, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 380, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 424, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 40, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 50, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 70, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 166, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 172, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 230, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 256, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 320, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 344, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 370, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 430, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 556, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 738, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 962, prefix: "s-", suffix: "-1x" },
-                    { width: 100 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 108 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 126 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 172 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 192 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 220 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 258 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 286 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 310 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 312 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 320 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 340 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 344 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 370 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 380 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 384 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 430 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 440 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 442 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 468 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 546 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 614 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 620 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 738 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 962 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 980 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1180 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1880 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 226 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 264 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 314 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 332 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 354 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 380 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 424 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 40 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 50 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 70 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 166 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 230 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 256 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 320 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 344 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 370 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 430 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 556 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 738 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 962 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesEvents: [
-                    { width: 100, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 330, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 172, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: 100 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesFauna: [
-                    { width: 330, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 172, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesFlora: [
-                    { width: 330, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 172, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesFoods: [
-                    { width: 330, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 172, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesChains: [
-                    { width: 330, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 172, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesMain: [
-                    { width: 310, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 334, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1180, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1880, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 320, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 344, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 370, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 430, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 556, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 738, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 962, prefix: "s-", suffix: "-1x" },
-                    { width: 310 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1180 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1880 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 320 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 344 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 370 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 430 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 556 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 738 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 962 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesMaps: [
-                    { width: 320, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 344, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 370, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 430, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 546, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 738, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 962, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 320 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 344 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 370 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 430 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 546 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 738 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 962 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                ],
-                sizesTravelDictionaries: [
-                    { width: 330, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 172, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesUsers: [
-                    { width: 186, height: null, prefix: "s-", suffix: "-1x" },
-                    { width: 230, height: null, prefix: "s-", suffix: "-1x" },
-                    { width: 256, height: null, prefix: "s-", suffix: "-1x" },
-                    { width: 274, height: null, prefix: "s-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "s-", suffix: "-1x" },
-                    { width: 186 * 2, height: null, prefix: "s-", suffix: "-2x" },
-                    { width: 230 * 2, height: null, prefix: "s-", suffix: "-2x" },
-                    { width: 256 * 2, height: null, prefix: "s-", suffix: "-2x" },
-                    { width: 274 * 2, height: null, prefix: "s-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesVideos: [
-                    { width: 320, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 340, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 384, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 442, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 620, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 980, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1180, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1880, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 320 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 340 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 384 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 442 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 620 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 980 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1180 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1880 * 2, height: null, prefix: "h-", suffix: "-2x" }
-                ],
-                sizesWallSockets: [
-                    { width: 330, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 172, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesWorldCities: [
-                    { width: 108, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 126, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 172, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 192, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 220, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 258, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 286, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 312, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 334, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 380, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 440, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 468, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 614, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 226, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 264, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 314, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 332, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 354, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 380, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 424, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 40, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 50, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 70, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 166, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 256, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: 108 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 126 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 172 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 192 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 220 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 258 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 286 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 312 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 380 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 440 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 468 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 614 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 226 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 264 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 314 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 332 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 354 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 380 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 424 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 40 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 50 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 70 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 166 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 256 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesWorldContinents: [
-                    { width: 108, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 126, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 172, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 192, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 220, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 258, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 286, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 312, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 334, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 380, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 440, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 468, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 614, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 226, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 264, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 314, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 332, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 354, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 380, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 424, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 40, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 50, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 70, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 166, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 256, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: 108 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 126 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 172 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 192 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 220 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 258 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 286 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 312 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 380 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 440 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 468 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 614 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 226 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 264 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 314 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 332 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 354 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 380 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 424 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 40 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 50 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 70 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 166 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 256 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesWorldRegions: [
-                    { width: 108, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 126, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 172, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 192, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 220, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 258, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 286, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 312, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 334, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 380, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 440, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 468, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 614, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 226, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 264, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 314, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 332, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 354, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 380, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 424, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 40, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 50, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 70, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 166, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 256, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: 108 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 126 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 172 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 192 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 220 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 258 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 286 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 312 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 380 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 440 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 468 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 614 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 226 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 264 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 314 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 332 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 354 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 380 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 424 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 40 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 50 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 70 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 166 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 256 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesWorldSpots: [
-                    { width: 108, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 126, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 172, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 192, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 220, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 258, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 286, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 312, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 334, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 380, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 440, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 468, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 614, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 226, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 264, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 314, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 332, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 354, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 380, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 424, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 40, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 50, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 70, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 166, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 256, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: 108 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 126 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 172 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 192 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 220 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 258 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 286 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 312 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 380 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 440 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 468 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 614 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 226 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 264 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 314 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 332 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 354 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 380 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 424 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 40 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 50 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 70 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 166 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 256 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ],
-                sizesWorldStates: [
-                    { width: 108, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 126, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 172, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 192, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 220, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 258, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 286, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 312, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 334, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 360, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 380, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 420, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 440, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 468, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 536, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 614, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 728, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 780, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 900, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 952, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
-                    { width: null, height: 226, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 264, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 314, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 332, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 354, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 380, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 424, prefix: "v-", suffix: "-1x" },
-                    { width: null, height: 40, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 50, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 70, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 166, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 186, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 210, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 224, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 240, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 256, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 274, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 306, prefix: "s-", suffix: "-1x" },
-                    { width: null, height: 360, prefix: "s-", suffix: "-1x" },
-                    { width: 108 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 126 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 172 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 192 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 220 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 258 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 286 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 312 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 380 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 440 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 468 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 614 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
-                    { width: null, height: 226 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 264 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 314 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 332 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 354 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 380 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 424 * 2, prefix: "v-", suffix: "-2x" },
-                    { width: null, height: 40 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 50 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 70 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 166 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 256 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
-                    { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
-                ]
+                sizes: {
+                    article: [
+                        { width: 320, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 340, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 384, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 442, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 620, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 980, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1180, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1880, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 320 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 340 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 384 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 442 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 620 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 980 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1180 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1880 * 2, height: null, prefix: "h-", suffix: "-2x" }
+                    ],
+                    brands: [
+                        { width: 330, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 172, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    default: [
+                        { width: 100, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 108, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 126, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 172, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 192, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 220, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 258, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 286, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 310, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 312, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 320, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 330, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 334, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 340, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 344, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 370, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 380, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 384, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 430, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 440, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 442, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 468, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 546, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 614, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 620, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 738, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 962, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 980, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1180, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1880, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 226, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 264, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 314, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 332, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 354, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 380, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 424, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 40, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 50, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 70, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 166, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 172, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 230, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 256, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 320, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 344, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 370, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 430, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 556, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 738, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 962, prefix: "s-", suffix: "-1x" },
+                        { width: 100 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 108 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 126 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 172 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 192 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 220 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 258 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 286 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 310 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 312 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 320 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 340 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 344 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 370 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 380 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 384 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 430 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 440 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 442 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 468 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 546 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 614 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 620 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 738 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 962 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 980 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1180 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1880 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 226 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 264 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 314 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 332 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 354 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 380 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 424 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 40 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 50 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 70 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 166 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 230 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 256 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 320 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 344 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 370 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 430 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 556 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 738 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 962 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    events: [
+                        { width: 100, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 330, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 172, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: 100 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    fauna: [
+                        { width: 330, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 172, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    flora: [
+                        { width: 330, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 172, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    foods: [
+                        { width: 330, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 172, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    chains: [
+                        { width: 330, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 172, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    main: [
+                        { width: 310, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 334, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1180, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1880, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 320, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 344, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 370, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 430, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 556, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 738, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 962, prefix: "s-", suffix: "-1x" },
+                        { width: 310 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1180 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1880 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 320 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 344 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 370 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 430 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 556 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 738 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 962 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    maps: [
+                        { width: 320, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 344, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 370, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 430, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 546, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 738, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 962, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 320 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 344 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 370 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 430 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 546 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 738 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 962 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                    ],
+                    travelDictionaries: [
+                        { width: 330, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 172, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    sizesUsers: [
+                        { width: 186, height: null, prefix: "s-", suffix: "-1x" },
+                        { width: 230, height: null, prefix: "s-", suffix: "-1x" },
+                        { width: 256, height: null, prefix: "s-", suffix: "-1x" },
+                        { width: 274, height: null, prefix: "s-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "s-", suffix: "-1x" },
+                        { width: 186 * 2, height: null, prefix: "s-", suffix: "-2x" },
+                        { width: 230 * 2, height: null, prefix: "s-", suffix: "-2x" },
+                        { width: 256 * 2, height: null, prefix: "s-", suffix: "-2x" },
+                        { width: 274 * 2, height: null, prefix: "s-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "s-", suffix: "-2x" }
+                    ],
+                    videos: [
+                        { width: 320, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 340, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 384, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 442, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 620, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 980, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1180, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1880, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 320 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 340 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 384 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 442 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 620 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 980 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1180 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1880 * 2, height: null, prefix: "h-", suffix: "-2x" }
+                    ],
+                    wallSockets: [
+                        { width: 330, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 172, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: 330 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 172 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    city: [
+                        { width: 108, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 126, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 172, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 192, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 220, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 258, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 286, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 312, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 334, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 380, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 440, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 468, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 614, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 226, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 264, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 314, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 332, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 354, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 380, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 424, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 40, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 50, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 70, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 166, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 256, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: 108 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 126 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 172 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 192 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 220 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 258 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 286 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 312 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 380 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 440 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 468 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 614 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 226 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 264 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 314 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 332 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 354 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 380 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 424 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 40 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 50 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 70 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 166 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 256 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    continent: [
+                        { width: 108, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 126, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 172, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 192, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 220, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 258, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 286, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 312, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 334, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 380, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 440, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 468, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 614, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 226, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 264, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 314, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 332, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 354, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 380, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 424, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 40, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 50, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 70, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 166, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 256, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: 108 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 126 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 172 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 192 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 220 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 258 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 286 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 312 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 380 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 440 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 468 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 614 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 226 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 264 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 314 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 332 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 354 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 380 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 424 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 40 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 50 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 70 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 166 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 256 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    region: [
+                        { width: 108, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 126, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 172, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 192, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 220, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 258, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 286, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 312, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 334, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 380, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 440, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 468, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 614, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 226, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 264, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 314, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 332, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 354, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 380, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 424, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 40, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 50, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 70, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 166, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 256, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: 108 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 126 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 172 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 192 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 220 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 258 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 286 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 312 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 380 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 440 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 468 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 614 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 226 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 264 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 314 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 332 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 354 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 380 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 424 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 40 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 50 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 70 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 166 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 256 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    spot: [
+                        { width: 108, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 126, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 172, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 192, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 220, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 258, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 286, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 312, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 334, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 380, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 440, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 468, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 614, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 226, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 264, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 314, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 332, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 354, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 380, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 424, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 40, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 50, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 70, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 166, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 256, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: 108 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 126 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 172 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 192 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 220 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 258 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 286 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 312 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 380 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 440 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 468 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 614 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 226 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 264 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 314 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 332 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 354 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 380 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 424 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 40 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 50 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 70 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 166 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 256 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                    ],
+                    state: [
+                        { width: 108, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 126, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 172, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 192, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 220, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 258, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 286, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 312, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 334, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 360, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 380, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 420, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 440, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 468, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 536, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 614, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 728, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 780, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 900, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 952, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: 1248, height: null, prefix: "h-", suffix: "-1x" },
+                        { width: null, height: 226, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 264, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 314, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 332, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 354, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 380, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 424, prefix: "v-", suffix: "-1x" },
+                        { width: null, height: 40, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 50, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 70, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 166, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 186, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 210, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 224, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 240, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 256, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 274, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 306, prefix: "s-", suffix: "-1x" },
+                        { width: null, height: 360, prefix: "s-", suffix: "-1x" },
+                        { width: 108 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 126 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 172 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 192 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 220 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 258 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 286 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 312 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 334 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 360 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 380 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 420 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 440 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 468 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 536 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 614 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 728 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 780 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 900 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 952 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: 1248 * 2, height: null, prefix: "h-", suffix: "-2x" },
+                        { width: null, height: 226 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 264 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 314 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 332 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 354 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 380 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 424 * 2, prefix: "v-", suffix: "-2x" },
+                        { width: null, height: 40 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 50 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 70 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 166 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 186 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 210 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 224 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 240 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 256 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 274 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
+                        { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
+                    ]
+                }
             }
         },
 
