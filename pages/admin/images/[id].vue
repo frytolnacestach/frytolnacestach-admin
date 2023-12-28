@@ -208,7 +208,6 @@
 
         data() {
             return {
-                imageStatusValue: null,
                 mNavBreadcrumbsArray: [
                     {
                         id: 1,
