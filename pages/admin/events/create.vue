@@ -110,13 +110,13 @@
                                             <!-- Form - date_start -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Datum začátku události" nameDB="date_start" perex="" :required=false />
-                                                <input class="a-input" type="text" name="dateStart" v-model="eventDateStart" />
+                                                <mInputTimestamptz :value="eventDateStart" @date="handleDateStart" />
                                             </div>
                                             <!-- Form - date_start END -->
                                             <!-- Form - date_end -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Datum konce události" nameDB="date_end" perex="" :required=false />
-                                                <input class="a-input" type="text" name="dateEnd" v-model="eventDateEnd" />
+                                                <mInputTimestamptz :value="eventDateEnd" @date="handleDateEnd" />
                                             </div>
                                             <!-- Form - date_end END -->
                                             <!-- Form - name -->
@@ -195,6 +195,7 @@
     import mInputsLinks from '@/components/molecules/mInputsLinks.vue'
     import mInputsPrices from '@/components/molecules/mInputsPrices.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
+    import mInputTimestamptz from '@/components/molecules/mInputTimestamptz.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -217,6 +218,7 @@
             mInputsLinks,
             mInputsPrices,
             mInputsSeoTags,
+            mInputTimestamptz,
             mInputsZoom,
             mLabel,
             mNavBreadcrumbs,
@@ -292,6 +294,12 @@
             },
             handleLinks(newLinks: string) {
                 this.eventLinks = JSON.stringify(newLinks)
+            },
+            handleDateStart(newDate: string) {
+                this.eventDateStart = newDate
+            },
+            handleDateEnd(newDate: string) {
+                this.eventDateEnd = newDate
             }
         },
 
