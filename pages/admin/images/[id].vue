@@ -272,7 +272,7 @@
                     { width: 1360 * 2, height: null, prefix: "h-", suffix: "-2x" },
                     { width: 1880 * 2, height: null, prefix: "h-", suffix: "-2x" }
                 ],
-                brands: [
+                brand: [
                     { width: 330, height: null, prefix: "h-", suffix: "-1x" },
                     { width: 360, height: null, prefix: "h-", suffix: "-1x" },
                     { width: 420, height: null, prefix: "h-", suffix: "-1x" },
@@ -444,7 +444,7 @@
                     { width: null, height: 738 * 2, prefix: "s-", suffix: "-2x" },
                     { width: null, height: 962 * 2, prefix: "s-", suffix: "-2x" }
                 ],
-                events: [
+                event: [
                     { width: 100, height: null, prefix: "h-", suffix: "-1x" },
                     { width: 330, height: null, prefix: "h-", suffix: "-1x" },
                     { width: 360, height: null, prefix: "h-", suffix: "-1x" },
@@ -554,7 +554,7 @@
                     { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
                     { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
                 ],
-                foods: [
+                food: [
                     { width: 330, height: null, prefix: "h-", suffix: "-1x" },
                     { width: 360, height: null, prefix: "h-", suffix: "-1x" },
                     { width: 420, height: null, prefix: "h-", suffix: "-1x" },
@@ -590,7 +590,7 @@
                     { width: null, height: 306 * 2, prefix: "s-", suffix: "-2x" },
                     { width: null, height: 360 * 2, prefix: "s-", suffix: "-2x" }
                 ],
-                chains: [
+                chain: [
                     { width: 330, height: null, prefix: "h-", suffix: "-1x" },
                     { width: 360, height: null, prefix: "h-", suffix: "-1x" },
                     { width: 420, height: null, prefix: "h-", suffix: "-1x" },
@@ -726,7 +726,7 @@
                     { width: 274 * 2, height: null, prefix: "s-", suffix: "-2x" },
                     { width: 360 * 2, height: null, prefix: "s-", suffix: "-2x" }
                 ],
-                videos: [
+                video: [
                     { width: 320, height: null, prefix: "h-", suffix: "-1x" },
                     { width: 340, height: null, prefix: "h-", suffix: "-1x" },
                     { width: 360, height: null, prefix: "h-", suffix: "-1x" },
@@ -754,7 +754,7 @@
                     { width: 1360 * 2, height: null, prefix: "h-", suffix: "-2x" },
                     { width: 1880 * 2, height: null, prefix: "h-", suffix: "-2x" }
                 ],
-                wallSockets: [
+                wallSocket: [
                     { width: 330, height: null, prefix: "h-", suffix: "-1x" },
                     { width: 360, height: null, prefix: "h-", suffix: "-1x" },
                     { width: 420, height: null, prefix: "h-", suffix: "-1x" },
