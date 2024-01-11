@@ -118,6 +118,12 @@
                                                 <aTextarea :value="wallSocketDescription" name="description" :required=false @textareaValue="handleDescription" />
                                             </div>
                                             <!-- Form - description END -->
+                                            <!-- Form - ids_compatibility(JSON) -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="IDčka zásuvek" nameDB="ids_compatibility" perex="" :required=false />
+                                                <mInputsIDSCompatibility :value="wallSocketIDScompatibility" @ids-compatibility="handleIDSCompatibility" />
+                                            </div>
+                                            <!-- Form - ids_compatibility(JSON) END -->
                                             <!-- Form - ids_states(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="IDčka států" nameDB="ids_states" perex="" :required=false />
@@ -151,6 +157,7 @@
     import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputsIDSCompatibility from '@/components/molecules/mInputsIDSCompatibility.vue'
     import mInputsIDSStates from '@/components/molecules/mInputsIDSStates.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
@@ -161,6 +168,10 @@
 
     interface seoTags {
         tag: string
+    }
+
+    interface IDScompatibility {
+        id: number
     }
 
     interface IDSstates {
@@ -174,6 +185,7 @@
         id_image_cover: number
         id_image_hero: number
         seo_tags: seoTags[]
+        ids_compatibility: IDScompatibility[]
         ids_states: IDSstates[]
         slug: string
         label: string
@@ -190,6 +202,7 @@
             aTextarea,
             mButton,
             mHeadlineForm,
+            mInputsIDSCompatibility,
             mInputsIDSStates,
             mInputImage,
             mInputsSeoTags,
@@ -251,6 +264,9 @@
             },
             handleIDSStates(newIDSStates: string) {
                 this.wallSocketIDSstates = JSON.stringify(newIDSStates)
+            },
+            handleIDSCompatibility(newIDSCompatibility: string) {
+                this.wallSocketIDScompatibility = JSON.stringify(newIDSCompatibility)
             }
         },
 
@@ -301,6 +317,7 @@
             const wallSocketSlug = ref('')
             const wallSocketIDimageCover = ref<number | null>(null)
             const wallSocketIDimageHero = ref<number | null>(null)
+            const wallSocketIDScompatibility = ref<never[] | string[]>([])
             const wallSocketIDSstates = ref<never[] | string[]>([])
             const wallSocketSeoTags = ref<never[] | string[]>([])
             const wallSocketLabel = ref('')
@@ -322,6 +339,7 @@
                     wallSocketIDimageCover.value = WallSocket[0].id_image_cover
                     wallSocketIDimageHero.value = WallSocket[0].id_image_hero
                     wallSocketSeoTags.value = WallSocket[0].seo_tags ? JSON.stringify(WallSocket[0].seo_tags) : JSON.stringify([])
+                    wallSocketIDScompatibility.value = WallSocket[0].ids_compatibility ? JSON.stringify(WallSocket[0].ids_compatibility) : JSON.stringify([])
                     wallSocketIDSstates.value = WallSocket[0].ids_states ? JSON.stringify(WallSocket[0].ids_states) : JSON.stringify([])
                     wallSocketLabel.value = WallSocket[0].label
                     wallSocketName.value = WallSocket[0].name
@@ -346,6 +364,7 @@
                             'id_image_cover': wallSocketIDimageCover.value,
                             'id_image_hero': wallSocketIDimageHero.value,
                             'seo_tags': wallSocketSeoTags.value,
+                            'ids_compatibility': wallSocketIDScompatibility.value,
                             'ids_states': wallSocketIDSstates.value,
                             'label': wallSocketLabel.value,
                             'name': wallSocketName.value,
@@ -377,6 +396,7 @@
                 wallSocketSlug,
                 wallSocketIDimageCover,
                 wallSocketIDimageHero,
+                wallSocketIDScompatibility,
                 wallSocketIDSstates,
                 wallSocketSeoTags,
                 wallSocketLabel,
