@@ -123,6 +123,12 @@
                                                 <input class="a-input" type="text" name="name_original" v-model="placesSpotNameOriginal" required />
                                             </div>
                                             <!-- Form - name original END -->
+                                            <!-- Form - type_spot -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Typ místa" nameDB="type_spot" perex="" :required=true />
+                                                <input class="a-input" type="text" name="type_spot" v-model="placesRegionTypeSpot" required />
+                                            </div>
+                                            <!-- Form - type_spot END -->
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
@@ -333,6 +339,7 @@
             const placesSpotIDimageCover = ref<number | null>(null)
             const placesSpotIDimageHero = ref<number | null>(null)
             const placesSpotTypePlace = ref('spot')
+            const placesSpotTypeSpot = ref('')
             const placesSpotSlug = ref('')
             const placesSpotName = ref('')
             const placesSpotNameOriginal = ref('')
@@ -363,6 +370,7 @@
                             'id_image_cover': placesSpotIDimageCover.value,
                             'id_image_hero': placesSpotIDimageHero.value,
                             'type_place': placesSpotTypePlace.value,
+                            'type_spot': placesSpotTypeSpot.value,
                             'slug': placesSpotSlug.value,
                             'name': placesSpotName.value,
                             'name_original': placesSpotNameOriginal.value,
@@ -400,6 +408,7 @@
                 placesSpotIDimageCover,
                 placesSpotIDimageHero,
                 placesSpotTypePlace,
+                placesSpotTypeSpot,
                 placesSpotSlug,
                 placesSpotName,
                 placesSpotNameOriginal,
