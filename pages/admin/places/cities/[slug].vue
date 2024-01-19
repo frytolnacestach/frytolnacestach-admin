@@ -138,6 +138,12 @@
                                                 <input class="a-input" type="text" name="name" v-model="placesCityName" required />
                                             </div>
                                             <!-- Form - name END -->
+                                            <!-- Form - name original -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Název originál" nameDB="name_original" perex="" :required=true />
+                                                <input class="a-input" type="text" name="name_original" v-model="placesCityNameOriginal" required />
+                                            </div>
+                                            <!-- Form - name original END -->
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
@@ -467,6 +473,7 @@
             const placesCityTypePlace = ref('city')
             const placesCitySlug = ref('')
             const placesCityName = ref('')
+            const placesCityNameOriginal = ref('')
             const placesCityInformationChatgpt = ref('')
             const placesCityInformationAuthor = ref<never[] | string[]>([])
             const placesCityPopulation = ref<number | null>(null)
@@ -497,6 +504,7 @@
                     placesCityTypePlace.value = PlacesCity[0].type_place
                     placesCitySlug.value = PlacesCity[0].slug
                     placesCityName.value = PlacesCity[0].name
+                    placesCityNameOriginal.value = PlacesCity[0].name_original
                     placesCityInformationChatgpt.value = PlacesCity[0].information_chatgpt
                     placesCityInformationAuthor.value = PlacesCity[0].information_author ? JSON.stringify(PlacesCity[0].information_author) : JSON.stringify([])
                     placesCityPopulation.value = PlacesCity[0].population
@@ -531,6 +539,7 @@
                             'type_place': placesCityTypePlace.value,
                             'slug': placesCitySlug.value,
                             'name': placesCityName.value,
+                            'name_original': placesCityNameOriginal.value,
                             'information_chatgpt': placesCityInformationChatgpt.value,
                             'information_author': placesCityInformationAuthor.value,
                             'population': placesCityPopulation.value,
@@ -574,6 +583,7 @@
                 placesCityTypePlace,
                 placesCitySlug,
                 placesCityName,
+                placesCityNameOriginal,
                 placesCityInformationChatgpt,
                 placesCityInformationAuthor,
                 placesCityPopulation,

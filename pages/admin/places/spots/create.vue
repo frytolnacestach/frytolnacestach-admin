@@ -117,6 +117,12 @@
                                                 <input class="a-input" type="text" name="name" v-model="placesSpotName" required />
                                             </div>
                                             <!-- Form - name END -->
+                                            <!-- Form - name original -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Název originál" nameDB="name_original" perex="" :required=true />
+                                                <input class="a-input" type="text" name="name_original" v-model="placesSpotNameOriginal" required />
+                                            </div>
+                                            <!-- Form - name original END -->
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
@@ -329,6 +335,7 @@
             const placesSpotTypePlace = ref('spot')
             const placesSpotSlug = ref('')
             const placesSpotName = ref('')
+            const placesSpotNameOriginal = ref('')
             const placesSpotInformationChatgpt = ref('')
             const placesSpotInformationAuthor = ref<never[] | string[]>([])
             const placesSpotInformationDuration = ref<never[] | string[]>([])
@@ -358,6 +365,7 @@
                             'type_place': placesSpotTypePlace.value,
                             'slug': placesSpotSlug.value,
                             'name': placesSpotName.value,
+                            'name_original': placesSpotNameOriginal.value,
                             'information_chatgpt': placesSpotInformationChatgpt.value,
                             'information_author': placesSpotInformationAuthor.value,
                             'information_duration': placesSpotInformationDuration.value,
@@ -394,6 +402,7 @@
                 placesSpotTypePlace,
                 placesSpotSlug,
                 placesSpotName,
+                placesSpotNameOriginal,
                 placesSpotInformationChatgpt,
                 placesSpotInformationAuthor,
                 placesSpotInformationDuration,

@@ -95,6 +95,12 @@
                                                 <input class="a-input" type="text" name="name" v-model="placesContinentName" required />
                                             </div>
                                             <!-- Form - name END -->
+                                            <!-- Form - name original -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Název originál" nameDB="name_original" perex="" :required=true />
+                                                <input class="a-input" type="text" name="name_original" v-model="placesContinentNameOriginal" required />
+                                            </div>
+                                            <!-- Form - name original END -->
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
@@ -293,6 +299,7 @@
             const placesContinentTypePlace = ref('continent')
             const placesContinentSlug = ref('')
             const placesContinentName = ref('')
+            const placesContinentNameOriginal = ref('')
             const placesContinentInformationChatgpt = ref('')
             const placesContinentInformationAuthor = ref<never[] | string[]>([])
             const placesContinentArea = ref<number | null>(null)
@@ -320,6 +327,7 @@
                             'type_place': placesContinentTypePlace.value,
                             'slug': placesContinentSlug.value,
                             'name': placesContinentName.value,
+                            'name_original': placesContinentNameOriginal.value,
                             'information_chatgpt': placesContinentInformationChatgpt.value,
                             'information_author': placesContinentInformationAuthor.value,
                             'area': placesContinentArea.value,
@@ -355,6 +363,7 @@
                 placesContinentTypePlace,
                 placesContinentSlug,
                 placesContinentName,
+                placesContinentNameOriginal,
                 placesContinentInformationChatgpt,
                 placesContinentInformationAuthor,
                 placesContinentArea,

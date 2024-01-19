@@ -129,6 +129,12 @@
                                                 <input class="a-input" type="text" name="name" v-model="placesRegionName" required />
                                             </div>
                                             <!-- Form - name END -->
+                                            <!-- Form - name original -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Název originál" nameDB="name_original" perex="" :required=true />
+                                                <input class="a-input" type="text" name="name_original" v-model="placesRegionNameOriginal" required />
+                                            </div>
+                                            <!-- Form - name original END -->
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
@@ -388,6 +394,7 @@
             const placesRegionTypePlace = ref('region')
             const placesRegionSlug = ref('')
             const placesRegionName = ref('')
+            const placesRegionNameOriginal = ref('')
             const placesRegionInformationChatgpt = ref('')
             const placesRegionInformationAuthor = ref<never[] | string[]>([])
             const placesRegionSeoTags = ref<never[] | string[]>([])
@@ -412,6 +419,7 @@
                     placesRegionTypePlace.value = PlacesRegion[0].type_place
                     placesRegionSlug.value = PlacesRegion[0].slug
                     placesRegionName.value = PlacesRegion[0].name
+                    placesRegionNameOriginal.value = PlacesRegion[0].name_original
                     placesRegionInformationChatgpt.value = PlacesRegion[0].information_chatgpt
                     placesRegionInformationAuthor.value = PlacesRegion[0].information_author ? JSON.stringify(PlacesRegion[0].information_author) : JSON.stringify([])
                     placesRegionSeoTags.value = PlacesRegion[0].seo_tags ? JSON.stringify(PlacesRegion[0].seo_tags) : JSON.stringify([])
@@ -440,6 +448,7 @@
                             'type_place': placesRegionTypePlace.value,
                             'slug': placesRegionSlug.value,
                             'name': placesRegionName.value,
+                            'name_original': placesRegionNameOriginal.value,
                             'information_chatgpt': placesRegionInformationChatgpt.value,
                             'information_author': placesRegionInformationAuthor.value,
                             'seo_tags': placesRegionSeoTags.value,
@@ -477,6 +486,7 @@
                 placesRegionTypePlace,
                 placesRegionSlug,
                 placesRegionName,
+                placesRegionNameOriginal,
                 placesRegionInformationChatgpt,
                 placesRegionInformationAuthor,
                 placesRegionCoordinates,

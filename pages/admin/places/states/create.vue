@@ -123,6 +123,12 @@
                                                 <input class="a-input" type="text" name="name" v-model="placesStateName" required />
                                             </div>
                                             <!-- Form - name END -->
+                                            <!-- Form - name original -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Název originál" nameDB="name_original" perex="" :required=true />
+                                                <input class="a-input" type="text" name="name_original" v-model="placesStateNameOriginal" required />
+                                            </div>
+                                            <!-- Form - name original END -->
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
@@ -487,6 +493,7 @@
             const placesStateTypePlace = ref('state')
             const placesStateSlug = ref('')
             const placesStateName = ref('')
+            const placesStateNameOriginal = ref('')
             const placesStateInformationChatgpt = ref('')
             const placesStateInformationAuthor = ref<never[] | string[]>([])
             const placesStateMpz = ref('')
@@ -532,6 +539,7 @@
                             'type_place': placesStateTypePlace.value,
                             'slug': placesStateSlug.value,
                             'name': placesStateName.value,
+                            'name_original': placesStateNameOriginal.value,
                             'information_chatgpt': placesStateInformationChatgpt.value,
                             'information_author': placesStateInformationAuthor.value,
                             'mpz': placesStateMpz.value,
@@ -585,6 +593,7 @@
                 placesStateTypePlace,
                 placesStateSlug,
                 placesStateName,
+                placesStateNameOriginal,
                 placesStateInformationChatgpt,
                 placesStateInformationAuthor,
                 placesStateMpz,

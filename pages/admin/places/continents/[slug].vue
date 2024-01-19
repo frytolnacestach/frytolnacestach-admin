@@ -113,6 +113,12 @@
                                                 <input class="a-input" type="text" name="name" v-model="placesContinentName" required />
                                             </div>
                                             <!-- Form - name END -->
+                                            <!-- Form - name original -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Název originál" nameDB="name_original" perex="" :required=true />
+                                                <input class="a-input" type="text" name="name_original" v-model="placesContinentNameOriginal" required />
+                                            </div>
+                                            <!-- Form - name original END -->
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
@@ -376,6 +382,7 @@
             const placesContinentTypePlace = ref('continent')
             const placesContinentSlug = ref('')
             const placesContinentName = ref('')
+            const placesContinentNameOriginal = ref('')
             const placesContinentInformationChatgpt = ref('')
             const placesContinentInformationAuthor = ref<never[] | string[]>([])
             const placesContinentArea = ref<number | null>(null)
@@ -402,6 +409,7 @@
                     placesContinentTypePlace.value = PlacesContinent[0].type_place
                     placesContinentSlug.value = PlacesContinent[0].slug
                     placesContinentName.value = PlacesContinent[0].name
+                    placesContinentNameOriginal.value = PlacesContinent[0].name_original
                     placesContinentInformationChatgpt.value = PlacesContinent[0].information_chatgpt
                     placesContinentInformationAuthor.value = PlacesContinent[0].information_author ? JSON.stringify(PlacesContinent[0].information_author) : JSON.stringify([])
                     placesContinentArea.value = PlacesContinent[0].area
@@ -432,6 +440,7 @@
                             'type_place': placesContinentTypePlace.value,
                             'slug': placesContinentSlug.value,
                             'name': placesContinentName.value,
+                            'name_original': placesContinentNameOriginal.value,
                             'information_chatgpt': placesContinentInformationChatgpt.value,
                             'information_author': placesContinentInformationAuthor.value,
                             'area': placesContinentArea.value,
@@ -471,6 +480,7 @@
                 placesContinentTypePlace,
                 placesContinentSlug,
                 placesContinentName,
+                placesContinentNameOriginal,
                 placesContinentInformationChatgpt,
                 placesContinentInformationAuthor,
                 placesContinentArea,
