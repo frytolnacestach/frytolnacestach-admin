@@ -135,6 +135,12 @@
                                                 <input class="a-input" type="text" name="name_original" v-model="placesRegionNameOriginal" required />
                                             </div>
                                             <!-- Form - name original END -->
+                                            <!-- Form - type_region -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Typ regionu" nameDB="type_region" perex="" :required=true />
+                                                <input class="a-input" type="text" name="type_region" v-model="placesRegionTypeRegion" required />
+                                            </div>
+                                            <!-- Form - type_region END -->
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
@@ -392,6 +398,7 @@
             const placesRegionIDimageCover = ref<number | null>(null)
             const placesRegionIDimageHero = ref<number | null>(null)
             const placesRegionTypePlace = ref('region')
+            const placesRegionTypeRegion = ref('')
             const placesRegionSlug = ref('')
             const placesRegionName = ref('')
             const placesRegionNameOriginal = ref('')
@@ -417,6 +424,7 @@
                     placesRegionIDimageCover.value = PlacesRegion[0].id_image_cover
                     placesRegionIDimageHero.value = PlacesRegion[0].id_image_hero
                     placesRegionTypePlace.value = PlacesRegion[0].type_place
+                    placesRegionTypeRegion.value = PlacesRegion[0].type_region
                     placesRegionSlug.value = PlacesRegion[0].slug
                     placesRegionName.value = PlacesRegion[0].name
                     placesRegionNameOriginal.value = PlacesRegion[0].name_original
@@ -446,6 +454,7 @@
                             'id_image_cover': placesRegionIDimageCover.value,
                             'id_image_hero': placesRegionIDimageHero.value,
                             'type_place': placesRegionTypePlace.value,
+                            'type_region': placesRegionTypeRegion.value,
                             'slug': placesRegionSlug.value,
                             'name': placesRegionName.value,
                             'name_original': placesRegionNameOriginal.value,
@@ -484,6 +493,7 @@
                 placesRegionIDimageCover,
                 placesRegionIDimageHero,
                 placesRegionTypePlace,
+                placesRegionTypeRegion,
                 placesRegionSlug,
                 placesRegionName,
                 placesRegionNameOriginal,
