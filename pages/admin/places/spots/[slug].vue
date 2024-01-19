@@ -465,7 +465,7 @@
                     placesSpotInformationChatgpt.value = PlacesSpot[0].information_chatgpt
                     placesSpotInformationAuthor.value = PlacesSpot[0].information_author ? JSON.stringify(PlacesSpot[0].information_author) : JSON.stringify([])
                     placesSpotInformationDuration.value = PlacesSpot[0].information_duration ? JSON.stringify(PlacesSpot[0].information_duration) : JSON.stringify([])
-                    placesSpotInformationDurationTimes.value = PlacesSpot[0].information_duration.times ? JSON.stringify(PlacesSpot[0].information_duration.times) : JSON.stringify([])
+                    placesSpotInformationDurationTimes.value = PlacesSpot[0].information_duration && PlacesSpot[0].information_duration.times ? JSON.stringify(PlacesSpot[0].information_duration.times) : JSON.stringify([])
                     placesSpotAltitude.value = PlacesSpot[0].altitude
                     placesSpotSeoTags.value = PlacesSpot[0].seo_tags ? JSON.stringify(PlacesSpot[0].seo_tags) : JSON.stringify([])
                     placesSpotCoordinates.value = PlacesSpot[0].coordinates ? JSON.stringify(PlacesSpot[0].coordinates) : JSON.stringify([])
