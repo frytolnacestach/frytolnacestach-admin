@@ -126,7 +126,7 @@
                                             <!-- Form - type_spot -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Typ místa" nameDB="type_spot" perex="" :required=true />
-                                                <input class="a-input" type="text" name="type_spot" v-model="placesRegionTypeSpot" required />
+                                                <mInputsTypeSpot :value="placesSpotTypeSpot" @type-spot="handleTypeSpot" />
                                             </div>
                                             <!-- Form - type_spot END -->
                                             <!-- Form - information_chatgpt -->
@@ -205,6 +205,7 @@
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
     import mInputsInformationDuration from '@/components/molecules/mInputsInformationDuration.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
+    import mInputsTypeSpot from '@/components/molecules/mInputsTypeSpot.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -227,6 +228,7 @@
             mInputsInformationAuthor,
             mInputsInformationDuration,
             mInputsSeoTags,
+            mInputsTypeSpot,
             mInputsZoom,
             mLabel,
             mNavBreadcrumbs,
@@ -290,6 +292,9 @@
             },
             handleZoom(newZoom: string) {
                 this.placesSpotZoom = JSON.stringify(newZoom)
+            },
+            handleTypeSpot(newTypeSpot: string) {
+                this.placesSpotTypeSpot = JSON.stringify(newTypeSpot)
             },
             handleAffiliate(newAffiliate: string) {
                 this.placesSpotAffiliate = JSON.stringify(newAffiliate)

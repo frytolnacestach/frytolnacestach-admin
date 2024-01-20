@@ -137,8 +137,8 @@
                                             <!-- Form - name original END -->
                                             <!-- Form - type_region -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="Typ regionu" nameDB="type_region" perex="" :required=true />
-                                                <input class="a-input" type="text" name="type_region" v-model="placesRegionTypeRegion" required />
+                                                <mLabel name="Typ regionu" nameDB="type_region" perex="" :required=false />
+                                                <mInputsTypeRegion :value="placesRegionTypeRegion" @type-region="handleTypeRegion" />
                                             </div>
                                             <!-- Form - type_region END -->
                                             <!-- Form - information_chatgpt -->
@@ -204,6 +204,7 @@
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
+    import mInputsTypeRegion from '@/components/molecules/mInputsTypeRegion.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -237,6 +238,10 @@
         tag: string
     }
 
+    interface typeRegion {
+        type: string
+    }
+
     interface PlacesRegion {
         id: number
         created_at: string
@@ -245,6 +250,7 @@
         id_image_cover: number
         id_image_hero: number
         type_place: string
+        type_region: typeRegion[]
         slug: string
         name: string
         information_chatgpt: string
@@ -270,6 +276,7 @@
             mInputsCoordinates,
             mInputsInformationAuthor,
             mInputsSeoTags,
+            mInputsTypeRegion,
             mInputsZoom,
             mLabel,
             mNavBreadcrumbs,
@@ -332,6 +339,9 @@
             },
             handleSeoTags(newSeoTags: string) {
                 this.placesRegionSeoTags = JSON.stringify(newSeoTags)
+            },
+            handleTypeRegion(newTypeRegion: string) {
+                this.placesRegionTypeRegion = JSON.stringify(newTypeRegion)
             },
             handleCoordinates(newCoordinates: string) {
                 this.placesRegionCoordinates = JSON.stringify(newCoordinates)
@@ -424,7 +434,7 @@
                     placesRegionIDimageCover.value = PlacesRegion[0].id_image_cover
                     placesRegionIDimageHero.value = PlacesRegion[0].id_image_hero
                     placesRegionTypePlace.value = PlacesRegion[0].type_place
-                    placesRegionTypeRegion.value = PlacesRegion[0].type_region
+                    placesRegionTypeRegion.value = PlacesRegion[0].type_region ? JSON.stringify(PlacesRegion[0].type_region) : JSON.stringify([])
                     placesRegionSlug.value = PlacesRegion[0].slug
                     placesRegionName.value = PlacesRegion[0].name
                     placesRegionNameOriginal.value = PlacesRegion[0].name_original

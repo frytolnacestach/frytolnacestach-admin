@@ -143,8 +143,8 @@
                                             <!-- Form - name original END -->
                                             <!-- Form - type_spot -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="Typ místa" nameDB="type_spot" perex="" :required=true />
-                                                <input class="a-input" type="text" name="type_spot" v-model="placesRegionTypeSpot" required />
+                                                <mLabel name="Typ místa" nameDB="type_spot" perex="" :required=false />
+                                                <mInputsTypeSpot :value="placesSpotTypeSpot" @type-spot="handleTypeSpot" />
                                             </div>
                                             <!-- Form - type_spot END -->
                                             <!-- Form - information_chatgpt -->
@@ -223,6 +223,7 @@
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
     import mInputsInformationDuration from '@/components/molecules/mInputsInformationDuration.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
+    import mInputsTypeSpot from '@/components/molecules/mInputsTypeSpot.vue'
     import mInputsZoom from '@/components/molecules/mInputsZoom.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -272,6 +273,10 @@
         tag: string
     }
 
+    interface typeSpot {
+        type: string
+    }
+
     interface PlacesSpot {
         id: number
         created_at: string
@@ -281,6 +286,7 @@
         id_image_cover: number
         id_image_hero: number
         type_place: string
+        type_spot: typeSpot[]
         slug: string
         name: string
         information_chatgpt: string
@@ -309,6 +315,7 @@
             mInputsInformationAuthor,
             mInputsInformationDuration,
             mInputsSeoTags,
+            mInputsTypeSpot,
             mInputsZoom,
             mLabel,
             mNavBreadcrumbs,
@@ -380,6 +387,9 @@
             },
             handleZoom(newZoom: string) {
                 this.placesSpotZoom = JSON.stringify(newZoom)
+            },
+            handleTypeSpot(newTypeSpot: string) {
+                this.placesSpotTypeSpot = JSON.stringify(newTypeSpot)
             },
             handleAffiliate(newAffiliate: string) {
                 this.placesSpotAffiliate = JSON.stringify(newAffiliate)
@@ -474,7 +484,7 @@
                     placesSpotIDimageCover.value = PlacesSpot[0].id_image_cover
                     placesSpotIDimageHero.value = PlacesSpot[0].id_image_hero
                     placesSpotTypePlace.value = PlacesSpot[0].type_place
-                    placesSpotTypeSpot.value = PlacesSpot[0].type_spot
+                    placesSpotTypeSpot.value = PlacesSpot[0].type_spot ? JSON.stringify(PlacesSpot[0].type_spot) : JSON.stringify([])
                     placesSpotSlug.value = PlacesSpot[0].slug
                     placesSpotName.value = PlacesSpot[0].name
                     placesSpotNameOriginal.value = PlacesSpot[0].name_original
