@@ -392,8 +392,8 @@
                     })
                     // response
                     if (response.ok) {
-                        console.log('Data byla uložená')
-                        successForm.value = "Data byla odeslaná"
+                        console.log('Data byla uložená.')
+                        successForm.value = "Data byla uložená."
                         navigateTo(`/admin/places/spots/${placesSpotSlug.value}`)
                     } else if (response.status === 500) {
                         console.log('Nastala chyba a data nebyla uložena.')

@@ -237,7 +237,8 @@
             //API - Base edit
             const editForm = async () => {
                 try {
-                    await useFetch(`${runTimeConfig.public.baseURL}/base-edit`, {
+                    // request
+                    const response = await fetch(`${runTimeConfig.public.baseURL}/base-edit`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -253,14 +254,14 @@
                             'conditions_user': conditionsUser.value
                         })
                     })
-                    .then(() => {
-                        console.log('Data byla odeslaná')
-                        successForm.value = "Data byla uložena"
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                        errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                    })
+                    // response
+                    if (response.ok) {
+                        console.log('Data byla uložená.')
+                        successForm.value = "Data byla odeslaná"
+                    } else if (response.status === 500) {
+                        console.log('Nastala chyba a data nebyla uložena.')
+                        errorForm.value = "Nastala chyba a data nebyla uložena."
+                    }
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

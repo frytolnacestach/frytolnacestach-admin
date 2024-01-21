@@ -413,7 +413,8 @@
             //FORM - edit
             const editForm = async () => {
                 try {
-                    await useFetch(`${runTimeConfig.public.baseURL}/video-edit`, {
+                    // request
+                    const response = await fetch(`${runTimeConfig.public.baseURL}/video-edit`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -437,14 +438,14 @@
                             'url': videoUrl.value
                         })
                     })
-                    .then(() => {
-                        console.log('Data byla odeslaná')
-                        successForm.value = "Data byla odeslaná"
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                        errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                    })
+                    // response
+                    if (response.ok) {
+                        console.log('Data byla upravena.')
+                        successForm.value = "Data byla upravena."
+                    } else if (response.status === 500) {
+                        console.log('Nastala chyba a data nebyla upravena.')
+                        errorForm.value = "Nastala chyba a data nebyla upravena."
+                    }
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

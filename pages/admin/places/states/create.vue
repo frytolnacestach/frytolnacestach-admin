@@ -522,7 +522,8 @@
             //FORM - create
             const createForm = async () => {
                 try {
-                    await useFetch(`${runTimeConfig.public.baseURL}/places-state-create`, {
+                    // request
+                    const response = await fetch(`${runTimeConfig.public.baseURL}/places-state-create`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -566,15 +567,15 @@
                             'facts_place': placesStateFactsPlace.value
                         })
                     })
-                    .then(() => {
-                        console.log('Data byla odeslaná')
-                        successForm.value = "Data byla odeslaná"
+                    // response
+                    if (response.ok) {
+                        console.log('Data byla uložená.')
+                        successForm.value = "Data byla uložená."
                         navigateTo(`/admin/places/states/${placesStateSlug.value}`)
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                        errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                    })
+                    } else if (response.status === 500) {
+                        console.log('Nastala chyba a data nebyla uložena.')
+                        errorForm.value = "Nastala chyba a data nebyla uložena."
+                    }
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"

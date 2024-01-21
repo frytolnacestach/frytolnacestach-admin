@@ -309,7 +309,8 @@
             //FORM - create
             const createForm = async () => {
                 try {
-                    await useFetch(`${runTimeConfig.public.baseURL}/video-create`, {
+                    // request
+                    const response = await fetch(`${runTimeConfig.public.baseURL}/video-create`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -333,15 +334,15 @@
                             'seo_tags': videoSeoTags.value
                         })
                     })
-                    .then(() => {
-                        console.log('Data byla odeslaná')
-                        successForm.value = "Data byla odeslaná"
+                    // response
+                    if (response.ok) {
+                        console.log('Data byla uložená.')
+                        successForm.value = "Data byla uložená."
                         navigateTo(`/admin/videos/${videoSlug.value}`)
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                        errorForm.value = "Data nebyla upravena nastala chyba při jejich odeslání"
-                    })
+                    } else if (response.status === 500) {
+                        console.log('Nastala chyba a data nebyla uložena.')
+                        errorForm.value = "Nastala chyba a data nebyla uložena."
+                    }
                 } catch (err) {
                     console.log(err)
                     errorForm.value = "Chyba připojení k API"
