@@ -109,7 +109,7 @@
                                             <!-- Form - id_state END -->
                                             <!-- Form - id_city -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="ID Města" nameDB="id_city" perex="" :required=false />
+                                                <mLabel name="ID Města" nameDB="id_city" perex="" :required=true />
                                                 <mInputIDPlaces :value="placesSpotIDcity" name="city" :required=true @id-place="handleIDcity" />
                                             </div>
                                             <!-- Form - id_city END -->
