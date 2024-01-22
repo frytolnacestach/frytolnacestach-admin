@@ -122,13 +122,13 @@
                                             <!-- Form - ingredients -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Ingredience" nameDB="ingredients" perex="" :required=false />
-                                                <aTextarea :value="foodIngredients" name="ingredients" :required=false @textareaValue="handleIngredients" />
+                                                <mInputsIngredients :value="foodIngredients" @ingredients="handleIngredients" />
                                             </div>
                                             <!-- Form - ingredients END -->
                                             <!-- Form - recipe -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Recept" nameDB="recipe" perex="" :required=false />
-                                                <aTextarea :value="foodRecipe" name="recipe" :required=false @textareaValue="handleRecipe" />
+                                                <mInputsRecipe :value="foodRecipe" @recipe="handleRecipe" />
                                             </div>
                                             <!-- Form - recipe END -->
                                         </div>
@@ -160,6 +160,8 @@
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputsIDSStates from '@/components/molecules/mInputsIDSStates.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
+    import mInputsIngredients from '@/components/molecules/mInputsIngredients.vue'
+    import mInputsRecipe from '@/components/molecules/mInputsRecipe.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -174,6 +176,18 @@
         tag: string
     }
 
+    interface ingredients {
+        name: string
+        value: number
+        unit: string
+    }
+
+    interface recipe {
+        step: string
+        name: string
+        text: string
+    }
+
     interface Food {
         id: number
         created_at: string
@@ -185,8 +199,8 @@
         slug: string
         name: string
         description: string
-        ingredients: string
-        recipe: string
+        ingredients: ingredients[]
+        recipe: recipe[]
     }
 
     export default defineComponent({
@@ -200,6 +214,8 @@
             mHeadlineForm,
             mInputsIDSStates,
             mInputImage,
+            mInputsIngredients,
+            mInputsRecipe,
             mInputsSeoTags,
             mLabel,
             mNavBreadcrumbs,
@@ -261,10 +277,10 @@
                 this.foodDescription = newDescription
             },
             handleIngredients(newIngredients: string) {
-                this.foodIngredients = newIngredients
+                this.foodIngredients = JSON.stringify(newIngredients)
             },
             handleRecipe(newRecipe: string) {
-                this.foodRecipe = newRecipe
+                this.foodRecipe = JSON.stringify(newRecipe)
             }
         },
 
@@ -319,8 +335,8 @@
             const foodIDSstates = ref<never[] | string[]>([])
             const foodName = ref('')
             const foodDescription = ref('')
-            const foodIngredients = ref('')
-            const foodRecipe = ref('')
+            const foodIngredients = ref<never[] | string[]>([])
+            const foodRecipe = ref<never[] | string[]>([])
 
             //API - food
             ;(async () => {
@@ -341,7 +357,7 @@
                     foodName.value = Food[0].name
                     foodDescription.value = Food[0].description
                     foodIngredients.value = Food[0].ingredients ? JSON.stringify(Food[0].ingredients) : JSON.stringify([])
-                    foodRecipe.value = Food[0].recipe
+                    foodRecipe.value = Food[0].recipe ? JSON.stringify(Food[0].recipe) : JSON.stringify([])
                     loadingData.value = true
                 }
             })()
