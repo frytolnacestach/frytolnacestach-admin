@@ -92,34 +92,51 @@
             //FORM - login
             const loginForm = async () => {
 
-                const { data: login } = await useFetch(`${runTimeConfig.public.baseURL}/login/${email.value}/${password.value}`)
+                try {
+                    const response = await fetch(`${runTimeConfig.public.baseURL}/login`, {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Access-Control-Allow-Origin": "http://localhost:3000",
+                            "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept",
+                            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH"
+                        },
+                        body: JSON.stringify({
+                            'email': email.value,
+                            'password': password.value
+                        })
+                    });
 
-                if (login._rawValue.message.length > 0 && login._rawValue.status === 200) {
-                    //set storage
-                    localStorage.setItem("user-info", JSON.stringify(login._rawValue.message[0]))
+                    const login = await response.json();
+                    console.log(login);
+                    console.log(login.status);
+                    if (login && login.status && login.status === 200) {
+                        //set storage
+                        localStorage.setItem("user-info", JSON.stringify(login.message[0]))
 
-                    //set expires
-                    var now = new Date()
-                    now.setMonth(now.getMonth() + 1)
-                    let expires = "expires=" + now
+                        //set expires
+                        var now = new Date()
+                        now.setMonth(now.getMonth() + 1)
+                        let expires = "expires=" + now
 
-                    //set cookies
-                    document.cookie = "FNCADMINemail=" + login._rawValue.message[0].email + ";" + expires
-                    document.cookie = "FNCADMINpass=" + login._rawValue.message[0].password + ";" + expires
+                        //set cookies
+                        document.cookie = "FNCADMINemail=" + login.message[0].email + ";" + expires
+                        document.cookie = "FNCADMINpass=" + login.message[0].password + ";" + expires
 
-                    let user = localStorage.getItem('user-info')
+                        errorForm.value = ""
+                        successForm.value = "Byl jste přihlášen"
+                        console.log("Uživatelský byl přihlášen.")
 
-                    errorForm.value = ""
-                    successForm.value = "Byl jste přihlášen"
-                    console.log("Uživatelský byl přihlášen.")
-
-                    //Přesměrování
-                    await navigateTo('/admin')
-                } else {
+                        //Přesměrování
+                        await navigateTo('/admin')
+                    } else {
+                        errorForm.value = "Uživatelský email nebo heslo je nesprávné";
+                        console.log("Uživatelský email nebo heslo je nesprávné 1");
+                    }
+                } catch (error) {
                     errorForm.value = "Uživatelský email nebo heslo je nesprávné"
-                    console.log("Uživatelský email nebo heslo je nesprávné")
+                    console.log("Uživatelský email nebo heslo je nesprávné 2")
                 }
-
             }
 
             return { successForm, errorForm, email, password, loginForm }
