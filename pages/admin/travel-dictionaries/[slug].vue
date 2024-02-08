@@ -21,6 +21,8 @@
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
 
+                                <mButtonWeb :link="'https://www.frytolnacestach.cz/cestovatelsky-slovnik/' + travelDictionarySlug" text="Zobrazit na webu" />
+
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
                                     <!-- BLOCK - Needitační hodnoty -->
@@ -139,6 +141,7 @@
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButton from '@/components/molecules/mButton.vue'
+    import mButtonWeb from '@/components/molecules/mButtonWeb.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsSeoTags from '@/components/molecules/mInputsSeoTags.vue'
@@ -171,6 +174,7 @@
             aInputSlug,
             aTextarea,
             mButton,
+            mButtonWeb,
             mHeadlineForm,
             mInputImage,
             mInputsSeoTags,
