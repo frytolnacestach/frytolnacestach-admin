@@ -1,0 +1,22 @@
+.m-button-web {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+    margin-bottom: 10px;
+    
+    &__link {
+        background-color: $brand1;
+        color: $white;
+        height: 40px;
+        line-height: 30px;
+        padding: 5px 10px;
+        border: 0;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $brand2;
+            color: $white;
+        }
+    }
+}
