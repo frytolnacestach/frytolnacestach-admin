@@ -183,18 +183,12 @@
                                                 <mInputsPhoneNumbersEmergency :value="placesStatePhoneNumbersEmergency" @phoneNumbersEmergency="handlePhoneNumbersEmergency" />
                                             </div>
                                             <!-- Form - phone_numbers_emergency(JSON) END -->
-                                            <!-- Form - currency_name -->
+                                            <!-- Form - currency -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="Název měny" nameDB="currency_name" perex="" :required=false />
-                                                <input class="a-input" type="text" name="currency_name" v-model="placesStateCurrencyName" />
+                                                <mLabel name="Měna" nameDB="currency" perex="" :required=false />
+                                                <mInputsCurrency :value="placesStateCurrency" :inputsMax="1" @currency="handleCurrency" />
                                             </div>
-                                            <!-- Form - currency_name END -->
-                                            <!-- Form - currency_code -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Kód měny" nameDB="currency_code" perex="" :required=false />
-                                                <input class="a-input" type="text" name="currency_code" v-model="placesStateCurrencyCode" />
-                                            </div>
-                                            <!-- Form - currency_code END -->
+                                            <!-- Form - currency END -->
                                             <!-- Form - money_prices(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Ceny" nameDB="money_prices" perex="" :required=false />
@@ -299,6 +293,7 @@
     import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
     import mInputsAlerts from '@/components/molecules/mInputsAlerts.vue'
     import mInputsApps from '@/components/molecules/mInputsApps.vue'
+    import mInputsCurrency from '@/components/molecules/mInputsCurrency.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsFactsPlace from '@/components/molecules/mInputsFactsPlace.vue'
     import mInputsIDSNeighboringCountries from '@/components/molecules/mInputsIDSNeighboringCountries.vue'
@@ -332,6 +327,7 @@
             mInputsAffiliate,
             mInputsAlerts,
             mInputsApps,
+            mInputsCurrency,
             mInputsCoordinates,
             mInputsFactsPlace,
             mInputsIDSNeighboringCountries,
@@ -408,6 +404,9 @@
             },
             handleAffiliate(newAffiliate: string) {
                 this.placesStateAffiliate = JSON.stringify(newAffiliate)
+            },
+            handleCurrency(newCurrency: string) {
+                this.placesStateCurrency = JSON.stringify(newCurrency)
             },
             handleInformationChatgpt(newInformationChatgpt: string) {
                 this.placesStateInformationChatgpt = newInformationChatgpt
@@ -503,8 +502,7 @@
             const placesStatePhonePrefix = ref('')
             const placesStateSeoTags = ref<never[] | string[]>([])
             const placesStatePhoneNumbersEmergency = ref<never[] | string[]>([])
-            const placesStateCurrencyName = ref('')
-            const placesStateCurrencyCode = ref('')
+            const placesStateCurrency = ref<never[] | string[]>([])
             const placesStateMoneyPrices = ref<never[] | string[]>([])
             const placesStatePeopleReligion = ref<never[] | string[]>([])
             const placesStatePeopleNationality = ref<never[] | string[]>([])
@@ -549,8 +547,7 @@
                             'population': placesStatePopulation.value,
                             'phone_prefix': placesStatePhonePrefix.value,
                             'phone_numbers_emergency': placesStatePhoneNumbersEmergency.value,
-                            'currency_name': placesStateCurrencyName.value,
-                            'currency_code': placesStateCurrencyCode.value,
+                            'currency': placesStateCurrency.value,
                             'seo_tags': placesStateSeoTags.value,
                             'money_prices': placesStateMoneyPrices.value,
                             'people_religion': placesStatePeopleReligion.value,
@@ -604,8 +601,7 @@
                 placesStatePhonePrefix,
                 placesStateSeoTags,
                 placesStatePhoneNumbersEmergency,
-                placesStateCurrencyName,
-                placesStateCurrencyCode,
+                placesStateCurrency,
                 placesStateMoneyPrices,
                 placesStatePeopleReligion,
                 placesStatePeopleNationality,
