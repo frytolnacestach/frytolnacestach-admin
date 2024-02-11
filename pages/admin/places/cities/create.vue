@@ -370,6 +370,11 @@
             const placesCityAffiliate = ref<never[] | string[]>([])
             const placesCityAlerts = ref<never[] | string[]>([])
             const placesCityParking = ref<never[] | string[]>([])
+            //start data
+            placesCityAffiliate.value = JSON.stringify([{
+                name: 'booking',
+                value: true
+            }])
 
             //FORM - create
             const createForm = async () => {

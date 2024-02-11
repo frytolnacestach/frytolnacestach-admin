@@ -357,6 +357,11 @@
             const placesSpotCoordinates = ref<never[] | string[]>([])
             const placesSpotZoom = ref<never[] | string[]>([])
             const placesSpotAffiliate = ref<never[] | string[]>([])
+            //start data
+            placesSpotAffiliate.value = JSON.stringify([{
+                name: 'booking',
+                value: true
+            }])
 
             //FORM - create
             const createForm = async () => {

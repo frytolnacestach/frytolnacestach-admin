@@ -327,6 +327,11 @@
             const placesRegionCoordinates = ref<never[] | string[]>([])
             const placesRegionZoom = ref<never[] | string[]>([])
             const placesRegionAffiliate = ref<never[] | string[]>([])
+            //start data
+            placesRegionAffiliate.value = JSON.stringify([{
+                name: 'booking',
+                value: true
+            }])
 
             //FORM - create
             const createForm = async () => {

@@ -516,6 +516,11 @@
             const placesStateLinks = ref<never[] | string[]>([])
             const placesStateLanguagePhrases = ref<never[] | string[]>([])
             const placesStateFactsPlace = ref<never[] | string[]>([])
+            //start data
+            placesStateAffiliate.value = JSON.stringify([{
+                name: 'booking',
+                value: true
+            }])
 
             //FORM - create
             const createForm = async () => {

@@ -349,6 +349,11 @@
             const eventAffiliate = ref<never[] | string[]>([])
             const eventPrices = ref<never[] | string[]>([])
             const eventLinks = ref<never[] | string[]>([])
+            //start data
+            eventAffiliate.value = JSON.stringify([{
+                name: 'booking',
+                value: true
+            }])
 
             //FORM - create
             const createForm = async () => {
