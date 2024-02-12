@@ -10,12 +10,20 @@
             <!-- SECTION - BREADCRUMBS END -->
 
             <!-- SECTION - NAV Admin -->
-            <section class="t-section my-4">
+            <section class="t-section mt-4 mb-2">
                 <div class="t-section__inner">
                     <mNavAdmin :links="mNavAdminArray"/>
                 </div>
             </section>
             <!-- SECTION - NAV Admin END -->
+
+            <!-- SECTION - Search -->
+            <section class="t-section my-2">
+                <div class="t-section__inner">
+                    <oSearch type="spot" :page=1 :items=100 @search-result="handleSearch" />
+                </div>
+            </section>
+            <!-- SECTION - Search END -->
 
             <section class="t-section mb-8" v-if="dataLoading">
                 <div class="t-section__inner">
@@ -62,6 +70,7 @@
 <script lang="ts">
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oHero from '@/components/organisms/oHero.vue'
+    import oSearch from '@/components/organisms/oSearch.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
     import skeletonoAdminList from '@/components/skeleton/skeletonOAdminList.vue'
 
@@ -81,6 +90,7 @@
         components: {
             mNavBreadcrumbs,
             oHero,
+            oSearch,
             mNavAdmin,
             skeletonoAdminList
         },
@@ -114,6 +124,12 @@
                         status: "span"
                     }
                 ]
+            }
+        },
+
+        methods: {
+            handleSearch(newSearch: string) {
+                this.placesSpots = newSearch
             }
         },
 
