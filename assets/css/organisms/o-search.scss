@@ -1,0 +1,17 @@
+.o-search {
+    width: 100%;
+
+    &__outer {
+        width: 100%;
+    }
+
+    &__inner {
+        border: 1px solid $gray5;
+        background-color: $gray2;
+        border-radius: 3px;
+        text-align: center;
+        min-height: 100px;
+        display: flex;
+        padding: 15px;
+    }
+}
