@@ -37,7 +37,7 @@
                 </div>
             </section>
 
-            <section class="t-section mb-8">
+            <section class="t-section">
                 <div class="t-section__inner">
                     <div class="o-admin-list">
                         <div class="o-admin-list__outer">
@@ -58,6 +58,14 @@
                     </div>
                 </div>
             </section>
+
+            <!-- SECTION - Pagination -->
+            <section class="t-section mt-2 mb-8">
+                <div class="t-section__inner">
+                    <oPagination type="continent" :page=page :itemsPerPage=itemsPerPage @select-page="handlePagination" />
+                </div>
+            </section>
+            <!-- SECTION - Pagination END -->
         </main>
     </NuxtLayout>
 </template>
@@ -65,6 +73,7 @@
 <script lang="ts">
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oHero from '@/components/organisms/oHero.vue'
+    import oPagination from '@/components/organisms/oPagination.vue'
     import oSearch from '@/components/organisms/oSearch.vue'
     import mNavAdmin from '@/components/molecules/mNavAdmin.vue'
     import skeletonoAdminList from '@/components/skeleton/skeletonOAdminList.vue'
@@ -83,6 +92,7 @@
         components: {
             mNavBreadcrumbs,
             oHero,
+            oPagination,
             oSearch,
             mNavAdmin,
             skeletonoAdminList
@@ -123,6 +133,10 @@
         methods: {
             handleSearch(newSearch: string) {
                 this.placesContinents = newSearch
+            },
+            handlePagination(newPage: string) {
+                this.page = newPage
+                this.load()
             }
         },
 
@@ -155,10 +169,11 @@
             const runTimeConfig = useRuntimeConfig()
             const dataLoading = ref(true)
             const placesContinents = ref<PlacesContinents[]>([])
+            let page = ref(1)
+            const itemsPerPage = 100
 
-            //API - placesContinents
-            onMounted(() => {
-                fetch(`${runTimeConfig.public.baseURL}/places-continents`, {
+            const load = async () => {
+                fetch(`${runTimeConfig.public.baseURL}/places-continents?page=${page.value}&items=${itemsPerPage}`, {
                     method: 'GET'
                 })
                 .then(res => res.json())
@@ -166,12 +181,21 @@
                     dataLoading.value = false
                     placesContinents.value = data
                 })
+            }
+
+            //API - placesContinents
+            onMounted(() => {
+                load()
             })
+
 
             //RETURN
             return {
                 dataLoading,
-                placesContinents
+                placesContinents,
+                page,
+                itemsPerPage,
+                load
             }
         },
 
