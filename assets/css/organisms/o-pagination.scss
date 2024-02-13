@@ -1,0 +1,37 @@
+.o-pagination {
+    width: 100%;
+
+    &__outer {
+        width: 100%;
+    }
+
+    &__inner {
+        width: 100%;
+    }
+
+    &__items {
+        list-style-type: none;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item {
+        cursor: pointer;
+        width: auto;
+        height: auto;
+        color: $black;
+        background-color: $gray2;
+        padding: 5px 8px;
+        margin: 3px;
+
+        &:hover {
+            background-color: $gray9;
+        }
+
+        &.-active {
+            background-color: $gray5;
+        }
+    }
+}
