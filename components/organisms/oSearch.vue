@@ -51,18 +51,16 @@
 
         watch: {
             searchQuery: function(newSearchQuery, oldSearchQuery) {
-                if (newSearchQuery.length >= 1) {
-                    this.search()
-                } else {
-                    this.searchResult.value = []
+                this.search()
+                
+                if (newSearchQuery.length === 0) {
+                    this.searchResult = []
                 }
             },
             searchResult: {
                 deep: true,
                 handler(newValue, oldValue) {
-                    if (this.searchQuery.length >= 1) {
-                        this.$emit('search-result', this.searchResult)
-                    }
+                    this.$emit('search-result', this.searchResult)
                 }
             }
         }
