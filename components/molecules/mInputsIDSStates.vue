@@ -10,7 +10,15 @@
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
                         <mLabel name="ID" nameDB="id" perex="" type="json" :required=false />
-                        <input class="a-input" type="number" min="0" v-model="item.id" />
+                        <span @click="removePlace(index)" v-if="placeSelect[index]">Vybret jiné místo</span>
+                        <input class="a-input hidden" type="number" min="0" v-model="item.id" />
+                        <input class="a-input" type="text" disabled="true" v-model="placeSelect[index]" v-if="placeSelect[index]" />
+                        <input class="a-input" type="text" v-model="searchQuery" v-if="!placeSelect[index]" />
+                        <ul v-if="!item.id">
+                            <li v-for="place in searchResult" :key="place.id" @click="selectPlace(place.id, place.name, index)">
+                                {{ place.name }}
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -49,7 +57,8 @@
 
         data() {
             return {
-                IDSstatesArray: this.isValidJSON(this.value) ? JSON.parse(this.value) : []
+                IDSstatesArray: this.isValidJSON(this.value) ? JSON.parse(this.value) : [],
+                placeSelect: []
             }
         },
 
@@ -70,6 +79,38 @@
             },
             removeIDSstateInput(index) {
                 this.IDSstatesArray.splice(index, 1)
+            },
+            selectPlace(id, name, index) {
+                this.IDSstatesArray[index].id = id
+                this.placeSelect[index] = name;
+                this.searchQuery = ''
+                this.searchResult = []
+            },
+            removePlace(index) {
+                this.IDSstatesArray.splice(index, 1)
+                this.placeSelect.splice(index, 1);
+            }
+        },
+
+        setup(props) {
+            const runTimeConfig = useRuntimeConfig()
+            const searchQuery = ref('')
+            const searchResult = ref([])
+
+            const search = async () => {
+                fetch(`${runTimeConfig.public.baseURL}/search-admin?type=${props.type}&search=${searchQuery.value}&page=1&items=20`, {
+                    method: 'GET'
+                })
+                .then(res => res.json())
+                .then(data => {
+                    searchResult.value = data
+                })
+            }
+
+            return {
+                searchQuery,
+                searchResult,
+                search
             }
         },
 
@@ -81,6 +122,13 @@
                 deep: true,
                 handler(newValue, oldValue) {
                     this.$emit('ids-states', this.IDSstatesArray)
+                }
+            },
+            searchQuery: function(newSearchQuery, oldSearchQuery) {
+                if (newSearchQuery.length >= 1) {
+                    this.search()
+                } else {
+                    this.searchResult = []
                 }
             }
         }
