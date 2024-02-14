@@ -5,11 +5,13 @@
     <input class="a-input hidden" type="number" min="0" :name="name" v-model="id" :required="required" />
     <input class="a-input" type="text" disabled="true" v-model="placeSelect" v-if="placeSelect" />
     <input class="a-input" type="text" v-model="searchQuery" v-if="!placeSelect" />
-    <ul>
-        <li v-for="place in searchResult" :key="place.id" @click="selectPlace(place.id, place.name)">
-            {{ place.name }}
-        </li>
-    </ul>
+    <div class="m-search-list-input__items" v-if="searchResult && searchResult.length > 0">
+        <ul class="m-search-list-input__items">
+            <li class="m-search-list-input__item" v-for="place in searchResult" :key="place.id" @click="selectPlace(place.id, place.name)">
+                {{ place.name }}
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
