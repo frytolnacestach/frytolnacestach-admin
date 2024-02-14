@@ -10,7 +10,9 @@
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
                         <mLabel name="ID" nameDB="id" perex="" type="json" :required=false />
-                        <span @click="removePlace(index)" v-if="placeSelect[index]">Vybret jiné místo</span>
+                        <span class="a-button-reset" v-if="placeSelect[index]">
+                            <span class="a-button-reset__input" @click="removePlace(index)">Vybret jiné místo</span>
+                        </span>
                         <input class="a-input hidden" type="number" min="0" v-model="item.id" />
                         <input class="a-input" type="text" disabled="true" v-model="placeSelect[index]" v-if="placeSelect[index]" />
                         <input class="a-input" type="text" v-model="searchQuery" v-if="!placeSelect[index]" />

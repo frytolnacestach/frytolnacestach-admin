@@ -1,5 +1,7 @@
 <template>
-    <span @click="removePlace()" v-if="placeSelect">Vybret jiné místo</span>
+    <span class="a-button-reset" v-if="placeSelect">
+        <span class="a-button-reset__input" @click="removePlace()">Vybret jiné místo</span>
+    </span>
     <input class="a-input hidden" type="number" min="0" :name="name" v-model="id" :required="required" />
     <input class="a-input" type="text" disabled="true" v-model="placeSelect" v-if="placeSelect" />
     <input class="a-input" type="text" v-model="searchQuery" v-if="!placeSelect" />

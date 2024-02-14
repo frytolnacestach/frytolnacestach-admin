@@ -1,0 +1,12 @@
+.a-button-reset {
+    display: flex;
+    justify-content: flex-end;
+
+    &__input {
+        cursor: pointer;
+        background-color: $gray7;
+        color: $white;
+        font-size: $fs-small-ssss;
+        padding: 3px 8px;
+    }
+}
