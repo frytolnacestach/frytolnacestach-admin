@@ -70,25 +70,25 @@
                                             <!-- Form - id_state -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Státu" nameDB="id_state" perex="" :required=false />
-                                                <mInputIDPlaces :value="eventIDstate" name="state" :required=false @id-place="handleIDstate" />
+                                                <mInputIDPlaces :value="eventIDstate" name="state" type="state" :required=false @id-place="handleIDstate" />
                                             </div>
                                             <!-- Form - id_state END -->
                                             <!-- Form - id_region -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Regionu" nameDB="id_region" perex="" :required=false />
-                                                <mInputIDPlaces :value="eventIDregion" name="region" :required=false @id-place="handleIDregion" />
+                                                <mInputIDPlaces :value="eventIDregion" name="region" type="region" :required=false @id-place="handleIDregion" />
                                             </div>
                                             <!-- Form - id_region END -->
                                             <!-- Form - id_city -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Města" nameDB="id_city" perex="" :required=false />
-                                                <mInputIDPlaces :value="eventIDcity" name="city" :required=false @id-place="handleIDcity" />
+                                                <mInputIDPlaces :value="eventIDcity" name="city" type="city" :required=false @id-place="handleIDcity" />
                                             </div>
                                             <!-- Form - id_city END -->
                                             <!-- Form - id_spot -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Místa" nameDB="id_spot" perex="" :required=false />
-                                                <mInputIDPlaces :value="eventIDspot" name="spot" :required=false @id-place="handleIDspot" />
+                                                <mInputIDPlaces :value="eventIDspot" name="spot" type="spot" :required=false @id-place="handleIDspot" />
                                             </div>
                                             <!-- Form - id_spot END -->
                                         </div>

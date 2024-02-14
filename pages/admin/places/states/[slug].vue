@@ -106,7 +106,7 @@
                                             <!-- Form - id_continent -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Kontinentu" nameDB="id_continent" perex="" :required=true />
-                                                <mInputIDPlaces :value="placesStateIDcontinent" name="id_continent" :required=true @id-place="handleIDcontinent" />
+                                                <mInputIDPlaces :value="placesStateIDcontinent" name="id_continent" type="continent" :required=true @id-place="handleIDcontinent" />
                                             </div>
                                             <!-- Form - id_continent -->
                                         </div>

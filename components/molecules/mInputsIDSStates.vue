@@ -40,6 +40,10 @@
             value: {
                 type: Array,
                 required: true
+            },
+            type: {
+                type: String,
+                required: true
             }
         },
 
