@@ -75,7 +75,7 @@
                                             <!-- Form - slug END -->
                                             <!-- Form - ids_states -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="IDčka států" nameDB="ids_states" perex="" :required=false />
+                                                <mLabel name="Názvy států" nameDB="ids_states" perex="" :required=false />
                                                 <mInputsIDSStates :value="faunaIDSstates" type="state" @ids-states="handleIDSStates" />
                                             </div>
                                             <!-- Form - ids_states END -->

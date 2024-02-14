@@ -93,7 +93,7 @@
                                             <!-- Form - information(JSON) -->
                                             <!-- Form - ids_states(JSON) -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="IDčka států" nameDB="ids_states" perex="" :required=false />
+                                                <mLabel name="Názvy států" nameDB="ids_states" perex="" :required=false />
                                                 <mInputsIDSStates :value="chainIDSstates" type="state" @ids-states="handleIDSStates" />
                                             </div>
                                             <!-- Form - ids_states(JSON) -->
