@@ -85,7 +85,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_state -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="ID Státu" nameDB="id_state" perex="" :required=true />
+                                                <mLabel name="Název státu" nameDB="id_state" perex="" :required=true />
                                                 <mInputIDPlaces :value="placesCityIDstate" name="state" type="state" :required=true @id-place="handleIDstate" />
                                             </div>
                                             <!-- Form - id_state END -->

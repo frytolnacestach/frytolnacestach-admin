@@ -85,13 +85,13 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_state -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="ID Státu" nameDB="id_state" perex="" :required=true />
+                                                <mLabel name="Název státu" nameDB="id_state" perex="" :required=true />
                                                 <mInputIDPlaces :value="placesSpotIDstate" name="state" type="state" :required=true @id-place="handleIDstate" />
                                             </div>
                                             <!-- Form - id_state END -->
                                             <!-- Form - id_city -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="ID Města" nameDB="id_city" perex="" :required=true />
+                                                <mLabel name="Název města" nameDB="id_city" perex="" :required=true />
                                                 <mInputIDPlaces :value="placesSpotIDcity" name="city" type="city" :required=true @id-place="handleIDcity" />
                                             </div>
                                             <!-- Form - id_city END -->

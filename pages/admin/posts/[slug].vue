@@ -111,31 +111,31 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - id_continent -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="ID Kontinentu" nameDB="id_continent" perex="" :required=false />
+                                                <mLabel name="Název kontinentu" nameDB="id_continent" perex="" :required=false />
                                                 <mInputIDPlaces :value="postIDcontinent" name="id_continent" type="continent" :required=false @id-place="handleIDcontinent" />
                                             </div>
                                             <!-- Form - id_continent END -->
                                             <!-- Form - id_state -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="ID Státu" nameDB="id_state" perex="" :required=false />
+                                                <mLabel name="Název státu" nameDB="id_state" perex="" :required=false />
                                                 <mInputIDPlaces :value="postIDstate" name="id_state" type="state" :required=false @id-place="handleIDstate" />
                                             </div>
                                             <!-- Form - id_state END -->
                                             <!-- Form - id_region -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="ID Regionu" nameDB="id_region" perex="" :required=false />
+                                                <mLabel name="Název regionu" nameDB="id_region" perex="" :required=false />
                                                 <mInputIDPlaces :value="postIDregion" name="id_region" type="region" :required=false @id-place="handleIDregion" />
                                             </div>
                                             <!-- Form - id_region END -->
                                             <!-- Form - id_city -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="ID Města" nameDB="id_city" perex="" :required=false />
+                                                <mLabel name="Název města" nameDB="id_city" perex="" :required=false />
                                                 <mInputIDPlaces :value="postIDcity" name="id_city" type="city" :required=false @id-place="handleIDcity" />
                                             </div>
                                             <!-- Form - id_city END -->
                                             <!-- Form - id_spot -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="ID Místa" nameDB="id_spot" perex="" :required=false />
+                                                <mLabel name="Název místa" nameDB="id_spot" perex="" :required=false />
                                                 <mInputIDPlaces :value="postIDspot" name="id_spot" type="spot" :required=false @id-place="handleIDspot" />
                                             </div>
                                             <!-- Form - id_spot END -->
