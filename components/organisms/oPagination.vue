@@ -47,8 +47,8 @@
                 }
             },
             changePage(page) {
-                this.selectPage = page;
-                this.$emit('select-page', this.selectPage);
+                this.selectPage = page
+                this.$emit('select-page', this.selectPage)
             }
         },
 
