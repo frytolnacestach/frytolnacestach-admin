@@ -40,6 +40,7 @@
         data() {
             return {
                 id: this.value,
+                loadPlace: [],
                 placeSelect: ''
             }
         },
@@ -54,7 +55,27 @@
             removePlace() {
                 this.id = null
                 this.placeSelect = ''
+            },
+            checkExstingName() {
+                if (this.id && !this.placeSelect) {
+                    this.load(this.id, this.type)
+                }
+            },
+            load(id, type) {
+                const runTimeConfig = useRuntimeConfig()
+                fetch(`${runTimeConfig.public.baseURL}/places-continent-id/${id}`, {
+                    method: 'GET'
+                })
+                .then(res => res.json())
+                .then(data => {
+                    this.loadPlace = data
+                    this.placeSelect = this.loadPlace[0].name
+                })
             }
+        },
+
+        mounted() {
+            this.checkExstingName()
         },
 
         setup(props) {
