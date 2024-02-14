@@ -9,7 +9,7 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <mLabel name="ID" nameDB="id" perex="" type="json" :required=false />
+                        <mLabel name="Název (in code ID)" nameDB="id" perex="" type="json" :required=false />
                         <span class="a-button-reset" v-if="placeSelect[index]">
                             <span class="a-button-reset__input" @click="removePlace(index)">Vybret jiné místo</span>
                         </span>
