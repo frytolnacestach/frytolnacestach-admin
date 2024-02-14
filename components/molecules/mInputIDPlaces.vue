@@ -63,7 +63,19 @@
             },
             load(id, type) {
                 const runTimeConfig = useRuntimeConfig()
-                fetch(`${runTimeConfig.public.baseURL}/places-continent-id/${id}`, {
+                let apiFiber
+                if (type === "continent") {
+                    apiFiber = "places-continent-id"
+                } else if (type === "state") {
+                    apiFiber = "places-state-id"
+                } else if (type === "region") {
+                    apiFiber = "places-region-id"
+                } else if (type === "city") {
+                    apiFiber = "places-city-id"
+                } else if (type === "spot") {
+                    apiFiber = "places-spot-id"
+                }
+                fetch(`${runTimeConfig.public.baseURL}/${apiFiber}/${id}`, {
                     method: 'GET'
                 })
                 .then(res => res.json())
