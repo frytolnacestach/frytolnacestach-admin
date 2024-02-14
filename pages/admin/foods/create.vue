@@ -76,7 +76,7 @@
                                             <!-- Form - ids_states(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="IDčka států" nameDB="ids_states" perex="" :required=false />
-                                                <mInputsIDSStates :value="foodIDSstates" @ids-states="handleIDSStates" />
+                                                <mInputsIDSStates :value="foodIDSstates" type="state" @ids-states="handleIDSStates" />
                                             </div>
                                             <!-- Form - ids_states(JSON) END -->
                                             <!-- Form - name -->

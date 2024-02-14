@@ -129,7 +129,7 @@
                                             <!-- Form - ids_states(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="IDčka států" nameDB="ids_states" perex="" :required=false />
-                                                <mInputsIDSStates :value="wallSocketIDSstates" @ids-states="handleIDSStates" />
+                                                <mInputsIDSStates :value="wallSocketIDSstates" type="state" @ids-states="handleIDSStates" />
                                             </div>
                                             <!-- Form - ids_states(JSON) END -->
                                         </div>
