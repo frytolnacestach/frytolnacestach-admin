@@ -143,12 +143,6 @@
                                                 <input class="a-input" type="text" name="name_original" v-model="placesSpotNameOriginal" required />
                                             </div>
                                             <!-- Form - name original END -->
-                                            <!-- Form - type_spot -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Typ místa" nameDB="type_spot" perex="" :required=false />
-                                                <mInputsTypeSpot :value="placesSpotTypeSpot" @type-spot="handleTypeSpot" />
-                                            </div>
-                                            <!-- Form - type_spot END -->
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
@@ -167,6 +161,12 @@
                                                 <mInputsInformationDuration :value="placesSpotInformationDuration" @information-duration="handleInformationDuration" />
                                             </div>
                                             <!-- Form - information_duration(JSON) END -->
+                                            <!-- Form - type_spot -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Typ místa" nameDB="type_spot" perex="" :required=false />
+                                                <mInputsTypeSpot :value="placesSpotTypeSpot" @type-spot="handleTypeSpot" />
+                                            </div>
+                                            <!-- Form - type_spot END -->
                                             <!-- Form - altitude -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Nadmořská výška" nameDB="altitude" perex="" :required=false />

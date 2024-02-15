@@ -73,18 +73,18 @@
                                                 <aInputSlug :value="wallSocketSlug" :valueCreate="wallSocketName" :edit=true @slug="handleSlug" />
                                             </div>
                                             <!-- Form - slug END -->
-                                            <!-- Form - label -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Typ zásuvky" nameDB="label" perex="" :required=true />
-                                                <input class="a-input" type="text" name="label" v-model="wallSocketLabel" required />
-                                            </div>
-                                            <!-- Form - label -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Název" nameDB="name" perex="" :required=true />
                                                 <input class="a-input" type="text" name="name" v-model="wallSocketName" required />
                                             </div>
                                             <!-- Form - name -->
+                                            <!-- Form - label -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Typ zásuvky" nameDB="label" perex="" :required=true />
+                                                <input class="a-input" type="text" name="label" v-model="wallSocketLabel" required />
+                                            </div>
+                                            <!-- Form - label -->
                                             <!-- Form - description -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Popis" nameDB="description" perex="" :required=false />

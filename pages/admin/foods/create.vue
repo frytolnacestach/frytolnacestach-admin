@@ -73,12 +73,6 @@
                                                 <aInputSlug :value="foodSlug" :valueCreate="foodName" :edit=true @slug="handleSlug" />
                                             </div>
                                             <!-- Form - slug END -->
-                                            <!-- Form - ids_states(JSON) -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Názvy států" nameDB="ids_states" perex="" :required=false />
-                                                <mInputsIDSStates :value="foodIDSstates" type="state" @ids-states="handleIDSStates" />
-                                            </div>
-                                            <!-- Form - ids_states(JSON) END -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Název" nameDB="name" perex="" :required=true />
@@ -103,6 +97,12 @@
                                                 <mInputsRecipe :value="foodRecipe" @recipe="handleRecipe" />
                                             </div>
                                             <!-- Form - recipe END -->
+                                            <!-- Form - ids_states(JSON) -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Názvy států" nameDB="ids_states" perex="" :required=false />
+                                                <mInputsIDSStates :value="foodIDSstates" type="state" @ids-states="handleIDSStates" />
+                                            </div>
+                                            <!-- Form - ids_states(JSON) END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->

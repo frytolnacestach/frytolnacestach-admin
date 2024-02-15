@@ -117,12 +117,6 @@
                                                 <input class="a-input" type="text" name="name_original" v-model="placesRegionNameOriginal" required />
                                             </div>
                                             <!-- Form - name original END -->
-                                            <!-- Form - type_region -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Typ regionu" nameDB="type_region" perex="" :required=false />
-                                                <mInputsTypeRegion :value="placesRegionTypeRegion" @type-region="handleTypeRegion" />
-                                            </div>
-                                            <!-- Form - type_region END -->
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
@@ -141,6 +135,12 @@
                                                 <mInputsCoordinates :value="placesRegionCoordinates" :inputsMax="1" @coordinates="handleCoordinates" />
                                             </div>
                                             <!-- Form - coordinates(JSON) END -->
+                                            <!-- Form - type_region -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Typ regionu" nameDB="type_region" perex="" :required=false />
+                                                <mInputsTypeRegion :value="placesRegionTypeRegion" @type-region="handleTypeRegion" />
+                                            </div>
+                                            <!-- Form - type_region END -->
                                             <!-- Form - zoom(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Zoom map" nameDB="zoom" perex="" :required=false />

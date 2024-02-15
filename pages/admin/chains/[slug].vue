@@ -103,12 +103,6 @@
                                                 <aInputSlug :value="chainSlug" :valueCreate="chainName" :edit=false @slug="handleSlug" />
                                             </div>
                                             <!-- Form - slug END -->
-                                            <!-- Form - ids_states(JSON) -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Názvy států" nameDB="ids_states" perex="" :required=false />
-                                                <mInputsIDSStates :value="chainIDSstates" type="state" @ids-states="handleIDSStates" />
-                                            </div>
-                                            <!-- Form - ids_states(JSON) END -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Název" nameDB="name" perex="" :required=true />
@@ -127,6 +121,12 @@
                                                 <mInputsInformation :value="chainInformation" @information="handleInformation" />
                                             </div>
                                             <!-- Form - information(JSON) END -->
+                                            <!-- Form - ids_states(JSON) -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Názvy států" nameDB="ids_states" perex="" :required=false />
+                                                <mInputsIDSStates :value="chainIDSstates" type="state" @ids-states="handleIDSStates" />
+                                            </div>
+                                            <!-- Form - ids_states(JSON) END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->

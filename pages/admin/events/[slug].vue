@@ -137,18 +137,6 @@
                                                 <aInputSlug :value="eventSlug" :valueCreate="eventName" :edit=false @slug="handleSlug" />
                                             </div>
                                             <!-- Form - slug END -->
-                                            <!-- Form - date_start -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Datum začátku události" nameDB="date_start" perex="" :required=false />
-                                                <mInputTimestamptz :value="eventDateStart" @date="handleDateStart" />
-                                            </div>
-                                            <!-- Form - date_start END -->
-                                            <!-- Form - date_end -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Datum konce události" nameDB="date_end" perex="" :required=false />
-                                                <mInputTimestamptz :value="eventDateEnd" @date="handleDateEnd" />
-                                            </div>
-                                            <!-- Form - date_end END -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Název" nameDB="name" perex="" :required=true />
@@ -161,6 +149,18 @@
                                                 <aTextarea :value="eventDescription" name="description" :required=false @textareaValue="handleDescritpion" />
                                             </div>
                                             <!-- Form - description END -->
+                                            <!-- Form - date_start -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum začátku události" nameDB="date_start" perex="" :required=false />
+                                                <mInputTimestamptz :value="eventDateStart" @date="handleDateStart" />
+                                            </div>
+                                            <!-- Form - date_start END -->
+                                            <!-- Form - date_end -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum konce události" nameDB="date_end" perex="" :required=false />
+                                                <mInputTimestamptz :value="eventDateEnd" @date="handleDateEnd" />
+                                            </div>
+                                            <!-- Form - date_end END -->
                                             <!-- Form - coordinates(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Souřadnice místa konání" nameDB="coordinates" perex="" :required=false />

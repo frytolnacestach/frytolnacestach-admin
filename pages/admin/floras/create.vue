@@ -73,12 +73,6 @@
                                                 <aInputSlug :value="floraSlug" :valueCreate="floraName" :edit=true @slug="handleSlug" />
                                             </div>
                                             <!-- Form - slug END -->
-                                            <!-- Form - ids_states(JSON) -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Názvy států" nameDB="ids_states" perex="" :required=false />
-                                                <mInputsIDSStates :value="floraIDSstates" type="state" @ids-states="handleIDSStates" />
-                                            </div>
-                                            <!-- Form - ids_states(JSON) END -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Název" nameDB="name" perex="" :required=true />
@@ -91,6 +85,12 @@
                                                 <input class="a-input" type="text" name="nameLat" v-model="floraNameLat" required />
                                             </div>
                                             <!-- Form - name_lat END -->
+                                            <!-- Form - description -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Popis" nameDB="description" perex="" :required=false />
+                                                <aTextarea :value="floraDescription" name="description" :required=false @textareaValue="handleDescription" />
+                                            </div>
+                                            <!-- Form - description END -->
                                             <!-- Form - location -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Lokace výskytu" nameDB="location" perex="" :required=false />
@@ -109,12 +109,12 @@
                                                 <input class="a-input" type="text" name="statusDanger" v-model="floraStatusDanger" />
                                             </div>
                                             <!-- Form - status_danger END -->
-                                            <!-- Form - description -->
+                                            <!-- Form - ids_states(JSON) -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="Popis" nameDB="description" perex="" :required=false />
-                                                <aTextarea :value="floraDescription" name="description" :required=false @textareaValue="handleDescription" />
+                                                <mLabel name="Názvy států" nameDB="ids_states" perex="" :required=false />
+                                                <mInputsIDSStates :value="floraIDSstates" type="state" @ids-states="handleIDSStates" />
                                             </div>
-                                            <!-- Form - description END -->
+                                            <!-- Form - ids_states(JSON) END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->

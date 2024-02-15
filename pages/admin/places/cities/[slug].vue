@@ -125,15 +125,6 @@
                                                 <aInputSlug :value="placesCitySlug" :valueCreate="placesCityName" :edit=false @slug="handleSlug" />
                                             </div>
                                             <!-- Form - slug END -->
-                                            <!-- Form - importance -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Významnost" nameDB="importance" perex="" :required=false />
-                                                <select class="m-select" name="platform" v-model="placesCityImportance">
-                                                    <option :value=null>- Jaká je významnost? -</option>
-                                                    <option value="biggest">TOP10 NEJVĚTŠÍ</option>
-                                                </select>
-                                            </div>
-                                            <!-- Form - importance END -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Název" nameDB="name" perex="" :required=true />
@@ -158,6 +149,15 @@
                                                 <mInputsInformationAuthor :value="placesCityInformationAuthor" @information-author="handleInformationAuthor" />
                                             </div>
                                             <!-- Form - information_author(JSON) END -->
+                                            <!-- Form - importance -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Významnost" nameDB="importance" perex="" :required=false />
+                                                <select class="m-select" name="platform" v-model="placesCityImportance">
+                                                    <option :value=null>- Jaká je významnost? -</option>
+                                                    <option value="biggest">TOP10 NEJVĚTŠÍ</option>
+                                                </select>
+                                            </div>
+                                            <!-- Form - importance END -->
                                             <!-- Form - population -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Populace" nameDB="population" perex="" :required=false />

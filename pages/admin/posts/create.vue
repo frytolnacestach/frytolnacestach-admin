@@ -147,30 +147,6 @@
                                                 <aInputSlug :value="postSlug" :valueCreate="postTitle" :edit=true @slug="handleSlug" />
                                             </div>
                                             <!-- Form - slug END -->
-                                            <!-- Form - date_information -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Datum platnosti informací" nameDB="date_information" perex="" :required=false />
-                                                <input class="a-input" type="text" name="dateInformation" v-model="postDateInformation" />
-                                            </div>
-                                            <!-- Form - date_information END -->
-                                            <!-- Form - url_youtube -->             
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Odkaz na video na Youtube" nameDB="url_youtube" perex="" :required=false />
-                                                <input class="a-input" type="text" name="urlYoutube" v-model="postUrlYoutube" />
-                                            </div>
-                                            <!-- Form - url_youtube END -->
-                                            <!-- Form - url_wiki -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Odkaz na wiki" nameDB="url_wiki" perex="" :required=false />
-                                                <input class="a-input" type="text" name="urlWiki" v-model="postUrlWiki" />
-                                            </div>
-                                            <!-- Form - url_wiki END -->
-                                            <!-- Form - url_map -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Odkaz na mapu" nameDB="url_map" perex="" :required=false />
-                                                <input class="a-input" type="text" name="urlMap" v-model="postUrlMap" />
-                                            </div>
-                                            <!-- Form - url_map END -->
                                             <!-- Form - title -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Název" nameDB="title" perex="" :required=true />
@@ -231,6 +207,30 @@
                                                 <input class="a-input" type="text" name="perexTime" v-model="postPerexTime" />
                                             </div>
                                             <!-- Form - perex_time END -->
+                                            <!-- Form - date_information -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Datum platnosti informací" nameDB="date_information" perex="" :required=false />
+                                                <input class="a-input" type="text" name="dateInformation" v-model="postDateInformation" />
+                                            </div>
+                                            <!-- Form - date_information END -->
+                                            <!-- Form - url_youtube -->             
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Odkaz na video na Youtube" nameDB="url_youtube" perex="" :required=false />
+                                                <input class="a-input" type="text" name="urlYoutube" v-model="postUrlYoutube" />
+                                            </div>
+                                            <!-- Form - url_youtube END -->
+                                            <!-- Form - url_wiki -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Odkaz na wiki" nameDB="url_wiki" perex="" :required=false />
+                                                <input class="a-input" type="text" name="urlWiki" v-model="postUrlWiki" />
+                                            </div>
+                                            <!-- Form - url_wiki END -->
+                                            <!-- Form - url_map -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Odkaz na mapu" nameDB="url_map" perex="" :required=false />
+                                                <input class="a-input" type="text" name="urlMap" v-model="postUrlMap" />
+                                            </div>
+                                            <!-- Form - url_map END -->
                                             <!-- Form - tags(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Tagy" nameDB="tags" perex="" :required=false />

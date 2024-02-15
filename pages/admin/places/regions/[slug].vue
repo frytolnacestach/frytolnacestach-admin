@@ -137,12 +137,6 @@
                                                 <input class="a-input" type="text" name="name_original" v-model="placesRegionNameOriginal" required />
                                             </div>
                                             <!-- Form - name original END -->
-                                            <!-- Form - type_region -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Typ regionu" nameDB="type_region" perex="" :required=false />
-                                                <mInputsTypeRegion :value="placesRegionTypeRegion" @type-region="handleTypeRegion" />
-                                            </div>
-                                            <!-- Form - type_region END -->
                                             <!-- Form - information_chatgpt -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od Chat GPT" nameDB="information_chatgpt" perex="" :required=false />
@@ -155,6 +149,12 @@
                                                 <mInputsInformationAuthor :value="placesRegionInformationAuthor" @information-author="handleInformationAuthor" />
                                             </div>
                                             <!-- Form - information_author(JSON) END -->
+                                            <!-- Form - type_region -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Typ regionu" nameDB="type_region" perex="" :required=false />
+                                                <mInputsTypeRegion :value="placesRegionTypeRegion" @type-region="handleTypeRegion" />
+                                            </div>
+                                            <!-- Form - type_region END -->
                                             <!-- Form - coordinates(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Souřadnice" nameDB="coordinates" perex="" :required=false />

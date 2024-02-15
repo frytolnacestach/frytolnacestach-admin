@@ -105,18 +105,6 @@
                                                 <aInputSlug :value="placesStateSlug" :valueCreate="placesStateName" :edit=true @slug="handleSlug" />
                                             </div>
                                             <!-- Form - slug END -->
-                                            <!-- Form - id_city_main -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="ID Hlavního města" nameDB="id_city_main" perex="" :required=false />
-                                                <input class="a-input" type="number" min="0" name="city_main" v-model="placesStateIDcityMain" />
-                                            </div>
-                                            <!-- Form - id_city_main END -->
-                                            <!-- Form - ids_neighboring_countries -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Sousední státy" nameDB="ids_neighboring_countries" perex="" :required=false />
-                                                <mInputsIDSNeighboringCountries :value="placesStateIDSneighboringCountries" @ids-neighboring-countries="handleIDSneighboringCountries" />
-                                            </div>
-                                            <!-- Form - ids_neighboring_countries END -->
                                             <!-- Form - name -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Název" nameDB="name" perex="" :required=true />
@@ -141,6 +129,18 @@
                                                 <mInputsInformationAuthor :value="placesStateInformationAuthor" @information-author="handleInformationAuthor" />
                                             </div>
                                             <!-- Form - information_author(JSON) END -->
+                                            <!-- Form - id_city_main -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="ID Hlavního města" nameDB="id_city_main" perex="" :required=false />
+                                                <input class="a-input" type="number" min="0" name="city_main" v-model="placesStateIDcityMain" />
+                                            </div>
+                                            <!-- Form - id_city_main END -->
+                                            <!-- Form - ids_neighboring_countries -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Sousední státy" nameDB="ids_neighboring_countries" perex="" :required=false />
+                                                <mInputsIDSNeighboringCountries :value="placesStateIDSneighboringCountries" @ids-neighboring-countries="handleIDSneighboringCountries" />
+                                            </div>
+                                            <!-- Form - ids_neighboring_countries END -->
                                             <!-- Form - language_phrases(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Jazykové fráze" nameDB="language_phrases" perex="" :required=false />

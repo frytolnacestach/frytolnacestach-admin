@@ -137,6 +137,18 @@
                                                 <aInputSlug :value="videoSlug" :valueCreate="videoTitle" :edit=false @slug="handleSlug" />
                                             </div>
                                             <!-- Form - slug END -->
+                                            <!-- Form - title -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Název" nameDB="title" perex="" :required=true />
+                                                <input class="a-input" type="text" name="title" v-model="videoTitle" required />
+                                            </div>
+                                            <!-- Form - title END -->
+                                            <!-- Form - perex -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Popis" nameDB="perex" perex="" :required=false />
+                                                <aTextarea :value="videoPerex" name="perex" :required=false @textareaValue="handlePerex" />
+                                            </div>
+                                            <!-- Form - perex END -->
                                             <!-- Form - platform -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Platforma" nameDB="platform" perex="" :required=true />
@@ -152,18 +164,6 @@
                                                 <input class="a-input" type="text" name="type" v-model="videoType" required />
                                             </div>
                                             <!-- Form - type END -->
-                                            <!-- Form - title -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Název" nameDB="title" perex="" :required=true />
-                                                <input class="a-input" type="text" name="title" v-model="videoTitle" required />
-                                            </div>
-                                            <!-- Form - title END -->
-                                            <!-- Form - perex -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Popis" nameDB="perex" perex="" :required=false />
-                                                <aTextarea :value="videoPerex" name="perex" :required=false @textareaValue="handlePerex" />
-                                            </div>
-                                            <!-- Form - perex END -->
                                             <!-- Form - url -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Odkaz" nameDB="url" perex="" :required=true />
