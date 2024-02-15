@@ -10,39 +10,39 @@
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
                         <mLabel name="Name" nameDB="name" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.name" />
+                        <input class="a-input -json" type="text" v-model="item.name" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Description" nameDB="description" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.description" />
+                        <input class="a-input -json" type="text" v-model="item.description" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Date" nameDB="date" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.date" />
+                        <input class="a-input -json" type="text" v-model="item.date" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Author" nameDB="author" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.author" />
+                        <input class="a-input -json" type="text" v-model="item.author" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Author update" nameDB="author_update" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.author_update" />
+                        <input class="a-input -json" type="text" v-model="item.author_update" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Date update" nameDB="date_update" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.date_update" />
+                        <input class="a-input -json" type="text" v-model="item.date_update" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Pay time" nameDB="pay_time" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.pay_time" />
+                        <input class="a-input -json" type="text" v-model="item.pay_time" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Price" nameDB="price" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.price" />
+                        <input class="a-input -json" type="text" v-model="item.price" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="URL" nameDB="url" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.url" />
+                        <input class="a-input -json" type="text" v-model="item.url" />
                     </div>
                 </div>
             </div>

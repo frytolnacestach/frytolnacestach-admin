@@ -10,7 +10,7 @@
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
                         <mLabel name="Tag" nameDB="tag" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.tag" />
+                        <input class="a-input -json" type="text" v-model="item.tag" />
                     </div>
                 </div>
             </div>

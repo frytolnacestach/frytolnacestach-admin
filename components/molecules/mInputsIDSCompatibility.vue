@@ -10,7 +10,7 @@
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
                         <mLabel name="ID" nameDB="id" perex="" type="json" :required=false />
-                        <input class="a-input" type="number" min="0" v-model="item.id" />
+                        <input class="a-input -json" type="number" min="0" v-model="item.id" />
                     </div>
                 </div>
             </div>

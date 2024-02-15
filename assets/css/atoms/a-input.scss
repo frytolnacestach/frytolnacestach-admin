@@ -17,6 +17,10 @@
         border: 1px solid transparent;
     }
 
+    &.-json {
+        border: 1px solid $gray5;
+    }
+
     &:disabled {
         background-color: $gray3;
         border: 1px solid $gray3;

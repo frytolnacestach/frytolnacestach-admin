@@ -10,19 +10,19 @@
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
                         <mLabel name="Česky" nameDB="czech" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.czech" />
+                        <input class="a-input -json" type="text" v-model="item.czech" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Překlad" nameDB="foreign_original" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.foreign_original" />
+                        <input class="a-input -json" type="text" v-model="item.foreign_original" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Překlad v latince" nameDB="foreign_latin" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.foreign_latin" />
+                        <input class="a-input -json" type="text" v-model="item.foreign_latin" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Fonetický přepis" nameDB="phonetic_transcription" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.phonetic_transcription" />
+                        <input class="a-input -json" type="text" v-model="item.phonetic_transcription" />
                     </div>
                 </div>
             </div>

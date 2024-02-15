@@ -4,4 +4,8 @@
     line-height: 26px;
     padding: 3px 10px;
     border: 1px solid $gray4;
+
+    &.-json {
+        border: 1px solid $gray5;
+    }
 }

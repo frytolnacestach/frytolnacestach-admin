@@ -1,5 +1,5 @@
 <template>
-    <label class="m-label">
+    <label :class="'m-label' + (type ? (' -' + type) : '')">
         <span class="m-label__name">
             {{ name }}
             <span class="m-label__name-column" v-if="nameDB"> ({{ nameDB }})</span>

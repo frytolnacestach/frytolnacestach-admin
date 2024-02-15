@@ -15,7 +15,7 @@
                         </span>
                         <input class="a-input hidden" type="number" min="0" v-model="item.id" />
                         <input class="a-input" type="text" disabled="true" v-model="placeSelect[index]" v-if="placeSelect[index]" />
-                        <input class="a-input" type="text" v-model="searchQuery" v-if="!placeSelect[index]" />
+                        <input class="a-input -json" type="text" v-model="searchQuery" v-if="!placeSelect[index]" />
                         <div class="m-search-list-input__items" v-if="!item.id">
                             <ul class="m-search-list-input__items">
                                 <li class="m-search-list-input__item" v-for="place in searchResult" :key="place.id" @click="selectPlace(place.id, place.name, index)">

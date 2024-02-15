@@ -10,10 +10,10 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <mLabel name="Title" nameDB="title" perex="" type="json" :required=false />
-                    <input class="a-input" type="text" v-model="item.headline.title" />
+                    <input class="a-input -json" type="text" v-model="item.headline.title" />
 
                     <mLabel name="Perex" nameDB="perex" perex="" type="json" :required=false />
-                    <input class="a-input" type="text" v-model="item.headline.perex" />
+                    <input class="a-input -json" type="text" v-model="item.headline.perex" />
                 </div>
             </div>
             <div class="o-form-item__buttons mt-1" v-if="!informationDurationArray[0]?.headline">

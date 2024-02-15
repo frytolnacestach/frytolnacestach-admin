@@ -1,4 +1,6 @@
 .m-label {
+    $self: &;
+
     width: 100%;
     display: inline-block;
     margin-bottom: 5px;
@@ -25,5 +27,25 @@
     &__perex {
         display: block;
         font-size: $fs-small-ssss;
+    }
+
+    &.-json {
+        margin-bottom: 3px;
+
+        #{$self}__name {
+            font-size: $fs-small;
+        }
+    
+        #{$self}__name-column {
+            font-size: $fs-small-s;
+        }
+    
+        #{$self}__name-required {
+            font-size: $fs-small-s;
+        }
+    
+        #{$self}__perex {
+            font-size: $fs-small-ss;
+        }
     }
 }

@@ -10,23 +10,23 @@
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
                         <mLabel name="Text" nameDB="text" perex="" type="json" :required=false />
-                        <textarea class="a-textarea" type="text" v-model="item.text"></textarea>
+                        <textarea class="a-textarea -json" type="text" v-model="item.text"></textarea>
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Date create" nameDB="date_create" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.date_create" />
+                        <input class="a-input -json" type="text" v-model="item.date_create" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Date update" nameDB="date_update" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.date_update" />
+                        <input class="a-input -json" type="text" v-model="item.date_update" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Author create" nameDB="author_create" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.author_create" />
+                        <input class="a-input -json" type="text" v-model="item.author_create" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Author update" nameDB="author_update" perex="" type="json" :required=false />
-                        <input class="a-input" type="text" v-model="item.author_update" />
+                        <input class="a-input -json" type="text" v-model="item.author_update" />
                     </div>
                 </div>
             </div>

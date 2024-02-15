@@ -10,11 +10,11 @@
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
                         <mLabel name="Latitude" nameDB="latitude" perex="" type="json" :required=false />
-                        <input class="a-input" type="number" step=".0000001" v-model="item.latitude" />
+                        <input class="a-input -json" type="number" step=".0000001" v-model="item.latitude" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Longitude" nameDB="longitude" perex="" type="json" :required=false />
-                        <input class="a-input" type="number" step=".0000001" v-model="item.longitude" />
+                        <input class="a-input -json" type="number" step=".0000001" v-model="item.longitude" />
                     </div>
                 </div>
             </div>
