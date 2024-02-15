@@ -62,6 +62,7 @@
         data() {
             return {
                 IDSstatesArray: this.isValidJSON(this.value) ? JSON.parse(this.value) : [],
+                loadPlaces: [],
                 placeSelect: []
             }
         },
@@ -93,7 +94,35 @@
             removePlace(index) {
                 this.IDSstatesArray.splice(index, 1)
                 this.placeSelect.splice(index, 1);
+            },
+            checkExstingName() {
+                if (this.IDSstatesArray[0].id && !this.placeSelect[0]) {
+                    this.load(this.IDSstatesArray)
+                }
+            },
+            load(ids) {
+                const runTimeConfig = useRuntimeConfig()
+                const placesID = ids.map(place => place.id) || []
+
+                fetch(`${runTimeConfig.public.baseURL}/places-states-array?showType=list&id=${placesID.join(',')}`, {
+                    method: 'GET'
+                })
+                .then(res => res.json())
+                .then(data => {
+                    this.loadPlaces = data
+
+                    const sortedNames = ids.map(place => {
+                        const matchingPlace = this.loadPlaces.find(loadPlace => loadPlace.id === place.id)
+                        return matchingPlace ? matchingPlace.name : ''
+                    })
+
+                    this.placeSelect = sortedNames
+                })
             }
+        },
+
+        mounted() {
+            this.checkExstingName()
         },
 
         setup(props) {
