@@ -1,6 +1,6 @@
 <template>
     <div class="o-form-item__group">
-        <div class="o-form-item__group-items">
+        <div class="o-form-item__group-items" v-if="informationDurationArray && informationDurationArray.length > 0">
             <!-- Headline -->
             <div class="o-form-item__group-item" v-for="(item, index) in informationDurationArray" :key="index" v-if="informationDurationArray[0]?.headline">
                 <div class="m-button-remove">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="o-form-item__buttons mt-1">
+            <div :class="'o-form-item__buttons' + ((informationDurationArray && informationDurationArray.length > 0) ? 'mt-1' : '')">
                 <div class="o-form-item__button">
                     <div class="m-button-add">
                         <button class="m-button-add__input" type="button" @click="addInformationDurationTimesInput">Přidat text</button>

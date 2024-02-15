@@ -1,6 +1,6 @@
 <template>
     <div class="o-form-item__group">
-        <div class="o-form-item__group-items">
+        <div class="o-form-item__group-items" v-if="typeRegionArray && typeRegionArray.length > 0">
             <div class="o-form-item__group-item" v-for="(item, index) in typeRegionArray" :key="index">
                 <div class="m-button-remove">
                     <button class="m-button-remove__input" type="button" @click="removeTypeRegionInput(index)">
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="o-form-item__buttons mt-1">
+        <div :class="'o-form-item__buttons' + ((typeRegionArray && typeRegionArray.length > 0) ? 'mt-1' : '')">
             <div class="o-form-item__button">
                 <div class="m-button-add">
                     <button class="m-button-add__input" type="button" @click="addTypeRegionInput">Přidat typ</button>
