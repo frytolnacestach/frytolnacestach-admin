@@ -10,7 +10,7 @@
             <!-- SECTION - BREADCRUMBS END -->
 
             <section class="t-section my-4">
-                <div class="t-section__inner">
+                <div class="t-section__inner -w640">
 
                     <mButtonWeb :link="'https://www.frytolnacestach.cz/clanky/' + postSlug" text="Zobrazit na webu" />
 
