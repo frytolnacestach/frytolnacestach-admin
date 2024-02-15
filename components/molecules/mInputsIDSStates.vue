@@ -96,7 +96,7 @@
                 this.placeSelect.splice(index, 1);
             },
             checkExstingName() {
-                if (this.IDSstatesArray[0].id && !this.placeSelect[0]) {
+                if (this.IDSstatesArray[0] && this.IDSstatesArray[0].id && !this.placeSelect[0]) {
                     this.load(this.IDSstatesArray)
                 }
             },
