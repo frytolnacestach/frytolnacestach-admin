@@ -12,6 +12,8 @@
             <section class="t-section my-4">
                 <div class="t-section__inner">
 
+                    <mButtonWeb :link="'https://www.frytolnacestach.cz/clanky/' + postSlug" text="Zobrazit na webu" />
+
                     <div class="o-form-item">
                         <div class="o-form-item__outer">
                             <div class="o-form-item__inner">
@@ -20,8 +22,6 @@
                                 <oFlashMessages :text="errorForm" styleThema=" -error" />
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
-
-                                <mButtonWeb :link="'https://www.frytolnacestach.cz/clanky/' + postSlug" text="Zobrazit na webu" />
 
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">

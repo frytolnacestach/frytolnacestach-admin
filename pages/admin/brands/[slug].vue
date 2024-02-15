@@ -10,7 +10,9 @@
             <!-- SECTION - BREADCRUMBS END -->
 
             <section class="t-section my-4">
-                <div class="t-section__inner">
+                <div class="t-section__inner -w640">
+
+                    <mButtonWeb :link="'https://www.frytolnacestach.cz/znacka/' + brandSlug" text="Zobrazit na webu" />
 
                     <div class="o-form-item">
                         <div class="o-form-item__outer">
@@ -20,8 +22,6 @@
                                 <oFlashMessages :text="errorForm" styleThema=" -error" />
                                 <oFlashMessages :text="successForm" styleThema=" -success" />
                                 <!-- SECTION - FlashMassages END -->
-
-                                <mButtonWeb :link="'https://www.frytolnacestach.cz/znacka/' + brandSlug" text="Zobrazit na webu" />
 
                                 <!-- FORM -->
                                 <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
