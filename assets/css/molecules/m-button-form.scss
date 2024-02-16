@@ -1,0 +1,20 @@
+.m-button-form {
+    padding: 0;
+    
+    &__input {
+        background-color: $brand1;
+        font-size: $fs-normal;
+        color: $white;
+        height: 60px;
+        line-height: 50px;
+        padding: 5px 10px;
+        border: 0;
+        width: 100%;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $brand2;
+        }
+    }
+}
