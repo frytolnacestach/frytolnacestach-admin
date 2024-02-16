@@ -12,7 +12,7 @@
             <section class="t-section my-4">
                 <div class="t-section__inner">
 
-                    <div class="o-form-item">
+                    <form class="o-form-item" @submit.prevent="editForm" v-if="loadingData">
                         <div class="o-form-item__outer">
                             <div class="o-form-item__inner">
                                 
@@ -22,7 +22,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
+                                <div class="o-form-item__form">
                                     <!-- BLOCK - Needitační hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -90,18 +90,18 @@
                                         </div>
                                     </div>
                                     <!-- BLOCK - Základní informace END-->
-                                    <!-- COMPONENT - Button -->
-                                    <div class="o-form-item__buttons mt-1">
-                                        <div class="o-form-item__button">
-                                            <mButton text="Uložit úpravy" />
-                                        </div>
-                                    </div>
-                                    <!-- COMPONENT - Button END -->
-                                </form>
+                                </div>
                                 <!-- FORM END-->
                             </div>
                         </div>
-                    </div>
+                        <!-- COMPONENT - Button -->
+                        <div class="o-form-item__buttons">
+                            <div class="o-form-item__button">
+                                <mButtonForm text="Uložit úpravy" />
+                            </div>
+                        </div>
+                        <!-- COMPONENT - Button END -->
+                    </form>
                 </div>
             </section>
         </main>
@@ -113,7 +113,7 @@
     import { useRouter } from 'vue-router'
 
     import aTextarea from '@/components/atoms/aTextarea.vue'
-    import mButton from '@/components/molecules/mButton.vue'
+    import mButtonForm from '@/components/molecules/mButtonForm.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
@@ -137,7 +137,7 @@
         //COMPONENTS
         components: {
             aTextarea,
-            mButton,
+            mButtonForm,
             mHeadlineForm,
             mLabel,
             mNavBreadcrumbs,

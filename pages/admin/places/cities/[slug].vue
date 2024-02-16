@@ -14,7 +14,7 @@
 
                     <mButtonWeb :link="'https://www.frytolnacestach.cz/svet/mesto/' + placesCitySlug" text="Zobrazit na webu" />
 
-                    <div class="o-form-item">
+                    <form class="o-form-item" @submit.prevent="editForm">
                         <div class="o-form-item__outer">
                             <div class="o-form-item__inner">
                                 
@@ -24,7 +24,7 @@
                                 <!-- SECTION - FlashMassages END -->
 
                                 <!-- FORM -->
-                                <form class="o-form-item__form" @submit.prevent="editForm" v-if="loadingData">
+                                <div class="o-form-item__form" v-if="loadingData">
                                     <!-- BLOCK - Needitační hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -209,19 +209,18 @@
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->
-
-                                    <!-- COMPONENT - Button -->
-                                    <div class="o-form-item__buttons mt-1">
-                                        <div class="o-form-item__button">
-                                            <mButton text="Uložit úpravy" />
-                                        </div>
-                                    </div>
-                                    <!-- COMPONENT - Button END -->
-                                </form>
+                                </div>
                                 <!-- FORM END -->
                             </div>
                         </div>
-                    </div>
+                        <!-- COMPONENT - Button -->
+                        <div class="o-form-item__buttons">
+                            <div class="o-form-item__button">
+                                <mButtonForm text="Uložit úpravy" />
+                            </div>
+                        </div>
+                        <!-- COMPONENT - Button END -->
+                    </form>
                 </div>
             </section>
         </main>
@@ -231,7 +230,7 @@
 <script lang="ts">
     import aInputSlug from '@/components/atoms/aInputSlug.vue'
     import aTextarea from '@/components/atoms/aTextarea.vue'
-    import mButton from '@/components/molecules/mButton.vue'
+    import mButtonForm from '@/components/molecules/mButtonForm.vue'
     import mButtonWeb from '@/components/molecules/mButtonWeb.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
@@ -329,7 +328,7 @@
         components: {
             aInputSlug,
             aTextarea,
-            mButton,
+            mButtonForm,
             mButtonWeb,
             mHeadlineForm,
             mInputIDPlaces,
