@@ -75,19 +75,19 @@
                                             <!-- Form - name END -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Název" nameDB="name" perex="" :required=true />
-                                                <input class="a-input" type="text" name="name" v-model="imageName" required />
+                                                <input class="a-input" type="text" name="name" disabled="true" v-model="imageName" required />
                                             </div>
                                             <!-- Form - name END -->
                                             <!-- Form - source -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Zdroj" nameDB="source" perex="" :required=true />
-                                                <input class="a-input" type="text" name="source" v-model="imageSource" required />
+                                                <input class="a-input" type="text" name="source" disabled="true" v-model="imageSource" required />
                                             </div>
                                             <!-- Form - source END -->
                                             <!-- Form - type -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Typ použití" nameDB="type" perex="" :required=true />
-                                                <input class="a-input" type="text" name="type" v-model="imageType" required />
+                                                <input class="a-input" type="text" name="type" disabled="true" v-model="imageType" required />
                                             </div>
                                             <!-- Form - type END -->
                                             <!-- Form - author -->
