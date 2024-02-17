@@ -9,28 +9,28 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <mLabel name="Date" nameDB="date" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.date" />
-                    </div>
-                    <div class="o-form-item__group-input">
                         <mLabel name="Name" nameDB="name" perex="" type="json" :required=false />
                         <input class="a-input -json" type="text" v-model="item.name" />
+                    </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Date add to organization" nameDB="date_add_to_organization" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.date_add_to_organization" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Author" nameDB="author" perex="" type="json" :required=false />
                         <input class="a-input -json" type="text" v-model="item.author" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <mLabel name="Date update" nameDB="date_update" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.date_update" />
-                    </div>
-                    <div class="o-form-item__group-input">
                         <mLabel name="Author update" nameDB="author_update" perex="" type="json" :required=false />
                         <input class="a-input -json" type="text" v-model="item.author_update" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <mLabel name="Date add to organization" nameDB="date_add_to_organization" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.date_add_to_organization" />
+                        <mLabel name="Date" nameDB="date" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.date" />
+                    </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Date update" nameDB="date_update" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.date_update" />
                     </div>
                 </div>
             </div>
@@ -80,12 +80,12 @@
             },
             addOrganizationInput() {
                 this.organizationArray.push({
-                    date: '',
                     name: '',
+                    date_add_to_organization: '',
                     author: '',
-                    date_update: '',
                     author_update: '',
-                    date_add_to_organization: ''
+                    date: '',
+                    date_update: ''
                 })
                 this.$emit('organization', this.organizationArray)
             },

@@ -17,22 +17,6 @@
                         <input class="a-input -json" type="text" v-model="item.description" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <mLabel name="Date" nameDB="date" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.date" />
-                    </div>
-                    <div class="o-form-item__group-input">
-                        <mLabel name="Author" nameDB="author" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.author" />
-                    </div>
-                    <div class="o-form-item__group-input">
-                        <mLabel name="Author update" nameDB="author_update" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.author_update" />
-                    </div>
-                    <div class="o-form-item__group-input">
-                        <mLabel name="Date update" nameDB="date_update" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.date_update" />
-                    </div>
-                    <div class="o-form-item__group-input">
                         <mLabel name="Pay time" nameDB="pay_time" perex="" type="json" :required=false />
                         <input class="a-input -json" type="text" v-model="item.pay_time" />
                     </div>
@@ -43,6 +27,22 @@
                     <div class="o-form-item__group-input">
                         <mLabel name="URL" nameDB="url" perex="" type="json" :required=false />
                         <input class="a-input -json" type="text" v-model="item.url" />
+                    </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Author" nameDB="author" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.author" />
+                    </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Author update" nameDB="author_update" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.author_update" />
+                    </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Date" nameDB="date" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.date" />
+                    </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Date update" nameDB="date_update" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.date_update" />
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
     import mLabel from '@/components/molecules/mLabel.vue'
 
     export default defineComponent({
-        name: 'MoleculesmInputsparkingComponent',
+        name: 'MoleculesmInputsParkingComponent',
 
         //COMPONENTS
         components: {
@@ -92,15 +92,15 @@
             },
             addParkingInput() {
                 this.parkingArray.push({
-                    url: '',
-                    date: '',
                     name: '',
-                    price: '',
-                    author: '',
-                    pay_time: '',
-                    date_update: '',
                     description: '',
-                    author_update: ''
+                    pay_time: '',
+                    price: '',
+                    url: '',
+                    author: '',
+                    author_update: '',
+                    date: '',
+                    date_update: ''
                 })
                 this.$emit('parking', this.parkingArray)
             },

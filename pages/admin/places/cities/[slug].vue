@@ -249,10 +249,10 @@
 
     interface InformationAuthor {
         text: string
-        date_create: string
-        date_update: string
         author_create: string
         author_update: string
+        date_create: string
+        date_update: string
     }
     
     interface Coordinates {
@@ -274,23 +274,24 @@
         name: string
         text: string
         type: string
-        author: string
-        date_create: string
-        date_update: string
         date_start: string
         date_end: string
+        author: string
+        author_update: string
+        date_create: string
+        date_update: string
     }
 
     interface Parking {
         url: string
-        date: string
         name: string
-        pricE: string
-        author: string
+        price: string
         pay_time: string
-        date_update: string
         description: string
+        author: string
         author_update: string
+        date: string
+        date_update: string
     }
 
     interface seoTags {

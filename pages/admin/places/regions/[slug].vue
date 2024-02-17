@@ -215,10 +215,10 @@
 
     interface InformationAuthor {
         text: string
-        date_create: string
-        date_update: string
         author_create: string
         author_update: string
+        date_create: string
+        date_update: string
     }
 
     interface Coordinates {

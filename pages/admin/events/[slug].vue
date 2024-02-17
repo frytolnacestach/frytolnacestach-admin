@@ -249,8 +249,14 @@
 
     interface Prices {
         name: string
-        perex: string
-        value: string
+        description: string
+        pay_time: string
+        price: string
+        url: string
+        author: string
+        author_update: string
+        date_create: string
+        date_update: string
     }
 
     interface Links {

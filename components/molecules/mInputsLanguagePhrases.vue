@@ -24,6 +24,22 @@
                         <mLabel name="Fonetický přepis" nameDB="phonetic_transcription" perex="" type="json" :required=false />
                         <input class="a-input -json" type="text" v-model="item.phonetic_transcription" />
                     </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Author create" nameDB="author_create" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.author_create" />
+                    </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Author update" nameDB="author_update" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.author_update" />
+                    </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Date create" nameDB="date_create" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.date_create" />
+                    </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Date update" nameDB="date_update" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.date_update" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,7 +91,11 @@
                     czech: '',
                     foreign_original: '',
                     foreign_latin: '',
-                    phonetic_transcription: ''
+                    phonetic_transcription: '',
+                    author_create: null,
+                    author_update: null,
+                    date_create: '',
+                    date_update: ''
                 })
                 this.$emit('language-phrases', this.languagePhrasesArray)
             },

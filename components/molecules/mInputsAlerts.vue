@@ -21,7 +21,19 @@
                         <input class="a-input -json" type="text" v-model="item.type" />
                     </div>
                     <div class="o-form-item__group-input">
+                        <mLabel name="Date start" nameDB="date_start" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.date_start" />
+                    </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Date end" nameDB="date_end" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.date_end" />
+                    </div>
+                    <div class="o-form-item__group-input">
                         <mLabel name="Author" nameDB="author" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.author" />
+                    </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Author update" nameDB="author_update" perex="" type="json" :required=false />
                         <input class="a-input -json" type="text" v-model="item.author" />
                     </div>
                     <div class="o-form-item__group-input">
@@ -31,14 +43,6 @@
                     <div class="o-form-item__group-input">
                         <mLabel name="Date update" nameDB="date_update" perex="" type="json" :required=false />
                         <input class="a-input -json" type="text" v-model="item.date_update" />
-                    </div>
-                    <div class="o-form-item__group-input">
-                        <mLabel name="Date start" nameDB="date_start" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.date_start" />
-                    </div>
-                    <div class="o-form-item__group-input">
-                        <mLabel name="Date end" nameDB="date_end" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.date_end" />
                     </div>
                 </div>
             </div>
@@ -91,11 +95,12 @@
                     name: '',
                     text: '',
                     type: '',
+                    date_start: '',
+                    date_end: '',
                     author: '',
+                    author_update: '',
                     date_create: '',
                     date_update: '',
-                    date_start: '',
-                    date_end: ''
                 })
                 this.$emit('alerts', this.alertsArray)
             },

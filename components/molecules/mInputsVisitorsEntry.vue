@@ -17,20 +17,20 @@
                         <input class="a-input -json" type="text" v-model="item.value" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <mLabel name="Date create" nameDB="date_create" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.date_create" />
-                    </div>
-                    <div class="o-form-item__group-input">
-                        <mLabel name="Date update" nameDB="date_update" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.date_update" />
-                    </div>
-                    <div class="o-form-item__group-input">
                         <mLabel name="Author create" nameDB="author_create" perex="" type="json" :required=false />
                         <input class="a-input -json" type="text" v-model="item.author_create" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Author update" nameDB="author_update" perex="" type="json" :required=false />
                         <input class="a-input -json" type="text" v-model="item.author_update" />
+                    </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Date create" nameDB="date_create" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.date_create" />
+                    </div>
+                    <div class="o-form-item__group-input">
+                        <mLabel name="Date update" nameDB="date_update" perex="" type="json" :required=false />
+                        <input class="a-input -json" type="text" v-model="item.date_update" />
                     </div>
                 </div>
             </div>
@@ -82,10 +82,10 @@
                 this.visitorsEntryArray.push({
                     name: '',
                     value: '',
-                    date_create: '',
-                    date_update: '',
                     author_create: null,
-                    author_update: null
+                    author_update: null,
+                    date_create: '',
+                    date_update: ''
                 })
                 this.$emit('visitors-entry', this.visitorsEntryArray)
             },

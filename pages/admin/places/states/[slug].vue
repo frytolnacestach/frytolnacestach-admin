@@ -339,19 +339,19 @@
 
     interface InformationAuthor {
         text: string
-        date_create: string
-        date_update: string
         author_create: string
         author_update: string
+        date_create: string
+        date_update: string
     }
 
     interface PhoneNumbersEmergency {
         name: string
         value: string
-        date_create: string
-        date_update: string
         author_create: number
         author_update: number
+        date_create: string
+        date_update: string
     }
 
     interface Currency {
@@ -362,37 +362,37 @@
     interface MoneyPrices {
         name: string
         value: string
-        date_create: string
-        date_update: string
         author_create: number
         author_update: number
+        date_create: string
+        date_update: string
     }
 
     interface PeopleReligion {
         name: string
         value: string
-        date_create: string
-        date_update: string
         author_create: number
         author_update: number
+        date_create: string
+        date_update: string
     }
 
     interface PeopleNationality {
         name: string
         value: string
-        date_create: string
-        date_update: string
         author_create: number
         author_update: number
+        date_create: string
+        date_update: string
     }
 
     interface VisitorsEntry {
         name: string
         value: string
-        date_create: string
-        date_update: string
         author_create: number
         author_update: number
+        date_create: string
+        date_update: string
     }
 
     interface Coordinates {
@@ -414,40 +414,41 @@
         name: string
         text: string
         type: string
-        author: string
-        date_create: string
-        date_update: string
         date_start: string
         date_end: string
+        author: string
+        author_update: string
+        date_create: string
+        date_update: string
     }
 
     interface Organization {
-        date: string
         name: string
-        author: string
-        date_update: string
-        author_update: string
         date_add_to_organization: string
+        author: string
+        author_update: string
+        date: string
+        date_update: string
     }
 
     interface Apps {
-        url: string
-        date: string
         name: string
-        author: string
-        date_update: string
         description: string
+        url: string
+        author: string
         author_update: string
+        date: string
+        date_update: string
     }
 
     interface Links {
-        url: string
-        date: string
         name: string
-        author: string
-        date_update: string
         description: string
+        url: string
+        author: string
         author_update: string
+        date: string
+        date_update: string
     }
 
     interface seoTags {
@@ -456,12 +457,22 @@
 
     interface LanguagePhrases {
         czech: string
-        foreign: string
+        foreign_original: string
+        foreign_latin: string
+        phonetic_transcription: string
+        author: string
+        author_update: string
+        date: string
+        date_update: string
     }
 
     interface FactsPlace {
         name: string
         value: string
+        author: string
+        author_update: string
+        date: string
+        date_update: string
     }
 
     interface PlacesState {
