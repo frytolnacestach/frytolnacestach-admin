@@ -9,12 +9,12 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <mLabel name="Latitude" nameDB="latitude" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="number" step=".0000001" v-model="item.latitude" />
+                        <mLabel name="Latitude" nameDB="latitude" perex="Zeměpisná šířka je hodnota v rozmezí -90 až 90" type="json" :required=false />
+                        <input class="a-input -json" type="number" min="-90" max="90" step=".0000001" v-model="item.latitude" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <mLabel name="Longitude" nameDB="longitude" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="number" step=".0000001" v-model="item.longitude" />
+                        <mLabel name="Longitude" nameDB="longitude" perex="Zeměpisná délka je hodnota v rozmezí -180 až 180" type="json" :required=false />
+                        <input class="a-input -json" type="number" min="-180" max="180" step=".0000001" v-model="item.longitude" />
                     </div>
                 </div>
             </div>
