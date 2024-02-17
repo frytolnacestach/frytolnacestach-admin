@@ -73,8 +73,8 @@
 
                                             <!-- Form - ids_place -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="ID místa" nameDB="id_place" :perex="(topPlaceType === '' ? 'Nejdříve je nutné vybrat typ místa' : '')" :required=true />
-                                                <mInputIDPlaces :value="topPlaceIDplace" name="idPlace" :type="topPlaceIDplace" :required=true @id-place="handleIDplace" v-if="topPlaceIDplace" />
+                                                <mLabel name="Název místa" nameDB="id_place" :perex="(topPlaceType === '' ? 'Nejdříve je nutné vybrat typ místa' : '')" :required=true />
+                                                <mInputIDPlaces :value="topPlaceIDplace" name="idPlace" :type="topPlaceType" :required=true @id-place="handleIDplace" v-if="topPlaceType" />
                                                 <input class="a-input" type="number" min="0" name="idPlace" :disabled="topPlaceType === ''" v-model="topPlaceIDplace" required v-else />
                                             </div>
                                             <!-- Form - ids_place END -->

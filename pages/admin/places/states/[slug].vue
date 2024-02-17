@@ -151,7 +151,7 @@
                                             <!-- Form - information_author(JSON) END -->
                                             <!-- Form - id_city_main -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="ID Hlavního města" nameDB="id_city_main" perex="" :required=false />
+                                                <mLabel name="Název hlavního města" nameDB="id_city_main" perex="" :required=false />
                                                 <mInputIDPlaces :value="placesStateIDcityMain" name="city_main" type="city" :required=true @id-place="handleCityMain" />
                                             </div>
                                             <!-- Form - id_city_main END -->

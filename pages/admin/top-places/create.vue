@@ -29,9 +29,9 @@
                                         <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
-                                            <!-- Form - id_place -->
+                                            <!-- Form - type -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="ID místa" nameDB="id_place" perex="" :required=true />
+                                                <mLabel name="Typ" nameDB="type" perex="" :required=true />
                                                 <select class="m-select" name="platform" v-model="topPlaceType" required>
                                                     <option value="" v-if="!topPlaceIDplace">- Vyber typ místa -</option>
                                                     <option value="continent">Kontinent</option>
@@ -41,14 +41,14 @@
                                                     <option value="spot">Místo</option>
                                                 </select>
                                             </div>
-                                            <!-- Form - id_place END -->
-                                            <!-- Form - type -->
+                                            <!-- Form - type END -->
+                                            <!-- Form - id_place -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="Typ" nameDB="type" :perex="(topPlaceType === '' ? 'Nejdříve je nutné vybrat typ místa' : '')" :required=true />
+                                                <mLabel name="ID místa" nameDB="id_place" :perex="(topPlaceType === '' ? 'Nejdříve je nutné vybrat typ místa' : '')" :required=true />
                                                 <mInputIDPlaces :value="topPlaceIDplace" name="idPlace" :type="topPlaceType" :required=true @id-place="handleIDplace" v-if="topPlaceType" />
                                                 <input class="a-input" type="number" min="0" name="idPlace" :disabled="topPlaceType === ''" v-model="topPlaceIDplace" required v-else />
                                             </div>
-                                            <!-- Form - type END -->
+                                            <!-- Form - id_place END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->
