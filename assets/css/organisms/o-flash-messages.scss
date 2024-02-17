@@ -15,13 +15,15 @@
         width: 100%;
 
         &.-success {
-            background-color: $successBackgroundcolor;
-            border: 2px solid $successBordercolor;
+            background-color: $greenBG;
+            color: $greenTEXT;
+            border: 2px solid $greenBORDER;
         }
 
         &.-error {
-            background-color: $errorBackgroundcolor;
-            border: 2px solid $errorBordercolor;
+            background-color: $redBG;
+            color: $redTEXT;
+            border: 2px solid $redBORDER;
         }
     }
 
@@ -31,8 +33,7 @@
 
     &__inner {
         width: 100%;
-        padding: 5px 15px;
-        color: black;
+        padding: 10px 15px;
     }
 
     &__text {

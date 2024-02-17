@@ -23,15 +23,15 @@
 
     // variant
     &.-existing {
-        background-color: $successBordercolor;
+        background-color: $green;
     }
 
     &.-no-existing {
-        background-color: $errorBordercolor;
+        background-color: $red;
     }
 
     &.-error {
-        background-color: $errorBordercolor;
+        background-color: $red;
     }
 
     &.-loading {
