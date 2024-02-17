@@ -9,12 +9,21 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <mLabel name="Name" nameDB="name" perex="" type="json" :required=false />
+                        <mLabel name="Název služby" nameDB="name" perex="" type="json" :required=false />
                         <input class="a-input -json" type="text" v-model="item.name" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <mLabel name="Value" nameDB="value" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.value" />
+                        <mLabel name="Zobrazení" nameDB="value" perex="" type="json" :required=false />
+                        <div class="m-radio -json">
+                            <label class="m-radio__label">
+                                <input class="m-radio__input" type="radio" v-model="item.value" :value="true" />
+                                <span class="m-radio__text">Ano</span>
+                            </label>
+                            <label class="m-radio__label">
+                                <input class="m-radio__input" type="radio" v-model="item.value" :value="false" />
+                                <span class="m-radio__text">Ne</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>

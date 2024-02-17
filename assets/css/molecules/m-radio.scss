@@ -1,0 +1,19 @@
+.m-radio {
+
+    &__label {
+        padding: 0 3px;
+    }
+
+    &__input {
+
+    }
+
+    &__text {
+        
+    }
+
+    &.-json {
+        padding: 5px 3px;
+        background-color: $gray3;
+    }
+}
