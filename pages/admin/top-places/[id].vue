@@ -74,7 +74,8 @@
                                             <!-- Form - ids_place -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID místa" nameDB="id_place" :perex="(topPlaceType === '' ? 'Nejdříve je nutné vybrat typ místa' : '')" :required=true />
-                                                <input class="a-input" type="number" min="0" name="idPlace" :disabled="topPlaceType === ''" v-model="topPlaceIDplace" required />
+                                                <mInputIDPlaces :value="topPlaceIDplace" name="idPlace" :type="topPlaceIDplace" :required=true @id-place="handleIDplace" v-if="topPlaceIDplace" />
+                                                <input class="a-input" type="number" min="0" name="idPlace" :disabled="topPlaceType === ''" v-model="topPlaceIDplace" required v-else />
                                             </div>
                                             <!-- Form - ids_place END -->
                                         </div>
@@ -101,6 +102,7 @@
 <script lang="ts">
     import mButtonForm from '@/components/molecules/mButtonForm.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mLabel from '@/components/molecules/mLabel.vue'
     import mNavBreadcrumbs from '@/components/molecules/mNavBreadcrumbs.vue'
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
@@ -121,6 +123,7 @@
         components: {
             mButtonForm,
             mHeadlineForm,
+            mInputIDPlaces,
             mLabel,
             mNavBreadcrumbs,
             oFlashMessages,
@@ -166,6 +169,9 @@
         watch: {
             topPlaceName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
+            },
+            handleIDplace(newIDplace: number) {
+                this.topPlaceIDplace = newIDplace
             }
         },
 
