@@ -132,7 +132,7 @@
                                             <!-- Form - id_city_main -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="ID Hlavního města" nameDB="id_city_main" perex="" :required=false />
-                                                <input class="a-input" type="number" min="0" name="city_main" v-model="placesStateIDcityMain" />
+                                                <mInputIDPlaces :value="placesStateIDcityMain" name="city_main" type="city" :required=true @id-place="handleCityMain" />
                                             </div>
                                             <!-- Form - id_city_main END -->
                                             <!-- Form - ids_neighboring_countries -->
@@ -391,6 +391,9 @@
             },
             handleIDcontinent(newIDcontinent: number) {
                 this.placesStateIDcontinent = newIDcontinent
+            },
+            handleCityMain(newMainCity: number) {
+                this.placesStateMainCity = newMainCity
             },
             handleSeoTags(newSeoTags: string) {
                 this.placesStateSeoTags = JSON.stringify(newSeoTags)
