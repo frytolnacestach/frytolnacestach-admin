@@ -132,7 +132,7 @@
                                             <!-- Form - information_author(JSON) -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Informace od autora" nameDB="information_author" perex="" :required=false />
-                                                <mInputsInformationAuthor :value="placesSpotInformationAuthor" @information-author="handleInformationAuthor" />
+                                                <mInputsInformationAuthor :value="placesSpotInformationAuthor" :inputsMax="1" @information-author="handleInformationAuthor" />
                                             </div>
                                             <!-- Form - information_author(JSON) END -->
                                             <!-- Form - information_duration(JSON) -->

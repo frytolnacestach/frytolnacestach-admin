@@ -34,7 +34,7 @@
         <div :class="'o-form-item__buttons' + ((informationAuthor && informationAuthor.length > 0) ? 'mt-1' : '')">
             <div class="o-form-item__button">
                 <div class="m-button-add">
-                    <button class="m-button-add__input" type="button" @click="addInformationAuthorInput">Přidat text</button>
+                    <button class="m-button-add__input" type="button" @click="addInformationAuthorInput" v-if="informationAuthor.length < inputsMax">Přidat text</button>
                 </div>
             </div>
         </div>
@@ -56,6 +56,10 @@
             value: {
                 type: Array,
                 required: true
+            },
+            inputsMax: {
+                type: Number,
+                required: false
             }
         },
 
@@ -75,14 +79,16 @@
                 }
             },
             addInformationAuthorInput() {
-                this.informationAuthor.push({
-                    text: '',
-                    author_create: '',
-                    author_update: '',
-                    date_create: '',
-                    date_update: ''
-                })
-                this.$emit('information-author', this.informationAuthor)
+                if (this.informationAuthor.length < this.inputsMax) {
+                    this.informationAuthor.push({
+                        text: '',
+                        author_create: '',
+                        author_update: '',
+                        date_create: '',
+                        date_update: ''
+                    })
+                    this.$emit('information-author', this.informationAuthor)
+                }
             },
             removeInformationAuthorInput(index) {
                 this.informationAuthor.splice(index, 1)
