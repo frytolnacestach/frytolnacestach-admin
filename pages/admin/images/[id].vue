@@ -47,6 +47,24 @@
                                                 <input class="a-input" type="text" disabled="true" name="updatedAt" v-model="updatedAt" required />
                                             </div>
                                             <!-- Form - updated_at END -->
+                                            <!-- Form - name END -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Název" nameDB="name" perex="" :required=true />
+                                                <input class="a-input" type="text" name="name" disabled="true" v-model="imageName" required />
+                                            </div>
+                                            <!-- Form - name END -->
+                                            <!-- Form - source -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Zdroj" nameDB="source" perex="" :required=true />
+                                                <input class="a-input" type="text" name="source" disabled="true" v-model="imageSource" required />
+                                            </div>
+                                            <!-- Form - source END -->
+                                            <!-- Form - type -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Typ použití" nameDB="type" perex="" :required=true />
+                                                <input class="a-input" type="text" name="type" disabled="true" v-model="imageType" required />
+                                            </div>
+                                            <!-- Form - type END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Needitační hodnoty END -->
@@ -72,24 +90,6 @@
                                         <mHeadlineForm title="Editační hodnoty" styleGap=" mt-2"/>
                                         <!-- COMPONENT - Headline form END -->
                                         <div class="o-form-item__items">
-                                            <!-- Form - name END -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Název" nameDB="name" perex="" :required=true />
-                                                <input class="a-input" type="text" name="name" disabled="true" v-model="imageName" required />
-                                            </div>
-                                            <!-- Form - name END -->
-                                            <!-- Form - source -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Zdroj" nameDB="source" perex="" :required=true />
-                                                <input class="a-input" type="text" name="source" disabled="true" v-model="imageSource" required />
-                                            </div>
-                                            <!-- Form - source END -->
-                                            <!-- Form - type -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Typ použití" nameDB="type" perex="" :required=true />
-                                                <input class="a-input" type="text" name="type" disabled="true" v-model="imageType" required />
-                                            </div>
-                                            <!-- Form - type END -->
                                             <!-- Form - author -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Autor" nameDB="author" perex="" :required=true />
