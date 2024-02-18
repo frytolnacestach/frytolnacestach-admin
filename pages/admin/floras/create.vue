@@ -106,7 +106,16 @@
                                             <!-- Form - status_danger -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Status nebezpečnosti" nameDB="status_danger" perex="" :required=false />
-                                                <input class="a-input" type="text" name="statusDanger" v-model="floraStatusDanger" />
+                                                <div class="m-radio -json">
+                                                    <label class="m-radio__label">
+                                                        <input class="m-radio__input" type="radio" v-model="floraStatusDanger" :value="true" />
+                                                        <span class="m-radio__text">Ano</span>
+                                                    </label>
+                                                    <label class="m-radio__label">
+                                                        <input class="m-radio__input" type="radio" v-model="floraStatusDanger" :value="false" />
+                                                        <span class="m-radio__text">Ne</span>
+                                                    </label>
+                                                </div>
                                             </div>
                                             <!-- Form - status_danger END -->
                                             <!-- Form - ids_states(JSON) -->
