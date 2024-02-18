@@ -100,7 +100,20 @@
                                             <!-- Form - status_iucn -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Status IUCN" nameDB="status_iucn" perex="" :required=false />
-                                                <input class="a-input" type="text" name="statusIucn" v-model="floraStatusIucn" />
+                                                <div class="m-select -json">
+                                                    <select class="m-select__select" name="statusIucn" v-model="floraStatusIucn">
+                                                        <option value="">- Vyber ohrožení -</option>
+                                                        <option value="extinct">EX, vyhynulý taxon</option>
+                                                        <option value="extinct-in-the-wild">EW, taxon vyhynulý v přírodě</option>
+                                                        <option value="critically-endangered">CR, kriticky ohrožený taxon</option>
+                                                        <option value="endangered">EN, ohrožený taxon</option>
+                                                        <option value="vulnerable">VU, zranitelný taxon</option>
+                                                        <option value="near-threatened">NT, téměř ohrožený taxon</option>
+                                                        <option value="least-concern">LC, málo dotčený taxon</option>
+                                                        <option value="data-deficient">DD, o taxonu chybí údaje</option>
+                                                        <option value="not-evaluated">NE, nevyhodnocený taxon</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <!-- Form - status_iucn END -->
                                             <!-- Form - status_danger -->
