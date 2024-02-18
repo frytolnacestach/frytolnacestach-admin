@@ -18,7 +18,17 @@
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Type" nameDB="type" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.type" />
+                        <div class="m-select -json">
+                            <select class="m-select__select" name="platform" v-model="item.type" required>
+                                <option value="">- Vyber typ upozornění -</option>
+                                <option value="red">Red</option>
+                                <option value="orange">Orange</option>
+                                <option value="yellow">Yellow</option>
+                                <option value="green">Green</option>
+                                <option value="blue">Blue</option>
+                                <option value="gray">Gray</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Date start" nameDB="date_start" perex="" type="json" :required=false />

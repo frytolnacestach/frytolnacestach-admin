@@ -1,4 +1,6 @@
 .m-select {
+    $self: &;
+    
     display: inline-block;
     position: relative;
     width: auto;
@@ -27,5 +29,11 @@
         width: 100%;
         max-width: 100%;
         background: linear-gradient(to left, $gray2 37px, white 37px);
+    }
+
+    &.-json {
+        #{$self}__select {
+            border: 1px solid $gray5;
+        }
     }
 }
