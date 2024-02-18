@@ -122,10 +122,12 @@
                                             <!-- Form - platform -->                       
                                             <div class="o-form-item__item">
                                                 <mLabel name="Platforma" nameDB="platform" perex="" :required=true />
-                                                <select class="m-select" name="platform" v-model="videoPlatform" required>
-                                                    <option value="">- Vyber platformu -</option>
-                                                    <option v-for="platform in platforms" :key="platform.id" :value="platform.id">{{platform.name}}</option>
-                                                </select>
+                                                <div class="m-select">
+                                                    <select class="m-select__select" name="platform" v-model="videoPlatform" required>
+                                                        <option value="">- Vyber platformu -</option>
+                                                        <option v-for="platform in platforms" :key="platform.id" :value="platform.id">{{platform.name}}</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <!-- Form - platform END -->
                                             <!-- Form - type -->

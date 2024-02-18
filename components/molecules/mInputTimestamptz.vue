@@ -1,10 +1,12 @@
 <template>
     <div>
-        <select class="m-select" v-model="timeZoneName" @change="changeTimeZone">
-            <option v-for="timeZone in timeZones" :value="timeZone" :key="timeZone">
-                {{ timeZone }}
-            </option>
-        </select>
+        <div class="m-select">
+            <select class="m-select__select" v-model="timeZoneName" @change="changeTimeZone">
+                <option v-for="timeZone in timeZones" :value="timeZone" :key="timeZone">
+                    {{ timeZone }}
+                </option>
+            </select>
+        </div>
         <input class="a-input" v-model="dateTimeNew" type="datetime-local" @input="changeDateTime" />
         <span>Date: {{ dateNew }}</span>
     </div>

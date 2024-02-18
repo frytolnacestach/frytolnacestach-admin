@@ -132,10 +132,12 @@
                                             <!-- Form - importance -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Významnost" nameDB="importance" perex="" :required=false />
-                                                <select class="m-select" name="platform" v-model="placesCityImportance">
-                                                    <option :value=null>- Jaká je významnost? -</option>
-                                                    <option value="biggest">TOP10 NEJVĚTŠÍ</option>
-                                                </select>
+                                                <div class="m-select">
+                                                    <select class="m-select__select" name="platform" v-model="placesCityImportance">
+                                                        <option :value=null>- Jaká je významnost? -</option>
+                                                        <option value="biggest">TOP10 NEJVĚTŠÍ</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <!-- Form - importance END -->
                                             <!-- Form - population -->

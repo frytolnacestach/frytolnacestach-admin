@@ -32,14 +32,16 @@
                                             <!-- Form - type -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Typ" nameDB="type" perex="" :required=true />
-                                                <select class="m-select" name="platform" v-model="topPlaceType" required>
-                                                    <option value="" v-if="!topPlaceIDplace">- Vyber typ místa -</option>
-                                                    <option value="continent">Kontinent</option>
-                                                    <option value="state">Stát</option>
-                                                    <option value="region">Region</option>
-                                                    <option value="city">Město</option>
-                                                    <option value="spot">Místo</option>
-                                                </select>
+                                                <div class="m-select">
+                                                    <select class="m-select__select" name="platform" v-model="topPlaceType" required>
+                                                        <option value="" v-if="!topPlaceIDplace">- Vyber typ místa -</option>
+                                                        <option value="continent">Kontinent</option>
+                                                        <option value="state">Stát</option>
+                                                        <option value="region">Region</option>
+                                                        <option value="city">Město</option>
+                                                        <option value="spot">Místo</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <!-- Form - type END -->
                                             <!-- Form - id_place -->
