@@ -9,11 +9,11 @@
                 </div>
                 <div class="o-form-item__group-inputs">
                     <div class="o-form-item__group-input">
-                        <mLabel name="Google" nameDB="google" perex="" type="json" :required=false />
+                        <mLabel name="Google" nameDB="google" perex="Hodnota přiblížení Google Maps (0 až 22)" type="json" :required=false />
                         <input class="a-input -json" type="number" min="0" v-model="item.google" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <mLabel name="Booking" nameDB="booking" perex="" type="json" :required=false />
+                        <mLabel name="Booking" nameDB="booking" perex="Hodnota přiblížení Booking (1 až 20)" type="json" :required=false />
                         <input class="a-input -json" type="number" min="0" v-model="item.booking" />
                     </div>
                 </div>
