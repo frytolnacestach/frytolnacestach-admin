@@ -62,7 +62,31 @@
                                             <!-- Form - type -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Typ použití" nameDB="type" perex="" :required=true />
-                                                <input class="a-input" type="text" name="type" disabled="true" v-model="imageType" required />
+                                                <div class="m-select -json">
+                                                    <select class="m-select__select" name="statusIucn" v-model="imageType" required>
+                                                        <option value="">- Vyber typ použití -</option>
+                                                        <option value="continent">Svět - kontinent</option>
+                                                        <option value="state">Svět - stát</option>
+                                                        <option value="region">Svět - region</option>
+                                                        <option value="city">Svět - město</option>
+                                                        <option value="spot">Svět - místo</option>
+                                                        <option value="article">Člának</option>
+                                                        <option value="video">Video</option>
+                                                        <option value="event">Událost</option>
+                                                        <option value="travelDictionaries">Cestovatelský slovník</option>
+                                                        <option value="wallSocket">Elektrická zásuvka</option>
+                                                        <option value="fauna">Fauna</option>
+                                                        <option value="flora">Flora</option>
+                                                        <option value="food">Jídlo</option>
+                                                        <option value="chain">Řetězec</option>
+                                                        <option value="brand">Značka</option>
+                                                        <option value="map">Mapa</option>
+                                                        <option value="default">[Aplikace] - Default</option>
+                                                        <option value="email">[Aplikace] - Email</option>
+                                                        <option value="main">[Aplikace] - Main</option>
+                                                        <option value="sizesUsers">[Aplikace] - Uživatel</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <!-- Form - type END -->
                                         </div>
