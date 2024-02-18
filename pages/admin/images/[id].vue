@@ -49,21 +49,15 @@
                                             <!-- Form - updated_at END -->
                                             <!-- Form - name END -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="Název" nameDB="name" perex="" :required=true />
+                                                <mLabel name="Název" nameDB="name" perex="Nastavuje se podle typu použití" :required=true />
                                                 <input class="a-input" type="text" name="name" disabled="true" v-model="imageName" required />
                                             </div>
                                             <!-- Form - name END -->
-                                            <!-- Form - source -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Zdroj" nameDB="source" perex="" :required=true />
-                                                <input class="a-input" type="text" name="source" disabled="true" v-model="imageSource" required />
-                                            </div>
-                                            <!-- Form - source END -->
                                             <!-- Form - type -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Typ použití" nameDB="type" perex="" :required=true />
                                                 <div class="m-select -json">
-                                                    <select class="m-select__select" name="statusIucn" v-model="imageType" required>
+                                                    <select class="m-select__select" name="statusIucn" disabled="true" v-model="imageType" required>
                                                         <option value="">- Vyber typ použití -</option>
                                                         <option value="continent">Svět - kontinent</option>
                                                         <option value="state">Svět - stát</option>
@@ -250,6 +244,88 @@
                         url: "",
                         status: "span"
                     }
+                ],
+                imageSetting: [
+                    {
+                        type: 'continent',
+                        source: '/world/continents/'
+                    },
+                    {
+                        type: 'state',
+                        source: '/world/states/'
+                    },
+                    {
+                        type: 'region',
+                        source: '/world/regions/'
+                    },
+                    {
+                        type: 'city',
+                        source: '/world/cities/'
+                    },
+                    {
+                        type: 'spot',
+                        source: '/world/spots/'
+                    },
+                    {
+                        type: 'article',
+                        source: '/articles/'
+                    },
+                    {
+                        type: 'video',
+                        source: '/videos/'
+                    },
+                    {
+                        type: 'event',
+                        source: '/events/'
+                    },
+                    {
+                        type: 'travelDictionaries',
+                        source: '/travel_dictionaries/'
+                    },
+                    {
+                        type: 'wallSocket',
+                        source: '/wall_sockets/'
+                    },
+                    {
+                        type: 'fauna',
+                        source: '/fauna/'
+                    },
+                    {
+                        type: 'flora',
+                        source: '/flora/'
+                    },
+                    {
+                        type: 'food',
+                        source: '/foods/'
+                    },
+                    {
+                        type: 'chain',
+                        source: '/chains/'
+                    },
+                    {
+                        type: 'brand',
+                        source: '/brands/'
+                    },
+                    {
+                        type: 'map',
+                        source: '/maps/'
+                    },
+                    {
+                        type: 'default',
+                        source: '/_default/'
+                    },
+                    {
+                        type: 'email',
+                        source: '/_email/'
+                    },
+                    {
+                        type: 'main',
+                        source: '/main/'
+                    },
+                    {
+                        type: 'sizesUsers',
+                        source: '/users/'
+                    }
                 ]
             }
         },
@@ -262,6 +338,11 @@
                 if (breadcrumb) {
                     breadcrumb.name = `Editace obrazku - ${itemID}`
                 }
+            },
+            updateSource() {
+                const newSource = this.imageSetting.find(setting => setting.type === this.imageType);
+                this.imageSource = newSource.source
+                console.log("změna typy")
             }
         },
 
@@ -1485,6 +1566,9 @@
         watch: {
             itemID: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
+            },
+            imageType(newVal, oldVal) {
+                this.updateSource()
             }
         },
     })

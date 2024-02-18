@@ -21,14 +21,27 @@
         top: 18px;
     }
 
+    &:has(#{$self}__select:disabled) {
+        &:after {
+            opacity: .3;
+        }
+    }
+
     &__select {
-        background-color: transparent;
         appearance: none;
         padding: 3px 52px 3px 15px;
         height: 40px;
         width: 100%;
         max-width: 100%;
         background: linear-gradient(to left, $gray2 37px, white 37px);
+
+        &:disabled {
+            background: $gray3;
+            border: 1px solid $gray3;
+            color: $gray4;
+            -webkit-text-fill-color: $gray4;
+            opacity: 1;
+        }
     }
 
     &.-json {

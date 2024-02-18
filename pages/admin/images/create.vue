@@ -23,6 +23,22 @@
 
                                 <!-- FORM -->
                                 <div class="o-form-item__form">
+                                    <!-- BLOCK - Needitační hodnoty -->
+                                    <div class="o-form-item__block">
+                                        <!-- COMPONENT - Headline form -->
+                                        <mHeadlineForm title="Needitační hodnoty" />
+                                        <!-- COMPONENT - Headline form END -->
+                                        <div class="o-form-item__items">
+                                            <!-- Form - source -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Zdroj" nameDB="source" perex="Nastavuje se podle typu použití" :required=true />
+                                                <input class="a-input" type="text" name="source" disabled="true" v-model="imageSource" required />
+                                            </div>
+                                            <!-- Form - source END -->
+                                        </div>
+                                    </div>
+                                    <!-- BLOCK - Needitační hodnoty END -->
+                                    
                                     <!-- BLOCK - Editační hodnoty -->
                                     <div class="o-form-item__block">
                                         <!-- COMPONENT - Headline form -->
@@ -35,12 +51,6 @@
                                                 <input class="a-input" type="text" name="name" v-model="imageName" required />
                                             </div>
                                             <!-- Form - name -->
-                                            <!-- Form - source -->
-                                            <div class="o-form-item__item">
-                                                <mLabel name="Zdroj" nameDB="source" perex="" :required=true />
-                                                <input class="a-input" type="text" name="source" v-model="imageSource" required />
-                                            </div>
-                                            <!-- Form - source END -->
                                             <!-- Form - type -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Typ použití" nameDB="type" perex="" :required=true />
@@ -146,12 +156,102 @@
                         url: "",
                         status: "span"
                     }
+                ],
+                imageSetting: [
+                    {
+                        type: 'continent',
+                        source: '/world/continents/'
+                    },
+                    {
+                        type: 'state',
+                        source: '/world/states/'
+                    },
+                    {
+                        type: 'region',
+                        source: '/world/regions/'
+                    },
+                    {
+                        type: 'city',
+                        source: '/world/cities/'
+                    },
+                    {
+                        type: 'spot',
+                        source: '/world/spots/'
+                    },
+                    {
+                        type: 'article',
+                        source: '/articles/'
+                    },
+                    {
+                        type: 'video',
+                        source: '/videos/'
+                    },
+                    {
+                        type: 'event',
+                        source: '/events/'
+                    },
+                    {
+                        type: 'travelDictionaries',
+                        source: '/travel_dictionaries/'
+                    },
+                    {
+                        type: 'wallSocket',
+                        source: '/wall_sockets/'
+                    },
+                    {
+                        type: 'fauna',
+                        source: '/fauna/'
+                    },
+                    {
+                        type: 'flora',
+                        source: '/flora/'
+                    },
+                    {
+                        type: 'food',
+                        source: '/foods/'
+                    },
+                    {
+                        type: 'chain',
+                        source: '/chains/'
+                    },
+                    {
+                        type: 'brand',
+                        source: '/brands/'
+                    },
+                    {
+                        type: 'map',
+                        source: '/maps/'
+                    },
+                    {
+                        type: 'default',
+                        source: '/_default/'
+                    },
+                    {
+                        type: 'email',
+                        source: '/_email/'
+                    },
+                    {
+                        type: 'main',
+                        source: '/main/'
+                    },
+                    {
+                        type: 'sizesUsers',
+                        source: '/users/'
+                    }
                 ]
             }
         },
 
-        setup() {
+        methods: {
+            updateSource() {
+                const newSource = this.imageSetting.find(setting => setting.type === this.imageType);
+                this.imageSource = newSource.source
+                console.log("změna typy")
+            }
+        },
 
+
+        setup() {
             //CONSTS
             const selectedFile = ref<number | null>(null)
             const runTimeConfig = useRuntimeConfig()
@@ -235,7 +335,6 @@
             }
         },
 
-
         mounted() {
             //Kontrola přihlášení
             let user = localStorage.getItem('user-info')
@@ -245,6 +344,12 @@
                 //Přesměrování
                 const router = useRouter()
                 router.push('/login')
+            }
+        },
+
+        watch: {
+            imageType(newVal, oldVal) {
+                this.updateSource()
             }
         }
     })
