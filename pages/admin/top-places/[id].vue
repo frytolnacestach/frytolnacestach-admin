@@ -172,6 +172,9 @@
             topPlaceName: function (newValue, oldValue) {
                 this.updateBreadcrumbs()
             },
+            topPlaceType: function (newValue, oldValue) {
+                this.topPlaceIDplace = null
+            },
             handleIDplace(newIDplace: number) {
                 this.topPlaceIDplace = newIDplace
             }

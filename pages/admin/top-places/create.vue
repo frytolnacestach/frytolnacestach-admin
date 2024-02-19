@@ -212,6 +212,15 @@
                 const router = useRouter()
                 router.push('/login')
             }
-        }
+        },
+
+        watch: {
+            topPlaceType: function (newValue, oldValue) {
+                this.topPlaceIDplace = null
+            },
+            handleIDplace(newIDplace: number) {
+                this.topPlaceIDplace = newIDplace
+            }
+        },
     })
 </script>

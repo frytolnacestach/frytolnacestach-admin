@@ -117,6 +117,11 @@
             id(newValue, oldValue) {
                 this.$emit('id-place', this.id)
             },
+            type(newValue, oldValue) {
+                this.placeSelect = ''
+                this.id = null
+                this.loadPlace = []
+            },
             searchQuery: function(newSearchQuery, oldSearchQuery) {
                 if (newSearchQuery.length >= 1) {
                     this.search()
