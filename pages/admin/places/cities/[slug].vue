@@ -278,8 +278,8 @@
         type: string
         date_start: string
         date_end: string
-        author: string
-        author_update: string
+        author: number
+        author_update: number
         date_create: string
         date_update: string
     }

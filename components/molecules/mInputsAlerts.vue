@@ -39,12 +39,12 @@
                         <input class="a-input -json" type="text" v-model="item.date_end" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <mLabel name="Author" nameDB="author" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.author" />
+                        <mLabel name="Author" nameDB="author" perex="ID authora" type="json" :required=false />
+                        <input class="a-input -json" type="number" v-model="item.author" />
                     </div>
                     <div class="o-form-item__group-input">
-                        <mLabel name="Author update" nameDB="author_update" perex="" type="json" :required=false />
-                        <input class="a-input -json" type="text" v-model="item.author" />
+                        <mLabel name="Author update" nameDB="author_update" perex="ID authora" type="json" :required=false />
+                        <input class="a-input -json" type="number" v-model="item.author" />
                     </div>
                     <div class="o-form-item__group-input">
                         <mLabel name="Date create" nameDB="date_create" perex="" type="json" :required=false />
