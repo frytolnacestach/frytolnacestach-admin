@@ -112,7 +112,7 @@
                                             <!-- Form - description -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Popis" nameDB="description" perex="" :required=false />
-                                                <aTextarea :value="travelDictionaryDescription" name="description" :required=false @textareaValue="handleDictionaryDescription" />
+                                                <aTextarea :value="travelDictionaryDescription" name="description" :required=false @textareaValue="handleTravelDictionaryDescription" />
                                             </div>
                                             <!-- Form - description END-->
                                         </div>
@@ -230,7 +230,7 @@
             handleSeoTags(newSeoTags: string) {
                 this.travelDictionarySeoTags = JSON.stringify(newSeoTags)
             },
-            handleDescription(newDescription: string) {
+            handleTravelDictionaryDescription(newDescription: string) {
                 this.travelDictionaryDescription = newDescription
             }
         },
