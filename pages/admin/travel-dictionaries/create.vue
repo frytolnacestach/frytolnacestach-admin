@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="admin">
-        <main class="t-main">
+        <main class="t-main -pt-menu">
             <!-- SECTION - HERO -->
             <oHero headline="Přidání výrazu do cestovatelskýho slovníku" />
             <!-- SECTION - HERO END -->

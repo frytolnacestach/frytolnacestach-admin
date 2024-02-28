@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="admin">
-        <main class="t-main">
+        <main class="t-main -pt-menu">
             <!-- SECTION - HERO -->
             <oHero headline="Administrace - Uživatelé" />
             <!-- SECTION - HERO END -->
