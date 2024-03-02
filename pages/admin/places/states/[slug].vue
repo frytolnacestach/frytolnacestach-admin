@@ -281,6 +281,12 @@
                                                 <mInputsFactsPlace :value="placesStateFactsPlace" @factsPlace="handleFactsPlace" />
                                             </div>
                                             <!-- Form - factsPlace(JSON) -->
+                                            <!-- Form - setting_top -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Patří mezi důležité?" nameDB="setting_top" perex="" :required=false />
+                                                <mInputCheckbox :value="settingTop" :inputsMax="1" @checkbox-value="handleSettingTop" />
+                                            </div>
+                                            <!-- Form - setting_top END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->
@@ -308,6 +314,7 @@
     import mButtonForm from '@/components/molecules/mButtonForm.vue'
     import mButtonWeb from '@/components/molecules/mButtonWeb.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputCheckbox from '@/components/molecules/mInputCheckbox.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
@@ -510,6 +517,7 @@
         links: Links[]
         language_phrases: LanguagePhrases[]
         factsPlace: FactsPlace[]
+        setting_top: boolean
     }
 
     export default defineComponent({
@@ -522,6 +530,7 @@
             mButtonForm,
             mButtonWeb,
             mHeadlineForm,
+            mInputCheckbox,
             mInputIDPlaces,
             mInputImage,
             mInputsAffiliate,
@@ -660,6 +669,9 @@
             },
             handleFactsPlace(newFactsPlace: string) {
                 this.placesStateFactsPlace = JSON.stringify(newFactsPlace)
+            },
+            handleSettingTop(newSettingTop: boolean) {
+                this.settingTop = newSettingTop
             }
         },
 
@@ -739,6 +751,7 @@
             const placesStateLinks = ref<never[] | string[]>([])
             const placesStateLanguagePhrases = ref<never[] | string[]>([])
             const placesStateFactsPlace = ref<never[] | string[]>([])
+            const settingTop = ref<boolean | null>(null)
 
             //API - Places State
             ;(async () => {
@@ -783,6 +796,7 @@
                     placesStateLinks.value = PlacesState[0].links ? JSON.stringify(PlacesState[0].links) : JSON.stringify([])
                     placesStateLanguagePhrases.value = PlacesState[0].language_phrases ? JSON.stringify(PlacesState[0].language_phrases) : JSON.stringify([])
                     placesStateFactsPlace.value = PlacesState[0].facts_place ? JSON.stringify(PlacesState[0].facts_place) : JSON.stringify([])
+                    settingTop.value = PlacesState[0].setting_top
                     loadingData.value = true
                 }
             })()
@@ -831,7 +845,8 @@
                             'apps': placesStateApps.value,
                             'links': placesStateLinks.value,
                             'language_phrases': placesStateLanguagePhrases.value,
-                            'facts_place': placesStateFactsPlace.value
+                            'facts_place': placesStateFactsPlace.value,
+                            'setting_top': settingTop.value
                         })
                     })
                     // response
@@ -888,6 +903,7 @@
                 placesStateLinks,
                 placesStateLanguagePhrases,
                 placesStateFactsPlace,
+                settingTop,
                 editForm
             }
         },

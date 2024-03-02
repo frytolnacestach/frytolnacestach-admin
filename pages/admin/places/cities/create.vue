@@ -188,6 +188,12 @@
                                                 <mInputsParking :value="placesCityParking" @parking="handleParking" />
                                             </div>
                                             <!-- Form - parking(JSON) END -->
+                                            <!-- Form - setting_top -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Patří mezi důležité?" nameDB="setting_top" perex="" :required=false />
+                                                <mInputCheckbox :value="settingTop" :inputsMax="1" @checkbox-value="handleSettingTop" />
+                                            </div>
+                                            <!-- Form - setting_top END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->
@@ -214,6 +220,7 @@
     import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButtonForm from '@/components/molecules/mButtonForm.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputCheckbox from '@/components/molecules/mInputCheckbox.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
@@ -237,6 +244,7 @@
             aTextarea,
             mButtonForm,
             mHeadlineForm,
+            mInputCheckbox,
             mInputIDPlaces,
             mInputImage,
             mInputsAffiliate,
@@ -320,6 +328,9 @@
             },
             handleParking(newParking: string) {
                 this.placesCityParking = JSON.stringify(newParking)
+            },
+            handleSettingTop(newSettingTop: boolean) {
+                this.settingTop = newSettingTop
             }
         },
 
@@ -371,6 +382,7 @@
             const placesCityAffiliate = ref<never[] | string[]>([])
             const placesCityAlerts = ref<never[] | string[]>([])
             const placesCityParking = ref<never[] | string[]>([])
+            const settingTop = ref<boolean | null>(null)
             //start data
             placesCityAffiliate.value = JSON.stringify([{
                 name: 'booking',
@@ -408,7 +420,8 @@
                             'zoom': placesCityZoom.value,
                             'affiliate': placesCityAffiliate.value,
                             'alerts': placesCityAlerts.value,
-                            'parking': placesCityParking.value
+                            'parking': placesCityParking.value,
+                            'setting_top': settingTop.value
                         })
                     })
                     // response
@@ -449,6 +462,7 @@
                 placesCityAffiliate,
                 placesCityAlerts,
                 placesCityParking,
+                settingTop,
                 createForm
             }
         },

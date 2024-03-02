@@ -169,6 +169,12 @@
                                                 <mInputsZoom :value="placesContinentZoom" :inputsMax="1" @zoom="handleZoom" />
                                             </div>
                                             <!-- Form - zoom(JSON) END -->
+                                            <!-- Form - setting_top -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Patří mezi důležité?" nameDB="setting_top" perex="" :required=false />
+                                                <mInputCheckbox :value="settingTop" :inputsMax="1" @checkbox-value="handleSettingTop" />
+                                            </div>
+                                            <!-- Form - setting_top END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->
@@ -196,6 +202,7 @@
     import mButtonForm from '@/components/molecules/mButtonForm.vue'
     import mButtonWeb from '@/components/molecules/mButtonWeb.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputCheckbox from '@/components/molecules/mInputCheckbox.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
@@ -246,6 +253,7 @@
         seo_tags: seoTags[]
         coordinates: Coordinates[]
         zoom: Zoom[]
+        setting_top: boolean
     }
 
     export default defineComponent({
@@ -258,6 +266,7 @@
             mButtonForm,
             mButtonWeb,
             mHeadlineForm,
+            mInputCheckbox,
             mInputImage,
             mInputsCoordinates,
             mInputsInformationAuthor,
@@ -333,6 +342,9 @@
             },
             handleInformationAuthor(newInformationAuthor: string) {
                 this.placesContinentInformationAuthor = JSON.stringify(newInformationAuthor)
+            },
+            handleSettingTop(newSettingTop: boolean) {
+                this.settingTop = newSettingTop
             }
         },
 
@@ -395,6 +407,7 @@
             const placesContinentSeoTags = ref<never[] | string[]>([])
             const placesContinentCoordinates = ref<never[] | string[]>([])
             const placesContinentZoom = ref<never[] | string[]>([])
+            const settingTop = ref<boolean | null>(null)
 
             //API - Places Continent
             ;(async () => {
@@ -422,6 +435,7 @@
                     placesContinentSeoTags.value = PlacesContinent[0].seo_tags ? JSON.stringify(PlacesContinent[0].seo_tags) : JSON.stringify([])
                     placesContinentCoordinates.value = PlacesContinent[0].coordinates ? JSON.stringify(PlacesContinent[0].coordinates) : JSON.stringify([])
                     placesContinentZoom.value = PlacesContinent[0].zoom ? JSON.stringify(PlacesContinent[0].zoom) : JSON.stringify([])
+                    settingTop.value = PlacesContinent[0].setting_top
                     loadingData.value = true
                 }
             })()
@@ -453,7 +467,8 @@
                             'number_states': placesContinentNumberStates.value,
                             'seo_tags': placesContinentSeoTags.value,
                             'coordinates': placesContinentCoordinates.value,
-                            'zoom': placesContinentZoom.value
+                            'zoom': placesContinentZoom.value,
+                            'setting_top': settingTop.value
                         })
                     })
                     // response
@@ -493,6 +508,7 @@
                 placesContinentNumberStates,
                 placesContinentCoordinates,
                 placesContinentZoom,
+                settingTop,
                 editForm
             }
         },

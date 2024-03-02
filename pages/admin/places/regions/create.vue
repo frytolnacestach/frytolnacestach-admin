@@ -153,6 +153,12 @@
                                                 <mInputsAffiliate :value="placesRegionAffiliate" @affiliate="handleAffiliate" />
                                             </div>
                                             <!-- Form - affiliate(JSON) END -->
+                                            <!-- Form - setting_top -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Patří mezi důležité?" nameDB="setting_top" perex="" :required=false />
+                                                <mInputCheckbox :value="settingTop" :inputsMax="1" @checkbox-value="handleSettingTop" />
+                                            </div>
+                                            <!-- Form - setting_top END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->
@@ -179,6 +185,7 @@
     import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButtonForm from '@/components/molecules/mButtonForm.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputCheckbox from '@/components/molecules/mInputCheckbox.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
@@ -201,6 +208,7 @@
             aTextarea,
             mButtonForm,
             mHeadlineForm,
+            mInputCheckbox,
             mInputIDPlaces,
             mInputImage,
             mInputsAffiliate,
@@ -280,6 +288,9 @@
             },
             handleInformationAuthor(newInformationAuthor: string) {
                 this.placesRegionInformationAuthor = JSON.stringify(newInformationAuthor)
+            },
+            handleSettingTop(newSettingTop: boolean) {
+                this.settingTop = newSettingTop
             }
         },
 
@@ -326,6 +337,7 @@
             const placesRegionCoordinates = ref<never[] | string[]>([])
             const placesRegionZoom = ref<never[] | string[]>([])
             const placesRegionAffiliate = ref<never[] | string[]>([])
+            const settingTop = ref<boolean | null>(null)
             //start data
             placesRegionAffiliate.value = JSON.stringify([{
                 name: 'booking',
@@ -358,7 +370,8 @@
                             'seo_tags': placesRegionSeoTags.value,
                             'coordinates': placesRegionCoordinates.value,
                             'zoom': placesRegionZoom.value,
-                            'affiliate': placesRegionAffiliate.value
+                            'affiliate': placesRegionAffiliate.value,
+                            'setting_top': settingTop.value
                         })
                     })
                     // response
@@ -394,6 +407,7 @@
                 placesRegionCoordinates,
                 placesRegionZoom,
                 placesRegionAffiliate,
+                settingTop,
                 createForm
             }
         },

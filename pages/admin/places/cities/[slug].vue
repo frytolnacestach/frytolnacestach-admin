@@ -207,7 +207,13 @@
                                                 <mLabel name="Parkování" nameDB="parking" perex="" :required=false />
                                                 <mInputsParking :value="placesCityParking" @parking="handleParking" />
                                             </div>
-                                            <!-- Form - parking(JSON) END -->         
+                                            <!-- Form - parking(JSON) END -->
+                                            <!-- Form - setting_top -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Patří mezi důležité?" nameDB="setting_top" perex="" :required=false />
+                                                <mInputCheckbox :value="settingTop" :inputsMax="1" @checkbox-value="handleSettingTop" />
+                                            </div>
+                                            <!-- Form - setting_top END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->
@@ -235,6 +241,7 @@
     import mButtonForm from '@/components/molecules/mButtonForm.vue'
     import mButtonWeb from '@/components/molecules/mButtonWeb.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputCheckbox from '@/components/molecules/mInputCheckbox.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
@@ -322,6 +329,7 @@
         affiliate: Affiliate[]
         alerts: Alerts[]
         parking: Parking[]
+        setting_top: boolean
     }
 
     export default defineComponent({
@@ -334,6 +342,7 @@
             mButtonForm,
             mButtonWeb,
             mHeadlineForm,
+            mInputCheckbox,
             mInputIDPlaces,
             mInputImage,
             mInputsAffiliate,
@@ -425,6 +434,9 @@
             },
             handleParking(newParking: string) {
                 this.placesCityParking = JSON.stringify(newParking)
+            },
+            handleSettingTop(newSettingTop: boolean) {
+                this.settingTop = newSettingTop
             }
         },
 
@@ -491,6 +503,7 @@
             const placesCityAffiliate = ref<never[] | string[]>([])
             const placesCityAlerts = ref<never[] | string[]>([])
             const placesCityParking = ref<never[] | string[]>([])
+            const settingTop = ref<boolean | null>(null)
 
             //API - Places City
             ;(async () => {
@@ -522,6 +535,7 @@
                     placesCityAffiliate.value = PlacesCity[0].affiliate ? JSON.stringify(PlacesCity[0].affiliate) : JSON.stringify([])
                     placesCityAlerts.value = PlacesCity[0].alerts ? JSON.stringify(PlacesCity[0].alerts) : JSON.stringify([])
                     placesCityParking.value = PlacesCity[0].parking ? JSON.stringify(PlacesCity[0].parking) : JSON.stringify([])
+                    settingTop.value = PlacesCity[0].setting_top
                     loadingData.value = true
                 }
             })()
@@ -557,7 +571,8 @@
                             'zoom': placesCityZoom.value,
                             'affiliate': placesCityAffiliate.value,
                             'alerts': placesCityAlerts.value,
-                            'parking': placesCityParking.value
+                            'parking': placesCityParking.value,
+                            'setting_top': settingTop.value
                         })
                     })
                     // response
@@ -601,6 +616,7 @@
                 placesCityAffiliate,
                 placesCityAlerts,
                 placesCityParking,
+                settingTop,
                 editForm
             }
         },

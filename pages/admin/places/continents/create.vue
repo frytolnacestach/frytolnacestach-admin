@@ -149,6 +149,12 @@
                                                 <mInputsZoom :value="placesContinentZoom" :inputsMax="1" @zoom="handleZoom" />
                                             </div>
                                             <!-- Form - zoom(JSON) END -->
+                                            <!-- Form - setting_top -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Patří mezi důležité?" nameDB="setting_top" perex="" :required=false />
+                                                <mInputCheckbox :value="settingTop" :inputsMax="1" @checkbox-value="handleSettingTop" />
+                                            </div>
+                                            <!-- Form - setting_top END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->
@@ -175,6 +181,7 @@
     import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButtonForm from '@/components/molecules/mButtonForm.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputCheckbox from '@/components/molecules/mInputCheckbox.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsCoordinates from '@/components/molecules/mInputsCoordinates.vue'
     import mInputsInformationAuthor from '@/components/molecules/mInputsInformationAuthor.vue'
@@ -194,6 +201,7 @@
             aTextarea,
             mButtonForm,
             mHeadlineForm,
+            mInputCheckbox,
             mInputImage,
             mInputsCoordinates,
             mInputsInformationAuthor,
@@ -261,6 +269,9 @@
             },
             handleInformationAuthor(newInformationAuthor: string) {
                 this.placesContinentInformationAuthor = JSON.stringify(newInformationAuthor)
+            },
+            handleSettingTop(newSettingTop: boolean) {
+                this.settingTop = newSettingTop
             }
         },
 
@@ -308,6 +319,7 @@
             const placesContinentSeoTags = ref<never[] | string[]>([])
             const placesContinentCoordinates = ref<never[] | string[]>([])
             const placesContinentZoom = ref<never[] | string[]>([])
+            const settingTop = ref<boolean | null>(null)
 
             //FORM - create
             const createForm = async () => {
@@ -337,6 +349,7 @@
                             'seo_tags': placesContinentSeoTags.value,
                             'coordinates': placesContinentCoordinates.value,
                             'zoom': placesContinentZoom.value,
+                            'setting_top': settingTop.value
                         })
                     })
                     // response
@@ -373,6 +386,7 @@
                 placesContinentSeoTags,
                 placesContinentCoordinates,
                 placesContinentZoom,
+                settingTop,
                 createForm
             }
         },

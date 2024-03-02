@@ -261,6 +261,12 @@
                                                 <mInputsFactsPlace :value="placesStateFactsPlace" @factsPlace="handleFactsPlace" />
                                             </div>
                                             <!-- Form - factsPlace(JSON) -->
+                                            <!-- Form - setting_top -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Patří mezi důležité?" nameDB="setting_top" perex="" :required=false />
+                                                <mInputCheckbox :value="settingTop" :inputsMax="1" @checkbox-value="handleSettingTop" />
+                                            </div>
+                                            <!-- Form - setting_top END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->
@@ -287,6 +293,7 @@
     import aTextarea from '@/components/atoms/aTextarea.vue'
     import mButtonForm from '@/components/molecules/mButtonForm.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputCheckbox from '@/components/molecules/mInputCheckbox.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
@@ -321,6 +328,7 @@
             aTextarea,
             mButtonForm,
             mHeadlineForm,
+            mInputCheckbox,
             mInputIDPlaces,
             mInputImage,
             mInputsAffiliate,
@@ -451,6 +459,9 @@
             },
             handleFactsPlace(newFactsPlace: string) {
                 this.placesStateFactsPlace = JSON.stringify(newFactsPlace)
+            },
+            handleSettingTop(newSettingTop: boolean) {
+                this.settingTop = newSettingTop
             }
         },
 
@@ -518,6 +529,7 @@
             const placesStateLinks = ref<never[] | string[]>([])
             const placesStateLanguagePhrases = ref<never[] | string[]>([])
             const placesStateFactsPlace = ref<never[] | string[]>([])
+            const settingTop = ref<boolean | null>(null)
             //start data
             placesStateAffiliate.value = JSON.stringify([{
                 name: 'booking',
@@ -568,7 +580,8 @@
                             'apps': placesStateApps.value,
                             'links': placesStateLinks.value,
                             'language_phrases': placesStateLanguagePhrases.value,
-                            'facts_place': placesStateFactsPlace.value
+                            'facts_place': placesStateFactsPlace.value,
+                            'setting_top': settingTop.value
                         })
                     })
                     // response
@@ -622,6 +635,7 @@
                 placesStateLinks,
                 placesStateLanguagePhrases,
                 placesStateFactsPlace,
+                settingTop,
                 createForm
             }
         },

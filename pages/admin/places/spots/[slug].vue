@@ -191,6 +191,12 @@
                                                 <mInputsAffiliate :value="placesSpotAffiliate" @affiliate="handleAffiliate" />
                                             </div>
                                             <!-- Form - affiliate(JSON) END -->
+                                            <!-- Form - setting_top -->
+                                            <div class="o-form-item__item">
+                                                <mLabel name="Patří mezi důležité?" nameDB="setting_top" perex="" :required=false />
+                                                <mInputCheckbox :value="settingTop" :inputsMax="1" @checkbox-value="handleSettingTop" />
+                                            </div>
+                                            <!-- Form - setting_top END -->
                                         </div>
                                     </div>
                                     <!-- BLOCK - Editační hodnoty END -->
@@ -218,6 +224,7 @@
     import mButtonForm from '@/components/molecules/mButtonForm.vue'
     import mButtonWeb from '@/components/molecules/mButtonWeb.vue'
     import mHeadlineForm from '@/components/molecules/mHeadlineForm.vue'
+    import mInputCheckbox from '@/components/molecules/mInputCheckbox.vue'
     import mInputIDPlaces from '@/components/molecules/mInputIDPlaces.vue'
     import mInputImage from '@/components/molecules/mInputImage.vue'
     import mInputsAffiliate from '@/components/molecules/mInputsAffiliate.vue'
@@ -299,6 +306,7 @@
         zoom: Zoom[]
         affiliate: Affiliate[]
         altitude: string
+        setting_top: boolean
     }
 
     export default defineComponent({
@@ -311,6 +319,7 @@
             mButtonForm,
             mButtonWeb,
             mHeadlineForm,
+            mInputCheckbox,
             mInputIDPlaces,
             mInputImage,
             mInputsAffiliate,
@@ -405,6 +414,9 @@
             },
             handleInformationDuration(newInformationDuration: string) {
                 this.placesSpotInformationDuration = JSON.stringify(newInformationDuration)
+            },
+            handleSettingTop(newSettingTop: boolean) {
+                this.settingTop = newSettingTop
             }
         },
 
@@ -470,6 +482,7 @@
             const placesSpotCoordinates = ref<never[] | string[]>([])
             const placesSpotZoom = ref<never[] | string[]>([])
             const placesSpotAffiliate = ref<never[] | string[]>([])
+            const settingTop = ref<boolean | null>(null)
 
             //API - Places Spot
             ;(async () => {
@@ -500,6 +513,7 @@
                     placesSpotCoordinates.value = PlacesSpot[0].coordinates ? JSON.stringify(PlacesSpot[0].coordinates) : JSON.stringify([])
                     placesSpotZoom.value = PlacesSpot[0].zoom ? JSON.stringify(PlacesSpot[0].zoom) : JSON.stringify([])
                     placesSpotAffiliate.value = PlacesSpot[0].affiliate ? JSON.stringify(PlacesSpot[0].affiliate) : JSON.stringify([])
+                    settingTop.value = PlacesSpot[0].setting_top
                     loadingData.value = true
                 }
             })()
@@ -534,6 +548,7 @@
                             'coordinates': placesSpotCoordinates.value,
                             'zoom': placesSpotZoom.value,
                             'affiliate': placesSpotAffiliate.value,
+                            'setting_top': settingTop.value
                         })
                     })
                     // response
@@ -576,6 +591,7 @@
                 placesSpotCoordinates,
                 placesSpotZoom,
                 placesSpotAffiliate,
+                settingTop,
                 editForm
             }
         },
