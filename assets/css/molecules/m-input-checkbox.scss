@@ -1,0 +1,55 @@
+.m-input-checkbox {
+    $self: &;
+
+    position: relative;
+    display: inline-block;
+    
+    &__label {
+        display: flex;
+
+        &:hover {
+            #{$self}__checkbox {
+                border-color: $gray;
+            }
+        }
+    }
+
+    &__input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+
+        &:active + #{$self}__checkbox {
+            border-color: $red;
+        }
+
+        &:checked + #{$self}__checkbox:after {
+            content: "";
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            right: 2px;
+            bottom: 2px;
+            width: auto;
+            height: auto;
+            background-color: $gray;
+            border-radius: 4px;
+        }
+    }
+
+    &__checkbox {
+        cursor: pointer;
+        position: relative;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+        border: 1px solid $gray2;
+        border-radius: 5px;
+        background-color: $gray3;
+    }
+
+    &__text {
+        display: block;
+    }
+}
