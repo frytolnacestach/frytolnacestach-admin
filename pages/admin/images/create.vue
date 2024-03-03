@@ -89,8 +89,8 @@
                                             <!-- Form - author END -->
                                             <!-- Form - FILE -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="Obrázek" nameDB="" perex="" :required=true />
-                                                <input type="file" name="image" accept=".jpg, .jpeg, .png, .webp, .heic" @change="handleFileChange" required />
+                                                <mLabel name="Obrázek" nameDB="" perex="Podporované formáty jsou (.jpg, .jpeg, .png, .webp)" :required=true />
+                                                <input type="file" name="image" accept=".jpg, .jpeg, .png, .webp" @change="handleFileChange" required />
                                             </div>
                                             <!-- Form - FILE END -->
                                         </div>
