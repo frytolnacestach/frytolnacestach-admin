@@ -136,9 +136,19 @@
                 <div class="t-section__inner">
                     <div class="flex flex-center">
                         <div class="o-box -w640 -center -gray -text-center">
-                            <span :class="'a-button-file -webpraw mt-2'" @click="createImageWebP('0', imageType, imageSource, imageName, '.webp', 'raw', null, null, null, null)">
+                            <span :class="'a-button-file -webpraw mt-2'" @click="createImageWebP(0, imageType, imageSource, imageName, '.webp', 'raw', null, null, null, null)">
                                 {{webP ? 'Znovu generovat WebP obrázek' : 'Generovat WebP obrázek'}}
                             </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="t-section" v-if="webP">
+                <div class="t-section__inner">
+                    <div class="flex flex-center">
+                        <div class="o-box -w640 -center -gray -text-center">
+                            <span :class="'a-button-file -webpraw mt-2'" @click="createImageWebPSizes(imageType, imageSource, imageName)">Generovat velikostní varianty WebP obrázků</span>
                         </div>
                     </div>
                 </div>
@@ -632,7 +642,14 @@
                 }
             }
 
-            const createImageWebP = async (dataIndex: string, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
+            const createImageWebPSizes = async (dataType: string, source: string, name: string) => {
+                for (let i = 0; i < sizes.length; i++) {
+                    const { width, height, prefix, suffix } = sizes[i];
+                    await createImageWebP(i, dataType, source, name, '.webp', 'resize', width, height, prefix, suffix);
+                }
+            }
+
+            const createImageWebP = async (dataIndex: number, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
                 try {
                     if (type === "resize") {
                         const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
@@ -725,6 +742,7 @@
                 existImageWebpRaw,
                 existImage,
                 createImageWebP,
+                createImageWebPSizes,
                 editForm
             }
         },
