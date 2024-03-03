@@ -136,9 +136,7 @@
                 <div class="t-section__inner">
                     <div class="flex flex-center">
                         <div class="o-box -w640 -center -gray -text-center">
-                            <span :class="'a-button-file -webpraw mt-2'" @click="createImageWebP(0, imageType, imageSource, imageName, '.webp', 'raw', null, null, null, null)">
-                                {{webP ? 'Znovu generovat WebP obrázek' : 'Generovat WebP obrázek'}}
-                            </span>
+                            <span class="a-button-file -webpraw mt-2" @click="createImageWebP(0, imageType, imageSource, imageName, '.webp', 'raw', null, null, null, null)">Generovat základní WebP obrázek</span>
                         </div>
                     </div>
                 </div>
@@ -148,7 +146,7 @@
                 <div class="t-section__inner">
                     <div class="flex flex-center">
                         <div class="o-box -w640 -center -gray -text-center">
-                            <span :class="'a-button-file -webpraw mt-2'" @click="createImageWebPSizes(imageType, imageSource, imageName)">Generovat velikostní varianty WebP obrázků</span>
+                            <span class="a-button-file -webpraw mt-2" @click="createImageWebPSizes(imageType, imageSource, imageName)">Generovat velikostní varianty WebP obrázku</span>
                         </div>
                     </div>
                 </div>
@@ -350,9 +348,8 @@
                 }
             },
             updateSource() {
-                const newSource = this.imageSetting.find(setting => setting.type === this.imageType);
+                const newSource = this.imageSetting.find(setting => setting.type === this.imageType)
                 this.imageSource = newSource.source
-                console.log("změna typy")
             }
         },
 
@@ -557,6 +554,148 @@
                 })
             }
 
+            // Check Existing basic webP image
+            const existImageWebpRaw = async(dataIndex: string, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
+                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + name + '.webp'
+
+                try {
+                    const response = await fetch(imageUrl, { method: 'HEAD' })
+
+                    if (response.ok) {
+                        webP.value = true
+                        addClassToButton('webp-raw', '-existing', dataType, dataIndex)
+                    } else {
+                        webP.value = false
+                        addClassToButton('webp-raw', '-no-existing', dataType, dataIndex)
+                    }
+                } catch (error) {
+                    webP.value = false
+                    addClassToButton('webp-raw', '-error', dataType, dataIndex)
+                }
+            }
+
+            // Check Existing all sizes variant webP image
+            const existImage = async(dataIndex: string, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
+                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension
+
+                try {
+                    const response = await fetch(imageUrl, { method: 'HEAD' })
+
+                    if (response.ok) {
+                        addClassToButton('webp', '-existing', dataType, dataIndex)
+                    } else {
+                        addClassToButton('webp', '-no-existing', dataType, dataIndex)
+                    }
+                } catch (error) {
+                    addClassToButton('webp', '-error', dataType, dataIndex)
+                }
+            }
+
+            // Check existing new image
+            const existImageNew = async (dataIndex: string, dataType: string, source: string, name: string, extension: string, width: number, height: number, prefix: string, suffix: string) => {
+                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension
+
+                const checkImageExistence = async () => {
+                    try {
+                        const response = await fetch(imageUrl, { method: 'HEAD' })
+
+                        if (response.ok) {
+                            addClassToButton('webp-new', '-existing', dataType, dataIndex)
+                        } else {
+                            addClassToButton('webp-new', '-no-existing', dataType, dataIndex)
+                            setTimeout(checkImageExistence, 3000)
+                        }
+                    } catch (error) {
+                        addClassToButton('webp-new', '-error', dataType, dataIndex)
+                    }
+                }
+                checkImageExistence()
+            }
+
+            // Create all sizes for webP
+            const createImageWebPSizes = async (dataType: string, source: string, name: string) => {
+                for (let i = 0; i < sizes.length; i++) {
+                    const { width, height, prefix, suffix } = sizes[i]
+                    await createImageWebP(i, dataType, source, name, '.webp', 'resize', width, height, prefix, suffix)
+                }
+            }
+
+            // Create basic and sizes for webP (one picture)
+            const createImageWebP = async (dataIndex: number, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
+                try {
+                    if (type === "resize") {
+                        const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
+                        buttons.forEach((button) => {
+                            button.classList.remove('-existing')
+                            button.classList.remove('-no-existing')
+                            button.classList.remove('-error')
+                            button.classList.add('-loading')
+                        })
+                    }
+                    
+                    await useFetch(`${runTimeConfig.public.baseURL}/image-webp-create?type_create=${type}&name=${encodeURIComponent(name)}&source=${encodeURIComponent(source)}&width=${width}&height=${height}&prefix=${prefix}&suffix=${suffix}`, {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Access-Control-Allow-Origin": "http://localhost:3000",
+                            "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept",
+                            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH"
+                        },
+                        method: 'POST'
+                    })
+                    .then(() => {
+                        successForm.value = "Obrázek (" +  (width ? ("Šířka: " + width) : 'null') + "," + (height ? ("Výška: " + height) : 'null') + ") byl vytvořen"
+
+                        if (type === "raw") {
+                            existImageWebpRaw('0', dataType, source, name, '.webp', 'raw', null, null, null, null)
+                        } else {
+                            setTimeout(() => {
+                                existImageNew(dataIndex, dataType, source, name, extension, width, height, prefix, suffix)
+                            }, 5000)
+                        }
+                    })
+                    .catch((error) => {
+                        const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
+                        buttons.forEach((button) => {
+                            button.classList.remove('-loading')
+                            button.classList.add('-error')
+                        })
+
+                        errorForm.value = "Obrázek (" +  (width ? ("Šířka: " + width) : 'null') + "," + (height ? ("Výška: " + height) : 'null') + ") nebyl vytvořen, nastala chyba při jeho vytvoření."
+                    })
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
+            //API - image
+            ;(async () => {
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/image-id/${route.params.id}`)
+                const dataAPI: any = data._rawValue
+                
+                const Image: Image[] = JSON.parse(dataAPI)
+                
+                if (Array.isArray(Image) && Image.length > 0) {
+                    itemID.value = Image[0].id
+                    createdAt.value = Image[0].created_at
+                    updatedAt.value = Image[0].updated_at
+                    imageName.value = Image[0].name
+                    imageSource.value = Image[0].source
+                    imageType.value = Image[0].type
+                    imageAuthor.value = Image[0].author
+                    loadingData.value = true
+                }
+
+                existImageWebpRaw('0', imageType.value, imageSource.value, imageName.value, '.webp', 'raw', null, null, null, null)
+            })()
+
+            // Check existing images after load page
+            onMounted(async () => {
+                sizes.forEach((item, index) => {
+                    existImage(index, imageType.value, imageSource.value, imageName.value, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)
+                })
+            })
+
             //FORM - edit
             const editForm = async () => {
                 try {
@@ -587,140 +726,6 @@
                     errorForm.value = "Chyba připojení k API"
                 }
             }
-
-            const existImageWebpRaw = async(dataIndex: string, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
-                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + name + '.webp'
-
-                try {
-                    const response = await fetch(imageUrl, { method: 'HEAD' });
-
-                    if (response.ok) {
-                        webP.value = true;
-                        addClassToButton('webp-raw', '-existing', dataType, dataIndex);
-                    } else {
-                        webP.value = false;
-                        addClassToButton('webp-raw', '-no-existing', dataType, dataIndex);
-                    }
-                } catch (error) {
-                    webP.value = false;
-                    addClassToButton('webp-raw', '-error', dataType, dataIndex);
-                }
-            }
-
-            const existImage = async(dataIndex: string, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
-                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension;
-
-                try {
-                    const response = await fetch(imageUrl, { method: 'HEAD' });
-
-                    if (response.ok) {
-                        addClassToButton('webp', '-existing', dataType, dataIndex);
-                    } else {
-                        addClassToButton('webp', '-no-existing', dataType, dataIndex);
-                    }
-                } catch (error) {
-                    addClassToButton('webp', '-error', dataType, dataIndex);
-                }
-            }
-
-            const existImageNew = async (dataIndex: string, dataType: string, source: string, name: string, extension: string, width: number, height: number, prefix: string, suffix: string) => {
-                const imageUrl = 'https://image.frytolnacestach.cz/storage' + source + (prefix || '') + name + '-' + (width ? width : height) + (suffix !== "-1x" ? suffix : '') + extension;
-
-                try {
-                    const response = await fetch(imageUrl, { method: 'HEAD' });
-
-                    if (response.ok) {
-                        addClassToButton('webp-new', '-existing', dataType, dataIndex);
-                    } else {
-                        addClassToButton('webp-new', '-no-existing', dataType, dataIndex);
-                    }
-                } catch (error) {
-                    addClassToButton('webp-new', '-error', dataType, dataIndex);
-                }
-            }
-
-            const createImageWebPSizes = async (dataType: string, source: string, name: string) => {
-                for (let i = 0; i < sizes.length; i++) {
-                    const { width, height, prefix, suffix } = sizes[i];
-                    await createImageWebP(i, dataType, source, name, '.webp', 'resize', width, height, prefix, suffix);
-                }
-            }
-
-            const createImageWebP = async (dataIndex: number, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
-                try {
-                    if (type === "resize") {
-                        const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
-                        buttons.forEach((button) => {
-                            button.classList.remove('-existing')
-                            button.classList.remove('-no-existing')
-                            button.classList.remove('-error')
-                            button.classList.add('-loading')
-                        })
-                    }
-                    
-                    await useFetch(`${runTimeConfig.public.baseURL}/image-webp-create?type_create=${type}&name=${encodeURIComponent(name)}&source=${encodeURIComponent(source)}&width=${width}&height=${height}&prefix=${prefix}&suffix=${suffix}`, {
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Access-Control-Allow-Origin": "http://localhost:3000",
-                            "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept",
-                            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH"
-                        },
-                        method: 'POST'
-                    })
-                    .then(() => {
-                        console.log('Obrázek byl vytvořen')
-                        successForm.value = "Obrázek byl vytvořen"
-
-                        if (type === "raw") {
-                            existImageWebpRaw('0', dataType, source, name, '.webp', 'raw', null, null, null, null)
-                        } else {
-                            setTimeout(() => {
-                                existImageNew(dataIndex, dataType, source, name, extension, width, height, prefix, suffix)
-                            }, 5000)
-                        }
-                    })
-                    .catch((error) => {
-                        const buttons = document.querySelectorAll(`.a-button-file.-data-type-${dataType}.-data-index-${dataIndex}`)
-                        buttons.forEach((button) => {
-                            button.classList.remove('-loading')
-                            button.classList.add('-error')
-                        })
-
-                        console.log(error)
-                        errorForm.value = "Obrázek nebyl vytvořen, nastala chyba při jeho vytvoření."
-                    })
-                } catch (err) {
-                    console.log(err)
-                    errorForm.value = "Chyba připojení k API"
-                }
-            }
-
-            //API - image
-            ;(async () => {
-                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/image-id/${route.params.id}`)
-                const dataAPI: any = data._rawValue
-                
-                const Image: Image[] = JSON.parse(dataAPI)
-                
-                if (Array.isArray(Image) && Image.length > 0) {
-                    itemID.value = Image[0].id
-                    createdAt.value = Image[0].created_at
-                    updatedAt.value = Image[0].updated_at
-                    imageName.value = Image[0].name
-                    imageSource.value = Image[0].source
-                    imageType.value = Image[0].type
-                    imageAuthor.value = Image[0].author
-                    loadingData.value = true
-                }
-
-                existImageWebpRaw('0', imageType.value, imageSource.value, imageName.value, '.webp', 'raw', null, null, null, null)
-            })()
-
-            onMounted(async () => {
-                sizes.forEach((item, index) => {
-                    existImage(index, imageType.value, imageSource.value, imageName.value, '.webp', 'resize', item.width, item.height, item.prefix, item.suffix)
-                })
-            })
 
             //RETURN
             return {
