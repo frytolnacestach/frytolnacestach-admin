@@ -571,9 +571,6 @@
                         method: 'PUT',
                         body: JSON.stringify({
                             'id': itemID.value,
-                            'name': imageName.value,
-                            'source': imageSource.value,
-                            'type': imageType.value,
                             'author': imageAuthor.value
                         })
                     })
