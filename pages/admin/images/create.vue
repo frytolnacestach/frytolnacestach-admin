@@ -90,7 +90,7 @@
                                             <!-- Form - FILE -->
                                             <div class="o-form-item__item">
                                                 <mLabel name="Obrázek" nameDB="" perex="" :required=true />
-                                                <input type="file" name="image" @change="handleFileChange" required />
+                                                <input type="file" name="image" accept=".jpg, .jpeg, .png, .webp, .heic" @change="handleFileChange" required />
                                             </div>
                                             <!-- Form - FILE END -->
                                         </div>
