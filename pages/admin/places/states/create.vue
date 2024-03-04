@@ -581,7 +581,8 @@
                             'links': placesStateLinks.value,
                             'language_phrases': placesStateLanguagePhrases.value,
                             'facts_place': placesStateFactsPlace.value,
-                            'setting_top': settingTop.value
+                            'setting_top': settingTop.value,
+                            'setting_status_public': 1
                         })
                     })
                     // response

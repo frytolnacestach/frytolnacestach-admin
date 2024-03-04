@@ -349,7 +349,8 @@
                             'seo_tags': placesContinentSeoTags.value,
                             'coordinates': placesContinentCoordinates.value,
                             'zoom': placesContinentZoom.value,
-                            'setting_top': settingTop.value
+                            'setting_top': settingTop.value,
+                            'setting_status_public': 1
                         })
                     })
                     // response

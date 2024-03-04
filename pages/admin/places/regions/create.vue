@@ -371,7 +371,8 @@
                             'coordinates': placesRegionCoordinates.value,
                             'zoom': placesRegionZoom.value,
                             'affiliate': placesRegionAffiliate.value,
-                            'setting_top': settingTop.value
+                            'setting_top': settingTop.value,
+                            'setting_status_public': 1
                         })
                     })
                     // response
