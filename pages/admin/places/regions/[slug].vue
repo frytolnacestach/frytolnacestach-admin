@@ -437,7 +437,7 @@
 
             //API - Places Region
             ;(async () => {
-                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/places-region/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/places-region/${route.params.slug}?admin=true`)
                 const dataAPI: any = data._rawValue
                 
                 const PlacesRegion: PlacesRegion[] = JSON.parse(dataAPI)

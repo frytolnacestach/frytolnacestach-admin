@@ -755,7 +755,7 @@
 
             //API - Places State
             ;(async () => {
-                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/places-state/${route.params.slug}`)
+                const { data }: { data: any } = await useFetch(`${runTimeConfig.public.baseURL}/places-state/${route.params.slug}?admin=true`)
                 const dataAPI: any = data._rawValue
                 
                 const PlacesState: PlacesState[] = JSON.parse(dataAPI)
