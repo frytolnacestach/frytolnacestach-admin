@@ -46,7 +46,7 @@
                                     <div v-for="placesSpot in placesSpots" :key="placesSpot.id" class="o-admin-list__item">
                                         <span class="o-admin-list__id">{{ placesSpot.id }}</span>
                                         <h3 class="o-admin-list__title">
-                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/spots/${placesSpot.slug}`">{{ placesSpot.name }}</NuxtLink>
+                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/spots/${placesSpot.slug}?admin=true`">{{ placesSpot.name }}</NuxtLink>
                                         </h3>
                                         <p class="o-admin-list__perex">
                                             <strong>
