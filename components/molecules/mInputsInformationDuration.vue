@@ -60,7 +60,7 @@
     import mLabel from '@/components/molecules/mLabel.vue'
 
     export default defineComponent({
-        name: 'MoleculesmInputInformationDurationComponent',
+        name: 'MoleculesmInputsInformationDurationComponent',
 
         //COMPONENTS
         components: {

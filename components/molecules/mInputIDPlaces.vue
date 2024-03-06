@@ -16,7 +16,7 @@
 
 <script>
     export default defineComponent({
-        name: 'MoleculesmInputIDPlaceComponent',
+        name: 'MoleculesmInputIDPlacesComponent',
 
         props: {
             value: {

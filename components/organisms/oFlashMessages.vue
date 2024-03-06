@@ -14,7 +14,7 @@
 
 <script lang="ts">
     export default defineComponent({
-        name: 'OrganismsoHeroComponent',
+        name: 'OrganismsoFlashMessagesComponent',
 
         props: {
             text: {

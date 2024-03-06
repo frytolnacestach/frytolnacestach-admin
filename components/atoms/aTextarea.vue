@@ -4,7 +4,7 @@
 
 <script>
     export default defineComponent({
-        name: 'AtomsmTextareaComponent',
+        name: 'AtomsaTextareaComponent',
 
         props: {
             value: {

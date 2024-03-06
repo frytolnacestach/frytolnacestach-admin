@@ -4,7 +4,7 @@
 
 <script>
     export default defineComponent({
-        name: 'AtomsmInputComponent',
+        name: 'AtomsaInputComponent',
 
         props: {
             value: {
