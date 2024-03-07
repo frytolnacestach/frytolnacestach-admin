@@ -46,7 +46,7 @@
                                     <div v-for="placesContinent in placesContinents" :key="placesContinent.id" class="o-admin-list__item">
                                         <span class="o-admin-list__id">{{ placesContinent.id }}</span>
                                         <h3 class="o-admin-list__title">
-                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/continents/${placesContinent.slug}?admin=true`">{{ placesContinent.name }}</NuxtLink>
+                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/continents/${placesContinent.slug}`">{{ placesContinent.name }}</NuxtLink>
                                         </h3>
                                         <p class="o-admin-list__perex">
                                             {{ placesContinent.information_chatgpt }}
@@ -173,7 +173,7 @@
             const itemsPerPage = 100
 
             const load = async () => {
-                fetch(`${runTimeConfig.public.baseURL}/places-continents?page=${page.value}&items=${itemsPerPage}`, {
+                fetch(`${runTimeConfig.public.baseURL}/places-continents?admin=true&page=${page.value}&items=${itemsPerPage}`, {
                     method: 'GET'
                 })
                 .then(res => res.json())

@@ -46,7 +46,7 @@
                                     <div v-for="placesCity in placesCities" :key="placesCity.id" class="o-admin-list__item">
                                         <span class="o-admin-list__id">{{ placesCity.id }}</span>
                                         <h3 class="o-admin-list__title">
-                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/cities/${placesCity.slug}?admin=true`">{{ placesCity.name }}</NuxtLink>
+                                            <NuxtLink class="o-admin-list__title-link" :to="`/admin/places/cities/${placesCity.slug}`">{{ placesCity.name }}</NuxtLink>
                                         </h3>
                                         <p class="o-admin-list__perex">
                                             <strong>
@@ -178,7 +178,7 @@
             const itemsPerPage = 100
 
             const load = async () => {
-                fetch(`${runTimeConfig.public.baseURL}/places-cities?page=${page.value}&items=${itemsPerPage}`, {
+                fetch(`${runTimeConfig.public.baseURL}/places-cities?admin=true&page=${page.value}&items=${itemsPerPage}`, {
                     method: 'GET'
                 })
                 .then(res => res.json())
