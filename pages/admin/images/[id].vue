@@ -488,7 +488,7 @@
                 { width: 430 * 2, height: 430 * 2, prefix: "s-", suffix: "-2x" },
                 { width: 556 * 2, height: 556 * 2, prefix: "s-", suffix: "-2x" },
                 { width: 738 * 2, height: 738 * 2, prefix: "s-", suffix: "-2x" },
-                { width: 738 * 2, height: 962 * 2, prefix: "s-", suffix: "-2x" }
+                { width: 962 * 2, height: 962 * 2, prefix: "s-", suffix: "-2x" }
             ]
 
             //LAYOUT
