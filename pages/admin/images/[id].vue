@@ -152,6 +152,16 @@
                 </div>
             </section>
 
+            <section class="t-section" v-if="webP">
+                <div class="t-section__inner">
+                    <div class="flex flex-center">
+                        <div class="o-box -w640 -center -gray -text-center">
+                            <span class="a-button-file -webpraw mt-2" @click="createImageWebPSizesOneButton()">Generovat velikostní varianty WebP obrázku (rychlejší)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="t-section">
                 <div class="t-section__inner">
                     <div class="flex flex-center">
@@ -620,6 +630,13 @@
                 }
             }
 
+            function createImageWebPSizesOneButton() {
+                var buttons = document.querySelectorAll('.o-image-version__button .a-button-file') as NodeListOf<HTMLButtonElement>
+                buttons.forEach(function(button) {
+                    button.click()
+                })
+            }
+
             // Create basic and sizes for webP (one picture)
             const createImageWebP = async (dataIndex: number, dataType: string, source: string, name: string, extension: string, type: string, width: number, height: number, prefix: string, suffix: string) => {
                 try {
@@ -745,6 +762,7 @@
                 existImage,
                 createImageWebP,
                 createImageWebPSizes,
+                createImageWebPSizesOneButton,
                 editForm
             }
         },
