@@ -173,7 +173,7 @@ fs.readdir(inputDirPath, async (err, files) => {
 		// Převedení připony na malé písmena
 		const ext = path.extname(file).toLowerCase();
 
-
+		if (ext === '.png' || ext === '.jpg' || ext === '.jpeg') {
 			// Výběr existujícího souboru z adresáře
 			const originalImagePath = path.join(inputDirPath, file);
 
@@ -190,6 +190,6 @@ fs.readdir(inputDirPath, async (err, files) => {
 				const outputImagePath = path.join(outputDirPath, `${prefix}${path.parse(file).name}-${width ? width : height}${suffix}.webp`);
 				await resizeAndSaveImage(originalImagePath, outputImagePath, width, height);
 			}
-
+		}
 	}
 });
