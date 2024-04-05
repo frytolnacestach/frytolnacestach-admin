@@ -173,7 +173,7 @@ fs.readdir(inputDirPath, async (err, files) => {
 		// Převedení připony na malé písmena
 		const ext = path.extname(file).toLowerCase();
 
-		if (ext === '.png' || ext === '.jpg' || ext === '.jpeg') {
+		if (ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.webp') {
 			// Výběr existujícího souboru z adresáře
 			const originalImagePath = path.join(inputDirPath, file);
 
