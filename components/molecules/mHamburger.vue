@@ -21,10 +21,11 @@
         },
         methods: {
             mHamburger() {
-                var hamburger = document.querySelector(".js_m-hamburger")
+                const hamburger = document.querySelector(".js_m-hamburger")
+                const navLinks = document.querySelectorAll(".js_m-nav-main__link")
 
-                hamburger.addEventListener("click", () => {
-                    var status = hamburger.getAttribute("data-hamburger")
+                hamburger.addEventListener("click", function() {
+                    let status = hamburger.getAttribute("data-hamburger")
 
                     if (status === "close") {
                         hamburger.setAttribute("data-hamburger", "open")
@@ -39,15 +40,16 @@
                         document.documentElement.classList.remove("no-scroll")
                         document.body.classList.remove("no-scroll")
                     }
-                });
+                })
 
-                var navLinks = document.querySelectorAll(".js_m-nav-main__link")
-                navLinks.addEventListener("click", () => {
-                    hamburger.setAttribute("data-hamburger", "close")
-                    hamburger.classList.remove("open")
-                    document.querySelector(".js_m-nav-main").classList.remove("open")
-                    document.documentElement.classList.remove("no-scroll")
-                    document.body.classList.remove("no-scroll")
+                navLinks.forEach(function(link) {
+                    link.addEventListener("click", function() {
+                        hamburger.setAttribute("data-hamburger", "close")
+                        hamburger.classList.remove("open")
+                        document.querySelector(".js_m-nav-main").classList.remove("open")
+                        document.documentElement.classList.remove("no-scroll")
+                        document.body.classList.remove("no-scroll")
+                    })
                 })
             }
         }
