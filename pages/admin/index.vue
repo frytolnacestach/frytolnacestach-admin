@@ -74,6 +74,11 @@
                         id: 5,
                         name: "Top místa",
                         url: "/admin/top-places"
+                    },
+                    {
+                        id: 6,
+                        name: "E-mail",
+                        url: "/admin/email"
                     }
                 ],
                 mNavAdminArrayBlog: [
