@@ -126,7 +126,7 @@
         },
 
         methods: {
-            handleMesage(newMessage: string) {
+            handleMessage(newMessage: string) {
                 this.message = newMessage
             }
         },
@@ -155,6 +155,59 @@
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
                 twitterCard: 'summary_large_image',
             })         
+
+            //CONSTS
+            const runTimeConfig = useRuntimeConfig()
+            const errorForm = ref('')
+            const successForm = ref('')
+            const from = ref('')
+            const to = ref('')
+            const subject = ref('')
+            const message = ref('')
+
+            //FORM - create
+            const createForm = async () => {
+                try {
+                    // request
+                    const response = await fetch(`${runTimeConfig.public.baseURL}/email-send`, {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Access-Control-Allow-Origin": "http://localhost:3000",
+                            "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept",
+                            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH"
+                        },
+                        method: 'POST',
+                        body: JSON.stringify({
+                            'from': from.value,
+                            'to': to.value,
+                            'subject': subject.value,
+                            'message': message.value
+                        })
+                    })
+                    // response
+                    if (response.ok) {
+                        console.log('Email byl odeslán.')
+                        successForm.value = "Email byl odeslán."
+                    } else if (response.status === 500) {
+                        console.log('Nastala chyba a email nebyl odeslán.')
+                        errorForm.value = "Nastala chyba a email nebyl odeslána."
+                    }
+                } catch (err) {
+                    console.log(err)
+                    errorForm.value = "Chyba připojení k API"
+                }
+            }
+
+            //RETURN
+            return {
+                successForm,
+                errorForm,
+                from,
+                to,
+                subject,
+                message,
+                createForm
+            }
         },
         
         mounted() {
