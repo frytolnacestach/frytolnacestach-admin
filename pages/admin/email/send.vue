@@ -31,7 +31,7 @@
                                         <div class="o-form-item__items">
                                             <!-- Form - From -->
                                             <div class="o-form-item__item">
-                                                <mLabel name="Odeílatel" nameDB="send" perex="E-mailová adresa odesílatele" :required=true />
+                                                <mLabel name="Odeílatel" nameDB="send" perex="E-mailová adresa odesílatele (musí být domény frytolnacestach.cz)" :required=true />
                                                 <input class="a-input" type="text" name="from" v-model="from" required />
                                             </div>
                                             <!-- Form - From END -->
