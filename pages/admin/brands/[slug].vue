@@ -156,7 +156,6 @@
     import oFlashMessages from '@/components/organisms/oFlashMessages.vue'
     import oHero from '@/components/organisms/oHero.vue'
 
-
     interface IDSstates {
         id: number
     }
