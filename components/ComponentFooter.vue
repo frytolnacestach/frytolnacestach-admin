@@ -1,6 +1,7 @@
 <template>
     <footer class="t-footer">
         <div class="o-footer">
+            <!-- Navigation -->
             <div class="o-footer__nav">
                 <nav class="m-nav-footer">
                     <div class="m-nav-footer__outer">
@@ -17,6 +18,8 @@
                     </div>
                 </nav>
             </div>
+            <!-- Navigation END -->
+            <!-- Copyright -->
             <div class="o-footer__copyright">
                 <div class="o-copyright">
                     <div class="o-copyright__outer">
@@ -26,6 +29,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Copyright END-->
         </div>
     </footer>
 </template>
