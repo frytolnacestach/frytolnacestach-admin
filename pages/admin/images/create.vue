@@ -246,7 +246,6 @@
             updateSource() {
                 const newSource = this.imageSetting.find(setting => setting.type === this.imageType);
                 this.imageSource = newSource.source
-                console.log("změna typy")
             }
         },
 
@@ -315,7 +314,6 @@
                     successForm.value = 'Obrázek byl úspěšně nahrán a vytvořen.'
                     errorForm.value = ''
                 } catch (error) {
-                    console.log(error)
                     successForm.value = ''
                     errorForm.value = 'Chyba při nahrávání a vytvoření obrázku.'
                 }
@@ -338,9 +336,7 @@
         mounted() {
             //Kontrola přihlášení
             let user = localStorage.getItem('user-info')
-            if ( user && user != "undefined" ) {
-                console.log("Jsi přihlášen")
-            } else {
+            if ( !user || user === "undefined" ) {
                 //Přesměrování
                 const router = useRouter()
                 router.push('/login')

@@ -305,15 +305,12 @@
                     })
                     // response
                     if (response.ok) {
-                        console.log('Data byla uložená.')
                         successForm.value = "Data byla uložená."
                         navigateTo(`/admin/floras/${floraSlug.value}`)
                     } else if (response.status === 500) {
-                        console.log('Nastala chyba a data nebyla uložena.')
                         errorForm.value = "Nastala chyba a data nebyla uložena."
                     }
                 } catch (err) {
-                    console.log(err)
                     errorForm.value = "Chyba připojení k API"
                 }
             }
@@ -340,9 +337,7 @@
         mounted() {
             //Kontrola přihlášení
             let user = localStorage.getItem('user-info')
-            if ( user && user != "undefined" ) {
-                console.log("Jsi přihlášen")
-            } else {
+            if ( !user || user === "undefined" ) {
                 //Přesměrování
                 const router = useRouter()
                 router.push('/login')

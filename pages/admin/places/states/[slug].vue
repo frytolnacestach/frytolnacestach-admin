@@ -852,14 +852,11 @@
                     })
                     // response
                     if (response.ok) {
-                        console.log('Data byla upravena.')
                         successForm.value = "Data byla upravena."
                     } else if (response.status === 500) {
-                        console.log('Nastala chyba a data nebyla upravena.')
                         errorForm.value = "Nastala chyba a data nebyla upravena."
                     }
                 } catch (err) {
-                    console.log(err)
                     errorForm.value = "Chyba připojení k API"
                 }
             }
@@ -912,9 +909,7 @@
         mounted() {
             //Kontrola přihlášení
             let user = localStorage.getItem('user-info')
-            if ( user && user != "undefined" ) {
-                console.log("Jsi přihlášen")
-            } else {
+            if ( !user || user === "undefined" ) {
                 //Přesměrování
                 const router = useRouter()
                 router.push('/login')

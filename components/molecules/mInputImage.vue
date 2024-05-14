@@ -60,7 +60,6 @@
                         method: 'GET'
                     }).then(res => res.json()).then(data => image.value = data)
                 } catch (err) {
-                    console.log(err)
                     errorForm.value = "Chyba připojení k API"
                 }
             }

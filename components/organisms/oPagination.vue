@@ -62,8 +62,6 @@
                 })
                 .then(res => res.json())
                 .then(data => {
-                    console.log("DATA:")
-                    console.log(data)
                     countResult.value = data.count
                 })
             })

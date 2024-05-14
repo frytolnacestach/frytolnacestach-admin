@@ -107,9 +107,7 @@
                         })
                     });
 
-                    const login = await response.json();
-                    console.log(login);
-                    console.log(login.status);
+                    const login = await response.json()
                     if (login && login.status && login.status === 200) {
                         //set storage
                         localStorage.setItem("user-info", JSON.stringify(login.message[0]))
@@ -125,17 +123,14 @@
 
                         errorForm.value = ""
                         successForm.value = "Byl jste přihlášen"
-                        console.log("Uživatelský byl přihlášen.")
 
                         //Přesměrování
                         await navigateTo('/admin')
                     } else {
-                        errorForm.value = "Uživatelský email nebo heslo je nesprávné";
-                        console.log("Uživatelský email nebo heslo je nesprávné 1");
+                        errorForm.value = "Uživatelský email nebo heslo je nesprávné"
                     }
                 } catch (error) {
                     errorForm.value = "Uživatelský email nebo heslo je nesprávné"
-                    console.log("Uživatelský email nebo heslo je nesprávné 2")
                 }
             }
 

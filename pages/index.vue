@@ -43,16 +43,6 @@
                 ogImage: 'https://image.frytolnacestach.cz/storage/main/og-default.png',
                 twitterCard: 'summary_large_image',
             })
-        },
-
-        mounted() {
-            //Kontrola přihlášení
-            let user = localStorage.getItem('user-info')
-            if ( user && user != "undefined" ) {
-                console.log("Jsi přihlášen")
-            } else {
-                console.log("Nejsi přihlášen")
-            }
         }
     })
 </script>

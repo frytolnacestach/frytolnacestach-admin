@@ -53,15 +53,9 @@
             document.cookie = "FNCADMINemail=;expires=Thu, 01 Jan 1970 00:00:01 GMT;"
             document.cookie = "FNCADMINpass=;expires=Thu, 01 Jan 1970 00:00:01 GMT;"
 
-            //Kontrola přihlášení
-            let user = localStorage.getItem('user-info')
-            if ( user && user != "undefined" ) {
-                console.log("Jsi přihlášen")
-            } else {
-                //Přesměrování
-                const router = useRouter()
-                router.push('/login')
-            }
+            //Přesměrování
+            const router = useRouter()
+            router.push('/login')
         }
     })
 </script>

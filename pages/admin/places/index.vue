@@ -110,9 +110,7 @@
         mounted() {
             //Kontrola přihlášení
             let user = localStorage.getItem('user-info')
-            if ( user && user != "undefined" ) {
-                console.log("Jsi přihlášen")
-            } else {
+            if ( !user || user === "undefined" ) {
                 //Přesměrování
                 const router = useRouter()
                 router.push('/login')
