@@ -67,4 +67,5 @@ _____________________________________________________________________
 &nbsp;
 
 ## DOCS
+<big>**[USERS](docs/users.md)**</big>
 <big>**[GENERATED IMAGES](docs/image-generated.md)**</big>
