@@ -75,6 +75,8 @@ _____________________________________________________________________
 
 <big>**[USERS](docs/users.md)**</big>
 
+<big>**[IMAGE FORMAT](docs/image-format.md)**</big>
+
 <big>**[IMAGE SIZES](docs/image-sizes.md)**</big>
 
 <big>**[GENERATED IMAGES](docs/image-generated.md)**</big>
